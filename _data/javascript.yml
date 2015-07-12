@@ -3,6 +3,7 @@ include:
     - "https://cdn.polyfill.io/v1/polyfill.min.js?features=default,fetch|gated"
     - "https://cdn.livefyre.com/Livefyre.js"
     - "/vendor/bootstrap.native/dist/bootstrap-native.min.js"
+    - "/vendor/postscribe/dist/postscribe.min.js"
     - "/vendor/instantclick/instantclick.js"
     - "/js/main.js"
 compatability:

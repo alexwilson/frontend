@@ -17,6 +17,7 @@
     "bootstrap.native": "~0.9.7",
     "bootstrap": "~3.3.4",
     "font-awesome": "~4.3.0",
-    "instantclick": "~3.1.0"
+    "instantclick": "~3.1.0",
+    "postscribe": "~1.4.0"
   }
 }

@@ -22,7 +22,7 @@ After trying a bit of trickery in node.js to try and capture and evaluate the ch
 
 Ten minutes later, I had whipped together the following, which at time of writing allows my scraping tools past CloudFlare with negligable failures.
 
-<div id="gist1342013"><a href="//gist.github.com/1342013">1342013</a></div>
+{% gist antoligy/f4f084b87946f84a89b4 %}
 
 
 [CloudFlare]:   https://www.CloudFlare.com/         "CloudFlare"
