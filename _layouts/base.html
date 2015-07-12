@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- Meta -->
+        {% include component/meta.html %}
+
+        <!-- CSS -->
+        {% include component/stylesheet.html %}
+
+        <!-- JavaScript -->
+        {% include component/javascript.html %}
+        
+        <!-- Compatability -->
+        {% include component/compatability.html %}
+    
+    </head>
+    <body id="page" class="alex page">
+
+        <!-- Navigation -->
+        {% include component/navigation.html %}
+        <div class="container" id="container">
+                {{ content }}
+        </div>
+
+        <!-- Footer -->
+        {% include component/footer.html %}
+    </body>
+</html>

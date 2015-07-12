@@ -1,0 +1,29 @@
+---
+layout: base
+---
+<div class="col-sm-10 col-xs-12 col-sm-offset-1" >
+	<div>
+		<section>
+			{% if paginator.total_pages > 1 %}
+
+				{% for post in paginator.posts %}
+					{% include card/item.html %}
+				{% endfor %}
+
+				<div class="clearfix"></div>
+				{% include component/pager.html %}
+
+			{% else %}
+
+				{% for post in site.posts %}
+					{% include card/item.html %}
+				{% endfor %}
+				
+			{% endif %}
+		</section>
+	</div>
+
+</div>
+<!-- <div class="col-sm-4 hidden-xs col-right">
+	{{ content }}
+</div> -->

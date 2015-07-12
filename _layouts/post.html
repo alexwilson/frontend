@@ -1,0 +1,95 @@
+---
+layout: base
+---
+
+{% if page.image %}
+    </div>
+    <div class="alex-article__image" style="background-image:url('{{ page.image }}')">
+    </div>
+    <div class="container">
+{% endif %}
+<div class="col-md-offset-1 col-md-10 col-xs-12">
+    {% assign itemtype = 'http://schema.org/BlogPosting' %}
+    {% if page.itemtype %}
+        {% assign itemtype = page.itemtype %}
+    {% endif %}
+    <div class="alex-article__main" itemscope="" itemtype="{{ itemtype }}">
+        <section>
+            
+            
+            <!-- Title -->
+            <h1 itemprop="name headline">{{ page.title }}</h1>
+            <h1 class="spacer">___</h1>
+            
+            {% if page.author or page.date %}
+                <div class="alex-article__main__byline">
+                    Posted 
+
+                    {% if page.author %}
+                    by
+                    {% assign author = site.data.people[page.author] %}
+                    <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                        <span itemprop="name">
+                            <a href="{{ author.gplus }}" itemprop="url" rel="author">{{ author.name }}</a>
+                        </span>
+                    </span>
+                    {% endif %}
+
+                    {% if page.date and page.date != 0 %}
+                    on
+                    <!-- Date -->
+                    <time class="alex-article__main__date" datetime="{{ page.date|date_to_xmlschema }}" itemprop="datePublished">
+                    {% assign d = page.date | date: "%-d"  %}
+                    {{ page.date | date: "%A," }} 
+                    {% case d %}
+                        {% when '1' or '21' or '31' %}{{ d }}st
+                        {% when '2' or '22' %}{{ d }}nd
+                        {% when '3' or '23' %}{{ d }}rd
+                        {% else %}{{ d }}th
+                        {% endcase %}
+                    {{ page.date | date: "%B %Y" }}
+                    </time>
+                    {% endif %}
+
+                </div>
+            {% endif %}
+            
+            <!-- Tags -->
+            <!-- <p class="alex-article__tags">
+                {% for tag in page.tags %}
+                    <span class="label label-default">{{ tag }}</span>
+                {% endfor %}
+            </p> -->
+
+            <!-- Content -->
+            <div itemprop="articleBody" class="alex-article__main__body article-description">
+                {{ content }}
+            </div>
+
+            {% unless page.share == false %}
+                <hr>
+                <!-- Share -->
+                <h3 class="share">Share</h3>    
+                {% include component/share.html %}
+            {% endunless %}
+
+            {% if page.threadId %}
+                <!-- Comments -->
+                <div id="comments"></div>
+                <script type="text/javascript">
+                    (function(window){
+                        window.Livefyre.require(['fyre.conv#3'], function (Conv) {
+                        new Conv({}, [{
+                          siteId: '376177',
+                          articleId: '{{ page.threadId }}',
+                          el: 'comments',
+                        }], function (commentsWidget) {}());
+                        });
+                    }(this))
+                </script>
+            {% endif %}
+
+            
+        </section>
+    </div>
+</div>

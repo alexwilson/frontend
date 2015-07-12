@@ -1,0 +1,10 @@
+<footer class="footer">
+    <div class="container align-center">
+        <span class="text-muted">
+        &copy; Alex Wilson {{ "now"|date: '%Y' }}
+        {% for item in site.data.social %}
+            <a href="{{ item.url }}" class="fa text-muted {{ item.glyph }}"></a>
+        {% endfor %}
+        </span>
+    </div>
+</footer>

@@ -1,0 +1,7 @@
+# Ignoring folders created when running Jekyll.
+_site
+.sass-cache
+
+# Ignoring the following because we have no control of prod, so pointless for dev.
+Gemfile.lock
+

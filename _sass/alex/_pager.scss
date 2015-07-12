@@ -1,0 +1,19 @@
+.pager {
+
+	li {
+		>a, >span {
+			border: 0;
+			border-radius: 0;
+			background: $orange-1;
+		}
+		a:hover,a:active {
+			background: $orange-2;
+		}
+
+	}
+	.disabled {
+		* {
+			background: $orange-1 !important;
+		}
+	}
+}
