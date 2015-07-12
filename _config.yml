@@ -6,7 +6,7 @@ description: "Need to think of something to go here..."
 base: "/"
 baseurl: "/"
 url: "https://ax.gy"
-permalink: /blog/:year/:month/:day/:title
+permalink: /blog/:year/:month/:day/:title/
 relative_permalinks: false
 
 # General
