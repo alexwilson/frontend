@@ -1,0 +1,27 @@
+/**
+ * Form styles
+ */
+
+input:focus {
+    outline: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.form-control {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+}

@@ -1,0 +1,88 @@
+/**
+ * Typography
+ */
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+@mixin heading {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.article-description {
+    font-size: 16px;    
+}
+
+.alex-article {
+    &__main {
+
+        &__body {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        &__byline {
+            padding-bottom: 5px;
+        }
+    }
+}
+
+.heading {
+    @include heading;
+
+    a, a:visited {
+        color: $grey-5;
+    }
+}
+
+.heading--xtra-large {
+    font-size: 80px;
+}
+
+.heading--large {
+    font-size: 60px;
+}
+
+.heading--medium {
+    font-size: 40px;
+
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+h1, h2, h3, h4, ul.pager, ul.pagination {
+    @include heading;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    color: $grey-5;
+}
+
+a, a:visited {
+    color: $orange-5;
+    text-decoration: none;
+    transition: color .3s ease-out, background .2s ease-in;
+}
+
+a:hover {
+    @extend a;
+    color: $orange-4 !important;
+}
+
+.spacer {
+    margin: 0;
+    font-size: 60px;
+    top: -35px;
+    line-height: 20px;
+    position: relative;
+}
