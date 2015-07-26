@@ -71,10 +71,10 @@ h1, h2, h3, h4, ul.pager, ul.pagination {
 a, a:visited {
     color: $orange-5;
     text-decoration: none;
-    transition: color .3s ease-out, background .2s ease-in;
+    transition: color .4s ease-out, background .2s ease-in;
 }
 
-a:hover {
+a:hover, a:focus {
     @extend a;
     color: $orange-4 !important;
 }

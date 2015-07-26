@@ -22,17 +22,18 @@ body {
 		&__item {
 
 			> a {
-			    transition: background .05s ease-in;
 			    text-transform: uppercase;
-				color: $header-link !important;
-				&:hover {
+				color: $header-link;
+				&:hover, &:focus {
 					background-color: $header-link-background !important;
 				}
 			}
-		}
 
-		&__item.active a {
-			color: $header-link-active !important;
+			&.active {
+				a {
+					color: $header-link-active;
+				}
+			}
 		}
 
 		&--right {
