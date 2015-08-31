@@ -25,7 +25,14 @@ body {
 	// background-color: $complement;
 }
 
-.alex-home__blog {
+.alex-home__blog,
+.alex-home__projects {
+
+    .heading,
+    .row {
+        padding-bottom: 12px;
+    }
+
     // background-color: $secondary;
 }
 
@@ -46,7 +53,9 @@ body {
 }
 
 .alex-home__see-more {
-    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 // .alex-card {
