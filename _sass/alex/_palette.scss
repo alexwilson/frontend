@@ -11,6 +11,7 @@ $grey-5: darken($white, 80%);
 $grey-6: darken($white, 95%);
 
 $orange: #FEEFE2;
+$orange: lighten($orange, 1%); // Trying this out.
 $orange-1: darken($orange, 3%);
 $orange-2: darken($orange, 10%);
 $orange-3: darken($orange, 20%);
