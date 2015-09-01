@@ -7,37 +7,42 @@ body {
 }
 
 .container {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 .main-content {
     text-align: center;
-	padding-bottom: 50px;
+    padding-bottom: 50px;
     min-height: 250px;
 
     &__secondary {
-    	max-width: 660px;
-    	margin: 0 auto;
+        max-width: 660px;
+        margin: 0 auto;
     }
 }
 
-.alex-home__about {
-	// background-color: $complement;
-}
+.alex-home {
 
-.alex-home__blog,
-.alex-home__projects {
-
-    .heading,
-    .row {
-        padding-bottom: 12px;
+    &__about {
+        // background-color: $complement;
     }
 
+    &__blog,
+    &__projects {
+
+        .heading,
+        .row {
+            padding-bottom: 12px;
+        }
     // background-color: $secondary;
-}
+    }
 
-.alex-home__projects {
-	// background-color: $tertiary;
+    &__see-more {
+        position: absolute;
+        right:  0;
+        bottom: 0;
+    }
+
 }
 
 .alex-article__image {
@@ -50,12 +55,6 @@ body {
     -o-background-size: cover;
     margin-top: -50px;
     height: 400px;
-}
-
-.alex-home__see-more {
-    position: absolute;
-    right: 0;
-    bottom: 0;
 }
 
 // .alex-card {
