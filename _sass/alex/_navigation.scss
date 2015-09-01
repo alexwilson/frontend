@@ -5,54 +5,56 @@
 $nav-height: 51px;
 
 body {
-	margin-top: $nav-height;
+    margin-top: $nav-height;
 }
 
 .alex-nav {
 
-	background-color: $header-background;
-	max-height: $nav-height;
+    background-color: $header-background;
+    max-height: $nav-height;
 
-	&__navbar-toggle {
-		padding: 0 !important;
-	}
+    &__navbar-toggle {
+        padding: 0 !important;
+    }
 
-	&__list {
+    &__list {
 
-		&__item {
+        &__item {
 
-			> a {
-			    text-transform: uppercase;
-				color: $header-link;
-				&:hover, &:focus {
-					background-color: $header-link-background !important;
-				}
-			}
+            > a {
+                text-transform: uppercase;
+                color: $header-link;
+                &:hover, &:focus {
+                    background-color: $header-link-background !important;
+                }
+            }
 
-			&.active {
-				a {
-					color: $header-link-active;
-				}
-			}
-		}
+            &.active {
+                a {
+                    color: $header-link-active;
+                }
+            }
+        }
 
-		&--right {
-			li {
-				a:hover {
-					background-color: $header-background;
-				}
-			}
-		}
-	}
+        &--right {
+            li {
+                a:hover {
+                    background-color: $header-background;
+                }
+            }
+        }
+    }
 
-	&__collapse {
-		transition: height .3s ease-out;
-		-webkit-transition: height .3s ease-out;
-		border: none;
-		&.in {
-			background-color: $header-background;
-		}
-	}
+    &__collapse {
+        transition:         height .3s cubic-bezier(0.5, 2, 0, 1);
+        -webkit-transition: height .3s cubic-bezier(0.5, 2, 0, 1);
+        -o-transition:      height .3s cubic-bezier(0.5, 2, 0, 1);
+        -ms-transition:     height .3s cubic-bezier(0.5, 2, 0, 1);
+        border: none;
+        &.in {
+            background-color: $header-background;
+        }
+    }
 
 }
 
