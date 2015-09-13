@@ -1,0 +1,29 @@
+{
+  "name": "antoligy.github.io",
+  "version": "1.0.0",
+  "description": "antoligy.github.io ==================",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoligy/antoligy.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoligy/antoligy.github.io/issues"
+  },
+  "homepage": "https://github.com/antoligy/antoligy.github.io#readme",
+  "dependencies": {
+    "bower-webpack-plugin": "^0.1.8",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-include": "^2.0.2",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.4.1",
+    "webpack": "^1.12.1",
+    "webpack-stream": "^2.1.0"
+  }
+}

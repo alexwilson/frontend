@@ -1,11 +1,5 @@
 # JavaScript Includes:
-include:
-    - "https://cdn.polyfill.io/v1/polyfill.min.js?features=default,fetch|gated"
-    - "https://cdn.livefyre.com/Livefyre.js"
-    - "/vendor/bootstrap.native/dist/bootstrap-native.min.js"
-    - "/vendor/postscribe/dist/postscribe.min.js"
-    - "/vendor/instantclick/instantclick.js"
-    - "/js/main.js"
-compatability:
-    # - "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
-    # - "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"
+sync:
+    - "https://cdn.polyfill.io/v1/polyfill.min.js"
+async:
+    - "/bundle/bundle.js"

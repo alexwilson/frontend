@@ -2,6 +2,10 @@
 _site
 .sass-cache
 
+# Ignoring build folders.
+bower_components
+node_modules
+
 # Ignoring the following because we have no control of prod, so pointless for dev.
 Gemfile.lock
 
