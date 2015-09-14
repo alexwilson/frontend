@@ -1,2 +1,23 @@
-{% for script in site.data.javascript.include %}<script src="{{ script }}" data-no-instant></script>
-{% endfor %}
+{% for script in site.data.javascript.sync %}<script src="{{ script }}" data-no-instant></script>{% endfor %}
+<script type="text/javascript" data-no-instant>
+    var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+    (function(src) {
+        if (cutsTheMustard) {
+            src.forEach(function(v, k) {
+                var o = document.createElement('script');
+                o.async = o.defer = true;
+                o.src = v;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(o, s);
+            });
+        }
+    }([{% for script in site.data.javascript.async %}"{{ script }}",{% endfor %}]));
+    function fire() {
+        document.dispatchEvent(new CustomEvent('a.load'));
+    }
+    if (document.readyState === 'complete') {
+        fire();
+    } else {
+        window.addEventListener('load', fire);
+    }
+</script>
