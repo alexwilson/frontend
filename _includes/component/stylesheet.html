@@ -1,2 +1,2 @@
-{% for stylesheet in site.data.stylesheet.include %}<link href="{{ stylesheet }}" media="screen" rel="stylesheet"></link>
-{% endfor %}
+<style>html { font-family: sans-serif; } .wf-loading { font-family: sans-serif !important; }</style>
+{% for stylesheet in site.data.stylesheet.include %}<link href="{{ stylesheet }}" rel="stylesheet"></link>{% endfor %}

@@ -2,12 +2,14 @@
  * Typography
  */
 
-body {
+.wf-active body {
     font-family: 'Lato', sans-serif;
 }
 
 @mixin heading {
-    font-family: 'Open Sans Condensed', sans-serif;
+    .wf-active & {
+        font-family: 'Open Sans Condensed', sans-serif;
+    }
 }
 
 .article-description {
@@ -34,6 +36,8 @@ body {
     a, a:visited {
         color: $grey-5;
     }
+
+    
 }
 
 .heading--xtra-large {
