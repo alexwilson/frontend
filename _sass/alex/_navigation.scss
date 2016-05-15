@@ -2,16 +2,9 @@
  * Navigation
  */
 
-$nav-height: 51px;
-
-body {
-    margin-top: $nav-height;
-}
-
 .alex-nav {
 
     background-color: $header-background;
-    max-height: $nav-height;
 
     &__navbar-toggle {
         padding: 0 !important;
@@ -36,13 +29,6 @@ body {
             }
         }
 
-        &--right {
-            li {
-                a:hover {
-                    background-color: $header-background;
-                }
-            }
-        }
     }
 
     &__collapse {
@@ -57,4 +43,3 @@ body {
     }
 
 }
-
