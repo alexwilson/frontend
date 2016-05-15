@@ -2,7 +2,6 @@
 layout: post
 title: About me
 permalink: /about-me/
-date:
 share: false
 itemtype: http://schema.org/Person
 ---
