@@ -1,4 +1,7 @@
-<div class="alex-header container">
+<header role="banner" class="alex-header container">
+
+  <hr class="alex-header--rule" />
+
   <nav>
       <ul class="alex-header__nav" id="menu">
           <li class="{% if page.url == '/index.html' %}alex-header__nav-item--active{% endif %} alex-header__nav-item">
@@ -11,8 +14,9 @@
           {% endfor %}
       </ul>
   </nav>
+
   <div class="profiles">
-      <ul class="alex-header__nav--right">
+      <ul class="alex-header__nav alex-header__nav--right">
           {% for item in site.data.social %}
               <li class="alex-header__nav-item">
                   <a href="{{ item.url }}" class="fa large {{ item.glyph }}"></a>
@@ -20,15 +24,15 @@
           {% endfor %}
       </ul>
   </div>
-  <div class="row">
-      <div class="col-xs-12 alex-header__about">
-          <div class="alex-header__about--name">
-              <h1 class="heading heading--large">Alex Wilson</h1>
-          </div>
-          <div class="alex-header__about--intro">
-              <strong>Hey, my name is Alex!</strong> I'm a full-stack software engineer with a passion for delivering great experiences to users and developers alike.
-              <a href="/about-me/" class="read-more">Read more&hellip;</a>
-          </div>
+
+  <div class="alex-header__about">
+      <div class="alex-header__about--name">
+          <h1 class="heading heading--large">Alex Wilson</h1>
+      </div>
+      <div class="alex-header__about--intro">
+          <strong>Hey, my name is Alex!</strong> I'm a full-stack software engineer with a passion for delivering great experiences to users and developers alike.
+          <a href="/about-me/" class="read-more">Read more&hellip;</a>
       </div>
   </div>
-</div>
+
+</header>

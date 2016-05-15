@@ -21,60 +21,6 @@ html, body {
     }
 }
 
-.alex-header {
-    &__nav {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      &--right {
-          float: right !important;
-      }
-    }
-
-    &__nav-item {
-      float: left;
-      position: relative;
-      display: block;
-
-      a {
-        font-size: larger;
-        padding: 10px 15px;
-        line-height: 20px;
-        position: relative;
-        display: block;
-
-        &.large {
-          font-size: 3em;
-        }
-      }
-
-      &--active {
-
-      }
-    }
-    &__about {
-        font-size: 1.8em;
-        border-top: 2px solid $grey-6;
-        border-bottom: 2px solid $grey-6;
-        display: flex;
-        &--name {
-            flex: 1;
-        }
-        &--intro {
-            flex: 2;
-            border-left: 1px solid $grey-6;
-
-            .read-more {
-              font-style: italic;
-              font-size: smaller;
-            }
-        }
-        &--name, &--intro {
-          padding: 0.5em 1em;
-        }
-    }
-}
-
 .alex-home {
 
     &__blog,

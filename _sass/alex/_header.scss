@@ -1,0 +1,83 @@
+/**
+ * Header
+ */
+
+ .alex-header {
+
+      padding: 0;
+      margin-top: 4rem;
+
+     &--rule {
+       margin: 0;
+       border: none;
+       height: 1px;
+       background: $grey-6;
+       width: 100%;
+     }
+
+     &__nav {
+       margin: 0;
+       padding: 0;
+       list-style: none;
+       &--right {
+           float: right !important;
+       }
+     }
+
+     &__nav-item {
+       float: left;
+       position: relative;
+       display: block;
+       border-bottom-width: 0.5rem;
+       border-bottom-style: solid;
+       border-bottom-color: $background;
+
+       a {
+         font-size: larger;
+         padding: 2rem 1rem;
+         padding-bottom: 1.5rem;
+         line-height: 20px;
+         position: relative;
+         display: block;
+
+         &:hover {
+           border-bottom: 0.5rem solid $orange-2;
+          padding-bottom: 1rem;
+         }
+
+         &.large {
+           font-size: 2em;
+         }
+       }
+
+       &--active {
+         border-bottom-color: $orange-3;
+       }
+     }
+
+     &__about {
+         font-size: 1.8em;
+         border-top: 2px solid $grey-6;
+         border-bottom: 2px solid $grey-6;
+         float: left;
+         width: 100%;
+         position: relative;
+         display: flex;
+         flex-wrap: wrap;
+         &--name {
+             flex: 1;
+         }
+         &--intro {
+             flex: 2;
+             border-left: 1px solid $grey-6;
+
+             .read-more {
+               font-style: italic;
+               font-size: smaller;
+             }
+         }
+         &--name, &--intro {
+           padding: 0.5em 1em;
+         }
+     }
+ }
