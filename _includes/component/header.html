@@ -4,7 +4,7 @@
 
   <nav>
       <ul class="alex-header__nav" id="menu">
-          <li class="{% if page.url == '/index.html' %}alex-header__nav-item--active{% endif %} alex-header__nav-item">
+          <li class="{% if page.url == '/index.html' or page.url == '/' %}alex-header__nav-item--active{% endif %} alex-header__nav-item">
               <a href="/">Home</a>
           </li>
           {% for item in site.data.navigation %}
