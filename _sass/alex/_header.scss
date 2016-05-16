@@ -62,6 +62,9 @@
          float: left;
          width: 100%;
          position: relative;
+
+         background: linear-gradient(to bottom, $complement, $orange-2);
+
          display: flex;
          flex-wrap: wrap;
          &--name {
