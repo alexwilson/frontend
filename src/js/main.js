@@ -1,6 +1,5 @@
 /* Necessary because InstantClick maintainer refuses to add module support. :/ */
-//=include bower_components/instantclick/instantclick.js
-window['InstantClick'] = InstantClick;
+window['InstantClick'] = require("exports?InstantClick!instantclick");
 window['InstantClick'].init();
 
 window['wFL'] = require('webfontloader');

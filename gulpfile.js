@@ -5,7 +5,6 @@ var path = require("path");
 var webpack = require("webpack-stream");
 var streamify = require("gulp-streamify");
 var uglify = require("gulp-uglify");
-var include = require("gulp-include");
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 gulp.task('default', function() {
@@ -36,7 +35,6 @@ gulp.task('buildJs', function() {
 
   var stream = gulp.src(src)
     .pipe(webpack(webpackConfig))
-    .pipe(include())
     .pipe(streamify(uglify()))
     .pipe(gulp.dest(path.join(__dirname, "/bundle/")));
   return stream;
