@@ -2,22 +2,15 @@
 layout: nil
 ---
 
-// Fonts
-//@import url(//fonts.googleapis.com/css?family=Lato:300,400,400italic|Open+Sans+Condensed:300,700);
-
 // Sass includes
-//@import "prefixer";
-//@import "theme";
 @import "alex/palette";
 @import "alex/typography";
 @import "alex/layout";
 @import "alex/header";
-@import "alex/scroll";
 @import "alex/forms";
 @import "alex/buttons";
 @import "alex/pager";
 @import "alex/cards";
-//@import "template";
 
 /* Override for instantclick.js */
 #instantclick-bar {
