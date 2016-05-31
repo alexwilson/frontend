@@ -1,0 +1,12 @@
+{% for script in site.data.javascript.sync %}<script src="{{ script }}" type="text/javascript" async></script>{% endfor %}
+<script type="text/javascript" data-no-instant>
+    function fire() {
+        document.dispatchEvent(new CustomEvent('a.load'));
+    }
+    if (document.readyState === 'complete') {
+        fire();
+    } else {
+        window.addEventListener('load', fire);
+    }
+</script>
+<script src="app.a83fc94507f555449d0e.js" type="text/javascript" async></script>
