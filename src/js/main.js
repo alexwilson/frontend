@@ -1,5 +1,4 @@
-/* Necessary because InstantClick maintainer refuses to add module support. :/ */
-window['InstantClick'] = require("exports?InstantClick!instantclick");
+window['InstantClick'] = require("instantclick2");
 window['InstantClick'].init();
 
 window['wFL'] = require('webfontloader');
