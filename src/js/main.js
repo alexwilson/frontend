@@ -1,8 +1,11 @@
-window['InstantClick'] = require("instantclick2");
-window['InstantClick'].init();
+import InstantClick from 'instantclick2';
+InstantClick.on('change', function() {
+  if (typeof ga !== 'undefined') ga('send', 'pageview', location.pathname + location.search);
+});
+InstantClick.init();
 
-window['wFL'] = require('webfontloader');
-window['wFL'].load({
+import WebFontLoader from 'webfontloader';
+WebFontLoader.load({
   google: {
     families: ['Lato:300,400,400italic', 'Open Sans Condensed:300,700']
   }

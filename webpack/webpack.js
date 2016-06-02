@@ -22,7 +22,7 @@ module.exports = function(options) {
     scssLoaders = extractForProduction(scssLoaders);
   }
 
-  var jsLoaders = ['babel'];
+  var jsLoaders = ['babel?presets[]=es2015'];
 
   return {
     entry: options.production ? './src/js/main.js' : [
@@ -49,7 +49,7 @@ module.exports = function(options) {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loaders: jsLoaders,
+          loaders: jsLoaders
         },
         {
           test: /\.css$/,
