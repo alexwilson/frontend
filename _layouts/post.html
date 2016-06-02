@@ -75,10 +75,11 @@ layout: base
 
             {% if page.threadId %}
                 <!-- Comments -->
-                <div id="comments"></div>
-                <script type="text/javascript" src="https://cdn.livefyre.com/Livefyre.js"></script>
+                <div id="comments" data-id='{{ page.threadId }}'></div>
                 <script type="text/javascript">
-                    (function(window){
+                  document.addEventListener('ax.load', function() {
+                    scriptLoader('https://cdn.livefyre.com/Livefyre.js')
+                      .then(function(e) { console.log(e)
                         window.Livefyre.require(['fyre.conv#3'], function (Conv) {
                         new Conv({}, [{
                           siteId: '376177',
@@ -86,7 +87,9 @@ layout: base
                           el: 'comments',
                         }], function (commentsWidget) {}());
                         });
-                    }(this))
+                      })
+                      .catch(function(e) { console.error(e) });
+                  });
                 </script>
             {% endif %}
 

@@ -10,3 +10,8 @@ WebFontLoader.load({
     families: ['Lato:300,400,400italic', 'Open Sans Condensed:300,700']
   }
 });
+
+import scriptLoader from './scriptLoader';
+window['scriptLoader'] = scriptLoader;
+
+document.dispatchEvent(new CustomEvent('ax.load'));
