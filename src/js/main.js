@@ -14,4 +14,6 @@ WebFontLoader.load({
 import scriptLoader from './scriptLoader';
 window['scriptLoader'] = scriptLoader;
 
+import 'document-register-element';
+
 (function(){document.dispatchEvent(new CustomEvent('ax.load'));})();

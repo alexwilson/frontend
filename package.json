@@ -17,6 +17,7 @@
   "homepage": "https://github.com/antoligy/antoligy.github.io#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
+    "document-register-element": "^0.5.4",
     "file-loader": "^0.8.5",
     "instantclick2": "~1.1.0",
     "webfontloader": "^1.6.24"
