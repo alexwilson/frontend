@@ -1,4 +1,9 @@
-## “Ten deploys per day”
+---
+layout: post
+title: “Ten deploys per day”
+date: 2016-07-01 22:30
+author: alex
+---
 
 ### Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I'm left feeling exhausted.
 
