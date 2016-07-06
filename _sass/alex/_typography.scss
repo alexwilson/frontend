@@ -20,8 +20,14 @@
     &__main {
 
         &__body {
+            font-family: Georgia;
             font-size: 16px;
             line-height: 1.6;
+            font-size: 20px;
+            line-height: 26px;
+            p {
+                margin-bottom: 26px;
+            }
         }
 
         &__byline {
