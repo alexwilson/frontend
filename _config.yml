@@ -38,3 +38,7 @@ sass:
 gems:
     - jekyll-sitemap
     - jekyll-feed
+
+exclude:
+    - node_modules
+    - src
