@@ -1,0 +1,40 @@
+// Sass includes
+@import "alex/palette";
+@import "alex/typography";
+@import "alex/layout";
+@import "alex/header";
+@import "alex/forms";
+@import "alex/buttons";
+@import "alex/pager";
+@import "alex/cards";
+
+/* Override for instantclick.js */
+#instantclick-bar {
+    background: $orange-2;
+}
+
+/* Override for font-awesome :( */
+.fa-inverse {
+	color: $orange-2 !important;
+}
+
+/* Hide Livefyre logo. */
+.fyre-help, #fyre-pm-iframe {
+	display: none;
+}
+
+.text-muted {
+	color: #777 !important;
+}
+
+.panel {
+	background: $brand;
+}
+
+.panel-default {
+	border-color: $orange-1;
+}
+
+hr {
+	border-top: 1px solid $orange-1;
+}
