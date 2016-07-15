@@ -1,5 +1,3 @@
 # CSS Includes:
 include:
-    - "/css/bootstrap.min.css"
     - "/css/font-awesome.min.css"
-    - "/css/alex.css"
