@@ -1,3 +1,5 @@
+require('../scss/main.scss');
+
 import InstantClick from 'instantclick2';
 InstantClick.on('change', function() {
   if (typeof ga !== 'undefined') ga('send', 'pageview', location.pathname + location.search);

@@ -1,3 +1,9 @@
+<head>
+{% include component/meta.html %}
+
+<style>html { font-family: sans-serif; } .wf-loading { font-family: sans-serif !important; }</style>
+{% for stylesheet in site.data.stylesheet.include %}<link href="{{ stylesheet }}" rel="stylesheet"></link>{% endfor %}
+
 {% for script in site.data.javascript.sync %}<script src="{{ script }}" type="text/javascript" async></script>{% endfor %}
 <script type="text/javascript" data-no-instant>
     function fire() {
@@ -17,4 +23,4 @@
   ga('create', 'UA-16800366-1', 'auto');
   ga('send', 'pageview');
 </script>
-<script src="/dist/app.ca228b2edf177ab75e0f.js" type="text/javascript" async></script>
+<link href="/dist/app.905294cb5b175e6f2193.css" rel="stylesheet"><script src="/dist/app.905294cb5b175e6f2193.js" type="text/javascript" async></script></head>
