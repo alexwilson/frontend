@@ -1,5 +1,3 @@
 # JavaScript Includes:
 sync:
     - "https://cdn.polyfill.io/v1/polyfill.min.js"
-async:
-    - "/bundle/bundle.js"
