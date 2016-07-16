@@ -19,6 +19,7 @@
     "bootstrap": "^4.0.0-alpha.2",
     "bootstrap-sass": "^3.3.6",
     "file-loader": "^0.8.5",
+    "font-awesome": "^4.6.3",
     "instantclick2": "~1.1.0",
     "webfontloader": "^1.6.24"
   },
