@@ -102,6 +102,7 @@ module.exports = function(options) {
         filename: '../_includes/webpack.html',
         template: './webpack/includes.html',
         production: true,
+        inject: 'head'
       }),
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'async'
@@ -109,7 +110,8 @@ module.exports = function(options) {
     ] : [
       new HtmlWebpackPlugin({
         filename: '../_includes/webpack.html',
-        template: './webpack/includes.html'
+        template: './webpack/includes.html',
+        inject: 'head'
       }),
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'async'
