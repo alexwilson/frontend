@@ -13,7 +13,7 @@ WebFontLoader.load({
   }
 });
 
-import scriptLoader from './scriptLoader';
+import scriptLoader from 'promise-script-loader';
 window['scriptLoader'] = scriptLoader;
 
 (function(){document.dispatchEvent(new CustomEvent('ax.load'));})();

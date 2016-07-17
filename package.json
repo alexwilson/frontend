@@ -21,6 +21,7 @@
     "file-loader": "^0.8.5",
     "font-awesome": "^4.6.3",
     "instantclick2": "~1.1.0",
+    "promise-script-loader": "^0.1.2",
     "webfontloader": "^1.6.24"
   },
   "devDependencies": {
