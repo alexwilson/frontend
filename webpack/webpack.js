@@ -22,7 +22,20 @@ module.exports = function(options) {
     scssLoaders = extractForProduction(scssLoaders);
   }
 
-  var jsLoaders = ['babel?presets[]=es2015'];
+  var babelSettings = {
+    presets: ['es2015']
+  };
+  if (options.production) {
+    babelSettings.presets.push('babili');
+  }
+  var jsLoaders = ['babel?'+JSON.stringify(babelSettings)];
+
+  var htmlWebpackPlugin = new HtmlWebpackPlugin({
+    filename: '../_includes/webpack.html',
+    template: './webpack/includes.hbs',
+    production: options.production,
+    inject: false
+  });
 
   return {
     entry: options.production ? './src/js/main.js' : [
@@ -48,7 +61,6 @@ module.exports = function(options) {
       loaders: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
           loaders: jsLoaders
         },
         {
@@ -62,6 +74,10 @@ module.exports = function(options) {
         {
           test: /\.scss$/,
           loader: scssLoaders,
+        },
+        {
+          test: /\.hbs$/,
+          loader: 'handlebars'
         },
         {
           test: /\.png$/,
@@ -98,24 +114,9 @@ module.exports = function(options) {
         },
       }),
       new ExtractTextPlugin("app.[hash].css"),
-      new HtmlWebpackPlugin({
-        filename: '../_includes/webpack.html',
-        template: './webpack/includes.html',
-        production: true,
-        inject: 'head'
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'async'
-      })
+      htmlWebpackPlugin
     ] : [
-      new HtmlWebpackPlugin({
-        filename: '../_includes/webpack.html',
-        template: './webpack/includes.html',
-        inject: 'head'
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'async'
-      })
+      htmlWebpackPlugin
     ],
   };
 };
