@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html class="wf-loading">
-    {% include webpack.html %}
+    <head>
+      {% for script in site.data.javascript.sync %}<script src="{{ script }}" data-no-instant></script>{% endfor %}
+      {% include component/meta.html %}
+      {% include assets.html %}
+      {% include webpack.html %}
+    </head>
     <body id="page" class="alex page">
 
         <!-- Navigation -->

@@ -24,6 +24,13 @@ module.exports = function(options) {
 
   var jsLoaders = ['babel?presets[]=es2015'];
 
+  var htmlWebpackPlugin = new HtmlWebpackPlugin({
+    filename: '../_includes/webpack.html',
+    template: './webpack/includes.hbs',
+    production: options.production,
+    inject: false
+  });
+
   return {
     entry: options.production ? './src/js/main.js' : [
       'webpack-dev-server/client?http://localhost:8080',
@@ -64,6 +71,10 @@ module.exports = function(options) {
           loader: scssLoaders,
         },
         {
+          test: /\.hbs$/,
+          loader: 'handlebars'
+        },
+        {
           test: /\.png$/,
           loader: "url?limit=100000&mimetype=image/png",
         },
@@ -98,24 +109,9 @@ module.exports = function(options) {
         },
       }),
       new ExtractTextPlugin("app.[hash].css"),
-      new HtmlWebpackPlugin({
-        filename: '../_includes/webpack.html',
-        template: './webpack/includes.html',
-        production: true,
-        inject: 'head'
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'async'
-      })
+      htmlWebpackPlugin
     ] : [
-      new HtmlWebpackPlugin({
-        filename: '../_includes/webpack.html',
-        template: './webpack/includes.html',
-        inject: 'head'
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'async'
-      })
+      htmlWebpackPlugin
     ],
   };
 };
