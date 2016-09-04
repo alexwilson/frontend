@@ -22,7 +22,13 @@ module.exports = function(options) {
     scssLoaders = extractForProduction(scssLoaders);
   }
 
-  var jsLoaders = ['babel?presets[]=es2015'];
+  var babelSettings = {
+    presets: ['es2015']
+  };
+  if (options.production) {
+    babelSettings.presets.push('babili');
+  }
+  var jsLoaders = ['babel?'+JSON.stringify(babelSettings)];
 
   var htmlWebpackPlugin = new HtmlWebpackPlugin({
     filename: '../_includes/webpack.html',
@@ -55,7 +61,6 @@ module.exports = function(options) {
       loaders: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
           loaders: jsLoaders
         },
         {
