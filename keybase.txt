@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/antoligy
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ax.gy
+  * I am antoligy (https://keybase.io/antoligy) on keybase.
+  * I have a public key with fingerprint B5E9 8AE7 DDB8 B82E B375  E2CF DE20 36C6 B4D2 F38E
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120d452a53e0406a38e18b1dd515da12d06f8cbc0253c8cbe35466616cff003025e0a",
+            "fingerprint": "b5e98ae7ddb8b82eb375e2cfde2036c6b4d2f38e",
+            "host": "keybase.io",
+            "key_id": "de2036c6b4d2f38e",
+            "kid": "0101617da6802e1e2e46f97c187e5f0e656c185433a3eec3a7ccc600badce0fa92490a",
+            "uid": "c6dfbba1048fbc49edb25c3d6460e619",
+            "username": "antoligy"
+        },
+        "service": {
+            "hostname": "ax.gy",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1476785994,
+    "expire_in": 157680000,
+    "prev": "dbf6a042d9700da03641e692edfa8582dd0c122d8e39b3c4bcc26043bebcd029",
+    "seqno": 8,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owFtUntQVFUYX0DeITpDPAysuaZDgXju+94dMbHHYpDINgLBjOu995wLV3B32b0C
+GzjRSwYBpTEQxl4QTTZkYBGQMRQhDwcZkqlwlkS0HUlIBcMaC5ruZeK/zj/nO9/5
+/X7f7/vmqw3xMQR4TT3GDHaM/37ca+SWaMjy/TOtFBNt0IUZS7F8tHKhAoicqiVf
+gZgRAzgBIEUTAk0iQAFGIDmEcyIOIY3TUMAJCBiZk0QJEDQpaQEiaYphGJyRZBkA
+UksjIGDxmKxYc5HD7lCsqiYr0ojnBMRCKHIiRyCRZGlESDJEBCAZiREpSMhaKY2Y
+Z3PqDM2cKDhRgmLTctrDsmLvf/CrvgHO4CwUGA4QCEcEohiZZyWcYxEtA8TQjBbT
+FEkKJEISKbCSJDEAiAKUEJAFnqD4Fd+HV+QkBsqiKOCA4mRRongERYKWSMhQjKaF
+8zrQiRxW4RDS0IJVtRUouS7sSDymZYsUCemD1TtZRZQkaN/xmN1hU22SrUBL5amq
+3WnUKarLrmOKkWj5j20RFSvUBqgxipDDqdismBHXkJKq6HI4xTIsR/M8FY+hErvi
+QBZFR9Cs1r129DqoSB+XKDMCoAjIswDAdEGbHYUjhicQlAWO5ggIgYQTBOQQyYuk
+RImSRDCAIkUkShAQep9OVGi1YUZO8ynkappOJdcqqIcdCDsSVOkdvcbgFWDw8/XW
+V8sQFLhudd/Wvxi6HKlM1C5OXoh789XbO0zF5QVpxMhll6eiorncb+SLje0XvoxY
+d+XZAw83B19dD+6UJdd/8ENQ5VAjn2w0s9vy379rOTNApq9lgwar3iY91crm54a2
+v7XYNv/3bPhow1L9fGzEdyMz/v7NHT2tt1x3kGFBxeppZjEgM7ZTjIham9g2tLPS
+NnCwrpBDHwZ3hrtN48pg2EOvnW3MSPmp26ZeXvxD9m1Foznum03XfDbMLFTc/Wdx
+557q5WLzWAZVVfXp1tLJsN8SCeqTB7e71nb2Z+7DXCVtYUHXN555pbH1Sg6dUQjO
+P+7ftnVh/Blnj2lm2nfU+X3SSb/emCb5267aTZ+H7E795tH61P2g5uXE4Kx2KnRu
++hf/paWGqd6O4bJr16szN9feP5v+EqqumIto2uA+FmZ2m0+1n+q7+mQ/lzd2Kf2e
+X8y25N6kFy7ezDGnfE3U5A1km/D9xSV7f567GOKhS++5a/aY8OinsSnpnbju44+0
+jMeMrdlySFVnTYY39u36lQ/kAt/9KrxyxNNQl9Rb1hD3esb92N3BoX+l1Odf8kTt
+iDsNy2ePlZ/L5vvcaEvU6d7smomW7YZMU+TRKe/PLNPDVMtw3WQRfvB5vELN2hSW
+4FmWC54yn+T8lu1Ne2/EVKcmT3SwJw58/FHkuZ5dPk/EdPX/eGO++73z0Q9OJPUZ
+0qKP/gs=
+=ELEB
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/antoligy
+
+==================================================================
+
