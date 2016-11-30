@@ -36,6 +36,7 @@ sass:
 
 # Gems
 gems:
+    - jekyll-gist
     - jekyll-sitemap
     - jekyll-feed
 

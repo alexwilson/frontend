@@ -1,0 +1,21 @@
+---
+layout: null
+---
+{% capture allPageGen %}
+
+  {% assign allPages = ""|split:"" %}
+  {% for post in site.posts %}{% assign allPages = allPages|push: post %}{% endfor %}
+  {% for page in site.pages %}{% assign allPages = allPages|push: page %}{% endfor %}
+
+{% endcapture %}
+[{% for page in allPages %}
+  {
+    "title": "{{ page.title|escape }}",
+    "url": "{{ page.url|replace: 'index.html',''|absolute_url }}",
+    "_links": {
+      "self": {
+        "href": "{{ page.url|replace: 'index.html',''|absolute_url }}"
+      }
+    }
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}]
