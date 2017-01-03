@@ -1,11 +1,9 @@
 ---
 layout: post
-title: Using IPv6 in AWS
+title: Using IPv6 in Amazon Web Services
 date: 2017-01-01 22:34
 author: alex
 ---
-
-# Using IPv6 in Amazon Web Services #
 
 Years in the works, in December Amazon beat both Google and Microsoft to introducing support for IPv6
 networking to their compute offering!  This is fantastic news, and I recommend reading [Jeff Barr's
@@ -46,16 +44,16 @@ some time!
 - From auto-assign IP settings, enable IPv6 
 
 ### 4) Update VPC route table to add IPv6 route to the IGW. ###
-- By default, VPC route tables have 0.0.0.0/0 routed through a default Internet Gateway.
-- We want to add a route with a Destination of "::/0" through the IGW.
+- By default, VPC route tables have `0.0.0.0/0` routed through a default Internet Gateway.
+- We want to add a route with a Destination of `::/0` through the IGW.
 
 ### 5) Adjust Security Groups to allow IPv6 connections. ###
 - Both newly created and historic SGs come with IPv4 rules pre-configured.
 - You will want to add new rules for inbound and outbound IPv6 connectivity.
 - Same pattern as before, and in regions which support IPv6 you'll find that new defaults
     have been added for IPv6 wildcards.  Unfortunately, you will have to double-up on rules.
-- For inbound traffic, you can edit your existing rules and add the appropriate IPv6 CIDR to the end.
-    e.g. "0.0.0.0/0" becomes "0.0.0.0/0, ::/0".
+- For inbound traffic, you can edit your existing rules and add the appropriate IPv6 CIDR to the end,
+    separated by a comma.  e.g. `0.0.0.0/0` becomes `0.0.0.0/0, ::/0`.
 - Concerning outbound IPv6, it may be set up by default, if so you can safely skip the rest of this.
 - You should be safe to allow all outbound traffic, using the same IPv6 CIDR as above!
 - When altering existing outbound SG rules, at the very least make sure to enable IPv6 ICMP
@@ -80,12 +78,14 @@ it can be assigned an IPv6 address via DHCP.
 
 On Debian-like systems such as Ubuntu this can be achieved by creating a definition in `/etc/network/interfaces.d/`.
 (On older systems you'll have to modify `/etc/network/interfaces` directly.)
+
 ```
 iface eth0 inet6 dhcp
 ```
 
 You can automate this with userdata when creating a new image.
-```bash
+
+```
 #!/bin/bash
 echo "iface eth0 inet6 dhcp" > /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
 
@@ -95,6 +95,7 @@ echo "iface eth0 inet6 dhcp" > /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
 
 On Redhat systems such as CentOS this is a little different, and you'll need to edit the network
 script for eth0. `/etc/sysconfig/network-scripts/ifcfg-eth0`
+
 ```
 IPV6INIT=yes
 IPV6_AUTOCONF=no
