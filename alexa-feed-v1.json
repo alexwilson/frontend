@@ -1,0 +1,16 @@
+---
+layout: null
+---
+[
+{% for post in site.posts limit:5 %}
+  {
+    "uid": "id:{{site.url}}{{ post.url }}",
+    "updateDate": "{{ post.date | date: '%Y-%m-%dT%H:%M:%S.0Z' }}",
+    "titleText": "{{post.title}}",
+    "mainText": "{{ post.excerpt }}",
+    "streamUrl": null,
+    "redirectionUrl": "{{site.url}}{{ post.url }}"
+  }{% if forloop.last != true and forloop.index0 >0 %},{% endif %}
+{% endfor %}
+]
+
