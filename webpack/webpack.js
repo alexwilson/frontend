@@ -1,8 +1,9 @@
-var fs = require('fs');
-var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const fs = require('fs');
+const path = require('path')
+const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 function extractForProduction(loaders) {
   return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
@@ -43,22 +44,14 @@ module.exports = function(options) {
       'webpack/hot/only-dev-server',
       './src/js/main.js',
     ],
-    debug: !options.production,
     devtool: options.devtool,
     output: {
-      path: options.production ? './dist/' : './build/',
+      path: path.resolve(options.production ? './dist/' : './build/'),
       publicPath: options.production ? '/dist/' : 'http://localhost:8080/',
       filename: options.production ? 'app.[hash].js' : 'app.js',
     },
     module: {
-      preLoaders: options.lint ? [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'eslint',
-        },
-      ] : [],
-      loaders: [
+      rules: [
         {
           test: /\.js$/,
           loaders: jsLoaders
@@ -77,7 +70,7 @@ module.exports = function(options) {
         },
         {
           test: /\.hbs$/,
-          loader: 'handlebars'
+          loader: 'handlebars-loader'
         },
         {
           test: /\.png$/,
@@ -98,19 +91,16 @@ module.exports = function(options) {
       ],
     },
     resolve: {
-      extensions: ['', '.js', '.scss', '.css'],
+      extensions: ['.js', '.scss', '.css'],
+    },
+    optimization: {
+      minimize: true
     },
     plugins: options.production ? [
       // Important to keep React file size down
       new webpack.DefinePlugin({
         "process.env": {
           "NODE_ENV": JSON.stringify("production"),
-        },
-      }),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
         },
       }),
       new ExtractTextPlugin("app.[hash].css"),
