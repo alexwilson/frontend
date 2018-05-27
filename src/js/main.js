@@ -1,4 +1,4 @@
-require('../scss/main.scss');
+require('../scss/main.scss')
 
 import InstantClick from 'instantclick2';
 InstantClick.on('change', function() {
