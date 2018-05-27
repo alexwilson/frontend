@@ -35,9 +35,11 @@ sass:
   style: compressed
 
 # Gems
-gems:
-    - jekyll-sitemap
+plugins:
     - jekyll-feed
+    - jekyll-gist
+    - jekyll-paginate
+    - jekyll-sitemap
 
 exclude:
     - node_modules
