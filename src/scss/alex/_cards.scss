@@ -1,7 +1,43 @@
 .alex-card {
-	.media-heading {
-		a, a:visited {
-			color: $grey-5;
+	// .media-heading {
+	// 	a, a:visited {
+	// 		color: $grey-5;
+	// 	}
+	// }
+
+	display: flex;
+
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid black;
+
+	&__content--container {
+		flex: 3;
+	}
+
+	&__media--container {
+		padding: 1em;
+		padding-right: 0;
+		flex: 1;
+	}
+
+	&__title {
+	}
+
+	&__abstract {
+	}
+
+	&__image {
+		img {
+
+			padding-right: 0em;
+			display: block;
+			max-width: 100%;
+			min-height: 100px;
+			height: auto;
 		}
+	}
+
+	&__timestamp {
 	}
 }

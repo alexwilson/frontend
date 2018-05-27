@@ -20,7 +20,7 @@ $orange-5: darken($orange, 80%);
 $orange-6: darken($orange, 95%);
 
 $brand:			  $orange;
-$background:  lighten($orange, 1%);
+$background:  lighten($white, 1%);
 $complement:	adjust_hue($brand, 180);
 $secondary:		adjust_hue($brand, 120);
 $tertiary:		adjust_hue($brand, -120);

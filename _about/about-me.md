@@ -7,7 +7,13 @@ itemtype: http://schema.org/Person
 ---
 
 <div class="media">
-        <img class="pull-right media-object" style="max-width: 240px;" src="{{ site.github.owner_gravatar_url }}">
+        
+        {% include atom/image.html
+            class='pull-right media-object'
+            src=site.github.owner_gravatar_url
+            alt='Me'
+        %}
+
    <div class="media-body">
         <p>
             My name is Alex, and I'm a driven full-stack software engineer on a mission to deliver superb experiences to both developers and users alike.
