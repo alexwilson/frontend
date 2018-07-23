@@ -18,17 +18,19 @@ $orange-3: darken($orange, 20%);
 $orange-4: darken($orange, 50%);
 $orange-5: darken($orange, 80%);
 $orange-6: darken($orange, 95%);
+$blue: #1A8CFF;
 
-$brand:			  $orange;
-$background:  lighten($white, 1%);
+$brand:			  $blue;
+// $background:  lighten($white, 1%);
+$background: white;
 $complement:	adjust_hue($brand, 180);
 $secondary:		adjust_hue($brand, 120);
 $tertiary:		adjust_hue($brand, -120);
 
 $header-background: rgba(80, 80, 80, 0.95);
-$header-link: $orange;
-$header-link-active: $orange-2;
+$header-link: $blue;
+$header-link-active: $blue;
 $header-link-background: rgba($grey-5, 0.5);
 
 
-$blue: #00FFB7;
+//$blue: #00FFB7;

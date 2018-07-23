@@ -5,7 +5,9 @@
 all: install start
 
 install:
+	rbenv install
 	bundle install
+	gem install bundler
 	yarn
 
 build:

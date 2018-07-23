@@ -1,3 +1,9 @@
-- { url: "https://twitter.com/antoligy", glyph: "fa-twitter" }
-- { url: "https://www.linkedin.com/in/alex-", glyph: "fa-linkedin"}
-- { url: "https://github.com/antoligy", glyph: "fa-github" }
+- title: "Alex's Twitter.com profile"
+  url: "https://twitter.com/antoligy"
+  glyph: "fa-twitter"
+- title: "Alex's LinkedIn.com profile"
+  url: "https://www.linkedin.com/in/alex-"
+  glyph: "fa-linkedin"
+- title: "Alex's Github.com profile"
+  url: "https://github.com/antoligy"
+  glyph: "fa-github"

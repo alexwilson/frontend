@@ -9,7 +9,7 @@ require('../scss/main.scss')
 import WebFontLoader from 'webfontloader';
 WebFontLoader.load({
   google: {
-    families: ['Overpass:400,800']
+    families: ['Overpass:400,600,800']
   }
   // active: function() {
   //   // sessionStorage.fonts = true

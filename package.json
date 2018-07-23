@@ -23,6 +23,7 @@
     "file-loader": "^1.1.11",
     "font-awesome": "^4.6.3",
     "handlebars-loader": "^1.4.0",
+    "include-media": "^1.4.9",
     "instantclick2": "~1.1.0",
     "promise-script-loader": "^0.1.2",
     "webfontloader": "^1.6.26"

@@ -4,10 +4,8 @@
 
 html, body {
     background-color: $background;
-}
-
-.container {
-    padding-top: 50px;
+    margin: 0;
+    padding: 0;
 }
 
 .main-content {
@@ -19,26 +17,6 @@ html, body {
         max-width: 660px;
         margin: 0 auto;
     }
-}
-
-.alex-home {
-
-    &__blog,
-    &__projects {
-
-        .heading,
-        .row {
-            padding-bottom: 12px;
-        }
-    // background-color: $secondary;
-    }
-
-    &__see-more {
-        position: absolute;
-        right:  0;
-        bottom: 0;
-    }
-
 }
 
 .alex-article__image {

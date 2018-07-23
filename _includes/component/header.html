@@ -1,38 +1,29 @@
-<header role="banner" class="alex-header container">
+<header role="banner" class="alex-header">
+<div class="alex-header--container">
 
-  <hr class="alex-header--rule" />
+    <div class="alex-header__about">
+        <h1 class="alex-header__name">Alex Wilson</h1>
+        <span class="alex-header__intro">Software Engineer, Technical Architect — Helping build a better, faster internet.</span>
+    </div>
 
-  <nav>
-      <ul class="alex-header__nav" id="menu">
-          <li class="{% if page.url == '/index.html' or page.url == '/' %}alex-header__nav-item--active{% endif %} alex-header__nav-item">
-              <a href="/">Home</a>
-          </li>
-          {% for item in site.data.navigation %}
-              <li class="{% if page.url contains item.link %}alex-header__nav-item--active{% endif %} alex-header__nav-item">
-                  <a href="{{ item.link }}" {% if item.instantclick == false %}data-no-instant{% endif %}>{{ item.title }}</a>
-              </li>
-          {% endfor %}
-      </ul>
-  </nav>
+    <nav>
+        <ul class="alex-header__nav" id="menu">
+            <li class="{% if page.url == '/index.html' or page.url == '/' %}alex-header__nav-item--active {% endif %}alex-header__nav-item">
+                <a href="/">Home</a>
+            </li>
+            {% for item in site.data.navigation %}
+            <li class="{% if page.url contains item.link %}alex-header__nav-item--active {% endif %}alex-header__nav-item">
+                <a href="{{ item.link }}" {% if item.instantclick == false %}data-no-instant{% endif %}>{{ item.title }}</a>
+            </li>
+            {% endfor %}
+            <li class="alex-header__nav-item alex-header__nav-item--spacer"></li>
+            {% for item in site.data.social %}
+            <li class="alex-header__nav-item">
+                <a href="{{ item.url }}" class="fa large {{ item.glyph }}" title="{{ item.title }}"></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 
-  <div class="profiles">
-      <ul class="alex-header__nav alex-header__nav--right">
-          {% for item in site.data.social %}
-              <li class="alex-header__nav-item">
-                  <a href="{{ item.url }}" class="fa large {{ item.glyph }}"></a>
-              </li>
-          {% endfor %}
-      </ul>
-  </div>
-
-  <div class="alex-header__about">
-      <div class="alex-header__about--name">
-          <h1 class="heading heading--large">Alex</h1>
-      </div>
-      <div class="alex-header__about--intro">
-          <strong>Hey, my name is Alex!</strong> I'm a full-stack software engineer with a passion for delivering great experiences to users and developers alike.
-          <a href="/about-me/" class="read-more">Read more&hellip;</a>
-      </div>
-  </div>
-
+</div>
 </header>

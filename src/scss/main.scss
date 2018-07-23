@@ -1,3 +1,6 @@
+// Viewport definitions
+@import "viewports";
+
 // Bootstrap
 @import "bootstrap";
 
@@ -14,19 +17,9 @@
 @import "alex/pager";
 @import "alex/cards";
 
-/* Override for instantclick.js */
-#instantclick-bar {
-    background: $orange-2;
-}
-
 /* Override for font-awesome :( */
 .fa-inverse {
 	color: $orange-2 !important;
-}
-
-/* Hide Livefyre logo. */
-.fyre-help, #fyre-pm-iframe {
-	display: none;
 }
 
 .text-muted {
