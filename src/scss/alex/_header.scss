@@ -10,14 +10,34 @@
     margin: 0 auto;
   }
 
-  background: linear-gradient(
-    to bottom,
-    rgba(100, 96, 100, 0.5),
-    rgba(20, 20, 20, 0.6)
-  ), url("/pics/bg-v1.jpg");
+  @mixin responsiveHeaderImage($max-width: null) {
+    $url: "https://random.responsiveimages.io/v1/image?format=image";
+    @if ($max-width != null) {
+      $url: "#{$url}&width=#{$max-width/1px}&height=#{0.385*$max-width/1px}"
+    }
+    $url: "#{$url}&provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com";
+    background-image: linear-gradient(
+      to bottom,
+      rgba(100, 96, 100, 0.5),
+      rgba(20, 20, 20, 0.6)
+    ), url($url);
+  }
+  @include responsiveHeaderImage(map-get($breakpoints, "phone"));
+  @include media(">phone") {
+    @include responsiveHeaderImage(map-get($breakpoints, "tablet"));
+  }
+  @include media(">tablet") {
+    @include responsiveHeaderImage(map-get($breakpoints, "desktop"));
+  }
+  @include media(">desktop") {
+    @include responsiveHeaderImage(map-get($breakpoints, "large"));
+  }
+  @include media(">large") {
+    @include responsiveHeaderImage();
+  }
+
   background-size: cover;
   background-position: center;
-
   border-bottom: 3px solid #0d0d0d;
 
   &__nav {
