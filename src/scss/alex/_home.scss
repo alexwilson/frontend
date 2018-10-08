@@ -1,7 +1,11 @@
+@import "util/grid";
+
 .alex-home {
 
     &__blog,
     &__projects {
+
+        @include alex-container;
 
         .heading,
         .row {
@@ -10,14 +14,14 @@
     // background-color: $secondary;
     }
 
-    &__stack {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    // &__stack {
+    //     display: grid;
+    //     grid-template-columns: 1fr 1fr;
 
-        .alex-card--supermassive {
-            grid-column: 1 / span2;
-        }
-    }
+    //     .alex-card--supermassive {
+    //         grid-column: 1 / span2;
+    //     }
+    // }
 
     &__see-more {
         position: absolute;

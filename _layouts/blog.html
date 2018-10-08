@@ -2,8 +2,7 @@
 layout: base
 ---
 
-<div class="col-xs-12">
-	<section>
+<section class="alex-listing">
 	{% if paginator.total_pages > 1 %}
 
 		{% for post in paginator.posts %}
@@ -20,7 +19,6 @@ layout: base
 		{% endfor %}
 		
 	{% endif %}
-	</div>
 </section>
 
 <!-- <div class="col-sm-4 hidden-xs col-right">

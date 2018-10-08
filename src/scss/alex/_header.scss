@@ -1,3 +1,5 @@
+@import "util/grid";
+
 /**
  * Header
  */
@@ -5,9 +7,7 @@
 .alex-header {
 
   &--container {
-    max-width: 1000px;
-    width: 90%;
-    margin: 0 auto;
+    @include alex-container;
   }
 
   @mixin responsiveHeaderImage($max-width: null) {
@@ -18,7 +18,7 @@
     $url: "#{$url}&provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com";
     background-image: linear-gradient(
       to bottom,
-      rgba(100, 96, 100, 0.5),
+      rgba(96, 92, 96, 0.6),
       rgba(20, 20, 20, 0.6)
     ), url($url);
   }
@@ -88,7 +88,8 @@
     text-align: center;
 
     color: white;
-    font-family: Overpass;
+    font-weight: 500;
+    // font-family: Overpass;
 
     padding: 1em 0 0 0;
     @include media(">tablet") {

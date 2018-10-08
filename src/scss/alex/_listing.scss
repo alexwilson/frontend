@@ -1,0 +1,5 @@
+@import "util/grid";
+
+.alex-listing {
+    @include alex-container();
+}

@@ -1,0 +1,35 @@
+@import "util/grid";
+
+.alex-article {
+    @include alex-container;
+    @include alex-row;
+}
+
+.alex-article__main {
+    @include alex-column(8);
+    margin: 0 auto;
+}
+
+.alex-article__aside {
+    @include alex-column(2);
+}
+
+.alex-article__image {
+    background: no-repeat center center;
+    background-color: gray;
+    background-attachment: scroll;
+    background-size: cover;
+    margin-top: -50px;
+    height: 400px;
+}
+
+.alex-article__body {
+    * {
+        font-family: Georgia, serif;
+        font-size: 16pt;
+    }
+    pre, code {
+        font-size: 14pt;
+        font-family: monospace;
+    }
+}

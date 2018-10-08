@@ -1,9 +1,7 @@
 ---
 layout: base
 ---
-
-<div class="row">
-    <div class="col-xs-12 alex-home__blog">
+<div class="alex-home__blog">
         <h1 class="heading"><a href="/blog/">Blog</a></h1>
         <div class="alex-home__stack">
             {% for post in site.posts %}{% if forloop.index0 < 3 %}
@@ -15,17 +13,14 @@ layout: base
             {% endif %}{% endfor %}
         </div>
         <a class="full-width" href="/blog/"><span class="alex-home__see-more">See more</span></a>
-    </div>
 </div>
-<div class="row">
-    <div class="col-xs-12 alex-home__projects">
-        <h1 class="heading"><a href="/work/">Work</a></h1>
-        <!--
-        {% for post in site.projects %}{% if forloop.index0 < 3 %}
-            {% include card/item.html %}
-        {% endif %}{% endfor %}
-        <a class="full-width" href="/work/"><span class="alex-home__see-more">See more</span></a>
-        -->
-        This section is coming soon.
-    </div>
+<div class="alex-home__projects">
+    <h1 class="heading"><a href="/work/">Work</a></h1>
+    <!--
+    {% for post in site.projects %}{% if forloop.index0 < 3 %}
+        {% include card/item.html %}
+    {% endif %}{% endfor %}
+    <a class="full-width" href="/work/"><span class="alex-home__see-more">See more</span></a>
+    -->
+    This section is coming soon.
 </div>
