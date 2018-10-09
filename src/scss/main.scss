@@ -2,12 +2,14 @@
 @import "viewports";
 
 // Bootstrap
-@import "bootstrap";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
 
-// Font Awesome
-@import "font-awesome";
+// Reset
+@import "util/grid";
 
-// Sass includes
+// Components
 @import "alex/palette";
 @import "alex/typography";
 @import "alex/layout";
@@ -19,6 +21,9 @@
 @import "alex/home";
 @import "alex/listing";
 @import "alex/cards";
+
+// Font Awesome
+@import "font-awesome";
 
 /* Override for font-awesome :( */
 .fa-inverse {

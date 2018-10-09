@@ -25,7 +25,7 @@ $max-columns: 10;
 
 @mixin alex-column($width: 1) {
     float: left;
-    flex: 1 1 0%;
+    flex: $width 1 0%;
     box-sizing: border-box;
     display: block;
 
