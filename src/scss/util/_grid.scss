@@ -1,0 +1,34 @@
+$max-width: 1000px;
+$max-columns: 10;
+
+@mixin alex-container {
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+@mixin alex-row() {
+	clear: both;
+	flex-wrap: wrap;
+    display: flex;
+
+    &:before,
+	&:after {
+		content: '';
+		display: table;
+		display: flex;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin alex-column($width: 1) {
+    float: left;
+    flex: $width 1 0%;
+    box-sizing: border-box;
+    display: block;
+
+    max-width: percentage($width / $max-columns);
+    min-width: percentage($width / $max-columns);
+}

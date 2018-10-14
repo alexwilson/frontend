@@ -2,85 +2,120 @@
  * Header
  */
 
- .alex-header {
+.alex-header {
 
-      padding: 0;
-      margin-top: 4rem;
+  &--container {
+    @include alex-container;
+  }
 
-     &--rule {
-       margin: 0;
-       border: none;
-       height: 1px;
-       background: $grey-6;
-       width: 100%;
-     }
+  @mixin responsiveHeaderImage($max-width: null) {
+    $url: "https://random.responsiveimages.io/v1/image?format=image";
+    @if ($max-width != null) {
+      $url: "#{$url}&width=#{$max-width/1px}&height=#{0.385*$max-width/1px}"
+    }
+    $url: "#{$url}&provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com";
+    background-image: linear-gradient(
+      to bottom,
+      rgba(96, 92, 96, 0.6),
+      rgba(20, 20, 20, 0.6)
+    ), url($url);
+  }
+  @include responsiveHeaderImage(map-get($breakpoints, "phone"));
+  @include media(">phone") {
+    @include responsiveHeaderImage(map-get($breakpoints, "tablet"));
+  }
+  @include media(">tablet") {
+    @include responsiveHeaderImage(map-get($breakpoints, "desktop"));
+  }
+  @include media(">desktop") {
+    @include responsiveHeaderImage(map-get($breakpoints, "large"));
+  }
+  @include media(">large") {
+    @include responsiveHeaderImage();
+  }
 
-     &__nav {
-       margin: 0;
-       padding: 0;
-       list-style: none;
-       &--right {
-           float: right !important;
-       }
-     }
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid #0d0d0d;
 
-     &__nav-item {
-       float: left;
-       position: relative;
-       display: block;
-       border-bottom-width: 0.5rem;
-       border-bottom-style: solid;
-       border-bottom-color: $background;
+  &__nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
 
-       a {
-         font-size: larger;
-         padding: 2rem 1rem;
-         padding-bottom: 1.5rem;
-         line-height: 20px;
-         position: relative;
-         display: block;
+  &__nav-item {
+    flex-basis: auto;
 
-         &:hover {
-           border-bottom: 0.5rem solid $orange-2;
-          padding-bottom: 1rem;
-         }
+    &--spacer {
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-         &.large {
-           font-size: 2em;
-         }
-       }
+    &--active {
+      a {
+        border-bottom: white solid 0.5rem;
+      }
+    }
 
-       &--active {
-         border-bottom-color: $orange-3;
-       }
-     }
+    a {
+      @include fontsize(eta, all);
 
-     &__about {
-         font-size: 1.8em;
-         border-top: 2px solid $grey-6;
-         border-bottom: 2px solid $grey-6;
-         float: left;
-         width: 100%;
-         position: relative;
+      color: white;
+      padding: 1rem;
+      position: relative;
+      display: block;
 
-         background: linear-gradient(to bottom, $complement, $orange-2);
+      &:hover {
+        color: #AAA !important;
+        border-bottom: #AAA solid 0.5rem;
+      }
 
-         display: flex;
-         flex-wrap: wrap;
-         &--name {
-             flex: 1;
-         }
-         &--intro {
-             flex: 2;
-             border-left: 1px solid $grey-6;
+      &.large {
+        font-size: 2rem;
+      }
+    }
+  }
 
-             .read-more {
-               font-style: italic;
-               font-size: smaller;
-             }
-         }
-         &--name, &--intro {
-           padding: 0.5em 1em;
-         }
-     }
- }
+  &__intro {
+    font-size: 1rem;
+  }
+
+  &__about {
+    width: 100%;
+
+    display: block;
+    text-align: center;
+
+    color: white;
+    font-weight: 500;
+    // font-family: Overpass;
+
+    padding: 1em 0 0 0;
+    @include media(">tablet") {
+      padding-top: 3em;
+      padding-bottom: 1em;
+    }
+    @include media(">desktop") {
+      padding-top: 5em;
+      padding-bottom: 3em;
+    }
+    @include media(">large") {
+      padding-top: 6em;
+      padding-bottom: 4em;
+    }
+
+    .read-more {
+      font-style: italic;
+      font-size: smaller;
+    }
+  }
+
+  &__name {
+    color: white;
+    font-weight: 700;
+    text-transform: initial;
+    font-size: 60px;
+  }
+}

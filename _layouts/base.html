@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html class="wf-loading">
+<html class="wf-loading" lang="en-GB">
     <head>
-      {% for script in site.data.javascript.sync %}<script src="{{ script }}" data-no-instant></script>{% endfor %}
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js" data-no-instant></script>
       {% include component/meta.html %}
       {% include assets.html %}
       {% include webpack.html %}
@@ -10,9 +10,7 @@
 
         <!-- Navigation -->
         {% include component/header.html %}
-        <div class="container" id="container">
-                {{ content }}
-        </div>
+        {{ content }}
 
         <!-- Footer -->
         {% include component/footer.html %}

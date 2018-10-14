@@ -3,12 +3,10 @@ layout: base
 ---
 
 {% if page.image %}
-    </div>
-    <div class="alex-article__image" style="background-image:url('{{ page.image }}')">
-    </div>
-    <div class="container">
+<div class="alex-article__image" style="background-image:url('{{ page.image }}')">
+</div>
 {% endif %}
-<div class="col-md-offset-1 col-md-10 col-xs-12">
+<div class="alex-article">
     {% assign itemtype = 'http://schema.org/BlogPosting' %}
     {% if page.itemtype %}
         {% assign itemtype = page.itemtype %}
@@ -19,19 +17,15 @@ layout: base
             
             <!-- Title -->
             <h1 itemprop="name headline">{{ page.title }}</h1>
-            <h1 class="spacer">___</h1>
             
             {% if page.author or page.date %}
                 <div class="alex-article__main__byline">
-                    Posted 
-
+                    Posted
                     {% if page.author %}
                     by
                     {% assign author = site.data.people[page.author] %}
                     <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                        <span itemprop="name">
-                            <a href="{{ author.gplus }}" itemprop="url" rel="author">{{ author.name }}</a>
-                        </span>
+                        <span itemprop="name">{{ author.name }} </span>
                     </span>
                     {% endif %}
 
@@ -55,16 +49,16 @@ layout: base
             {% endif %}
             
             <!-- Tags -->
-            <!-- <p class="alex-article__tags">
+            <p class="alex-article__tags">
                 {% for tag in page.tags %}
                     <span class="label label-default">{{ tag }}</span>
                 {% endfor %}
-            </p> -->
+            </p>
 
             <!-- Content -->
-            <div itemprop="articleBody" class="alex-article__main__body article-description">
+            <article itemprop="articleBody" class="alex-article__body article-description">
                 {{ content }}
-            </div>
+            </article>
 
             {% unless page.share == false %}
                 <hr>
@@ -95,5 +89,8 @@ layout: base
 
             
         </section>
+    </div>
+
+    <div class="alex-article__aside">
     </div>
 </div>

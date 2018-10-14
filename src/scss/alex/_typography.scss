@@ -2,31 +2,39 @@
  * Typography
  */
 
-.wf-active body {
-    font-family: 'Lato', sans-serif;
-}
+// .wf-active body {
+//     font-family: sans-serif;
+// }
 
 @mixin heading {
     .wf-active & {
-        font-family: 'Open Sans Condensed', sans-serif;
+        font-family: 'Overpass', sans-serif;
     }
 }
 
+* {
+    font-family: "Avenir Next", Avenir, Arial, sans-serif;
+}
+
 .article-description {
-    font-size: 16px;    
+    // font-size: 16px;    
 }
 
 .alex-article {
+    &__body {
+        @extend .typeset;
+    }
     &__main {
 
         &__body {
-            font-family: Georgia;
-            font-size: 16px;
-            line-height: 1.6;
-            font-size: 20px;
-            line-height: 26px;
+            @extend .typeset;
+            // font-family: Georgia, "Times New Roman", Times, serif;
+            // font-size: 16px;
+            // line-height: 1.6;
+            // font-size: 20px;
+            // line-height: 26px;
             p {
-                margin-bottom: 26px;
+                // margin-bottom: 26px;
             }
         }
 
@@ -46,18 +54,17 @@
     
 }
 
-.heading--xtra-large {
-    font-size: 80px;
-}
+// .heading--xtra-large {
+//     font-size: 80px;
+// }
 
-.heading--large {
-    font-size: 60px;
-}
+// .heading--large {
+//     font-size: 60px;
+// }
 
-.heading--medium {
-    font-size: 40px;
-
-}
+// .heading--medium {
+//     font-size: 40px;
+// }
 
 .align-left {
     text-align: left;
@@ -73,20 +80,22 @@
 
 h1, h2, h3, h4, ul.pager, ul.pagination {
     @include heading;
-    text-transform: uppercase;
-    font-weight: 700 !important;
+    // font-weight: 800 !important;
     color: $grey-5;
+}
+h1,h2 {
+    text-transform: uppercase;
 }
 
 a, a:visited {
-    color: $orange-5;
+    color: #262A33;
     text-decoration: none;
     transition: color .4s ease-out, background .2s ease-in;
 }
 
 a:hover, a:focus {
     @extend a;
-    color: $orange-4 !important;
+    color: $grey-4 !important;
 }
 
 .spacer {

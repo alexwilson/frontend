@@ -1,0 +1,19 @@
+.alex-home {
+    @include alex-container;
+
+    &__section {
+        @include alex-row;
+        padding-bottom: 1em;
+    }
+
+    &__tilestack-item {
+        @include alex-column(5);
+        @include media(">tablet") {
+            @include alex-column(3);
+        }
+
+        .alex-card {
+            border-bottom: none;
+        }
+    }
+}

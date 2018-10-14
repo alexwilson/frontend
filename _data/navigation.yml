@@ -1,3 +1,5 @@
-- { title: "About me", link: "/about-me/" }
-- { title: "My blog", link: "/blog/" }
+- title: "About me"
+  link: "/about-me/"
+- title: "Blog"
+  link: "/blog/"
 # - { title: "My work", link: "/work/" }

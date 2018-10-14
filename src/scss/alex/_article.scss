@@ -1,0 +1,48 @@
+.alex-article {
+    @include alex-container;
+    @include alex-row;
+}
+
+.alex-article__main {
+    @include alex-column(10);    
+    @include media(">tablet") {
+        @include alex-column(8);
+    }
+    @include media(">desktop") {
+        @include alex-column(7);
+    }
+    margin: 0 auto;
+}
+
+.alex-article__aside {
+    @include alex-column(10);
+    @include media(">tablet") {
+        @include alex-column(2);
+    }
+    @include media(">desktop") {
+        @include alex-column(3);
+    }
+}
+
+.alex-article__image {
+    background: no-repeat center center;
+    background-color: gray;
+    background-attachment: scroll;
+    background-size: cover;
+    margin-top: -50px;
+    height: 400px;
+}
+
+.alex-article__pane {
+    @include alex-row;
+    &-half {
+        padding-right: .5rem;
+        @include alex-column(10);
+        @include media(">phone") {
+            @include alex-column(5);
+        }
+    }
+}
+
+.alex-article__body {
+}
