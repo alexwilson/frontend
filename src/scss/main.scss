@@ -2,12 +2,14 @@
 @import "viewports";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
 
 // Reset
 @import "util/grid";
+
+@import "type/main";
 
 // Components
 @import "alex/palette";
@@ -18,6 +20,7 @@
 @import "alex/buttons";
 @import "alex/pager";
 @import "alex/article";
+@import "alex/share";
 @import "alex/home";
 @import "alex/listing";
 @import "alex/cards";

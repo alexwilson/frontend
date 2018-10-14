@@ -60,11 +60,10 @@
     }
 
     a {
+      @include fontsize(eta, all);
+
       color: white;
-      font-size: larger;
-      padding: 2rem 1rem;
-      padding-bottom: 1.5rem;
-      line-height: 20px;
+      padding: 1rem;
       position: relative;
       display: block;
 
@@ -74,9 +73,13 @@
       }
 
       &.large {
-        font-size: 2em;
+        font-size: 2rem;
       }
     }
+  }
+
+  &__intro {
+    font-size: 1rem;
   }
 
   &__about {

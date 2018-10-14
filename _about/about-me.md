@@ -2,11 +2,12 @@
 layout: base
 title: About me
 permalink: /about-me/
-share: false
 itemtype: http://schema.org/Person
 ---
 
-<h1 class="align-center">About me</h1>
+<div class="alex-article">
+    <h1>About me</h1>
+</div>
 <div class="alex-article">
     <div class="alex-article__main" itemscope="" itemtype="{{ itemtype }}">
         <section>

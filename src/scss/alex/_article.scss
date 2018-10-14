@@ -4,12 +4,24 @@
 }
 
 .alex-article__main {
-    @include alex-column(8);
+    @include alex-column(10);    
+    @include media(">tablet") {
+        @include alex-column(8);
+    }
+    @include media(">desktop") {
+        @include alex-column(7);
+    }
     margin: 0 auto;
 }
 
 .alex-article__aside {
-    @include alex-column(2);
+    @include alex-column(10);
+    @include media(">tablet") {
+        @include alex-column(2);
+    }
+    @include media(">desktop") {
+        @include alex-column(3);
+    }
 }
 
 .alex-article__image {
@@ -23,11 +35,11 @@
 
 .alex-article__body {
     * {
-        font-family: Georgia, serif;
-        font-size: 16pt;
+        // font-family: Georgia, serif;
+        // font-size: 16pt;
     }
     pre, code {
-        font-size: 14pt;
-        font-family: monospace;
+        // font-size: 14pt;
+        // font-family: monospace;
     }
 }

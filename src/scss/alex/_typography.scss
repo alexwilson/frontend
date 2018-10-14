@@ -2,9 +2,9 @@
  * Typography
  */
 
-.wf-active body {
-    font-family: sans-serif;
-}
+// .wf-active body {
+//     font-family: sans-serif;
+// }
 
 @mixin heading {
     .wf-active & {
@@ -17,20 +17,24 @@
 }
 
 .article-description {
-    font-size: 16px;    
+    // font-size: 16px;    
 }
 
 .alex-article {
+    &__body {
+        @extend .typeset;
+    }
     &__main {
 
         &__body {
-            font-family: Georgia, "Times New Roman", Times, serif;
-            font-size: 16px;
-            line-height: 1.6;
-            font-size: 20px;
-            line-height: 26px;
+            @extend .typeset;
+            // font-family: Georgia, "Times New Roman", Times, serif;
+            // font-size: 16px;
+            // line-height: 1.6;
+            // font-size: 20px;
+            // line-height: 26px;
             p {
-                margin-bottom: 26px;
+                // margin-bottom: 26px;
             }
         }
 
@@ -50,18 +54,17 @@
     
 }
 
-.heading--xtra-large {
-    font-size: 80px;
-}
+// .heading--xtra-large {
+//     font-size: 80px;
+// }
 
-.heading--large {
-    font-size: 60px;
-}
+// .heading--large {
+//     font-size: 60px;
+// }
 
-.heading--medium {
-    font-size: 40px;
-
-}
+// .heading--medium {
+//     font-size: 40px;
+// }
 
 .align-left {
     text-align: left;
@@ -80,7 +83,7 @@ h1, h2, h3, h4, ul.pager, ul.pagination {
     // font-weight: 800 !important;
     color: $grey-5;
 }
-h1 {
+h1,h2 {
     text-transform: uppercase;
 }
 
