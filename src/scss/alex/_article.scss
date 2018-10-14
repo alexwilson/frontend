@@ -33,13 +33,16 @@
     height: 400px;
 }
 
+.alex-article__pane {
+    @include alex-row;
+    &-half {
+        padding-right: .5rem;
+        @include alex-column(10);
+        @include media(">phone") {
+            @include alex-column(5);
+        }
+    }
+}
+
 .alex-article__body {
-    * {
-        // font-family: Georgia, serif;
-        // font-size: 16pt;
-    }
-    pre, code {
-        // font-size: 14pt;
-        // font-family: monospace;
-    }
 }

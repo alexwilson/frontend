@@ -97,6 +97,17 @@ html {
     h6, .zeta {
       @include sassline(zeta, $headingtype, 2, 0, all);
     }
+
+    // Smaller ...
+    .eta {
+        @include sassline(eta, $headingtype, 2, 0, all);
+    }
+    .theta {
+        @include sassline(theta, $headingtype, 2, 0, all);
+    }
+    .iota {
+        @include sassline(iota, $headingtype, 2, 0, all);
+    }
   
     // Lists.
     ul, ol {
@@ -105,7 +116,7 @@ html {
       li {
         font-family: unquote(map-get($bodytype, font-family));
         font-feature-settings: 'kern', 'onum', 'liga';
-        margin-left: 2rem;
+        margin-left: 1rem;
   
         @include breakpoint(break-1) {
           margin-left: 0;
@@ -114,7 +125,7 @@ html {
         ol, ul {
           padding-top: 1rem;
           margin-bottom: 1rem;
-          margin-left: 2rem;
+          margin-left: 1rem;
         }
       }
     }
@@ -132,7 +143,7 @@ html {
           margin-left: -3rem;
           position: absolute;
           text-align: right;
-          width: 2em;
+          width: 1em;
         }
   
         ul {
