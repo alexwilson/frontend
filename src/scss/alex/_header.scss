@@ -37,6 +37,7 @@
   background-size: cover;
   background-position: center;
   border-bottom: 3px solid #0d0d0d;
+  overflow: hidden;
 
   &__nav {
     margin: 0;
@@ -47,6 +48,8 @@
 
   &__nav-item {
     flex-basis: auto;
+    white-space: nowrap;
+    overflow: hidden;
 
     &--spacer {
       margin-left: auto;
@@ -116,6 +119,7 @@
     color: white;
     font-weight: 700;
     text-transform: initial;
-    font-size: 60px;
+    font-size: 40pt;
+    white-space: nowrap;
   }
 }

@@ -20,4 +20,11 @@ WebFontLoader.load({
 import scriptLoader from 'promise-script-loader';
 window['scriptLoader'] = scriptLoader;
 
-// (function(){document.dispatchEvent(new CustomEvent('ax.load'));})();
+function initHeader() {
+  const header = document.querySelector('.alex-header')
+  const headerNav = document.querySelector('.alex-header__nav')
+
+  header.style.top = `-${header.offsetHeight - headerNav.offsetHeight}px`
+  header.style.position = "sticky"
+}
+window.addEventListener('load', initHeader)
