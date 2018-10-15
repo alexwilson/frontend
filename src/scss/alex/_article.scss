@@ -4,7 +4,7 @@
 }
 
 .alex-article__main {
-    @include alex-column(10);    
+    @include alex-column(10);
     @include media(">tablet") {
         @include alex-column(8);
     }
@@ -12,6 +12,10 @@
         @include alex-column(7);
     }
     margin: 0 auto;
+
+    &--wide {
+        @include alex-column(10);
+    }
 }
 
 .alex-article__aside {
