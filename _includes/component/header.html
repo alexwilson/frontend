@@ -19,7 +19,9 @@
             <li class="alex-header__nav-item alex-header__nav-item--spacer"></li>
             {% for item in site.data.social %}
             <li class="alex-header__nav-item">
-                <a href="{{ item.url }}" class="fa large {{ item.glyph }}" title="{{ item.title }}"></a>
+                <a title="{{ item.title }}" href="{{ item.url }}">
+                    <img src="{{ item.svg }}" class="large" alt="{{ item.title }}" height="1em" />
+                </a>
             </li>
             {% endfor %}
         </ul>

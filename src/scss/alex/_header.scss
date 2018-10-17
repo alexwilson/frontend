@@ -75,8 +75,12 @@
         border-bottom: #AAA solid 0.5rem;
       }
 
-      &.large {
-        font-size: 2rem;
+      img.large {
+        filter: invert(1);
+        height: 1.6rem;
+        width: 1.6rem;
+        padding: 0.25rem 0;
+        margin: -1rem 0;
       }
     }
   }

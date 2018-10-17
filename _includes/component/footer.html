@@ -3,7 +3,9 @@
         <span class="text-muted">
         &copy; Alex Wilson {{ "now"|date: '%Y' }}
         {% for item in site.data.social %}
-            <a href="{{ item.url }}" class="fa text-muted {{ item.glyph }}"></a>
+            <a class="footer__social-link" href="{{ item.url }}" title="{{ item.title }}">
+                <img src="{{ item.svg }}" alt="{{ item.title }}" class="footer__social-link" />
+            </a>
         {% endfor %}
         </span>
     </div>

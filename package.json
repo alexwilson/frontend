@@ -21,7 +21,6 @@
     "bootstrap": "^4.0.0-alpha.2",
     "bootstrap-sass": "^3.3.7",
     "file-loader": "^1.1.11",
-    "font-awesome": "^4.6.3",
     "handlebars-loader": "^1.4.0",
     "include-media": "^1.4.9",
     "instantclick2": "~1.1.0",

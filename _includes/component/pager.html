@@ -5,9 +5,7 @@
 		{% if paginator.previous_page %}
 			href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}"
 		{% endif %}
-		>
-			<i class="fa fa-chevron-left"></i> Prev
-		</a>
+		>&lsaquo; Prev</a>
 	</li>
 
 	{% for page in (1..paginator.total_pages) %}
@@ -38,9 +36,7 @@
 		{% if paginator.next_page %}
 			href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}"
 		{% endif %}
-		>
-			Next <i class="fa fa-chevron-right"></i>
-		</a>
+		>Next &rsaquo;</a>
 	</li>
 
 </ul>
