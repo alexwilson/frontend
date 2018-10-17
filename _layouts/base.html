@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html class="wf-loading" lang="en-GB">
     <head>
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js" data-no-instant></script>
+        <!-- Preconnect to Polyfill Service -->
+        <link rel="preconnect" href="https://cdn.polyfill.io">
+
+        <!-- Preconnect to Responsive Images -->
+        <link rel="preconnect" href="https://random.responsiveimages.io" />
+        <link rel="preconnect" href="https://responsiveimages.io" />
+
+        <!-- Preconnect to Google -->
+        <link rel="preconnect" href="http://fonts.googleapis.com" />
+        <link rel="preconnect" href="http://fonts.gstatic.com" />
+        <link rel="preconnect" href="http://www.google-analytics.com" />
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
       {% include component/meta.html %}
       {% include assets.html %}
       {% include webpack.html %}
