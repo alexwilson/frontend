@@ -20,15 +20,18 @@ itemtype: http://schema.org/Person
             <div class="alex-article__pane">
                 <p class="alex-article__pane-half iota">
                     <b class="eta">Ask Me About</b><br />
+                    🏙 Architecture & Design: Software is shown-up by the ingenuity in buildings and everyday objects.<br />
                     💊 Biohacking & Kaizen: I employ a data-driven approach to my life following the quantified-self principle.<br />
-                    🇯🇵 Japan: Having worked and lived there for a couple of months, I have fallen in love with the country.<br />
+                    🇯🇵 Japan: Having lived and worked there for a couple of months, I have fallen in love with the country.<br />
                 </p>
                 <p class="alex-article__pane-half iota">
                     <b class="eta">Secret Answers</b><br />
+                    🐠 My first pet was an Angel fish named Angel.
                     💼 My favourite film director is Tarantino.<br />
                     👻 My favourite anime is Ghost in the Shell.<br />
                     🕹️ My favourite videogame is Super Metroid.<br />
                     📺 I don't have a favourite TV series.<br />
+                    🎵 There's too much good music.<br />
                 </p>
             </div>
         </section>
@@ -40,7 +43,7 @@ itemtype: http://schema.org/Person
                     <li>App: <i>Electron, React Native, ReactJS</i></li>
                     <li>Blockchain: <i>Ethereum, Smart contracts</i></li>
                     <li>CDN: <i>Fastly, Varnish Plus, AWS CloudFront, Cloudflare</i></li>
-                    <li>Cloud <i>Practioner: AWS (Lambda, S3, CloudFormation, DynamoDB, API Gateway, and more), DigitalOcean, Google Cloud Platform</i></li>
+                    <li>Cloud Practioner: <i>AWS (Lambda, S3, CloudFormation, DynamoDB, API Gateway, and more), DigitalOcean, Google Cloud Platform</i></li>
                     <li>Configuration Management: <i>Ansible, Puppet, Terraform</i></li>
                     <li>Languages: <i>JavaScript (Browser, ESNext, NodeJS), Golang, Rust, PHP</i></li>
                     <li>Operating <i>Systems: MacOS, FreeBSD, Gentoo Linux, Debian/Ubuntu Linux</i></li>
@@ -48,10 +51,18 @@ itemtype: http://schema.org/Person
                     <li>Testing: <i>Cucumber/Gherkin, Jest, *Unit; CircleCI, Jenkins</i></li>
                 </ul>
             </p>
+            <p class="eta">
+                <b class="eta">Skills</b>
+                <ul class="eta">
+                    <li>Leadership</li>
+                    <li>Stakeholder Management</li>
+                    <li>Requirement Gathering</li>
+                </ul>
+            </p>
         </section>
         <section class="alex-article__body">
             <p class="theta">
-                I am not currently looking for a new position, however for any interested parties, my full CV, including a list of my noteworthy projects and references is available upon request.
+                I am not actively seeking a new position, however for any interested parties <a href="https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0">you may request access to see my full CV here</a>.
             </p>
             <p class="eta">
                 <b class="eta">Work Experience</b>
