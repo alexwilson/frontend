@@ -26,7 +26,7 @@ itemtype: http://schema.org/Person
                 </p>
                 <p class="alex-article__pane-half iota">
                     <b class="eta">Secret Answers</b><br />
-                    🐠 My first pet was an Angel fish named Angel.
+                    🐠 My first pet was an Angel fish named Angel.<br />
                     💼 My favourite film director is Tarantino.<br />
                     👻 My favourite anime is Ghost in the Shell.<br />
                     🕹️ My favourite videogame is Super Metroid.<br />
@@ -49,14 +49,6 @@ itemtype: http://schema.org/Person
                     <li>Operating <i>Systems: MacOS, FreeBSD, Gentoo Linux, Debian/Ubuntu Linux</i></li>
                     <li>Security: <i>OWASP</i></li>
                     <li>Testing: <i>Cucumber/Gherkin, Jest, *Unit; CircleCI, Jenkins</i></li>
-                </ul>
-            </p>
-            <p class="eta">
-                <b class="eta">Skills</b>
-                <ul class="eta">
-                    <li>Leadership</li>
-                    <li>Stakeholder Management</li>
-                    <li>Requirement Gathering</li>
                 </ul>
             </p>
         </section>
