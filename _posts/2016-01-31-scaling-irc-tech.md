@@ -6,7 +6,23 @@ author: alex
 threadId: axgy-1454206193433
 ---
 
-As some readers may already know, for a long time now I have been fortunate enough to lead a small IRC network which a great deal many people call home.  Overall it has been a very rewarding experience, and I've gained many useful technical and managerial skills, however it's not all sunshine and roses.  Perhaps one of my biggest pet peeves with the current state of IRC is something that I would very much like to improve, and that is the practical scalability of IRC. (i.e. not just more users, but more developers/staff and coping with quick changes)
+**Update: October 28th 2018**
+
+When I talk about scalability here, it's a wider focus than avoiding hard bottlenecks in the form of networks. It was not something which I expressed very well, so I will try again: Scalability in a technology project also includes aspects of how theses systems work for an entire team, and frankly, in traditional IRC set-ups this is an area which is very lacking.
+
+It requires a team to have access to the systems they need, as well as the operational knowledge to maintain them, all while keeping tight security. It's a very tight balance and one I don't think any open organisations have proven that they manage very well: In fact, an appearance of stability usually hides one or many key-man dependencies behind the scenes, and a lot of (hopefully documented) institutional knowledge.
+
+In general terms this is manifested by service disruption, and in IRC, by frequent netsplits. 
+
+Here I was noting some of the thoughts I'd had at the time, thoughts which proved a little too ambitious for an open project. However since then some smaller, more practical steps have been taken, with many more coming. Hopefully this will make our implementation of _IRC technology flexible enough to scale_, within our organisation.
+
+As for IRC itself, there's lots of great work happening with [IRCv3](https://ircv3.net/) which I strongly encourage any passers-by to follow and contribute to and I'm hoping someone will finally build that P2P "mesh-net" server-to-server protocol. 😅
+
+The original post, as written in late 2015, remains below after the break.
+
+---
+
+For a long time now I have led a small IRC network which a great deal many people call home.  Overall it has been a very rewarding experience, and I've gained many useful technical and managerial skills, however it's not all sunshine and roses.  Perhaps one of my biggest pet peeves with the current state of IRC is something that I would very much like to improve, and that is the practical scalability of IRC. (i.e. not just more users, but more developers/staff and coping with quick changes)
 
 To provide a bit of background, the vast majority of IRC networks run servers following a star topology, on hand-configured/secured servers.
 
