@@ -38,6 +38,16 @@ itemtype: http://schema.org/Person
         <br />
         <section class="alex-article__body">
             <p class="eta">
+                <b class="eta">Skills</b>
+                <ul class="eta">
+                    <li>5 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+                    <li>Requirement-gathering across a variety of business domains and stakeholder management. Experience and knowledge of digital media domains.</li>
+                    <li>Tracing and diagnosing distributed technical problems in high-performance systems.</li>
+                    <li>Solutions and application architecture throughout the stack, from front-end caching strategies to messaging patterns.</li>
+                    <li>Rich understanding of modern technologies, including in-development browser APIs, their adoption path and their business value.</li>
+                </ul>
+            </p>
+            <p class="eta">
                 <b class="eta">Technical Proficiencies</b>
                 <ul class="eta">
                     <li>App: <i>Electron, React Native, ReactJS</i></li>
