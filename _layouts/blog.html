@@ -8,16 +8,14 @@ layout: base
 		{% if paginator.total_pages > 1 %}
 
 			{% for post in paginator.posts %}
-				{% include card/item.html %}
+				{% include card/item.html image=true %}
 			{% endfor %}
-
-			<div class="clearfix"></div>
 			{% include component/pager.html %}
 
 		{% else %}
 
 			{% for post in site.posts %}
-				{% include card/item.html %}
+				{% include card/item.html image=true %}
 			{% endfor %}
 			
 		{% endif %}

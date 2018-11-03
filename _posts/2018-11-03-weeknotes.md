@@ -3,6 +3,8 @@ layout: post
 title: Weeknotes — 03/11/2018
 date: 2018-11-3 15:41
 modified: 2018-11-3 15:41
+image: https://images.unsplash.com/photo-1506606401543-2e73709cebb4?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=a2c389bef52afa5b61e4f22842f2ae96
+image_credit: Photo by Zac Ong.
 tags: [weeknotes]
 author: alex
 ---
@@ -17,12 +19,12 @@ Predominantly this week I’ve been working to reverse engineer, document and te
 - [Github have put together a fantastically detailed RCA](https://blog.github.com/2018-10-30-oct21-post-incident-analysis/) on the service disruption last week. At its core, it was caused by a 43 second network outage which resulted in enough lag to completely throw off Github's MySQL clustering. The post is fascinating and highly worth a read, and is also an example of the kind of incredible work they're doing on a day to day basis. However I can't help but wonder, since GitHub aren't a MySQL High Availability company, what the cost/benefit to continue rolling their own HA database clustering is. Outages aside, the engineering effort alone must cost a healthy chunk of change, so hopefully the overall storage cost and latency savings are well worth it.
 
 #### Apple’s October Event
-- Apple’s October event came and went!  A new MacBook Air is making the rounds, and Apple have wisely included the Touch ID sensor in a standard generation 3 keyboard so that it’s still affordable. However it still starts at over $1000.  The new Mac Mini looks like a fantastic desktop experience: I reckon coupled with an eGPU it’ll more than serve as a capable replacement for mine. Nice upgradeability, however incredibly costly for what they actually are.  Overall These compute upgrades are super nice, however it's very alarming and disappointing that the prices have shot up so much: It seems like Apple is no longer the obvious choice for students.
+- Apple’s October event came and went!  A new MacBook Air is making the rounds, and Apple have wisely included the Touch ID sensor in a standard generation 3 keyboard so that it’s still affordable. However it still starts at over $1000.  The new Mac Mini looks like a fantastic desktop experience: I reckon coupled with an eGPU it’ll more than serve as a capable replacement for mine. Nice upgradeability, however incredibly costly for what they actually are.  Overall these compute upgrades are super nice, however it's very alarming and disappointing that the prices have shot up so much: It seems like Apple is no longer the obvious choice for students.
 - Then the iPad Pro: USB-C, an edge-to-edge form factor, and enhanced security; Nearly everything I’ve wanted in a tablet.  If only I could use iOS as a development environment, I’d pick one up in a heartbeat. Also it sounds like the aluminium shavings from manufacturing these are what is going into the new recycled unibodies of the MacBook Air and Mac mini.
 - No mention of AirPower.  Zero-surprise.
 - Also, Apple really ought to add haptic feedback to a future version of the TouchBar!
 
-
+---
 - In the news this week, things have been pretty hectic: Angela [Merkel is stepping down as the leader of the CDU in Germany](https://www.economist.com/europe/2018/11/03/angela-merkel-will-step-down-as-cdu-party-leader-in-december), [Arron Banks is under investigation](https://www.bbc.co.uk/news/uk-politics-46056337) by the National Crime Agency for suspected fraud ([and the FT has reported](https://www.ft.com/content/1bbda93c-deb4-11e8-9f04-38d397e6661c)) his business holdings were worth a maximum of £1.75m. 
 - Github's outage on the 21st of October, at its root, was caused by a 43-second network outage. This
 - “Dozens of people around the world were killed because of this.” — If there was ever any doubt as to the importance of internal whistleblowing and taking cyber-security seriously, then [this story about the CIA neglecting their systems—more importantly their people—should end that](https://www.yahoo.com/news/cias-communications-suffered-catastrophic-compromise-started-iran-090018710.html).  No responsibility, or accountability, frankly very outrageous.  On a side-note it’s great to see Yahoo News breaking cybersecurity news: Hopefully after multiple crushing blows, they’ve entered into a new chapter?

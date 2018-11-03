@@ -35,8 +35,11 @@
 	}
 
 	&__image {
+		flex: 1;
+		margin-top: 1em;
+		margin-right: -1em;
+		margin-left: 1em;
 		img {
-
 			padding-right: 0em;
 			display: block;
 			max-width: 100%;

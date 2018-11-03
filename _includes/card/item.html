@@ -8,30 +8,30 @@
 			</h3>
 		</div>
 
+		{% if include.withBody != false %}
 		<div class="alex-card__abstract">
 			<p>
 				{{ post.excerpt|markdownify|strip_html|truncatewords: 40 }}
 			</p>
 		</div>
+		{% endif %}
 
-		{% if post.date %}
+		{% if include.withDate != false %}{% if post.date %}
 		<div class="alex-card__timetamp">
 			<span class="dateline">
 				<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %b %Y' }}</time>
 			</span>
 		</div>
-		{% endif %}
+		{% endif %}{% endif %}
 
 	</div>
 
-	{% if post.img %}
-	<div class="alex-card__media--container">
-		<div class="alex-card__image">
-				{% include atom/image.html
-					src="{{ post.image }}"
-					alt="{{ post.image_alt }}"
-				%}
-		</div>
+	{% if include.withImage != false %}{% if post.image %}
+	<div class="alex-card__image">
+			{% include atom/image.html
+				width=400
+				src=post.image
+			%}
 	</div>
-	{% endif %}
+	{% endif %}{% endif %}
 </div>
