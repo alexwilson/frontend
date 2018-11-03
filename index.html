@@ -7,7 +7,7 @@ layout: base
         <div class="alex-home__tilestack">
             {% for post in site.posts limit: 3 %}
                 <div class="alex-home__tilestack-item">
-                    {% include card/item.html withBody=false %}
+                    {% include card/item.html withDate=false withImage=false %}
                 </div>
             {% endfor %}
         </div>

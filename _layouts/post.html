@@ -3,8 +3,11 @@ layout: base
 ---
 
 {% if page.image %}
-<div class="alex-article__image" style="background-image:url('{{ page.image }}')">
-</div>
+<style>
+    .alex-header {
+        background-image: url('https://responsiveimages.io/v1/images/{{ page.image|url_encode }}');
+    }
+</style>
 {% endif %}
 <div class="alex-article">
     {% assign itemtype = 'http://schema.org/BlogPosting' %}
@@ -25,7 +28,9 @@ layout: base
                     by
                     {% assign author = site.data.people[page.author] %}
                     <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-                        <span itemprop="name">{{ author.name }} </span>
+                        <a href="{{ author.aboutme }}">
+                            <span itemprop="name">{{ author.name }} </span>
+                        </a>
                     </span>
                     {% endif %}
 
@@ -43,17 +48,10 @@ layout: base
                         {% endcase %}
                     {{ page.date | date: "%B %Y" }}
                     </time>
-                    {% endif %}
-
+                    {% endif %}.
+                    {% if page.image_credit %}{{ page.image_credit }}{% endif %}
                 </div>
             {% endif %}
-            
-            <!-- Tags -->
-            <p class="alex-article__tags">
-                {% for tag in page.tags %}
-                    <span class="label label-default">{{ tag }}</span>
-                {% endfor %}
-            </p>
 
             <!-- Content -->
             <article itemprop="articleBody" class="alex-article__body article-description">
