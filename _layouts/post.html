@@ -10,11 +10,7 @@ layout: base
 </style>
 {% endif %}
 <div class="alex-article">
-    {% assign itemtype = 'http://schema.org/BlogPosting' %}
-    {% if page.itemtype %}
-        {% assign itemtype = page.itemtype %}
-    {% endif %}
-    <div class="alex-article__main" itemscope="" itemtype="{{ itemtype }}">
+    <div class="alex-article__main">
         <section>
             
             
@@ -27,7 +23,7 @@ layout: base
                     {% if page.author %}
                     by
                     {% assign author = site.data.authors[page.author] %}
-                    <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <span itemprop="author" itemtype="http://schema.org/Person">
                         <a href="{{ author.aboutme }}">
                             <span itemprop="name">{{ author.name }} </span>
                         </a>
