@@ -1,17 +1,28 @@
 # Meta
 name: "Alex Wilson"
-description: "Random thoughts from a overly passionate developer."
+description: "Software Engineer, Technical Architect — Helping build a better, faster internet."
 
 # Links
 base: "/"
 baseurl: "/"
-url: "https://ax.gy"
+url: "https://alexwilson.tech"
 permalink: /blog/:year/:month/:day/:title/
 relative_permalinks: false
 author: 
     name: Alex Wilson
     email: a@ax.gy
-    uri: https://ax.gy/
+    uri: https://alexwilson.tech/
+
+twitter:
+    username: antoligy
+    card: summary
+
+social:
+  name: Alex Wilson
+  links:
+    - https://twitter.com/antoligy
+    - https://github.com/antoligy
+    - https://www.linkedin.com/in/alex-/
 
 # General
 encoding: UTF-8
@@ -40,6 +51,8 @@ plugins:
     - jekyll-gist
     - jekyll-paginate
     - jekyll-sitemap
+    - jekyll-seo-tag
+
 
 exclude:
     - node_modules

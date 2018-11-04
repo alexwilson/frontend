@@ -26,7 +26,7 @@ layout: base
                     Posted
                     {% if page.author %}
                     by
-                    {% assign author = site.data.people[page.author] %}
+                    {% assign author = site.data.authors[page.author] %}
                     <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
                         <a href="{{ author.aboutme }}">
                             <span itemprop="name">{{ author.name }} </span>
