@@ -2,6 +2,7 @@
 layout: post
 title: “Ten deploys per day”
 date: 2016-07-01 22:30
+tags: [devops, release-engineering]
 author: alex
 ---
 

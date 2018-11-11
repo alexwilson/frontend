@@ -1,11 +1,10 @@
+{% if include.post %}{% assign post = include.post %}{% endif %}
 <div class="alex-card{% if include.modifier %} {{include.modifier}}{% endif %}">
 
 	<div class="alex-card__content--container">
 
 		<div class="alex-card__title">
-			<h3>
-				<a href="{{ post.url }}">{{ post.title }}</a>
-			</h3>
+			<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
 		</div>
 
 		{% if include.withBody != false %}

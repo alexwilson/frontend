@@ -61,6 +61,16 @@ layout: base
                 {% include component/share.html %}
             {% endunless %}
 
+            <!---hr />
+            <div class="alex-article__more" style="display: flex;">
+                {% if page.previous %}
+                    {% include card/item.html post=page.previous withBody=false withImage=false %}
+                {% endif %}
+                {% if page.next %}
+                    {% include card/item.html post=page.next withBody=false withImage=false %}
+                {% endif %}
+            </div -->
+
             {% if page.threadId %}
                 <!-- Comments -->
                 <div id="comments" data-id='{{ page.threadId }}'></div>
@@ -86,5 +96,26 @@ layout: base
     </div>
 
     <div class="alex-article__aside">
+        {% if page.tags.size > 0 %}
+        <div class="alex-article__topics">
+            <strong>Topics:</strong>
+            {% for tag in page.tags %}
+                {% assign topic = site.topics
+                    | where:"tag",tag
+                    | first
+                %}
+                {% if topic %}
+                    <a href="/topic/{{ topic.tag }}">{{ topic.title }}</a>{% unless forloop.last %},{% endunless%}
+                {% else %}
+                    <span>{{ tag }}</span>{% unless forloop.last %},{% endunless%}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="alex-article__recommended">
+            <h2>Read Next</h2>{% include component/related-articles.html %}
+        </div>
+
     </div>
 </div>

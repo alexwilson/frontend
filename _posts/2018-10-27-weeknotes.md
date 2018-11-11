@@ -5,6 +5,7 @@ date: 2018-10-27 20:30
 image: https://images.unsplash.com/photo-1523540499309-18d7a30ddf76?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=eaeafe4dec6bdd36c4f9da79d1d1243a
 image_credit: Photo by Rob Bye.
 author: alex
+tags: ['weeknotes']
 ---
 
 - Going to give publishing weeknotes a try. [Weeknotes](https://weeknot.es/what-on-earth-are-weeknotes-a81874c5cef9) are something that have been quietly popping up, and they’re essentially a journal-style blog post reflecting on a given week. They can be as personal, or impersonal as the writer likes. There’s no fixed cadence, so missing a couple of weeks here or there is no biggie, but they’re great ways of reflecting on a week. I’ll be starting by taking some of the ad-hoc notes and links I normally jot in Bear throughout the week, and running from there.
