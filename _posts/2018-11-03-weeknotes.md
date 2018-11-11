@@ -2,10 +2,10 @@
 layout: post
 title: Weeknotes — 3rd November 2018
 date: 2018-11-3 15:41
-modified: 2018-11-3 15:41
+last_modified_at: 2018-11-3 15:41
 image: https://images.unsplash.com/photo-1506606401543-2e73709cebb4?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=a2c389bef52afa5b61e4f22842f2ae96
 image_credit: Photo by Zac Ong.
-tags: [weeknotes]
+tags: ['weeknotes']
 author: alex
 ---
 

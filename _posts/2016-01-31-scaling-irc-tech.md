@@ -2,7 +2,9 @@
 layout: post
 title: Is IRC technology flexible enough to scale?
 date: 2016-01-31 21:17
+last_modified_at: 2018-10-28 20:00
 author: alex
+tags: [irc]
 threadId: axgy-1454206193433
 ---
 

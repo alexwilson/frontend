@@ -3,6 +3,7 @@ layout: post
 title: Democratising and automating DNS
 date: 2018-11-10 23:19
 author: alex
+tags: [cloudflare, dns, devops]
 ---
 
 Today I have released an infrastructure automation tool, [called DNSSync](https://github.com/stormbit/dnssync), for idempotently managing the state of DNS records.

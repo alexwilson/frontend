@@ -21,10 +21,28 @@
 .alex-article__aside {
     @include alex-column(10);
     @include media(">tablet") {
+        @include alex-guttering;
         @include alex-column(2);
     }
     @include media(">desktop") {
         @include alex-column(3);
+    }
+}
+
+.alex-article__topics {
+    display: none;
+    @include media(">tablet") {
+        top: 10rem;
+        position: relative;
+        display: block;
+    }
+}
+
+.alex-article__recommended {
+    @include media(">tablet") {
+        z-index: 0;
+        position: absolute;
+        top: 120%;
     }
 }
 

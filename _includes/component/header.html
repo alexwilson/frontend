@@ -14,7 +14,7 @@
             </li>
             {% for item in site.data.navigation %}
             <li class="{% if page.url contains item.link %}alex-header__nav-item--active {% endif %}alex-header__nav-item">
-                <a href="{{ item.link }}" {% if item.instantclick == false %}data-no-instant{% endif %}>{{ item.title }}</a>
+                <a href="{{ item.link }}">{{ item.title }}</a>
             </li>
             {% endfor %}
             <li class="alex-header__nav-item alex-header__nav-item--spacer"></li>
