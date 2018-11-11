@@ -4,7 +4,7 @@ title: Weeknotes — 10th November 2018
 date: 2018-11-10 23:19
 modified: 2018-11-11 14:01
 author: alex
-image: https://images.unsplash.com/photo-1541794728130-050e3d8b81d6?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&w=1200&cs=srgb&s=0ee7b2389a3682794326519e742bec65
+image: https://images.unsplash.com/photo-1541794728130-050e3d8b81d6?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&w=2000&cs=srgb&s=0ee7b2389a3682794326519e742bec65
 image_credit: Photo by Colin Watts.
 tags: [weeknotes]
 ---
