@@ -5,7 +5,7 @@ layout: base
     <section class="alex-home__section">
         <h1><a class="heading" href="/blog/">Recent Posts</a></h1>
         <div class="alex-home__tilestack">
-            {% for post in site.post limit: 3 %}
+            {% for post in site.posts limit: 3 %}
                 <div class="alex-home__tilestack-item">
                     {% include card/item.html withDate=false withImage=false %}
                 </div>
