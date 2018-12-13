@@ -5,6 +5,7 @@ date: 2018-12-08 23:19
 last_modified_at: 2018-12-12 20:03
 author: alex
 image: https://alexwilson.tech/pictures/20181208--shinjuku.jpg
+image_cropped: https://alexwilson.tech/pictures/20181208--shinjuku--cropped.jpg
 image_credit: Photo by Alex Wilson.
 tags: ['weeknotes', 'aws', 'reinvent', 'bio', 'slack', 'nar', 'motivation']
 ---

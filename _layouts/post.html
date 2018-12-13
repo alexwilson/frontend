@@ -3,9 +3,11 @@ layout: base
 ---
 
 {% if page.image %}
+{% assign image = page.image %}
+{% if page.image_cropped %}{% assign image = page.image_cropped %}{% endif %}
 <style>
     .alex-header {
-        background-image: url('https://responsiveimages.io/v1/images/{{ page.image|url_encode }}');
+        background-image: url('https://responsiveimages.io/v1/images/{{ image|url_encode }}');
     }
 </style>
 {% endif %}
