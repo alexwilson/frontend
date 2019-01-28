@@ -21,7 +21,7 @@
             {% for item in site.data.social %}
             <li class="alex-header__nav-item">
                 <a title="{{ item.title }}" href="{{ item.url }}" rel="me">
-                    {% assign svgUrl = site.url~item.svg %}
+                    {% assign svgUrl = site.url|append: item.svg %}
                     <img
                          src="{{ svgUrl }}"
                          onerror="this.src='https://imagecdn.app/v2/image/{{svgUrl|url_encode}}?format=png&width=90'"
