@@ -20,8 +20,15 @@
             <li class="alex-header__nav-item alex-header__nav-item--spacer"></li>
             {% for item in site.data.social %}
             <li class="alex-header__nav-item">
-                <a title="{{ item.title }}" href="{{ item.url }}">
-                    <img src="{{ item.svg }}" class="large" alt="{{ item.title }}" height="1em" />
+                <a title="{{ item.title }}" href="{{ item.url }}" rel="me">
+                    {% assign svgUrl = site.url~item.svg %}
+                    <img
+                         src="{{ svgUrl }}"
+                         onerror="this.src='https://imagecdn.app/v2/image/{{svgUrl|url_encode}}?format=png&width=90'"
+                         class="large"
+                         alt="{{ item.title }}"
+                         height="1em"
+                    />
                 </a>
             </li>
             {% endfor %}
