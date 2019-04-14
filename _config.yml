@@ -8,7 +8,7 @@ baseurl: "/"
 url: "https://alexwilson.tech"
 permalink: /blog/:year/:month/:day/:title/
 relative_permalinks: false
-author: 
+author:
     name: Alex Wilson
     email: a@ax.gy
     uri: https://alexwilson.tech/
@@ -36,6 +36,9 @@ collections:
     projects:
         output: true
         permalink: /work/:path/
+    talks:
+        output: true
+        permalink: /talks/:path/
     about:
         output: true
         permalink: /about-me/:path/
@@ -55,6 +58,7 @@ plugins:
     - jekyll-paginate
     - jekyll-sitemap
     - jekyll-seo-tag
+    - jekyll-redirect-from
 
 
 exclude:
