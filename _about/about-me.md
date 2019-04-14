@@ -40,7 +40,7 @@ itemtype: http://schema.org/Person
             <p class="eta">
                 <b class="eta">Skills</b>
                 <ul class="eta">
-                    <li>5 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+                    <li>5½ years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
                     <li>Requirement-gathering across a variety of business domains and stakeholder management. Experience and knowledge of digital media domains.</li>
                     <li>Tracing and diagnosing distributed technical problems in high-performance systems.</li>
                     <li>Solutions and application architecture throughout the stack, from front-end caching strategies to messaging patterns.</li>
@@ -64,13 +64,14 @@ itemtype: http://schema.org/Person
         </section>
         <section class="alex-article__body">
             <p class="theta">
-                I am not actively seeking a new position, however for any interested parties <a href="https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0">you may request access to see my full CV here</a>.
+                I am not actively seeking a new position, however for any interested parties <a href="https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0">you may request access to see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please feel free to connect with me on LinkedIn</a>.
             </p>
             <p class="eta">
                 <b class="eta">Work Experience</b>
                 <ul class="eta">
-                    <li><i>Oct 2016–Present</i>: Principal Engineer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
-                    <li><i>Sep 2013–Oct 2016</i>: Software Engineer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
+                    <li><i>Apr 2019–Present</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
+                    <li><i>Oct 2016–Apr 2019</i>: Principal Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
+                    <li><i>Sep 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
                 </ul>
             </p>
         </section>
