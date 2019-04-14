@@ -1,0 +1,12 @@
+---
+layout: base
+---
+
+<div class="alex-stream">
+	<h1>Talks</h1>
+	<section class="alex-listing">
+			{% for post in site.talks %}
+				{% include card/item.html image=true %}
+			{% endfor %}
+	</section>
+</div>
