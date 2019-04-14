@@ -2,4 +2,6 @@
   link: "/about-me/"
 - title: "Blog"
   link: "/blog/"
+- title: "Talks"
+  link: "/talks/"
 # - { title: "My work", link: "/work/" }
