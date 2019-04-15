@@ -3,7 +3,7 @@ layout: post
 title: "Taking a look through a Johari window"
 date: 2019-04-14
 author: alex
-tags: ['personal-development', 'stoicism', 'bluetel']
+tags: ['personal-development', 'career', 'stoicism', 'bluetel']
 ---
 
 After getting a decent amount of positive, useful feedback while going through a number of recruitment processes, I was
