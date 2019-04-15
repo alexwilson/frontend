@@ -8,8 +8,6 @@ image_credit: Photo by Alex Wilson.
 tags: ['weeknotes', 'talks', 'career', 'financial-times', 'microservices', 'personal-development']
 ---
 
-## Bracken House
-
 - The FT is moving back to Bracken House soon. Most of my group had our inductions this week. It's very, very nice.
 - During our induction an audio engineer was tuning the event space's sound system with [Four Tet's Only Human](https://open.spotify.com/track/4waVSC9eSkrt6RxJK3DhwW?si=JKspSCaaQDWApKTrc1tctA):
     Bring on the journalist raves.
