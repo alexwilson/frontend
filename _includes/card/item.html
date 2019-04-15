@@ -25,11 +25,11 @@
 
 	</div>
 
-	{% if include.withImage != false %}{% if post.image %}
+  {% if include.withImage != false %}{% assign image = post.thumbnail|default: post.image %}{% if image %}
 	<div class="alex-card__image">
 			{% include atom/image.html
 				width=400
-				src=post.image
+				src=image
 			%}
 	</div>
 	{% endif %}{% endif %}
