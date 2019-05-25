@@ -65,5 +65,23 @@ module.exports = {
         implementation: require('sass'),
       },
     },
+
+
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-16800366-1",
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        // exclude: ["/preview/**", "/do-not-track/me/too/"],
+        optimizeId: "GTM-M22MJGG",
+        // experimentId: "YOUR_GOOGLE_EXPERIMENT_ID",
+        // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
+        siteSpeedSampleRate: 100,
+        cookieDomain: "alexwilson.tech",
+      },
+    },
+
   ],
 }
