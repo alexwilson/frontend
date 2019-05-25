@@ -9,7 +9,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: slug,
+      value: `blog${slug}`,
     })
     if (node.frontmatter && node.frontmatter.date) {
       createNodeField({

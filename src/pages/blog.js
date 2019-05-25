@@ -3,8 +3,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ArticleCard from "../components/article-card"
 
-export default ({ data }) => {
-  return (<Layout>
+export default ({ data, location }) => {
+  return (<Layout location={location}>
     <div class="alex-stream">
       <h1>My Blog</h1>
       <h4>{data.allMarkdownRemark.totalCount} Posts</h4>

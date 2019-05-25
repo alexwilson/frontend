@@ -3,8 +3,8 @@ import React from 'react'
 import Layout from "../components/layout"
 import ResponsiveImage from "../components/responsive-image"
 
-export default function aboutMe() {
-  return <Layout>
+export default function aboutMe({location}) {
+  return <Layout location={location}>
     <div className="alex-article">
       <div className="alex-article__main" itemscope="" itemtype="{{ itemtype }}">
           <section className="alex-article__body">

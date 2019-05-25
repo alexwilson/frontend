@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import ShareWidget from "../components/share-widget"
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   const post = data.markdownRemark
   return (
-    <Layout>
+    <Layout location={location}>
       <div class="alex-article">
         <div class="alex-article__main">
           <h1 itemprop="name headline">{post.frontmatter.title}</h1>
@@ -46,7 +47,14 @@ export default ({ data }) => {
             className="alex-article__body article-description"
             itemprop="articleBody"
           />
+
+          <hr />
+          <h3 class="share">Share</h3>
+          <ShareWidget title={post.frontmatter.title} url={new URL(location.pathname, data.site.siteMetadata.siteUrl)} />
+
         </div>
+
+
         <div class="alex-article__aside">
           <div class="alex-article__topics">
             <strong>Topics:</strong>
@@ -77,6 +85,11 @@ export const pageQuery = graphql`
         formattedDate: date(formatString: "dddd, MMMM Do, YYYY")
         date
         slug
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

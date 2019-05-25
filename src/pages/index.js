@@ -6,8 +6,8 @@ import ArticleCard from "../components/article-card"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => (
-  <Layout>
+const IndexPage = ({ data, location }) => (
+  <Layout location={location}>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <div className="alex-home">
         <section className="alex-home__section">

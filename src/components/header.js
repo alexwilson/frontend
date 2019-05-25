@@ -2,10 +2,19 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, {Component} from "react"
 
-const NavItem = ({url, children}) => (
-  <li className="alex-header__nav-item">
-    <Link to={url}>{children}</Link>
+const ALink = ({url, children}) => {
+  const isAbsolute = /^(https?:)?\/\//
+  return isAbsolute.test(url) ? <a href={url}>{children}</a> : <Link to={url}>{children}</Link>
+}
+
+const NavItem = ({url, active, children}) => (
+  <li className={`alex-header__nav-item ${active ? "alex-header__nav-item--active" : null}`}>
+    <ALink url={url}>{children}</ALink>
   </li>
+)
+
+const NavSpacer = () => (
+  <li className="alex-header__nav-item alex-header__nav-item--spacer"></li>
 )
 
 const Icon = ({src, title}) => (
@@ -18,29 +27,27 @@ const Icon = ({src, title}) => (
   />
 )
 
-const NavSpacer = () => (
-  <li className="alex-header__nav-item alex-header__nav-item--spacer"></li>
-)
-
 class Header extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+  constructor(props) {
+    super(props)
+    this.header = React.createRef()
+    this.headerNav = React.createRef()
+  }
 
   componentDidMount() {
-    const header = document.querySelector('.alex-header')
-    const headerNav = document.querySelector('.alex-header__nav')
-
-    header.style.top = `-${header.offsetHeight - headerNav.offsetHeight}px`
-    header.style.position = "sticky"
+    console.log(this.header)
+    // this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
+    // this.header.current.style.position = "sticky"
   }
 
   render() {
 
+    // console.log(this.props)
+    const pathname = this.props.location.pathname
+
     return (
-      <header role="banner" className="alex-header {% if page.image %}alex-header--with-image{% endif %}">
+      <header role="banner" className="alex-header {% if page.image %}alex-header--with-image{% endif %}" ref={this.header}>
         <div className="alex-header--container">
 
           <div className="alex-header__about">
@@ -50,21 +57,17 @@ class Header extends Component {
 
 
           <nav>
-              <ul className="alex-header__nav" id="menu">
-                <NavItem url="/">Home</NavItem>
-                <NavItem url="/about-me/">About Me</NavItem>
-                <NavItem url="/blog/">Blog</NavItem>
-                <NavItem url="/talks/">Talks</NavItem>
+              <ul className="alex-header__nav" id="menu" ref={this.headerNav}>
+                <NavItem url="/" active={pathname === "/"}>Home</NavItem>
+                <NavItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</NavItem>
+                <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Blog</NavItem>
+                <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Talks</NavItem>
+
                 <NavSpacer />
-                <NavItem url="https://twitter.com/antoligy">
-                  <Icon src="/svg/twitter.svg" title="Twitter" />
-                </NavItem>
-                <NavItem url="https://www.linkedin.com/in/alex-/">
-                  <Icon src="/svg/linkedin.svg" title="LinkedIn" />
-                </NavItem>
-                <NavItem url="https://github.com/antoligy">
-                  <Icon src="/svg/github.svg" title="Github" />
-                </NavItem>
+
+                <NavItem url="https://twitter.com/antoligy"><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
+                <NavItem url="https://www.linkedin.com/in/alex-/"><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
+                <NavItem url="https://github.com/antoligy"><Icon src="/svg/github.svg" title="Github" /></NavItem>
               </ul>
           </nav>
 
@@ -72,35 +75,6 @@ class Header extends Component {
     </header>)
   }
 }
-
-// const Header = ({ siteTitle }) => (
-//   <header
-//     style={{
-//       background: `rebeccapurple`,
-//       marginBottom: `1.45rem`,
-//     }}
-//   >
-//     <div
-//       style={{
-//         margin: `0 auto`,
-//         maxWidth: 960,
-//         padding: `1.45rem 1.0875rem`,
-//       }}
-//     >
-//       <h1 style={{ margin: 0 }}>
-//         <Link
-//           to="/"
-//           style={{
-//             color: `white`,
-//             textDecoration: `none`,
-//           }}
-//         >
-//           {siteTitle}
-//         </Link>
-//       </h1>
-//     </div>
-//   </header>
-// )
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

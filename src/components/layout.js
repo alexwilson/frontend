@@ -12,7 +12,7 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "../scss/main.scss"
 
-const Layout = ({ children }) => (
+const Layout = ({ location, children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -25,7 +25,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} location={location} />
         <main>{children}</main>
         <footer className="footer">
             <div className="container align-center">
@@ -44,8 +44,8 @@ const Layout = ({ children }) => (
   />
 )
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// Layout.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
 
 export default Layout
