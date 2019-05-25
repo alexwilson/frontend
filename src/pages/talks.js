@@ -6,8 +6,7 @@ import ArticleCard from "../components/article-card"
 export default ({ data, location }) => {
   return (<Layout location={location}>
     <div class="alex-stream">
-      <h1>My Blog</h1>
-      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+      <h1>Talks</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
       ))}
@@ -20,7 +19,7 @@ export const query = graphql`
     allMarkdownRemark(
       filter: {
         frontmatter: {date: {ne: null}},
-        fields: {type: {eq: "posts"}}
+        fields: {type: {eq: "talks"}}
       }
       sort: {
         fields: [frontmatter___date],
