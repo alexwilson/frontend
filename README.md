@@ -3,13 +3,11 @@ antoligy.github.io
 
 ## Dependencies
 
- - Make
- - Ruby 2.3 and the Bundler gem
- - NodeJS 10 and Yarn
- 
+ - NodeJS 10 and NPM
+
 ## Getting Started
 
-`$ make`
+`$ npm run develop`
 
 ## Tools
 - [Google Analytics](https://analytics.google.com/analytics/web/)

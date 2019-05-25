@@ -1,11 +1,8 @@
 # Ignoring folders created when running Jekyll.
-_site
-.sass-cache
+public
+.cache
 
 # Ignoring build folders.
 bower_components
 node_modules
-
-# Ignoring the following because we have no control of prod, so pointless for dev.
-Gemfile.lock
 
