@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import { format as formatDate } from 'date-fns'
 import PropTypes, { node } from "prop-types"
 import React from "react"
 import ResponsiveImage from './responsive-image'
@@ -6,20 +7,6 @@ import ResponsiveImage from './responsive-image'
 export default function articleCard({article, withBody = true, withImage = true, withDate = true}) {
 
   const date = new Date(article.frontmatter.date || "now")
-  const month = {
-    0: "Dec",
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-  }
 
   return (
     <div className="alex-card{% if include.modifier %} {{include.modifier}}{% endif %}">
@@ -41,7 +28,7 @@ export default function articleCard({article, withBody = true, withImage = true,
         {(withDate !== false) ?
           <div className="alex-card__timetamp">
             <span className="dateline">
-              <time dateTime="{{ post.date | date_to_xmlschema }}">{ `${date.getUTCDate()} ${month[parseInt(date.getUTCMonth())]} ${date.getUTCFullYear()}` }</time>
+              <time dateTime={date.toISOString()}>{ formatDate(date, "D MMM YYYY") }</time>
             </span>
           </div>
         :null}

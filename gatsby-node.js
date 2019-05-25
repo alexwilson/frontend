@@ -1,16 +1,29 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { format } = require('date-fns')
+
+exports.generateBlogSlug = (filePath) => {
+  const { name } = path.parse(filePath)
+  const pattern = /^(?<date>[0-9]+-[0-9]+-[0-9]+)-(?<slug>.*)$/ig
+  const {groups: {date, slug}} = pattern.exec(name)
+
+  return path.posix.join(
+    `/blog`,
+    format(new Date(date), "YYYY/MM/DD"),
+    slug,
+    `/`
+  )
+}
+
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
-    createNodeField({
-      node,
-      name: `slug`,
-      value: `blog${slug}`,
-    })
+    const filePath = createFilePath({ node, getNode, basePath: 'pages' })
+    const slug = exports.generateBlogSlug(filePath)
+    createNodeField({ node, name: `slug`, value: slug })
+
     if (node.frontmatter && node.frontmatter.date) {
       createNodeField({
         node,
