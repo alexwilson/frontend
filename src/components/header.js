@@ -42,12 +42,10 @@ class Header extends Component {
 
   render() {
 
-    // console.log(this.props)
     const pathname = this.props.location.pathname
     const headerStyle = {}
 
     if (this.props.image) {
-      console.log(this.props.image)
       headerStyle.backgroundImage = `url('https://imagecdn.app/v2/image/${encodeURIComponent(this.props.image)}')`
     }
 
@@ -83,10 +81,12 @@ class Header extends Component {
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
+  image: PropTypes.string,
 }
 
 Header.defaultProps = {
   siteTitle: ``,
+  image: null,
 }
 
 export default Header

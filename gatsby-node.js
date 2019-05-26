@@ -116,6 +116,7 @@ exports.createPages = ({ graphql, actions }) => {
             slug: node.fields.slug,
           },
         })
+        break
       }
 
       case 'posts': {
@@ -126,6 +127,7 @@ exports.createPages = ({ graphql, actions }) => {
             slug: node.fields.slug,
           },
         })
+        break
       }
 
     }
