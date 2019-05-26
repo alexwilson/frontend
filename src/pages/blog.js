@@ -5,7 +5,7 @@ import ArticleCard from "../components/article-card"
 
 export default ({ data, location }) => {
   return (<Layout location={location}>
-    <div class="alex-stream">
+    <div className="alex-stream">
       <h1>My Blog</h1>
       <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
       {data.allMarkdownRemark.edges.map(({ node }) => (
@@ -33,6 +33,7 @@ export const query = graphql`
           id
           fields {
             slug
+            thumbnail
           }
           frontmatter {
             title

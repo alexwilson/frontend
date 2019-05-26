@@ -12,7 +12,7 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "../scss/main.scss"
 
-const Layout = ({ location, children }) => (
+const Layout = ({ location, children, headerImage=null }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -25,17 +25,12 @@ const Layout = ({ location, children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} location={location} />
+        <Header siteTitle={data.site.siteMetadata.title} location={location} image={headerImage} />
         <main>{children}</main>
         <footer className="footer">
             <div className="container align-center">
                 <span className="text-muted">
                 &copy; Alex Wilson {new Date().getFullYear()}
-                {/* {% for item in site.data.social %}
-                    <a class="footer__social-link" href="{{ item.url }}" title="{{ item.title }}">
-                        <img src="{{ item.svg }}" alt="{{ item.title }}" class="footer__social-link" />
-                    </a>
-                {% endfor %} */}
                 </span>
             </div>
         </footer>

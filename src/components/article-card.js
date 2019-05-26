@@ -9,7 +9,7 @@ export default function articleCard({article, withBody = true, withImage = true,
   const date = new Date(article.frontmatter.date || "now")
 
   return (
-    <div className="alex-card{% if include.modifier %} {{include.modifier}}{% endif %}">
+    <div className="alex-card">
 
       <div className="alex-card__content--container">
 
@@ -35,9 +35,9 @@ export default function articleCard({article, withBody = true, withImage = true,
 
       </div>
 
-      {(withImage !== false) ?
+      {(withImage !== false && article.fields.thumbnail) ?
         <div className="alex-card__image">
-          <ResponsiveImage src={article.frontmatter.image} width={400}></ResponsiveImage>
+          <ResponsiveImage src={ article.fields.thumbnail } width={ 400 } />
         </div>
       :null}
 

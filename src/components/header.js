@@ -36,18 +36,23 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    console.log(this.header)
-    // this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
-    // this.header.current.style.position = "sticky"
+    this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
+    this.header.current.style.position = "sticky"
   }
 
   render() {
 
     // console.log(this.props)
     const pathname = this.props.location.pathname
+    const headerStyle = {}
+
+    if (this.props.image) {
+      console.log(this.props.image)
+      headerStyle.backgroundImage = `url('https://imagecdn.app/v2/image/${encodeURIComponent(this.props.image)}')`
+    }
 
     return (
-      <header role="banner" className="alex-header {% if page.image %}alex-header--with-image{% endif %}" ref={this.header}>
+      <header role="banner" className={`alex-header ${this.props.image ? 'alex-header--with-image':null}`} ref={this.header} style={headerStyle}>
         <div className="alex-header--container">
 
           <div className="alex-header__about">

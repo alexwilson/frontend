@@ -6,7 +6,7 @@ import ResponsiveImage from "../components/responsive-image"
 export default function aboutMe({location}) {
   return <Layout location={location}>
     <div className="alex-article">
-      <div className="alex-article__main" itemscope="" itemtype="{{ itemtype }}">
+      <div className="alex-article__main" itemScope="" itemType="{{ itemtype }}">
           <section className="alex-article__body">
               <p className="delta">
                   My name is Alex. I'm a driven full-stack software engineer and technology lead, passionate about web-standards, journalism and solving business problems.<br />

@@ -5,7 +5,7 @@ import ArticleCard from "../components/article-card"
 
 export default ({ data, location }) => {
   return (<Layout location={location}>
-    <div class="alex-stream">
+    <div className="alex-stream">
       <h1>Talks</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />

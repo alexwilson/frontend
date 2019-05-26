@@ -2,6 +2,10 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { format } = require('date-fns')
 
+/**
+ * Add a prefix of /blog/ and use a folder structure for the date.
+ * e.g. /blog/2019/04/03/blog-title-here/
+ */
 exports.generateBlogSlug = (filePath) => {
   const { name } = path.parse(filePath)
   const pattern = /^(?<date>[0-9]+-[0-9]+-[0-9]+)-(?<slug>.*)$/ig
@@ -15,15 +19,14 @@ exports.generateBlogSlug = (filePath) => {
   )
 }
 
+/**
+ * Add a prefix of /talks/.
+ * @todo Change the permalink format for talks
+ */
 exports.generateTalkSlug = (filePath) => {
-  const { name } = path.parse(filePath)
-  const pattern = /^(?<date>[0-9]+-[0-9]+-[0-9]+)-(?<slug>.*)$/ig
-  const {groups: {date, slug}} = pattern.exec(name)
-
   return path.posix.join(
     `/talks`,
-    format(new Date(date), "YYYY/MM/DD"),
-    slug,
+    filePath,
     `/`
   )
 }
@@ -38,6 +41,22 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         node,
         name: `date`,
         value: new Date(node.frontmatter.date)
+      })
+    }
+
+    // Articles can have both thumbnails and images.
+    if (node.frontmatter && node.frontmatter.image) {
+      // For images, optionally supply a cropped version.
+      createNodeField({
+        node,
+        name: `image`,
+        value: node.frontmatter.image_cropped ? node.frontmatter.image_cropped : node.frontmatter.image
+      })
+      // For thumbnails, optionally supply a thumbnailed version.
+      createNodeField({
+        node,
+        name: `thumbnail`,
+        value: node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image
       })
     }
 
@@ -66,11 +85,17 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const topics = new Set()
   return graphql(`
     {
       allMarkdownRemark {
         edges {
           node {
+            frontmatter {
+              tags
+              image
+              thumbnail
+            }
             fields {
               type
               slug
@@ -96,7 +121,7 @@ exports.createPages = ({ graphql, actions }) => {
       case 'posts': {
         createPage({
           path: node.fields.slug,
-          component: path.resolve(`./src/templates/blog-post.js`),
+          component: path.resolve(`./src/templates/article.js`),
           context: {
             slug: node.fields.slug,
           },
@@ -104,6 +129,23 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
     }
+
+    // Collect all tags into a set.
+    if (node.frontmatter.tags) {
+      node.frontmatter.tags.forEach(tag => topics.add(tag))
+    }
   })
-  })
+
+  // Create topic pages for each tag
+  for (topic of topics) {
+    createPage({
+      path: `/topic/${topic}/`,
+      component: path.resolve(`./src/templates/topic.js`),
+      context: {
+        topic: topic
+      },
+    })
+  }
+
+})
 }
