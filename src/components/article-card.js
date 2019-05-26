@@ -6,7 +6,7 @@ import ResponsiveImage from './responsive-image'
 
 export default function articleCard({article, withBody = true, withImage = true, withDate = true}) {
 
-  const date = new Date(article.frontmatter.date || "now")
+  const date = new Date(article.fields.date)
 
   return (
     <div className="alex-card">

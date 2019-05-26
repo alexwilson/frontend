@@ -33,6 +33,7 @@ export const query = graphql`
           id
           fields {
             slug
+            date
             thumbnail
           }
           frontmatter {

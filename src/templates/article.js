@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, StaticQuery, Link } from "gatsby"
 import Layout from "../components/layout"
 import ShareWidget from "../components/share-widget"
+import RelatedArticles from "../components/related-articles"
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
@@ -69,34 +70,7 @@ export default ({ data, location }) => {
 
           <div className="alex-article__recommended">
             <h2>Read Next</h2>
-            <StaticQuery query={`
-              query RelatedArticles {
-                posts: allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] }
-                  limit: 1000
-                ) {
-                  edges {
-                    node {
-                      fields {
-                        slug
-                        date
-                      }
-                      frontmatter {
-                        title
-                        tags
-                      }
-                    }
-                  }
-                }
-              }
-            `}
-            render={data => {
-              const topics = post.frontmatter.tags
-              const currentArticleSlug = post.fields.slug
-              console.log(data)
-              return <div></div>
-            }}
-            />
+            <RelatedArticles article={post}/>
           </div>
         </div>
       </div>

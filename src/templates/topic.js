@@ -56,6 +56,7 @@ export const pageQuery = graphql`
           id
           fields {
             slug
+            date
           }
           frontmatter {
             title
