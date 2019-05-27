@@ -83,6 +83,13 @@ module.exports = {
         cookieDomain: "alexwilson.tech",
       },
     },
-
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Overpass:400,600,800']
+        }
+      }
+    }
   ],
 }
