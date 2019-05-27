@@ -59,6 +59,10 @@ module.exports = {
       },
     },
 
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {}
+    },
 
     {
       resolve: `gatsby-plugin-sass`,
@@ -84,7 +88,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
           families: ['Overpass:400,600,800']
