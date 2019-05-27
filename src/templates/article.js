@@ -3,9 +3,16 @@ import { graphql, StaticQuery, Link } from "gatsby"
 import Layout from "../components/layout"
 import ShareWidget from "../components/share-widget"
 import RelatedArticles from "../components/related-articles"
+import SEO from "../components/seo"
+import Article from "../schema-org/article";
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
+  const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
+
+  const datePublished = new Date(post.frontmatter.date)
+  const dateModified = new Date(post.frontmatter.last_modified_at || datePublished)
+
   return (
     <Layout location={location} headerImage={post.fields.image}>
       <div className="alex-article">
@@ -25,12 +32,12 @@ export default ({ data, location }) => {
               </>
             :null)}
 
-            {(post.fields.date ?
+            {(datePublished ?
               <>
                 {` on `}
                 <time
                   className="alex-article__main__date"
-                  dateTime={post.fields.date}
+                  dateTime={datePublished}
                   itemProp="datePublished"
                 >{post.fields.formattedDate}</time>.
               </>
@@ -51,7 +58,7 @@ export default ({ data, location }) => {
 
           <hr />
           <h3 className="share">Share</h3>
-          <ShareWidget title={post.frontmatter.title} url={new URL(location.pathname, data.site.siteMetadata.siteUrl)} />
+          <ShareWidget title={post.frontmatter.title} url={url} />
 
         </div>
 
@@ -75,6 +82,16 @@ export default ({ data, location }) => {
           </div>
         </div>
       </div>
+      <SEO title={post.frontmatter.title}>
+        <script type="application/ld+json">{JSON.stringify(Article({
+          url: url,
+          title: post.frontmatter.title,
+          image: post.fields.image,
+          description: post.frontmatter.excerpt,
+          dateModified: dateModified,
+          datePublished: datePublished
+        }))}</script>
+      </SEO>
     </Layout>
   )
 }
@@ -85,10 +102,12 @@ export const pageQuery = graphql`
       id
       html
       timeToRead
+      excerpt
       frontmatter {
         title
         tags
         date
+        last_modified_at
         author
         image_credit
       }
