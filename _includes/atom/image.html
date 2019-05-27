@@ -1,5 +1,0 @@
-<img
-    src="https://imagecdn.app/v1/images/{{ include.src | url_encode }}{% if include.width %}?width={{ include.width }}{% endif %}"
-    class="{{ include.class|prepend:'responsive '|rstrip }}"
-    {% if include.alt %}alt="{{ include.alt }}"{% endif %}
-/>

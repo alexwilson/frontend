@@ -36,6 +36,29 @@
         position: relative;
         display: block;
     }
+
+    ul {
+      display: inline;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: inline;
+    }
+
+    li:after {
+      content: '\002C\0020';
+    }
+
+    li:last-child:after {
+      content: '';
+    }
+
+    li:nth-last-child(2):after {
+      content: ', and ';
+    }
 }
 
 .alex-article__recommended {
