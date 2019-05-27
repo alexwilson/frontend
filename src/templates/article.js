@@ -57,6 +57,7 @@ export default ({ data, location }) => {
 
 
         <div className="alex-article__aside">
+          {post.frontmatter.tags ?
           <div className="alex-article__topics">
             <strong>Topics: </strong>
             <ul>
@@ -66,7 +67,7 @@ export default ({ data, location }) => {
               </li>
             })}
             </ul>
-          </div>
+          </div>:null}
 
           <div className="alex-article__recommended">
             <h2>Read Next</h2>

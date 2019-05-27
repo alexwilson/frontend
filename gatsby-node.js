@@ -6,7 +6,7 @@ const { format } = require('date-fns')
  * Add a prefix of /blog/ and use a folder structure for the date.
  * e.g. /blog/2019/04/03/blog-title-here/
  */
-exports.generateBlogSlug = (filePath) => {
+const generateBlogSlug = (filePath) => {
   const { name } = path.parse(filePath)
   const pattern = /^(?<date>[0-9]+-[0-9]+-[0-9]+)-(?<slug>.*)$/ig
   const {groups: {date, slug}} = pattern.exec(name)
@@ -23,7 +23,7 @@ exports.generateBlogSlug = (filePath) => {
  * Add a prefix of /talks/.
  * @todo Change the permalink format for talks
  */
-exports.generateTalkSlug = (filePath) => {
+const generateTalkSlug = (filePath) => {
   return path.posix.join(
     `/talks`,
     filePath,
@@ -70,13 +70,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     switch (sourceInstanceName) {
       case 'talks': {
         const filePath = createFilePath({ node, getNode, basePath: 'talks' })
-        createNodeField({ node, name: `slug`, value: exports.generateTalkSlug(filePath) })
+        createNodeField({ node, name: `slug`, value: generateTalkSlug(filePath) })
         break
       }
 
       case 'posts': {
         const filePath = createFilePath({ node, getNode, basePath: 'pages' })
-        createNodeField({ node, name: `slug`, value: exports.generateBlogSlug(filePath) })
+        createNodeField({ node, name: `slug`, value: generateBlogSlug(filePath) })
         break
       }
     }

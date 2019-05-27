@@ -31,6 +31,8 @@ export default ({article: currentArticle}) => {
     }
   `)
 
+  const currentArticleTags = currentArticle.frontmatter.tags || []
+
   const maxArticles = 3
   const relatedArticles = new Set()
   for (let granularity = 3; granularity >= 0; granularity--) {
@@ -43,7 +45,7 @@ export default ({article: currentArticle}) => {
       let similarity = 0
 
       for (const tag of article.frontmatter.tags) {
-        if (currentArticle.frontmatter.tags.includes(tag)) {
+        if (currentArticleTags.includes(tag)) {
           similarity++;
         }
       }
