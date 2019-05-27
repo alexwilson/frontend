@@ -3,12 +3,6 @@ workflow "Build and Deploy" {
   resolves = ["Deploy"]
 }
 
-action "Filter Master Branch" {
-  needs = "Test"
-  uses = "actions/bin/filter@master"
-  args = "branch master"
-}
-
 action "Install" {
   uses = "actions/npm@master"
   args = "install"
@@ -20,8 +14,14 @@ action "Build" {
   args = "run build"
 }
 
-action "Deploy" {
+action "Only On Master" {
   needs = "Build"
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
+action "Deploy" {
+  needs = "Only On Master"
   uses = "./.github/actions/github-pages/"
   secrets = ["GITHUB_TOKEN"]
   args = "public"
