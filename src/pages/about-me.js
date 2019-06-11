@@ -64,7 +64,7 @@ export default function aboutMe({location}) {
           </section>
           <section className="alex-article__body">
               <p className="theta">
-                  I am not actively seeking a new position, however for any interested parties <a href="https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0">you may request access to see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please feel free to connect with me on LinkedIn</a>.
+                  I am not actively seeking a new position, however for any interested parties <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please feel free to connect with me on LinkedIn</a>.
               </p>
               <p className="eta">
                   <b className="eta">Work Experience</b>
