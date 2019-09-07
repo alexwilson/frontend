@@ -1,8 +1,10 @@
-# Ignoring folders created when running Jekyll.
-public
-.cache
+# Ignoring system files
+.DS_Store
 
-# Ignoring build folders.
-bower_components
+# Ignoring artefact folders
+.cache
+public
+
+# Ignoring dependencies.
 node_modules
 
