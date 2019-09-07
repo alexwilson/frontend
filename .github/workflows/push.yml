@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - '!gh-pages'
+      - '*'
+name: Build and Deploy
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - name: Install
+      uses: actions/npm@master
+      with:
+        args: install
+    - name: Build
+      uses: actions/npm@master
+      with:
+        args: run build
+    - name: Deploy
+      if: github.ref == 'master'
+      uses: ./.github/actions/github-pages/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: public
