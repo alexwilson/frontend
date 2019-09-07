@@ -21,7 +21,7 @@ jobs:
       with:
         args: run build
     - name: Deploy
-      if: github.ref == 'master'
+      if: github.ref == 'refs/heads/master'
       uses: ./.github/actions/github-pages/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
