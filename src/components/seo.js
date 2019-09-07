@@ -80,6 +80,7 @@ function SEO({ description, lang, meta, keywords, title, children }) {
         )
         .concat(meta)}
     >
+      <link rel="alternate" type="application/rss+xml" title="Alex Wilson's writing via RSS" href="/feed.xml" />
       <script type="application/ld+json">{JSON.stringify({
         "@type":"WebPage",
         "@context":"http://schema.org",
