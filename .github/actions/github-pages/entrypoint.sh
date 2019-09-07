@@ -8,7 +8,8 @@ REPOSITORY="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITOR
 
 git init
 git remote add origin $REPOSITORY
-git checkout gh-pages || git checkout --orphan gh-pages
+git fetch origin gh-pages
+git checkout -t origin/gh-pages
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git add .
