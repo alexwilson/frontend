@@ -65,6 +65,63 @@ module.exports = {
     },
 
     {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                const url = `${site.siteMetadata.siteUrl}${edge.node.fields.slug}`.replace(/\/\//g, '/');
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url,
+                  guid: url,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/feed.xml",
+            title: "Alex Wilson's Writing",
+            match: "^/blog/",
+          },
+        ],
+      },
+    },
+
+
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         implementation: require('sass'),
