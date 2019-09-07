@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech/</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Sep 2019 13:32:56 GMT</lastBuildDate><item><title><![CDATA[Explainer: Immutable Infrastructure]]></title><description><![CDATA[Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs…]]></description><link>https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</guid><pubDate>Sat, 24 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs rolled along. The VMs became auto-scalable, and in time, started running scores of containers&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Today most modern software being deployed to the web is likely to run in a container of some sort.&lt;/p&gt;
+&lt;p&gt;We got here by continually optimising to balance ever-growing complexity in our technology against problems emerging when us pesky humans try to use, operate and adapt our technology.
+By using code to describe as much as we can about how we expect our applications to run, we’re able to make some of the same assumptions we do about our software
+i.e. &lt;em&gt;Under known conditions our product will meet its requirements&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;As it is readable and repeatable by a computer, we are able to prove this assumption using software testing methodologies. This is referred to as Infrastructure as Code&lt;sup id=&quot;fnref-2&quot;&gt;&lt;a href=&quot;#fn-2&quot; class=&quot;footnote-ref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;To understand mutability as a property of systems, it&apos;s easier to first understand what &lt;strong&gt;Mutable Infrastructure&lt;/strong&gt; is.  Mutable infrastructure may be changed (&lt;em&gt;mutated&lt;/em&gt;), and many of our personal computers are like this.  When installing software or changing some settings, our computer is updated in-place and we don&apos;t notice a difference.  This is how a lot of IT has traditionally been run, where every change takes effect immediately.&lt;/p&gt;
+&lt;p&gt;The primary disadvantage of this approach is that it requires us to know &lt;em&gt;exactly&lt;/em&gt; what to change and over time, our confidence that this will be successful naturally decreases.  When releasing 10+ versions of a piece of software in a week (or, for example, applying security patches) the system drifts further and further away from where it was when we first created it, which is the last time we were mostly sure about what it looked like.  When dealing with many systems (e.g. I am serving 100+ customers per hour and need a few computers to handle the load) this becomes incredibly hard to manage.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Immutable Infrastructure&lt;/strong&gt; is &lt;em&gt;entirely&lt;/em&gt; unchanging: Resources (e.g. Containers) may not be changed, and so whenever a change needs to be made — no matter how big or small — they are completely replaced instead of being modified or updated. This can be incredibly complex to manage as it may require running multiple versions of an application at the same time which has implications on data integrity.
+The end-result is that every release will leave the system, or systems, in exactly the expected (and tested) state which theoretically reduces the amount of unknowns. It makes it easier to manage many systems, as whenever something goes wrong, we can either roll-back or replace individual systems with new ones.&lt;/p&gt;
+&lt;p&gt;I&apos;ll talk about some of the disadvantages of this approach in a separate post.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Containers&lt;/strong&gt; are a basic unit of cloud-computing. A container is a portion of a virtual computer and many can be deployed onto one computer at a time. Companies like Amazon and Google sell the capability to run many containers at a time so that you don&apos;t have to. &lt;a href=&quot;https://www.docker.com&quot;&gt;Docker&lt;/a&gt; is a popular containerising tool.&lt;/p&gt;
+&lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-2&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Infrastructure as Code&lt;/strong&gt; (IaC) describes our ability to specify our desired resources and their state in code. &lt;a href=&quot;https://www.terraform.io&quot;&gt;Terraform&lt;/a&gt; and &lt;a href=&quot;https://www.ansible.com&quot;&gt;Ansible&lt;/a&gt; are frequently used to achieve this.&lt;/p&gt;
+&lt;a href=&quot;#fnref-2&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Taking a look through a Johari window]]></title><description><![CDATA[After getting a decent amount of positive, useful feedback while going through a number of recruitment processes, I was
+keen to take the…]]></description><link>https:/alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/</guid><pubDate>Sun, 14 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;After getting a decent amount of positive, useful feedback while going through a number of recruitment processes, I was
+keen to take the opportunity to get as much unbiased, objective feedback as I could while winding down and offboarding
+from &lt;a href=&quot;https://bluetel.co.uk/&quot;&gt;Bluetel&lt;/a&gt;.  As well as speaking to some people — including former-colleagues — about their
+experiences with me over the years, I wanted something more regimented that I could compare against in the future.&lt;/p&gt;
+&lt;p&gt;Inspired by &lt;a href=&quot;https://www.annashipman.co.uk/jfdi/johari-window.html&quot;&gt;Anna Shipman&apos;s excellent post&lt;/a&gt; on using a Johari
+window to understand her strengths, I decided to try doing the same thing.  Against her advice, I decided to use a
+Google form because I wanted to &quot;own&quot; my data.&lt;/p&gt;
+&lt;p&gt;On reflection it&apos;s entirely possible that this has biased my results, as it presents the options in a very linear
+format!  Nonetheless I found a &lt;a href=&quot;https://kevan.org/johari&quot;&gt;very nice tool by Kevan&lt;/a&gt; which I recommend for future
+exercises.&lt;/p&gt;
+&lt;h2&gt;What was my process?&lt;/h2&gt;
+&lt;p&gt;I sent out the survey via Slack to 8 random colleagues — whom I&apos;d worked with at some point over my 5½ years — hoping
+to try and get as fair an assessment as possible.  I&apos;m quite confident that this was the best way of going about it, as
+only asking named individuals within a single team or two would have likely given feedback biased on factors unrelated
+to my personality (such as perceived performance, which tends to be rather similar within a given team).&lt;/p&gt;
+&lt;p&gt;Of that 8, I received 5 (mostly) anonymous responses.  Then (without peeking!) I selected the six adjectives which I
+felt best fit my personality from my own perspective, and after mapping, ended up with the following window.&lt;/p&gt;
+&lt;h2&gt;Results and takeaways&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/pictures/20190414--johari-window.png&quot; alt=&quot;Johari window results&quot; title=&quot;Johari widow results&quot;&gt;&lt;/p&gt;
+&lt;p&gt;On the one-hand, these results are remarkably good! There&apos;s a trend towards more stoic personality traits which
+reflect my core values and I hope have made a net-positive impression on people I&apos;ve worked with.
+&lt;em&gt;For now at least, this works wonders for my imposter syndrome.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;On the other hand, two other values I felt like I had carefully internalised — Empathy and Helpfulness — did not come
+up at all. It&apos;s possible that some of the ambiguity in the traits which &lt;em&gt;were&lt;/em&gt; identified alluded to the same thing,
+however instead of dwelling on possibilities, I think that this simply marks an opportunity to better direct future
+requests for feedback from the people I work with.  Then comparing future results against these in a few years time
+perhaps I will come across a bit better.  Or perhaps I will have changed tact completely?&lt;/p&gt;
+&lt;p&gt;Overall the Johari window process has been hugely motivating and has shown me where and how I can continue to develop.
+It&apos;s remarkable how much power a feedback process which &lt;em&gt;entirely&lt;/em&gt; excludes negativity can have, for personal growth!&lt;/p&gt;
+&lt;p&gt;I am glad to have gone through this exercise and strongly recommend you, dear reader, do the same.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Raw data&lt;/h2&gt;
+&lt;p&gt;My selection:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Calm&lt;/li&gt;
+&lt;li&gt;Empathetic&lt;/li&gt;
+&lt;li&gt;Energetic&lt;/li&gt;
+&lt;li&gt;Helpful&lt;/li&gt;
+&lt;li&gt;Knowledgeable&lt;/li&gt;
+&lt;li&gt;Observant&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Survey results:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;able (2)&lt;/li&gt;
+&lt;li&gt;adaptable (1)&lt;/li&gt;
+&lt;li&gt;calm (1)&lt;/li&gt;
+&lt;li&gt;clever (2)&lt;/li&gt;
+&lt;li&gt;complex (1)&lt;/li&gt;
+&lt;li&gt;confident (2)&lt;/li&gt;
+&lt;li&gt;energetic (1)&lt;/li&gt;
+&lt;li&gt;friendly (1)&lt;/li&gt;
+&lt;li&gt;independent (2)&lt;/li&gt;
+&lt;li&gt;intelligent (2)&lt;/li&gt;
+&lt;li&gt;knowledgeable (4)&lt;/li&gt;
+&lt;li&gt;logical (1)&lt;/li&gt;
+&lt;li&gt;observant (1)&lt;/li&gt;
+&lt;li&gt;organized (1)&lt;/li&gt;
+&lt;li&gt;patient (1)&lt;/li&gt;
+&lt;li&gt;powerful (1)&lt;/li&gt;
+&lt;li&gt;reflective (1)&lt;/li&gt;
+&lt;li&gt;sensible (1)&lt;/li&gt;
+&lt;li&gt;trustworthy (1)&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[QA is not Quality]]></title><description><![CDATA[Software Quality is really tricky: We all want to build the best thing for our users, but we want to ship good software, fast, without…]]></description><link>https:/alexwilson.tech/talks/2019-03-19-qa-is-not-quality-brumjs/</link><guid isPermaLink="false">https:/alexwilson.tech/talks/2019-03-19-qa-is-not-quality-brumjs/</guid><pubDate>Sun, 14 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Software Quality is really tricky: We all want to build the best thing for our users, but we want to ship good software, fast, without process overhead holding us back.&lt;/p&gt;
+&lt;style&gt;
+.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+&lt;/style&gt;
+&lt;div class=&apos;embed-container&apos;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/CLMN_TrzfOs&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;Slides available &lt;a href=&quot;https://www.slideshare.net/AlexWilson48/qa-is-not-quality&quot;&gt;here&lt;/a&gt;, write-up pending.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://richard.wallman.org.uk&quot;&gt;Richard Wallman&lt;/a&gt; and &lt;a href=&quot;https://civico.net&quot;&gt;Civico&lt;/a&gt; for the recording this talk.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Weeknotes: Journalism Raves — 13th April 2019]]></title><description><![CDATA[The FT is moving back to Bracken House soon. Most of my group had our inductions this week. It's very, very nice.During our induction an…]]></description><link>https:/alexwilson.tech/blog/2019/04/13/weeknotes-journalism-raves/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/04/13/weeknotes-journalism-raves/</guid><pubDate>Sat, 13 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;The FT is moving back to Bracken House soon. Most of my group had our inductions this week. It&apos;s very, very nice.&lt;/li&gt;
+&lt;li&gt;During our induction an audio engineer was tuning the event space&apos;s sound system with &lt;a href=&quot;https://open.spotify.com/track/4waVSC9eSkrt6RxJK3DhwW?si=JKspSCaaQDWApKTrc1tctA&quot;&gt;Four Tet&apos;s Only Human&lt;/a&gt;:
+Bring on the journalist raves.&lt;/li&gt;
+&lt;li&gt;There aren&apos;t any coffee machines. 🙃&lt;/li&gt;
+&lt;li&gt;The photo behind this blog post is of the gorgeous sundial decorating the original entrance to the building,
+featuring a mug-shot of Winston Churchill.&lt;/li&gt;
+&lt;li&gt;... just in time really, because it turns out that the current building, One Southwark Bridge, has an infestation of
+mice. This week I&apos;ve seen them attempting to conquer the land beneath my boss&apos;s desk.
+&lt;em&gt;It&apos;s the weekend now so they&apos;ve probably won.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Micro-frontends&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;This week I&apos;ve been thinking about the concept of micro-frontends, after reading &lt;a href=&quot;https://hackernoon.com/understanding-micro-frontends-b1c11585a297&quot;&gt;an incredibly good article&lt;/a&gt;
+by &lt;a href=&quot;https://twitter.com/onrzfr&quot;&gt;Öner Zafer&lt;/a&gt; explaining what they are, why they&apos;re useful and how to go about
+building them.  I love the theory and it&apos;s something that the FT does.&lt;/li&gt;
+&lt;li&gt;It&apos;s difficult to maintain isolation and to keep boilerplate to a minimum. For changes spanning multiple apps, these
+now require a lot of management and tooling (either to bring the apps into one place, i.e. a monorepo, or to repeat
+the changes across many repositories) which can be tiresome for a team.&lt;/li&gt;
+&lt;li&gt;Conversely, it&apos;s if isolation is successful, it can be really hard to share code.  The latest way my team tackled the
+problem has been to subtree-split at CI and publish components to Github/NPM.  This is limiting and still requires
+manual intervention to &quot;bump&quot; the dependencies on a per-application basis!&lt;/li&gt;
+&lt;li&gt;It&apos;s also hard to draw boundaries (but maybe this is a team-organisation thing?) between applications, for instance
+the difference between the app-shell, a utility component used by two-or-more services (but not all) and components
+used by individual apps only.&lt;/li&gt;
+&lt;li&gt;A particular library/solution introduced by Öner, &lt;a href=&quot;https://www.mosaic9.org&quot;&gt;Project Mosiac&lt;/a&gt;, looks like it offers
+some good answers to these problems by taking away ownership of the app-shell from a given application, delegating
+those to a layout service, called Tailor — which is orchestrated by the Routing tier — and by enforcing standards
+to shared code (in the form of the shared component/utility library, Shaker). I&apos;m keen to explore this approach
+next to see if it solves the problems I&apos;ve outlined above.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;QA is not Quality&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Last weekend I put up the video for my talk, QA is not Quality:
+&lt;a href=&quot;https://alexwilson.tech/talks/2019-03-19-qa-is-not-quality-brumjs/&quot;&gt;You can watch it here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;I actually gave this thing in March, this was my first public speaking experience in quite some time and overall I&apos;m
+glad that I did it. I started off nervous, got into stride, and then lost it a little bit later in. People overall
+have been incredibly nice and positive about it and apparently there was some demand for the VOD/slides, so I think
+I&apos;d like to do it again.&lt;/li&gt;
+&lt;li&gt;Now I&apos;m thinking about how to try and write this thing up, and I think really it makes sense to break it down (as I
+did within the talk itself) by category into a series and to write-up a mini-guide for each.&lt;/li&gt;
+&lt;li&gt;Keen for feedback on the talk and its content, if you have any please get in touch!&lt;/li&gt;
+&lt;li&gt;Next up, I&apos;m speaking at BrumPHP in April about CDNs!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://alicebartlett.co.uk/blog/weaknotes&quot;&gt;Alice&apos;s weaknotes series is really nice.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Between jobs I made a Johari window which was an incredibly rewarding, and uniquely insightful experience. You can
+&lt;a href=&quot;https://alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/&quot;&gt;read about it here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The secret to becoming an influencer on LinkedIn?  &lt;a href=&quot;https://ovaledge.com/data-analytics-oleg/&quot;&gt;Be incredibly positive&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The human race made an incredibly big breakthrough this week, in the form of the Black-Hole Initiative generating an
+image of a black-hole. &lt;em&gt;Go humanity!&lt;/em&gt; Like with all good news, this has somehow generated controversy. Which I had
+&lt;a href=&quot;https://twitter.com/antoligy/status/1117076648933888002&quot;&gt;some opinions on&lt;/a&gt;. If you contributed to this project in
+any way, shape or form, &lt;em&gt;thank-you&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;I subscribed to &lt;a href=&quot;https://hbr.org/&quot;&gt;HBR&lt;/a&gt; and you should too! They have incredibly good content on equality and
+building a strategy (primarily for business, but really for just about anything). I also really like the format and
+structure of their &lt;a href=&quot;https://hbr.org/2018/01/podcast-dear-hbr&quot;&gt;Dear HBR&lt;/a&gt; podcast which delves into topics like
+mixed feedback in the workplace and dealing with complex emotions.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes: Adventures — 30th March 2019]]></title><description><![CDATA[March has been a blur. At the beginning of the month I was away adventuring in Hong Kong, and as I write this, I am in London about to begin…]]></description><link>https:/alexwilson.tech/blog/2019/03/30/weeknotes-adventures/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/03/30/weeknotes-adventures/</guid><pubDate>Sat, 30 Mar 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;March has been a blur. At the beginning of the month I was away adventuring in Hong Kong, and as I write this, I am in London about to begin a new adventure.&lt;/p&gt;
+&lt;p&gt;Friday the 29th marked the final chapter of my time at &lt;a href=&quot;https://bluetel.co.uk/&quot;&gt;Bluetel&lt;/a&gt; (“Alexit”) and on Monday &lt;a href=&quot;https://mobile.twitter.com/antoligy/status/1098993524459089921&quot;&gt;I start a new chapter at the Financial Times&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A lot happened this month and I think that at least some of it is worth writing about so I have populated my newly-minted “Writing” Trello board with a few ideas. &lt;em&gt;At least, that’s my excuse for not cleaning-up/publishing any notes.&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I wasn&apos;t planning on saying anything else in this post, but: In just a few days, Google are sunsetting Google Inbox, which is a huge shame. &lt;a href=&quot;https://twitter.com/antoligy/status/1112458207358869515&quot;&gt;I guess they weren’t really trying to hide that it had dropped in priority though&lt;/a&gt;. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Weeknotes — 16th February 2019]]></title><description><![CDATA[It’s been a busy few weeks. But I think, overall, worthwhile. I will have some exciting news to share next week!Two weeks ago I went to…]]></description><link>https:/alexwilson.tech/blog/2019/02/16/weeknotes/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/02/16/weeknotes/</guid><pubDate>Sat, 16 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It’s been a busy few weeks. But I think, overall, worthwhile. I will have some exciting news to share next week!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Two weeks ago I went to &lt;a href=&quot;https://fosdem.org/2019/&quot;&gt;FOSDEM 2019&lt;/a&gt;, which is run in Brussels. It was my first time in Belgium and even after struggling with a confusing subway system, I loved it. The conference itself was incredibly cool, and I actually began writing up some of the highlights in that week’s weeknotes but have given up as there was just too much going on.  &lt;a href=&quot;https://www.instagram.com/p/BtcHVEHlfVG/&quot;&gt;The photo is of the Palace of Justice, which has its own fun background.&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Spent the first half of this week learning about Nikkei’s approach to handling data warehousing and &lt;a href=&quot;https://www.slideshare.net/HajimeSano1/jaws-ug-bigdata-branch-oct-2017&quot;&gt;the specifics&lt;/a&gt; are &lt;a href=&quot;https://www.slideshare.net/HajimeSano1/amazon-redshift-in-action&quot;&gt;very impressive&lt;/a&gt;.  There is an open-source web client-side tracking library that goes alongside it, and it’s particularly interesting because it implements a number of web performance tricks—including listening to requestAnimationFrame, queuing events to fire via beacon and using intersection observers to monitor page tracking—to minimise overhead to the user. &lt;a href=&quot;https://github.com/Nikkei/atlas-tracking-js&quot;&gt;Its source is available here and is well worth a read&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Over the past few years podcasts have been becoming a larger and larger part of my life, and if &lt;a href=&quot;https://musicoomph.com/podcast-statistics/&quot;&gt;various industry stats&lt;/a&gt;  have anything to say about it, I’m not alone.  They’re a very disruptive media form which nobody has really figured out.  This week &lt;a href=&quot;https://www.macstories.net/news/spotify-acquires-podcast-producer-gimlet-media-and-app-maker-anchor/&quot;&gt;Spotify rather abruptly bought Gimlet media&lt;/a&gt;, one of the largest independent podcast networks out there, claiming to want to preserve its independence (both in general, and from Spotify’s distribution platform).&lt;/li&gt;
+&lt;li&gt;Overall it’s an interesting MO, and Spotify seem to want to build out a regularly updated, spoken-word repertoire: Where music streaming is becoming increasingly competitive—and with music licensing increasingly combative—podcasting has been rather quiet, dominated by Apple and niche “power-user” services like Overcast and Pocket Casts. Since introducing their podcasting platform last year, Spotify has surged ahead and have become the &lt;a href=&quot;https://podnews.net/update/spotify-number-2&quot;&gt;second largest podcast platform&lt;/a&gt;, rather incredibly by &lt;em&gt;adding to&lt;/em&gt; (and not taking from) market-share. So are podcasts the key to Spotify’s salvation?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/architecture/icons/&quot;&gt;AWS released a new iconset.&lt;/a&gt; I appreciate this probably doesn’t mean much to anyone, but I really didn’t like the old one. So, yay?&lt;/li&gt;
+&lt;li&gt;On Thursday I went to the &lt;a href=&quot;https://www.meetup.com/AWS-User-Group-West-Midlands/%5D&quot;&gt;Birmingham AWS Meetup&lt;/a&gt; and learned about &lt;a href=&quot;https://sysdig.com&quot;&gt;Sysdig&lt;/a&gt;, an incredibly cool debugging tool.  It reminds me a lot of the utility of eBPF, but has built-in eventing and so can be used to automate a stack. Their value proposition of “rich monitoring and eventing” is that it can be used as a user-land-level security tool in a container platform, and for example can be used to whitelist the system calls a given container can actually execute. And then adjust if you have misconfigured. Very cool stuff.&lt;/li&gt;
+&lt;li&gt;This is by no means new, but I only found out about it this week.  Los-Angeles Metro commissioned some videos which I can only describe as  … I am not even really sure, but please give it a watch. It is glorious. &lt;a href=&quot;https://www.youtube.com/watch?v=XdesfldDAhY&quot;&gt;Metro Manners PSA: Super Kind – No loud music ミュジック - YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The Open University is offering &lt;a href=&quot;https://www.open.edu/openlearn/free-courses/full-catalogue&quot;&gt;some courses for free&lt;/a&gt;. And the selection is actually pretty OK!&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes: First Of The Year — 26th January 2019]]></title><description><![CDATA[Gotcha. Sorry, no, this isn’t the song by Skrillex. These are the first weeknotes I’ve published of 2019, hopefully soon to be followed by…]]></description><link>https:/alexwilson.tech/blog/2019/01/26/weeknotes-first-of-the-year/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/01/26/weeknotes-first-of-the-year/</guid><pubDate>Sat, 26 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Gotcha. Sorry, no, this isn’t &lt;a href=&quot;https://www.youtube.com/watch?v=2cXDgFwE13g&quot;&gt;the song by Skrillex&lt;/a&gt;. These are the first weeknotes I’ve published of 2019, hopefully soon to be followed by my retrospective of 2018.&lt;/p&gt;
+&lt;h3&gt;From resizing images to infrastructure problems&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;After migrating the original version of the application to Kubernetes last year, this week (specifically, Sunday) &lt;a href=&quot;https://github.com/imagecdn/imagecdn/blob/master/CHANGELOG.md&quot;&gt;I updated ImageCDN to v2&lt;/a&gt;, a rewrite in Node. I placed a strong emphasis on trying to improve its concurrency as I found that the greatest limitation with PHP and PHP-PM was that it was very easy to overload the service and bring it down. &lt;/li&gt;
+&lt;li&gt;Along the way of rewriting the ImageCDN core I had a lot of fun learning about &lt;a href=&quot;https://jcupitt.github.io/libvips/&quot;&gt;libvips&lt;/a&gt;, which is a superb if somewhat underrated image processing library. With more-or-less the same file-size output as ImageMagick, libvips is able to produce better, more-accurate images with significantly less memory usage. Hopefully I will be able to use it in future projects. Expect a write-up!&lt;/li&gt;
+&lt;li&gt;Why the move back from Kubernetes?  It’s a really nice technology but it isn’t deploy-and-forget when dealing with non-trivial workloads despite the hype. Cluster maintenance is required as time goes on, and to be effective it is essential to allocate a healthy portion of the cluster resources to monitoring and observability activities. Which adds up pretty quickly. For a free service this meant a lot of operational overhead and a pretty costly cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Di-slack-tions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;My experiment with Slack &lt;a href=&quot;https://twitter.com/antoligy/status/1088183564770992135&quot;&gt;has had an interesting result&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;At first I got a lot of comments from people mildly irritated that I was no longer immediately reachable, but overall it has been ok. Seeing this success I started rolling this change out to my other messaging apps, and started using email a little bit more for managing notifications.&lt;/li&gt;
+&lt;li&gt;Now I have noticed an interesting behaviour pattern: When I&apos;ve sent a message or I am expecting a reply from someone (say I am in a Slack conversation), I actively go into a &quot;polling loop&quot;, cycling between the task I am working on and the messaging platform I am expecting a reply on. It&apos;s certainly better than before, but is definitely still rather draining.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Quality&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;I’m doing a talk! At &lt;a href=&quot;https://www.meetup.com/meetup-group-MzfqIqCy/events/fppxlqyzfbzb/&quot;&gt;BrumJS on the 19th of March&lt;/a&gt;. My topic is is software quality, how it is largely misunderstood, how only a small portion can be handled by “QA”, and then how to measure and improve it. I will be writing it up after-the-fact.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nintendo seem to have restarted development on Metroid Prime 4, which sounds bad. Actually it&apos;s great news: Now Retro Studios are taking the reigns. My nostalgia bias is incredibly happy that Retro is picking this up, by my nostalgic inner-child is upset that this means the release date has been pushed back indefinitely. I &lt;a href=&quot;https://en.wikipedia.org/wiki/Metroid_Dread&quot;&gt;Dread&lt;/a&gt; to think how long we might have to wait.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I’ve started planning a holiday to visit Hong Kong: Asia is incredibly exciting region and I’m quite thrilled to explore a new city!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Booking flights led me into the rabbit-hole of British Airways’ outfit of Airbus A380s and all of the quirks. Most amusing is Seat 25D: It is a standard, economy-class seat with all of the usual amenities of British Airways Economy. However, row 24 skips seat D to allow an escape-hatch for the crew’s cabin underneath, meaning that 25D includes double the normal leg-room. On its own, this isn’t too exciting, but BA took this in stride and reserved all of these seats for their Silver-tier members and up, charging a little extra for the seat with the promise of free champagne.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes: ReInvent — 8th December 2018]]></title><description><![CDATA[Monday night I flew back to the UK. The difference between the efficiency and cleanliness of Haneda airport and Heathrow is already very…]]></description><link>https:/alexwilson.tech/blog/2018/12/08/weeknotes-reinvent/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/12/08/weeknotes-reinvent/</guid><pubDate>Sat, 08 Dec 2018 23:19:00 GMT</pubDate><content:encoded>&lt;p&gt;Monday night I flew back to the UK. The difference between the efficiency and cleanliness of Haneda airport and Heathrow is already very stark, but it has nothing on English trains: I walked into 40m of service disruptions on the London Underground! Groan.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We shot a short 30 second bumper video &lt;a href=&quot;https://www.youtube.com/watch?v=6r0wBPYDHJ8&quot;&gt;recapping NAR product development work in 2018&lt;/a&gt;. Reflecting on it&apos;s been an interesting year, full of lots of interesting challenges and I&apos;m really proud of everything we have accomplished and achieved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Tackling Di-Slack-tions&lt;/h4&gt;
+&lt;p&gt;In an ongoing effort to try and improve my focus and presence I have experimentally set Slack to keep me in do-not-disturb.  My hypothesis is that the majority of Slack notifications I currently receive are not time sensitive, and that giving users the ability to choose when they want my attention (via the Do-Not-Disturb override) will make me more useful.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I took this particular action after receiving some feedback that in many meetings it looks like I’m not paying full attention: This isn’t wholly inaccurate.  I actively filter out distractions as much as possible, such as emails and instant messages, however, give Slack a wide berth as it’s normally relevant: But this is a rabbit-hole and sometimes it’s easy to stop paying attention in favour of responding to unimportant Slack messages.&lt;/li&gt;
+&lt;li&gt;Over time I have also been acutely aware that sometimes I may receive a notification, open Slack to clear the notification and then passively read the message—later forgetting that one has been sent, resulting in missing important [but less time sensitive] messages!&lt;/li&gt;
+&lt;li&gt;To measure success, I’m planning on measuring the volume of Slack messages I send as well as asking people informally if they feel like this has helped.&lt;/li&gt;
+&lt;li&gt;Since Slack enforce a limit that you can’t be in do-not-disturb for longer than a year I have also put together a small Lambda function to periodically cycle through all of my workspaces every week and keep extending my do-not-disturb.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;AWS reInvent&lt;/h3&gt;
+&lt;p&gt;AWS reInvent took place last week, and they released &lt;em&gt;a lot&lt;/em&gt; of stuff. Too much stuff to really go over, so after catching up with the event, here are a few of my favourites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/timestream/&quot;&gt;Amazon Timestream&lt;/a&gt; — Two weeks ago I was looking for an AWS-hostable time series DB. Amazon now have one. Where did you put the cameras, Amazon??&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/lake-formation/&quot;&gt;AWS LakeFormation&lt;/a&gt; — Describe and form an entire AWS-based data lake easily: Raw data is preprocessed, classified and stored at rest in S3 so that it can be easily used and queried by other tools. This is interesting because it allows you to focus on building a very performant data pipeline.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-amazon-managed-streaming-for-kafka-in-public-preview/&quot;&gt;Amazon Managed Streaming for Kafka&lt;/a&gt; — The specifics here will be very interesting, it&apos;s a bold move for Amazon to bring this as it makes the differentiation between Kafka and Kinesis a little trickier. So I suppose Kinesis is better here for AWS-native streaming and reacting to events using something like Lambda, whereas Kafka makes use-cases where having the stream also be a datastore (say, you&apos;re doing event-sourcing). Pricing also looks to be quite competitive with Aiven and Heroku.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-amazon-qldb/&quot;&gt;Amazon Quantum Ledger Database&lt;/a&gt;—Yes, yes, Amazon also announced a blockchain-like product but actually that&apos;s not that important to me: For me one of the most interesting features of the Blockchain is the concept of an immutable ledger (ignoring some blockchain problems such as forks), and Amazon are now offering a database product which is, just that: An immutable ledger. But with no operational or scaling problems to solve and much more productive developer tooling (building UIs based on Ethereum is &lt;em&gt;not&lt;/em&gt; fun!): It&apos;s a real database.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/textract/&quot;&gt;Amazon Textract&lt;/a&gt; — So as someone with a massive amount of data between Dropbox, Evernote and a couple of scanners/cameras, I&apos;d really like to start extracting my content in order to go fully paperless. I haven&apos;t tried this yet, and I&apos;m sure there was another service in AWS doing this previously, so very keen to give this a go.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/controltower/&quot;&gt;AWS Control Tower&lt;/a&gt; — AWS organisation-wide governance tooling! I can only imagine how large some of the larger organisations using AWS are starting to become, and so tooling like this is going to be very well received indeed.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/security-hub/&quot;&gt;AWS Security Hub&lt;/a&gt; — &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/outposts/&quot;&gt;AWS Outposts&lt;/a&gt; — For anyone doing on-prem this is going to open up many doors! The short-version is that this allows running physical centres using AWS cloud governance tooling.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-aws-app-mesh---service-mesh-for-microservices-on-aws/&quot;&gt;AWS App Mesh&lt;/a&gt; — The press-release suggests that this is mostly hosted &lt;a href=&quot;https://www.envoyproxy.io&quot;&gt;Envoy&lt;/a&gt;. Good to see Amazon running more popular CNCF software, and integrating with the wider Kubernetes stack. At this rate, Prometheus in 2019? 😄&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-aws-cloud-map/&quot;&gt;AWS Cloud Map&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;API Gateway WebSockets — Awesome! Can we have EventSources next please? :)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/s3-intelligent-tiering/&quot;&gt;S3 INT&lt;/a&gt; — S3 Intelligent Tiering. You turn this on, and it reduces the availability of less frequently accessed objects (of course they are still accessible).  Very keen to see how this performs in production: A common pattern for me is to keep hundreds of thousands of images in an S3 bucket, however, given the behaviour patterns of news websites, normally an image is only frequently accessed for the first couple of weeks after an article has been published and so Intelligent Tiering will still allow old images to be accessed but at a great cost-saving.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/s3-batch-operations/&quot;&gt;S3 Batch Operations&lt;/a&gt; — This is one which has hit me a couple of times. &lt;a href=&quot;https://alexwilson.tech/blog/2017/11/30/updating-permissions-in-large-s3-buckets/&quot;&gt;In-fact, enough that I wrote about it&lt;/a&gt;.  Managing metadata en-masse in S3 is an absolute nightmare, although it seems that now there is going to be functionality to do this properly, although going by the press-release this might be a UI-only thing in which case I&apos;d still have a problem. &lt;em&gt;(BTW it took me 3 hours in Golang, not 3 months!)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://firecracker-microvm.github.io&quot;&gt;Firecracker&lt;/a&gt; — Amazon have open-sourced their new container run-time in-use for AWS Lambda and other areas of their service.  This is not the only such effort going on right now, Fastly and Cloudflare (amongst many others) are doing this sort of work in improving runtimes to help solve the new scaling and performance problems of today, which are starting to crop up as function-as-a-service architecture grows in popularity.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2018/11/alb-can-now-invoke-lambda-functions-to-serve-https-requests/&quot;&gt;Lambda via ALB&lt;/a&gt; — This is a very big deal, and I am surprised I haven&apos;t heard more noise about it! Lambda@Edge is too slow and limited to really recognise the benefits of edge computing in the AWS cloud, but, now, making full applications directly routable via application load balancers means that it is possible to build your &lt;em&gt;entire presentation tier&lt;/em&gt; directly with Lambda. Now that is seriously cool.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I am also particularly interested in some of the developments around AppSync: GraphQL is my preferred strategy of choice for interacting with tricky (read: legacy, chattery or clunky) system APIs. Starting today Apollo is still the technology I would pick (especially as it works well within AWS Lambda), but given time I can see AppSync being a fantastic tool for traversing multiple APIs for consumption by a simple (ALB-to-Lambda?) presentation tier.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://serverless.com/blog/reinvent-2018-serverless-announcements/&quot;&gt;More here&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;GDS is doing a lot of hiring around Birmingham! And all for good stuff! If you&apos;re around the West Midlands, and are looking for a change of scene, &lt;a href=&quot;https://jobs.jobvite.com/justicedigitalandtechnology/jobs&quot;&gt;defo recommend checking them out&lt;/a&gt;. GDS is [meaningful] digital transformation done right.&lt;/li&gt;
+&lt;li&gt;Wikipedia’s donations campaign is here now, and its ads are getting more and more annoying, and now follow you around the page. &lt;a href=&quot;https://en.wikipedia.org/wiki/Wikipedia:Fundraising_redesign&quot;&gt;Here&apos;s how the community approached campaigns 10 years ago&lt;/a&gt;, big difference from the less transparent presumably more data-driven state of today. (Wow, Wikipedia has been around for an incredibly long time!)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ftalphaville.ft.com/2018/10/22/1540184400000/Subprime-code--a-very-avoidable-crisis/&quot;&gt;Subprime Code&lt;/a&gt;: There is a collective mountain of technical debt being built up. If you thought the subprime mortgage crisis in 2008 was bad, this one is going to be the end of us all. Y2K is back.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes: Jetlag City — 1st December 2018]]></title><description><![CDATA[This week has been one of battling through extremely severe jet-lag. My brain has been like jello. 
+What’s most frustrating is the research…]]></description><link>https:/alexwilson.tech/blog/2018/12/01/weeknotes-jetlag-city/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/12/01/weeknotes-jetlag-city/</guid><pubDate>Sat, 01 Dec 2018 23:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This week has been one of battling through extremely severe jet-lag. My brain has been like jello.
+What’s most frustrating is the research and prep-work I tried to avoid the worst effects by attempting to acclimatise ahead of the flight and by deliberately minimising my sleep on the plane to make sure that I’d be exhausted. IT DID NOT WORK.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jetlag is a symptom of chronobiology. Us humans are diurnal, meaning we adapted to live around the pattern of solar radiation, normally 24 hours. When we disrupt this, even one system (like say, the digestive system) going out of sync can send every other one haywire. Even if you think you&apos;re fine, jetlag will probably have affected you in some way.&lt;/li&gt;
+&lt;li&gt;JetlagRooster produces sensible plans.  &lt;a href=&quot;http://d.ax.gy/cBCq2b+&quot;&gt;I sort-of stuck to one&lt;/a&gt;  Still did not help.  Maybe there’s something wrong with me?&lt;/li&gt;
+&lt;li&gt;I brought some of my leftover &lt;a href=&quot;https://hvmn.com/yawn&quot;&gt;HVMN Yawn&lt;/a&gt; with me, which proved to be the killer blow on my second night after I spent several hours tossing and turning (whilst stubbornly staying in bed, in a darkened room, praying for sweet, sweet sleep).  Had totally forgotten how good HVMN’s products were, maybe I should buy some more?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ft.com/content/17bd2042-2221-11e8-9a70-08f715791301&quot;&gt;Spin City, by Chris Grimes&lt;/a&gt; is easily one of my favourite pieces of writing from this year and mirrors a lot of the same sense of awe and intrigue which has inspired my own interest in Tokyo. Granted walking through Tower Records in Akihabara shortly after landing, the only thing spinning was my head. &quot;Jetlag city&quot;, as it were.&lt;/p&gt;
+&lt;p&gt;My team launched &lt;a href=&quot;https://twitter.com/antoligy/status/1067682123706904576&quot;&gt;the new NAR homepage, and honestly, it looks pretty great&lt;/a&gt;!  Kudos to everybody involved.  If this sort of thing is of interest to you, both &lt;a href=&quot;https://ft.wd3.myworkdayjobs.com/en-US/FT_External_Careers&quot;&gt;the FT&lt;/a&gt; and &lt;a href=&quot;https://www.bluetel.co.uk&quot;&gt;Bluetel are currently hiring&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;More quietly I have started looking at tooling to make sure that the content on the homepage is up-to-date, by diffing the latest state from the application logs against the website front-end, to artificially report on whenever something is amiss: This is important because as the dynamic nature of our website means occasional rendering errors are sometimes caught in caches for quite some time.
+For anyone building a high-traffic, slow-changing page I strongly recommend building it statically (i.e. when something has changed, and not when a reader has requested the page). The cache-invalidation work required will &lt;em&gt;not&lt;/em&gt; be easy, but the resiliency and robustness at that point which come for free from serving a static object &lt;em&gt;almost entirely from cache&lt;/em&gt; will be well worth it.&lt;/p&gt;
+&lt;p&gt;Here are some rough notes ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For a webpage (&quot;A&quot;) make sure it is tagged with &lt;em&gt;its own&lt;/em&gt; unique identifier.&lt;/li&gt;
+&lt;li&gt;For a webpage (&quot;A&quot;) referencing another article (&quot;B&quot;) in any shape or form (e.g. card, teaser or link), tag the webpage (&quot;A&quot;) with the article&apos;s (&quot;B&quot;) unique identifier.&lt;/li&gt;
+&lt;li&gt;For an article (&quot;B&quot;) with its own webpage, tag the article (&quot;B&quot;) with its most portable unique identifier.&lt;/li&gt;
+&lt;li&gt;When the webpage (&quot;A&quot;) changes, purge/rebuild the webpage (&quot;A&quot;) by its own unique identifier.&lt;/li&gt;
+&lt;li&gt;When the article (&quot;B&quot;) changes, purge/rebuild the article (&quot;B&quot;) by its own unique identifier and the webpage by the article&apos;s unique identifier (&quot;A&quot;).&lt;/li&gt;
+&lt;li&gt;When adding (or changing) a reference to another article (&quot;C&quot;) in the webpage (&quot;A&quot;), purge/rebuild the webpage (&quot;A&quot;), tagging it with all articles&apos; unique identifiers (&quot;B&quot;, &quot;C&quot;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;(n.b. Tagging is additive: A page can have multiple tags. e.g. &lt;a href=&quot;https://docs.varnish-software.com/varnish-cache-plus/vmods/xkey/&quot;&gt;Varnish XKey&lt;/a&gt;.)&lt;/em&gt;&lt;/p&gt;
+&lt;h4&gt;Nikko!&lt;/h4&gt;
+&lt;p&gt;At the weekend I took a trip to Nikkō, just north of Tokyo. It&apos;s a stunning place, especially during the autumn: Vibrant shades of deep red ranging through to electric yellow: I&apos;ve never quite seen an autumn like it.  Nikko is home to plenty of stunning scenery, &lt;a href=&quot;https://www.japan-guide.com/e/e3812.html&quot;&gt;including many waterfalls&lt;/a&gt;, and a &lt;a href=&quot;https://www.japan-guide.com/e/e3814.html&quot;&gt;now disused ceremonial bridge&lt;/a&gt; leading foot traffic out into the middle of a busy road.  However what drew my attention about the area was the &lt;a href=&quot;https://www.japan-guide.com/e/e3801.html&quot;&gt;Toshugu Shrine&lt;/a&gt; which is known for being the most intricately detailed shrine complex in all of Japan.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pictures/20181201--monkeys.jpg&quot; alt=&quot;Mizaru, Kikazaru and Iwazaru&quot; title=&quot;Mizaru, Kikazaru and Iwazaru&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Toshugu amongst other things houses an early &quot;See no evil, hear no evil, speak no evil&quot; carving. It might be one of the earliest depictions of the three monkeys Mizaru, Kikazaru and Iwazaru; however, there is very little reliable information available on the origins of these monkeys.
+Reading some literature at the temple, this particular version was carved by Hidari Jingoro and is the 2nd panel of an 8-panel carving telling the story of living a good life.
+The story is one of preserving innocence. In this story, &lt;em&gt;children should see no evil, should hear no evil and will speak no evil&lt;/em&gt;. Exposure to any of these carries a negative effect: Seeing or hearing evil, it becomes part of our physical being and becomes us and seeks an outlet in our actions, including speaking evil. So if we see no evil, and hear no evil, there will be no evil in us to speak. We are the sum of our inputs.&lt;/p&gt;
+&lt;p&gt;In reading background material on the topic, it certainly seems like there have been some misunderstandings around the general premise of the monkeys. In fact it&apos;s entirely possible that this read is also wrong (&lt;a href=&quot;https://blog.gaijinpot.com/see-no-evil-hear-no-evil-speak-no-evil/&quot;&gt;but at least I&apos;m not alone!&lt;/a&gt;). But maybe this is for the best: There&apos;s something quite poetic about these three wise monkeys silently teaching generations life lessons.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Weeknotes — 3rd November 2018]]></title><description><![CDATA[Predominantly this week I’ve been working to reverse engineer, document and test a subscription system.  What should have been a simple…]]></description><link>https:/alexwilson.tech/blog/2018/11/03/weeknotes/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/11/03/weeknotes/</guid><pubDate>Sat, 03 Nov 2018 15:41:00 GMT</pubDate><content:encoded>&lt;p&gt;Predominantly this week I’ve been working to reverse engineer, document and test a subscription system.  What should have been a simple handover exercise has turned into an excellent case-study for process improvements around making sure that business-critical systems aren’t only captured in institutional knowledge.  People &lt;em&gt;naturally&lt;/em&gt; move on, and so these crucial facts are sometimes lost to time.  It’s a well-equipped team which makes sure that doesn’t cause problems, and a well-equipped team is what we’re trying to build.  &lt;em&gt;Playing BA is fun, sometimes I wish I’d taken that career path.&lt;/em&gt;&lt;/p&gt;
+&lt;h4&gt;Definition as a driver of software quality&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Recently I’ve been thinking a lot about quality in software engineering, and more specifically how to ensure it.  Quality Assurance as a role in a team seems to go through cycles of being undervalued when it’s identified as slowing things down, and then being overvalued when people notice a reduction in quality: I’ve just gone through this cycle myself and am now enamoured with the principles of agile QA (as described in &lt;a href=&quot;https://www.amazon.co.uk/User-Story-Mapping-Discover-Product-ebook/dp/B00NF07FHS&quot;&gt;Jeff Patton and Peter Economy&apos;s User Story Mapping&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Reducing everything that around this topic and looking at the problem of ensuring quality primarily from a &lt;em&gt;process&lt;/em&gt; perspective, the primary driver seems to be definition: Defining when a feature is done, and what other things need to be considered.  I’ll try to write something more coherent on the matter at a later stage, &lt;em&gt;ideally&lt;/em&gt; with a real-world case-study.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Github&apos;s Incident on the 21st of October&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.github.com/2018-10-30-oct21-post-incident-analysis/&quot;&gt;Github have put together a fantastically detailed RCA&lt;/a&gt; on the service disruption last week. At its core, it was caused by a 43 second network outage which resulted in enough lag to completely throw off Github&apos;s MySQL clustering. The post is fascinating and highly worth a read, and is also an example of the kind of incredible work they&apos;re doing on a day to day basis. However I can&apos;t help but wonder, since GitHub aren&apos;t a MySQL High Availability company, what the cost/benefit to continue rolling their own HA database clustering is. Outages aside, the engineering effort alone must cost a healthy chunk of change, so hopefully the overall storage cost and latency savings are well worth it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Apple’s October Event&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Apple’s October event came and went!  A new MacBook Air is making the rounds, and Apple have wisely included the Touch ID sensor in a standard generation 3 keyboard so that it’s still affordable. However it still starts at over $1000.  The new Mac Mini looks like a fantastic desktop experience: I reckon coupled with an eGPU it’ll more than serve as a capable replacement for mine. Nice upgradeability, however incredibly costly for what they actually are.  Overall these compute upgrades are super nice, however it&apos;s very alarming and disappointing that the prices have shot up so much: It seems like Apple is no longer the obvious choice for students.&lt;/li&gt;
+&lt;li&gt;Then the iPad Pro: USB-C, an edge-to-edge form factor, and enhanced security; Nearly everything I’ve wanted in a tablet.  If only I could use iOS as a development environment, I’d pick one up in a heartbeat. Also it sounds like the aluminium shavings from manufacturing these are what is going into the new recycled unibodies of the MacBook Air and Mac mini.&lt;/li&gt;
+&lt;li&gt;No mention of AirPower.  Zero-surprise.&lt;/li&gt;
+&lt;li&gt;Also, Apple really ought to add haptic feedback to a future version of the TouchBar!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;In the news this week, things have been pretty hectic: Angela &lt;a href=&quot;https://www.economist.com/europe/2018/11/03/angela-merkel-will-step-down-as-cdu-party-leader-in-december&quot;&gt;Merkel is stepping down as the leader of the CDU in Germany&lt;/a&gt;, &lt;a href=&quot;https://www.bbc.co.uk/news/uk-politics-46056337&quot;&gt;Arron Banks is under investigation&lt;/a&gt; by the National Crime Agency for suspected fraud (&lt;a href=&quot;https://www.ft.com/content/1bbda93c-deb4-11e8-9f04-38d397e6661c&quot;&gt;and the FT has reported&lt;/a&gt;) his business holdings were worth a maximum of £1.75m. &lt;/li&gt;
+&lt;li&gt;“Dozens of people around the world were killed because of this.” — If there was ever any doubt as to the importance of internal whistleblowing and taking cyber-security seriously, then &lt;a href=&quot;https://www.yahoo.com/news/cias-communications-suffered-catastrophic-compromise-started-iran-090018710.html&quot;&gt;this story about the CIA neglecting their systems—more importantly their people—should end that&lt;/a&gt;.  No responsibility, or accountability, frankly very outrageous.  On a side-note it’s great to see Yahoo News breaking cybersecurity news: Hopefully after multiple crushing blows, they’ve entered into a new chapter?&lt;/li&gt;
+&lt;li&gt;Rather quietly, &lt;a href=&quot;https://www.washingtonpost.com/news/morning-mix/wp/2018/10/15/stephen-hawking-feared-race-of-superhumans-able-to-manipulate-their-own-dna/&quot;&gt;Stephen Hawking worried about the side-effects of genetic manipulation&lt;/a&gt;: How even starting out with the best of intentions, a human race given the ability to write its own evolutionary future would inevitably start improving traits to the point of developing a race of so-called “super-humans”, leaving those less able in the proverbial dust.  Flashbacks to Huxley’s Brave New World describes a similar future, in which this is carefully planned: But today we’re not that organised. I hope Huxley and Hawking are &lt;em&gt;both&lt;/em&gt; wrong. I hope we have a kind future.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes — 24th November 2018]]></title><description><![CDATA[Prodominantly this week I was preparing for a business trip to Tokyo, which due to friendly entry requirements has always been an incredibly…]]></description><link>https:/alexwilson.tech/blog/2018/11/24/weeknotes/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/11/24/weeknotes/</guid><pubDate>Sat, 24 Nov 2018 18:36:00 GMT</pubDate><content:encoded>&lt;p&gt;Prodominantly this week I was preparing for a business trip to Tokyo, which &lt;a href=&quot;https://www.gov.uk/foreign-travel-advice/japan/entry-requirements&quot;&gt;due to friendly entry requirements&lt;/a&gt; has always been an incredibly pleasant process. I can&apos;t talk too much about the details for this specific trip, but some advice when working between languages and countries: Many technology vendors have subsidaries or regional counterparts who will be happy to work together (obvious example would be Google, Google Japan) be able to communicate amongst themselves and to help translate very specific advice.&lt;/p&gt;
+&lt;h3&gt;Motivation!!&lt;/h3&gt;
+&lt;p&gt;Last week I skipped writing up and publishing any weeknotes. It was by choice and I feel uniquely empowered to have been able to do this: If I stick to the routine I’ll be setting myself up to fail when I inevitably am unable to publish one week.
+“Don’t break the chain” is a popular method for building and maintaining habits, popularised by Seinfeld, however I find that loss-aversion tactics have the opposite effect on me: After an initial spell in which I am biased to paying time and attention to the habit I am trying to build or avoid, I find that a single uncontrollable loss/failure won’t only break the streak: It’ll break the entire pattern of behaviour. (“Fall off the wagon”, for idiom friends).&lt;/p&gt;
+&lt;p&gt;On motivation, this article was hugely impactful. It’s amazing how small improvements to the visibility of one’s health and fitness can make such a huge difference. &lt;a href=&quot;https://www.howtogeek.com/394681/how-i-used-technology-to-get-in-the-best-shape-of-my-life-and-save-my-son/&quot;&gt;How I Used Technology to Get in the Best Shape of My Life and Save My Son&lt;/a&gt;.  There’s also a sense of pragmatism that this conveys: You don’t need all the data in the world, just enough to keep you going.&lt;/p&gt;
+&lt;h3&gt;EngineRoom 2018&lt;/h3&gt;
+&lt;p&gt;Last week I went to the &lt;a href=&quot;http://engineroom.ft.com/2016/05/03/engine-room-live-internal-conference-2016/&quot;&gt;EngineRoom&lt;/a&gt; (Thanks &lt;a href=&quot;https://twitter.com/rikstill&quot;&gt;Rik&lt;/a&gt;!). I &lt;em&gt;loved&lt;/em&gt; the less formal nature that it being an internal conference brought.
+There’s a growing trend of technology companies speaking openly and honestly about hard-learned lessons and failures, which I personally find a great deal more interesting (and valuable) than the sales pitches (either for a silver-bullet product, methodology or person) that many technical talks have become.
+This was my first experience of an internal conference and it&apos;s a fantastic management practice that other organisations should be doing too. &lt;a href=&quot;https://www.eventbrite.co.uk/blog/academy/organise-first-internal-conference-fds00/&quot;&gt;Here&apos;s some EventBrite marketing material on how to do it&lt;/a&gt;,
+and Here are versions of some of the most interesting talks: &lt;a href=&quot;https://24ways.org/2018/what-i-learned-in-six-years-at-gds/&quot;&gt;Anna Shipman—What I Learned in Six Years At GDS&lt;/a&gt;, &lt;a href=&quot;https://vimeo.com/291584445&quot;&gt;Tyler McMullen—Software Fault Isolation and Edge Computing&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=H06qrNmGqyE&quot;&gt;Sarah Wells—The Challenges of Migrating 150+ Microservices to Kubernetes&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I bought an iPad Pro! Thoughts so far:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uni-tasking as the primary experience within a desktop-sized OS is pretty great, it’s really improving my ability to get stuff done and the overall experience is nearly as complete as macOS.&lt;/li&gt;
+&lt;li&gt;A surprisingly large amount of the web has no idea how to treat an iOS browser: Some think I am a desktop, some think I am a large phone, some perform UA/browser detection and determine that I’m running an old browser. (Chrome, iOS, it makes little difference!)  C’mon, we’re better than that!&lt;/li&gt;
+&lt;li&gt;The new pen is really quite nice to use, combined with the much better refresh rate I have now switched from Notability to GoodNotes for taking ad-hoc notes.&lt;/li&gt;
+&lt;li&gt;There’s no development environments available for iOS, and no&lt;em&gt;just-about-everybody-cracking-wise-when-I’ve-mentioned-this&lt;/em&gt;remotely connecting to a virtual machine running Linux doesn’t count: ever-present, low-latency internet is &lt;em&gt;still&lt;/em&gt; a myth. Plus the iPad is a whole lot more than just a reimagining of a thin-client, those hit their peak a long time ago with big mainframes!&lt;/li&gt;
+&lt;li&gt;With the keyboard connector attached, iOS still sometimes opens up the soft keyboard. Which on this screen size is &lt;em&gt;huge&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Democratising and automating DNS]]></title><description><![CDATA[Today I have released an infrastructure automation tool, called DNSSync, for idempotently managing the state of DNS records.This is by no…]]></description><link>https:/alexwilson.tech/blog/2018/11/10/democratising-and-automating-dns/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/11/10/democratising-and-automating-dns/</guid><pubDate>Sat, 10 Nov 2018 23:19:00 GMT</pubDate><content:encoded>&lt;p&gt;Today I have released an infrastructure automation tool, &lt;a href=&quot;https://github.com/stormbit/dnssync&quot;&gt;called DNSSync&lt;/a&gt;, for idempotently managing the state of DNS records.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ dnssync --provider=cloudflare --state=state.json
+2018/11/10 00:34:19 Evaluating: irc.stormbit.net type A
+2018/11/10 00:34:19 Nothing to do!
+2018/11/10 00:34:19 Evaluating: irc.stormbit.net type AAAA
+2018/11/10 00:34:19 Nothing to do!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is by no means the first tool in this space but it does address a few specific needs. It is also exposed both as a command line tool and as an application library which means that it is useful for small automations, as well as more customised and bespoke ones.&lt;/p&gt;
+&lt;h3&gt;Why not use Terraform instead?&lt;/h3&gt;
+&lt;p&gt;Terraform is one of my favourite tools: Amongst other things I’m using it to manage my Google Cloud account, and my teams use it for managing and testing our Fastly properties (a topic for another time).&lt;/p&gt;
+&lt;p&gt;While it’s a great first most of the time, Terraform doesn’t fit all use-cases all of the time, and in this case specifically for &lt;a href=&quot;https://www.terraform.io/docs/providers/cloudflare/index.html&quot;&gt;managing Cloudflare&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The configuration format for Cloudflare DNS is very brittle: It manages entire zones at a time, meaning you must declare &lt;em&gt;everything&lt;/em&gt; or risk losing it.&lt;/li&gt;
+&lt;li&gt;Terraform’s management of state-files is notoriously risky in mixed-ability teams which impairs its accessibility. &lt;/li&gt;
+&lt;li&gt;Terraform isn’t designed for just-in-time dynamic configuration changes. The case may be made that actually a CDN/DNS provider Cloudflare isn’t either, but more modern use-cases of edge infrastructure really rely on it. In fact Cloudflare Workers support dynamic origin selection and Cloudflare Apps support dynamic record alterations, but both only work for HTTP requests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ultimately DevOps is not about repurposing tools such as Terraform, but about solving operational problems: Here, our use-case was just a little bit too far outside of the remit of anything which already existed, hence the new tool.&lt;/p&gt;
+&lt;h3&gt;StormBit’s use of DNSSync&lt;/h3&gt;
+&lt;p&gt;StormBit is now using DNSSync as a component of its infrastructure modernisation and democratisation efforts.
+We use Cloudflare as a DNS provider, because we don’t have the capacity or expertise to run and support our own DNS. The fewer bits of infrastructure we are responsible for, the better.&lt;/p&gt;
+&lt;p&gt;Cloudflare doesn’t allow us to have versioned, access controlled access to a particular zone so democractising access to maintain these records has always been a problem with key-man dependencies: This was our main priority, and so now we have &lt;a href=&quot;https://github.com/stormbit/servicedeploy&quot;&gt;baked DNSSync into&lt;/a&gt; our configuration management toolchain to apply zone state for all types of irc.stormbit.net records.&lt;/p&gt;
+&lt;p&gt;More long-term, as IRC uses DNS for routing users, the library interface exposed by DNSSync allows us to persist the current state of the service registry even as it changes, meaning that these records will be automatically kept up to date whenever IRC servers are added or removed from the pool. For our users, they won’t ever be routed to unhealthy nodes and that’s pretty awesome.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;You can grab DNSSync and its source here: &lt;a href=&quot;https://github.com/stormbit/dnssync&quot;&gt;DNSSync&lt;/a&gt;
+Contributions welcome!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Weeknotes — 10th November 2018]]></title><description><![CDATA[This week has had a strong theme of self-reflection, off of the back of researching and forward-planning for one project, and running a team…]]></description><link>https:/alexwilson.tech/blog/2018/11/10/weeknotes/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/11/10/weeknotes/</guid><pubDate>Sat, 10 Nov 2018 23:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This week has had a strong theme of self-reflection, off of the back of researching and forward-planning for one project, and running a team workshop to start building out a new technical stack.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After neglecting it for a long time, StormBit’s DNS is now partially automated. I built a new tool for idempotently managing DNS records within a zone, and have hooked it into the same CI process which manages and distributes server configurations, meaning that now DNS is completely democratised. &lt;a href=&quot;https://alexwilson.tech/blog/2018/11/10/democratising-and-automating-dns/&quot;&gt;I’ve written up some of the reasoning and methodology here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In actually building this thing there was the opportunity to start using Golang 1.11 modules which turn out to be seamless, hassle-free and actually incredibly awesome if also poorly documented. Really fantastic that there’s so much investment of time and effort into improving Golang’s developer experience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Reflections&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This week I have been reading &lt;a href=&quot;https://www.amazon.co.uk/dp/0141033576&quot;&gt;Thinking: Fast and Slow&lt;/a&gt; and it provides a great model for examining interactions. Aside from prompting me to reexamine many concepts and conversations which I have taken as &quot;just so&quot;, because I may have avoided exerting the effort to check their logical consistency, I have lately become so easily distractible that I have forgotten the joy and value of reading. As a theme for coming weeks, I will be paying more attention to my energy levels and to trying to introduce unitasking.&lt;/li&gt;
+&lt;li&gt;This week has also been pretty rough. Maybe it’s related to the clocks going back and is an early indication of SAD but motivation feels harder. On the upside, &lt;a href=&quot;gyrosco.pe&quot;&gt;Gyrosco.pe&lt;/a&gt; have updated their mood tracking and have (apparently) added a feature to nag mood check-ins, so hopefully I’ll be able to get some useful data out of it.&lt;/li&gt;
+&lt;li&gt;It was my mother’s birthday this week and together with my sister we out for dinner to celebrate. It’s kind-of surreal how different the dynamic is now that we’re all a group of adults, leading entirely and completely different lives. I suppose it’s not that big a deal since every other family will have gone through this same transition at some stage, but it’s quite remarkable to have gone through it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Loads of good conferences on this week: In no particular order, &lt;em&gt;Sharp intake of breath&lt;/em&gt;. FFConf, PerfNow, WebPerfDays Amsterdam, muConf, SeaGL, DACHFest and P3X. Seems like by far this was this busiest conf week all year! Wish I could’ve gone to most of these because they all sounded awesome: Oh well, at least I got to play with a JamBoard.&lt;/li&gt;
+&lt;li&gt;Holy carp there’s a lot of hype going on right now about React Hooks. Haven’t had a chance to look yet, but going by &lt;a href=&quot;https://codesandbox.io/embed/387p7vo9z5&quot;&gt;examples like this one, implementing slider interactions&lt;/a&gt; we may see much more portable user experience pattern libraries springing up. Also these seem like a good replacement for mixins?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/nodegirlslondon/status/1061306448125267974&quot;&gt;The FT hosted NodeGirlsLondon today&lt;/a&gt;. Nice work to everybody involved!&lt;/li&gt;
+&lt;li&gt;With Black Friday coming up, an interesting tidbit came up during conversation this week: &lt;a href=&quot;https://twitter.com/juokaz/status/1061367299918217217&quot;&gt;Singles Day generated $3B for AliBaba in just a couple of minutes&lt;/a&gt;. I can’t help but wonder how much revenue will be generated this season. At peak, $1 million per minute was spent last year. Can we top that?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.washingtonpost.com/world/2018/11/03/japanese-island-quietly-disappeared-no-one-noticed-until-now/&quot;&gt;Missing: The island of Esanbehanakitakojima. Have you seen it?&lt;/a&gt; In all seriousness, coastal erosion is scary and climate change is making it happen quicker.  And it’s happening—rather quietly—&lt;a href=&quot;https://www.bbc.co.uk/news/science-environment-45983260&quot;&gt;at an unprecedented rate in the UK&lt;/a&gt;. Don’t know about you but I’m not a fantastic swimmer.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Weeknotes — 27th October 2018]]></title><description><![CDATA[Going to give publishing weeknotes a try. Weeknotes are something that have been quietly popping up, and they’re essentially a journal-style…]]></description><link>https:/alexwilson.tech/blog/2018/10/27/weeknotes/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/10/27/weeknotes/</guid><pubDate>Sat, 27 Oct 2018 20:30:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;Going to give publishing weeknotes a try. &lt;a href=&quot;https://weeknot.es/what-on-earth-are-weeknotes-a81874c5cef9&quot;&gt;Weeknotes&lt;/a&gt; are something that have been quietly popping up, and they’re essentially a journal-style blog post reflecting on a given week. They can be as personal, or impersonal as the writer likes. There’s no fixed cadence, so missing a couple of weeks here or there is no biggie, but they’re great ways of reflecting on a week. I’ll be starting by taking some of the ad-hoc notes and links I normally jot in Bear throughout the week, and running from there.&lt;/li&gt;
+&lt;li&gt;Speedcurve and WPT are fantastic for debugging problems, but Puppeteer on its own might be an even better Swiss-army-knife for improving WebPerf (especially in local environments): &lt;a href=&quot;https://michaljanaszek.com/blog/test-website-performance-with-puppeteer&quot;&gt;Michał Janaszek has a great article on the subject&lt;/a&gt; with useful examples and I love this candlestick chart comparing different scenarios against different network states.&lt;/li&gt;
+&lt;li&gt;Maybe obvious but still important: Saying problems are “hard” or “difficult” to a person sounds like we’re being lazy. Better to explain the reasons why something is hard, framed in a way that makes sense to that particular person.&lt;/li&gt;
+&lt;li&gt;Riiiiiight, it’s ITIL time! An &lt;em&gt;Incident&lt;/em&gt; is disruption to service [whether customer impacting, or not], a &lt;em&gt;Problem&lt;/em&gt; is the cause of multiple incidents. A good analogy for complex systems is that of &lt;em&gt;symptoms&lt;/em&gt; and &lt;em&gt;causes&lt;/em&gt;: Having a runny nose is potentially a &lt;em&gt;symptom&lt;/em&gt; caused by suffering from the flu, and the &lt;em&gt;symptom&lt;/em&gt; can be treated with certain medicine—A runny nose is an &lt;em&gt;incident&lt;/em&gt; that can be solved, but the underlying &lt;em&gt;problem&lt;/em&gt; of a flu will persist.&lt;/li&gt;
+&lt;li&gt;“Python is the second-best language for everything”: This is an old saying which has stuck in my head for a while, recently resurfaced during &lt;a href=&quot;https://www.youtube.com/watch?v=ITksU31c1WY&quot;&gt;Dan Callahan&apos;s Keynote at PyCon2018&lt;/a&gt;.  As far as languages go, of the few I’ve dealt with, it’s not one I have particularly enjoyed, and so I’ve shied away from really learning and using it properly. And yet quote still really rings true. Between all these complicated provisioning shell scripts with snippets of &lt;code&gt;awk&lt;/code&gt;, I’d much rather see them written Python because it’s imperative, syntactically consistent and easily testable: More approachable to an outsider. I think I should invest more time in learning Python.&lt;/li&gt;
+&lt;li&gt;David Maidment&apos;s talk at Thursday&apos;s &lt;a href=&quot;https://brumphp.uk&quot;&gt;BrumPHP&lt;/a&gt; on &quot;Handling Exponential Growth with ElasticSearch&quot; was an interesting and refreshingly honest insight on how a tech stack may already hide the answer to new problems, as well as some hard truths about how &quot;better&quot; performance can already be enough. &lt;a href=&quot;http://civico.net/brumtech/brumphp/4275&quot;&gt;You can watch it here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gamesdonequick.com/schedule/24&quot;&gt;Games Done Quick Express&lt;/a&gt; is on this weekend, in support of the &lt;a href=&quot;https://twitchcon.tiltify.com/&quot;&gt;TwitchCon Charity Plaza&lt;/a&gt;. &lt;em&gt;Neat.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Changing object permissions in large S3 buckets]]></title><description><![CDATA[Of all of the services Amazon Web Services pushes, S3 (Simple Storage Service) is maybe the most versatile and well-known: It “just works…]]></description><link>https:/alexwilson.tech/blog/2017/11/30/updating-permissions-in-large-s3-buckets/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2017/11/30/updating-permissions-in-large-s3-buckets/</guid><pubDate>Thu, 30 Nov 2017 20:44:00 GMT</pubDate><content:encoded>&lt;p&gt;Of all of the services Amazon Web Services pushes, S3 (Simple Storage Service) is maybe the most versatile and well-known: It “just works” and is a fantastic service for many use-cases.
+It turns out though that you can have too much of a good thing as many have learned &lt;a href=&quot;https://www.theregister.co.uk/2017/03/01/aws_s3_outage/&quot;&gt;including Amazon&lt;/a&gt;, and recently I have run into a reminder that S3’s API still leaves a little to be desired.  &lt;/p&gt;
+&lt;h2&gt;The problem&lt;/h2&gt;
+&lt;p&gt;My use-case was pretty simple.  I had a bucket with about 2.5 million objects and needed to update the ACL on these objects to make them publicly readable.  Simple enough ... right?&lt;/p&gt;
+&lt;p&gt;Usually I would approach such a task by changing the bucket policies to apply to all objects regardless of their own ACLs, yet here I did not have the option to change the bucket policies, and even so, this would have caused problems for any systems relying upon canned Object ACLs.&lt;/p&gt;
+&lt;h2&gt;The solution&lt;/h2&gt;
+&lt;p&gt;I wrote a small program in Go to recursively update S3 object permissions to any canned ACL.  It’s documented and downloadable here: &lt;a href=&quot;https://github.com/antoligy/s3-recursive-acl/&quot;&gt;https://github.com/antoligy/s3-recursive-acl/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I hope that this is useful as it stands, and I am keen to hear any suggestions on how I can improve the methodology (did I miss something?) as well as the program itself.&lt;/p&gt;
+&lt;p&gt;Some more notes on how I came to this conclusion, and general thoughts on S3 and Golang after the break!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Attempt #1 — Read the docs&lt;/h3&gt;
+&lt;p&gt;Amazon’s documentation is very comprehensive when you know where to look.  Sadly, I could not find anything that helped.  Ask around AWS practitioners and Solutions Architects the consensus was that I might need to write something custom to solve this problem.  Grr, but maybe there is something, and it&apos;s just buried deep within the docs!&lt;/p&gt;
+&lt;p&gt;The file operations beneath the &lt;code&gt;aws s3&lt;/code&gt;  command line, it makes sense that there’s nothing oriented towards modifying AWS ACL in here.  I was a bit disappointed that there was nothing beneath the S3API itself, however, as recursively changing permissions (still) seems like a reasonable use-case!&lt;/p&gt;
+&lt;p&gt;I’m glad that the documentation is fairly conclusive, which is pretty refreshing given the spurious nature of documentation in competing services.  I’m hoping that a future version of the S3 API might introduce this functionality or something analogous to it!&lt;/p&gt;
+&lt;h3&gt;Attempt #2 — Try to recursively update all Object metadata&lt;/h3&gt;
+&lt;p&gt;This was a bit silly.  Various StackOverflow answers for tangentially related problems suggest that something like this might work:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;aws s3 cp --metadata FOO=bar --recursive --acl public-read --profile test--prod s3://test-bucket-2/files/ s3://test-bucket-2/files/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It didn’t as no metadata was being changed.  It could have been an ideal approach as no API calls would need to be made from my machine for this operation to complete.&lt;/p&gt;
+&lt;h3&gt;Attempt #3 — Start instrumenting the S3 API myself&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;putObjectAcl&lt;/code&gt; is super nice as far as API methods go.  It’s a full PUT for a given object, but only for its metadata, so all I need to know is the key and the new ACL document.&lt;/p&gt;
+&lt;p&gt;To save some time I started looking at the SDKs and quickly found the stellar work in the &lt;a href=&quot;https://aws.amazon.com/sdk-for-go/&quot;&gt;Golang SDK&lt;/a&gt;.
+It’s got the same base functionality as other SDKs, but with nice features such as automatic pagination (which is a huge time-saver especially in AWS where pagination can be non-linear and involves keeping track of tokens) and not enforcing a particular concurrency model.&lt;/p&gt;
+&lt;p&gt;This seemed ideal as it allowed me to implement a simplistic, yet elegant, approach:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Iterate over pages of 1000 objects at a time, recursively listing by a given key.&lt;/li&gt;
+&lt;li&gt;Spin-off Goroutines to run &lt;code&gt;putObjectACL&lt;/code&gt; for each child key.&lt;/li&gt;
+&lt;li&gt;Wait for the Goroutines to complete before exiting.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I could’ve done something nicer here such as implementing a proper worker pool pattern, however, my batch sizes and concurrency requirements aren’t yet nearly large enough to justify this.  Maybe this is a possible improvement for the future!&lt;/p&gt;
+&lt;p&gt;Goroutines were essential with this approach as it had to perform well. I effectively ran 2.5 thousand API calls to list the objects in this bucket and a further 2.5 million API calls to update those object permissions.&lt;/p&gt;
+&lt;p&gt;And it ran &lt;em&gt;beautifully&lt;/em&gt;.  In just over an hour all 2.5 million objects had the correct ACL!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;AWS_PROFILE=test--profile ./s3-recursive-acl --bucket test-bucket-1 --region ap-northeast-1 --path test/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Go-tchas&lt;/h4&gt;
+&lt;p&gt;Not specific to this particular project, there are a few things in Golang that will definitely throw people off which I addressed whilst writing this.&lt;/p&gt;
+&lt;p&gt;Passing pointers to Goroutines is very risky as the pointers can and will be reassigned.  &lt;em&gt;Always&lt;/em&gt; make a copy of the true value you want first.  You can convert formats within the Goroutine itself if performance is a concern (in order not to block).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;        for _, object := range page.Contents {
+            // Make a copy of the value allocated to the pointer before we do anything with it!
+            key := *object.Key
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Goroutines logically run outside of the main scope of the application, and while this means sometimes they will run concurrently in the main thread, the application will not wait for Goroutines to complete, so you can’t guarantee that your operations will even run!&lt;/p&gt;
+&lt;p&gt;Thankfully &lt;a href=&quot;https://golang.org/pkg/sync/#WaitGroup&quot;&gt;WaitGroup&lt;/a&gt; was added to the sync standard library to solve this problem, and it is ridiculously simple to get up and running with.&lt;/p&gt;
+&lt;p&gt;Instantiate a WaitGroup, and instruct the application to block until the WaitGroup is terminated.  For every non-blocking operation that is spun up, increment the WaitGroup counter, and then reduce it when the operations complete.  This approach works well and has virtually no footprint.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func main() {
+
+    // Create a WaitGroup
+    var wg sync.WaitGroup
+
+    go func() {
+
+        // Ask the WaitGroup to wait.
+        wg.Add(1)
+        // Do some work here.
+
+        // Tell the WaitGroup we&apos;re done
+        defer wg.Done()
+    }
+
+    // Block until our tasks are done.
+    wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Wrap-up&lt;/h3&gt;
+&lt;p&gt;I’m glad that S3 is this simple to orchestrate.  Being able to make this many Object Metadata changes this quickly (2.5 million objects in just over an hour?  That’s ~600req/s!) without being throttled is pretty spectacular. (I’m sure that running this actually within an EC2 in the same region would make this quicker)&lt;/p&gt;
+&lt;p&gt;Also: Golang is invaluable for writing these super-performant scripts.  Every time I’ve had the chance to use it to tackle a problem, I’ve found it intuitive and quick to write and run.  I hope to have more of opportunities to use it in future work.  I’m thankful that I took the time to look at other options and languages first otherwise I wouldn’t have been done so quickly!&lt;/p&gt;
+&lt;p&gt;I got a chance to try out the &lt;a href=&quot;https://glide.sh/&quot;&gt;Glide packaging system&lt;/a&gt; for this project, and it is really, &lt;em&gt;really&lt;/em&gt; nice.  Recommended for projects of all shapes and sizes, and I will be using it for my future Golang hacks!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/antoligy/s3-recursive-acl/&quot;&gt;Download S3-recursive-acl here&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using IPv6 in Amazon Web Services]]></title><description><![CDATA[Years in the works, in December Amazon beat both Google and Microsoft to introducing support for IPv6
+networking to their compute offering…]]></description><link>https:/alexwilson.tech/blog/2017/01/01/using-ipv6-in-aws/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2017/01/01/using-ipv6-in-aws/</guid><pubDate>Sun, 01 Jan 2017 22:34:00 GMT</pubDate><content:encoded>&lt;p&gt;Years in the works, in December Amazon beat both Google and Microsoft to introducing support for IPv6
+networking to their compute offering!  This is fantastic news, and I recommend reading &lt;a href=&quot;https://aws.amazon.com/blogs/aws/new-ipv6-support-for-ec2-instances-in-virtual-private-clouds/&quot;&gt;Jeff Barr&apos;s
+post for more&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Unfortunately my excitement died down a bit after finding that there isn&apos;t yet much information about
+getting off the ground with IPv6.  Ultimately it was pretty intuitive but it did require a bit of fumbling
+around in the AWS console.  I&apos;ve documented the full process here, so hopefully I&apos;ll be able to save you
+some time!&lt;/p&gt;
+&lt;h4&gt;AWS abbreviations&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;AZ - Availability Zone&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;EC2 - Elastic Compute Cloud&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;IGW - Internet Gateway&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;SG - Security Group&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;VPC - Virtual Private Cloud&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Configuring a VPC to support IPv6&lt;/h2&gt;
+&lt;h4&gt;&lt;em&gt;Note: Currently this is only available in the Ohio region (us-east-2) .&lt;/em&gt;&lt;/h4&gt;
+&lt;h3&gt;1) Add IPv6 CIDR to the VPC itself&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By default everybody gets one VPC per region.  If you&apos;ve set-up other VPCs, these instructions
+will still work - you will just need to replicate custom routing in step #4.&lt;/li&gt;
+&lt;li&gt;Every default VPC comes with a default IPv4 /16.&lt;/li&gt;
+&lt;li&gt;On the &quot;Edit CIDRs&quot; page for each VPC, it&apos;s possible to allocate an IPv6 /56 to your VPC.
+Note that this is random, and unlike the IPv4 /16 which is strictly internal, this CIDR is
+comprised of public IP addresses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2) Add IPv6 to VPC subnets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By default there&apos;s one subnet per Availability Zone, IPv4 only&lt;/li&gt;
+&lt;li&gt;Associate a subnet of the IPv6 CIDR we&apos;ve just assigned to the VPC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3) Enable IPv6 auto-assign in subnets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By default each subnet will auto-allocate IPv4&lt;/li&gt;
+&lt;li&gt;From auto-assign IP settings, enable IPv6 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4) Update VPC route table to add IPv6 route to the IGW.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By default, VPC route tables have &lt;code&gt;0.0.0.0/0&lt;/code&gt; routed through a default Internet Gateway.&lt;/li&gt;
+&lt;li&gt;We want to add a route with a Destination of &lt;code&gt;::/0&lt;/code&gt; through the IGW.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;5) Adjust Security Groups to allow IPv6 connections.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Both newly created and historic SGs come with IPv4 rules pre-configured.&lt;/li&gt;
+&lt;li&gt;You will want to add new rules for inbound and outbound IPv6 connectivity.&lt;/li&gt;
+&lt;li&gt;Same pattern as before, and in regions which support IPv6 you&apos;ll find that new defaults
+have been added for IPv6 wildcards.  Unfortunately, you will have to double-up on rules.&lt;/li&gt;
+&lt;li&gt;For inbound traffic, you can edit your existing rules and add the appropriate IPv6 CIDR to the end,
+separated by a comma.  e.g. &lt;code&gt;0.0.0.0/0&lt;/code&gt; becomes &lt;code&gt;0.0.0.0/0, ::/0&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Concerning outbound IPv6, it may be set up by default, if so you can safely skip the rest of this.&lt;/li&gt;
+&lt;li&gt;You should be safe to allow all outbound traffic, using the same IPv6 CIDR as above!&lt;/li&gt;
+&lt;li&gt;When altering existing outbound SG rules, at the very least make sure to enable IPv6 ICMP
+traffic, as it is used to replace ARP in IPv6!  Unfortunately I learned this the hard way :(&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&apos;s it, you&apos;re done!
+Congratulations, your region is now IPv6 enabled.
+Before you can use this with Compute resources there may be a little more set-up required...&lt;/p&gt;
+&lt;h2&gt;Using IPv6 in Compute&lt;/h2&gt;
+&lt;p&gt;Most EC2 images will not support IPv6 out of the box, as AWS assigns IPv6 via DHCPv6 (and not SLAAC)
+and at time of writing only the AMI for Amazon Linux has been updated to support this.
+In-time, it&apos;s inevitable others will follow!&lt;/p&gt;
+&lt;p&gt;On a running instance you can do this manually with: &lt;code&gt;dhclient -v -6 -N&lt;/code&gt;.
+However, to survive reboots, you will want to modify the definition of your network interface so that
+it can be assigned an IPv6 address via DHCP.&lt;/p&gt;
+&lt;h3&gt;Debian / Ubuntu&lt;/h3&gt;
+&lt;p&gt;On Debian-like systems such as Ubuntu this can be achieved by creating a definition in &lt;code&gt;/etc/network/interfaces.d/&lt;/code&gt;.
+(On older systems you&apos;ll have to modify &lt;code&gt;/etc/network/interfaces&lt;/code&gt; directly.)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;iface eth0 inet6 dhcp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can automate this with userdata when creating a new image.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+echo &quot;iface eth0 inet6 dhcp&quot; &gt; /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Redhat / CentOS&lt;/h3&gt;
+&lt;p&gt;On Redhat systems such as CentOS this is a little different, and you&apos;ll need to edit the network
+script for eth0. &lt;code&gt;/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;IPV6INIT=yes
+IPV6_AUTOCONF=no
+DHCPV6C=yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Extras!&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It&apos;s also possible to use IPv6 internally, and to completely prevent inbound internet traffic.
+This involves the creation of a new &quot;Egress Only Internet Gateway&quot;, which is essentially
+an IGW with a built in SG.
+After creating one of these, route &quot;::/0&quot; through this new gateway, instead of through a pre-existing one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I will update this post with CloudFormation configuration as soon as it is possible, as well as with some further thoughts and reflections on using this as time goes on.&lt;/p&gt;
+&lt;p&gt;As with everything, your mileage may vary.  That being said, if you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code&gt;@antoligy&lt;/code&gt; on Twitter,  on Github and &lt;code&gt;alex&lt;/code&gt; on StormBit.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[“Ten deploys per day”]]></title><description><![CDATA[Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I'm…]]></description><link>https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</guid><pubDate>Fri, 01 Jul 2016 22:30:00 GMT</pubDate><content:encoded>&lt;h3&gt;Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I&apos;m left feeling exhausted.&lt;/h3&gt;
+&lt;p&gt;Why choose “ten deploys per day” as the title of this post?  Ten has been something of a magic number to me: After having seen &lt;a href=&quot;https://www.youtube.com/watch?v=LdOe18KhtT4&quot;&gt;John Allspaw and Paul Hammond&apos;s talk on the subject&lt;/a&gt; and after having read Gene Kim&apos;s excellent &lt;a href=&quot;https://www.amazon.co.uk/dp/B00AZRBLHO&quot;&gt;Phoenix Project&lt;/a&gt;, ten seems like a number at which point deployments stop really being a problem - It becomes the point at which developers feel like they have full autonomy over shipping their code.&lt;/p&gt;
+&lt;p&gt;First of all some context: Around midday on Thursday, my team received a notification that for legal reasons, certain changes needed to be made across an entire estate of web products by this weekend.  Those changes were trivial, but their complexity was expounded by the fact that they needed to be separately applied to ten distinctly different products.  Altering the various codebases was relatively easy, and aside from a slight hiccup with a third party vendor we were quickly able to get those changes out of the way. &lt;/p&gt;
+&lt;p&gt;That&apos;s not what I want to talk about.  Instead, I want to talk about how to go from having barely achieved ten, to making it a boring norm.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Change management shouldn&apos;t feel like an inconvenience or a chore.&lt;/strong&gt;  Most immediately I felt incredibly frustrated by the number of hoops that filling out change requests entailed: For a high risk deployment, it&apos;s useful to know in advance that something is going to happen, however in this case I was releasing trivial changes and so having to fill out ten forms in order to release feels like an unnecessary extra step.  Maybe this is something which, for further trivial changes, should be automated with the deployment process.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Automate all the things!&lt;/strong&gt;  I was incredibly lucky that a few weeks ago I moved the last of these products to Jenkins.  While many were running simple Capistrano wrappers, the remainder used a streamlined set of shell scripts designed to build, run tests and then deploy between dev, test and production environments.  Moving the last of the Capistrano deployments to Jenkins cut deployment times down from ~15-25 minutes, to ~5-10, which made all the difference.  Between these products, I was able to stick to 15 minute deployment windows with minimal hiccups.  Essentially this halved the amount of time it would have taken, and some of the more ancient deployment processes of other teams can sometimes take hours.  Automating those will make everybody happier, and will save significantly more time.  I&apos;ll end this with a thought from &lt;a href=&quot;https://twitter.com/skamille&quot;&gt;Camille Fournier&lt;/a&gt; - “When you see a process which is more about &quot;How?&quot; than &quot;What?&quot;, then ask yourself what can be automated”.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Automated testing would have helped.&lt;/strong&gt;  Unfortunately for most of these products, the extent of their testing suites were syntax checking tools, meaning that while everything seemed okay I had to manually check each product as it was deployed - Usually by having to cachebust.  With a great volume of deployments, this step feels unnecessary.  For low volume deployments, the usual spiel applies, wherein functional tests allow for quicker and safer development with manual testing boiling down to a simplistic &quot;rubber stamp&quot;.  Again, ensuring that these are instituted across the board will make everybody happier, especially when faced with days as challenging as today.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Always ensure that there is a fallback for when third party resources become unavailable.&lt;/strong&gt;  While this might seem incredibly obvious, in my experience not many people really pay attention to this.  A few months ago the NodeJS world was rocked by the author of a very simplistic module unpublishing his module from npmjs.org - This immediately broke a lot of build processes causing a lot of confusion, but the longer term consequences were potentially more severe as anybody could have reclaimed that namespace &lt;a href=&quot;http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm&quot;&gt;which that the Snyk team have written about in detail&lt;/a&gt;.  However, security and practicality concerns aside, what about when the network fails?  What about when internal DNS is down for maintenance?  Tests, builds and deployments should remain unaffected by this, and having to rely on developer heroics in order to get some code deployed to production is flat-out scary! (Ask me over a drink sometime!)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ensure that there&apos;s a fallback plan for when external resources fail.&lt;/strong&gt;  Am I repeating myself?  Maybe, but this time I&apos;d like to ask - What if your authentication service (or git repository, or CI server) goes down?  In my case I needed to make a late change and unfortunately LDAP had gone wrong, with nobody around to fix it, meaning that I effectively had no access except to a single Jenkins box.  Suddenly that service has become a single point of failure, and when there are multiple streams of deployments ongoing, that outage can become a huge, stressful blocker.  While Github was under attack earlier this year, &lt;a href=&quot;https://news.ycombinator.com/item?id=9275041&quot;&gt;many were at a standstill&lt;/a&gt; as they did not have fallbacks for their SCM and deployments - I&apos;d wager that a great deal many quickly were able to set-up alternatives on BitBucket thanks to the distributed nature of git - but even then, it should not have happened.  N+1 resiliency is nothing new, but it seems to have been forgotten in the age of SaaS and SOA.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;I couldn&apos;t have done it alone.&lt;/strong&gt;  From doing the original work and getting it all signed off, to preparing everything for release, without the team I simply could not have done any of this alone.  Ten deployments alone might have seemed a feat, but having the confidence and trust that what I was releasing was up to my own high standards saved enough time and reassured me enough to let this happen.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Be prepared to delay a deployment in case something is wrong.&lt;/strong&gt;  This one is definitely my fault: I take automated deployments for granted, and if something goes wrong with the automation (likely for one of the reasons above) I will immediately attempt to fix it instead of moving onto the next deployment when its window rolls around.  Given that it&apos;s all automated, it&apos;s probably not too late to back out!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;What&apos;s so special about Fridays anyway?&lt;/strong&gt;  &lt;em&gt;Oh no he didn&apos;t!&lt;/em&gt;  I am going to continue adhering as strictly as possible to &lt;a href=&quot;http://isitreadonlyfriday.com/&quot;&gt;Read-Only-Fridays&lt;/a&gt;, but I feel like the security and processes in-place today are close to the point at which we won&apos;t need to worry about what day of the week it is, or indeed what time it is.  If it&apos;s not okay to break a system on a Friday as it&apos;ll require you to stay late, why is it okay to do the same on the Monday or Wednesday that week?  The day of the week seems like a scapegoat for dysfunctional developmental processes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It wasn&apos;t all sunshine and roses, but ultimately I&apos;m pretty proud of having accomplished this.  My first full-scale deployment was a whole-day ordeal which involved several people, a snowflake environment and a week of clean-up for the whole team.  To have gone from that to having achieved the magical number of ten in a &lt;em&gt;single afternoon&lt;/em&gt; feels like we&apos;ve come a very long way.&lt;/p&gt;
+&lt;p&gt;For next steps, I&apos;m hoping to tackle some of the points I&apos;ve outlined above and to take the lessons we&apos;ve learned back to other teams, as well as maybe even pushing forward all the more.  I&apos;m particularly excited by the prospects of &lt;a href=&quot;https://www.youtube.com/watch?v=NST3u-GjjFw&quot;&gt;ChatOps&lt;/a&gt; and &lt;a href=&quot;http://www.slideshare.net/ArjanSchaaf/zero-downtimejavadeploymentswithdockerandkubernetes&quot;&gt;canary deployments using containers&lt;/a&gt;, so watch this space - Onwards and upwards!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Is IRC technology flexible enough to scale?]]></title><description><![CDATA[Update: October 28th 2018When I talk about scalability here, it's a wider focus than avoiding hard bottlenecks in the form of networks. It…]]></description><link>https:/alexwilson.tech/blog/2016/01/31/scaling-irc-tech/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2016/01/31/scaling-irc-tech/</guid><pubDate>Sun, 31 Jan 2016 21:17:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Update: October 28th 2018&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When I talk about scalability here, it&apos;s a wider focus than avoiding hard bottlenecks in the form of networks. It was not something which I expressed very well, so I will try again: Scalability in a technology project also includes aspects of how theses systems work for an entire team, and frankly, in traditional IRC set-ups this is an area which is very lacking.&lt;/p&gt;
+&lt;p&gt;It requires a team to have access to the systems they need, as well as the operational knowledge to maintain them, all while keeping tight security. It&apos;s a very tight balance and one I don&apos;t think any open organisations have proven that they manage very well: In fact, an appearance of stability usually hides one or many key-man dependencies behind the scenes, and a lot of (hopefully documented) institutional knowledge.&lt;/p&gt;
+&lt;p&gt;In general terms this is manifested by service disruption, and in IRC, by frequent netsplits. &lt;/p&gt;
+&lt;p&gt;Here I was noting some of the thoughts I&apos;d had at the time, thoughts which proved a little too ambitious for an open project. However since then some smaller, more practical steps have been taken, with many more coming. Hopefully this will make our implementation of &lt;em&gt;IRC technology flexible enough to scale&lt;/em&gt;, within our organisation.&lt;/p&gt;
+&lt;p&gt;As for IRC itself, there&apos;s lots of great work happening with &lt;a href=&quot;https://ircv3.net/&quot;&gt;IRCv3&lt;/a&gt; which I strongly encourage any passers-by to follow and contribute to and I&apos;m hoping someone will finally build that P2P &quot;mesh-net&quot; server-to-server protocol. 😅&lt;/p&gt;
+&lt;p&gt;The original post, as written in late 2015, remains below after the break.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;For a long time now I have led a small IRC network which a great deal many people call home.  Overall it has been a very rewarding experience, and I&apos;ve gained many useful technical and managerial skills, however it&apos;s not all sunshine and roses.  Perhaps one of my biggest pet peeves with the current state of IRC is something that I would very much like to improve, and that is the practical scalability of IRC. (i.e. not just more users, but more developers/staff and coping with quick changes)&lt;/p&gt;
+&lt;p&gt;To provide a bit of background, the vast majority of IRC networks run servers following a star topology, on hand-configured/secured servers.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hub 1
+|-- Leaf A
+|-- Hub 2
+| |- Services
+| |- Leaf B
+| `- Leaf C
+`-- Leaf D
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Traditionally this has always made sense, but then what happens if a central node (i.e. in this diagram, &quot;Hub 2&quot;) goes down?  Massive service disruption.  Even if someone has thought ahead and has set up automatic fallback routes and servers, there are other mission-critical components in a traditional IRC network such as the services and security application servers which, should they be available on a network, massively enhance the experience offered by a network and may include fundamental features that users have come to expect from a particular network.&lt;/p&gt;
+&lt;p&gt;With many networks, including Rizon and StormBit, this type of disruption - known as a netsplit - is considered the most unpopular aspect of the overall service.  To a robust community they are definite dealbreakers and understandably so, after all who wants to be in the middle of a conversation (or heated debate!) only for half of the participants to go up in smoke?&lt;/p&gt;
+&lt;p&gt;Indeed, going by &lt;a href=&quot;http://stormbit.net/2016/01/17/year-of-the-monkey.html&quot;&gt;the 2015 user survey&lt;/a&gt; the greatest cause of dissatisfaction (a whopping 56%) with StormBit&apos;s service was the downtime and disruption caused by netsplits, with similar numbers from 2014.&lt;/p&gt;
+&lt;p&gt;Ultimately there&apos;s no easy way of escaping this type of disruption, and while many networks benefit from running on robust infrastructure with very stable internet connectivity, it seems fairly backwards that this should continue to be the best answer, especially considering the snowflake state that these sorts of servers often fall into, and the reliance on many points of failure that are non-trivial to recover.&lt;/p&gt;
+&lt;p&gt;Now this is not at all a new topic, and &lt;a href=&quot;https://www.slideshare.net/randybias/architectures-for-open-and-scalable-clouds#20&quot;&gt;Randy Bias gave a talk in 2012&lt;/a&gt; on scalability advocating a distinction between the approach of treating servers as &quot;pets&quot;, in which servers are set-up, maintained, updated and repaired by hand; and treating servers as being &quot;cattle&quot;, where all of these processes are managed through automation (for instance, configuration management tools such as Puppet, Ansible or Chef) meaning that if and when problems arise, new servers can be spun up in seconds, not weeks.&lt;/p&gt;
+&lt;p&gt;Since some of the largest IRC networks in the world, such as QuakeNet and EFNet, have survived for decades following the older practices, the former method of treating servers as pets has proven to be successful however I do not doubt for a second that their infrastructures have become tangled snowflakes, painful to maintain or support.  Ancient practices have not held back technological progress in other areas, so why should they here?  IRC is still run today as it was in its infancy despite much progress in operations.&lt;/p&gt;
+&lt;p&gt;In terms of the protocols used to communicate between IRC servers, these have come a really long way since the original network.  A major modern contender is the &lt;a href=&quot;https://github.com/charybdis-ircd/charybdis/blob/master/doc/technical/ts6-protocol.txt&quot;&gt;TS6 protocol&lt;/a&gt; which, for example, introduces concepts designed around tagging individual servers, clients and messages with unique IDs and timestamps to ease the complexity of propagating information to new servers, to ensure that messages are delivered to clients correctly and to try and reduce desynchronisation between servers - especially when attempting to resolve the differences after an outage.&lt;/p&gt;
+&lt;p&gt;However, this is still very much centered around the idea of a star topology, and to my knowledge, all of these protocols still involve a full resynchronisation of the entire state of the network on every link, which in a production network can result in massive amounts of unnecessary information being distributed over the presence of users and channels which aren&apos;t necessarily prudent.  An example here would be a server carrying 60 users rejoining a network with 10000 users; it&apos;s highly unlikely that each of the new users is going to have a common point of contact with the remaining 10k, so why tell this server about users that are not relevant?&lt;/p&gt;
+&lt;p&gt;This kind of inefficiency seems irrational considering the progress that the IRCv3 protocol has made over the original, introducing advanced functionality such as progressive client enhancement, and SASL.  Slowly but surely we&apos;ve been seeing movement in the world of IRC clients, most certainly accelerated by the dawn of other chat platforms such as Slack which are growing in success proving that IRC&apos;s relative user unfriendliness and lack of features are the only reason it is seeing a supposed decline.  The technology itself is fairly primitive and works quite well, but the basic nature of clients pushes away users who value convenience above all else.  However there hasn&apos;t been much movement in the backend side here, as I hope I have made clear.&lt;/p&gt;
+&lt;p&gt;With the ambitious goal of running a self-repairing, auto-scaling service for the future, at StormBit our recent architectural goal has been to build a new network to address these concerns from the very beginning - hosted primarily in a high-availability cloud environment.  We are relatively undecided about which IRC daemon to use; currently &lt;a href=&quot;http://www.inspircd.org&quot;&gt;InspIRCd&lt;/a&gt; is our choice as it allows for an unstructured linking set-up by means of its TS6-like &lt;a href=&quot;http://www.inspircd.org/wiki/Modules/spanningtree/Protocol.html&quot;&gt;spanning tree protocol&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While no decision has yet been made about exactly which hosting provider to go with, the most popular choices at time of writing are &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; and the rather stellar &lt;a href=&quot;https://aws.amazon.com/&quot;&gt;Amazon Web Services&lt;/a&gt;.  Both have advantages, but the most important aspects to the selection process are an uptime guarantee, API access for automating provisioning systems, and the ability to communicate via a private network.  A number of providers fit the bill, but there are also questions on convenience and operational costs.&lt;/p&gt;
+&lt;p&gt;In terms of technologies, Docker seems to fit the bill for running the systems themselves, as it allows us to generate identical artefacted copies of systems to run on all boxes.  While there are questions over the viability of distributing an &lt;em&gt;entire operating system&lt;/em&gt; just to run a handful of applications, it also ensures that there&apos;s no possibility of introducing snowflake environments and leaves us feeling safer than relying purely on configuration management systems.  &lt;/p&gt;
+&lt;p&gt;Obviously it&apos;s still a requirement to store the state of the network (i.e. which servers are available) somewhere, and so we have opted to use &lt;a href=&quot;https://www.consul.io/&quot;&gt;HashiCorp Consul&lt;/a&gt; to allow automatic discovery of new nodes introduced into our cluster, and to adjust our round-robin DNS, both by means of the rather excellent &lt;a href=&quot;https://github.com/hashicorp/consul-template&quot;&gt;consul-template&lt;/a&gt; which allows applications that remain unaware of service registries to interact with them near natively.
+Consul also offers us decent monitoring abilities, and so I have written a small utility in Go to perform a simplistic healthcheck on IRC servers, called &lt;a href=&quot;https://github.com/StormBit/ircd-healthcheck&quot;&gt;ircd-healthcheck&lt;/a&gt;.  This should be readily usable with other monitoring systems too, a few solutions already exist but none that I could easily make work with Consul.&lt;/p&gt;
+&lt;p&gt;(For future improvements, we are looking at alternative IRCd technology, and the option of better integrating an external server registry into InspIRCd by means of a custom module - so watch this space for that!)&lt;/p&gt;
+&lt;p&gt;Ultimately I feel like there&apos;s plenty of room in this space for better approaches to automatically scale IRC, and to future-proof it in terms of practices.  If anything, the approach that we are taking at StormBit just to improve our resiliency seems like overkill and is definitely daunting to other networks of lower technical ability or of greater size.  I&apos;m hoping that this article might spark some conversations about how to start catching up to the technical proficiency of our relatives in other areas.&lt;/p&gt;
+&lt;p&gt;If you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code&gt;@antoligy&lt;/code&gt; on Twitter, &lt;code&gt;alex&lt;/code&gt; on StormBit, and there&apos;s a comment box below.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Rebuilding]]></title><description><![CDATA[Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it's the first thing people see when…]]></description><link>https:/alexwilson.tech/blog/2015/07/12/rebuilding/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2015/07/12/rebuilding/</guid><pubDate>Sun, 12 Jul 2015 15:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it&apos;s the first thing people see when they look me up, but even that isn&apos;t enough to prioritize it above my more interesting projects, both paid and otherwise.  However I have finally gone ahead and done it, and have now finished rebuilding my website only a year and a half after I said I would.&lt;/p&gt;
+&lt;p&gt;Before saying anything else, here is what my site had looked like since mid-2013: &lt;img src=&quot;https://i.imgur.com/Ziq7Z3Jl.png&quot; class=&quot;img-responsive align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;My first decision when rebuilding was centered around the nature of my website: What do I need my website to show, and &lt;em&gt;what is it actually used for&lt;/em&gt;?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I &lt;em&gt;don&apos;t&lt;/em&gt; have fast-changing, dynamic content, and what I do want to serve isn&apos;t remotely user dynamic.&lt;/li&gt;
+&lt;li&gt;I &lt;em&gt;don&apos;t&lt;/em&gt; need to sell anything, so considering e-commerce is silly.&lt;/li&gt;
+&lt;li&gt;However I want to serve content that I will write occasionally (or regularly), for the world to see my thoughts, ramblings and musings on various topics.&lt;/li&gt;
+&lt;li&gt;I would also like to display some information on what I&apos;ve been working on.&lt;/li&gt;
+&lt;li&gt;Maybe also put up a small profile for people to find.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Much of what needs to be dynamic on a website these days can actually be achieved in the browser through JavaScript - especially given the dawn of service workers (&lt;a href=&quot;http://jakearchibald.com/2014/offline-cookbook/&quot;&gt;Jake Archibald has written an excellent post on the subject here&lt;/a&gt;), but even then I don&apos;t actually need to do all that much, so there&apos;s no reason to complicate things with a dynamic website.  &lt;/p&gt;
+&lt;p&gt;Github have been running their Github Pages service on a static site generator called &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, which I&apos;ve previously used to build the StormBit website, and other smaller projects.  It uses text-based storage, in the form of structured markdown documents, plus the Liquid templating language used by Shopify, so seemed perfect for my needs.  Plus, free hosting for the site, with git for source control.&lt;/p&gt;
+&lt;p&gt;Having settled on my hosting platform, and framework, the question was what should the site actually look like, and how should I build it?&lt;br /&gt;
+I&apos;ve already experience with frameworks like Foundation and 960gs, but ultimately I wanted something simple, but extensible.  Twitter&apos;s bootstrap is particularly powerful, however I&apos;ve never been a fan of jQuery as I feel it encourages poor practice and covers too much ground that should just be polyfilled (expect more on this in a future post), so immediately discounted it.  That is until I made the now-regrettable decision to buy this theme:
+&lt;img src=&quot;https://i.imgur.com/rhry5Ye.jpg&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately the entire theme was written in LESS, so I had to convert it to Sass (which was a fairly painless task).  However after hacking at it a while, I realised that it was a stupid idea which relied on very different requirements to what I was trying to build and tore the entire thing down and started from scratch, on the design you are seeing now.  I again raised the question of Bootstrap vs. other frameworks, but then found the &lt;a href=&quot;http://thednp.github.io/bootstrap.native/&quot;&gt;Bootstrap.Native&lt;/a&gt; project which settled my doubts there and then.&lt;/p&gt;
+&lt;p&gt;Given how simple the site is, I felt it needed something to help it stand out from most other sides.  The background colour gives the site a lot of flavor and warmth, I chose it after digging around and looking at what other sites were doing.  I&apos;ve been a huge fan of &lt;a href=&quot;http://ethanschoonover.com/solarized&quot;&gt;Ethan Schnoover&apos;s Solarized&lt;/a&gt; for years, and wanted to do something similar, so I built an entire palette around shades of Orange, brown and grey.  I think the overall result is fairly aesthetically pleasing, and plus is very simple to build on- In fact the entire palette is calculated automatically using Sass&apos;s darken() feature.&lt;/p&gt;
+&lt;p&gt;The last thing I should really touch on is that later in I decided to try and use PJAX for the site as much as possible, and in particular a library called InstantClick which pre-loads pages on mouseover to reduce the latency between pages.  While I didn&apos;t really have any issues with page load times (I built the entire thing using Chrome&apos;s throttling, set to 50kbps), coupled with CSS animations on links, this site feels virtually instant.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Getting past CloudFlare]]></title><description><![CDATA[CloudFlare is a wonderful thing. An excellent DNS provider coupled with a hosted "intelligent" caching reverse proxy? Sign me up!Moreover…]]></description><link>https:/alexwilson.tech/blog/2015/01/17/getting-past-cloudflare/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2015/01/17/getting-past-cloudflare/</guid><pubDate>Sat, 17 Jan 2015 15:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.CloudFlare.com/&quot; title=&quot;CloudFlare&quot;&gt;CloudFlare&lt;/a&gt; is a wonderful thing. An excellent DNS provider coupled with a hosted &quot;intelligent&quot; caching reverse proxy? Sign me up!&lt;/p&gt;
+&lt;p&gt;Moreover, some of the functionality offered up by &lt;a href=&quot;https://www.CloudFlare.com/&quot; title=&quot;CloudFlare&quot;&gt;CloudFlare&lt;/a&gt; can only be described as awesome - From the ability to project a WAF over your entire site, to automatically minifying all static assets, to even offer a proprietary ESI alternative in the form of &lt;a href=&quot;https://www.CloudFlare.com/railgun&quot;&gt;RailGun&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;CloudFlare has powered my site, that of &lt;a href=&quot;https://www.stormbit.net/&quot; title=&quot;CloudFlare&quot;&gt;StormBit&lt;/a&gt;, the Pomf.se hosting service and countless others that I&apos;ve been involved with over the past few years and all without a single hitch.  Alongside saving us bandwidth and offering lighting-fast DNS updates, unlimited DNS entries and flexible SSL, it has also kept sites serving content even when they have been down, or under heavy load.  With &lt;a href=&quot;https://www.CloudFlare.com/&quot; title=&quot;CloudFlare&quot;&gt;CloudFlare&lt;/a&gt; I can honestly say that small websites finally have a way of ensuring sites don&apos;t suffer the Slashdot effect.&lt;/p&gt;
+&lt;p&gt;However this is not intended to be an advert for &lt;a href=&quot;https://www.CloudFlare.com/&quot; title=&quot;CloudFlare&quot;&gt;CloudFlare&lt;/a&gt;.  Rather I have been hit with their &quot;I&apos;m under attack mode&quot;, which is all well and good when one is actually under attack as it almost completely negates the ability of bots to hit applications and make away with precious bandwidth.  Unfortunately I&apos;m not quite a bot, and instead of trying to steal bandwidth or steal email addresses, I&apos;m trying to scrape information (for playlists) from websites which is at least a tiny bit less insidious.&lt;/p&gt;
+&lt;p&gt;Looking over how CloudFlare decides whether or not I am a bot, it evaluates Javascript in the browser to solve a challenge, and this challenge is per-domain, per-IP, per-session and per-useragent so I can&apos;t just solve the challenge once and add it to all my cookie jars.  Additionally, there is no sane way of manually adding all of the required cookies to new cookie jars, so that&apos;s not an option either.&lt;/p&gt;
+&lt;p&gt;My most immediate thought was to try and solve by guessing patterns and capturing values with regular expressions, however CloudFlare&apos;s engineers are several steps ahead and are actually obfuscating their challenge payload.&lt;/p&gt;
+&lt;p&gt;After trying a bit of trickery in node.js to try and capture and evaluate the challenge, I realised that there&apos;s already a far simpler way around this- Using a browser testing engine such as PhantomJS.&lt;/p&gt;
+&lt;p&gt;Ten minutes later, I had whipped together the following, which at time of writing allows my scraping tools past CloudFlare with negligable failures.&lt;/p&gt;
+&lt;p&gt;{% gist antoligy/f4f084b87946f84a89b4 %}&lt;/p&gt;
+&lt;p&gt;*[WAF]: Web Application Firewall
+*[ESI]: Edge Server Includes&lt;/p&gt;</content:encoded></item></channel></rss>
