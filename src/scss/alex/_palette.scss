@@ -32,5 +32,12 @@ $header-link: $blue;
 $header-link-active: $blue;
 $header-link-background: rgba($grey-5, 0.5);
 
+// Extracted from Bootstrap-Sass
+// https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+$pager-bg:                             $white;
+$pager-border:                         #dddddd;
+$pager-border-radius:                  15px;
+$pager-hover-bg:                       #eeeeee;
+$pager-disabled-color:                 #777;
 
 //$blue: #00FFB7;
