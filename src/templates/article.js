@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, StaticQuery, Link } from "gatsby"
 import Layout from "../components/layout"
+import Header from "../components/header"
 import ShareWidget from "../components/share-widget"
 import RelatedArticles from "../components/related-articles"
 import SEO from "../components/seo"
@@ -14,7 +15,8 @@ export default ({ data, location }) => {
   const dateModified = new Date(post.frontmatter.last_modified_at || datePublished)
 
   return (
-    <Layout location={location} headerImage={post.fields.image}>
+    <Layout location={location}>
+      <Header location={location} image={post.fields.image} />
       <div className="alex-article">
         <div className="alex-article__main">
           <h1 itemProp="name headline">{post.frontmatter.title}</h1>

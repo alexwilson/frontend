@@ -65,6 +65,7 @@ class Header extends Component {
                 <NavItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</NavItem>
                 <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Blog</NavItem>
                 <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Talks</NavItem>
+                <NavItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Consultancy</NavItem>
 
                 <NavSpacer />
 
@@ -85,7 +86,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: `Alex Wilson`,
   image: null,
 }
 
