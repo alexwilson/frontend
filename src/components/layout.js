@@ -5,42 +5,45 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
+import React, {Children} from "react"
 import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Footer from "./footer"
 import "../scss/main.scss"
 
-const Layout = ({ location, children, headerImage=null }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} location={location} image={headerImage} />
-        <main>{children}</main>
-        <footer className="footer">
-            <div className="container align-center">
-                <span className="text-muted">
-                &copy; Alex Wilson {new Date().getFullYear()}
-                </span>
-            </div>
-        </footer>
-      </>
-    )}
-  />
-)
+const Layout = ({ location, children }) => {
 
-// Layout.propTypes = {
-//   children: PropTypes.node.isRequired,
-// }
+  let HeaderElement = <Header location={location} />
+  let FooterElement = <Footer />
+
+  const layoutChildren = Children.toArray(children)
+    .filter(child => {
+
+      if (child.type === Header || Header.isPrototypeOf(child.type)) {
+        HeaderElement = child
+        return false
+      }
+
+      if (child.type === Footer || Footer.isPrototypeOf(child.type)) {
+        FooterElement = child
+        return false
+      }
+
+      return true
+    })
+
+  return (
+      <>
+        {HeaderElement}
+        <main>{layoutChildren}</main>
+        {FooterElement}
+      </>
+    )
+}
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 export default Layout

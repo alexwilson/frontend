@@ -13,13 +13,13 @@ jobs:
       with:
         fetch-depth: 1
     - name: Install
-      uses: actions/npm@master
+      uses: actions/setup-node@master
       with:
-        args: install
+        args: npm install
     - name: Build
-      uses: actions/npm@master
+      uses: actions/setup-node@master
       with:
-        args: run build
+        args: npm run build
     - name: Deploy
       if: github.ref == 'refs/heads/master'
       uses: ./.github/actions/github-pages/
