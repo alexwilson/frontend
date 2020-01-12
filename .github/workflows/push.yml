@@ -3,10 +3,13 @@ on:
     branches:
       - '!gh-pages'
       - '*'
-name: Build and Deploy
+
+name: Build, Test and Deploy
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+
+  # Fetch dependencies and build Gatsby
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -30,10 +33,56 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
-    - name: Deploy
-      if: github.ref == 'refs/heads/master'
+    - name: Save Build Artefact
+      uses: actions/upload-artifact@v1
+      with:
+        name: site-artefact
+        path: public
+
+  # Run unit tests on the artefact we just built.
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - name: Download Website Artefact
+      uses: actions/download-artifact@v1
+      with:
+        name: site-artefact
+    - name: Restore Cached Dependencies
+      uses: actions/cache@v1
+      id: cache-node_modules
+      with:
+        path: node_modules
+        key: ${{ hashFiles('package.json') }}
+    - uses: actions/setup-node@master
+    - name: Reinstall Dependencies
+      run: npm install
+    - name: Run Tests
+      run: npm test
+
+  # Deploy to Github Pages environment
+  deploy-production:
+    name: Deploy to Production
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Download Website Artefact
+      uses: actions/download-artifact@v1
+      with:
+        name: site-artefact
+    - name: Deploy to Github Pages
       uses: ./.github/actions/github-pages/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         args: public
+    - name: Trigger a Pages Update
+      run: |
+        curl -sS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_PAGES_DEPLOY_TOKEN }}" \
+        https://api.github.com/repos/${{ github.repository }}/pages/builds \
