@@ -61,6 +61,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: site-artefact
+        path: public
     - uses: actions/setup-node@master
     - name: Restore NPM Cache
       uses: actions/cache@v1
@@ -94,6 +95,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: site-artefact
+        path: public
     - name: Deploy to Github Pages
       uses: ./.github/actions/github-pages/
       env:
