@@ -72,6 +72,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 1
     - name: Download Website Artefact
       uses: actions/download-artifact@v1
       with:
