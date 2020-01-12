@@ -12,6 +12,16 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
+    - uses: actions/cache@v1
+      id: cache-node_modules
+      with:
+        path: node_modules
+        key: ${{ hashFiles('package.json') }}
+    - uses: actions/cache@v1
+      id: cache-public
+      with:
+        path: public
+        key: 'previous-build'
     - uses: actions/setup-node@master
     - run: npm install
     - run: npm run build
