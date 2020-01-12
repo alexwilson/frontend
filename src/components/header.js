@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, {Component} from "react"
+import fetch from "isomorphic-fetch"
 
 const ALink = ({url, children}) => {
   const isAbsolute = /^(https?:)?\/\//
@@ -33,11 +34,38 @@ class Header extends Component {
     super(props)
     this.header = React.createRef()
     this.headerNav = React.createRef()
+    this.state = {
+      backgroundImage: null
+    }
+
+    if (props.image) {
+      this.state.backgroundImage = props.image
+    }
   }
 
   componentDidMount() {
     this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
     this.header.current.style.position = "sticky"
+
+    if (!this.props.image) {
+      this.randomImage()
+    }
+  }
+
+  fetchRandomImage() {
+    const params = [
+      "format=json",
+      "provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com"
+    ]
+    fetch(`https://random.responsiveimages.io/v1/image?${params.join('&')}`)
+      .then(res => res.json())
+      .then(image => {
+        if (!image.url) return
+        this.setState({
+          backgroundImage: image.url
+        })
+      })
+      .catch(_ => null)
   }
 
   render() {
@@ -45,12 +73,12 @@ class Header extends Component {
     const pathname = this.props.location.pathname
     const headerStyle = {}
 
-    if (this.props.image) {
-      headerStyle.backgroundImage = `url('https://imagecdn.app/v2/image/${encodeURIComponent(this.props.image)}')`
+    if (this.state.backgroundImage) {
+      headerStyle.backgroundImage = `url('https://imagecdn.app/v2/image/${encodeURIComponent(this.state.backgroundImage)}')`
     }
 
     return (
-      <header role="banner" className={`alex-header ${this.props.image ? 'alex-header--with-image':null}`} ref={this.header} style={headerStyle}>
+      <header role="banner" className={`alex-header`} ref={this.header} style={headerStyle}>
         <div className="alex-header--container">
 
           <div className="alex-header__about">
