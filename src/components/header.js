@@ -105,7 +105,7 @@ class Header extends Component {
       .then(image => {
         if (!image.url) return
         this.setState({
-          backgroundImage: decodeURIComponent(image.url.replace('https://imagecdn.app/v1/images/', '').replace(/\?$/, ''))
+          backgroundImage: image.url
         })
       })
       .catch(_ => null)
