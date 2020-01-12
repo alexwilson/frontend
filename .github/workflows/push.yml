@@ -5,21 +5,31 @@ on:
       - '*'
 name: Build and Deploy
 jobs:
-  install:
-    name: Install
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: Install
-      uses: actions/setup-node@master
+    - name: Restore Cached Dependencies
+      uses: actions/cache@v1
+      id: cache-node_modules
       with:
-        args: npm install
+        path: node_modules
+        key: ${{ hashFiles('package.json') }}
+    - name: Restore Cached Build
+      uses: actions/cache@v1
+      id: cache-public
+      with:
+        path: public
+        key: build
+    - uses: actions/setup-node@master
+    - name: Install Dependencies
+      run: npm install
     - name: Build
-      uses: actions/setup-node@master
-      with:
-        args: npm run build
+      run: npm run build
     - name: Deploy
       if: github.ref == 'refs/heads/master'
       uses: ./.github/actions/github-pages/
