@@ -7,7 +7,7 @@ on:
 
   # Scheduled build so pipeline failures are noticed quicker.
   schedule:
-    - cron: '30 13 * * 3,0'
+    - cron: '30 16 * * 3,0'
 
 name: Build, Test and Deploy
 jobs:
