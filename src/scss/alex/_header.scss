@@ -3,19 +3,12 @@
  */
 .alex-header {
 
-  z-index: 9999;
+  z-index: 100;
+
   &--container {
     @include alex-container;
   }
 
-  background-image: linear-gradient(
-    to bottom,
-    rgba(96, 92, 96, 0.6),
-    rgba(20, 20, 20, 0.6)
-  );
-
-  background-size: cover;
-  background-position: center;
   border-bottom: 3px solid #0d0d0d;
   overflow: hidden;
 
@@ -106,5 +99,44 @@
     text-transform: initial;
     font-size: 40pt;
     white-space: nowrap;
+  }
+}
+
+
+.alex-header-image {
+
+  &:after {
+    content: '';
+    z-index: -95;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(96, 92, 96, 0.6),
+      rgba(20, 20, 20, 0.6)
+    );
+  }
+
+  &__blur, &__main {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -95;
+    transition: opacity 1.4s linear;
+    position: absolute;
+  }
+
+  &__main {
+    opacity: 0;
+  }
+
+  &__blur {
+    z-index: -100;
+    filter: blur(100px);
+    transform: scale(1.02);
+    opacity: 1;
   }
 }
