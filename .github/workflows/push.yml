@@ -16,12 +16,6 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: Restore Cached Dependencies
-      uses: actions/cache@v1
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Restore Cached Build
       uses: actions/cache@v1
       id: cache-public
@@ -29,10 +23,24 @@ jobs:
         path: public
         key: build
     - uses: actions/setup-node@master
+    - name: Restore NPM Cache
+      uses: actions/cache@v1
+      id: cache-npm
+      with:
+        path: ~/.npm
+        key: npm-${{ hashFiles('**/package-lock.json') }}
+    - name: Restore node_modules
+      uses: actions/cache@v1
+      id: cache-node_modules
+      with:
+        path: node_modules
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Dependencies
       run: npm install
     - name: Build
       run: npm run build
+      env:
+        CI: true
     - name: Save Build Artefact
       uses: actions/upload-artifact@v1
       with:
@@ -53,14 +61,20 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: site-artefact
-    - name: Restore Cached Dependencies
+    - uses: actions/setup-node@master
+    - name: Restore NPM Cache
       uses: actions/cache@v1
       id: cache-npm
       with:
         path: ~/.npm
         key: npm-${{ hashFiles('**/package-lock.json') }}
-    - uses: actions/setup-node@master
-    - name: Reinstall Dependencies
+    - name: Restore node_modules
+      uses: actions/cache@v1
+      id: cache-node_modules
+      with:
+        path: node_modules
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install Dependencies
       run: npm install
     - name: Run Tests
       run: npm test
