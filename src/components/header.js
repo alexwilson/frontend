@@ -1,6 +1,9 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, {Component} from "react"
+import React, {Component, Suspense} from "react"
+import promiseImageLoader from 'promise-image-loader'
+import fetch from "isomorphic-fetch"
+
 
 const ALink = ({url, children}) => {
   const isAbsolute = /^(https?:)?\/\//
@@ -27,30 +30,95 @@ const Icon = ({src, title}) => (
   />
 )
 
+class HeaderImage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      preloadedImage: undefined
+    }
+  }
+
+  preloadImage(src) {
+    const actualSrc = this.imageService(this.props.src, [])
+    promiseImageLoader(new Image(actualSrc))
+      .then(() => this.setState({
+        preloadedImage: actualSrc
+      }))
+      .catch(() => {})
+  }
+
+  imageService(url, params = []) {
+    return `https://imagecdn.app/v2/image/${encodeURIComponent(url)}?${params.join('&')}`
+  }
+
+  render() {
+    return <div className={`alex-header-image`}>
+      <picture className={`alex-header-image--container`}>
+        <img
+          className={`alex-header-image__blur`}
+          onLoad={this.preloadImage.bind(this, this.props.src)}
+          src={this.imageService(this.props.src, [
+            'width=25',
+            'height=10',
+            'quality=low',
+            'format=jpg'
+          ])} />
+        <img
+          className={`alex-header-image__main`}
+          src={this.state.preloadedImage}
+          style={{
+            opacity: this.state.preloadedImage !== undefined ? 1 : 0
+          }}/>
+      </picture>
+    </div>
+  }
+}
+
 class Header extends Component {
 
   constructor(props) {
     super(props)
     this.header = React.createRef()
     this.headerNav = React.createRef()
+    this.state = {
+      backgroundImage: props.image, // Is this bad?
+      backgroundImageLoaded: false
+    }
   }
 
   componentDidMount() {
     this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
-    this.header.current.style.position = "sticky"
+    this.header.current.style.position = "sticky";
+
+    if (!this.state.backgroundImage || this.state.backgroundImage === null) {
+      this.fetchRandomImage()
+    }
+  }
+
+  fetchRandomImage() {
+    const params = [
+      "format=json",
+      "provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com"
+    ]
+    fetch(`https://random.responsiveimages.io/v1/image?${params.join('&')}`)
+      .then(res => res.json())
+      .then(image => {
+        if (!image.url) return
+        this.setState({
+          backgroundImage: image.url
+        })
+      })
+      .catch(_ => null)
   }
 
   render() {
-
-    const pathname = this.props.location.pathname
-    const headerStyle = {}
-
-    if (this.props.image) {
-      headerStyle.backgroundImage = `url('https://imagecdn.app/v2/image/${encodeURIComponent(this.props.image)}')`
-    }
+    const {pathname} = this.props.location
 
     return (
-      <header role="banner" className={`alex-header ${this.props.image ? 'alex-header--with-image':null}`} ref={this.header} style={headerStyle}>
+      <header role="banner" className={`alex-header`} ref={this.header}>
+
+        <HeaderImage src={this.state.backgroundImage}/>
+
         <div className="alex-header--container">
 
           <div className="alex-header__about">
