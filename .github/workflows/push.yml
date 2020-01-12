@@ -18,10 +18,10 @@ jobs:
         fetch-depth: 1
     - name: Restore Cached Dependencies
       uses: actions/cache@v1
-      id: cache-node_modules
+      id: cache-npm
       with:
-        path: node_modules
-        key: ${{ hashFiles('package.json') }}
+        path: ~/.npm
+        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Restore Cached Build
       uses: actions/cache@v1
       id: cache-public
@@ -55,10 +55,10 @@ jobs:
         name: site-artefact
     - name: Restore Cached Dependencies
       uses: actions/cache@v1
-      id: cache-node_modules
+      id: cache-npm
       with:
-        path: node_modules
-        key: ${{ hashFiles('package.json') }}
+        path: ~/.npm
+        key: npm-${{ hashFiles('**/package-lock.json') }}
     - uses: actions/setup-node@master
     - name: Reinstall Dependencies
       run: npm install
