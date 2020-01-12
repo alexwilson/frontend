@@ -12,14 +12,9 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: Install
-      uses: actions/setup-node@master
-      with:
-        args: npm install
-    - name: Build
-      uses: actions/setup-node@master
-      with:
-        args: npm run build
+    - uses: actions/setup-node@master
+    - run: npm install
+    - run: npm run build
     - name: Deploy
       if: github.ref == 'refs/heads/master'
       uses: ./.github/actions/github-pages/
