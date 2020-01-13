@@ -15,7 +15,6 @@
 @import "alex/layout";
 @import "alex/header";
 @import "alex/footer";
-@import "alex/forms";
 @import "alex/buttons";
 @import "alex/pager";
 @import "alex/article";
@@ -23,6 +22,8 @@
 @import "alex/home";
 @import "alex/listing";
 @import "alex/cards";
+@import "alex/form";
+@import "alex/consultancy";
 
 .panel {
 	background: $brand;
