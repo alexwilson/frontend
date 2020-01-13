@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'gatsby'
 
 import Layout from "../components/layout"
 import ResponsiveImage from "../components/responsive-image"
@@ -15,7 +16,7 @@ export default function aboutMe({location}) {
           </section>
           <section className="alex-article__body">
               <p>
-                  In my downtime, I enjoy travelling, hiking and amateur photography. Most often I can be found reading, or tinkering with computers, servers and code.
+                  In my downtime, I enjoy travelling, music production and photography. Most often I can be found reading, or tinkering with computers, servers and code.
               </p>
               <div className="alex-article__pane">
                   <p className="alex-article__pane-half iota">
@@ -64,7 +65,7 @@ export default function aboutMe({location}) {
           </section>
           <section className="alex-article__body">
               <p className="theta">
-                  I am not actively seeking a new position, however for any interested parties <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please feel free to connect with me on LinkedIn</a>.
+                  I am not actively seeking a full-time role, however <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please connect with me on LinkedIn</a>. I am also <Link to={'/consultancy/'}>available for consultancy</Link>.
               </p>
               <p className="eta">
                   <b className="eta">Work Experience</b>
