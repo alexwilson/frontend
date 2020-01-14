@@ -35,7 +35,7 @@
     "gatsby-plugin-sitemap": "^2.1.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.23",
-    "gatsby-transformer-remark": "^2.3.2",
+    "gatsby-transformer-remark": "^2.6.48",
     "gatsby-transformer-sharp": "^2.1.15",
     "include-media": "^1.4.9",
     "promise-image-loader": "^0.1.2",
