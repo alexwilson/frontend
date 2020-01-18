@@ -55,7 +55,17 @@ module.exports = {
         footnotes: true,
         pedantic: true,
         gfm: true,
-        plugins: [],
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: false,
+              prompt: {
+                global: false
+              }
+            }
+          }
+        ],
       },
     },
 
