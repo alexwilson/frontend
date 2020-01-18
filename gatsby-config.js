@@ -57,6 +57,9 @@ module.exports = {
         gfm: true,
         plugins: [
           {
+            resolve: `gatsby-remark-embed-gist`
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               showLineNumbers: false,
