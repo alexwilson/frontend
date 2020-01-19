@@ -12,36 +12,6 @@ $points: map-values($breakpoints);
 $line-widths: map-values($measures);
 $max-widths: map-values($maxwidths);
 
-// Breakpoints. Either set one to one of the breakpoint variables, or use a custom value for minor breakpoints.
-// Defaults to min-width, but both min->max and max-width are available too.
-// Parts based on https://gist.github.com/timknight/03e6335b8816aa534cf7
-@mixin breakpoint($break: 0, $max: 0) {
-  // Type of break variable
-  $value: type-of($break);
-
-  // If it is a string (i.e. a breakpoint variable).
-  @if $value == string {
-    // If using 'break-1', 'break-2' etc output the correct breakpoints from map.
-    @if map-has-key($breakpoints, $break) {
-      @media screen and (min-width: #{map-get($breakpoints, $break) / 16px * 1em} ) { @content; }
-    } @else {
-      @warn "#{$break} is not a set breakpoint variable";
-    }
-
-  // If it is a number, use this for the breakpoint.
-  } @else if $value == number {
-    // If using other numbers output value in ems either for min, min & max or max width breakpoints.
-    $query: "all" !default;
-    @if      $break != 0 and $max != 0 { $query: "(min-width: #{$break / 16px * 1em}) and (max-width: #{$max / 16px * 1em})"; }
-    @else if $break != 0 and $max == 0 { $query: "(min-width: #{$break / 16px * 1em})"; }
-    @else if $break == 0 and $max != 0 { $query: "(max-width: #{$max / 16px * 1em})"; }
-    @media #{$query} { @content; }
-
-  } @else {
-    @warn "#{$break} is not valid to use as a breakpoint";
-  }
-}
-
 // Root font-size in %, outputted in correct breakpoints.
 @mixin rootsize {
   font-size: nth($sizes, 1) / 16 * 100%;
