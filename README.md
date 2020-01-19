@@ -17,6 +17,7 @@ npm run develop
 
 
 ## Tools
+- [Deployments](https://github.com/antoligy/personal-website/commits/gh-pages)
 - [Google Analytics](https://analytics.google.com/analytics/web/)
 - [Google Webmaster Tools](https://search.google.com/search-console?resource_id=https%3A%2F%2Falexwilson.tech%2F)
 - [Slack](https://itsalex.slack.com/archives/CSJT9KK2R)
