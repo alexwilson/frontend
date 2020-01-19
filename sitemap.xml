@@ -19,6 +19,7 @@
 <url> <loc>https://alexwilson.tech/blog/2019/08/24/immutable-infratructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2016/01/31/scaling-irc-tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2018/12/08/weeknotes-reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/blog/2020/01/15/deploying-static-sites-with-github-actions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/talks/2019-03-19-qa-is-not-quality-brumjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/cloudflare/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/devops/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -52,6 +53,8 @@
 <url> <loc>https://alexwilson.tech/topic/infrastructure-as-code/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/irc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/observability/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/about-me/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

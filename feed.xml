@@ -1,4 +1,299 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 19 Jan 2020 11:52:33 GMT</lastBuildDate><item><title><![CDATA[Explainer: Immutable Infrastructure]]></title><description><![CDATA[Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs…]]></description><link>https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</guid><pubDate>Sat, 24 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs rolled along. The VMs became auto-scalable, and in time, started running scores of containers&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 19 Jan 2020 12:40:16 GMT</lastBuildDate><item><title><![CDATA[Deploying static sites with Github Actions]]></title><description><![CDATA[First, some background: Github Pages is a brilliant way to build static websites quickly and easily. However it is quite
+limited as it only…]]></description><link>https:/alexwilson.tech/blog/2020/01/15/deploying-static-sites-with-github-actions/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2020/01/15/deploying-static-sites-with-github-actions/</guid><pubDate>Wed, 15 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;First, some background:&lt;/p&gt;
+&lt;p&gt;Github Pages is a brilliant way to build static websites quickly and easily. However it is quite
+limited as it only runs Jekyll, which is in safe mode — meaning only template customisations were
+possible.  Last year after growing frustrated with hacking together template-driven functionality
+like RSS feeds and article recommendations, I replatformed to Gatsby.&lt;/p&gt;
+&lt;p&gt;Porting was relatively straightforward and has brought a swathe of benefits including pluggable APIs
+and the ability to write unit tests, but it also introduced a new problem: I didn&apos;t have a way of
+deploying the site.&lt;/p&gt;
+&lt;p&gt;Exploring my options, pairing Github Actions (to build) with Github Pages (to host) seemed rather
+attractive as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Actions have tight integration with Github allowing me to keep my workflows in one place. Other
+CI/CD offerings added extra overhead.&lt;/li&gt;
+&lt;li&gt;Actions seemed customisable enough to implement Github Pages again with minimal overhead.&lt;/li&gt;
+&lt;li&gt;If anything happens to Actions or Pages, both are simple enough that migrating to something else
+is realistic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These all proved to be true, and I was able to quickly put together something quite usable.
+A few months of small tweaks and one refactor later, I am happy enough to talk about what I did.&lt;/p&gt;
+&lt;h2&gt;Building a workflow in Github Actions&lt;/h2&gt;
+&lt;p&gt;Github Actions is still relatively new so there&apos;s not a lot of documentation out there.&lt;/p&gt;
+&lt;p&gt;In order to start with writing a Github Actions script, there are three things we need to know.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What it is called, with the &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt; key.&lt;/li&gt;
+&lt;li&gt;When to run this action, with the &lt;code class=&quot;language-text&quot;&gt;on&lt;/code&gt; key.&lt;/li&gt;
+&lt;li&gt;What it will do, with the &lt;code class=&quot;language-text&quot;&gt;jobs&lt;/code&gt; key.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Starting with the simplest, the name, I called my workflow &quot;Build, Test and Deploy&quot;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Test and Deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, I wanted this to run for all branches.  An important note is that &lt;strong&gt;Github Actions will not
+trigger for pushes that it performs&lt;/strong&gt;, so while I have excluded the &lt;code class=&quot;language-text&quot;&gt;gh-pages&lt;/code&gt; branch here, this
+was more for readability than to prevent unexpected behaviour.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;!gh-pages&apos;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;*&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Lastly, we can start defining some jobs. Each has a unique ID which is also its key in the jobs block,
+and a &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt; key which is used the UI.&lt;/p&gt;
+&lt;p&gt;I kept this simple, and required each step to wait for the previous one to succeed with the &lt;code class=&quot;language-text&quot;&gt;needs&lt;/code&gt; key.
+We can choose a task-runner using the &lt;code class=&quot;language-text&quot;&gt;runs-on&lt;/code&gt; key, I opted for &lt;code class=&quot;language-text&quot;&gt;ubuntu-latest&lt;/code&gt; for simplicity.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+  &lt;span class=&quot;token key atrule&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Test
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build
+  &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Putting this all together, we now have a skeleton workflow which we can customise to our needs. Here
+I&apos;ve also added a checkout step to the &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; job.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Test and Deploy
+&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;!gh-pages&apos;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;*&apos;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout Code
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@master
+  &lt;span class=&quot;token key atrule&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Test
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build
+  &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Building&lt;/h2&gt;
+&lt;p&gt;Focusing specifically on the &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; job, we can now add a few steps to perform the
+build process, so that we can later on test it and deploy it.
+Our input is our source-code and our output is a build artifact.&lt;/p&gt;
+&lt;p&gt;I&apos;ve commented inline.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Firstly, let&apos;s check-out our code.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout Code
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@master
+
+    &lt;span class=&quot;token comment&quot;&gt;# Now let&apos;s configure this environment to support NodeJS tooling.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;node@master
+
+    &lt;span class=&quot;token comment&quot;&gt;# Now run an npm install...&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Install Dependencies
+      &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm install
+
+    &lt;span class=&quot;token comment&quot;&gt;# Run the build-script, which is a package.json script in this case.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build
+      &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm run build
+      &lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;CI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;true &lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;# This is done to prevent output being too verbose.&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Use Github&apos;s upload-artifact action to upload our hopefully-successful build!&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# We only want the `public` folder here which contains our (optimised) static site.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Save Build Artifact
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/upload&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact@v1
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; site&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact &lt;span class=&quot;token comment&quot;&gt;# A unique key (and name) for the artifact in question.&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; public        &lt;span class=&quot;token comment&quot;&gt;# This is what we&apos;d like to keep, we want `public` but any file/folder works.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Awesome! Now we have a workflow which builds and saves an artifact, which is actually downloadable
+from the Github UI.&lt;/p&gt;
+&lt;h2&gt;Testing&lt;/h2&gt;
+&lt;p&gt;Now that the site is being built, let&apos;s add a few steps to the test workflow to run some tests.
+Our input is our source code, our build artifact. We don&apos;t return anything, but we do throw an error
+if any tests fail.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Test
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Again, we check-out our code.&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# This is needed as we will be executing tests which are outside of the artifact.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@master
+
+    &lt;span class=&quot;token comment&quot;&gt;# Next up, we download the pre-built artifact.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Download Website Artifact
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/download&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact@v1
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; site&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact &lt;span class=&quot;token comment&quot;&gt;# We reference the original artifact name.&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; public        &lt;span class=&quot;token comment&quot;&gt;# and instruct that the artifact is restored to the `public` folder.&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Configure node and reinstall dependencies (each task has a unique workspace!)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;node@master
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Install Dependencies
+      &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm install
+
+    &lt;span class=&quot;token comment&quot;&gt;# Finally run our tests. The output can be tweaked so Github Actions better understands it.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Run Tests
+      &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm test&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This can absolutely be done inside the build step to save time — I kept them separate to enable
+adding end-to-end tests and a few other tools which are irrelevant to the actual build process.&lt;/p&gt;
+&lt;h2&gt;Deploying&lt;/h2&gt;
+&lt;p&gt;Now that we&apos;ve built and tested an artifact, we&apos;re finally ready to deploy it. This time things are
+a little bit trickier, and we&apos;re going to break out into a custom action.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;  &lt;span class=&quot;token comment&quot;&gt;# Deploy to Github Pages environment&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;deploy-production&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy to Production
+    &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+
+    &lt;span class=&quot;token comment&quot;&gt;# I&apos;ve added this extra step, so that this task *only* runs on the master branch.&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# This syntax is quite expressive and allows for much richer conditions.&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; github.ref == &apos;refs/heads/master&apos;
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Again we check-out.  This time as we&apos;ll be referencing a custom action!&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@master
+
+    &lt;span class=&quot;token comment&quot;&gt;# And again, we download the website artifact. This time so we can deploy it!&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Download Website Artifact
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/download&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact@v1
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; site&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;artifact
+        &lt;span class=&quot;token key atrule&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; public
+
+    &lt;span class=&quot;token comment&quot;&gt;# A custom action!  I&apos;ll explain a bit more about this below.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy to Github Pages
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./.github/actions/github&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pages/
+      &lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;GITHUB_TOKEN&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.GITHUB_TOKEN &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; public&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So now let&apos;s look at how we can push to the Github Pages branch of this current repository&lt;/p&gt;
+&lt;p&gt;This operation takes place primarily in Git, and luckily we have enough information available to us
+to be able to find and push to Github&apos;s HTTP Git endpoint. As we&apos;re deploying an artifact each time
+we don&apos;t have access to the existing Git history, so let&apos;s go ahead and create a new repository and
+push it every time.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; -e
+
+&lt;span class=&quot;token comment&quot;&gt;# Here we take an argument to choose which folder we release.&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$*&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Deploying &lt;span class=&quot;token variable&quot;&gt;${GITHUB_SHA}&lt;/span&gt; to GitHub Pages&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;REPOSITORY&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;https://x-access-token:&lt;span class=&quot;token variable&quot;&gt;${GITHUB_TOKEN}&lt;/span&gt;@github.com/&lt;span class=&quot;token variable&quot;&gt;${GITHUB_REPOSITORY}&lt;/span&gt;.git&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;## Create a new repository and reference this one, with an HTTP token.&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin &lt;span class=&quot;token variable&quot;&gt;$REPOSITORY&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;## Checkout the gh-pages branch, and reset to the latest version.&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout -b gh-pages
+
+&lt;span class=&quot;token comment&quot;&gt;## Configure Git to perform the commit as the user who triggered this action.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;## If the build wasn&apos;t triggered by a human this will be the person who last committed to the branch&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config user.name &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${GITHUB_ACTOR}&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config user.email &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${GITHUB_ACTOR}&lt;/span&gt;@users.noreply.github.com&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;## Finally, add the contents of our script&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Deploying &lt;span class=&quot;token variable&quot;&gt;${GITHUB_SHA}&lt;/span&gt; to Github Pages&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;## And force push to the gh-pages branch so Github Pages can serve it!&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push --force origin gh-pages:gh-pages
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -fr .git
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$GITHUB_WORKSPACE&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Successfully deployed.&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Lastly, to be able to use this custom shell script we wrap it in a basic Dockerfile including Git
+and minimal boilerplate to make it usable as a custom action.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# We use the alpine git image as it&apos;s the smallest for what we need.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine/git&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+
+&lt;span class=&quot;token comment&quot;&gt;# Github actions use a few Docker labels for interacting with custom actions.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;LABEL&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;maintainer&quot;&lt;/span&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;Alex Wilson &amp;lt;alex@alexwilson.tech&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;LABEL&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.github.actions.name&quot;&lt;/span&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;GitHub Pages Deploy&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;LABEL&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.github.actions.description&quot;&lt;/span&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;Deploy to GitHub Pages.&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;LABEL&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.github.actions.icon&quot;&lt;/span&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;upload-cloud&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;LABEL&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.github.actions.color&quot;&lt;/span&gt;=&lt;span class=&quot;token string&quot;&gt;&quot;blue&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# The most important bit other than the parent image is this: We add the below script&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# to actually do the Github Pages deploy step and make it the entrypoint.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; entrypoint.sh /entrypoint.sh
+&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/entrypoint.sh&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Deploying - Letting Github Pages know&lt;/h2&gt;
+&lt;p&gt;Well, unfortunately that wasn&apos;t enough.  Even though we&apos;ve pushed to the &lt;code class=&quot;language-text&quot;&gt;gh-pages&lt;/code&gt; branch, Github
+won&apos;t do anything because we &lt;em&gt;pushed&lt;/em&gt; this using Github Actions.  Remember that I said that Actions
+won&apos;t trigger itself to prevent a circular dependency?  Well this is &lt;em&gt;that&lt;/em&gt; protection in action.&lt;/p&gt;
+&lt;p&gt;Thankfully, we can mitigate this by using the Github Pages API.  We use it to queue another Pages
+build as our final deployment step.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Trigger a Pages Update
+      &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+        curl -sS -X POST -H &quot;Authorization: Bearer ${{ secrets.GITHUB_PAGES_DEPLOY_TOKEN }}&quot; \
+        https://api.github.com/repos/${{ github.repository }}/pages/builds \&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There is a new prerequisite - we now need to add the &lt;code class=&quot;language-text&quot;&gt;GITHUB_PAGES_DEPLOY_TOKEN&lt;/code&gt; environment variable,
+with a new Personal Access Token which has Repository scopes.&lt;/p&gt;
+&lt;h2&gt;Optimising the whole thing&lt;/h2&gt;
+&lt;p&gt;You may have noticed that we&apos;re repeatedly reinstalling dependencies which is a little bit wasteful.
+Thankfully, as well as artifact support, Github Actions also offer us a caching mechanism which we can
+to speed this up.&lt;/p&gt;
+&lt;p&gt;It&apos;s important to mention that Github only keeps the cache alive for a maximum of 7 days since the last
+build, but if you build at least a week this won&apos;t be an issue.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;node@master
+
+    &lt;span class=&quot;token comment&quot;&gt;# Store NPM&apos;s global cache, using the package-lock.json our cache key.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Restore NPM Cache
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/cache@v1
+      &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; cache&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;npm
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ~/.npm
+        &lt;span class=&quot;token key atrule&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; hashFiles(&apos;**/package&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;lock.json&apos;) &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# And the same for node_modules, using the package-lock.json our cache key.&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Restore node_modules
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/cache@v1
+      &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; cache&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;node_modules
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; node_modules
+        &lt;span class=&quot;token key atrule&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; node_modules&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; hashFiles(&apos;**/package&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;lock.json&apos;) &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We&apos;re also able to tweak the &lt;code class=&quot;language-text&quot;&gt;checkout&lt;/code&gt; step to speed it up a bit, by adding the shallow clone directive.
+After-all, we are not interacting with the project history here — we&apos;re only building it.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout
+      &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@master
+      &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;fetch-depth&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Adding history and rollbacks&lt;/h2&gt;
+&lt;p&gt;A nice benefit of using this workflow on Github Pages is that we&apos;re also creating an artifact ins Git
+itself which makes rolling back a standard git operation, something like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;command-line-prompt&quot;&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; fetch origin
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout -t origin/gh-pages
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; reset &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;commit-id&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push gh-pages --force&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;One problem: We currently overwrite our history so we can&apos;t revert.&lt;/p&gt;
+&lt;p&gt;To try and remedy this I made a small adjustment:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## We still checkout the gh-pages branch&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout -b gh-pages
+
+&lt;span class=&quot;token comment&quot;&gt;# But this time, we fetch the existing one&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; fetch origin gh-pages
+
+&lt;span class=&quot;token comment&quot;&gt;# And soft reset to its latest commit to avoid any conflicts.&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; reset --soft origin/gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Wrapping up&lt;/h2&gt;
+&lt;p&gt;This workflow has been fantastic for me and I&apos;ve been able to focus on making site adjustments
+without constantly having to repair a build process.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/antoligy/personal-website/blob/master/.github/workflows/build-test-deploy.yml&quot;&gt;You can see the entire, finished workflow here&lt;/a&gt; and &lt;a href=&quot;https://github.com/antoligy/personal-website/tree/master/.github/actions/github-pages&quot;&gt;the custom action here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As well as Actions I have now added a few bots, a scheduled build (to detect problems) and Slack
+notifications, all of which let me keep up-to-date with the fast-moving world of node dependencies
+without incurring side-project fatigue.&lt;/p&gt;
+&lt;p&gt;Next up I&apos;ll be looking at creative ways of improving the writing workflow (spellcheck and editor
+experience).&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Explainer: Immutable Infrastructure]]></title><description><![CDATA[Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs…]]></description><link>https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</guid><pubDate>Sat, 24 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs rolled along. The VMs became auto-scalable, and in time, started running scores of containers&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Today most modern software being deployed to the web is likely to run in a container of some sort.&lt;/p&gt;
 &lt;p&gt;We got here by continually optimising to balance ever-growing complexity in our technology against problems emerging when us pesky humans try to use, operate and adapt our technology.
 By using code to describe as much as we can about how we expect our applications to run, we’re able to make some of the same assumptions we do about our software
