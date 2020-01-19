@@ -7,7 +7,7 @@ author: alex
 ---
 
 Of all of the services Amazon Web Services pushes, S3 (Simple Storage Service) is maybe the most versatile and well-known: It “just works” and is a fantastic service for many use-cases.
-It turns out though that you can have too much of a good thing as many have learned [including Amazon](https://www.theregister.co.uk/2017/03/01/aws_s3_outage/), and recently I have run into a reminder that S3’s API still leaves a little to be desired.  
+It turns out though that you can have too much of a good thing as many have learned [including Amazon](https://www.theregister.co.uk/2017/03/01/aws_s3_outage/), and recently I have run into a reminder that S3’s API still leaves a little to be desired.
 
 ## The problem
 My use-case was pretty simple.  I had a bucket with about 2.5 million objects and needed to update the ACL on these objects to make them publicly readable.  Simple enough ... right?
@@ -33,7 +33,7 @@ I’m glad that the documentation is fairly conclusive, which is pretty refreshi
 
 ### Attempt #2 — Try to recursively update all Object metadata
 This was a bit silly.  Various StackOverflow answers for tangentially related problems suggest that something like this might work:
-```
+```bash{promptUser: alex}
 aws s3 cp --metadata FOO=bar --recursive --acl public-read --profile test--prod s3://test-bucket-2/files/ s3://test-bucket-2/files/
 ```
 It didn’t as no metadata was being changed.  It could have been an ideal approach as no API calls would need to be made from my machine for this operation to complete.
@@ -55,7 +55,7 @@ I could’ve done something nicer here such as implementing a proper worker pool
 Goroutines were essential with this approach as it had to perform well. I effectively ran 2.5 thousand API calls to list the objects in this bucket and a further 2.5 million API calls to update those object permissions.
 
 And it ran _beautifully_.  In just over an hour all 2.5 million objects had the correct ACL!
-```
+```bash{promptUser: alex}
 AWS_PROFILE=test--profile ./s3-recursive-acl --bucket test-bucket-1 --region ap-northeast-1 --path test/
 ```
 
@@ -65,7 +65,7 @@ Not specific to this particular project, there are a few things in Golang that w
 
 Passing pointers to Goroutines is very risky as the pointers can and will be reassigned.  _Always_ make a copy of the true value you want first.  You can convert formats within the Goroutine itself if performance is a concern (in order not to block).
 
-```
+```go
         for _, object := range page.Contents {
             // Make a copy of the value allocated to the pointer before we do anything with it!
             key := *object.Key
@@ -78,7 +78,7 @@ Thankfully [WaitGroup](https://golang.org/pkg/sync/#WaitGroup) was added to the 
 
 Instantiate a WaitGroup, and instruct the application to block until the WaitGroup is terminated.  For every non-blocking operation that is spun up, increment the WaitGroup counter, and then reduce it when the operations complete.  This approach works well and has virtually no footprint.
 
-```
+```go
 func main() {
 
     // Create a WaitGroup

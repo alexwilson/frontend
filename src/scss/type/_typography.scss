@@ -335,27 +335,27 @@ html {
       padding-top: 3rem;
     }
 
-    // Code block.
-    code, pre {
-      background-color: $codeBackgroundColour;
-      font-family: unquote(map-get($monospacetype, font-family));
-    }
+    // // Code block.
+    // code, pre {
+    //   background-color: $codeBackgroundColour;
+    //   font-family: unquote(map-get($monospacetype, font-family));
+    // }
 
-    pre {
-      display: block;
-      margin-bottom: 2rem;
-      padding: 1rem;
-      white-space: pre;
-      white-space: pre-wrap;
-      word-break: break-all;
-      word-wrap: break-word;
-    }
+    // pre {
+    //   display: block;
+    //   margin-bottom: 2rem;
+    //   padding: 1rem;
+    //   white-space: pre;
+    //   white-space: pre-wrap;
+    //   word-break: break-all;
+    //   word-wrap: break-word;
+    // }
 
-    code {
-      @include fontsize(theta, all);
+    // code {
+    //   @include fontsize(theta, all);
 
-      line-height: 1rem;
-    }
+    //   line-height: 1rem;
+    // }
 
     // Letter space those capitals people, Jan Tschichold would be proud.
     .upper {
