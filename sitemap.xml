@@ -17,6 +17,7 @@
 <url> <loc>https://alexwilson.tech/blog/2019/04/13/weeknotes-journalism-raves/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/08/24/immutable-infratructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2016/01/31/scaling-irc-tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2018/12/08/weeknotes-reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2020/01/15/deploying-static-sites-with-github-actions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -51,6 +52,9 @@
 <url> <loc>https://alexwilson.tech/topic/explainer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/immutable-infrastructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/infrastructure-as-code/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/graphql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/legacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/migration/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/irc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
