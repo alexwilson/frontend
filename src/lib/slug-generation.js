@@ -12,7 +12,7 @@ const generateBlogSlug = (filePath) => {
 
   return path.posix.join(
     `/blog`,
-    format(new Date(date), "YYYY/MM/DD"),
+    format(new Date(date), "yyyy/MM/dd"),
     slug,
     `/`
   )
