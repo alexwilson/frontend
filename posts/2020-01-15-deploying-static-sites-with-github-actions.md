@@ -77,7 +77,7 @@ jobs:
     needs: deploy
 ```
 
-Putting this all together, we now have a skeletion workflow which we can customise to our needs. Here
+Putting this all together, we now have a skeleton workflow which we can customise to our needs. Here
 I've also added a checkout step to the `build` job.
 
 ```yaml
@@ -106,7 +106,7 @@ jobs:
 
 ## Building
 
-Focussing specifically on the `build` job, we can now add a few steps to perform the
+Focusing specifically on the `build` job, we can now add a few steps to perform the
 build process, so that we can later on test it and deploy it.
 Our input is our source-code and our output is a build artifact.
 
@@ -242,7 +242,7 @@ REPOSITORY="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITOR
 git init
 git remote add origin $REPOSITORY
 
-## Checkout the gh-pgaes branch, and reset to the latest version.
+## Checkout the gh-pages branch, and reset to the latest version.
 git checkout -b gh-pages
 
 ## Configure Git to perform the commit as the user who triggered this action.
@@ -289,8 +289,8 @@ Well, unfortunately that wasn't enough.  Even though we've pushed to the `gh-pag
 won't do anything because we _pushed_ this using Github Actions.  Remember that I said that Actions
 won't trigger itself to prevent a circular dependency?  Well this is _that_ protection in action.
 
-Thankfully, we can mitigate this by using the Github Pages API.  We use it to queue another a Pages
-build as our final deploy step.
+Thankfully, we can mitigate this by using the Github Pages API.  We use it to queue another Pages
+build as our final deployment step.
 
 ```yaml
     - name: Trigger a Pages Update
@@ -354,7 +354,7 @@ git push gh-pages --force
 
 One problem: We currently overwrite our history so we can't revert.
 
-To try and rememdy this I made a small adjustment:
+To try and remedy this I made a small adjustment:
 
 ```bash
 ## We still checkout the gh-pages branch
@@ -372,8 +372,12 @@ git reset --soft origin/gh-pages
 This workflow has been fantastic for me and I've been able to focus on making site adjustments
 without constantly having to repair a build process.
 
+[You can see the entire, finished workflow here](https://github.com/antoligy/personal-website/blob/master/.github/workflows/build-test-deploy.yml) and [the custom action here](https://github.com/antoligy/personal-website/tree/master/.github/actions/github-pages).
+
+
 As well as Actions I have now added a few bots, a scheduled build (to detect problems) and Slack
 notifications, all of which let me keep up-to-date with the fast-moving world of node dependencies
 without incurring side-project fatigue.
 
-You can see the entire project here
+Next up I'll be looking at creative ways of improving the writing workflow (spellcheck and editor
+experience).
