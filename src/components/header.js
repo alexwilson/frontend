@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, {Component, Suspense} from "react"
+import React, {Component} from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
 
@@ -55,6 +55,7 @@ class HeaderImage extends Component {
     return <div className={`alex-header-image`}>
       <picture className={`alex-header-image--container`}>
         <img
+          alt="Header"
           className={`alex-header-image__blur`}
           onLoad={this.preloadImage.bind(this, this.props.src)}
           src={this.imageService(this.props.src, [
@@ -64,6 +65,7 @@ class HeaderImage extends Component {
             'format=jpg'
           ])} />
         <img
+          alt="Header"
           className={`alex-header-image__main`}
           src={this.state.preloadedImage}
           style={{

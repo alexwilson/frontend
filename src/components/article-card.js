@@ -1,6 +1,5 @@
 import { Link } from "gatsby"
 import { format as formatDate } from 'date-fns'
-import PropTypes, { node } from "prop-types"
 import React from "react"
 import ResponsiveImage from './responsive-image'
 
@@ -45,12 +44,3 @@ export default function articleCard({article, withBody = true, withImage = true,
   )
 
 }
-
-// export const query = graphql`
-//   fragment SiteInformation on Site {
-//     siteMetadata {
-//       title
-//       siteDescription
-//     }
-//   }
-// `
