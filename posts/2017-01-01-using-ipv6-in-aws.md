@@ -42,7 +42,7 @@ some time!
 
 ### 3) Enable IPv6 auto-assign in subnets ###
 - By default each subnet will auto-allocate IPv4
-- From auto-assign IP settings, enable IPv6 
+- From auto-assign IP settings, enable IPv6
 
 ### 4) Update VPC route table to add IPv6 route to the IGW. ###
 - By default, VPC route tables have `0.0.0.0/0` routed through a default Internet Gateway.
@@ -80,13 +80,13 @@ it can be assigned an IPv6 address via DHCP.
 On Debian-like systems such as Ubuntu this can be achieved by creating a definition in `/etc/network/interfaces.d/`.
 (On older systems you'll have to modify `/etc/network/interfaces` directly.)
 
-```
+```bash
 iface eth0 inet6 dhcp
 ```
 
 You can automate this with userdata when creating a new image.
 
-```
+```bash
 #!/bin/bash
 echo "iface eth0 inet6 dhcp" > /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
 
@@ -97,7 +97,7 @@ echo "iface eth0 inet6 dhcp" > /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
 On Redhat systems such as CentOS this is a little different, and you'll need to edit the network
 script for eth0. `/etc/sysconfig/network-scripts/ifcfg-eth0`
 
-```
+```bash
 IPV6INIT=yes
 IPV6_AUTOCONF=no
 DHCPV6C=yes
