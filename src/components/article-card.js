@@ -28,7 +28,7 @@ export default function articleCard({article, withBody = true, withImage = true,
         {(withDate !== false) ?
           <div className="alex-card__timetamp">
             <span className="dateline">
-              <time dateTime={date.toISOString()}>{ formatDate(date, "D MMM YYYY") }</time>
+              <time dateTime={date.toISOString()}>{ formatDate(date, "d MMM yyyy") }</time>
             </span>
           </div>
         :null}
