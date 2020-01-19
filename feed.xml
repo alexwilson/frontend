@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 18 Jan 2020 20:32:14 GMT</lastBuildDate><item><title><![CDATA[Explainer: Immutable Infrastructure]]></title><description><![CDATA[Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs…]]></description><link>https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</guid><pubDate>Sat, 24 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs rolled along. The VMs became auto-scalable, and in time, started running scores of containers&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 19 Jan 2020 11:52:33 GMT</lastBuildDate><item><title><![CDATA[Explainer: Immutable Infrastructure]]></title><description><![CDATA[Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs…]]></description><link>https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2019/08/24/immutable-infratructure/</guid><pubDate>Sat, 24 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Over the years we have introduced ever-more creative ways to run our software. Hand-crafted servers became configuration managed. Then VMs rolled along. The VMs became auto-scalable, and in time, started running scores of containers&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Today most modern software being deployed to the web is likely to run in a container of some sort.&lt;/p&gt;
 &lt;p&gt;We got here by continually optimising to balance ever-growing complexity in our technology against problems emerging when us pesky humans try to use, operate and adapt our technology.
 By using code to describe as much as we can about how we expect our applications to run, we’re able to make some of the same assumptions we do about our software
@@ -307,19 +307,18 @@ and Here are versions of some of the most interesting talks: &lt;a href=&quot;ht
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Democratising and automating DNS]]></title><description><![CDATA[Today I have released an infrastructure automation tool, called DNSSync, for idempotently managing the state of DNS records. This is by no…]]></description><link>https:/alexwilson.tech/blog/2018/11/10/democratising-and-automating-dns/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2018/11/10/democratising-and-automating-dns/</guid><pubDate>Sat, 10 Nov 2018 23:19:00 GMT</pubDate><content:encoded>&lt;p&gt;Today I have released an infrastructure automation tool, &lt;a href=&quot;https://github.com/stormbit/dnssync&quot;&gt;called DNSSync&lt;/a&gt;, for idempotently managing the state of DNS records.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ dnssync --provider=cloudflare --state=state.json
-2018/11/10 00:34:19 Evaluating: irc.stormbit.net type A
-2018/11/10 00:34:19 Nothing to do!
-2018/11/10 00:34:19 Evaluating: irc.stormbit.net type AAAA
-2018/11/10 00:34:19 Nothing to do!
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;command-line-prompt&quot;&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;dnssync --provider&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;cloudflare --state&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;state.json
+&lt;span class=&quot;token number&quot;&gt;2018&lt;/span&gt;/11/10 00:34:19 Evaluating: irc.stormbit.net &lt;span class=&quot;token builtin class-name&quot;&gt;type&lt;/span&gt; A
+&lt;span class=&quot;token number&quot;&gt;2018&lt;/span&gt;/11/10 00:34:19 Nothing to do&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;2018&lt;/span&gt;/11/10 00:34:19 Evaluating: irc.stormbit.net &lt;span class=&quot;token builtin class-name&quot;&gt;type&lt;/span&gt; AAAA
+&lt;span class=&quot;token number&quot;&gt;2018&lt;/span&gt;/11/10 00:34:19 Nothing to do&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is by no means the first tool in this space but it does address a few specific needs. It is also exposed both as a command line tool and as an application library which means that it is useful for small automations, as well as more customised and bespoke ones.&lt;/p&gt;
 &lt;h3&gt;Why not use Terraform instead?&lt;/h3&gt;
 &lt;p&gt;Terraform is one of my favourite tools: Amongst other things I’m using it to manage my Google Cloud account, and my teams use it for managing and testing our Fastly properties (a topic for another time).&lt;/p&gt;
 &lt;p&gt;While it’s a great first most of the time, Terraform doesn’t fit all use-cases all of the time, and in this case specifically for &lt;a href=&quot;https://www.terraform.io/docs/providers/cloudflare/index.html&quot;&gt;managing Cloudflare&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The configuration format for Cloudflare DNS is very brittle: It manages entire zones at a time, meaning you must declare &lt;em&gt;everything&lt;/em&gt; or risk losing it.&lt;/li&gt;
-&lt;li&gt;Terraform’s management of state-files is notoriously risky in mixed-ability teams which impairs its accessibility. &lt;/li&gt;
+&lt;li&gt;Terraform’s management of state-files is notoriously risky in mixed-ability teams which impairs its accessibility.&lt;/li&gt;
 &lt;li&gt;Terraform isn’t designed for just-in-time dynamic configuration changes. The case may be made that actually a CDN/DNS provider Cloudflare isn’t either, but more modern use-cases of edge infrastructure really rely on it. In fact Cloudflare Workers support dynamic origin selection and Cloudflare Apps support dynamic record alterations, but both only work for HTTP requests.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ultimately DevOps is not about repurposing tools such as Terraform, but about solving operational problems: Here, our use-case was just a little bit too far outside of the remit of anything which already existed, hence the new tool.&lt;/p&gt;
@@ -353,11 +352,11 @@ Contributions welcome!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[W
 &lt;li&gt;Speedcurve and WPT are fantastic for debugging problems, but Puppeteer on its own might be an even better Swiss-army-knife for improving WebPerf (especially in local environments): &lt;a href=&quot;https://michaljanaszek.com/blog/test-website-performance-with-puppeteer&quot;&gt;Michał Janaszek has a great article on the subject&lt;/a&gt; with useful examples and I love this candlestick chart comparing different scenarios against different network states.&lt;/li&gt;
 &lt;li&gt;Maybe obvious but still important: Saying problems are “hard” or “difficult” to a person sounds like we’re being lazy. Better to explain the reasons why something is hard, framed in a way that makes sense to that particular person.&lt;/li&gt;
 &lt;li&gt;Riiiiiight, it’s ITIL time! An &lt;em&gt;Incident&lt;/em&gt; is disruption to service [whether customer impacting, or not], a &lt;em&gt;Problem&lt;/em&gt; is the cause of multiple incidents. A good analogy for complex systems is that of &lt;em&gt;symptoms&lt;/em&gt; and &lt;em&gt;causes&lt;/em&gt;: Having a runny nose is potentially a &lt;em&gt;symptom&lt;/em&gt; caused by suffering from the flu, and the &lt;em&gt;symptom&lt;/em&gt; can be treated with certain medicine—A runny nose is an &lt;em&gt;incident&lt;/em&gt; that can be solved, but the underlying &lt;em&gt;problem&lt;/em&gt; of a flu will persist.&lt;/li&gt;
-&lt;li&gt;“Python is the second-best language for everything”: This is an old saying which has stuck in my head for a while, recently resurfaced during &lt;a href=&quot;https://www.youtube.com/watch?v=ITksU31c1WY&quot;&gt;Dan Callahan&apos;s Keynote at PyCon2018&lt;/a&gt;.  As far as languages go, of the few I’ve dealt with, it’s not one I have particularly enjoyed, and so I’ve shied away from really learning and using it properly. And yet quote still really rings true. Between all these complicated provisioning shell scripts with snippets of &lt;code&gt;awk&lt;/code&gt;, I’d much rather see them written Python because it’s imperative, syntactically consistent and easily testable: More approachable to an outsider. I think I should invest more time in learning Python.&lt;/li&gt;
+&lt;li&gt;“Python is the second-best language for everything”: This is an old saying which has stuck in my head for a while, recently resurfaced during &lt;a href=&quot;https://www.youtube.com/watch?v=ITksU31c1WY&quot;&gt;Dan Callahan&apos;s Keynote at PyCon2018&lt;/a&gt;.  As far as languages go, of the few I’ve dealt with, it’s not one I have particularly enjoyed, and so I’ve shied away from really learning and using it properly. And yet quote still really rings true. Between all these complicated provisioning shell scripts with snippets of &lt;code class=&quot;language-text&quot;&gt;awk&lt;/code&gt;, I’d much rather see them written Python because it’s imperative, syntactically consistent and easily testable: More approachable to an outsider. I think I should invest more time in learning Python.&lt;/li&gt;
 &lt;li&gt;David Maidment&apos;s talk at Thursday&apos;s &lt;a href=&quot;https://brumphp.uk&quot;&gt;BrumPHP&lt;/a&gt; on &quot;Handling Exponential Growth with ElasticSearch&quot; was an interesting and refreshingly honest insight on how a tech stack may already hide the answer to new problems, as well as some hard truths about how &quot;better&quot; performance can already be enough. &lt;a href=&quot;http://civico.net/brumtech/brumphp/4275&quot;&gt;You can watch it here&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://gamesdonequick.com/schedule/24&quot;&gt;Games Done Quick Express&lt;/a&gt; is on this weekend, in support of the &lt;a href=&quot;https://twitchcon.tiltify.com/&quot;&gt;TwitchCon Charity Plaza&lt;/a&gt;. &lt;em&gt;Neat.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Changing object permissions in large S3 buckets]]></title><description><![CDATA[Of all of the services Amazon Web Services pushes, S3 (Simple Storage Service) is maybe the most versatile and well-known: It “just works…]]></description><link>https:/alexwilson.tech/blog/2017/11/30/updating-permissions-in-large-s3-buckets/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2017/11/30/updating-permissions-in-large-s3-buckets/</guid><pubDate>Thu, 30 Nov 2017 20:44:00 GMT</pubDate><content:encoded>&lt;p&gt;Of all of the services Amazon Web Services pushes, S3 (Simple Storage Service) is maybe the most versatile and well-known: It “just works” and is a fantastic service for many use-cases.
-It turns out though that you can have too much of a good thing as many have learned &lt;a href=&quot;https://www.theregister.co.uk/2017/03/01/aws_s3_outage/&quot;&gt;including Amazon&lt;/a&gt;, and recently I have run into a reminder that S3’s API still leaves a little to be desired.  &lt;/p&gt;
+It turns out though that you can have too much of a good thing as many have learned &lt;a href=&quot;https://www.theregister.co.uk/2017/03/01/aws_s3_outage/&quot;&gt;including Amazon&lt;/a&gt;, and recently I have run into a reminder that S3’s API still leaves a little to be desired.&lt;/p&gt;
 &lt;h2&gt;The problem&lt;/h2&gt;
 &lt;p&gt;My use-case was pretty simple.  I had a bucket with about 2.5 million objects and needed to update the ACL on these objects to make them publicly readable.  Simple enough ... right?&lt;/p&gt;
 &lt;p&gt;Usually I would approach such a task by changing the bucket policies to apply to all objects regardless of their own ACLs, yet here I did not have the option to change the bucket policies, and even so, this would have caused problems for any systems relying upon canned Object ACLs.&lt;/p&gt;
@@ -368,58 +367,54 @@ It turns out though that you can have too much of a good thing as many have lear
 &lt;hr&gt;
 &lt;h3&gt;Attempt #1 — Read the docs&lt;/h3&gt;
 &lt;p&gt;Amazon’s documentation is very comprehensive when you know where to look.  Sadly, I could not find anything that helped.  Ask around AWS practitioners and Solutions Architects the consensus was that I might need to write something custom to solve this problem.  Grr, but maybe there is something, and it&apos;s just buried deep within the docs!&lt;/p&gt;
-&lt;p&gt;The file operations beneath the &lt;code&gt;aws s3&lt;/code&gt;  command line, it makes sense that there’s nothing oriented towards modifying AWS ACL in here.  I was a bit disappointed that there was nothing beneath the S3API itself, however, as recursively changing permissions (still) seems like a reasonable use-case!&lt;/p&gt;
+&lt;p&gt;The file operations beneath the &lt;code class=&quot;language-text&quot;&gt;aws s3&lt;/code&gt;  command line, it makes sense that there’s nothing oriented towards modifying AWS ACL in here.  I was a bit disappointed that there was nothing beneath the S3API itself, however, as recursively changing permissions (still) seems like a reasonable use-case!&lt;/p&gt;
 &lt;p&gt;I’m glad that the documentation is fairly conclusive, which is pretty refreshing given the spurious nature of documentation in competing services.  I’m hoping that a future version of the S3 API might introduce this functionality or something analogous to it!&lt;/p&gt;
 &lt;h3&gt;Attempt #2 — Try to recursively update all Object metadata&lt;/h3&gt;
 &lt;p&gt;This was a bit silly.  Various StackOverflow answers for tangentially related problems suggest that something like this might work:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;aws s3 cp --metadata FOO=bar --recursive --acl public-read --profile test--prod s3://test-bucket-2/files/ s3://test-bucket-2/files/
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;command-line-prompt&quot;&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;/span&gt;aws s3 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; --metadata &lt;span class=&quot;token assign-left variable&quot;&gt;FOO&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;bar --recursive --acl public-read --profile test--prod s3://test-bucket-2/files/ s3://test-bucket-2/files/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It didn’t as no metadata was being changed.  It could have been an ideal approach as no API calls would need to be made from my machine for this operation to complete.&lt;/p&gt;
 &lt;h3&gt;Attempt #3 — Start instrumenting the S3 API myself&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;putObjectAcl&lt;/code&gt; is super nice as far as API methods go.  It’s a full PUT for a given object, but only for its metadata, so all I need to know is the key and the new ACL document.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;putObjectAcl&lt;/code&gt; is super nice as far as API methods go.  It’s a full PUT for a given object, but only for its metadata, so all I need to know is the key and the new ACL document.&lt;/p&gt;
 &lt;p&gt;To save some time I started looking at the SDKs and quickly found the stellar work in the &lt;a href=&quot;https://aws.amazon.com/sdk-for-go/&quot;&gt;Golang SDK&lt;/a&gt;.
 It’s got the same base functionality as other SDKs, but with nice features such as automatic pagination (which is a huge time-saver especially in AWS where pagination can be non-linear and involves keeping track of tokens) and not enforcing a particular concurrency model.&lt;/p&gt;
 &lt;p&gt;This seemed ideal as it allowed me to implement a simplistic, yet elegant, approach:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Iterate over pages of 1000 objects at a time, recursively listing by a given key.&lt;/li&gt;
-&lt;li&gt;Spin-off Goroutines to run &lt;code&gt;putObjectACL&lt;/code&gt; for each child key.&lt;/li&gt;
+&lt;li&gt;Spin-off Goroutines to run &lt;code class=&quot;language-text&quot;&gt;putObjectACL&lt;/code&gt; for each child key.&lt;/li&gt;
 &lt;li&gt;Wait for the Goroutines to complete before exiting.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;I could’ve done something nicer here such as implementing a proper worker pool pattern, however, my batch sizes and concurrency requirements aren’t yet nearly large enough to justify this.  Maybe this is a possible improvement for the future!&lt;/p&gt;
 &lt;p&gt;Goroutines were essential with this approach as it had to perform well. I effectively ran 2.5 thousand API calls to list the objects in this bucket and a further 2.5 million API calls to update those object permissions.&lt;/p&gt;
 &lt;p&gt;And it ran &lt;em&gt;beautifully&lt;/em&gt;.  In just over an hour all 2.5 million objects had the correct ACL!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;AWS_PROFILE=test--profile ./s3-recursive-acl --bucket test-bucket-1 --region ap-northeast-1 --path test/
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;command-line-prompt&quot;&gt;&lt;span data-user=alex data-host=localhost&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;AWS_PROFILE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;test--profile ./s3-recursive-acl --bucket test-bucket-1 --region ap-northeast-1 --path test/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Go-tchas&lt;/h4&gt;
 &lt;p&gt;Not specific to this particular project, there are a few things in Golang that will definitely throw people off which I addressed whilst writing this.&lt;/p&gt;
 &lt;p&gt;Passing pointers to Goroutines is very risky as the pointers can and will be reassigned.  &lt;em&gt;Always&lt;/em&gt; make a copy of the true value you want first.  You can convert formats within the Goroutine itself if performance is a concern (in order not to block).&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;        for _, object := range page.Contents {
-            // Make a copy of the value allocated to the pointer before we do anything with it!
-            key := *object.Key
-        }
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;        &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; object &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; page&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Contents &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// Make a copy of the value allocated to the pointer before we do anything with it!&lt;/span&gt;
+            key &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Key
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Goroutines logically run outside of the main scope of the application, and while this means sometimes they will run concurrently in the main thread, the application will not wait for Goroutines to complete, so you can’t guarantee that your operations will even run!&lt;/p&gt;
 &lt;p&gt;Thankfully &lt;a href=&quot;https://golang.org/pkg/sync/#WaitGroup&quot;&gt;WaitGroup&lt;/a&gt; was added to the sync standard library to solve this problem, and it is ridiculously simple to get up and running with.&lt;/p&gt;
 &lt;p&gt;Instantiate a WaitGroup, and instruct the application to block until the WaitGroup is terminated.  For every non-blocking operation that is spun up, increment the WaitGroup counter, and then reduce it when the operations complete.  This approach works well and has virtually no footprint.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;func main() {
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 
-    // Create a WaitGroup
-    var wg sync.WaitGroup
+    &lt;span class=&quot;token comment&quot;&gt;// Create a WaitGroup&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; wg sync&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;WaitGroup
 
-    go func() {
+    &lt;span class=&quot;token keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 
-        // Ask the WaitGroup to wait.
-        wg.Add(1)
-        // Do some work here.
+        &lt;span class=&quot;token comment&quot;&gt;// Ask the WaitGroup to wait.&lt;/span&gt;
+        wg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// Do some work here.&lt;/span&gt;
 
-        // Tell the WaitGroup we&apos;re done
-        defer wg.Done()
-    }
+        &lt;span class=&quot;token comment&quot;&gt;// Tell the WaitGroup we&apos;re done&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;defer&lt;/span&gt; wg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
-    // Block until our tasks are done.
-    wg.Wait()
-}
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Block until our tasks are done.&lt;/span&gt;
+    wg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Wait&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Wrap-up&lt;/h3&gt;
 &lt;p&gt;I’m glad that S3 is this simple to orchestrate.  Being able to make this many Object Metadata changes this quickly (2.5 million objects in just over an hour?  That’s ~600req/s!) without being throttled is pretty spectacular. (I’m sure that running this actually within an EC2 in the same region would make this quicker)&lt;/p&gt;
 &lt;p&gt;Also: Golang is invaluable for writing these super-performant scripts.  Every time I’ve had the chance to use it to tackle a problem, I’ve found it intuitive and quick to write and run.  I hope to have more of opportunities to use it in future work.  I’m thankful that I took the time to look at other options and languages first otherwise I wouldn’t have been done so quickly!&lt;/p&gt;
@@ -459,12 +454,12 @@ comprised of public IP addresses.&lt;/li&gt;
 &lt;h3&gt;3) Enable IPv6 auto-assign in subnets&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;By default each subnet will auto-allocate IPv4&lt;/li&gt;
-&lt;li&gt;From auto-assign IP settings, enable IPv6 &lt;/li&gt;
+&lt;li&gt;From auto-assign IP settings, enable IPv6&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;4) Update VPC route table to add IPv6 route to the IGW.&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;By default, VPC route tables have &lt;code&gt;0.0.0.0/0&lt;/code&gt; routed through a default Internet Gateway.&lt;/li&gt;
-&lt;li&gt;We want to add a route with a Destination of &lt;code&gt;::/0&lt;/code&gt; through the IGW.&lt;/li&gt;
+&lt;li&gt;By default, VPC route tables have &lt;code class=&quot;language-text&quot;&gt;0.0.0.0/0&lt;/code&gt; routed through a default Internet Gateway.&lt;/li&gt;
+&lt;li&gt;We want to add a route with a Destination of &lt;code class=&quot;language-text&quot;&gt;::/0&lt;/code&gt; through the IGW.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;5) Adjust Security Groups to allow IPv6 connections.&lt;/h3&gt;
 &lt;ul&gt;
@@ -473,7 +468,7 @@ comprised of public IP addresses.&lt;/li&gt;
 &lt;li&gt;Same pattern as before, and in regions which support IPv6 you&apos;ll find that new defaults
 have been added for IPv6 wildcards.  Unfortunately, you will have to double-up on rules.&lt;/li&gt;
 &lt;li&gt;For inbound traffic, you can edit your existing rules and add the appropriate IPv6 CIDR to the end,
-separated by a comma.  e.g. &lt;code&gt;0.0.0.0/0&lt;/code&gt; becomes &lt;code&gt;0.0.0.0/0, ::/0&lt;/code&gt;.&lt;/li&gt;
+separated by a comma.  e.g. &lt;code class=&quot;language-text&quot;&gt;0.0.0.0/0&lt;/code&gt; becomes &lt;code class=&quot;language-text&quot;&gt;0.0.0.0/0, ::/0&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Concerning outbound IPv6, it may be set up by default, if so you can safely skip the rest of this.&lt;/li&gt;
 &lt;li&gt;You should be safe to allow all outbound traffic, using the same IPv6 CIDR as above!&lt;/li&gt;
 &lt;li&gt;When altering existing outbound SG rules, at the very least make sure to enable IPv6 ICMP
@@ -486,25 +481,22 @@ Before you can use this with Compute resources there may be a little more set-up
 &lt;p&gt;Most EC2 images will not support IPv6 out of the box, as AWS assigns IPv6 via DHCPv6 (and not SLAAC)
 and at time of writing only the AMI for Amazon Linux has been updated to support this.
 In-time, it&apos;s inevitable others will follow!&lt;/p&gt;
-&lt;p&gt;On a running instance you can do this manually with: &lt;code&gt;dhclient -v -6 -N&lt;/code&gt;.
+&lt;p&gt;On a running instance you can do this manually with: &lt;code class=&quot;language-text&quot;&gt;dhclient -v -6 -N&lt;/code&gt;.
 However, to survive reboots, you will want to modify the definition of your network interface so that
 it can be assigned an IPv6 address via DHCP.&lt;/p&gt;
 &lt;h3&gt;Debian / Ubuntu&lt;/h3&gt;
-&lt;p&gt;On Debian-like systems such as Ubuntu this can be achieved by creating a definition in &lt;code&gt;/etc/network/interfaces.d/&lt;/code&gt;.
-(On older systems you&apos;ll have to modify &lt;code&gt;/etc/network/interfaces&lt;/code&gt; directly.)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;iface eth0 inet6 dhcp
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;On Debian-like systems such as Ubuntu this can be achieved by creating a definition in &lt;code class=&quot;language-text&quot;&gt;/etc/network/interfaces.d/&lt;/code&gt;.
+(On older systems you&apos;ll have to modify &lt;code class=&quot;language-text&quot;&gt;/etc/network/interfaces&lt;/code&gt; directly.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;iface eth0 inet6 dhcp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can automate this with userdata when creating a new image.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/bin/bash
-echo &quot;iface eth0 inet6 dhcp&quot; &gt; /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;iface eth0 inet6 dhcp&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /etc/network/interfaces.d/99-eth0-ipv6-dhcp.cfg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Redhat / CentOS&lt;/h3&gt;
 &lt;p&gt;On Redhat systems such as CentOS this is a little different, and you&apos;ll need to edit the network
-script for eth0. &lt;code&gt;/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;IPV6INIT=yes
-IPV6_AUTOCONF=no
-DHCPV6C=yes
-&lt;/code&gt;&lt;/pre&gt;
+script for eth0. &lt;code class=&quot;language-text&quot;&gt;/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;IPV6INIT&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;yes
+&lt;span class=&quot;token assign-left variable&quot;&gt;IPV6_AUTOCONF&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;no
+&lt;span class=&quot;token assign-left variable&quot;&gt;DHCPV6C&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;yes&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Extras!&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;It&apos;s also possible to use IPv6 internally, and to completely prevent inbound internet traffic.
@@ -514,7 +506,7 @@ After creating one of these, route &quot;::/0&quot; through this new gateway, in
 &lt;/ul&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;I will update this post with CloudFormation configuration as soon as it is possible, as well as with some further thoughts and reflections on using this as time goes on.&lt;/p&gt;
-&lt;p&gt;As with everything, your mileage may vary.  That being said, if you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code&gt;@antoligy&lt;/code&gt; on Twitter,  on Github and &lt;code&gt;alex&lt;/code&gt; on StormBit.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[“Ten deploys per day”]]></title><description><![CDATA[Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I'm…]]></description><link>https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</guid><pubDate>Fri, 01 Jul 2016 22:30:00 GMT</pubDate><content:encoded>&lt;h3&gt;Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I&apos;m left feeling exhausted.&lt;/h3&gt;
+&lt;p&gt;As with everything, your mileage may vary.  That being said, if you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code class=&quot;language-text&quot;&gt;@antoligy&lt;/code&gt; on Twitter,  on Github and &lt;code class=&quot;language-text&quot;&gt;alex&lt;/code&gt; on StormBit.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[“Ten deploys per day”]]></title><description><![CDATA[Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I'm…]]></description><link>https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2016/07/01/ten-deploys-per-day/</guid><pubDate>Fri, 01 Jul 2016 22:30:00 GMT</pubDate><content:encoded>&lt;h3&gt;Today I set a new personal record: Ten full production deployments in a single day.  All on a Friday afternoon, and at the end of it all I&apos;m left feeling exhausted.&lt;/h3&gt;
 &lt;p&gt;Why choose “ten deploys per day” as the title of this post?  Ten has been something of a magic number to me: After having seen &lt;a href=&quot;https://www.youtube.com/watch?v=LdOe18KhtT4&quot;&gt;John Allspaw and Paul Hammond&apos;s talk on the subject&lt;/a&gt; and after having read Gene Kim&apos;s excellent &lt;a href=&quot;https://www.amazon.co.uk/dp/B00AZRBLHO&quot;&gt;Phoenix Project&lt;/a&gt;, ten seems like a number at which point deployments stop really being a problem - It becomes the point at which developers feel like they have full autonomy over shipping their code.&lt;/p&gt;
 &lt;p&gt;First of all some context: Around midday on Thursday, my team received a notification that for legal reasons, certain changes needed to be made across an entire estate of web products by this weekend.  Those changes were trivial, but their complexity was expounded by the fact that they needed to be separately applied to ten distinctly different products.  Altering the various codebases was relatively easy, and aside from a slight hiccup with a third party vendor we were quickly able to get those changes out of the way. &lt;/p&gt;
 &lt;p&gt;That&apos;s not what I want to talk about.  Instead, I want to talk about how to go from having barely achieved ten, to making it a boring norm.&lt;/p&gt;
@@ -539,14 +531,13 @@ After creating one of these, route &quot;::/0&quot; through this new gateway, in
 &lt;hr&gt;
 &lt;p&gt;For a long time now I have led a small IRC network which a great deal many people call home.  Overall it has been a very rewarding experience, and I&apos;ve gained many useful technical and managerial skills, however it&apos;s not all sunshine and roses.  Perhaps one of my biggest pet peeves with the current state of IRC is something that I would very much like to improve, and that is the practical scalability of IRC. (i.e. not just more users, but more developers/staff and coping with quick changes)&lt;/p&gt;
 &lt;p&gt;To provide a bit of background, the vast majority of IRC networks run servers following a star topology, on hand-configured/secured servers.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Hub 1
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Hub 1
 |-- Leaf A
 |-- Hub 2
 | |- Services
 | |- Leaf B
 | `- Leaf C
-`-- Leaf D
-&lt;/code&gt;&lt;/pre&gt;
+`-- Leaf D&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Traditionally this has always made sense, but then what happens if a central node (i.e. in this diagram, &quot;Hub 2&quot;) goes down?  Massive service disruption.  Even if someone has thought ahead and has set up automatic fallback routes and servers, there are other mission-critical components in a traditional IRC network such as the services and security application servers which, should they be available on a network, massively enhance the experience offered by a network and may include fundamental features that users have come to expect from a particular network.&lt;/p&gt;
 &lt;p&gt;With many networks, including Rizon and StormBit, this type of disruption - known as a netsplit - is considered the most unpopular aspect of the overall service.  To a robust community they are definite dealbreakers and understandably so, after all who wants to be in the middle of a conversation (or heated debate!) only for half of the participants to go up in smoke?&lt;/p&gt;
 &lt;p&gt;Indeed, going by &lt;a href=&quot;http://stormbit.net/2016/01/17/year-of-the-monkey.html&quot;&gt;the 2015 user survey&lt;/a&gt; the greatest cause of dissatisfaction (a whopping 56%) with StormBit&apos;s service was the downtime and disruption caused by netsplits, with similar numbers from 2014.&lt;/p&gt;
@@ -563,7 +554,7 @@ After creating one of these, route &quot;::/0&quot; through this new gateway, in
 Consul also offers us decent monitoring abilities, and so I have written a small utility in Go to perform a simplistic healthcheck on IRC servers, called &lt;a href=&quot;https://github.com/StormBit/ircd-healthcheck&quot;&gt;ircd-healthcheck&lt;/a&gt;.  This should be readily usable with other monitoring systems too, a few solutions already exist but none that I could easily make work with Consul.&lt;/p&gt;
 &lt;p&gt;(For future improvements, we are looking at alternative IRCd technology, and the option of better integrating an external server registry into InspIRCd by means of a custom module - so watch this space for that!)&lt;/p&gt;
 &lt;p&gt;Ultimately I feel like there&apos;s plenty of room in this space for better approaches to automatically scale IRC, and to future-proof it in terms of practices.  If anything, the approach that we are taking at StormBit just to improve our resiliency seems like overkill and is definitely daunting to other networks of lower technical ability or of greater size.  I&apos;m hoping that this article might spark some conversations about how to start catching up to the technical proficiency of our relatives in other areas.&lt;/p&gt;
-&lt;p&gt;If you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code&gt;@antoligy&lt;/code&gt; on Twitter, &lt;code&gt;alex&lt;/code&gt; on StormBit, and there&apos;s a comment box below.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Rebuilding]]></title><description><![CDATA[Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it's the first thing people see when…]]></description><link>https:/alexwilson.tech/blog/2015/07/12/rebuilding/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2015/07/12/rebuilding/</guid><pubDate>Sun, 12 Jul 2015 15:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it&apos;s the first thing people see when they look me up, but even that isn&apos;t enough to prioritize it above my more interesting projects, both paid and otherwise.  However I have finally gone ahead and done it, and have now finished rebuilding my website only a year and a half after I said I would.&lt;/p&gt;
+&lt;p&gt;If you have any questions or feedback, please don&apos;t hesitate to drop me a line.  I&apos;m &lt;code class=&quot;language-text&quot;&gt;@antoligy&lt;/code&gt; on Twitter, &lt;code class=&quot;language-text&quot;&gt;alex&lt;/code&gt; on StormBit, and there&apos;s a comment box below.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Rebuilding]]></title><description><![CDATA[Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it's the first thing people see when…]]></description><link>https:/alexwilson.tech/blog/2015/07/12/rebuilding/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2015/07/12/rebuilding/</guid><pubDate>Sun, 12 Jul 2015 15:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Like many others in the industry, when it comes to my own personal website I am incredibly lazy.  Sure, it&apos;s the first thing people see when they look me up, but even that isn&apos;t enough to prioritize it above my more interesting projects, both paid and otherwise.  However I have finally gone ahead and done it, and have now finished rebuilding my website only a year and a half after I said I would.&lt;/p&gt;
 &lt;p&gt;Before saying anything else, here is what my site had looked like since mid-2013: &lt;img src=&quot;https://i.imgur.com/Ziq7Z3Jl.png&quot; class=&quot;img-responsive align-center&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;My first decision when rebuilding was centered around the nature of my website: What do I need my website to show, and &lt;em&gt;what is it actually used for&lt;/em&gt;?&lt;/p&gt;
 &lt;ul&gt;
@@ -588,6 +579,351 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
 &lt;p&gt;My most immediate thought was to try and solve by guessing patterns and capturing values with regular expressions, however CloudFlare&apos;s engineers are several steps ahead and are actually obfuscating their challenge payload.&lt;/p&gt;
 &lt;p&gt;After trying a bit of trickery in node.js to try and capture and evaluate the challenge, I realised that there&apos;s already a far simpler way around this- Using a browser testing engine such as PhantomJS.&lt;/p&gt;
 &lt;p&gt;Ten minutes later, I had whipped together the following, which at time of writing allows my scraping tools past CloudFlare with negligable failures.&lt;/p&gt;
-&lt;p&gt;{% gist antoligy/f4f084b87946f84a89b4 %}&lt;/p&gt;
+&lt;p&gt;&lt;div id=&quot;gist18448887&quot; class=&quot;gist&quot;&gt;
+    &lt;div class=&quot;gist-file&quot;&gt;
+      &lt;div class=&quot;gist-data&quot;&gt;
+        &lt;div class=&quot;js-gist-file-update-container js-task-list-container file-box&quot;&gt;
+  &lt;div id=&quot;file-cloudflare-challenge-js&quot; class=&quot;file&quot;&gt;
+    
+
+  &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-javascript &quot;&gt;
+      
+&lt;table class=&quot;highlight tab-size js-file-line-container&quot; data-tab-size=&quot;8&quot;&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L1&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;1&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC1&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L2&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;2&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC2&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * This is a project designed to get around sites using Cloudflare&amp;#39;s &amp;quot;I&amp;#39;m under attack&amp;quot; mode.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L3&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;3&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC3&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * Using the PhantomJS headless browser, it queries a site given to it as the second parameter,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L4&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;4&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC4&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; *  waits six seconds and returns the cookies required to continue using this site.  With this, &lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L5&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;5&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC5&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; *  it is possible to automate scrapers or spiders that would otherwise be thwarted by Cloudflare&amp;#39;s &lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L6&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;6&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC6&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; *  anti-bot protection.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L7&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;7&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC7&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * &lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L8&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;8&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC8&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * To run this: phantomjs cloudflare-challenge.js http://www.example.org/&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L9&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;9&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC9&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; *&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L10&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;10&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC10&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * Copyright © 2015 by Alex Wilson &amp;lt;antoligy@antoligy.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L11&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;11&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC11&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * &lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L12&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;12&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC12&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * Permission to use, copy, modify, and/or distribute this software for&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L13&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;13&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC13&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * any purpose with or without fee is hereby granted, provided that the&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L14&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;14&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC14&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * above copyright notice and this permission notice appear in all&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L15&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;15&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC15&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * copies.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L16&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;16&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC16&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * &lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L17&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;17&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC17&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * THE SOFTWARE IS PROVIDED &amp;quot;AS IS&amp;quot; AND ISC DISCLAIMS ALL WARRANTIES WITH&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L18&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;18&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC18&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L19&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;19&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC19&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL ISC BE LIABLE FOR ANY&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L20&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;20&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC20&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L21&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;21&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC21&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L22&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;22&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC22&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L23&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;23&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC23&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L24&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;24&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC24&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L25&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;25&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC25&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L26&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;26&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC26&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L27&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;27&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC27&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L28&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;28&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC28&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * Namespaced object.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L29&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;29&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC29&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * @type {Object}&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L30&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;30&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC30&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L31&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;31&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC31&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-k&gt;var&lt;/span&gt; &lt;span class=pl-s1&gt;antoligy&lt;/span&gt; &lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-s1&gt;antoligy&lt;/span&gt; &lt;span class=pl-c1&gt;||&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L32&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;32&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC32&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L33&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;33&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC33&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L34&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;34&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC34&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * Simple wrapper to retrieve Cloudflare&amp;#39;s &amp;#39;solved&amp;#39; cookie.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L35&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;35&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC35&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * @type {Object}&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L36&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;36&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC36&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L37&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;37&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC37&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-s1&gt;antoligy&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;cloudflareChallenge&lt;/span&gt; &lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L38&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;38&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC38&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L39&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;39&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC39&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c1&gt;webpage&lt;/span&gt;:	&lt;span class=pl-c1&gt;false&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L40&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;40&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC40&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c1&gt;system&lt;/span&gt;:		&lt;span class=pl-c1&gt;false&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L41&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;41&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC41&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c1&gt;page&lt;/span&gt;:		&lt;span class=pl-c1&gt;false&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L42&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;42&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC42&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c1&gt;url&lt;/span&gt;:		&lt;span class=pl-c1&gt;false&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L43&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;43&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC43&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c1&gt;userAgent&lt;/span&gt;:	&lt;span class=pl-c1&gt;false&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L44&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;44&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC44&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L45&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;45&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC45&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L46&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;46&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC46&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 * Initiate object.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L47&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;47&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC47&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L48&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;48&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC48&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-en&gt;init&lt;/span&gt;: &lt;span class=pl-k&gt;function&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L49&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;49&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC49&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;webpage&lt;/span&gt;	&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-en&gt;require&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-s&gt;&amp;#39;webpage&amp;#39;&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L50&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;50&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC50&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;system&lt;/span&gt;		&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-en&gt;require&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-s&gt;&amp;#39;system&amp;#39;&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L51&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;51&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC51&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;page&lt;/span&gt;		&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;webpage&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;create&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L52&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;52&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC52&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;url&lt;/span&gt;		&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;system&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;args&lt;/span&gt;&lt;span class=pl-kos&gt;[&lt;/span&gt;&lt;span class=pl-c1&gt;1&lt;/span&gt;&lt;span class=pl-kos&gt;]&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L53&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;53&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC53&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;userAgent&lt;/span&gt;	&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-s&gt;&amp;#39;Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0&amp;#39;&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L54&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;54&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC54&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;timeout&lt;/span&gt;	&lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-c1&gt;6000&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L55&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;55&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC55&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L56&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;56&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC56&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L57&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;57&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC57&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L58&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;58&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC58&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 * &amp;quot;Solve&amp;quot; Cloudflare&amp;#39;s challenge using PhantomJS&amp;#39;s engine.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L59&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;59&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC59&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 * @return {String} JSON containing our cookies.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L60&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;60&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC60&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L61&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;61&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC61&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-en&gt;solve&lt;/span&gt;: &lt;span class=pl-k&gt;function&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L62&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;62&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC62&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-k&gt;var&lt;/span&gt; &lt;span class=pl-s1&gt;self&lt;/span&gt; &lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L63&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;63&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC63&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;page&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;settings&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;userAgent&lt;/span&gt; &lt;span class=pl-c1&gt;=&lt;/span&gt; &lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;userAgent&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L64&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;64&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC64&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;page&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;open&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-smi&gt;this&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;url&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt; &lt;span class=pl-k&gt;function&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-s1&gt;status&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L65&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;65&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC65&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;			&lt;span class=pl-en&gt;setTimeout&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-k&gt;function&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt; &lt;span class=pl-kos&gt;{&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L66&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;66&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC66&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;				&lt;span class=pl-smi&gt;console&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;log&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-c1&gt;JSON&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;stringify&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-s1&gt;phantom&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;cookies&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L67&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;67&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC67&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;				&lt;span class=pl-s1&gt;phantom&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;exit&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L68&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;68&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC68&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;			&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;span class=pl-kos&gt;,&lt;/span&gt; &lt;span class=pl-s1&gt;self&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;timeout&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L69&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;69&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC69&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;		&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L70&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;70&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC70&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;	&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L71&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;71&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC71&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L72&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;72&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC72&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-kos&gt;}&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L73&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;73&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC73&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;
+&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L74&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;74&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC74&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;/**&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L75&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;75&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC75&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * In order to carry on making requests, both user agent and IP address must what is returned here.&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L76&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;76&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC76&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; */&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L77&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;77&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC77&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-s1&gt;antoligy&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;cloudflareChallenge&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;init&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-L78&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;78&quot;&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC78&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-s1&gt;antoligy&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-c1&gt;cloudflareChallenge&lt;/span&gt;&lt;span class=pl-kos&gt;.&lt;/span&gt;&lt;span class=pl-en&gt;solve&lt;/span&gt;&lt;span class=pl-kos&gt;(&lt;/span&gt;&lt;span class=pl-kos&gt;)&lt;/span&gt;&lt;span class=pl-kos&gt;;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+&lt;/table&gt;
+
+
+  &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+      &lt;/div&gt;
+      &lt;div class=&quot;gist-meta&quot;&gt;
+        &lt;a href=&quot;https://gist.github.com/antoligy/f4f084b87946f84a89b4/raw/703ed2d82e40e824911533031187c207aaebd99b/cloudflare-challenge.js&quot; style=&quot;float:right&quot;&gt;view raw&lt;/a&gt;
+        &lt;a href=&quot;https://gist.github.com/antoligy/f4f084b87946f84a89b4#file-cloudflare-challenge-js&quot;&gt;cloudflare-challenge.js&lt;/a&gt;
+        hosted with &amp;#10084; by &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;*[WAF]: Web Application Firewall
 *[ESI]: Edge Server Includes&lt;/p&gt;</content:encoded></item></channel></rss>
