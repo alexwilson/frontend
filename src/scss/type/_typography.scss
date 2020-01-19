@@ -122,7 +122,7 @@ html {
           display: inline;
         }
 
-        @include breakpoint(break-1) {
+        @include media(">phone") {
           margin-left: 0;
         }
 
@@ -213,7 +213,7 @@ html {
         font-feature-settings: 'kern', 'onum', 'liga';
         margin-left: 2rem;
 
-        @include breakpoint(break-1) {
+        @include media(">phone") {
           margin-left: 0;
         }
       }
@@ -318,7 +318,7 @@ html {
         }
       }
 
-      @include breakpoint(break-1) {
+      @include media(">phone") {
         margin-left: -1rem;
       }
     }

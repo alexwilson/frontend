@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, StaticQuery, Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Header from "../components/header"
 import ShareWidget from "../components/share-widget"
@@ -84,7 +84,7 @@ export default ({ data, location }) => {
           </div>
         </div>
       </div>
-      <SEO title={post.frontmatter.title}>
+      <SEO title={post.frontmatter.title} description={post.excerpt}>
         <script type="application/ld+json">{JSON.stringify(Article({
           url: url,
           title: post.frontmatter.title,
@@ -126,4 +126,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 
 import Layout from "../components/layout"
 import Header from "../components/header"
@@ -14,7 +14,8 @@ const ConsultancyPage = ({ location }) => (
 
       <section className="consultancy-lede">
         <p style={{textAlign:'center'}}>
-          👋 Hi, I’m Alex and I’d like to help you solve your business and technology problems. <Link to="/about-me/">
+          <span role="img" aria-label="Welcome">👋</span>
+          Hi, I’m Alex and I’d like to help you solve your business and technology problems. <Link to="/about-me/">
           You can read a bit about my background here.</Link>
         </p>
       </section>
@@ -35,12 +36,12 @@ const ConsultancyPage = ({ location }) => (
           </p>
           {/* <ul></ul> */}
         </div>
-        <img className="consultancy-service__icon" src="/consultancy/svg/Heart.svg" />
+        <img className="consultancy-service__icon" src="/consultancy/svg/Heart.svg" alt="Heart Motif" />
       </section>
 
       <section className="consultancy-service">
         <h3 className="consultancy-service__title">Penetration Testing</h3>
-        <img className="consultancy-service__icon" src="/consultancy/svg/Shield.svg" />
+        <img className="consultancy-service__icon" src="/consultancy/svg/Shield.svg" alt="Shield Motif" />
         <div className="consultancy-service__text">
           <p>
             Security is an area of technology & business development which is broadly misunderstood. The risks in technology
@@ -71,12 +72,12 @@ const ConsultancyPage = ({ location }) => (
             </ul>
           </p>
         </div>
-        <img className="consultancy-service__icon" src="/consultancy/svg/Software_Architecture.svg" />
+        <img className="consultancy-service__icon" src="/consultancy/svg/Software_Architecture.svg" alt="Architecture Motif" />
       </section>
 
       <section className="consultancy-service">
         <h3 className="consultancy-service__title">Development Projects</h3>
-        <img className="consultancy-service__icon" src="/consultancy/svg/Launch.svg" />
+        <img className="consultancy-service__icon" src="/consultancy/svg/Launch.svg" alt="Rocket Launch Motif" />
         <div className="consultancy-service__text">
           <p>Looking for a senior or lead engineer to join your team?
             <br />
