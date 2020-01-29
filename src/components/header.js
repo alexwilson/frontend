@@ -143,7 +143,7 @@ class Header extends Component {
 
                 <NavItem url="https://twitter.com/antoligy"><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
                 <NavItem url="https://www.linkedin.com/in/alex-/"><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
-                <NavItem url="https://github.com/antoligy"><Icon src="/svg/github.svg" title="Github" /></NavItem>
+                <NavItem url="https://github.com/alexwilson"><Icon src="/svg/github.svg" title="Github" /></NavItem>
               </ul>
           </nav>
 

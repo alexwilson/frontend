@@ -9,7 +9,7 @@ const Organization = () => ({
   'sameAs':[
     'https://www.twitter.com/antoligy',
     'https://www.linkedin.com/in/alex-',
-    'https://github.com/antoligy'
+    'https://github.com/alexwilson'
   ]
 })
 
