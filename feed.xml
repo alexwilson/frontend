@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 28 Jan 2020 08:01:47 GMT</lastBuildDate><item><title><![CDATA[How GraphQL can help migrations and extraction projects]]></title><description><![CDATA[There's a tonne of buzz around graphQL right now and it seems like virtually every platform is getting some kind of support for it…]]></description><link>https:/alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</guid><pubDate>Sun, 19 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There&apos;s a tonne of buzz around graphQL right now and it seems like virtually every platform is getting some kind of support for it.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 29 Jan 2020 04:32:46 GMT</lastBuildDate><item><title><![CDATA[How GraphQL can help migrations and extraction projects]]></title><description><![CDATA[There's a tonne of buzz around graphQL right now and it seems like virtually every platform is getting some kind of support for it…]]></description><link>https:/alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</link><guid isPermaLink="false">https:/alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</guid><pubDate>Sun, 19 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There&apos;s a tonne of buzz around graphQL right now and it seems like virtually every platform is getting some kind of support for it.&lt;/p&gt;
 &lt;p&gt;Specifically I wanted to reflect on the use-case of graphQL when migrating or adapting application architectures.&lt;/p&gt;
 &lt;p&gt;If you&apos;re building a new thing and are extracting functionality piece-by-piece from your older system or systems, chances are your architecture looks like (or will look like) something like this.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/pictures/20200119/simple.png&quot; alt=&quot;simple&quot;&gt;&lt;/p&gt;
@@ -1019,7 +1019,7 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L29&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;29&quot;&gt;&lt;/td&gt;
-        &lt;td id=&quot;file-cloudflare-challenge-js-LC29&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * @type {Object}&lt;/span&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC29&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * &lt;span class=pl-k&gt;@type&lt;/span&gt; {Object}&lt;/span&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L30&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;30&quot;&gt;&lt;/td&gt;
@@ -1044,7 +1044,7 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L35&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;35&quot;&gt;&lt;/td&gt;
-        &lt;td id=&quot;file-cloudflare-challenge-js-LC35&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * @type {Object}&lt;/span&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC35&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt; * &lt;span class=pl-k&gt;@type&lt;/span&gt; {Object}&lt;/span&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L36&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;36&quot;&gt;&lt;/td&gt;
@@ -1143,7 +1143,7 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L59&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;59&quot;&gt;&lt;/td&gt;
-        &lt;td id=&quot;file-cloudflare-challenge-js-LC59&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 * @return {String} JSON containing our cookies.&lt;/span&gt;&lt;/td&gt;
+        &lt;td id=&quot;file-cloudflare-challenge-js-LC59&quot; class=&quot;blob-code blob-code-inner js-file-line&quot;&gt;&lt;span class=pl-c&gt;	 * &lt;span class=pl-k&gt;@return&lt;/span&gt; {&lt;span class=pl-smi&gt;String&lt;/span&gt;} JSON containing our cookies.&lt;/span&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td id=&quot;file-cloudflare-challenge-js-L60&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;60&quot;&gt;&lt;/td&gt;
