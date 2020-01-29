@@ -15,7 +15,7 @@ My use-case was pretty simple.  I had a bucket with about 2.5 million objects an
 Usually I would approach such a task by changing the bucket policies to apply to all objects regardless of their own ACLs, yet here I did not have the option to change the bucket policies, and even so, this would have caused problems for any systems relying upon canned Object ACLs.
 
 ## The solution
-I wrote a small program in Go to recursively update S3 object permissions to any canned ACL.  It’s documented and downloadable here: [https://github.com/antoligy/s3-recursive-acl/](https://github.com/antoligy/s3-recursive-acl/)
+I wrote a small program in Go to recursively update S3 object permissions to any canned ACL.  It’s documented and downloadable here: [https://github.com/alexwilson/s3-recursive-acl/](https://github.com/alexwilson/s3-recursive-acl/)
 
 I hope that this is useful as it stands, and I am keen to hear any suggestions on how I can improve the methodology (did I miss something?) as well as the program itself.
 
@@ -107,4 +107,4 @@ Also: Golang is invaluable for writing these super-performant scripts.  Every ti
 
 I got a chance to try out the [Glide packaging system](https://glide.sh/) for this project, and it is really, _really_ nice.  Recommended for projects of all shapes and sizes, and I will be using it for my future Golang hacks!
 
-[Download S3-recursive-acl here](https://github.com/antoligy/s3-recursive-acl/)
+[Download S3-recursive-acl here](https://github.com/alexwilson/s3-recursive-acl/)

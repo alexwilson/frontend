@@ -28,7 +28,7 @@ Immediately we can clean things up by introducing some form of abstraction layer
 GraphQL is the subject of a lot of buzz which can make it hard to select it on objective terms, however there are a few elements of its design which make it incredibly good at addressing the extract project use-case.
 
 - GraphQL can perform queries across multiple backend systems, and can resolve and join this data together. This is especially handy when bridging multiple data sources (e.g. a monolith depending on many external APIs, or an ancient Service-Oriented-Architecture which has complex dependencies)
-- GraphQL data is defined as a view layer, meaning that important and common data transformations are performed once centrally which improves the consistency of data.
+- GraphQL data is defined as your view model, meaning that important and common data transformations are performed once centrally which improves the consistency of data.
 - GraphQL consumers specify both which data they require, and how it will be returned to them.
 - GraphQL consumers are able to type their data and so can implement rich error handling _without_ needing to understand every detail of the legacy systems.
 

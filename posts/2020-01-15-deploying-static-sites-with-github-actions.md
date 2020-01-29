@@ -372,7 +372,7 @@ git reset --soft origin/gh-pages
 This workflow has been fantastic for me and I've been able to focus on making site adjustments
 without constantly having to repair a build process.
 
-[You can see the entire, finished workflow here](https://github.com/antoligy/personal-website/blob/master/.github/workflows/build-test-deploy.yml) and [the custom action here](https://github.com/antoligy/personal-website/tree/master/.github/actions/github-pages).
+[You can see the entire, finished workflow here](https://github.com/alexwilson/personal-website/blob/master/.github/workflows/build-test-deploy.yml) and [the custom action here](https://github.com/alexwilson/personal-website/tree/master/.github/actions/github-pages).
 
 
 As well as Actions I have now added a few bots, a scheduled build (to detect problems) and Slack

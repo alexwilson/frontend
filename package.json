@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antoligy/antoligy.github.io.git"
+    "url": "git+https://github.com/alexwilson/personal-website.git"
   },
   "author": "Alex Wilson <a@ax.gy>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/antoligy/antoligy.github.io/issues"
+    "url": "https://github.com/alexwilson/personal-website/issues"
   },
-  "homepage": "https://github.com/antoligy/antoligy.github.io#readme",
+  "homepage": "https://github.com/alexwilson/personal-website#readme",
   "dependencies": {
     "date-fns": "^2.9.0",
     "gatsby": "^2.19.7",
