@@ -89,6 +89,8 @@ function SEO({ description, lang, meta, keywords, title, children }) {
         "copyrightHolder": Person(),
         "publisher": Organization()
       })}</script>
+      <link rel="webmention" href="https://webmention.io/alexwilson.tech/webmention" />
+      <link rel="pingback" href="https://webmention.io/alexwilson.tech/xmlrpc" />
       {children}
     </Helmet>
   )
