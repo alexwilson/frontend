@@ -1,11 +1,15 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import loadable from '@loadable/component'
+
 import Layout from "../components/layout"
 import Header from "../components/header"
 import ShareWidget from "../components/share-widget"
 import RelatedArticles from "../components/related-articles"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
+
+const Webmentions = loadable(() => import("../components/webmentions"))
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
@@ -61,6 +65,7 @@ export default ({ data, location }) => {
           <hr />
           <h3 className="share">Share</h3>
           <ShareWidget title={post.frontmatter.title} url={url} />
+          <Webmentions url={url} />
 
         </div>
 

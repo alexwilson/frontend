@@ -1,0 +1,23 @@
+@mixin webmentions__facestack {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      display: inline;
+    }
+  }
+  img {
+    border-radius: 50% 50%;
+    object-fit: cover;
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.alex-webmentions__likes {
+  @include webmentions__facestack;
+}
+
+.alex-webmentions__reposts {
+  @include webmentions__facestack;
+}
