@@ -5,14 +5,14 @@ import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
 
 
-const ALink = ({url, children}) => {
+const ALink = ({url, children, rel}) => {
   const isAbsolute = /^(https?:)?\/\//
-  return isAbsolute.test(url) ? <a href={url}>{children}</a> : <Link to={url}>{children}</Link>
+  return isAbsolute.test(url) ? <a rel={rel} href={url}>{children}</a> : <Link to={url}>{children}</Link>
 }
 
-const NavItem = ({url, active, children}) => (
+const NavItem = ({url, rel, active, children}) => (
   <li className={`alex-header__nav-item ${active ? "alex-header__nav-item--active" : null}`}>
-    <ALink url={url}>{children}</ALink>
+    <ALink rel={rel} url={url}>{children}</ALink>
   </li>
 )
 
@@ -141,9 +141,9 @@ class Header extends Component {
 
                 <NavSpacer />
 
-                <NavItem url="https://twitter.com/antoligy"><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
-                <NavItem url="https://www.linkedin.com/in/alex-/"><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
-                <NavItem url="https://github.com/alexwilson"><Icon src="/svg/github.svg" title="Github" /></NavItem>
+                <NavItem url="https://twitter.com/antoligy" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
+                <NavItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
+                <NavItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></NavItem>
               </ul>
           </nav>
 
