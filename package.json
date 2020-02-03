@@ -39,7 +39,7 @@
     "gatsby-remark-prismjs": "^3.3.30",
     "gatsby-source-filesystem": "^2.1.47",
     "gatsby-transformer-remark": "^2.6.49",
-    "gatsby-transformer-sharp": "^2.3.13",
+    "gatsby-transformer-sharp": "^2.3.14",
     "include-media": "^1.4.9",
     "prismjs": "^1.19.0",
     "promise-image-loader": "^0.1.2",
