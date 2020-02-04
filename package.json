@@ -31,7 +31,7 @@
     "gatsby-plugin-manifest": "^2.2.40",
     "gatsby-plugin-offline": "^3.0.33",
     "gatsby-plugin-react-helmet": "^3.1.22",
-    "gatsby-plugin-sass": "^2.1.27",
+    "gatsby-plugin-sass": "^2.1.28",
     "gatsby-plugin-sharp": "^2.4.4",
     "gatsby-plugin-sitemap": "^2.2.26",
     "gatsby-plugin-web-font-loader": "^1.0.4",
