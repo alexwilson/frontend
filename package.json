@@ -37,7 +37,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-embed-gist": "^1.1.9",
     "gatsby-remark-prismjs": "^3.3.30",
-    "gatsby-source-filesystem": "^2.1.47",
+    "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-remark": "^2.6.50",
     "gatsby-transformer-sharp": "^2.3.14",
     "include-media": "^1.4.9",
