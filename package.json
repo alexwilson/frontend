@@ -24,7 +24,7 @@
   "dependencies": {
     "@loadable/component": "^5.12.0",
     "date-fns": "^2.10.0",
-    "gatsby": "^2.19.22",
+    "gatsby": "^2.19.23",
     "gatsby-image": "^2.2.41",
     "gatsby-plugin-feed": "^2.3.27",
     "gatsby-plugin-google-analytics": "^2.1.36",
