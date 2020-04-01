@@ -55,7 +55,7 @@
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-links": "^5.3.13",
     "@storybook/addons": "^5.3.17",
-    "@storybook/react": "^5.3.13",
+    "@storybook/react": "^5.3.18",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
     "babel-jest": "^25.1.0",
