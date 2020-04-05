@@ -2,12 +2,14 @@ import React from 'react'
 import {Link} from 'gatsby'
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import ResponsiveImage from "../components/responsive-image"
 
 export default function aboutMe({location}) {
   return <Layout location={location}>
+    <SEO title="About Alex Wilson" keywords={[`alex wilson`, `software engineer`]} />
     <div className="alex-article">
-      <div className="alex-article__main" itemScope="" itemType="{{ itemtype }}">
+      <div className="alex-article__main" itemScope="author" itemType="http://schema.org/Person">
           <section className="alex-article__body">
               <p className="delta">
                   My name is Alex. I'm a driven full-stack software engineer and technology lead, passionate about web-standards, journalism and solving business problems.<br />
@@ -43,7 +45,8 @@ export default function aboutMe({location}) {
                   <ul className="eta">
                       <li>6½ years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
                       <li>Requirement-gathering across a variety of business domains and stakeholder management. Experience and knowledge of digital media domains.</li>
-                      <li>Tracing and diagnosing distributed technical problems in high-performance systems.</li>
+                      <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
+                      <li>Tracing, diagnosing and mitigating technical problems in diverse systems — Legacy, distributed, etc.</li>
                       <li>Solutions and application architecture throughout the stack, from front-end caching strategies to messaging patterns.</li>
                       <li>Rich understanding of modern technologies, including in-development browser APIs, their adoption path and their business value.</li>
                   </ul>
@@ -73,6 +76,7 @@ export default function aboutMe({location}) {
                       <li><i>Apr 2019–Present</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
                       <li><i>Oct 2016–Apr 2019</i>: Principal Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
                       <li><i>Sep 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
+                      <li><i>Sep 2009—Jul 2013</i>: Part-Time Software Developer & SysAdmin, <a href="https://alexwilson.tech/">Freelance</a></li>
                   </ul>
               </p>
           </section>
