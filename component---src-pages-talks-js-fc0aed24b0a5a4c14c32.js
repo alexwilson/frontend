@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{"+SGB":function(e,a,n){"use strict";n.r(a),n.d(a,"query",function(){return o});var t=n("q1tI"),r=n.n(t),l=n("Bl7J"),c=n("eTKx");a.default=function(e){var a=e.data,n=e.location;return r.a.createElement(l.a,{location:n},r.a.createElement("div",{className:"alex-stream"},r.a.createElement("h1",null,"Talks"),a.allMarkdownRemark.edges.map(function(e){var a=e.node;return r.a.createElement(c.a,{key:a.id,article:a})})))};var o="1624031907"}}]);
+//# sourceMappingURL=component---src-pages-talks-js-fc0aed24b0a5a4c14c32.js.map
