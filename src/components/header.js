@@ -52,18 +52,19 @@ class HeaderImage extends Component {
   }
 
   render() {
+    const {src} = this.props
     return <div className={`alex-header-image`}>
       <picture className={`alex-header-image--container`}>
         <img
           alt="Header"
           className={`alex-header-image__blur`}
-          onLoad={this.preloadImage.bind(this, this.props.src)}
-          src={this.imageService(this.props.src, [
+          onLoad={this.preloadImage.bind(this, src)}
+          src={src !== null ? this.imageService(src, [
             'width=25',
             'height=10',
             'quality=low',
             'format=jpg'
-          ])} />
+          ]): null} />
         <img
           alt="Header"
           className={`alex-header-image__main`}
