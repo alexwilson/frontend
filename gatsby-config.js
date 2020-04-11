@@ -6,6 +6,7 @@ module.exports = {
     author: `@antoligy`,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     // {
     //   resolve: `gatsby-source-filesystem`,
