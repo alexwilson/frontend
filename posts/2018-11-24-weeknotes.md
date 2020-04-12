@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Weeknotes — 24th November 2018
+id: 09d7fcde-61c6-48f7-b68e-1c1be442698f
 date: 2018-11-24 18:36
 last_modified_at: 2018-12-09 15:11
 author: alex
-tags: ['weeknotes', 'ft-technology', 'apple', 'japan', 'motivation']
+tags: ['weeknotes', 'financial-times', 'apple', 'japan', 'motivation']
 ---
 
 Prodominantly this week I was preparing for a business trip to Tokyo, which [due to friendly entry requirements](https://www.gov.uk/foreign-travel-advice/japan/entry-requirements) has always been an incredibly pleasant process. I can't talk too much about the details for this specific trip, but some advice when working between languages and countries: Many technology vendors have subsidaries or regional counterparts who will be happy to work together (obvious example would be Google, Google Japan) be able to communicate amongst themselves and to help translate very specific advice.

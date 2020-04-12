@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Weeknotes: First Of The Year — 26th January 2019"
+id: 5e8ed0cb-cf94-4634-b5c4-7ef561c5e7bc
 date: 2019-01-26
 author: alex
 image: https://alexwilson.tech/pictures/20190126--railway-bridge.jpg
@@ -11,7 +12,7 @@ tags: ['weeknotes', 'bio', 'imagecdn', 'kubernetes', 'reliability', 'slack', 'me
 Gotcha. Sorry, no, this isn’t [the song by Skrillex](https://www.youtube.com/watch?v=2cXDgFwE13g). These are the first weeknotes I’ve published of 2019, hopefully soon to be followed by my retrospective of 2018.
 
 ### From resizing images to infrastructure problems
-- After migrating the original version of the application to Kubernetes last year, this week (specifically, Sunday) [I updated ImageCDN to v2](https://github.com/imagecdn/imagecdn/blob/master/CHANGELOG.md), a rewrite in Node. I placed a strong emphasis on trying to improve its concurrency as I found that the greatest limitation with PHP and PHP-PM was that it was very easy to overload the service and bring it down. 
+- After migrating the original version of the application to Kubernetes last year, this week (specifically, Sunday) [I updated ImageCDN to v2](https://github.com/imagecdn/imagecdn/blob/master/CHANGELOG.md), a rewrite in Node. I placed a strong emphasis on trying to improve its concurrency as I found that the greatest limitation with PHP and PHP-PM was that it was very easy to overload the service and bring it down.
 - Along the way of rewriting the ImageCDN core I had a lot of fun learning about [libvips](https://jcupitt.github.io/libvips/), which is a superb if somewhat underrated image processing library. With more-or-less the same file-size output as ImageMagick, libvips is able to produce better, more-accurate images with significantly less memory usage. Hopefully I will be able to use it in future projects. Expect a write-up!
 - Why the move back from Kubernetes?  It’s a really nice technology but it isn’t deploy-and-forget when dealing with non-trivial workloads despite the hype. Cluster maintenance is required as time goes on, and to be effective it is essential to allocate a healthy portion of the cluster resources to monitoring and observability activities. Which adds up pretty quickly. For a free service this meant a lot of operational overhead and a pretty costly cluster.
 

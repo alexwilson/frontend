@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Weeknotes — 27th October 2018
+id: aa7c9618-5652-4e7d-b7b9-284f157e1332
 date: 2018-10-27 20:30
 image: https://images.unsplash.com/photo-1523540499309-18d7a30ddf76?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=eaeafe4dec6bdd36c4f9da79d1d1243a
 image_credit: Photo by Rob Bye.

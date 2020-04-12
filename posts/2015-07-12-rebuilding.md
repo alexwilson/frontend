@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Rebuilding
+id: 4b52df62-90d5-4d31-8cf0-72a6f6e8a14c
 date: 2015-07-12 15:00
 author: alex
 threadId: axgy-1436735845502
@@ -18,12 +19,12 @@ My first decision when rebuilding was centered around the nature of my website: 
 - I would also like to display some information on what I've been working on.
 - Maybe also put up a small profile for people to find.
 
-Much of what needs to be dynamic on a website these days can actually be achieved in the browser through JavaScript - especially given the dawn of service workers ([Jake Archibald has written an excellent post on the subject here](http://jakearchibald.com/2014/offline-cookbook/)), but even then I don't actually need to do all that much, so there's no reason to complicate things with a dynamic website.  
+Much of what needs to be dynamic on a website these days can actually be achieved in the browser through JavaScript - especially given the dawn of service workers ([Jake Archibald has written an excellent post on the subject here](http://jakearchibald.com/2014/offline-cookbook/)), but even then I don't actually need to do all that much, so there's no reason to complicate things with a dynamic website.
 
 Github have been running their Github Pages service on a static site generator called [Jekyll](https://jekyllrb.com/), which I've previously used to build the StormBit website, and other smaller projects.  It uses text-based storage, in the form of structured markdown documents, plus the Liquid templating language used by Shopify, so seemed perfect for my needs.  Plus, free hosting for the site, with git for source control.
 
 Having settled on my hosting platform, and framework, the question was what should the site actually look like, and how should I build it?<br />
-I've already experience with frameworks like Foundation and 960gs, but ultimately I wanted something simple, but extensible.  Twitter's bootstrap is particularly powerful, however I've never been a fan of jQuery as I feel it encourages poor practice and covers too much ground that should just be polyfilled (expect more on this in a future post), so immediately discounted it.  That is until I made the now-regrettable decision to buy this theme: 
+I've already experience with frameworks like Foundation and 960gs, but ultimately I wanted something simple, but extensible.  Twitter's bootstrap is particularly powerful, however I've never been a fan of jQuery as I feel it encourages poor practice and covers too much ground that should just be polyfilled (expect more on this in a future post), so immediately discounted it.  That is until I made the now-regrettable decision to buy this theme:
 <img src="https://i.imgur.com/rhry5Ye.jpg" class="img-responsive" />
 
 Unfortunately the entire theme was written in LESS, so I had to convert it to Sass (which was a fairly painless task).  However after hacking at it a while, I realised that it was a stupid idea which relied on very different requirements to what I was trying to build and tore the entire thing down and started from scratch, on the design you are seeing now.  I again raised the question of Bootstrap vs. other frameworks, but then found the [Bootstrap.Native](http://thednp.github.io/bootstrap.native/) project which settled my doubts there and then.

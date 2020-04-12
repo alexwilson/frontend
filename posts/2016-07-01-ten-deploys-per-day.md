@@ -1,6 +1,7 @@
 ---
 layout: post
 title: “Ten deploys per day”
+id: d7bb0bc3-5bab-4ce7-97ee-602052d007aa
 date: 2016-07-01 22:30
 tags: [devops, release-engineering]
 author: alex
@@ -10,7 +11,7 @@ author: alex
 
 Why choose “ten deploys per day” as the title of this post?  Ten has been something of a magic number to me: After having seen [John Allspaw and Paul Hammond's talk on the subject](https://www.youtube.com/watch?v=LdOe18KhtT4) and after having read Gene Kim's excellent [Phoenix Project](https://www.amazon.co.uk/dp/B00AZRBLHO), ten seems like a number at which point deployments stop really being a problem - It becomes the point at which developers feel like they have full autonomy over shipping their code.
 
-First of all some context: Around midday on Thursday, my team received a notification that for legal reasons, certain changes needed to be made across an entire estate of web products by this weekend.  Those changes were trivial, but their complexity was expounded by the fact that they needed to be separately applied to ten distinctly different products.  Altering the various codebases was relatively easy, and aside from a slight hiccup with a third party vendor we were quickly able to get those changes out of the way. 
+First of all some context: Around midday on Thursday, my team received a notification that for legal reasons, certain changes needed to be made across an entire estate of web products by this weekend.  Those changes were trivial, but their complexity was expounded by the fact that they needed to be separately applied to ten distinctly different products.  Altering the various codebases was relatively easy, and aside from a slight hiccup with a third party vendor we were quickly able to get those changes out of the way.
 
 That's not what I want to talk about.  Instead, I want to talk about how to go from having barely achieved ten, to making it a boring norm.
 

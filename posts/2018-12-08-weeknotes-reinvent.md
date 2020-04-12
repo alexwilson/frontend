@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Weeknotes: ReInvent — 8th December 2018"
+id: 96878838-1ca9-4165-a36b-2373cf39c33a
 date: 2018-12-08 23:19
 last_modified_at: 2018-12-12 20:03
 author: alex
@@ -30,7 +31,7 @@ AWS reInvent took place last week, and they released _a lot_ of stuff. Too much 
 - [Amazon Quantum Ledger Database](https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-amazon-qldb/)—Yes, yes, Amazon also announced a blockchain-like product but actually that's not that important to me: For me one of the most interesting features of the Blockchain is the concept of an immutable ledger (ignoring some blockchain problems such as forks), and Amazon are now offering a database product which is, just that: An immutable ledger. But with no operational or scaling problems to solve and much more productive developer tooling (building UIs based on Ethereum is _not_ fun!): It's a real database.
 - [Amazon Textract](https://aws.amazon.com/textract/) — So as someone with a massive amount of data between Dropbox, Evernote and a couple of scanners/cameras, I'd really like to start extracting my content in order to go fully paperless. I haven't tried this yet, and I'm sure there was another service in AWS doing this previously, so very keen to give this a go.
 - [AWS Control Tower](https://aws.amazon.com/controltower/) — AWS organisation-wide governance tooling! I can only imagine how large some of the larger organisations using AWS are starting to become, and so tooling like this is going to be very well received indeed.
-- [AWS Security Hub](https://aws.amazon.com/security-hub/) — 
+- [AWS Security Hub](https://aws.amazon.com/security-hub/) —
 - [AWS Outposts](https://aws.amazon.com/outposts/) — For anyone doing on-prem this is going to open up many doors! The short-version is that this allows running physical centres using AWS cloud governance tooling.
 - [AWS App Mesh](https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-aws-app-mesh---service-mesh-for-microservices-on-aws/) — The press-release suggests that this is mostly hosted [Envoy](https://www.envoyproxy.io). Good to see Amazon running more popular CNCF software, and integrating with the wider Kubernetes stack. At this rate, Prometheus in 2019? 😄
 - [AWS Cloud Map](https://aws.amazon.com/about-aws/whats-new/2018/11/introducing-aws-cloud-map/)
