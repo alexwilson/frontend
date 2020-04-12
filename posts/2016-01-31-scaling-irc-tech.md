@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Is IRC technology flexible enough to scale?
+id: 97b4f995-231d-4d15-86ed-91d1e0921d7b
 date: 2016-01-31 21:17
 last_modified_at: 2018-10-28 20:00
 author: alex
@@ -14,7 +15,7 @@ When I talk about scalability here, it's a wider focus than avoiding hard bottle
 
 It requires a team to have access to the systems they need, as well as the operational knowledge to maintain them, all while keeping tight security. It's a very tight balance and one I don't think any open organisations have proven that they manage very well: In fact, an appearance of stability usually hides one or many key-man dependencies behind the scenes, and a lot of (hopefully documented) institutional knowledge.
 
-In general terms this is manifested by service disruption, and in IRC, by frequent netsplits. 
+In general terms this is manifested by service disruption, and in IRC, by frequent netsplits.
 
 Here I was noting some of the thoughts I'd had at the time, thoughts which proved a little too ambitious for an open project. However since then some smaller, more practical steps have been taken, with many more coming. Hopefully this will make our implementation of _IRC technology flexible enough to scale_, within our organisation.
 
@@ -58,7 +59,7 @@ With the ambitious goal of running a self-repairing, auto-scaling service for th
 
 While no decision has yet been made about exactly which hosting provider to go with, the most popular choices at time of writing are [DigitalOcean](https://www.digitalocean.com/) and the rather stellar [Amazon Web Services](https://aws.amazon.com/).  Both have advantages, but the most important aspects to the selection process are an uptime guarantee, API access for automating provisioning systems, and the ability to communicate via a private network.  A number of providers fit the bill, but there are also questions on convenience and operational costs.
 
-In terms of technologies, Docker seems to fit the bill for running the systems themselves, as it allows us to generate identical artefacted copies of systems to run on all boxes.  While there are questions over the viability of distributing an _entire operating system_ just to run a handful of applications, it also ensures that there's no possibility of introducing snowflake environments and leaves us feeling safer than relying purely on configuration management systems.  
+In terms of technologies, Docker seems to fit the bill for running the systems themselves, as it allows us to generate identical artefacted copies of systems to run on all boxes.  While there are questions over the viability of distributing an _entire operating system_ just to run a handful of applications, it also ensures that there's no possibility of introducing snowflake environments and leaves us feeling safer than relying purely on configuration management systems.
 
 Obviously it's still a requirement to store the state of the network (i.e. which servers are available) somewhere, and so we have opted to use [HashiCorp Consul](https://www.consul.io/) to allow automatic discovery of new nodes introduced into our cluster, and to adjust our round-robin DNS, both by means of the rather excellent [consul-template](https://github.com/hashicorp/consul-template) which allows applications that remain unaware of service registries to interact with them near natively.
 Consul also offers us decent monitoring abilities, and so I have written a small utility in Go to perform a simplistic healthcheck on IRC servers, called [ircd-healthcheck](https://github.com/StormBit/ircd-healthcheck).  This should be readily usable with other monitoring systems too, a few solutions already exist but none that I could easily make work with Consul.

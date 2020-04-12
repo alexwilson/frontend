@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Weeknotes — 10th November 2018
+id: 8739b291-45f5-4f98-89b0-f6881d940ca2
 date: 2018-11-10 23:19
 last_modified_at: 2018-11-11 14:01
 author: alex

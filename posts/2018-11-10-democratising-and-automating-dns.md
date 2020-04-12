@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Democratising and automating DNS
+id: 4828db22-33da-4554-8651-696128c17e17
 date: 2018-11-10 23:19
 author: alex
 tags: [cloudflare, dns, devops]

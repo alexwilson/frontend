@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Weeknotes: Jetlag City — 1st December 2018"
+id: 0e7b04bc-2ff0-489b-a9de-a608e76672d7
 date: 2018-12-01 23:19
 last_modified_at: 2018-12-01 15:11
 author: alex
@@ -10,7 +11,7 @@ image_credit: Photo by Alex Wilson.
 tags: ['weeknotes', 'aws', 'bio', 'japan', 'nar']
 ---
 
-This week has been one of battling through extremely severe jet-lag. My brain has been like jello. 
+This week has been one of battling through extremely severe jet-lag. My brain has been like jello.
 What’s most frustrating is the research and prep-work I tried to avoid the worst effects by attempting to acclimatise ahead of the flight and by deliberately minimising my sleep on the plane to make sure that I’d be exhausted. IT DID NOT WORK.
 - Jetlag is a symptom of chronobiology. Us humans are diurnal, meaning we adapted to live around the pattern of solar radiation, normally 24 hours. When we disrupt this, even one system (like say, the digestive system) going out of sync can send every other one haywire. Even if you think you're fine, jetlag will probably have affected you in some way.
 - JetlagRooster produces sensible plans.  [I sort-of stuck to one](http://d.ax.gy/cBCq2b+)  Still did not help.  Maybe there’s something wrong with me?

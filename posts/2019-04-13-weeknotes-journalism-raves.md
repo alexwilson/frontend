@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Weeknotes: Journalism Raves — 13th April 2019"
+id: 2fd603e9-9d95-4518-9b61-b572437865e2
 date: 2019-04-13
 author: alex
 image: https://alexwilson.tech/pictures/20190413--bracken-house.png

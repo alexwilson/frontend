@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploying static sites with Github Actions"
+id: 717e6a35-1cb5-4a28-9321-592d05ddd9dc
 date: 2020-01-15
 author: alex
 tags: ['devops', 'static-site', 'github', 'release-engineering']

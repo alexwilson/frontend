@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "QA is not Quality"
+id: 770c26b5-f551-4795-90fa-0f24627ec510
 date: 2019-04-14
 author: alex
 redirect_from: "/pdf/qa-is-not-quality.pdf"

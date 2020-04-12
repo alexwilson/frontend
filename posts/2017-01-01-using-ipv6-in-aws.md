@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using IPv6 in Amazon Web Services
+id: a9c36f43-57cb-4e17-b284-43546c834b1c
 date: 2017-01-01 22:34
 tags: [aws]
 author: alex

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Taking a look through a Johari window"
+id: cdf6575f-d01f-43bb-8a26-eb1530ca9952
 date: 2019-04-14
 author: alex
 tags: ['personal-development', 'career', 'stoicism', 'bluetel']

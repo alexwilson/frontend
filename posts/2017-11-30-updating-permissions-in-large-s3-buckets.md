@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Changing object permissions in large S3 buckets
+id: 4fa644e5-2101-4788-abfe-d2d28d9ef0a0
 date: 2017-11-30 20:44
 tags: [aws]
 author: alex

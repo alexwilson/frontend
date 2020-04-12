@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How GraphQL can help migrations and extraction projects"
+id: d1a4a7bb-fc4d-41f2-8482-8a7afe1af0e6
 date: 2020-01-19
 author: alex
 tags: ['graphql', 'legacy', 'migration']

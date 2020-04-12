@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Weeknotes — 16th February 2019"
+id: 437f6d7b-3a32-4901-8546-d7bb69f77efb
 date: 2019-02-16
 author: alex
 image: https://alexwilson.tech/pictures/20190216--palais-de-justice.jpg
@@ -17,7 +18,7 @@ It’s been a busy few weeks. But I think, overall, worthwhile. I will have some
 - Spent the first half of this week learning about Nikkei’s approach to handling data warehousing and [the specifics](https://www.slideshare.net/HajimeSano1/jaws-ug-bigdata-branch-oct-2017) are [very impressive](https://www.slideshare.net/HajimeSano1/amazon-redshift-in-action).  There is an open-source web client-side tracking library that goes alongside it, and it’s particularly interesting because it implements a number of web performance tricks—including listening to requestAnimationFrame, queuing events to fire via beacon and using intersection observers to monitor page tracking—to minimise overhead to the user. [Its source is available here and is well worth a read](https://github.com/Nikkei/atlas-tracking-js).
 
 ---
- 
+
 - Over the past few years podcasts have been becoming a larger and larger part of my life, and if [various industry stats](https://musicoomph.com/podcast-statistics/)  have anything to say about it, I’m not alone.  They’re a very disruptive media form which nobody has really figured out.  This week [Spotify rather abruptly bought Gimlet media](https://www.macstories.net/news/spotify-acquires-podcast-producer-gimlet-media-and-app-maker-anchor/), one of the largest independent podcast networks out there, claiming to want to preserve its independence (both in general, and from Spotify’s distribution platform).
 - Overall it’s an interesting MO, and Spotify seem to want to build out a regularly updated, spoken-word repertoire: Where music streaming is becoming increasingly competitive—and with music licensing increasingly combative—podcasting has been rather quiet, dominated by Apple and niche “power-user” services like Overcast and Pocket Casts. Since introducing their podcasting platform last year, Spotify has surged ahead and have become the [second largest podcast platform](https://podnews.net/update/spotify-number-2), rather incredibly by _adding to_ (and not taking from) market-share. So are podcasts the key to Spotify’s salvation?
 

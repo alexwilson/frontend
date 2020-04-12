@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Weeknotes — 3rd November 2018
+id: 44499e4f-fc44-44a4-9aa2-9d59c5dffe85
 date: 2018-11-3 15:41
 last_modified_at: 2018-11-3 15:41
 image: https://images.unsplash.com/photo-1506606401543-2e73709cebb4?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=a2c389bef52afa5b61e4f22842f2ae96
@@ -25,6 +26,6 @@ Predominantly this week I’ve been working to reverse engineer, document and te
 - Also, Apple really ought to add haptic feedback to a future version of the TouchBar!
 
 ---
-- In the news this week, things have been pretty hectic: Angela [Merkel is stepping down as the leader of the CDU in Germany](https://www.economist.com/europe/2018/11/03/angela-merkel-will-step-down-as-cdu-party-leader-in-december), [Arron Banks is under investigation](https://www.bbc.co.uk/news/uk-politics-46056337) by the National Crime Agency for suspected fraud ([and the FT has reported](https://www.ft.com/content/1bbda93c-deb4-11e8-9f04-38d397e6661c)) his business holdings were worth a maximum of £1.75m. 
+- In the news this week, things have been pretty hectic: Angela [Merkel is stepping down as the leader of the CDU in Germany](https://www.economist.com/europe/2018/11/03/angela-merkel-will-step-down-as-cdu-party-leader-in-december), [Arron Banks is under investigation](https://www.bbc.co.uk/news/uk-politics-46056337) by the National Crime Agency for suspected fraud ([and the FT has reported](https://www.ft.com/content/1bbda93c-deb4-11e8-9f04-38d397e6661c)) his business holdings were worth a maximum of £1.75m.
 - “Dozens of people around the world were killed because of this.” — If there was ever any doubt as to the importance of internal whistleblowing and taking cyber-security seriously, then [this story about the CIA neglecting their systems—more importantly their people—should end that](https://www.yahoo.com/news/cias-communications-suffered-catastrophic-compromise-started-iran-090018710.html).  No responsibility, or accountability, frankly very outrageous.  On a side-note it’s great to see Yahoo News breaking cybersecurity news: Hopefully after multiple crushing blows, they’ve entered into a new chapter?
 - Rather quietly, [Stephen Hawking worried about the side-effects of genetic manipulation](https://www.washingtonpost.com/news/morning-mix/wp/2018/10/15/stephen-hawking-feared-race-of-superhumans-able-to-manipulate-their-own-dna/): How even starting out with the best of intentions, a human race given the ability to write its own evolutionary future would inevitably start improving traits to the point of developing a race of so-called “super-humans”, leaving those less able in the proverbial dust.  Flashbacks to Huxley’s Brave New World describes a similar future, in which this is carefully planned: But today we’re not that organised. I hope Huxley and Hawking are *both* wrong. I hope we have a kind future.

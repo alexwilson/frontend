@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Explainer: Immutable Infrastructure"
+id: 3e8ea4c7-60db-496a-9ffb-1d8d3ec23f46
 date: 2019-08-24
 author: alex
 tags: ['explainer', 'devops', 'immutable-infrastructure', 'infrastructure-as-code']
