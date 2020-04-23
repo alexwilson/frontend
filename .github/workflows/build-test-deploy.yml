@@ -45,7 +45,7 @@ jobs:
         path: node_modules
         key: node_modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
     - name: Build
       run: npm run build
       env:
@@ -85,7 +85,7 @@ jobs:
         path: node_modules
         key: node_modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
     - name: Run Tests
       run: npm test
 

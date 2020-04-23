@@ -8,8 +8,9 @@ import ShareWidget from "../components/share-widget"
 import RelatedArticles from "../components/related-articles"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
+import Webmentions from "../components/webmentions"
 
-const Webmentions = loadable(() => import("../components/webmentions"))
+// const Webmentions = loadable(() => import("../components/webmentions"))
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
@@ -108,7 +109,6 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
-      timeToRead
       excerpt
       frontmatter {
         title
