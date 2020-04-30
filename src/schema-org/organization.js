@@ -7,7 +7,7 @@ const Organization = () => ({
   'logo': Logo(),
   'url':'https://alexwilson.tech',
   'sameAs':[
-    'https://www.twitter.com/antoligy',
+    'https://www.twitter.com/AlexWilsonV1',
     'https://www.linkedin.com/in/alex-',
     'https://github.com/alexwilson'
   ]

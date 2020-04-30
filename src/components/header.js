@@ -142,7 +142,7 @@ class Header extends Component {
 
                 <NavSpacer />
 
-                <NavItem url="https://twitter.com/antoligy" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
+                <NavItem url="https://twitter.com/AlexWilsonV1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
                 <NavItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
                 <NavItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></NavItem>
               </ul>
