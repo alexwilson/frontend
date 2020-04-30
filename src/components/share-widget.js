@@ -4,7 +4,7 @@ const ShareWidget = ({url, title}) => (
   <div className="alex-share">
     <ul>
       <li>
-        <a href={`https://twitter.com/intent/tweet?url=${url}&amp;text=${title}&amp;related=antoligy&amp;via=antoligy`}>
+        <a href={`https://twitter.com/intent/tweet?url=${url}&amp;text=${title}&amp;related=AlexWilsonV1&amp;via=AlexWilsonV1`}>
           <img src="/svg/twitter.svg" alt="Twitter" title="Share on Twitter" />
         </a>
       </li>
