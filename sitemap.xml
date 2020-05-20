@@ -16,8 +16,8 @@
 <url> <loc>https://alexwilson.tech/blog/2019/01/26/weeknotes-first-of-the-year/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/02/16/weeknotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/03/30/weeknotes-adventures/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/04/13/weeknotes-journalism-raves/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/blog/2019/04/14/taking-a-look-through-a-johari-window/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/08/24/immutable-infratructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2020/01/15/deploying-static-sites-with-github-actions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2020/01/19/graphql-for-extraction/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -46,10 +46,10 @@
 <url> <loc>https://alexwilson.tech/topic/fosdem/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/career/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/bluetel/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/personal-development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/stoicism/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/talks/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/microservices/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/personal-development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/stoicism/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/explainer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/immutable-infrastructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/infrastructure-as-code/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
