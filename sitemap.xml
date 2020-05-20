@@ -12,8 +12,8 @@
 <url> <loc>https://alexwilson.tech/blog/2018/11/10/weeknotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2018/11/24/weeknotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2018/12/01/weeknotes-jetlag-city/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/blog/2019/01/26/weeknotes-first-of-the-year/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2018/12/08/weeknotes-reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/blog/2019/01/26/weeknotes-first-of-the-year/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/02/16/weeknotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/03/30/weeknotes-adventures/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/2019/04/13/weeknotes-journalism-raves/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -35,13 +35,13 @@
 <url> <loc>https://alexwilson.tech/topic/motivation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/bio/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/nar/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/slack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/imagecdn/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/kubernetes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/reliability/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/slack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/metroid/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/software-quality/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/reinvent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/podcasting/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/fosdem/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/career/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
