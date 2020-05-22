@@ -112,10 +112,10 @@ jobs:
     - name: Deploy to Github Pages
       uses: ./.github/actions/github-pages/
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
       with:
         args: public
     - name: Trigger a Pages Update
       run: |
-        curl -sS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_PAGES_DEPLOY_TOKEN }}" \
+        curl -sS -X POST -H "Authorization: Bearer ${{ secrets.PAGES_GH_TOKEN }}" \
         https://api.github.com/repos/${{ github.repository }}/pages/builds \
