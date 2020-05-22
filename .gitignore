@@ -3,6 +3,7 @@
 
 # Ignoring artefact folders
 .cache
+dist
 public
 
 # Ignoring dependencies.
