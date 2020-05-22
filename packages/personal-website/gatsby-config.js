@@ -52,6 +52,14 @@ module.exports = {
     },
 
     {
+      resolve: `gatsby-plugin-copy-files`,
+      options: {
+        source: Content.pictures,
+        destination: `/pictures`
+      },
+    },
+
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         commonmark: true,

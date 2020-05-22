@@ -2,7 +2,6 @@
   "name": "antoligy.github.io",
   "version": "1.5.0",
   "scripts": {
-    "postinstall": "ln -nfs ../node_modules/@alexwilson/content/pictures/ ./static/pictures",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
@@ -28,6 +27,7 @@
     "date-fns": "^2.11.1",
     "gatsby": "^2.20.3",
     "gatsby-image": "^2.2.41",
+    "gatsby-plugin-copy-files": "^1.0.3",
     "gatsby-plugin-feed": "^2.4.1",
     "gatsby-plugin-google-analytics": "^2.1.36",
     "gatsby-plugin-manifest": "^2.2.42",
