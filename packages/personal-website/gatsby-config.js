@@ -1,3 +1,5 @@
+const Content = require('@alexwilson/content')
+
 module.exports = {
   siteMetadata: {
     title: `Alex Wilson`,
@@ -37,7 +39,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/posts/`,
+        path: Content.posts,
       },
     },
 
@@ -45,7 +47,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `talks`,
-        path: `${__dirname}/talks/`,
+        path: Content.talks,
       },
     },
 
