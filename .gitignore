@@ -9,3 +9,4 @@ public
 # Ignoring dependencies.
 node_modules
 
+lerna-debug.log

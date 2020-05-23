@@ -119,3 +119,36 @@ jobs:
       run: |
         curl -sS -X POST -H "Authorization: Bearer ${{ secrets.PAGES_GH_TOKEN }}" \
         https://api.github.com/repos/${{ github.repository }}/pages/builds \
+
+  deploy-lerna-production:
+    name: "Deploy with Lerna"
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - uses: actions/setup-node@master
+    - name: Restore NPM Cache
+      uses: actions/cache@v1
+      id: cache-npm
+      with:
+        path: ~/.npm
+        key: npm-${{ hashFiles('**/package-lock.json') }}
+    - name: Restore node_modules
+      uses: actions/cache@master
+      id: cache-node_modules
+      with:
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        path: |
+          node_modules
+          */*/node_modules
+    - name: Build
+      run: npm run build
+      env:
+        CI: true
+        CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
