@@ -146,7 +146,7 @@ jobs:
           node_modules
           */*/node_modules
     - name: Build
-      run: npm run build
+      run: npm run deploy
       env:
         CI: true
         CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
