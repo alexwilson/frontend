@@ -1,0 +1,18 @@
+{
+  "name": "@alexwilson/worker-cdn-prod",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Initial Cloudflare Worker powering this account",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "deploy": "wrangler publish"
+  },
+  "devDependencies": {
+    "@cloudflare/wrangler": "^1.9.1"
+  },
+  "dependencies": {
+    "@alexwilson/lib-cloudflare-error-pages": "^0.0.1"
+  }
+}
