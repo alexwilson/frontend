@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import React, {Component} from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
+import { OptimizelyFeature } from '@optimizely/react-sdk'
 
 
 const ALink = ({url, children, rel}) => {
@@ -138,7 +139,9 @@ class Header extends Component {
                 <NavItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</NavItem>
                 <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Blog</NavItem>
                 <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Talks</NavItem>
-                <NavItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</NavItem>
+                <OptimizelyFeature feature="my_feature">{(isEnabled, variables) => (
+                    isEnabled ? <NavItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</NavItem> : null
+                  )}</OptimizelyFeature>
 
                 <NavSpacer />
 

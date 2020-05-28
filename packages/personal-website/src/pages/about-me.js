@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'gatsby'
+import { OptimizelyFeature } from '@optimizely/react-sdk'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -68,7 +69,10 @@ export default function aboutMe({location}) {
           </section>
           <section className="alex-article__body">
               <p className="theta">
-                  I am not actively seeking a full-time role, however <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please connect with me on LinkedIn</a>. I am also <Link to={'/consultancy/'}>available for consultancy</Link>.
+                  I am not actively seeking a full-time role, however <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please connect with me on LinkedIn</a>.
+                  <OptimizelyFeature feature="my_feature">{(isEnabled, variables) => (
+                    isEnabled ? <>I am also <Link to={'/consultancy/'}>available for consultancy</Link>.</> : null
+                  )}</OptimizelyFeature>
               </p>
               <p className="eta">
                   <b className="eta">Work Experience</b>

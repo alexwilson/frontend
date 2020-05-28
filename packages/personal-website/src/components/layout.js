@@ -7,6 +7,10 @@
 
 import React, {Children} from "react"
 import PropTypes from "prop-types"
+import { OptimizelyProvider, createInstance } from '@optimizely/react-sdk';
+const optimizely = createInstance({
+  sdkKey: 'AqkL6UF8zHCvc7NCLSxohA',
+})
 
 import Header from "./header"
 import Footer from "./footer"
@@ -35,9 +39,11 @@ const Layout = ({ location, children }) => {
 
   return (
       <>
+      <OptimizelyProvider optimizely={optimizely}>
         {HeaderElement}
         <main>{layoutChildren}</main>
         {FooterElement}
+      </OptimizelyProvider>
       </>
     )
 }
