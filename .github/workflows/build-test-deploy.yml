@@ -16,8 +16,29 @@ on:
 name: Build, Test and Deploy
 jobs:
 
+  find-projects:
+    name: "Find Projects"
+    runs-on: ubuntu-latest
+    outputs:
+      lerna-projects: ${{ steps.lerna-projects.outputs.lerna-projects }}
+    steps:
+    - uses: actions/setup-node@master
+    - run: |
+        export LERNA_PROJECTS=$(npx lerna list --json --all --loglevel silent | jq -a -c .)
+        echo "::set-output name=lerna-projects::$LERNA_PROJECTS"
+
+  info:
+    needs: find-projects
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.find-projects.outputs.lerna-projects) }}
+    steps:
+    - run: echo "Found ${{ matrix.name }} in ${{ matrix.location }}"
+
+
   # Fetch dependencies and build Gatsby
   build:
+    needs: info
     name: Build
     runs-on: ubuntu-latest
     steps:
