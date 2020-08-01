@@ -1,5 +1,5 @@
 {
-  "name": "antoligy.github.io",
+  "name": "@alexwilson/personal-website",
   "version": "1.5.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexwilson/personal-website.git"
+    "url": "git+https://github.com/alexwilson/personal-website.git",
+    "directory": "packages/personal-website"
   },
   "author": "Alex Wilson <a@ax.gy>",
   "license": "ISC",
