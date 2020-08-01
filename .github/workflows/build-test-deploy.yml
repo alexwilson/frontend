@@ -20,18 +20,20 @@ jobs:
     name: "Find Projects"
     runs-on: ubuntu-latest
     outputs:
-      lerna-projects: ${{ steps.lerna-projects.outputs.lerna-projects }}
+      projects: ${{ steps.find-projects.outputs.projects }}
     steps:
+    - uses: actions/checkout@master
     - uses: actions/setup-node@master
-    - run: |
-        export LERNA_PROJECTS=$(npx lerna list --json --all --loglevel silent | jq -a -c .)
-        echo "::set-output name=lerna-projects::$LERNA_PROJECTS"
+    - id: find-projects
+      run: |
+        echo "##[set-output name=projects;]$(npx lerna list --json --all --loglevel silent | jq -rjc -n '.include |= inputs')"
 
   info:
+    name: "Info"
     needs: find-projects
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.find-projects.outputs.lerna-projects) }}
+      matrix: ${{ fromJson(needs.find-projects.outputs.projects) }}
     steps:
     - run: echo "Found ${{ matrix.name }} in ${{ matrix.location }}"
 
@@ -171,7 +173,7 @@ jobs:
     # Wrangler is never cached as it's added to home directory
     # https://github.com/cloudflare/wrangler/issues/1286
     - name: npm install cargo
-      run: npm i @cloudflare/wrangler -g
+      run: sudo npm i @cloudflare/wrangler -g
     - name: Deploy
       run: npm run deploy
       env:
