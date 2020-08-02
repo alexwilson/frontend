@@ -52,9 +52,17 @@ module.exports = {
     },
 
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pictures`,
+        path: Content.pictures,
+      },
+    },
+
+    {
       resolve: `gatsby-plugin-copy-files`,
       options: {
-        source: Content.pictures,
+        source: Content.pictures.replace(/\/$/, ''),
         destination: `/pictures`
       },
     },
