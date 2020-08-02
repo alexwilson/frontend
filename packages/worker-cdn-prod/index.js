@@ -48,6 +48,13 @@ addEventListener('fetch', event => {
           requestUrl.href.replace(requestUrl.host, 'alexwilson.tech')
         );
     };
+
+    const redirects = await fetch('https://alexwilson.tech/redirects.json')
+      .then(res => res.json())
+      .catch(() => {})
+    if (redirects && redirects[requestUrl.pathname]) {
+      return redirectTo(`https://alexwilson.tech${redirects[requestUrl.pathname]}`)
+    }
   
     switch (requestUrl.pathname) {
       case '/cv': {
