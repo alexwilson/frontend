@@ -30,13 +30,11 @@ jobs:
       uses: actions/cache@master
       id: cache-npm
       with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        key: npm-${{ hashFiles('**/package-lock.json') }}
         path: |
           ~/.npm
-          node_modules
-          */*/node_modules
     - name: Install Dependencies
-      run: npm ci --ignore-scripts
+      run: npm ci
     - id: find-projects
       run: |
         echo "##[set-output name=projects;]$(npx lerna list --json --all --loglevel silent | jq -rjc -n '.include |= inputs')"
@@ -56,13 +54,11 @@ jobs:
     - uses: actions/setup-node@master
     - name: Restore ~/npm & node_modules
       uses: actions/cache@master
-      id: cache-npm-node_modules
+      id: cache-npm
       with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        key: npm-${{ hashFiles('**/package-lock.json') }}
         path: |
           ~/.npm
-          node_modules
-          */*/node_modules
     - name: Install Dependencies
       run: npm ci
     - name: Test
@@ -83,13 +79,11 @@ jobs:
     - uses: actions/setup-node@master
     - name: Restore ~/npm & node_modules
       uses: actions/cache@master
-      id: cache-npm-node_modules
+      id: cache-npm
       with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        key: npm-${{ hashFiles('**/package-lock.json') }}
         path: |
           ~/.npm
-          node_modules
-          */*/node_modules
     - name: Install Dependencies
       run: npm ci
     # @TODO: Remove this when Wrangler configuration is simpler

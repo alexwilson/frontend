@@ -48,7 +48,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Build
-      run: npm run build
+      run: npx lerna run --scope @alexwilson/personal-website build
       env:
         CI: true
     - name: Save Build Artefact
@@ -85,7 +85,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Run Tests
-      run: npm test
+      run: npx lerna run --scope @alexwilson/personal-website test
 
   # Deploy to Github Pages environment
   deploy-ghpages:
