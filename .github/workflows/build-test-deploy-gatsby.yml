@@ -15,7 +15,6 @@ on:
 
 name: Build, Test and Deploy
 jobs:
-
   # Fetch dependencies and build Gatsby
   build:
     name: Build
@@ -49,7 +48,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Build
-      run: npm run build
+      run: npx lerna run --scope @alexwilson/personal-website build
       env:
         CI: true
     - name: Save Build Artefact
@@ -68,11 +67,6 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: Download Website Artefact
-      uses: actions/download-artifact@v1
-      with:
-        name: site-artefact
-        path: public
     - uses: actions/setup-node@master
     - name: Restore NPM Cache
       uses: actions/cache@v1
@@ -91,10 +85,10 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Run Tests
-      run: npm test
+      run: npx lerna run --scope @alexwilson/personal-website test
 
   # Deploy to Github Pages environment
-  deploy-production:
+  deploy-ghpages:
     name: Deploy Gatsby to Github Pages
     needs: test
     runs-on: ubuntu-latest
@@ -118,43 +112,4 @@ jobs:
     - name: Trigger a Pages Update
       run: |
         curl -sS -X POST -H "Authorization: Bearer ${{ secrets.PAGES_GH_TOKEN }}" \
-        https://api.github.com/repos/${{ github.repository }}/pages/builds \
-
-  deploy-lerna-production:
-    name: "Deploy with Lerna"
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@master
-    - name: Restore NPM Cache
-      uses: actions/cache@v1
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('**/package-lock.json') }}
-    - name: Restore node_modules
-      uses: actions/cache@master
-      id: cache-node_modules
-      with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          */*/node_modules
-
-    # @TODO: Remove this when Wrangler configuration is simpler
-    # Wrangler is never cached as it's added to home directory
-    # https://github.com/cloudflare/wrangler/issues/1286
-    - name: npm install cargo
-      run: npm i @cloudflare/wrangler -g
-    - name: Deploy
-      run: npm run deploy
-      env:
-        CI: true
-        CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
-        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        https://api.github.com/repos/${{ github.repository }}/pages/builds
