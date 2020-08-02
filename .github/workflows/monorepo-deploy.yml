@@ -1,0 +1,106 @@
+on:
+  push:
+    # Respond to a push event on every brannch other than Github Pages.
+    branches:
+      - '!gh-pages'
+      - '*'
+
+  pull_request:
+    branches:
+      - '!gh-pages'
+
+  # Scheduled build so pipeline failures are noticed quicker.
+  schedule:
+    - cron: '30 4 * * 3,6'
+
+name: Monorepo Deploy Pipeline
+jobs:
+
+  prepare:
+    name: "Prepare (Find Projects, Warm dependency caches)"
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.find-projects.outputs.projects }}
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@master
+    - name: Restore ~/npm & node_modules
+      uses: actions/cache@master
+      id: cache-npm
+      with:
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        path: |
+          ~/.npm
+          node_modules
+          */*/node_modules
+    - name: Install Dependencies
+      run: npm ci --ignore-scripts
+    - id: find-projects
+      run: |
+        echo "##[set-output name=projects;]$(npx lerna list --json --all --loglevel silent | jq -rjc -n '.include |= inputs')"
+
+  # Fetch dependencies and build Gatsby
+  test:
+    needs: prepare
+    name: Test ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - uses: actions/setup-node@master
+    - name: Restore ~/npm & node_modules
+      uses: actions/cache@master
+      id: cache-npm-node_modules
+      with:
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        path: |
+          ~/.npm
+          node_modules
+          */*/node_modules
+    - name: Install Dependencies
+      run: npm ci
+    - name: Test
+      run: npx lerna run test --scope ${{ matrix.name }}
+
+  deploy:
+    strategy:
+      matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
+    name: Deploy ${{ matrix.name }}
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - uses: actions/setup-node@master
+    - name: Restore ~/npm & node_modules
+      uses: actions/cache@master
+      id: cache-npm-node_modules
+      with:
+        key: node_modules-${{ hashFiles('**/package-lock.json') }}
+        path: |
+          ~/.npm
+          node_modules
+          */*/node_modules
+    - name: Install Dependencies
+      run: npm ci
+    # @TODO: Remove this when Wrangler configuration is simpler
+    # Wrangler is never cached as it's added to home directory
+    # https://github.com/cloudflare/wrangler/issues/1286
+    - name: npm install cargo
+      run: sudo npm i @cloudflare/wrangler -g
+    - name: Deploy
+      run: npx lerna run deploy --scope ${{ matrix.name }}
+      env:
+        CI: true
+        CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

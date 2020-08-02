@@ -15,32 +15,8 @@ on:
 
 name: Build, Test and Deploy
 jobs:
-
-  find-projects:
-    name: "Find Projects"
-    runs-on: ubuntu-latest
-    outputs:
-      projects: ${{ steps.find-projects.outputs.projects }}
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-    - id: find-projects
-      run: |
-        echo "##[set-output name=projects;]$(npx lerna list --json --all --loglevel silent | jq -rjc -n '.include |= inputs')"
-
-  info:
-    name: "Info"
-    needs: find-projects
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{ fromJson(needs.find-projects.outputs.projects) }}
-    steps:
-    - run: echo "Found ${{ matrix.name }} in ${{ matrix.location }}"
-
-
   # Fetch dependencies and build Gatsby
   build:
-    needs: info
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -91,11 +67,6 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: Download Website Artefact
-      uses: actions/download-artifact@v1
-      with:
-        name: site-artefact
-        path: public
     - uses: actions/setup-node@master
     - name: Restore NPM Cache
       uses: actions/cache@v1
@@ -117,7 +88,7 @@ jobs:
       run: npm test
 
   # Deploy to Github Pages environment
-  deploy-production:
+  deploy-ghpages:
     name: Deploy Gatsby to Github Pages
     needs: test
     runs-on: ubuntu-latest
@@ -141,43 +112,4 @@ jobs:
     - name: Trigger a Pages Update
       run: |
         curl -sS -X POST -H "Authorization: Bearer ${{ secrets.PAGES_GH_TOKEN }}" \
-        https://api.github.com/repos/${{ github.repository }}/pages/builds \
-
-  deploy-lerna-production:
-    name: "Deploy with Lerna"
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@master
-    - name: Restore NPM Cache
-      uses: actions/cache@v1
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('**/package-lock.json') }}
-    - name: Restore node_modules
-      uses: actions/cache@master
-      id: cache-node_modules
-      with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          */*/node_modules
-
-    # @TODO: Remove this when Wrangler configuration is simpler
-    # Wrangler is never cached as it's added to home directory
-    # https://github.com/cloudflare/wrangler/issues/1286
-    - name: npm install cargo
-      run: sudo npm i @cloudflare/wrangler -g
-    - name: Deploy
-      run: npm run deploy
-      env:
-        CI: true
-        CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
-        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        https://api.github.com/repos/${{ github.repository }}/pages/builds
