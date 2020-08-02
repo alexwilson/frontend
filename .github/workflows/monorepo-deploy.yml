@@ -41,7 +41,7 @@ jobs:
 
   # Fetch dependencies and build Gatsby
   test:
-    needs: prepare
+    needs: [prepare]
     name: Test ${{ matrix.name }}
     runs-on: ubuntu-latest
     strategy:
@@ -68,7 +68,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     name: Deploy ${{ matrix.name }}
-    needs: test
+    needs: [prepare, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     steps:
