@@ -33,24 +33,34 @@ export default class Webmentions extends Component {
     }
   }
 
-  fetchWebmentions(url) {
-    fetch(`https://webmention.io/api/mentions.jf2?target=${url}`)
-      .then(res => res.json())
-      .then(feed => feed.children)
-      .then(webmentions => {
-        this.setState({
-          reposts: repostsFromWebmentions(webmentions),
-          mentions: mentionsFromWebmentions(webmentions),
-          likes: likesFromWebmentions(webmentions),
-          replies: repliesFromWebmentions(webmentions)
-        })
-      })
-      .catch(console.error)
+  async fetchWebmentions(urls) {
+    const webmentions = await Promise.all(
+      urls.map(url => fetch(`https://webmention.io/api/mentions.jf2?target=${url}`)
+        .then(res => res.json())
+        .then(feed => feed.children)
+      )
+    )
+    .then(responses => responses.reduce(
+      (all, fragment) => all.concat(fragment), [])
+    )
+    .catch(console.error)
+    console.log(webmentions)
+
+    this.setState({
+      reposts: repostsFromWebmentions(webmentions),
+      mentions: mentionsFromWebmentions(webmentions),
+      likes: likesFromWebmentions(webmentions),
+      replies: repliesFromWebmentions(webmentions)
+    })
   }
 
   componentDidMount() {
+    const urls = this.props.urls || []
     if (this.props.url) {
-      this.fetchWebmentions(this.props.url)
+      urls.push(this.props.url)
+    }
+    if (urls.length > 0) {
+      this.fetchWebmentions(urls)
     }
   }
 
