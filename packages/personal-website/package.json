@@ -68,6 +68,6 @@
     "babel-loader": "^8.0.0",
     "babel-preset-gatsby": "^0.5.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0"
+    "jest": "^26.2.2"
   }
 }
