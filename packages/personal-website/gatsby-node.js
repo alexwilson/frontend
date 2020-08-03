@@ -57,9 +57,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     }
     createNodeField({ node, name: `legacyslug`, value: legacySlug })
 
-    const {uuid} = node.frontmatter
+    const uuid = node.frontmatter.id
     const slug = `/content/${uuid}`
-    createNodeField({ node, name: 'uuid', value: uuid })
+    createNodeField({ node, name: 'id', value: uuid })
     createNodeField({ node, name: 'slug', value: slug })
   }
 }
@@ -80,6 +80,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
             fields {
               type
+              id
               slug
               legacyslug
             }

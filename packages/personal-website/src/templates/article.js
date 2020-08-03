@@ -15,6 +15,7 @@ import Webmentions from "../components/webmentions"
 export default ({ data, location }) => {
   const post = data.markdownRemark
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
+  const alternativeUrl = new URL(post.fields.legacyslug, data.site.siteMetadata.siteUrl)
 
   const datePublished = new Date(post.frontmatter.date)
   const dateModified = new Date(post.frontmatter.last_modified_at || datePublished)
@@ -66,7 +67,7 @@ export default ({ data, location }) => {
           <hr />
           <h3 className="share">Share</h3>
           <ShareWidget title={post.frontmatter.title} url={url} />
-          <Webmentions url={url} />
+          <Webmentions urls={[url, alternativeUrl]} />
 
         </div>
 
@@ -123,6 +124,7 @@ export const pageQuery = graphql`
         image
         date
         slug
+        legacyslug
       }
     }
     site {
