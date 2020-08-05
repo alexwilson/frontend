@@ -1,0 +1,3 @@
+name = "activity"
+type = "webpack"
+routes = ["https://alexwilson.tech/activity"]
