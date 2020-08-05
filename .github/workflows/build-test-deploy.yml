@@ -1,24 +1,18 @@
+name: Build, Test and Deploy Gatsby
 on:
   push:
-    # Respond to a push event on every brannch other than Github Pages.
-    branches:
-      - '!gh-pages'
-      - '*'
-
   pull_request:
-    branches:
-      - '!gh-pages'
 
   # Scheduled build so pipeline failures are noticed quicker.
   schedule:
     - cron: '30 4 * * 3,6'
 
-name: Build, Test and Deploy Gatsby
 jobs:
   # Fetch dependencies and build Gatsby
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/gh-pages'
     steps:
     - name: Checkout
       uses: actions/checkout@master

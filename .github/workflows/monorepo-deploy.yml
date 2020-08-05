@@ -1,19 +1,13 @@
+name: Monorepo Deploy Pipeline
 on:
+  # Push events & PRs.
   push:
-    # Respond to a push event on every brannch other than Github Pages.
-    branches:
-      - '!gh-pages'
-      - '*'
-
   pull_request:
-    branches:
-      - '!gh-pages'
 
   # Scheduled build so pipeline failures are noticed quicker.
   schedule:
     - cron: '30 4 * * 3,6'
 
-name: Monorepo Deploy Pipeline
 jobs:
 
   prepare:
