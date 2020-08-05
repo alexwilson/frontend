@@ -1,0 +1,19 @@
+{
+  "name": "@alexwilson/worker-activity-page",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Activity statistics",
+  "main": "index.js",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "scripts": {
+    "deploy": "wrangler publish"
+  },
+  "devDependencies": {
+    "@cloudflare/wrangler": "^1.9.1"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
