@@ -1,11 +1,12 @@
 name: Monorepo Deploy Pipeline
 on:
-  # Push events & PRs.
-  push:
   pull_request:
-
-  # Scheduled build so pipeline failures are noticed quicker.
+  push:
+    branches:
+      - master
+      - main
   schedule:
+    # Scheduled build so pipeline failures are noticed quicker.
     - cron: '30 4 * * 3,6'
 
 jobs:
