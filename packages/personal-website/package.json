@@ -47,7 +47,7 @@
     "gatsby-transformer-sharp": "^2.3.16",
     "include-media": "^1.4.9",
     "preact": "^10.4.0",
-    "prismjs": "^1.19.0",
+    "prismjs": "^1.21.0",
     "promise-image-loader": "^0.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
