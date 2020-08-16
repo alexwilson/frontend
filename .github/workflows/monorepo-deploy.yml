@@ -31,6 +31,10 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --ignore @alexwilson/personal-website
+      env:
+        NOTION_BLOG_COLLECTION: ${{ secrets.NOTION_BLOG_COLLECTION }}
+        NOTION_BLOG_COLLECTION_VIEW: ${{ secrets.NOTION_BLOG_COLLECTION_VIEW }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     - id: find-projects
       run: |
         echo "##[set-output name=projects;]$(     \
@@ -63,6 +67,10 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --ignore @alexwilson/personal-website
+      env:
+        NOTION_BLOG_COLLECTION: ${{ secrets.NOTION_BLOG_COLLECTION }}
+        NOTION_BLOG_COLLECTION_VIEW: ${{ secrets.NOTION_BLOG_COLLECTION_VIEW }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     - name: Test
       run: npx lerna run test --scope ${{ matrix.name }}
 
@@ -89,6 +97,10 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --ignore @alexwilson/personal-website
+      env:
+        NOTION_BLOG_COLLECTION: ${{ secrets.NOTION_BLOG_COLLECTION }}
+        NOTION_BLOG_COLLECTION_VIEW: ${{ secrets.NOTION_BLOG_COLLECTION_VIEW }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     # @TODO: Remove this when Wrangler configuration is simpler
     # Wrangler is never cached as it's added to home directory
     # https://github.com/cloudflare/wrangler/issues/1286

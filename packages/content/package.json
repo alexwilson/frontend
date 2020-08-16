@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "main": "index.js",
     "description": "Package for supplying content to Gatsby",
+    "scripts": {
+        "postinstall": "bucklespring notion export-collection --dirname bucklespring --filename \"[id].md\" $NOTION_BLOG_COLLECTION $NOTION_BLOG_COLLECTION_VIEW"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/alexwilson/frontend.git",
@@ -11,5 +14,8 @@
     "bugs": {
         "url": "https://github.com/alexwilson/frontend/issues"
     },
-    "homepage": "https://github.com/alexwilson/frontend#readme"
+    "homepage": "https://github.com/alexwilson/frontend#readme",
+    "dependencies": {
+        "bucklespring": "0.0.0-alpha.0"
+    }
 }

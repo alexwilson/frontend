@@ -46,6 +46,10 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
+      env:
+        NOTION_BLOG_COLLECTION: ${{ secrets.NOTION_BLOG_COLLECTION }}
+        NOTION_BLOG_COLLECTION_VIEW: ${{ secrets.NOTION_BLOG_COLLECTION_VIEW }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     - name: Build
       run: npx lerna run --scope @alexwilson/personal-website build
       env:
@@ -85,6 +89,10 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
+      env:
+        NOTION_BLOG_COLLECTION: ${{ secrets.NOTION_BLOG_COLLECTION }}
+        NOTION_BLOG_COLLECTION_VIEW: ${{ secrets.NOTION_BLOG_COLLECTION_VIEW }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     - name: Run Tests
       run: npx lerna run --scope @alexwilson/personal-website test
 
