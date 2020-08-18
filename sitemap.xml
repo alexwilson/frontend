@@ -19,8 +19,8 @@
 <url> <loc>https://alexwilson.tech/content/2fd603e9-9d95-4518-9b61-b572437865e2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/cdf6575f-d01f-43bb-8a26-eb1530ca9952</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/3e8ea4c7-60db-496a-9ffb-1d8d3ec23f46</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/d1a4a7bb-fc4d-41f2-8482-8a7afe1af0e6</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/770c26b5-f551-4795-90fa-0f24627ec510</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/cloudflare/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/irc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -53,11 +53,11 @@
 <url> <loc>https://alexwilson.tech/topic/explainer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/immutable-infrastructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/infrastructure-as-code/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/graphql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/legacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/migration/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/observability/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/about-me/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/blog/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
