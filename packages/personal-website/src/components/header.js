@@ -103,7 +103,7 @@ class Header extends Component {
       "format=json",
       "provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com"
     ]
-    fetch(`https://random.responsiveimages.io/v1/image?${params.join('&')}`)
+    fetch(`https://random.imagecdn.app/v1/image?${params.join('&')}`)
       .then(res => res.json())
       .then(image => {
         if (!image.url) return
