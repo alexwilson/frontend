@@ -43,7 +43,7 @@ export default function aboutMe({location}) {
               <p className="eta">
                   <b className="eta">Skills</b>
                   <ul className="eta">
-                      <li>6½ years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+                      <li>7 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
                       <li>Requirement-gathering across a variety of business domains and stakeholder management. Experience and knowledge of digital media domains.</li>
                       <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
                       <li>Tracing, diagnosing and mitigating technical problems in diverse systems — Legacy, distributed, etc.</li>
@@ -59,9 +59,9 @@ export default function aboutMe({location}) {
                       <li>CDN: <i>Fastly, Varnish Plus, AWS CloudFront, Cloudflare</i></li>
                       <li>Cloud Practioner: <i>AWS (Lambda, S3, CloudFormation, DynamoDB, API Gateway, and more), DigitalOcean, Google Cloud Platform</i></li>
                       <li>Configuration Management: <i>Ansible, Puppet, Terraform</i></li>
-                      <li>Languages: <i>JavaScript (Browser, ESNext, NodeJS), Golang, Rust, PHP</i></li>
-                      <li>Operating <i>Systems: MacOS, FreeBSD, Gentoo Linux, Debian/Ubuntu Linux</i></li>
-                      <li>Security: <i>OWASP</i></li>
+                      <li>Languages: <i>JavaScript (TypeScript, Browser, ESNext, NodeJS), Golang, Rust, Java, Python, Ruby, PHP</i></li>
+                      <li>Operating <i>Systems: macOS, FreeBSD, Gentoo Linux, Debian/Ubuntu Linux</i></li>
+                      <li>Security: <i>OWASP, PWK</i></li>
                       <li>Testing: <i>Cucumber/Gherkin, Jest, *Unit; CircleCI, Jenkins</i></li>
                   </ul>
               </p>
