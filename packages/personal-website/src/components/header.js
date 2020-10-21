@@ -99,19 +99,16 @@ class Header extends Component {
   }
 
   fetchRandomImage() {
-    const params = [
-      "format=json",
-      "provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com"
-    ]
-    fetch(`https://random.imagecdn.app/v1/image?${params.join('&')}`)
-      .then(res => res.json())
-      .then(image => {
-        if (!image.url) return
+    try {
+      const response = await fetch('https://source.unsplash.com/collection/33719360/0x0')
+      if (response.ok && response.url) {
+        const {origin, pathname} = new URL(response.url)
         this.setState({
-          backgroundImage: image.url
+          backgroundImage: `${origin}${pathname}`
         })
-      })
-      .catch(_ => null)
+      }
+    } catch {
+    }
   }
 
   render() {
