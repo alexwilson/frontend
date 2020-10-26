@@ -39,7 +39,11 @@ class HeaderImage extends Component {
   }
 
   preloadImage(src) {
-    const actualSrc = this.imageService(this.props.src, [])
+    const actualSrc = this.imageService(this.props.src, [
+      'quality=high',
+      'format=jpg',
+      'width=1920'
+    ])
     promiseImageLoader(new Image(actualSrc))
       .then(() => this.setState({
         preloadedImage: actualSrc
@@ -60,8 +64,8 @@ class HeaderImage extends Component {
           className={`alex-header-image__blur`}
           onLoad={this.preloadImage.bind(this, src)}
           src={src !== null ? this.imageService(src, [
-            'width=25',
-            'height=10',
+            'width=100',
+            'height=60',
             'quality=low',
             'format=jpg'
           ]): null} />
