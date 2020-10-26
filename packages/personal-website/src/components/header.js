@@ -39,7 +39,11 @@ class HeaderImage extends Component {
   }
 
   preloadImage(src) {
-    const actualSrc = this.imageService(this.props.src, [])
+    const actualSrc = this.imageService(this.props.src, [
+      'quality=high',
+      'format=jpg',
+      'width=1920'
+    ])
     promiseImageLoader(new Image(actualSrc))
       .then(() => this.setState({
         preloadedImage: actualSrc
@@ -60,8 +64,8 @@ class HeaderImage extends Component {
           className={`alex-header-image__blur`}
           onLoad={this.preloadImage.bind(this, src)}
           src={src !== null ? this.imageService(src, [
-            'width=25',
-            'height=10',
+            'width=100',
+            'height=60',
             'quality=low',
             'format=jpg'
           ]): null} />
@@ -98,20 +102,17 @@ class Header extends Component {
     }
   }
 
-  fetchRandomImage() {
-    const params = [
-      "format=json",
-      "provider=custom-v1:http://random-images-v1.s3-website.eu-west-1.amazonaws.com"
-    ]
-    fetch(`https://random.imagecdn.app/v1/image?${params.join('&')}`)
-      .then(res => res.json())
-      .then(image => {
-        if (!image.url) return
+  async fetchRandomImage() {
+    try {
+      const response = await fetch('https://source.unsplash.com/collection/33719360/0x0')
+      if (response.ok && response.url) {
+        const {origin, pathname} = new URL(response.url)
         this.setState({
-          backgroundImage: image.url
+          backgroundImage: `${origin}${pathname}`
         })
-      })
-      .catch(_ => null)
+      }
+    } catch {
+    }
   }
 
   render() {
