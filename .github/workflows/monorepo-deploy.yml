@@ -67,8 +67,8 @@ jobs:
       run: npx lerna run test --scope ${{ matrix.name }}
 
   tests-passed:
-    name: Test 
-    needs: [prepare, test]
+    name: Tests Passed
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - run: echo "👍"
