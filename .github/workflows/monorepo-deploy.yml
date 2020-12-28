@@ -66,11 +66,18 @@ jobs:
     - name: Test
       run: npx lerna run test --scope ${{ matrix.name }}
 
+  tests-passed:
+    name: Test 
+    needs: [prepare, test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "👍"
+
   deploy:
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     name: Deploy ${{ matrix.name }}
-    needs: [prepare, test]
+    needs: [tests-passed]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     steps:
