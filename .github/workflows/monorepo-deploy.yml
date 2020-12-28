@@ -77,7 +77,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     name: Deploy ${{ matrix.name }}
-    needs: [tests-passed]
+    needs: [prepare, tests-passed]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     steps:
