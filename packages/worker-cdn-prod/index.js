@@ -62,6 +62,11 @@ addEventListener('fetch', event => {
           'https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0/'
         )
       }
+      case '/book-a-time': {
+        return redirectTo(
+          'https://doodle.com/mm/alexwilson/00'
+        )
+      }
     }
   
     return fetch(req)
