@@ -1,0 +1,19 @@
+name: Automatically Update Dependencies
+on:
+  pull_request:
+
+jobs:
+  auto-update-dependencies:
+    name: Auto-Approve and enable Auto-Merge for all Dependabot PRs
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@v2.0.0
+      if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Enable Github Automerge
+      if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+      uses: alexwilson/enable-github-automerge-action@0.0.0-alpha.2
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
