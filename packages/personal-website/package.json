@@ -51,8 +51,8 @@
     "prismjs": "^1.21.0",
     "promise-image-loader": "^0.1.2",
     "prop-types": "^15.7.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-helmet": "^6.0.0",
     "sass": "^1.26.2"
   },
