@@ -12,6 +12,6 @@ jobs:
         github-token: "${{ secrets.PR_GH_TOKEN }}"
     - name: Enable Github Automerge
       if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
-      uses: alexwilson/enable-github-automerge-action@0.0.0-alpha.2
+      uses: alexwilson/enable-github-automerge-action@0.0.0-alpha.3
       with:
         github-token: "${{ secrets.PR_GH_TOKEN }}"
