@@ -1,11 +1,13 @@
 name: Automatically Update Dependencies
-on: pull_request_target
+on:
+  pull_request_target:
+    types: [labeled]
 
 jobs:
   auto-update-dependencies:
     name: approve and merge for dependency PRs
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
       with:
