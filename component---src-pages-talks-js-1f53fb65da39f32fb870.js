@@ -1,2 +1,2 @@
 (window.webpackJsonp=window.webpackJsonp||[]).push([[11],{"+SGB":function(e,a,t){"use strict";t.r(a);var n=t("FdF9"),l=t("Bl7J"),r=t("eTKx");a.default=function(e){var a=e.data,t=e.location;return n.default.createElement(l.a,{location:t},n.default.createElement("div",{className:"alex-stream"},n.default.createElement("h1",null,"Talks"),a.allMarkdownRemark.edges.map((function(e){var a=e.node;return n.default.createElement(r.a,{key:a.id,article:a})}))))}}}]);
-//# sourceMappingURL=component---src-pages-talks-js-71328aa78c608223ffd3.js.map
+//# sourceMappingURL=component---src-pages-talks-js-1f53fb65da39f32fb870.js.map
