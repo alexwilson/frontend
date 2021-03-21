@@ -1,5 +1,3 @@
-const Content = require('@alexwilson/content')
-
 module.exports = {
   siteMetadata: {
     title: `Alex Wilson`,
@@ -34,35 +32,49 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',
-
     {
       resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'null',
+        path: `${__dirname}`,
+        ignore: [/.*/ig]
+      }
+    },
+
+    {
+      resolve: `gatsby-source-git`,
       options: {
         name: `posts`,
-        path: Content.posts,
-      },
+        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
+        branch: `main`,
+        patterns: `posts/**`,
+      }
     },
 
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-git`,
       options: {
         name: `talks`,
-        path: Content.talks,
-      },
+        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
+        branch: `main`,
+        patterns: `talks/**`,
+      }
     },
 
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-git`,
       options: {
         name: `pictures`,
-        path: Content.pictures,
-      },
+        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
+        branch: `main`,
+        patterns: `pictures/**`,
+      }
     },
 
     {
       resolve: `gatsby-plugin-copy-files`,
       options: {
-        source: Content.pictures.replace(/\/$/, ''),
+        source: `${__dirname}/.cache/gatsby-source-git/pictures/pictures`,
         destination: `/pictures`
       },
     },

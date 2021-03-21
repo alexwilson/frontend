@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ArticleCard from "../components/article-card"
 
-export default ({ data, location }) => {
+ const BlogPage = ({ data, location }) => {
   return (<Layout location={location}>
     <div className="alex-stream">
       <h1>My Blog</h1>
@@ -14,6 +14,8 @@ export default ({ data, location }) => {
     </div>
   </Layout>)
 }
+
+export default BlogPage
 
 export const query = graphql`
   query {

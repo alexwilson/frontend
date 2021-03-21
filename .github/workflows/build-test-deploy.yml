@@ -52,6 +52,7 @@ jobs:
     - name: Build
       run: npx lerna run --scope @alexwilson/personal-website build
       env:
+        GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
         CI: true
     - name: Save Build Artefact
       uses: actions/upload-artifact@v1

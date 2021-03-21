@@ -4,7 +4,7 @@ import ArticleCard from "../components/article-card"
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
 
-const Topics = ({ pageContext, data, location }) => {
+const TopicsTemplate = ({ pageContext, data, location }) => {
   const { topic } = pageContext
   const { totalCount } = data.allMarkdownRemark
 
@@ -18,7 +18,7 @@ const Topics = ({ pageContext, data, location }) => {
   </Layout>)
 }
 
-Topics.propTypes = {
+TopicsTemplate.propTypes = {
   pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,
   }),
@@ -41,7 +41,7 @@ Topics.propTypes = {
   }),
 }
 
-export default Topics
+export default TopicsTemplate
 
 export const pageQuery = graphql`
   query($topic: String) {

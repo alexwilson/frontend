@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ShareWidget from "../components/share-widget"
 
-export default ({ data, location }) => {
+const TalkTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   return (
     <Layout location={location}>
@@ -24,6 +24,8 @@ export default ({ data, location }) => {
     </Layout>
   )
 }
+
+export default TalkTemplate
 
 export const pageQuery = graphql`
   query TalkBySlug($slug: String!) {
