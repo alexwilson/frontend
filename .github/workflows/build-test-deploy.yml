@@ -8,6 +8,9 @@ on:
   schedule:
     # Scheduled build so pipeline failures are noticed quicker.
     - cron: '30 4 * * 3,6'
+  repository_dispatch:
+    types:
+      - content-update
 
 
 jobs:
