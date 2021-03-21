@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/alexwilson/personal-website#readme",
   "dependencies": {
-    "@alexwilson/content": "*",
     "@loadable/component": "^5.12.0",
     "date-fns": "^2.11.1",
     "gatsby": "^2.20.3",
@@ -43,6 +42,7 @@
     "gatsby-remark-embed-gist": "^1.1.9",
     "gatsby-remark-prismjs": "^3.3.31",
     "gatsby-source-filesystem": "^2.1.48",
+    "gatsby-source-git": "^1.1.0",
     "gatsby-transformer-remark": "^2.7.1",
     "gatsby-transformer-sharp": "^2.3.16",
     "include-media": "^1.4.9",

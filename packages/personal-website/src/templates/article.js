@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import loadable from '@loadable/component'
 
 import Layout from "../components/layout"
 import Header from "../components/header"
@@ -10,9 +9,7 @@ import SEO from "../components/seo"
 import Article from "../schema-org/article";
 import Webmentions from "../components/webmentions"
 
-// const Webmentions = loadable(() => import("../components/webmentions"))
-
-export default ({ data, location }) => {
+const ArticleTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
   const alternativeUrl = new URL(post.fields.legacyslug, data.site.siteMetadata.siteUrl)
@@ -104,6 +101,8 @@ export default ({ data, location }) => {
     </Layout>
   )
 }
+
+export default ArticleTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
