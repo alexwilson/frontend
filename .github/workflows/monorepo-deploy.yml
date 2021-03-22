@@ -96,11 +96,6 @@ jobs:
       run: |
         npm ci --ignore-scripts
         npx lerna bootstrap --ignore @alexwilson/personal-website
-    # @TODO: Remove this when Wrangler configuration is simpler
-    # Wrangler is never cached as it's added to home directory
-    # https://github.com/cloudflare/wrangler/issues/1286
-    - name: npm install cargo
-      run: sudo npm i @cloudflare/wrangler -g
     - name: Deploy
       run: npx lerna run deploy --scope ${{ matrix.name }}
       env:
