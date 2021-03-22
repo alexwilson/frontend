@@ -88,6 +88,15 @@ module.exports = {
         gfm: true,
         plugins: [
           {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              width: "100%",
+              loadingStrategy: 'lazy',
+              containerClass: "embed-container",
+              iframeId: true,
+            },
+          },
+          {
             resolve: `gatsby-remark-embed-gist`
           },
           {
