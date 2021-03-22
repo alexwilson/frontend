@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: alexwilson/content
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: pictures
+
+display_url: https://alexwilson.tech/
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "/posts/"
+    create: true
+    slug: "{{id}}"
+    fields: &contentFields
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Author(s)", name: "author", widget: "hidden", default: "alex"}
+      - {label: ID, name: id, widget: "uuid"}
+      - {label: Title, name: "title", widget: "string"}
+      - {label: Published Date, name: "date", widget: "datetime"}
+      - {label: Image, name: "image", widget: "image"}
+      - {label: Tags, name: "tags", label_singular: "Add", widget: "list"}
+      - {label: Body, name: "body", widget: "markdown"}
+      - {label: Content Type, name: "type", options: ["article", "talk"], widget: "select"}
+      - {label: Updated Date, name: "last_modified_at", default: "", widget: "datetime"}
+  - name: "talks"
+    label: "Talks"
+    folder: "/talks/"
+    create: true
+    slug: "{{id}}"
+    fields: *contentFields
+

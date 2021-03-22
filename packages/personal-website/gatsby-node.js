@@ -3,19 +3,6 @@ const fs = require(`fs`).promises
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { generateBlogSlug, generateTalkSlug } = require('./src/lib/slug-generation')
 
-// Persist redirects to `/redirects.json`
-const writeRedirectsFile = (redirects) => {
-  const plainRedirects = Object.create(null)
-  for (let [oldUrl, newUrl] of redirects) {
-    plainRedirects[oldUrl] = newUrl
-  }
-
-  const redirectsPath = path.join(process.cwd(), 'public', 'redirects.json')
-  fs.writeFile(redirectsPath, JSON.stringify(plainRedirects), 'utf8')
-    .then(_ => console.info(`REDIRECTS_INFO: Redirects saved saved to ${redirectsPath}`))
-    .catch(_ => console.error(`REDIRECTS_ERROR: Error writing redirects to ${redirectsPath}`))
-}
-
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
@@ -49,14 +36,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const { sourceInstanceName } = getNode(node.parent)
     createNodeField({ node, name: `type`, value: sourceInstanceName })
 
-    let legacySlug = ""
-    if (sourceInstanceName === "talks") {
-      legacySlug = generateTalkSlug(createFilePath({ node, getNode, basePath: 'talks' }))
-    } else if (sourceInstanceName === "posts") {
-      legacySlug = generateBlogSlug(createFilePath({ node, getNode, basePath: 'pages' }))
-    }
-    createNodeField({ node, name: `legacyslug`, value: legacySlug })
-
     const uuid = node.frontmatter.id
     const slug = `/content/${uuid}`
     createNodeField({ node, name: 'id', value: uuid })
@@ -67,7 +46,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const topics = new Set()
-  const redirects = new Map()
   return graphql(`
     {
       allMarkdownRemark {
@@ -117,8 +95,6 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
 
-    redirects.set(node.fields['legacyslug'], node.fields['slug'])
-
     // Collect all tags into a set.
     if (node.frontmatter.tags) {
       node.frontmatter.tags.forEach(tag => topics.add(tag))
@@ -136,7 +112,5 @@ exports.createPages = ({ graphql, actions }) => {
       },
     })
   }
-
-  writeRedirectsFile(redirects)
 })
 }
