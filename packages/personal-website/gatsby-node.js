@@ -1,7 +1,4 @@
 const path = require(`path`)
-const fs = require(`fs`).promises
-const { createFilePath } = require(`gatsby-source-filesystem`)
-const { generateBlogSlug, generateTalkSlug } = require('./src/lib/slug-generation')
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -29,6 +26,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         node,
         name: `thumbnail`,
         value: node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image
+      })
+    }
+
+    if (node.frontmatter && node.frontmatter['_legacy_slug']) {
+      createNodeField({
+        node,
+        name: '_legacy_slug',
+        value: node.frontmatter['_legacy_slug']
       })
     }
 
@@ -60,7 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
               type
               id
               slug
-              legacyslug
+              _legacy_slug
             }
           }
         }
@@ -76,7 +81,7 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/talk.js`),
           context: {
             slug: node.fields.slug,
-            'legacyslug': node.fields['legacyslug']
+            '_legacy_slug': node.fields['_legacy_slug']
           },
         })
         break
@@ -88,7 +93,7 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/article.js`),
           context: {
             slug: node.fields.slug,
-            'legacyslug': node.fields['legacyslug']
+            '_legacy_slug': node.fields['_legacy_slug']
           },
         })
         break

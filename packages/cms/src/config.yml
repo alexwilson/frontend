@@ -26,6 +26,7 @@ collections:
       - {label: Body, name: "body", widget: "markdown"}
       - {label: Content Type, name: "type", options: ["article", "talk"], widget: "select"}
       - {label: Updated Date, name: "last_modified_at", default: "", widget: "datetime"}
+      - {label: "Legacy Slug (deprecated)", name: "_legacy_slug", widget: "hidden", default: null}
   - name: "talks"
     label: "Talks"
     folder: "/talks/"

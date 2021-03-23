@@ -12,7 +12,7 @@ import Webmentions from "../components/webmentions"
 const ArticleTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
-  const alternativeUrl = new URL(post.fields.legacyslug, data.site.siteMetadata.siteUrl)
+  const alternativeUrl = new URL(post.fields['_legacy_slug'], data.site.siteMetadata.siteUrl)
 
   const datePublished = new Date(post.frontmatter.date)
   const dateModified = new Date(post.frontmatter.last_modified_at || datePublished)
@@ -123,7 +123,7 @@ export const pageQuery = graphql`
         image
         date
         slug
-        legacyslug
+        _legacy_slug
       }
     }
     site {
