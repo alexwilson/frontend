@@ -7,7 +7,7 @@
     "build": "parcel build ./client/index.html --public-url=/cms --out-dir=./client-dist --detailed-report --no-source-maps --log-level=4",
     "predeploy": "npm run build",
     "deploy": "wrangler publish",
-    "start": "parcel ./client/index.html --out-dir=./client-dist --detailed-report"
+    "start": "parcel ./client/index.html --out-dir=./client-dist --log-level=4"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
   "license": "ISC",

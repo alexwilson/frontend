@@ -8,6 +8,9 @@ import {YouTube} from "./widgets/editor/youtube";
 export default function init() {
     const useTestBackend = Boolean(process?.env?.CMS_BACKEND?.toLowerCase() === "test")
 
+    // Remove constants.
+    delete config.__constants;
+
     if (useTestBackend) {
         config.backend = {
             name: 'test-repo'
