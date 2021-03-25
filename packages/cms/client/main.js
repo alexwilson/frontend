@@ -5,8 +5,7 @@ import {Uuid} from "./widgets/uuid";
 import {YouTube} from "./widgets/editor/youtube";
 
 
-function init() {
-    const env = process?.env?.NODE_ENV || 'development'
+export default function init() {
     const useTestBackend = Boolean(process?.env?.CMS_BACKEND?.toLowerCase() === "test")
 
     if (useTestBackend) {
@@ -19,6 +18,5 @@ function init() {
     CMS.registerWidget('uuid', Uuid)
     CMS.registerEditorComponent(YouTube)
 }
-
 
 document.addEventListener('DOMContentLoaded', init)

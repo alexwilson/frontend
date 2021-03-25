@@ -4,13 +4,16 @@
   "description": "Netlify-CMS distribution",
   "main": "index.js",
   "scripts": {
-    "build": "exit 0",
-    "start": "parcel src/index.html"
+    "build": "parcel build ./client/index.html --public-url=/cms --out-dir=./client-dist --detailed-report --no-source-maps --log-level=4",
+    "predeploy": "npm run build",
+    "deploy": "wrangler publish",
+    "start": "parcel ./client/index.html --out-dir=./client-dist --detailed-report"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.15.0",
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {

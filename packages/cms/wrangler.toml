@@ -1,0 +1,8 @@
+name = "cms"
+type = "webpack"
+workers_dev = true
+routes = ["https://alexwilson.tech/cms/*"]
+
+[site]
+bucket = "./client-dist"
+entry-point = "worker"
