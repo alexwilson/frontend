@@ -1,3 +1,8 @@
+# YAML variables
+# Nested in one block so they can be removed at run-time.
+__constants:
+  time_format: &time_format "YYYY-MM-DDTHH:mm:ssZ"
+
 backend:
   name: github
   repo: alexwilson/content
@@ -21,21 +26,22 @@ collections:
     create: true
     slug: "{{id}}"
     fields: &contentFields
-      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
-      - {label: "Author(s)", name: "author", widget: "hidden", default: "alex"}
-      - {label: ID, name: id, widget: "uuid"}
-      - {label: Title, name: "title", widget: "string"}
-      - {label: Published Date, name: "date", widget: "datetime"}
-      - {label: Image, name: "image", widget: "image"}
-      - {label: Tags, name: "tags", label_singular: "Add", widget: "list"}
+      - {label: ID, name: id, required: true, widget: "uuid"}
+      - {label: Title, name: "title", required: true, widget: "string"}
+      - {label: Published Date, name: "date", required: true, format: *time_format, widget: "datetime"}
+      - {label: Image, name: "image", required: false, widget: "image"}
+      - {label: Tags, name: "tags", allow_add: true, label_singular: "Add", widget: "list"}
       - {label: Body, name: "body", widget: "markdown"}
-      - {label: Content Type, name: "type", options: ["article", "talk"], widget: "select"}
-      - {label: Updated Date, name: "last_modified_at", default: "", widget: "datetime"}
-      - {label: "Legacy Slug (deprecated)", name: "_legacy_slug", widget: "hidden", default: null}
+      - {label: Content Type, name: "type", options: ["article", "talk"], default: "article", widget: "select"}
+      - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex"}
+      - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime"}
+
+      # Deprecated/un-used fields.
+      - {label: "Legacy Slug (deprecated)", name: "_legacy_slug", widget: "hidden", required: false, default: null}
+      - {label: Layout, name: "layout", widget: "hidden", default: "blog"}
   - name: "talks"
     label: "Talks"
     folder: "/talks/"
     create: true
     slug: "{{id}}"
     fields: *contentFields
-

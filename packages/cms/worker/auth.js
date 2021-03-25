@@ -10,7 +10,7 @@ function getScript(mess, content) {
       console.log("receiveMessage %o", e)
       window.opener.postMessage(
         'authorization:github:${mess}:${JSON.stringify(content)}',
-        e.origin+"/cms"
+        e.origin
       )
       window.removeEventListener("message",receiveMessage,false);
     }
