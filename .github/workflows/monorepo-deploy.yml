@@ -3,7 +3,6 @@ on:
   pull_request:
   push:
     branches:
-      - master
       - main
   schedule:
     # Scheduled build so pipeline failures are noticed quicker.
@@ -19,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
       with:
-        fetch-depth: 2
+        fetch-depth: 10
     - uses: actions/setup-node@master
     - name: Restore ~/npm & node_modules
       uses: actions/cache@master
@@ -61,7 +60,7 @@ jobs:
           | jq -rjc -n '.include |= inputs'       \
         )"
       env:
-        MAIN_BRANCH: "master"
+        MAIN_BRANCH: "main"
 
   # Fetch dependencies and build Gatsby
   test:
@@ -102,7 +101,7 @@ jobs:
     name: Deploy ${{ matrix.name }}
     needs: [prepare, tests-passed]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
     - name: Checkout
       uses: actions/checkout@master
