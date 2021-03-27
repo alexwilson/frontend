@@ -1,0 +1,4 @@
+name = "auth-cms"
+type = "webpack"
+workers_dev = true
+routes = ["https://alexwilson.tech/auth/cms*"]

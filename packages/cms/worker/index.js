@@ -1,5 +1,4 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
-import { auth, authCallback } from './auth.js'
 const prefix = /^\/cms/;
 
 /**
@@ -27,18 +26,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleEvent(event) {
-  const url = new URL(event.request.url)
   let options = {}
-
-  // GitHub Authentication for Netlify CMS
-  switch (url.pathname.replace(prefix, '')) {
-    case '/auth': {
-      return await auth(url);
-    }
-    case '/auth/callback': {
-      return await authCallback(url);
-    }
-  }
 
   /**
    * You can add custom logic to how we fetch your assets

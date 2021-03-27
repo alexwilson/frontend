@@ -8,7 +8,7 @@ backend:
   repo: alexwilson/content
   branch: main
   base_url: https://alexwilson.tech/
-  auth_endpoint: "cms/auth"
+  auth_endpoint: "auth/cms"
 
 # We serialize this to JavaScript on deploys instead of dynamically fetching.
 load_config_file: false

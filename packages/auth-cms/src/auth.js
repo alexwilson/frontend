@@ -3,6 +3,16 @@ const clientSecret = OAUTH_CLIENT_SECRET;
 const authUrl = `https://github.com/login/oauth/authorize`;
 const tokenUrl = "https://github.com/login/oauth/access_token";
 
+const headers = {
+  "Content-Type": "text/html;charset=utf-8",
+  "Cache-Control": "private, no-cache, no-store, max-age=0",
+  "X-XSS-Protection": "1; mode=block",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "Referrer-Policy": "unsafe-url",
+  "Feature-Policy": "none",
+};
+
 function getScript(mess, content) {
   return `<!doctype html><html><body><script>
   (function() {
@@ -19,15 +29,16 @@ function getScript(mess, content) {
     window.opener.postMessage("authorizing:github", "*")
     })()
   </script></body></html>`
-}
+};
 
 export const auth = async (url) => {
   const params = [
     `client_id=${clientId}`,
     `scope=${url.searchParams.get("scope") || "repo,user"}`
   ]
-  return Response.redirect(`${authUrl}?${params.join('&')}`);
-}
+  const response = Response.redirect(`${authUrl}?${params.join('&')}`);
+  return response;
+};
 
 export const authCallback = async (url) => {
   const data = {
@@ -36,16 +47,11 @@ export const authCallback = async (url) => {
     client_secret: clientSecret,
   };
 
-  const headers = {
-    "Content-Type": "text/html;charset=utf-8",
-    "Cache-Control": "no-cache, no-store"
-  };
-
   try {
     const response = await fetch(tokenUrl, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(data),
@@ -66,4 +72,4 @@ export const authCallback = async (url) => {
   } catch (err) {
     return new Response(getScript('error', err), { status: 401, headers });
   }
-}
+};
