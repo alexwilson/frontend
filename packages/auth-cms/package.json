@@ -1,0 +1,15 @@
+{
+  "name": "@alexwilson/auth-cms",
+  "version": "1.0.0",
+  "description": "CMS authentication worker for Netlify CMS",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "wrangler publish"
+  },
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "type": "module",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/wrangler": "^1.15.0"
+  }
+}
