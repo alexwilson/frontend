@@ -1,0 +1,4 @@
+name = "pictures"
+type = "webpack"
+workers_dev = true
+routes = ["https://alexwilson.tech/pictures/*"]

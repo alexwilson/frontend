@@ -62,24 +62,6 @@ module.exports = {
     },
 
     {
-      resolve: `gatsby-source-git`,
-      options: {
-        name: `pictures`,
-        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
-        branch: `main`,
-        patterns: `pictures/**`,
-      }
-    },
-
-    {
-      resolve: `gatsby-plugin-copy-files`,
-      options: {
-        source: `${__dirname}/.cache/gatsby-source-git/pictures/pictures`,
-        destination: `/pictures`
-      },
-    },
-
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         commonmark: true,
