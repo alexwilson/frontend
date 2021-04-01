@@ -44,7 +44,6 @@ export default class Webmentions extends Component {
       (all, fragment) => all.concat(fragment), [])
     )
     .catch(console.error)
-    console.log(webmentions)
 
     this.setState({
       reposts: repostsFromWebmentions(webmentions),
