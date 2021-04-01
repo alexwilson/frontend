@@ -1,4 +1,5 @@
 const path = require(`path`)
+const rewriteImage = require('./src/utils/rewrite-images');
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -19,13 +20,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       createNodeField({
         node,
         name: `image`,
-        value: node.frontmatter.image_cropped ? node.frontmatter.image_cropped : node.frontmatter.image
+        value: rewriteImage(node.frontmatter.image_cropped ? node.frontmatter.image_cropped : node.frontmatter.image)
       })
       // For thumbnails, optionally supply a thumbnailed version.
       createNodeField({
         node,
         name: `thumbnail`,
-        value: node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image
+        value: rewriteImage(node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image)
       })
     }
 

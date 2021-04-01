@@ -82,6 +82,9 @@ module.exports = {
             resolve: `gatsby-remark-embed-gist`
           },
           {
+            resolve: '@alexwilson/gatsby-remark-rewrite-images'
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               showLineNumbers: false,
