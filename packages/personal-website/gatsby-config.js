@@ -62,6 +62,10 @@ module.exports = {
     },
 
     {
+      resolve: '@alexwilson/gatsby-remark-rewrite-images'
+    },
+
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         commonmark: true,

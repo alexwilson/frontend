@@ -1,0 +1,15 @@
+{
+  "name": "@alexwilson/gatsby-remark-rewrite-images",
+  "version": "1.0.0",
+  "description": "Rewrite images",
+  "main": "index.js",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "private",
+  "private": "true",
+  "dependencies": {
+    "unist-util-visit": "^2.0.3"
+  },
+  "peerDependencies": {
+    "gatsby": ">2.0.0-alpha"
+  }
+}

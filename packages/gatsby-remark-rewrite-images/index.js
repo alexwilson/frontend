@@ -1,5 +1,5 @@
 const visit = require('unist-util-visit')
-const rewriteImages = require('../../../src/utils/rewrite-images')
+const rewriteImages = require('./rewrite-images')
 
 module.exports = ({ markdownAST }) => {
   visit(markdownAST, 'image', node => {
