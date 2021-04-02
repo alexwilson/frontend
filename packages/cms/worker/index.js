@@ -1,10 +1,14 @@
+import index from "../dist/index.html";
+
 addEventListener('fetch', function(event) {
   event.respondWith(handleRequest(event.request))
 });
 
-const ORIGIN = "https://static.alexwilson.tech";
 async function handleRequest(request) {
-  const {pathname} = new URL(request.url);
-  const url = new URL(pathname, ORIGIN);
-  return await fetch(url, { "cf": { "cacheEverything": false, ttl: 60 } });
+  return new Response(index, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+      "cache-control": "max-age=600, must-revalidate"
+    },
+  })
 }
