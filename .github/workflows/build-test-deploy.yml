@@ -114,6 +114,10 @@ jobs:
       with:
         args: public
     - name: Trigger a Pages Update
-      run: |
-        curl -sS -X POST -H "Authorization: Bearer ${{ secrets.PAGES_GH_TOKEN }}" \
-        https://api.github.com/repos/${{ github.repository }}/pages/builds
+      uses: octokit/request-action@v2.x
+      with:
+        route: POST /repos/{owner}/{repo}/dispatches
+        owner: ${{ github.repository_owner }}
+        repo: ${{ github.repository }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
