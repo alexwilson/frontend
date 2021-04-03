@@ -10,6 +10,7 @@ backend:
   base_url: https://alexwilson.tech/
   auth_endpoint: "auth/cms"
   use_graphql: true
+  cms_label_prefix: status/
 
 # We serialize this to JavaScript on deploys instead of dynamically fetching.
 load_config_file: false
