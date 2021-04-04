@@ -117,7 +117,7 @@ jobs:
       uses: octokit/request-action@v2.x
       with:
         route: POST /repos/{owner}/{repo}/pages/builds
-        owner: ${{ github.repository_owner }}
-        repo: ${{ github.repository }}
+        owner: ${{ github.event.repository.owner.login }}
+        repo: ${{ github.event.repository.name }}
       env:
         GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
