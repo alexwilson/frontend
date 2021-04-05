@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://alexwilson.tech/content/09b2a1eb-4a1f-4087-b261-79ceee6e2bc6</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/4b52df62-90d5-4d31-8cf0-72a6f6e8a14c</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/content/97b4f995-231d-4d15-86ed-91d1e0921d7b</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/d7bb0bc3-5bab-4ce7-97ee-602052d007aa</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/content/97b4f995-231d-4d15-86ed-91d1e0921d7b</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/a9c36f43-57cb-4e17-b284-43546c834b1c</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/4fa644e5-2101-4788-abfe-d2d28d9ef0a0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/aa7c9618-5652-4e7d-b7b9-284f157e1332</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -18,14 +18,14 @@
 <url> <loc>https://alexwilson.tech/content/dc39b27d-b4f4-401c-83c2-c43d16a10a0d</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/2fd603e9-9d95-4518-9b61-b572437865e2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/cdf6575f-d01f-43bb-8a26-eb1530ca9952</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/3e8ea4c7-60db-496a-9ffb-1d8d3ec23f46</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/d1a4a7bb-fc4d-41f2-8482-8a7afe1af0e6</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/content/770c26b5-f551-4795-90fa-0f24627ec510</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/cloudflare/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/irc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/devops/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/release-engineering/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/irc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/aws/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/weeknotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/dns/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -50,11 +50,11 @@
 <url> <loc>https://alexwilson.tech/topic/microservices/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/personal-development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/stoicism/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://alexwilson.tech/topic/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/explainer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/immutable-infrastructure/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/infrastructure-as-code/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/static-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://alexwilson.tech/topic/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/graphql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/legacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://alexwilson.tech/topic/migration/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
