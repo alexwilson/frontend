@@ -2,30 +2,33 @@
   "name": "@alexwilson/cms",
   "version": "1.0.0",
   "description": "Netlify-CMS distribution",
-  "main": "index.js",
   "scripts": {
-    "build": "parcel build ./client/index.html --public-url=https://static.alexwilson.tech/cms/ --detailed-report --no-source-maps --log-level=4",
+    "build": "parcel build ./client/index.html --public-url=https://static.alexwilson.tech/cms/ --detailed-report --no-source-maps --log-level=verbose",
     "deploy:client": "aws s3 sync --acl=public-read --delete ./dist/ s3://alex-static-assets/cms/",
     "deploy:worker": "wrangler publish",
     "deploy": "npm-run-all build deploy:*",
-    "test": "npm run build",
-    "start": "parcel ./client/index.html --log-level=4"
+    "test": "parcel build ./client/index.html --detailed-report --log-level=verbose --no-source-maps --no-optimize --no-scope-hoist",
+    "start": "parcel serve ./client/index.html --log-level=verbose"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
     "@cloudflare/wrangler": "^1.15.0",
+    "@parcel/config-default": "^v2.0.0-beta.2",
+    "@parcel/optimizer-esbuild": "^v2.0.0-beta.2",
+    "@parcel/transformer-yaml": "^v2.0.0-beta.2",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.4",
+    "parcel": "^v2.0.0-beta.2",
     "raw-loader": "^4.0.2",
     "webpack": "^5.30.0"
   },
   "dependencies": {
     "netlify-cms": "^2.10.111",
     "netlify-cms-app": "^2.14.40",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "uuid": "^8.3.2"
+    "netlify-cms-backend-proxy": "^1.1.7",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "uuid": "^7.0.3"
   }
 }

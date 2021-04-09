@@ -3,6 +3,7 @@
 
 # Ignoring artefact folders
 .cache
+.parcel-cache
 dist
 public
 
