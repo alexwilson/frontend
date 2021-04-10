@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Netlify-CMS distribution",
   "scripts": {
-    "build": "parcel build ./client/index.html --public-url=https://static.alexwilson.tech/cms/ --detailed-report --no-source-maps --log-level=verbose",
+    "build": "parcel build ./client/index.html --public-url=https://static.alexwilson.tech/cms/ --detailed-report --no-source-maps --no-scope-hoist --log-level=verbose",
     "deploy:client": "aws s3 sync --acl=public-read --delete ./dist/ s3://alex-static-assets/cms/",
     "deploy:worker": "wrangler publish",
     "deploy": "npm-run-all build deploy:*",
-    "test": "parcel build ./client/index.html --detailed-report --log-level=verbose --no-source-maps --no-optimize --no-scope-hoist",
+    "test": "npm-run-all build",
     "start": "parcel serve ./client/index.html --log-level=verbose"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
