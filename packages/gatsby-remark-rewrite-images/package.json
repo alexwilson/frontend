@@ -7,7 +7,7 @@
   "license": "private",
   "private": "true",
   "dependencies": {
-    "unist-util-visit": "^3.0.0"
+    "unist-util-visit": "^2.0.3"
   },
   "peerDependencies": {
     "gatsby": ">2.0.0-alpha"
