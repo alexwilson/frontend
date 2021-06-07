@@ -15,7 +15,7 @@
   "type": "module",
   "devDependencies": {
     "@cloudflare/wrangler": "^1.15.0",
-    "@parcel/config-default": "^v2.0.0-nightly.690",
+    "@parcel/config-default": "^v2.0.0-nightly.713",
     "@parcel/optimizer-esbuild": "^v2.0.0-beta.2",
     "@parcel/transformer-yaml": "^v2.0.0-nightly.690",
     "npm-run-all": "^4.1.5",
