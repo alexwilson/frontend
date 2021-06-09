@@ -19,7 +19,7 @@ export default function init() {
 
     CMS.init({ config });
     CMS.registerWidget('uuid', Uuid)
-    CMS.registerEditorComponent(YouTube)
+    //CMS.registerEditorComponent(YouTube)
 }
 
 document.addEventListener('DOMContentLoaded', init)
