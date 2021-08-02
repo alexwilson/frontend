@@ -7,7 +7,7 @@ updates:
   open-pull-requests-limit: 10
   ignore:
     - dependency-name: "unist-util-visit"
-      versions: ["3.x"]
+      versions: ["3.x", "4.x", "5.x"]
   reviewers:
   - alexwilson
   versioning-strategy: increase-if-necessary
