@@ -64,7 +64,7 @@ const ArticleTemplate = ({ data, location }) => {
           <hr />
           <h3 className="share">Share</h3>
           <ShareWidget title={post.frontmatter.title} url={url} />
-          <Webmentions urls={[url, alternativeUrl]} />
+          <Webmentions urls={[url, `${url}/`, alternativeUrl]} />
 
         </div>
 
