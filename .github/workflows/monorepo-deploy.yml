@@ -30,8 +30,8 @@ jobs:
         path: ~/.npm
     - name: Install Dependencies
       run: |
-        npm ci --ignore-scripts
-        npx lerna bootstrap --ignore @alexwilson/personal-website
+        npm ci --ignore-scripts --production=false
+        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - id: find-projects
       name: Find affected projects
       run: |
@@ -89,8 +89,8 @@ jobs:
         path: ~/.npm
     - name: Install Dependencies
       run: |
-        npm ci --ignore-scripts
-        npx lerna bootstrap --ignore @alexwilson/personal-website
+        npm ci --ignore-scripts --production=false
+        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Test
       run: npx lerna run test --scope ${{ matrix.name }}
 
@@ -127,7 +127,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm ci --ignore-scripts
-        npx lerna bootstrap --ignore @alexwilson/personal-website
+        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Deploy
       run: npx lerna run deploy --scope ${{ matrix.name }}
       env:
