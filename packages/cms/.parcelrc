@@ -1,9 +1,0 @@
-{
-  "extends": "@parcel/config-default",
-  "transformers": {
-    "*.yml": ["@parcel/transformer-yaml"]
-  },
-  "optimizers": {
-    "*.js": ["@parcel/optimizer-esbuild", "@parcel/optimizer-terser"]
-  }
-}
