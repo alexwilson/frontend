@@ -69,6 +69,8 @@ jobs:
     needs: [prepare]
     name: Test ${{ matrix.name }}
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: ${{ secrets.NODE_ENV }}
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     steps:
@@ -106,6 +108,8 @@ jobs:
     needs: [prepare, tests-passed]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    env:
+      NODE_ENV: ${{ secrets.NODE_ENV }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
