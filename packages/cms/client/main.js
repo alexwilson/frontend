@@ -1,12 +1,12 @@
 import CMS from 'netlify-cms-app';
 import config from './config.yml';
 
-import {Uuid} from "./widgets/uuid";
-import {YouTube} from "./widgets/editor/youtube";
+import {Uuid} from "./widgets/uuid.jsx";
+// import {YouTube} from "./widgets/editor/youtube.jsx";
 
 
 export default function init() {
-    const useTestBackend = Boolean(process?.env?.CMS_BACKEND?.toLowerCase() === "test")
+    const useTestBackend = Boolean(process.env.CMS_BACKEND === "test")
 
     // Remove constants.
     delete config.__constants;
