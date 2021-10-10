@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const yaml = require('js-yaml')
 
 const isProduction = (process?.env?.NODE_ENV === 'production' || false)
@@ -41,6 +42,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Alex CMS',
             publicPath: isProduction ? 'https://static.alexwilson.tech/cms/' : 'auto'
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static'
         })
     ],
     devServer: {
