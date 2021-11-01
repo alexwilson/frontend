@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 30 Oct 2021 04:37:45 GMT</lastBuildDate><item><title><![CDATA[Weeknotes:  Space — 24th October 2021]]></title><description><![CDATA[Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…]]></description><link>https:/alexwilson.tech/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca</link><guid isPermaLink="false">https:/alexwilson.tech/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca</guid><pubDate>Sun, 24 Oct 2021 17:48:16 GMT</pubDate><content:encoded>&lt;p&gt;Last week &lt;a href=&quot;https://nickramsbottom.com/&quot;&gt;Nick&lt;/a&gt; helped me move my standing desk from Whitechapel, which was quite the adventure across London.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 01 Nov 2021 06:27:58 GMT</lastBuildDate><item><title><![CDATA[Weeknotes:  Space — 24th October 2021]]></title><description><![CDATA[Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…]]></description><link>https:/alexwilson.tech/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca</link><guid isPermaLink="false">https:/alexwilson.tech/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca</guid><pubDate>Sun, 24 Oct 2021 17:48:16 GMT</pubDate><content:encoded>&lt;p&gt;Last week &lt;a href=&quot;https://nickramsbottom.com/&quot;&gt;Nick&lt;/a&gt; helped me move my standing desk from Whitechapel, which was quite the adventure across London.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;... and this week I got a chair. A refurbished Herman Miller Mirra 2.  This is the first time I&apos;ve properly invested time &amp;#x26; money into getting a chair for the long-term and I&apos;m so glad I did: it&apos;s endlessly adjustable and actually &lt;em&gt;really&lt;/em&gt; comfortable.&lt;/li&gt;
 &lt;li&gt;
@@ -1082,8 +1082,17 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
   &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-javascript  &quot;&gt;
 
       
-&lt;div &gt;
+&lt;div class=&quot;js-check-bidi&quot;&gt;
+  &lt;div hidden=&quot;hidden&quot; data-view-component=&quot;true&quot; class=&quot;js-bidi-alert flash flash-warn&quot;&gt;
+  &lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; data-view-component=&quot;true&quot; class=&quot;octicon octicon-alert&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
   
+  This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters. &lt;a href=&quot;https://github.co/hiddenchars&quot; target=&quot;_blank&quot;&gt;Learn more about bidirectional Unicode characters&lt;/a&gt;
+
+
+  
+&lt;/div&gt;
   &lt;table class=&quot;highlight tab-size js-file-line-container&quot; data-tab-size=&quot;8&quot; data-paste-markdown-skip&gt;
         &lt;tr&gt;
           &lt;td id=&quot;file-cloudflare-challenge-js-L1&quot; class=&quot;blob-num js-line-number&quot; data-line-number=&quot;1&quot;&gt;&lt;/td&gt;
