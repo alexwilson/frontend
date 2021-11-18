@@ -43,11 +43,11 @@ export default function aboutMe({location}) {
               <p className="eta">
                   <b className="eta">Skills</b>
                   <ul className="eta">
-                      <li>7 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
-                      <li>Requirement-gathering across a variety of business domains and stakeholder management. Experience and knowledge of digital media domains.</li>
+                      <li>8 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+                      <li>Stakeholder management & requirement-gathering across business domains. Experience and knowledge of digital media domains.</li>
                       <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
-                      <li>Tracing, diagnosing and mitigating technical problems in diverse systems — Legacy, distributed, etc.</li>
-                      <li>Solutions and application architecture throughout the stack, from front-end caching strategies to messaging patterns.</li>
+                      <li>Tracing, diagnosing and mitigating faults in diverse technical stacks — Legacy, distributed systems, etc.</li>
+                      <li>Solutions & application architecture throughout the stack, from front-end caching strategies to messaging patterns.</li>
                       <li>Rich understanding of modern technologies, including in-development browser APIs, their adoption path and their business value.</li>
                   </ul>
               </p>
@@ -62,7 +62,7 @@ export default function aboutMe({location}) {
                       <li>Languages: <i>JavaScript (TypeScript, Browser, ESNext, NodeJS), Golang, Rust, Java, Python, Ruby, PHP</i></li>
                       <li>Operating <i>Systems: macOS, FreeBSD, Gentoo Linux, Debian/Ubuntu Linux</i></li>
                       <li>Security: <i>OWASP, PWK</i></li>
-                      <li>Testing: <i>Cucumber/Gherkin, Jest, *Unit; CircleCI, Jenkins</i></li>
+                      <li>Testing: <i>Cucumber/Gherkin, Jest, *Unit; Cypress, CircleCI, Jenkins</i></li>
                   </ul>
               </p>
           </section>
@@ -73,7 +73,8 @@ export default function aboutMe({location}) {
               <p className="eta">
                   <b className="eta">Work Experience</b>
                   <ul className="eta">
-                      <li><i>Apr 2019–Present</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
+                      <li><i>Jan 2021–Present</i>: Principal Engineer, FT Professional, <a href="https://www.ft.com/">Financial Times</a></li>
+                      <li><i>Apr 2019–Jan 2021</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
                       <li><i>Oct 2016–Apr 2019</i>: Principal Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
                       <li><i>Sep 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
                       <li><i>Sep 2009—Jul 2013</i>: Part-Time Software Developer & SysAdmin, <a href="https://alexwilson.tech/">Freelance</a></li>
@@ -83,7 +84,7 @@ export default function aboutMe({location}) {
       </div>
       <div className="alex-article__aside">
           <br />
-          <ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="It me"/>
+          <ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="A photograph of Alex Wilson"/>
       </div>
     </div>
   </Layout>
