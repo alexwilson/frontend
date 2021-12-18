@@ -1,13 +1,9 @@
-Personal Website
-================
+alexwilson/frontend
+===================
 
-Personal website and blog of Alex Wilson.
+This is a monorepository containing components, libraries & services powering my web projects.
 
-This is a static website built using Gatsby, deployed to Github Pages using Github Actions.
-
-## Dependencies
-
- - NodeJS 10 and NPM
+For more specifics about particular services, please see the README of its directory.
 
 ## Getting Started
 
@@ -15,9 +11,20 @@ This is a static website built using Gatsby, deployed to Github Pages using Gith
 npm run develop
 ```
 
+### Developing Components
+⚠️ Coming soon.
+### Developing Libraries
+⚠️ Coming soon.
 
-## Tools
-- [Deployments](https://github.com/alexwilson/personal-website/commits/gh-pages)
+### Developing Services
+⚠️ Coming soon.
+
+## Continuous Integration
+⚠️ Coming soon.
+
+## Useful Links
+- [Project Board](https://github.com/users/alexwilson/projects/6/views/4)
+- [GH Page Deployments](https://github.com/alexwilson/personal-website/commits/gh-pages)
 - [Google Analytics](https://analytics.google.com/analytics/web/)
 - [Google Webmaster Tools](https://search.google.com/search-console?resource_id=https%3A%2F%2Falexwilson.tech%2F)
 - [Slack](https://itsalex.slack.com/archives/CSJT9KK2R)
