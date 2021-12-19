@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import Layout from "../components/layout"
 import Header from "../components/header"
-import ConsultFooter from "../components/consult-footer"
+import { ConsultFooter } from "../components/footer"
 import SEO from "../components/seo"
 
 const ConsultancyPage = ({ location }) => (
