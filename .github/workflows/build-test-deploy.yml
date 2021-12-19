@@ -27,7 +27,7 @@ jobs:
       uses: actions/cache@v1
       id: cache-public
       with:
-        path: packages/personal-website/public
+        path: services/personal-website/public
         key: build
     - uses: actions/setup-node@v2
       with:
@@ -59,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: site-artefact
-        path: packages/personal-website/public
+        path: services/personal-website/public
 
   # Run unit tests on the artefact we just built.
   test:
