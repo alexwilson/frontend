@@ -5,12 +5,11 @@
 @import "../components/util-typography/typography";
 
 // Page-specific styles
-@import "alex/layout";
-@import "alex/pager";
-@import "alex/article";
-@import "alex/home";
-@import "alex/listing";
-@import "alex/consultancy";
+@import "layout";
+@import "pages/home";
+@import "pages/article";
+@import "pages/listing";
+@import "pages/consultancy";
 
 .panel {
 	background: $brand;
