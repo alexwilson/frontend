@@ -1,8 +1,8 @@
 // Utilities
-@import "util/viewports";
-@import "util/grid";
-@import "util/palette";
-@import "util/typography";
+@import "../components/util-viewports/viewports";
+@import "../components/util-grid/grid";
+@import "../components/util-palette/palette";
+@import "../components/util-typography/typography";
 
 // Page-specific styles
 @import "alex/layout";
