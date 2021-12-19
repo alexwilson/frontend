@@ -2,4 +2,23 @@
 @import "../../scss/util/grid";
 @import "../../scss/util/palette";
 @import "../../scss/util/typography";
-@import "../../scss/alex/form";
+
+.alex-form {
+  @include alex-container($max-width: 100%);
+  &__input, &__input:focus, &__input::placeholder {
+    padding: .5em .6em;
+  }
+  &__input, &__input:focus {
+    @include alex-row;
+    @include alex-column(10);
+
+    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2, $breakpoint: all);
+
+    border: 1px solid $grey-4;
+
+    &--submit {
+
+    }
+  }
+}
+
