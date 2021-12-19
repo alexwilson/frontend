@@ -1,15 +1,10 @@
-// Viewport definitions
-@import "viewports";
-
-// Bootstrap
-// @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
-
-// Reset
+// Utilities
+@import "util/viewports";
 @import "util/grid";
+@import "util/palette";
+@import "util/typography";
 
-// Components
-@import "alex/palette";
-@import "alex/typography";
+// Page-specific styles
 @import "alex/layout";
 @import "alex/pager";
 @import "alex/article";
