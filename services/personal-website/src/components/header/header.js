@@ -4,6 +4,7 @@ import React, {Component} from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
 
+import "./header.scss";
 
 const ALink = ({url, children, rel}) => {
   const isAbsolute = /^(https?:)?\/\//

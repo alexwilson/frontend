@@ -7,23 +7,14 @@
 // Reset
 @import "util/grid";
 
-@import "type/main";
-
 // Components
 @import "alex/palette";
 @import "alex/typography";
 @import "alex/layout";
-@import "alex/header";
-@import "alex/footer";
-@import "alex/buttons";
 @import "alex/pager";
 @import "alex/article";
-@import "alex/share";
-@import "alex/webmentions";
 @import "alex/home";
 @import "alex/listing";
-@import "alex/cards";
-@import "alex/form";
 @import "alex/consultancy";
 
 .panel {

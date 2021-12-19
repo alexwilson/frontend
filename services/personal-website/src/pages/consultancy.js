@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import Layout from "../components/layout"
 import Header from "../components/header"
 import { ConsultFooter } from "../components/footer"
+import {Form, Input, TextArea, Submit} from "../components/form"
 import SEO from "../components/seo"
 
 const ConsultancyPage = ({ location }) => (
@@ -90,30 +91,19 @@ const ConsultancyPage = ({ location }) => (
 
       <section className="consultancy-contact">
         <span className="consultancy-divider"></span>
-        <form
-          className="alex-form"
-          action="https://submit-form.com/scLP4bAyhQ-BPImqhr5A0" target="_self"
-          >
+        <Form action="https://submit-form.com/scLP4bAyhQ-BPImqhr5A0" target="_self">
           <h1>Please get in touch</h1>
           <p>
             Even if you're not ready or able for a full engagement and would still like some advice/help, I'd love to grab a
-            coffee — please get in touch!
+            coffee — get in touch!
           </p>
-          <input className="alex-form__input" type="checkbox" name="i-am-human" style={{display: 'none'}} tabindex="-1" autocomplete="off" />
-          <input className="alex-form__input" type="text" name="name" placeholder="Name" />
-          <input className="alex-form__input" type="text" name="phone" placeholder="Phone" />
-          <input className="alex-form__input" type="text" name="email" placeholder="Email" />
-          <textarea
-            className="alex-form__input alex-form__input--textarea"
-            name="message"
-            placeholder="How can I help?"
-          >
-          </textarea>
-          <button
-            className="alex-form__input alex-form__input--submit"
-            type="submit"
-          >Submit</button>
-        </form>
+          <Input type="checkbox" name="i-am-human" style={{display: 'none'}} tabindex="-1" autocomplete="off" />
+          <Input type="text" name="name" placeholder="Name" />
+          <Input type="text" name="phone" placeholder="Phone" />
+          <Input type="text" name="email" placeholder="Email" />
+          <TextArea name="message" placeholder="How can I help?" />
+          <Submit />
+        </Form>
       </section>
     </div>
   <ConsultFooter />
