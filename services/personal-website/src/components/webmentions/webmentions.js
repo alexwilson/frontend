@@ -1,6 +1,6 @@
 import fetch from "isomorphic-fetch"
 import React, {Component} from "react"
-import ResponsiveImage from './responsive-image'
+import ResponsiveImage from '../responsive-image'
 
 const webmentionExtractor = wmProperty => mention => mention['wm-property'] === wmProperty
 const likesFromWebmentions = webmentions => webmentions.filter(webmentionExtractor('like-of'))

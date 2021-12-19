@@ -29,7 +29,7 @@
       margin-right: auto;
     }
 
-    a {
+    a, a:visited {
       @include fontsize(eta, all);
 
       color: white;
@@ -54,7 +54,7 @@
 
     &--active {
       a {
-        border-bottom: white solid 0.5rem;
+        border-bottom: white solid 0.5rem !important;
       }
     }
   }

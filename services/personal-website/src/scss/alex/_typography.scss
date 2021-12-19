@@ -1,6 +1,10 @@
 /**
  * Typography
  */
+$linkColour: $grey-5;
+$hoverColour: $grey-4;
+
+@import "../type/main";
 
 // .wf-active body {
 //     font-family: sans-serif;
@@ -17,7 +21,7 @@
 }
 
 .article-description {
-    // font-size: 16px;    
+    // font-size: 16px;
 }
 
 .alex-article {
@@ -51,7 +55,7 @@
         color: $grey-5;
     }
 
-    
+
 }
 
 // .heading--xtra-large {
@@ -87,15 +91,8 @@ h1,h2 {
     text-transform: uppercase;
 }
 
-a, a:visited {
-    color: #262A33;
-    text-decoration: none;
+a, a:visited, a:hover, a:focus {
     transition: color .4s ease-out, background .2s ease-in;
-}
-
-a:hover, a:focus {
-    @extend a;
-    color: $grey-4 !important;
 }
 
 .spacer {

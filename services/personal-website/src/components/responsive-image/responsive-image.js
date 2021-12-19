@@ -17,7 +17,7 @@ export default function responsiveImage({src, alt, width, height, quality, forma
   return (
     <img
         src={`https://imagecdn.app/v2/image/${encodeURIComponent(src)}?${queryParams.join('&')}`}
-        className={`responsive ${className}`}
+        className={`responsive-image ${className}`}
         alt={alt}
     />
   )
