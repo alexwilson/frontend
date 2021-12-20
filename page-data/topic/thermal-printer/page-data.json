@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-templates-topic-js","path":"/topic/thermal-printer/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"afdef600-5133-58e3-9b42-7abf7b2b711c","fields":{"slug":"/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca","date":"2021-10-24T17:48:16.000Z"},"frontmatter":{"title":"Weeknotes:  Space — 24th October 2021","date":"2021-10-24T17:48:16.000Z"},"excerpt":"Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…"}}]}},"pageContext":{"topic":"thermal-printer"}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/thermal-printer/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"afdef600-5133-58e3-9b42-7abf7b2b711c","fields":{"slug":"/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca","date":"2021-10-24T17:48:16.000Z"},"frontmatter":{"title":"Weeknotes:  Space — 24th October 2021","date":"2021-10-24T17:48:16.000Z"},"excerpt":"Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…"}}]}},"pageContext":{"topic":"thermal-printer"}},
+    "staticQueryHashes": []}

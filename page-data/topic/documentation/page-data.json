@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-templates-topic-js","path":"/topic/documentation/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"d7a5a534-16c3-5146-b93e-5cbdcaa257c0","fields":{"slug":"/content/c4aae7be-7862-43a9-8a69-df40e755b12b","date":"2021-08-29T00:00:00.000Z"},"frontmatter":{"title":"Weeknotes: Furniture Fetch Quest Part 2 — 29th August 2021","date":"2021-08-29T00:00:00.000Z"},"excerpt":"Reader, honestly, this week, it's been a little bit rough? Anyway, I've been thinking a lot about technical documentation this week: Granted…"}}]}},"pageContext":{"topic":"documentation"}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/documentation/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"d7a5a534-16c3-5146-b93e-5cbdcaa257c0","fields":{"slug":"/content/c4aae7be-7862-43a9-8a69-df40e755b12b","date":"2021-08-29T00:00:00.000Z"},"frontmatter":{"title":"Weeknotes: Furniture Fetch Quest Part 2 — 29th August 2021","date":"2021-08-29T00:00:00.000Z"},"excerpt":"Reader, honestly, this week, it's been a little bit rough? Anyway, I've been thinking a lot about technical documentation this week: Granted…"}}]}},"pageContext":{"topic":"documentation"}},
+    "staticQueryHashes": []}

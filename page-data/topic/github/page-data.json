@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-templates-topic-js","path":"/topic/github/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"bf7c1e84-c56f-556d-9efd-7176d402ec1a","fields":{"slug":"/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc","date":"2020-01-15T00:00:00.000Z"},"frontmatter":{"title":"Deploying static sites with Github Actions","date":"2020-01-15T00:00:00.000Z"},"excerpt":"First, some background: Github Pages is a brilliant way to build static websites quickly and easily. However it is quite\nlimited as it only…"}}]}},"pageContext":{"topic":"github"}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/github/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"bf7c1e84-c56f-556d-9efd-7176d402ec1a","fields":{"slug":"/content/717e6a35-1cb5-4a28-9321-592d05ddd9dc","date":"2020-01-15T00:00:00.000Z"},"frontmatter":{"title":"Deploying static sites with Github Actions","date":"2020-01-15T00:00:00.000Z"},"excerpt":"First, some background: Github Pages is a brilliant way to build static websites quickly and easily. However it is quite\nlimited as it only…"}}]}},"pageContext":{"topic":"github"}},
+    "staticQueryHashes": []}

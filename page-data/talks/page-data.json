@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-talks-js","path":"/talks/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"08eb6553-1cb6-5b00-9596-6e472bd67537","fields":{"slug":"/content/770c26b5-f551-4795-90fa-0f24627ec510","date":"2019-04-14T00:00:00.000Z"},"frontmatter":{"title":"QA is not Quality","date":"2019-04-14T00:00:00.000Z"},"excerpt":"Software Quality is really tricky: We all want to build the best thing for our users, but we want to ship good software, fast, without…"}}]}},"pageContext":{}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-pages-talks-js",
+    "path": "/talks/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"08eb6553-1cb6-5b00-9596-6e472bd67537","fields":{"slug":"/content/770c26b5-f551-4795-90fa-0f24627ec510","date":"2019-04-14T00:00:00.000Z"},"frontmatter":{"title":"QA is not Quality","date":"2019-04-14T00:00:00.000Z"},"excerpt":"Software Quality is really tricky: We all want to build the best thing for our users, but we want to ship good software, fast, without…"}}]}},"pageContext":{}},
+    "staticQueryHashes": []}

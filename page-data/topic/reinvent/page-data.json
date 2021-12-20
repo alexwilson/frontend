@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-templates-topic-js","path":"/topic/reinvent/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"c4e8df2a-a7d8-52fa-aab9-516260112b9e","fields":{"slug":"/content/96878838-1ca9-4165-a36b-2373cf39c33a","date":"2018-12-08T23:19:00.000Z"},"frontmatter":{"title":"Weeknotes: ReInvent — 8th December 2018","date":"2018-12-08 23:19"},"excerpt":"Monday night I flew back to the UK. The difference between the efficiency and cleanliness of Haneda airport and Heathrow is already very…"}}]}},"pageContext":{"topic":"reinvent"}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/reinvent/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"c4e8df2a-a7d8-52fa-aab9-516260112b9e","fields":{"slug":"/content/96878838-1ca9-4165-a36b-2373cf39c33a","date":"2018-12-08T23:19:00.000Z"},"frontmatter":{"title":"Weeknotes: ReInvent — 8th December 2018","date":"2018-12-08 23:19"},"excerpt":"Monday night I flew back to the UK. The difference between the efficiency and cleanliness of Haneda airport and Heathrow is already very…"}}]}},"pageContext":{"topic":"reinvent"}},
+    "staticQueryHashes": []}

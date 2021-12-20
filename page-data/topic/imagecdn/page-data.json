@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-templates-topic-js","path":"/topic/imagecdn/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"1d733e89-2be0-5c1c-b315-91d06b675513","fields":{"slug":"/content/5e8ed0cb-cf94-4634-b5c4-7ef561c5e7bc","date":"2019-01-26T00:00:00.000Z"},"frontmatter":{"title":"Weeknotes: First Of The Year — 26th January 2019","date":"2019-01-26T00:00:00.000Z"},"excerpt":"Gotcha. Sorry, no, this isn’t the song by Skrillex. These are the first weeknotes I’ve published of 2019, hopefully soon to be followed by…"}}]}},"pageContext":{"topic":"imagecdn"}},"staticQueryHashes":[]}
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/imagecdn/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"1d733e89-2be0-5c1c-b315-91d06b675513","fields":{"slug":"/content/5e8ed0cb-cf94-4634-b5c4-7ef561c5e7bc","date":"2019-01-26T00:00:00.000Z"},"frontmatter":{"title":"Weeknotes: First Of The Year — 26th January 2019","date":"2019-01-26T00:00:00.000Z"},"excerpt":"Gotcha. Sorry, no, this isn’t the song by Skrillex. These are the first weeknotes I’ve published of 2019, hopefully soon to be followed by…"}}]}},"pageContext":{"topic":"imagecdn"}},
+    "staticQueryHashes": []}
