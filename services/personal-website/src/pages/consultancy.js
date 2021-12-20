@@ -2,10 +2,10 @@ import React from "react"
 import { Link } from 'gatsby'
 
 import Layout from "../components/layout"
-import Header from "../components/header"
-import { ConsultFooter } from "../components/footer"
-import {Form, Input, TextArea, Submit} from "../components/form"
 import SEO from "../components/seo"
+import Header from "@alexwilson/legacy-components/src/header"
+import { ConsultFooter } from "@alexwilson/legacy-components/src/footer"
+import {Form, Input, TextArea, Submit} from "@alexwilson/legacy-components/src/form"
 
 const ConsultancyPage = ({ location }) => (
   <Layout location={location}>

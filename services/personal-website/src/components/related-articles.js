@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
-import ArticleCard from './article-card'
+import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 
 export default ({article: currentArticle}) => {
   const data = useStaticQuery(graphql`

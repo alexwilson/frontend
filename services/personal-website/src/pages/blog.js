@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import ArticleCard from "../components/article-card"
+import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 
  const BlogPage = ({ data, location }) => {
   return (<Layout location={location}>

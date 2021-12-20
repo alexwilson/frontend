@@ -1,13 +1,14 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
+import Header from "@alexwilson/legacy-components/src/header"
+import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
+import Webmentions from "@alexwilson/legacy-components/src/webmentions"
+
 import Layout from "../components/layout"
-import Header from "../components/header"
-import ShareWidget from "../components/share-widget"
-import RelatedArticles from "../components/related-articles"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
-import Webmentions from "../components/webmentions"
+import RelatedArticles from "../components/related-articles"
 
 const ArticleTemplate = ({ data, location }) => {
   const post = data.markdownRemark

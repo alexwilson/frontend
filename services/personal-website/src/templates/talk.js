@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Layout from "../components/layout"
-import ShareWidget from "../components/share-widget"
 
 const TalkTemplate = ({ data, location }) => {
   const post = data.markdownRemark
