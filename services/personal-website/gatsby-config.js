@@ -14,7 +14,7 @@ module.exports = {
     //     path: `${__dirname}/src/images`,
     //   },
     // },
-    `gatsby-transformer-sharp`,
+    // `gatsby-transformer-sharp`,
     // `gatsby-plugin-sharp`,
     // {
     //   resolve: `gatsby-plugin-manifest`,
@@ -67,10 +67,6 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        gfm: true,
         plugins: [
           {
             resolve: "gatsby-remark-embed-video",
