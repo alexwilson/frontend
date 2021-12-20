@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from 'gatsby'
 
+import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 import Layout from "../components/layout"
-import ArticleCard from "../components/article-card"
 import SEO from "../components/seo"
 
 const IndexPage = ({ data, location }) => (

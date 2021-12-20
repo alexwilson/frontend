@@ -1,8 +1,8 @@
 // Utilities
-@import "../components/util-viewports/viewports";
-@import "../components/util-grid/grid";
-@import "../components/util-palette/palette";
-@import "../components/util-typography/typography";
+@import "~@alexwilson/legacy-components/src/util-viewports/viewports";
+@import "~@alexwilson/legacy-components/src/util-grid/grid";
+@import "~@alexwilson/legacy-components/src/util-palette/palette";
+@import "~@alexwilson/legacy-components/src/util-typography/typography";
 
 // Page-specific styles
 @import "layout";

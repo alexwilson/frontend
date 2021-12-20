@@ -1,0 +1,28 @@
+{
+  "name": "@alexwilson/legacy-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "sass": "^1.45.0"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "sass": "^1.45.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.11.1",
+    "gatsby-link": "^4.4.0",
+    "include-media": "^1.4.10",
+    "isomorphic-fetch": "^3.0.0",
+    "promise-image-loader": "^0.1.2"
+  }
+}
