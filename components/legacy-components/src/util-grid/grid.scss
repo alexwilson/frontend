@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $max-width: 1000px;
 $max-columns: 10;
 
@@ -29,8 +31,8 @@ $max-columns: 10;
     box-sizing: border-box;
     display: block;
 
-    max-width: percentage($width / $max-columns);
-    min-width: percentage($width / $max-columns);
+    max-width: percentage(math.div($width, $max-columns));
+    min-width: percentage(math.div($width, $max-columns));
 }
 
 @mixin alex-guttering() {
