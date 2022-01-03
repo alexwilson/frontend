@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/personal/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"aef413ff-1e09-544e-ab9f-b764e46a7df1","fields":{"slug":"/content/20bf537b-e7c7-45f5-be35-35f3e1b2b586","date":"2022-01-01T18:13:00.000Z"},"frontmatter":{"title":"2021 In Review","date":"2022-01-01T18:13:00.000Z"},"excerpt":"It feels like only yesterday we were celebrating the end of 2020, a year which frankly defied expectations.  For many, we saw a light at the…"}}]}},"pageContext":{"topic":"personal"}},
+    "staticQueryHashes": []}
