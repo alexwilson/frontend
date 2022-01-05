@@ -10,9 +10,21 @@ const IndexPage = ({ data, location }) => (
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <div className="alex-home">
         <section className="alex-home__section">
-            <h1><a className="heading" href="/blog/">Recent Content</a></h1>
+        </section>
+        <section className="alex-home__section">
+            <h2><a className="heading" href="/blog/">Latest Writing</a></h2>
             <div className="alex-home__tilestack">
-            {data.allMarkdownRemark.edges.map(({ node }) =>
+            {data.allButWeeknotes.edges.map(({ node }) =>
+              <div key={node.id} className="alex-home__tilestack-item">
+                <ArticleCard article={node} withImage={false} withDate={false} />
+              </div>
+            )}
+            </div>
+        </section>
+        <section className="alex-home__section">
+            <h2><a className="heading" href="/topic/weeknotes">Latest Weeknotes</a></h2>
+            <div className="alex-home__tilestack">
+            {data.onlyWeeknotes.edges.map(({ node }) =>
               <div key={node.id} className="alex-home__tilestack-item">
                 <ArticleCard article={node} withImage={false} withDate={false} />
               </div>
@@ -25,10 +37,31 @@ const IndexPage = ({ data, location }) => (
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: {
-        fields: [frontmatter___date],
-        order: DESC
-    }, limit: 3) {
+    allButWeeknotes: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { frontmatter: { tags: { nin: ["weeknotes"] } } }
+      limit: 3
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date
+          }
+          excerpt
+        }
+      }
+    }
+    onlyWeeknotes: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { frontmatter: { tags: { in: ["weeknotes"] } } }
+      limit: 3
+    ) {
       totalCount
       edges {
         node {
