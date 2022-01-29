@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/languages/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"83b9b76e-0bb7-5bb5-82f3-317ed7f43931","fields":{"slug":"/content/7c53951b-0a82-4e61-b704-23b4b79adcf2","date":"2022-01-29T19:16:20.000Z"},"frontmatter":{"title":"Weeknotes: Twelfth — 29th January 2022","date":"2022-01-29T19:16:20.000Z"},"excerpt":"January’s nearly over.  That crept up quickly. A lot of my spare time this month went towards ... mid-terms and recovering from mid-terms…"}}]}},"pageContext":{"topic":"languages"}},
+    "staticQueryHashes": []}
