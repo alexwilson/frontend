@@ -73,7 +73,8 @@ export default function aboutMe({location}) {
               <p className="eta">
                   <b className="eta">Work Experience</b>
                   <ul className="eta">
-                      <li><i>Jan 2021–Present</i>: Principal Engineer, FT Professional, <a href="https://www.ft.com/">Financial Times</a></li>
+                      <li><i>Jan 2022–Present</i>: Principal Engineer, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
+                      <li><i>Jan 2021–Jan 2022</i>: Principal Engineer, New Products & Enterprise, <a href="https://www.ft.com/">Financial Times</a></li>  
                       <li><i>Apr 2019–Jan 2021</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
                       <li><i>Oct 2016–Apr 2019</i>: Principal Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
                       <li><i>Sep 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
