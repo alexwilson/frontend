@@ -62,7 +62,13 @@ const ArticleTemplate = ({ data, location }) => {
             itemProp="articleBody"
           />
 
-          <hr />
+          <footer style={{background: "rgb(231, 243, 248)"}}>
+            <p style={{padding: "1em"}}>
+              51% of views aren't subscribed
+            </p>
+          </footer>
+
+
           <h3 className="share">Share</h3>
           <ShareWidget title={post.frontmatter.title} url={url} />
           <Webmentions urls={[url, `${url}/`, alternativeUrl]} />
