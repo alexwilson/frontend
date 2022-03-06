@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/rss/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"ace43c86-df2a-510a-8cbc-881be6b94408","fields":{"slug":"/content/70b683ef-3b90-4e62-b21d-b8e47adaf3ab","date":"2022-03-06T12:24:03.000Z"},"frontmatter":{"title":"Weeknotes: Compartmentalising — 6th March 2022","date":"2022-03-06T12:24:03.000Z"},"excerpt":"We’re now in March, and spring is upon us.  With the backdrop of war in Ukraine & exploring efforts to help, now feels like another time to…"}}]}},"pageContext":{"topic":"rss"}},
+    "staticQueryHashes": []}
