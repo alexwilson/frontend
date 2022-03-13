@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/rice/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"e7d7bab2-d391-530a-8d29-652c0a700b00","fields":{"slug":"/content/4567fc55-c2bd-4899-8b00-6dc222a4cd92","date":"2022-03-13T13:26:25.000Z"},"frontmatter":{"title":"Weeknotes: Finalising — 13th March 2022","date":"2022-03-13T13:26:25.000Z"},"excerpt":"As of this week we’re in finals season, so during the week I sat two maths exams remotely. How do remote exams work?  There’s two parts…"}}]}},"pageContext":{"topic":"rice"}},
+    "staticQueryHashes": []}
