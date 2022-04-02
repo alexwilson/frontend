@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/japanese/",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"779dbdc0-5f70-5472-bb54-881735ddac3a","fields":{"slug":"/content/2078a9cb-4dd8-407f-aba3-45a3f9265193","date":"2022-04-02T22:28:15.000Z"},"frontmatter":{"title":"Weeknotes: Counting — 2nd April 2022","date":"2022-04-02T22:28:15.000Z"},"excerpt":"With a few coursework deadlines this week, last week I skipped both journalling & writing weeknotes.  Two weeks flew by! 😬 On Monday I took…"}}]}},"pageContext":{"topic":"japanese"}},
+    "staticQueryHashes": []}
