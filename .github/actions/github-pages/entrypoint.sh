@@ -7,7 +7,7 @@ echo "Deploying ${GITHUB_SHA} to GitHub Pages"
 REPOSITORY="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 git config --global init.defaultBranch main
-git config --global --add safe.directory "{$GITHUB_WORKSPACE}"
+git config --global --add safe.directory "{$PWD}"
 
 git init
 git remote add origin $REPOSITORY
