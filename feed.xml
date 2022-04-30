@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 20 Apr 2022 04:45:28 GMT</lastBuildDate><item><title><![CDATA[Weeknotes: Dallying — 17th April 2021]]></title><description><![CDATA[I didn’t do anything for lent this year. But the four day long weekend is worth celebrating in its own right. Why don’t we have more of…]]></description><link>https:/alexwilson.tech/content/d3a83160-9c13-4c90-a63b-bc69bcce3331</link><guid isPermaLink="false">https:/alexwilson.tech/content/d3a83160-9c13-4c90-a63b-bc69bcce3331</guid><pubDate>Sun, 17 Apr 2022 22:34:38 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's Writing]]></title><description><![CDATA[Software Engineer, Technical Architect — Helping build a better, faster internet.]]></description><link>https://alexwilson.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 30 Apr 2022 22:34:53 GMT</lastBuildDate><item><title><![CDATA[Weeknotes: Dallying — 17th April 2021]]></title><description><![CDATA[I didn’t do anything for lent this year. But the four day long weekend is worth celebrating in its own right. Why don’t we have more of…]]></description><link>https:/alexwilson.tech/content/d3a83160-9c13-4c90-a63b-bc69bcce3331</link><guid isPermaLink="false">https:/alexwilson.tech/content/d3a83160-9c13-4c90-a63b-bc69bcce3331</guid><pubDate>Sun, 17 Apr 2022 22:34:38 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;I didn’t do anything for lent this year. But the four day long weekend is worth celebrating in its own right. Why don’t we have more of these?&lt;/li&gt;
 &lt;li&gt;On Wednesday I went to a sake-tasting by &lt;a href=&quot;https://www.takarashuzo.co.jp/english/&quot;&gt;Takara brewery&lt;/a&gt;, where after a brief lecture on the production &amp;#x26; grading of sake, we got to try four pretty different varieties. I’d never had sparkling sake before and, considering how cheap it is, it’s delicious. Move on over champagne.&lt;/li&gt;
 &lt;li&gt;Also on Wednesday, &lt;a href=&quot;https://jakechampion.name/&quot;&gt;Jake&lt;/a&gt; left the FT (and I gave him the best leaving gift I’ll probably ever give). I’ll miss you Jake, really.&lt;/li&gt;
@@ -1519,9 +1519,9 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
         &lt;div class=&quot;js-gist-file-update-container js-task-list-container file-box&quot;&gt;
   &lt;div id=&quot;file-cloudflare-challenge-js&quot; class=&quot;file my-2&quot;&gt;
     
-  &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-javascript  &quot;&gt;
+    &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-javascript  &quot;&gt;
 
-      
+        
 &lt;div class=&quot;js-check-bidi js-blob-code-container blob-code-content&quot;&gt;
 
   &lt;template class=&quot;js-file-alert-template&quot;&gt;
@@ -1873,7 +1873,7 @@ I&apos;ve already experience with frameworks like Foundation and 960gs, but ulti
 &lt;/div&gt;
 
 
-  &lt;/div&gt;
+    &lt;/div&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
