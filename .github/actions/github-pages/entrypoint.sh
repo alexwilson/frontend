@@ -6,9 +6,9 @@ cd $*
 echo "Deploying ${GITHUB_SHA} to GitHub Pages"
 REPOSITORY="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-echo "Initialising in {$PWD} as {$GITHUB_ACTOR}"
+echo "Initialising in ${PWD} as ${GITHUB_ACTOR}"
 git config --global init.defaultBranch main
-git config --global --add safe.directory "{$PWD}"
+git config --global --add safe.directory "${PWD}"
 git config --global user.name "${GITHUB_ACTOR}"
 git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
