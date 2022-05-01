@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic//",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"550ade0a-4c5b-5247-b802-196433d1afb4","fields":{"slug":"/content/30dd5f21-f924-437f-9e73-fb42d39c2b96","date":"2022-05-01T21:17:52.000Z"},"frontmatter":{"title":"Weeknotes: Perambulating — 1st May","date":"2022-05-01T21:17:52.000Z"},"excerpt":"Tried two slightly novel things this week: Not following a schedule for going to the office, and, insisting on cooking at home. On Thursday…"}}]}},"pageContext":{"topic":""}},
+    "staticQueryHashes": []}
