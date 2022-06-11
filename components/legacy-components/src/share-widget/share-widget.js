@@ -2,6 +2,7 @@ import React from 'react'
 
 const ShareWidget = ({url, title}) => (
   <div className="alex-share">
+    <h3 className="share">Share</h3>
     <ul>
       <li>
         <a href={`https://twitter.com/intent/tweet?url=${url}&amp;text=${title}&amp;related=AlexWilsonV1&amp;via=AlexWilsonV1`}>

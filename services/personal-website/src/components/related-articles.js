@@ -61,7 +61,7 @@ export default ({article: currentArticle}) => {
   return (
     <>
       {Array.from(relatedArticles.values()).map(
-        article => <ArticleCard key={article.id} article={article}
+        article => <ArticleCard key={article.id} article={article} withBody={false} withDate={false}
       />)}
     </>
   )

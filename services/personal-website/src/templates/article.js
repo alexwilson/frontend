@@ -4,11 +4,18 @@ import { graphql, Link } from "gatsby"
 import Header from "@alexwilson/legacy-components/src/header"
 import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Webmentions from "@alexwilson/legacy-components/src/webmentions"
+import {Form, InlineGroup, Input, Submit} from "@alexwilson/legacy-components/src/form"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
 import RelatedArticles from "../components/related-articles"
+
+const InfoBox = ({icon, children}) => (
+  <p class="alex-article__infobox">
+    {children}
+  </p>
+)
 
 const ArticleTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -22,8 +29,8 @@ const ArticleTemplate = ({ data, location }) => {
     <Layout location={location}>
       <Header location={location} image={post.fields.image} />
       <div className="alex-article">
+        <h1 class="alex-article__headline" itemProp="name headline">{post.frontmatter.title}</h1>
         <div className="alex-article__main">
-          <h1 itemProp="name headline">{post.frontmatter.title}</h1>
           <div className="alex-article__main__byline">
             Posted
 
@@ -62,32 +69,74 @@ const ArticleTemplate = ({ data, location }) => {
             itemProp="articleBody"
           />
 
-          <hr />
-          <h3 className="share">Share</h3>
-          <ShareWidget title={post.frontmatter.title} url={url} />
-          <Webmentions urls={[url, `${url}/`, alternativeUrl]} />
+            <footer>
+              <InfoBox>
+                If you enjoyed this article and want to read more, you can follow me:
+                <ul style={{marginTop: 0}}>
+                  <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
+                  <li class="bullet--twitter">
+                    On <a href="https://twitter.com/alexwilsonv1">Twitter</a>,
+                  </li>
+                  <li class="bullet--email">
+                    <label for="subscribe_by_email">Or to my digest, by email:</label>
+                    <Form action="http://newsletter.alexwilson.tech/add_subscriber" method="post" rel="noreferrer" target="_blank">
+                      <InlineGroup>
+                        <Input placeholder="Your email address" type="email" name="member[email]" id="subscribe_by_email" />
+                        <Submit value="Subscribe" />
+                      </InlineGroup>
+                      <div class="text--small">
+                        By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.
+                      </div>
+                    </Form>
+                  </li>
+                </ul>
+                Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
+              </InfoBox>
+            </footer>
+
+          <div class="alex-article__sharing-block">
+
+          </div>
 
         </div>
 
 
         <div className="alex-article__aside">
-          {post.frontmatter.tags ?
-          <div className="alex-article__topics">
-            <strong>Topics: </strong>
-            <ul>
-            {post.frontmatter.tags.map(topic => {
-              return <li key={topic}>
-                <Link to={`/topic/${topic}`}>{topic}</Link>
-              </li>
-            })}
-            </ul>
-          </div>:null}
 
-          <div className="alex-article__recommended">
-            <h2>Read Next</h2>
-            <RelatedArticles article={post}/>
+          <div className="alex-article__aside-start">
+
+            {post.frontmatter.tags ?
+            <div className="alex-article__topics">
+              <strong>Topics: </strong>
+              <ul>
+              {post.frontmatter.tags.map(topic => {
+                return <li key={topic}>
+                  <Link to={`/topic/${topic}`}>{topic}</Link>
+                </li>
+              })}
+              </ul>
+            </div>:null}
+
           </div>
+
+          <div className="alex-article__aside-mid">
+
+            <div className="alex-article__recommended">
+              <h2>Read Next</h2>
+              <RelatedArticles article={post}/>
+            </div>
+
+          </div>
+
+          <div className="alex-article__aside-bottom alex-article__sharing-block">
+
+            <ShareWidget title={post.frontmatter.title} url={url} />
+            <Webmentions urls={[url, `${url}/`, alternativeUrl]} />
+
+          </div>
+
         </div>
+
       </div>
       <SEO title={post.frontmatter.title} description={post.excerpt}>
         <script type="application/ld+json">{JSON.stringify(Article({

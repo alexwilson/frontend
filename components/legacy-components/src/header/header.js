@@ -117,7 +117,7 @@ class Header extends Component {
   render() {
     const {pathname} = this.props.location
     const name = this.props.name ? this.props.name : "Alex Wilson"
-    const intro = this.props.intro ? this.props.intro : "Software Engineer, Technical Architect — Helping build a better, faster internet."
+    const intro = this.props.intro ? this.props.intro : "On products, engineering & everything in-between."
 
     return (
       <header role="banner" className={`alex-header`} ref={this.header}>
@@ -128,7 +128,7 @@ class Header extends Component {
 
           <div className="alex-header__about">
               <h1 className="alex-header__name">{name}</h1>
-              <span className="alex-header__intro">{intro}</span>
+              {intro && <span className="alex-header__intro">{intro}</span>}
           </div>
 
 
@@ -136,8 +136,8 @@ class Header extends Component {
               <ul className="alex-header__nav" id="menu" ref={this.headerNav}>
                 <NavItem url="/" active={pathname === "/"}>Home</NavItem>
                 <NavItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</NavItem>
-                <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Blog</NavItem>
-                <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Talks</NavItem>
+                <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Writing</NavItem>
+                <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Speaking</NavItem>
                 <NavItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</NavItem>
 
                 <NavSpacer />

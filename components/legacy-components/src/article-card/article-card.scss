@@ -10,6 +10,13 @@
 	// 	}
 	// }
 
+	a, a:active, a:visited {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+
 	display: flex;
 
 	margin-bottom: 1em;
