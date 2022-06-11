@@ -19,17 +19,13 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 10
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Restore ~/npm & node_modules
-      uses: actions/cache@master
-      id: cache-npm
-      with:
-        key: npm-${{ hashFiles('**/package-lock.json') }}
-        path: ~/.npm
+        cache: 'npm'
     - name: Install Dependencies
       run: |
+        npm config set legacy-peer-deps true
         npm ci --ignore-scripts --production=false
         npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - id: find-projects
@@ -78,17 +74,13 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Restore ~/npm & node_modules
-      uses: actions/cache@master
-      id: cache-npm
-      with:
-        key: npm-${{ hashFiles('**/package-lock.json') }}
-        path: ~/.npm
+        cache: 'npm'
     - name: Install Dependencies
       run: |
+        npm config set legacy-peer-deps true
         npm ci --ignore-scripts --production=false
         npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Test
@@ -115,17 +107,13 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Restore ~/npm & node_modules
-      uses: actions/cache@master
-      id: cache-npm
-      with:
-        key: npm-${{ hashFiles('**/package-lock.json') }}
-        path: ~/.npm
+        cache: 'npm'
     - name: Install Dependencies
       run: |
+        npm config set legacy-peer-deps true
         npm ci --ignore-scripts
         npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Deploy

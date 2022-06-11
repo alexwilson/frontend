@@ -29,15 +29,10 @@ jobs:
       with:
         path: services/personal-website/public
         key: build
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Restore NPM Cache
-      uses: actions/cache@v1
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('**/package-lock.json') }}
+        cache: 'npm'
     - name: Restore node_modules
       uses: actions/cache@master
       id: cache-node_modules
@@ -48,6 +43,7 @@ jobs:
           */*/node_modules
     - name: Install Dependencies
       run: |
+        npm config set legacy-peer-deps true
         npm ci --ignore-scripts
         npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
     - name: Build
@@ -71,15 +67,10 @@ jobs:
       uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Restore NPM Cache
-      uses: actions/cache@v1
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('**/package-lock.json') }}
+        cache: 'npm'
     - name: Restore node_modules
       uses: actions/cache@master
       id: cache-node_modules
@@ -90,6 +81,7 @@ jobs:
           */*/node_modules
     - name: Install Dependencies
       run: |
+        npm config set legacy-peer-deps true
         npm ci --ignore-scripts
         npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
     - name: Run Tests
