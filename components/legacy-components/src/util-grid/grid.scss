@@ -1,6 +1,6 @@
 @use "sass:math";
 
-$max-width: 1000px;
+$max-width: 1020px;
 $max-columns: 10;
 
 @mixin alex-container($max-width: 1000px) {
@@ -36,6 +36,6 @@ $max-columns: 10;
 }
 
 @mixin alex-guttering() {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }

@@ -2,6 +2,9 @@
     @include alex-container;
 
     &__section {
+        a, a:visited {
+          text-decoration: none;
+        }
         @include alex-row;
         padding-bottom: 1em;
     }

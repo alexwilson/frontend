@@ -83,7 +83,12 @@
  }
 
  a, a:visited, a:hover, a:focus {
-     transition: color .4s ease-out, background .2s ease-in;
+    transition: color .4s ease-out, background .2s ease-in;
+    text-decoration: underline;
+ }
+
+ .text--small {
+    @include fontsize(iota, all);
  }
 
  .spacer {

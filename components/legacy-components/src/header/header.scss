@@ -34,13 +34,14 @@
       margin-right: auto;
     }
 
-    a, a:visited {
+    a, a:hover, a:visited {
       @include fontsize(eta, all);
 
       color: white;
       padding: 1rem;
       position: relative;
       display: block;
+      text-decoration: none;
 
       border-bottom: transparent solid 0.5rem;
       &:hover {

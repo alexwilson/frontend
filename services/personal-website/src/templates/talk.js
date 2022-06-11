@@ -15,7 +15,6 @@ const TalkTemplate = ({ data, location }) => {
             className="alex-article__body article-description"
             itemprop="articleBody"
           />
-          <h3 class="share">Share</h3>
           <ShareWidget title={post.frontmatter.title} url={new URL(location.pathname, data.site.siteMetadata.siteUrl)} />
         </div>
         <div class="alex-article__aside">

@@ -18,7 +18,12 @@
  $orange-4: darken($orange, 50%);
  $orange-5: darken($orange, 80%);
  $orange-6: darken($orange, 95%);
+
  $blue: #1A8CFF;
+ $blue-1: lighten($blue, 3%);
+ $blue-2: lighten($blue, 10%);
+ $blue-3: lighten($blue, 20%);
+ $blue-4: lighten($blue, 38%);
 
  $brand:			  $blue;
  // $background:  lighten($white, 1%);
