@@ -120,14 +120,15 @@ module.exports = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
-                const url = `${site.siteMetadata.siteUrl}${edge.node.fields.slug}`.replace(/\/\//g, '/');
-                return Object.assign({}, edge.node.frontmatter, {
+                const url = (new URL(edge.node.fields.slug, site.siteMetadata.siteUrl)).toString()
+                return {
+                  title: edge.node.frontmatter.title,
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
-                  url,
+                  url: url,
                   guid: url,
                   custom_elements: [{ "content:encoded": edge.node.html }],
-                })
+                }
               })
             },
             query: `
