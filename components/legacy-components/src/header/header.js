@@ -7,8 +7,10 @@ import fetch from "isomorphic-fetch"
 const NavItemFactory = (linkImplementation) => {
   const LinkImplementation = (linkImplementation) ? linkImplementation : Link;
   const NavItem = ({url, rel, active, children}) => {
+    const classList = ["alex-header__nav-item"]
+    if (active) classList.push("alex-header__nav-item--active")
     return (
-    <li className={`alex-header__nav-item ${active ? "alex-header__nav-item--active" : undefined}`}>
+    <li className={classList.join(' ')}>
       <LinkImplementation rel={rel} to={url}>{children}</LinkImplementation>
     </li>
     );
@@ -91,7 +93,8 @@ class Header extends Component {
     this.headerNav = React.createRef()
     this.state = {
       backgroundImage: props.image, // Is this bad?
-      backgroundImageLoaded: false
+      backgroundImageLoaded: false,
+      navigationExpanded: false
     }
   }
 
@@ -136,10 +139,22 @@ class Header extends Component {
 
 
           <nav>
-              <ul className="alex-header__nav" id="menu" ref={this.headerNav}>
+              <a
+                className="alex-header__menu-button" role="button"
+                aria-pressed={this.state.navigationExpanded}
+                onClick={() => {this.setState({
+                    navigationExpanded: !this.state.navigationExpanded
+                  })
+                }}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+              <ul className="alex-header__nav" id="menu" ref={this.headerNav} aria-expanded={this.state.navigationExpanded}>
                 <this.navItem url="/" active={pathname === "/"}>Home</this.navItem>
                 <this.navItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</this.navItem>
-                <this.navItem url="/blog/" active={pathname.startsWith("/blog/")}>Writing</this.navItem>
+                <this.navItem url="/blog/" active={pathname.startsWith("/blog/")||pathname.startsWith("/content/")}>Writing</this.navItem>
                 <this.navItem url="/talks/" active={pathname.startsWith("/talks/")}>Speaking</this.navItem>
                 <this.navItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</this.navItem>
 
