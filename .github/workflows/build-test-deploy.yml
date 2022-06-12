@@ -87,10 +87,34 @@ jobs:
     - name: Run Tests
       run: npx lerna run --scope @alexwilson/personal-website test
 
+  validate-feed:
+    name: "Validate feed"
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: w3c/feedvalidator
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Download Website Artefact
+        uses: actions/download-artifact@v1
+        with:
+          name: site-artefact
+          path: public
+      - name: "Validate Artefacted Feed"
+        run: |
+          python src/demo.py public/feed.xml
+
   # Deploy to Github Pages environment
   deploy-ghpages:
     name: Deploy Gatsby to Github Pages
-    needs: test
+    needs: [test, validate-feed]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
