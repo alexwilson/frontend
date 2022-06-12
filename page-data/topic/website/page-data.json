@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-topic-js",
     "path": "/topic/website/",
-    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"29ffeb9e-19a0-5f86-807f-42e34fa45d39","fields":{"slug":"/content/96a83745-76dc-47dc-8294-eae333aec62d","date":"2022-06-12T16:20:19.000Z"},"frontmatter":{"title":"Weeknotes: Archaeologising — 12th June 2022","date":"2022-06-12T16:20:19.000Z"},"excerpt":"During the week I was lucky enough to go to both LeadDev & LeadingEng conferences. LeadDev’s name is definitely unintuitive: I’d recommend…"}}]}},"pageContext":{"topic":"website"}},
+    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"29ffeb9e-19a0-5f86-807f-42e34fa45d39","fields":{"slug":"/content/96a83745-76dc-47dc-8294-eae333aec62d","date":"2022-06-12T16:20:19.000Z"},"frontmatter":{"title":"Weeknotes: Archaeologising — 12th June 2022","date":"2022-06-12T16:20:19.000Z"},"excerpt":"During the week I was lucky enough to go to both LeadDev & LeadingEng conferences.  Huge thank-you to Euan & Anna respectively for the…"}}]}},"pageContext":{"topic":"website"}},
     "staticQueryHashes": []}
