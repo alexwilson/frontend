@@ -122,13 +122,15 @@ module.exports = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
-                const url = (new URL(edge.node.fields.slug, site.siteMetadata.siteUrl)).toString()
+                const url = new URL(edge.node.fields.slug, site.siteMetadata.siteUrl)
+                const guid = url.toString()
+                url.searchParams.append('utm_source', 'feed')
                 return {
                   title: edge.node.frontmatter.title,
                   description: edge.node.snippet,
                   date: edge.node.frontmatter.date,
-                  url: url,
-                  guid: url,
+                  url: url.toString(),
+                  guid,
                   custom_elements: [{
                     "content:encoded": sanitizeHtml(
                       `${edge.node.preview}<br /><a href="${url}">Read the full article...</a>`,
@@ -140,7 +142,7 @@ module.exports = {
                     "atom:link": {
                       "_attr": {
                         "rel": "self",
-                        "href": url,
+                        "href": url.toString(),
                         "type": "text/html"
                       }
                     }
