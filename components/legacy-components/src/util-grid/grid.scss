@@ -1,9 +1,9 @@
 @use "sass:math";
 
-$max-width: 1020px;
+$max-width: 1200px;
 $max-columns: 10;
 
-@mixin alex-container($max-width: 1000px) {
+@mixin alex-container($max-width: 1200px) {
     max-width: $max-width;
     width: 90%;
     margin: 0 auto;
