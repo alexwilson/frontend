@@ -10,7 +10,7 @@ import {Form, Input, TextArea, Submit} from "@alexwilson/legacy-components/src/f
 const ConsultancyPage = ({ location }) => (
   <Layout location={location}>
     <SEO title="Consultancy" keywords={[`software consultancy`, `engineering management`]} />
-    <Header name={""} intro={"Software's really about people."} location={location} image={`https://alexwilson.tech/consultancy/images/header.jpg`} />
+    <Header name={""} intro={"Software's really about people."} location={location} image={`https://alexwilson.tech/consultancy/images/header.jpg`} linkImplementation={Link} />
     <div className="consultancy">
 
       <section className="consultancy-lede">

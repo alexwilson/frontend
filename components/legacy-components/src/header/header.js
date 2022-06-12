@@ -1,19 +1,21 @@
-import Link from "gatsby-link"
+import { Link } from '@reach/router'
 import PropTypes from "prop-types"
 import React, {Component} from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
 
-const ALink = ({url, children, rel}) => {
-  const isAbsolute = /^(https?:)?\/\//
-  return isAbsolute.test(url) ? <a rel={rel} href={url}>{children}</a> : <Link to={url}>{children}</Link>
-}
+const NavItemFactory = (linkImplementation) => {
+  const LinkImplementation = (linkImplementation) ? linkImplementation : Link;
+  const NavItem = ({url, rel, active, children}) => {
+    return (
+    <li className={`alex-header__nav-item ${active ? "alex-header__nav-item--active" : undefined}`}>
+      <LinkImplementation rel={rel} to={url}>{children}</LinkImplementation>
+    </li>
+    );
+  }
 
-const NavItem = ({url, rel, active, children}) => (
-  <li className={`alex-header__nav-item ${active ? "alex-header__nav-item--active" : null}`}>
-    <ALink rel={rel} url={url}>{children}</ALink>
-  </li>
-)
+  return NavItem;
+}
 
 const NavSpacer = () => (
   <li className="alex-header__nav-item alex-header__nav-item--spacer"></li>
@@ -84,6 +86,7 @@ class Header extends Component {
 
   constructor(props) {
     super(props)
+    this.navItem = NavItemFactory(props.linkImplementation)
     this.header = React.createRef()
     this.headerNav = React.createRef()
     this.state = {
@@ -134,17 +137,17 @@ class Header extends Component {
 
           <nav>
               <ul className="alex-header__nav" id="menu" ref={this.headerNav}>
-                <NavItem url="/" active={pathname === "/"}>Home</NavItem>
-                <NavItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</NavItem>
-                <NavItem url="/blog/" active={pathname.startsWith("/blog/")}>Writing</NavItem>
-                <NavItem url="/talks/" active={pathname.startsWith("/talks/")}>Speaking</NavItem>
-                <NavItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</NavItem>
+                <this.navItem url="/" active={pathname === "/"}>Home</this.navItem>
+                <this.navItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</this.navItem>
+                <this.navItem url="/blog/" active={pathname.startsWith("/blog/")}>Writing</this.navItem>
+                <this.navItem url="/talks/" active={pathname.startsWith("/talks/")}>Speaking</this.navItem>
+                <this.navItem url="/consultancy/" active={pathname.startsWith("/consultancy/")}>Hire Me</this.navItem>
 
                 <NavSpacer />
 
-                <NavItem url="https://twitter.com/AlexWilsonV1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></NavItem>
-                <NavItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
-                <NavItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></NavItem>
+                <this.navItem url="https://twitter.com/AlexWilsonV1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></this.navItem>
+                <this.navItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></this.navItem>
+                <this.navItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></this.navItem>
               </ul>
           </nav>
 
