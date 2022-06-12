@@ -18,23 +18,34 @@
   overflow: hidden;
 
   &__nav {
+
+    &--container {
+      @include media("<phone") {
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+    }
+
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
 
     @include media("<phone") {
-      &[aria-expanded="false"] {
-        display: none;
-        visibility: collapse;
-        height: 0;
-        overflow: hidden;
-      }
       flex-wrap: wrap;
       justify-items: center;
       background-color: $header-link-background;
-      height: auto;
-      transition: all 0.1s ease-in;
+      height: 100%;
+      transition: all 0.2s ease;
+      margin-left: 0;
+      
+      &[aria-expanded="false"] {
+        height: 0;
+        float: left;
+        visibility: hidden;
+        overflow: hidden;
+        margin-left: -150%;
+      }
     }
   }
 
@@ -46,7 +57,6 @@
 
     position: relative;
     display: block;
-    margin-bottom: 1em;
     border: 0;
     background-color: transparent;
     cursor: pointer;
@@ -55,15 +65,14 @@
 
     > span {
       display: block;
-      background-color: white;
+      background-color: $white;
       margin: 5px 0;
       height: 2px;
       width: 1.5em;
-      transition: all 0.1s ease-in;
+      transition: all 0.2s ease-in;
     }
 
     &[aria-pressed="true"] {
-      margin-bottom: 0;
       > span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
@@ -129,7 +138,6 @@
 
     color: white;
     font-weight: 500;
-    // font-family: Overpass;
 
     padding: 1em 0 0 0;
     @include media(">tablet") {

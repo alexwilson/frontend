@@ -77,7 +77,7 @@ class HeaderImage extends Component {
           className={`alex-header-image__main`}
           src={this.state.preloadedImage}
           style={{
-            opacity: this.state.preloadedImage !== undefined ? 1 : 0
+            opacity: this.props.blur !== true && this.state.preloadedImage !== undefined ? 1 : 0
           }}/>
       </picture>
     </div>
@@ -128,7 +128,7 @@ class Header extends Component {
     return (
       <header role="banner" className={`alex-header`} ref={this.header}>
 
-        <HeaderImage src={this.state.backgroundImage}/>
+        <HeaderImage src={this.state.backgroundImage} blur={this.state.navigationExpanded} />
 
         <div className="alex-header--container">
 
@@ -138,7 +138,7 @@ class Header extends Component {
           </div>
 
 
-          <nav>
+          <nav ref={this.headerNav} class="alex-header__nav--container">
               <a
                 className="alex-header__menu-button" role="button"
                 aria-pressed={this.state.navigationExpanded}
@@ -151,7 +151,7 @@ class Header extends Component {
                 <span></span>
                 <span></span>
               </a>
-              <ul className="alex-header__nav" id="menu" ref={this.headerNav} aria-expanded={this.state.navigationExpanded}>
+              <ul className="alex-header__nav" id="menu" aria-expanded={this.state.navigationExpanded}>
                 <this.navItem url="/" active={pathname === "/"}>Home</this.navItem>
                 <this.navItem url="/about-me/" active={pathname.startsWith("/about-me/")}>About Me</this.navItem>
                 <this.navItem url="/blog/" active={pathname.startsWith("/blog/")||pathname.startsWith("/content/")}>Writing</this.navItem>
