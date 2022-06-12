@@ -1,3 +1,5 @@
+const sanitizeHtml = require("sanitize-html")
+
 module.exports = {
   siteMetadata: {
     title: `Alex Wilson`,
@@ -128,7 +130,13 @@ module.exports = {
                   url: url,
                   guid: url,
                   custom_elements: [{
-                    "content:encoded": `${edge.node.preview}<br /><a href="${url}">Continue reading...</a>`,
+                    "content:encoded": sanitizeHtml(
+                      `${edge.node.preview}<br /><a href="${url}">Read the full article...</a>`,
+                      {
+                        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+                        allowedAttributes: false
+                      }
+                    ),
                     "atom:link": {
                       "_attr": {
                         "rel": "self",
