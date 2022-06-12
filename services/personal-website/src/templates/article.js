@@ -78,7 +78,7 @@ const ArticleTemplate = ({ data, location }) => {
                     On <a href="https://twitter.com/alexwilsonv1">Twitter</a>,
                   </li>
                   <li class="bullet--email">
-                    <label for="subscribe_by_email">Or to my digest, by email:</label>
+                    <label for="subscribe_by_email">And in your inbox, by email:</label>
                     <Form action="http://newsletter.alexwilson.tech/add_subscriber" method="post" rel="noreferrer" target="_blank">
                       <InlineGroup>
                         <Input placeholder="Your email address" type="email" name="member[email]" id="subscribe_by_email" />
