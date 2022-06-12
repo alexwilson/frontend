@@ -107,6 +107,9 @@ jobs:
         with:
           name: site-artefact
           path: public
+      - name: "Update feed location for local testing"
+        run: |
+          sed -i 's|https://alexwilson.tech/feed.xml|http://www.feedvalidator.org/public/feed.xml|g' public/feed.xml
       - name: "Validate Artefacted Feed"
         run: |
           python src/demo.py public/feed.xml

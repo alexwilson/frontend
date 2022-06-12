@@ -123,23 +123,33 @@ module.exports = {
                 const url = (new URL(edge.node.fields.slug, site.siteMetadata.siteUrl)).toString()
                 return {
                   title: edge.node.frontmatter.title,
-                  description: edge.node.excerpt,
+                  description: edge.node.snippet,
                   date: edge.node.frontmatter.date,
                   url: url,
                   guid: url,
-                  custom_elements: [{ "content:encoded": edge.node.html }],
+                  custom_elements: [{
+                    "content:encoded": `${edge.node.preview}<br /><a href="${url}">Continue reading...</a>`,
+                    "atom:link": {
+                      "_attr": {
+                        "rel": "self",
+                        "href": url,
+                        "type": "text/html"
+                      }
+                    }
+                  }],
                 }
               })
             },
             query: `
               {
                 allMarkdownRemark(
+                  limit: 10,
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   edges {
                     node {
-                      excerpt
-                      html
+                      snippet: excerpt(pruneLength: 220, format: PLAIN)
+                      preview: excerpt(pruneLength: 600, format: HTML)
                       fields { slug }
                       frontmatter {
                         title
@@ -151,8 +161,24 @@ module.exports = {
               }
             `,
             output: "/feed.xml",
-            title: "Alex Wilson's Writing",
-            match: "^/blog/",
+            title: "Alex Wilson's writing",
+            description: "Alex on engineering, products & everything in-between",
+            match: "^/content/",
+            ttl: 360,
+            site_url: "https://alexwilson.tech/",
+            generator: "alexwilson.tech",
+            custom_namespaces: {
+              "atom": "http://www.w3.org/2005/Atom"
+            },
+            custom_elements: [{
+              "atom:link": {
+                "_attr": {
+                  "rel": "self",
+                  "href": "https://alexwilson.tech/feed.xml",
+                  "type": "application/rss+xml"
+                }
+              }
+            }]
           },
         ],
       },
