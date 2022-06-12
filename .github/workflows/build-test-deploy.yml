@@ -109,6 +109,7 @@ jobs:
           path: public
       - name: "Update feed location for local testing"
         run: |
+          # Replace references to feed IRI with feedvalidator.org which W3C validator uses as a mock origin.
           sed -i 's|https://alexwilson.tech/feed.xml|http://www.feedvalidator.org/public/feed.xml|g' public/feed.xml
       - name: "Validate Artefacted Feed"
         run: |
