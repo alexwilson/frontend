@@ -22,6 +22,58 @@
     padding: 0;
     list-style: none;
     display: flex;
+
+    @include media("<phone") {
+      &[aria-expanded="false"] {
+        display: none;
+        visibility: collapse;
+        height: 0;
+        overflow: hidden;
+      }
+      flex-wrap: wrap;
+      justify-items: center;
+      background-color: $header-link-background;
+      height: auto;
+      transition: all 0.1s ease-in;
+    }
+  }
+
+  &__menu-button {
+    @include media(">phone") {
+      display: none;
+      visibility: hidden;
+    }
+
+    position: relative;
+    display: block;
+    margin-bottom: 1em;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    width: 1.5em;
+    height: 1.5em;
+
+    > span {
+      display: block;
+      background-color: white;
+      margin: 5px 0;
+      height: 2px;
+      width: 1.5em;
+      transition: all 0.1s ease-in;
+    }
+
+    &[aria-pressed="true"] {
+      margin-bottom: 0;
+      > span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      > span:nth-child(2) {
+        opacity: 0;
+      }
+      > span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
   }
 
   &__nav-item {
