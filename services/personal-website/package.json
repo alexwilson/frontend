@@ -25,6 +25,7 @@
   "homepage": "https://github.com/alexwilson/personal-website#readme",
   "dependencies": {
     "@alexwilson/gatsby-remark-rewrite-images": "^1.0.0",
+    "@alexwilson/gatsby-awt-json-exporter": "^1.0.0",
     "@alexwilson/legacy-components": "*",
     "@loadable/component": "^5.15.2",
     "date-fns": "^2.11.1",
