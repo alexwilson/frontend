@@ -1,55 +1,89 @@
-const path = require(`path`)
+const path = require('path')
+const {v5} = require('uuid')
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
+const { createMarkdownRemarkFields, contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode } = require('./src/schema/on-create-node.js')
 
+exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, actions }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    // Front-matter dates are abbreviated, so explicitly parse it to a date.
-    if (node.frontmatter && node.frontmatter.date) {
-      createNodeField({
-        node,
-        name: `date`,
-        value: new Date(node.frontmatter.date)
-      })
+
+    // Generate content & topic entities from RemarkNode
+    const content = contentFromMarkdownRemark({ node, getNode })
+    const topics = topicsFromMarkdownRemark({ node })
+
+    // Append topic IDs back to content entity.
+    content.topics = topics.map(({topicId}) => (topicId))
+
+    // Create nodes for topics and content
+    for (const topic of topics) {
+      createTopicNode(topic, {node, createNodeId, getNode, createContentDigest, actions})
     }
+    createContentNode(content, {node, createNodeId, createContentDigest, actions})
 
-    // Articles can have both thumbnails and images.
-    if (node.frontmatter && node.frontmatter.image) {
-      // For images, optionally supply a cropped version.
-      createNodeField({
-        node,
-        name: `image`,
-        value: node.frontmatter.image_cropped ? node.frontmatter.image_cropped : node.frontmatter.image
-      })
-      // For thumbnails, optionally supply a thumbnailed version.
-      createNodeField({
-        node,
-        name: `thumbnail`,
-        value: node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image
-      })
-    }
-
-    if (node.frontmatter && node.frontmatter['_legacy_slug']) {
-      createNodeField({
-        node,
-        name: '_legacy_slug',
-        value: node.frontmatter['_legacy_slug']
-      })
-    }
-
-    // Customise per-content-type.
-    const { sourceInstanceName } = getNode(node.parent)
-    createNodeField({ node, name: `type`, value: sourceInstanceName })
-
-    const uuid = node.frontmatter.id
-    const slug = `/content/${uuid}`
-    createNodeField({ node, name: 'id', value: uuid })
-    createNodeField({ node, name: 'slug', value: slug })
+    // Lastly, apply custom fields to markdownremark
+    // @todo remove this
+    createMarkdownRemarkFields({ content, node, actions })
   }
 }
 
+exports.createSchemaCustomization = ({actions}) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type Content implements Node @dontInfer {
+      contentId: String!
+      title: String!
+      slug: String!
+      type: String!
+      date: Date!
+
+      topics: [Topic] @link(by: "topicId")
+
+      image: ContentImageFields!
+      deprecatedFields: ContentDeprecatedFields!
+    }
+
+    type ContentImageFields @dontInfer {
+      image: String
+      thumbnail: String
+    }
+
+    type ContentDeprecatedFields @dontInfer {
+      legacySlugs: [String]
+    }
+
+    type Topic implements Node @dontInfer {
+      topicId: String!
+      slug: String!
+      content: [Content] @link(by: "topics", from: "topicId")
+    }
+  `
+  createTypes(typeDefs)
+}
+
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    Topic: {
+      content: {
+        type: "[Content]",
+        resolve: async (source, args, context, info) => {
+          const result = await context.nodeModel.findAll({
+            type: "Content",
+            query: {
+              filter: {
+                topics: { elemMatch: {
+                    topicId: { eq: source.topicId }
+                } }
+              }
+            }
+          })
+          return result.entries
+        }
+      }
+    }
+  })
+}
+
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
   const topics = new Set()
   return graphql(`
     {
@@ -98,6 +132,13 @@ exports.createPages = ({ graphql, actions }) => {
         })
         break
       }
+    }
+
+    if ('_legacy_slug' in node.fields && node.fields['_legacy_slug']) {
+      createRedirect({
+        fromPath: node.fields['_legacy_slug'],
+        toPath: node.fields.slug,
+      })
     }
 
     // Collect all tags into a set.
