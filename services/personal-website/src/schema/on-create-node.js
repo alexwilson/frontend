@@ -10,15 +10,23 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   // @todo Move this into directly article schema instead?
   const { sourceInstanceName: type } = getNode(node.parent)
 
-  let image = undefined
-  let thumbnail = undefined
-  if (node.frontmatter && node.frontmatter.image) {
+  let image
+  let thumbnail
+  let credit
+  let altText
+  if (node.frontmatter.image) {
     image = node.frontmatter.image_cropped ? node.frontmatter.image_cropped : node.frontmatter.image
     thumbnail = node.frontmatter.thumbnail ? node.frontmatter.thumbnail : node.frontmatter.image
+
+    if (node.frontmatter['image_credit']) credit = node.frontmatter['image_credit']
+    if (node.frontmatter['alt_text']) altText = node.frontmatter['alt_text']
   }
 
+  let author
+  if (node.frontmatter.author) author = node.frontmatter.author
+
   const legacySlugs = []
-  if (node.frontmatter && node.frontmatter['_legacy_slug']) {
+  if (node.frontmatter['_legacy_slug']) {
     legacySlugs.push(node.frontmatter['_legacy_slug'])
   }
 
@@ -29,14 +37,24 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
     title,
     type,
     date,
-    image: {
-      image,
-      thumbnail
-    },
+    image: {},
     deprecatedFields: {
       legacySlugs
     },
     topics: []
+  }
+  if (author) {
+    content.author = {
+      name: author
+    }
+  }
+  if (image) {
+    content.image = {
+      image,
+      thumbnail,
+      credit,
+      altText
+    }
   }
 
   return content
@@ -52,7 +70,8 @@ const topicsFromMarkdownRemark = ({node}) => {
       const topic = {
         // Deterministically generate a UUIDv5 from a topic slug, namespaced to `https://alexwilson.tech/topics/`.
         topicId: v5(topicSlug, v5('https://alexwilson.tech/topic/', v5.URL)),
-        slug: topicSlug
+        slug: `/topic/${topicSlug}`,
+        topic: topicSlug
       }
 
       topics.push(topic)
@@ -115,26 +134,4 @@ const createContentNode = (content, {node, createNodeId, createContentDigest, ac
     createParentChildLink({ parent: node, child: contentNode })
 }
 
-
-// Keeping these fields on MarkdownRemark is legacy behaviour
-const createMarkdownRemarkFields = ({content, node, actions}) => {
-  const {createNodeField} = actions
-
-  createNodeField({ node, name: 'id', value: content.contentId })
-  createNodeField({ node, name: 'title', value: content.title })
-  createNodeField({ node, name: 'date', value: content.date })
-  createNodeField({ node, name: 'slug', value: content.slug })
-  createNodeField({ node, name: 'type', value: content.type })
-
-  if (content.image.image) {
-    createNodeField({ node, name: 'image', value: content.image.image })
-  }
-  if (content.image.thumbnail) {
-    createNodeField({ node, name: 'thumbnail', value: content.image.thumbnail })
-  }
-  if (content.deprecatedFields.legacySlugs.length === 1) {
-    createNodeField({ node, name: '_legacy_slug', value: content.deprecatedFields.legacySlugs.shift() })
-  }
-}
-
-module.exports = { createMarkdownRemarkFields, contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode }
+module.exports = { contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode }

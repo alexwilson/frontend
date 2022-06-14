@@ -6,63 +6,39 @@ import Layout from "../components/layout"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {
   const { topic } = pageContext
-  const { totalCount } = data.allMarkdownRemark
+  const { totalCount } = data.allContent
 
   return (<Layout location={location}>
     <div class="alex-stream">
       <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${topic}"`}</h1>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
+      {data.allContent.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
       ))}
     </div>
   </Layout>)
 }
 
-TopicsTemplate.propTypes = {
-  pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
-  }),
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      totalCount: PropTypes.number.isRequired,
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            frontmatter: PropTypes.shape({
-              title: PropTypes.string.isRequired,
-            }),
-            fields: PropTypes.shape({
-              slug: PropTypes.string.isRequired,
-            }),
-          }),
-        }).isRequired
-      ),
-    }),
-  }),
-}
-
 export default TopicsTemplate
 
 export const pageQuery = graphql`
+  fragment TopicPageContent on MarkdownRemark {
+    excerpt: excerpt
+  }
   query($topic: String) {
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$topic] } } }
+    allContent(
+      sort: { fields: [date], order: DESC }
+      filter: { topics: { elemMatch: { slug: { eq: $topic }} }}
     ) {
       totalCount
       edges {
         node {
-          id
-          fields {
-            slug
-            date
+          contentId
+          title
+          slug
+          date
+          content: parent {
+            ...TopicPageContent
           }
-          frontmatter {
-            title
-            date
-          }
-          excerpt
         }
       }
     }
