@@ -1,7 +1,7 @@
 const path = require('path')
 const {v5} = require('uuid')
 
-const { createMarkdownRemarkFields, contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode } = require('./src/schema/on-create-node.js')
+const { contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode } = require('./src/schema/on-create-node.js')
 
 exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, actions }) => {
   if (node.internal.type === `MarkdownRemark`) {
@@ -18,10 +18,6 @@ exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, acti
       createTopicNode(topic, {node, createNodeId, getNode, createContentDigest, actions})
     }
     createContentNode(content, {node, createNodeId, createContentDigest, actions})
-
-    // Lastly, apply custom fields to markdownremark
-    // @todo remove this
-    createMarkdownRemarkFields({ content, node, actions })
   }
 }
 
@@ -35,6 +31,8 @@ exports.createSchemaCustomization = ({actions}) => {
       type: String!
       date: Date!
 
+      author: Person
+
       topics: [Topic] @link(by: "topicId")
 
       image: ContentImageFields!
@@ -44,6 +42,8 @@ exports.createSchemaCustomization = ({actions}) => {
     type ContentImageFields @dontInfer {
       image: String
       thumbnail: String
+      credit: String
+      altText: String
     }
 
     type ContentDeprecatedFields @dontInfer {
@@ -52,8 +52,13 @@ exports.createSchemaCustomization = ({actions}) => {
 
     type Topic implements Node @dontInfer {
       topicId: String!
+      topic: String!
       slug: String!
       content: [Content] @link(by: "topics", from: "topicId")
+    }
+
+    type Person {
+      name: String!
     }
   `
   createTypes(typeDefs)
@@ -82,81 +87,57 @@ exports.createResolvers = ({ createResolvers }) => {
   })
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
-  const topics = new Set()
-  return graphql(`
-    {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              tags
-              image
-              thumbnail
-            }
-            fields {
-              type
-              id
-              slug
-              _legacy_slug
-            }
+  const {data} = await graphql(`
+    query {
+      content: allContent {
+        nodes {
+          contentId
+          slug
+          type
+          deprecatedFields {
+            legacySlugs
           }
         }
       }
-    }
-  `
-).then(result => {
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    switch(node.fields.type) {
-      case 'talks': {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/talk.js`),
-          context: {
-            slug: node.fields.slug,
-            '_legacy_slug': node.fields['_legacy_slug']
-          },
-        })
-        break
-      }
-
-      case 'posts': {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/article.js`),
-          context: {
-            slug: node.fields.slug,
-            '_legacy_slug': node.fields['_legacy_slug']
-          },
-        })
-        break
+      topics: allTopic {
+        nodes {
+          topicId
+          slug
+        }
       }
     }
+  `)
 
-    if ('_legacy_slug' in node.fields && node.fields['_legacy_slug']) {
-      createRedirect({
-        fromPath: node.fields['_legacy_slug'],
-        toPath: node.fields.slug,
-      })
-    }
+  console.log("asdf", data.content.length)
 
-    // Collect all tags into a set.
-    if (node.frontmatter.tags) {
-      node.frontmatter.tags.forEach(tag => topics.add(tag))
-    }
-
-  })
-
-  // Create topic pages for each tag
-  for (topic of topics) {
+  data.content.nodes.forEach((node) => {
+    // Create a page
     createPage({
-      path: `/topic/${topic}/`,
+      path: node.slug,
+      component: node.type === "talk" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
+      context: {
+        contentId: node.contentId
+      }
+    })
+
+    // Redirect from legacy slugs
+    node.deprecatedFields.legacySlugs.forEach(legacySlug => {
+      createRedirect({
+        fromPath: legacySlug,
+        toPath: node.slug,
+      })
+    })
+  })
+  data.topics.nodes.forEach((node) => {
+    createPage({
+      path: node.slug,
       component: path.resolve(`./src/templates/topic.js`),
       context: {
-        topic: topic
-      },
+        topicId: node.topicId
+      }
     })
-  }
-})
+  })
+
 }

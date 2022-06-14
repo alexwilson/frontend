@@ -7,7 +7,7 @@ const TalksPage = ({ data, location }) => {
   return (<Layout location={location}>
     <div className="alex-stream">
       <h1>Talks</h1>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
+      {data.talks.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
       ))}
     </div>
@@ -17,30 +17,31 @@ const TalksPage = ({ data, location }) => {
 export default TalksPage
 
 export const query = graphql`
+  fragment TalkPageContent on MarkdownRemark {
+    excerpt: excerpt
+  }
   query {
-    allMarkdownRemark(
+    talks: allContent(
       filter: {
-        frontmatter: {date: {ne: null}},
-        fields: {type: {eq: "talks"}}
+        type: {eq: "talks"}
       }
       sort: {
-        fields: [frontmatter___date],
+        fields: [date],
         order: DESC
       }
     ) {
-      totalCount
       edges {
         node {
-          id
-          fields {
-            slug
-            date
+          contentId
+          title
+          date
+          slug
+          image {
+            thumbnail
           }
-          frontmatter {
-            title
-            date
+          content: parent {
+            ...BlogPageContent
           }
-          excerpt
         }
       }
     }

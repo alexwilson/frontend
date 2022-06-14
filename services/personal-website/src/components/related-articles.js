@@ -5,33 +5,29 @@ import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 export default ({article: currentArticle}) => {
   const data = useStaticQuery(graphql`
     query RelatedArticles {
-      posts: allMarkdownRemark(
-        sort: { order: DESC, fields: [fields___date] }
+      posts: allContent(
+        sort: { order: DESC, fields: [date] }
         filter: {
-          frontmatter: {
-            date: {ne: null},
-            tags: {ne: null}
-          },
-          fields: {type: {eq: "posts"}}
+          type: {eq: "posts"}
         }
         limit: 1000
       ) {
         nodes {
-          id
-          fields {
+          contentId
+          slug
+          date
+          title
+          topics {
+            topicId
+            topic
             slug
-            date
-          }
-          frontmatter {
-            title
-            tags
           }
         }
       }
     }
   `)
 
-  const currentArticleTags = currentArticle.frontmatter.tags || []
+  const currentArticleTopics = currentArticle.topics.map(topic => topic.topicId) || []
 
   const maxArticles = 3
   const relatedArticles = new Set()
@@ -39,13 +35,13 @@ export default ({article: currentArticle}) => {
     if (relatedArticles.size >= maxArticles) break;
 
     for (const article of data.posts.nodes) {
-      if (article.id === currentArticle.id) continue;
+      if (article.contentId === currentArticle.contentId) continue;
       if (relatedArticles.size >= maxArticles) break;
 
       let similarity = 0
 
-      for (const tag of article.frontmatter.tags) {
-        if (currentArticleTags.includes(tag)) {
+      for (const topic of article.topics.map(topic => topic.topicId)) {
+        if (currentArticleTopics.includes(topic)) {
           similarity++;
         }
       }
@@ -61,7 +57,7 @@ export default ({article: currentArticle}) => {
   return (
     <>
       {Array.from(relatedArticles.values()).map(
-        article => <ArticleCard key={article.id} article={article} withBody={false} withDate={false}
+        article => <ArticleCard key={article.contentId} article={article} withBody={false} withDate={false}
       />)}
     </>
   )

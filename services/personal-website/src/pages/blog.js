@@ -7,8 +7,8 @@ import ArticleCard from "@alexwilson/legacy-components/src/article-card"
   return (<Layout location={location}>
     <div className="alex-stream">
       <h1>My Blog</h1>
-      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
+      <h4>{data.content.totalCount} Posts</h4>
+      {data.content.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
       ))}
     </div>
@@ -18,31 +18,32 @@ import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 export default BlogPage
 
 export const query = graphql`
+  fragment BlogPageContent on MarkdownRemark {
+    excerpt: excerpt
+  }
   query {
-    allMarkdownRemark(
+    content: allContent(
       filter: {
-        frontmatter: {date: {ne: null}},
-        fields: {type: {eq: "posts"}}
+        type: {eq: "posts"}
       }
       sort: {
-        fields: [frontmatter___date],
+        fields: [date],
         order: DESC
       }
     ) {
       totalCount
       edges {
         node {
-          id
-          fields {
-            slug
-            date
+          contentId
+          title
+          date
+          slug
+          image {
             thumbnail
           }
-          frontmatter {
-            title
-            date
+          content: parent {
+            ...BlogPageContent
           }
-          excerpt
         }
       }
     }

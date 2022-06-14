@@ -4,18 +4,18 @@ import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Layout from "../components/layout"
 
 const TalkTemplate = ({ data, location }) => {
-  const post = data.markdownRemark
+  const post = data.content
   return (
     <Layout location={location}>
       <div class="alex-article">
         <div class="alex-article__main">
-          <h1 itemprop="name headline">{post.frontmatter.title}</h1>
+          <h1 itemprop="name headline">{post.title}</h1>
           <article
-            dangerouslySetInnerHTML={{ __html: post.html }}
+            dangerouslySetInnerHTML={{ __html: post.content.html }}
             className="alex-article__body article-description"
             itemprop="articleBody"
           />
-          <ShareWidget title={post.frontmatter.title} url={new URL(location.pathname, data.site.siteMetadata.siteUrl)} />
+          <ShareWidget title={post.title} url={new URL(post.slug, data.site.siteMetadata.siteUrl)} />
         </div>
         <div class="alex-article__aside">
         </div>
@@ -27,15 +27,21 @@ const TalkTemplate = ({ data, location }) => {
 export default TalkTemplate
 
 export const pageQuery = graphql`
-  query TalkBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      html
-      frontmatter {
-        title
-        date
-        author
-        image_credit
+  fragment TalkContent on MarkdownRemark {
+    html
+    excerpt: excerpt
+  }
+  query TalkBySlug($contentId: String!) {
+    content(contentId: {eq: $contentId}) {
+      contentId
+      title
+      date
+      slug
+      content: parent {
+        ...TalkContent
+      }
+      image {
+        credit
       }
     }
     site {

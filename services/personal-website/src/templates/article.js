@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
+import { format } from "date-fns"
+
 import Header from "@alexwilson/legacy-components/src/header"
 import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Webmentions from "@alexwilson/legacy-components/src/webmentions"
@@ -18,23 +20,23 @@ const InfoBox = ({icon, children}) => (
 )
 
 const ArticleTemplate = ({ data, location }) => {
-  const post = data.markdownRemark
+  const post = data.content
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
-  const alternativeUrl = new URL(post.fields['_legacy_slug'], data.site.siteMetadata.siteUrl)
+  const alternativeUrls = post.deprecatedFields.legacySlugs.map(slug => new URL(slug, data.site.siteMetadata.siteUrl))
 
-  const datePublished = new Date(post.frontmatter.date)
-  const dateModified = new Date(post.frontmatter.last_modified_at || datePublished)
+  const datePublished = new Date(post.date)
+  const dateModified = new Date(post.flast_modified_at || datePublished)
 
   return (
     <Layout location={location}>
-      <Header location={location} image={post.fields.image} />
+      <Header location={location} image={post.image.image} />
       <div className="alex-article">
-        <h1 class="alex-article__headline" itemProp="name headline">{post.frontmatter.title}</h1>
+        <h1 class="alex-article__headline" itemProp="name headline">{post.title}</h1>
         <div className="alex-article__main">
           <div className="alex-article__main__byline">
             Posted
 
-            {(post.frontmatter.author ?
+            {/* {(post.frontmatter.author ? */}
               <>
                 {` by `}
                 <span itemProp="author" itemType="http://schema.org/Person">
@@ -43,7 +45,7 @@ const ArticleTemplate = ({ data, location }) => {
                   </a>
                 </span>
               </>
-            :null)}
+            {/* :null)} */}
 
             {(datePublished ?
               <>
@@ -52,19 +54,19 @@ const ArticleTemplate = ({ data, location }) => {
                   className="alex-article__main__date"
                   dateTime={datePublished}
                   itemProp="datePublished"
-                >{post.fields.formattedDate}</time>.
+                >{format(new Date(post.date), "PPPP")}</time>.
               </>
             :null)}
 
-            {(post.frontmatter.image_credit ?
+            {(post.image.credit ?
               <>
-                {` ${post.frontmatter.image_credit}`}
+                {` ${post.image.credit}`}
               </>
             :null)}
 
           </div>
           <article
-            dangerouslySetInnerHTML={{ __html: post.html }}
+            dangerouslySetInnerHTML={{ __html: post.content.html }}
             className="alex-article__body article-description"
             itemProp="articleBody"
           />
@@ -105,13 +107,13 @@ const ArticleTemplate = ({ data, location }) => {
 
           <div className="alex-article__aside-start">
 
-            {post.frontmatter.tags ?
+            {post.topics ?
             <div className="alex-article__topics">
               <strong>Topics: </strong>
               <ul>
-              {post.frontmatter.tags.map(topic => {
-                return <li key={topic}>
-                  <Link to={`/topic/${topic}`}>{topic}</Link>
+              {post.topics.map(topic => {
+                return <li key={topic.topicId}>
+                  <Link to={topic.slug}>{topic.topic}</Link>
                 </li>
               })}
               </ul>
@@ -130,20 +132,20 @@ const ArticleTemplate = ({ data, location }) => {
 
           <div className="alex-article__aside-bottom alex-article__sharing-block">
 
-            <ShareWidget title={post.frontmatter.title} url={url} />
-            <Webmentions urls={[url, `${url}/`, alternativeUrl]} />
+            <ShareWidget title={post.title} url={url} />
+            <Webmentions urls={[url, `${url}/`, ...alternativeUrls]} />
 
           </div>
 
         </div>
 
       </div>
-      <SEO title={post.frontmatter.title} description={post.excerpt}>
+      <SEO title={post.title} description={post.excerpt}>
         <script type="application/ld+json">{JSON.stringify(Article({
           url: url,
-          title: post.frontmatter.title,
-          image: post.fields.image,
-          description: post.frontmatter.excerpt,
+          title: post.title,
+          image: post.image.image,
+          description: post.content.excerpt,
           dateModified: dateModified,
           datePublished: datePublished
         }))}</script>
@@ -155,25 +157,29 @@ const ArticleTemplate = ({ data, location }) => {
 export default ArticleTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      html
-      excerpt
-      frontmatter {
-        title
-        tags
-        date
-        last_modified_at
-        author
-        image_credit
-      }
-      fields {
-        formattedDate: date(formatString: "dddd, MMMM Do, YYYY")
-        image
-        date
+  fragment ArticleContent on MarkdownRemark {
+    html
+    excerpt: excerpt
+  }
+  query BlogPostBySlug($contentId: String!) {
+    content(contentId: {eq: $contentId}) {
+      title
+      topics {
+        topicId
+        topic
         slug
-        _legacy_slug
+      }
+      date
+      image {
+        image
+        credit
+      }
+      content: parent {
+        ...ArticleContent
+      }
+      slug
+      deprecatedFields {
+        legacySlugs
       }
     }
     site {

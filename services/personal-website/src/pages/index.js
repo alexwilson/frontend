@@ -14,8 +14,8 @@ const IndexPage = ({ data, location }) => (
         <section className="alex-home__section">
             <h2><a className="heading" href="/blog/">Latest Writing</a></h2>
             <div className="alex-home__tilestack">
-            {data.allButWeeknotes.edges.map(({ node }) =>
-              <div key={node.id} className="alex-home__tilestack-item">
+            {data.allButWeeknotes.nodes.map((node) =>
+              <div key={node.contentId} className="alex-home__tilestack-item">
                 <ArticleCard article={node} withImage={false} withDate={false} />
               </div>
             )}
@@ -24,8 +24,8 @@ const IndexPage = ({ data, location }) => (
         <section className="alex-home__section">
             <h2><a className="heading" href="/topic/weeknotes">Latest Weeknotes</a></h2>
             <div className="alex-home__tilestack">
-            {data.onlyWeeknotes.edges.map(({ node }) =>
-              <div key={node.id} className="alex-home__tilestack-item">
+            {data.onlyWeeknotes.nodes.map((node) =>
+              <div key={node.contentId} className="alex-home__tilestack-item">
                 <ArticleCard article={node} withImage={false} withDate={false} />
               </div>
             )}
@@ -36,47 +36,42 @@ const IndexPage = ({ data, location }) => (
 )
 
 export const query = graphql`
+  fragment HomepageContent on MarkdownRemark {
+    excerpt: excerpt
+  }
+
   query {
-    allButWeeknotes: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC },
-      filter: { frontmatter: { tags: { nin: ["weeknotes"] } } }
+    allButWeeknotes: allContent(
+      sort: {fields: [date], order: DESC}
+      filter: { topics: { elemMatch: { topic: { ne: "weeknotes" }} }}
       limit: 3
     ) {
-      totalCount
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-          }
-          excerpt
+      nodes {
+        contentId
+        title
+        slug
+        date
+        content: parent {
+          ...HomepageContent
         }
       }
     }
-    onlyWeeknotes: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC },
-      filter: { frontmatter: { tags: { in: ["weeknotes"] } } }
+    onlyWeeknotes: allContent(
+      sort: {fields: [date], order: DESC}
+      filter: { topics: { elemMatch: { topic: { eq: "weeknotes" }} }}
       limit: 3
     ) {
-      totalCount
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-          }
-          excerpt
+      nodes {
+        contentId
+        title
+        slug
+        date
+        content: parent {
+          ...HomepageContent
         }
       }
     }
   }
+
 `
 export default IndexPage

@@ -5,7 +5,7 @@ import ResponsiveImage from '../responsive-image'
 
 export default function articleCard({article, withBody = true, withImage = true, withDate = true}) {
 
-  const date = new Date(article.fields.date)
+  const date = new Date(article.date)
 
   return (
     <div className="alex-card">
@@ -13,13 +13,13 @@ export default function articleCard({article, withBody = true, withImage = true,
       <div className="alex-card__content--container">
 
         <div className="alex-card__title">
-          <h3><Link to={ article.fields.slug }>{ article.frontmatter.title }</Link></h3>
+          <h3><Link to={ article.slug }>{ article.title }</Link></h3>
         </div>
 
         {(withBody !== false) ?
           <div className="alex-card__abstract">
           <p>
-            { article.excerpt }
+            { article.content.excerpt }
           </p>
         </div>
         :null}
@@ -34,9 +34,9 @@ export default function articleCard({article, withBody = true, withImage = true,
 
       </div>
 
-      {(withImage !== false && article.fields.thumbnail) ?
+      {(withImage !== false && article.image && article.image.thumbnail) ?
         <div className="alex-card__image">
-          <ResponsiveImage src={ article.fields.thumbnail } width={ 400 } />
+          <ResponsiveImage src={ article.image.thumbnail } width={ 400 } />
         </div>
       :null}
 
