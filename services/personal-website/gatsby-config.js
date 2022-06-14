@@ -120,20 +120,20 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
-                const url = new URL(edge.node.fields.slug, site.siteMetadata.siteUrl)
+            serialize: ({ query: { site, recentContent } }) => {
+              return recentContent.nodes.map(content => {
+                const url = new URL(content.slug, site.siteMetadata.siteUrl)
                 const guid = url.toString()
                 url.searchParams.append('utm_source', 'feed')
                 return {
-                  title: edge.node.frontmatter.title,
-                  description: edge.node.snippet,
-                  date: edge.node.frontmatter.date,
+                  title: content.title,
+                  description: content.content.snippet,
+                  date: content.date,
                   url: url.toString(),
                   guid,
                   custom_elements: [{
                     "content:encoded": sanitizeHtml(
-                      `${edge.node.preview}<br /><a href="${url}">Read the full article...</a>`,
+                      `${content.content.preview}<br /><a href="${url}">Read the full article...</a>`,
                       {
                         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
                         allowedAttributes: false
@@ -151,20 +151,23 @@ module.exports = {
               })
             },
             query: `
-              {
-                allMarkdownRemark(
+              fragment Content on MarkdownRemark {
+                html
+                snippet: excerpt(pruneLength: 220, format: PLAIN)
+                preview: excerpt(pruneLength: 600, format: HTML)
+              }
+
+              query Content {
+                recentContent: allContent(
                   limit: 10,
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { order: DESC, fields: [date] }
                 ) {
-                  edges {
-                    node {
-                      snippet: excerpt(pruneLength: 220, format: PLAIN)
-                      preview: excerpt(pruneLength: 600, format: HTML)
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                      }
+                  nodes {
+                    title
+                    date
+                    slug
+                    content: parent {
+                      ...Content
                     }
                   }
                 }
