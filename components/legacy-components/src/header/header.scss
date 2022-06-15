@@ -37,14 +37,13 @@
       background-color: $header-link-background;
       height: 100%;
       transition: all 0.2s ease;
-      margin-left: 0;
+      translate: none;
       
       &[aria-expanded="false"] {
         height: 0;
-        float: left;
         visibility: hidden;
         overflow: hidden;
-        margin-left: -150%;
+        transform: translate(0%, -300%);
       }
     }
   }
