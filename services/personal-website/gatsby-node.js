@@ -104,19 +104,18 @@ exports.createPages = async ({ graphql, actions }) => {
       topics: allTopic {
         nodes {
           topicId
+          topic
           slug
         }
       }
     }
   `)
 
-  console.log("asdf", data.content.length)
-
   data.content.nodes.forEach((node) => {
     // Create a page
     createPage({
       path: node.slug,
-      component: node.type === "talk" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
+      component: node.type === "talks" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
       context: {
         contentId: node.contentId
       }
