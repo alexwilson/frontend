@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/running/",
-    "result": {"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"1dbe5aec-d10e-503a-a7eb-f5fd9ecab40e","fields":{"slug":"/content/a68da397-8a07-4cff-924e-4598db873970","date":"2022-05-15T22:21:00.000Z"},"frontmatter":{"title":"Weeknotes: Recruiting — 15th May","date":"2022-05-15T22:21:00.000Z"},"excerpt":"I’m still running. Somehow I’m trapped inside a rare virtuous cycle and reader - I am here for it. This week I drew out two circuits: One…"}}]}},"pageContext":{"topic":"running"}},
+    "path": "/topic/running",
+    "result": {"data":{"topic":{"topic":"running"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"a68da397-8a07-4cff-924e-4598db873970","title":"Weeknotes: Recruiting — 15th May","slug":"/content/a68da397-8a07-4cff-924e-4598db873970","date":"Sun May 15 2022 22:21:00 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"I’m still running. Somehow I’m trapped inside a rare virtuous cycle and reader - I am here for it. This week I drew out two circuits: One…"}}}]}},"pageContext":{"topicId":"129299db-1c9b-510a-812a-291d27c7a12f"}},
     "staticQueryHashes": []}
