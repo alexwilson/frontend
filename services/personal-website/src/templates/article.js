@@ -36,7 +36,7 @@ const ArticleTemplate = ({ data, location }) => {
           <div className="alex-article__main__byline">
             Posted
 
-            {/* {(post.frontmatter.author ? */}
+            {(post.author && post.author.name ?
               <>
                 {` by `}
                 <span itemProp="author" itemType="http://schema.org/Person">
@@ -45,7 +45,7 @@ const ArticleTemplate = ({ data, location }) => {
                   </a>
                 </span>
               </>
-            {/* :null)} */}
+            :null)}
 
             {(datePublished ?
               <>
@@ -163,7 +163,11 @@ export const pageQuery = graphql`
   }
   query BlogPostBySlug($contentId: String!) {
     content(contentId: {eq: $contentId}) {
+      contentId
       title
+      author {
+        name
+      }
       topics {
         topicId
         topic

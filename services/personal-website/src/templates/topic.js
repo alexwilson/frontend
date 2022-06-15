@@ -6,12 +6,12 @@ import Layout from "../components/layout"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {
   const { topic } = pageContext
-  const { totalCount } = data.allContent
+  const { totalCount } = data.content
 
   return (<Layout location={location}>
     <div class="alex-stream">
-      <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${topic}"`}</h1>
-      {data.allContent.edges.map(({ node }) => (
+      <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
+      {data.content.edges.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
       ))}
     </div>
@@ -24,10 +24,13 @@ export const pageQuery = graphql`
   fragment TopicPageContent on MarkdownRemark {
     excerpt: excerpt
   }
-  query($topic: String) {
-    allContent(
+  query($topicId: String) {
+    topic(topicId: {eq: $topicId}) {
+      topic
+    }
+    content: allContent(
       sort: { fields: [date], order: DESC }
-      filter: { topics: { elemMatch: { slug: { eq: $topic }} }}
+      filter: { topics: { elemMatch: { topicId: { eq: $topicId }} }}
     ) {
       totalCount
       edges {
