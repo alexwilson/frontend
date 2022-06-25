@@ -6,6 +6,8 @@ const { contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, cr
 exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, actions }) => {
   if (node.internal.type === `MarkdownRemark`) {
 
+    const {createNodeField} = actions
+
     // Generate content & topic entities from RemarkNode
     const content = contentFromMarkdownRemark({ node, getNode })
     const topics = topicsFromMarkdownRemark({ node })
@@ -18,6 +20,9 @@ exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, acti
       createTopicNode(topic, {node, createNodeId, getNode, createContentDigest, actions})
     }
     createContentNode(content, {node, createNodeId, createContentDigest, actions})
+
+    // For compat. with other plugins, stub the slug field.
+    createNodeField({ node, name: 'slug', value: content.slug })
   }
 }
 
