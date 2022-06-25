@@ -140,12 +140,12 @@ const ArticleTemplate = ({ data, location }) => {
         </div>
 
       </div>
-      <SEO title={post.title} description={post.excerpt}>
+      <SEO title={post.title} description={post.content.excerpt}>
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:image"
-          content={`${url}/twitter-card.jpg`}
-        />
+        <meta name="twitter:description" content={post.content.excerpt} />
+        <meta name="twitter:site" content="@alexwilsonv1" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:image" content={`${url}/twitter-card.jpg`} />
         <script type="application/ld+json">{JSON.stringify(Article({
           url: url,
           title: post.title,
