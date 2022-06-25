@@ -93,7 +93,21 @@ module.exports = {
                 global: false
               }
             }
-          }
+          },
+          {
+            resolve: `gatsby-remark-twitter-cards`,
+            options: {
+              title: false,
+              separator: false,
+              author: 'Alex Wilson',
+              background: '#000000',
+              fontColor: '#FFFFFF',
+              titleFontSize: 96,
+              subtitleFontSize: 60,
+              fontStyle: 'monospace'
+            },
+
+          },
         ],
       },
     },
