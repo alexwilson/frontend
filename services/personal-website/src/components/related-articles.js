@@ -31,17 +31,24 @@ export default ({article: currentArticle}) => {
 
   const maxArticles = 3
   const relatedArticles = new Set()
-  for (let granularity = 3; granularity >= 0; granularity--) {
+  for (let granularity = 6; granularity >= 0; granularity--) {
     if (relatedArticles.size >= maxArticles) break;
 
     for (const article of data.posts.nodes) {
       if (article.contentId === currentArticle.contentId) continue;
       if (relatedArticles.size >= maxArticles) break;
 
+      const isWeeknote = (article.topics.filter(({topic}) => topic == "weeknotes").length > 0)
+
+      // Hack to reduce relevance of weeknotes.
+      if (granularity >= 1 && isWeeknote) {
+        continue
+      }
+
       let similarity = 0
 
-      for (const topic of article.topics.map(topic => topic.topicId)) {
-        if (currentArticleTopics.includes(topic)) {
+      for (const topic of article.topics) {
+        if (currentArticleTopics.includes(topic.topicId)) {
           similarity++;
         }
       }
@@ -57,7 +64,7 @@ export default ({article: currentArticle}) => {
   return (
     <>
       {Array.from(relatedArticles.values()).map(
-        article => <ArticleCard key={article.contentId} article={article} withBody={false} withDate={false}
+        (article) => <ArticleCard key={article.contentId} article={article} withBody={false} withDate={false}
       />)}
     </>
   )
