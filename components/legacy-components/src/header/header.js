@@ -160,7 +160,7 @@ class Header extends Component {
 
                 <NavSpacer />
 
-                <this.navItem url="https://twitter.com/AlexWilsonV1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></this.navItem>
+                <this.navItem url="https://twitter.com/alexwilsonv1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></this.navItem>
                 <this.navItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></this.navItem>
                 <this.navItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></this.navItem>
               </ul>
