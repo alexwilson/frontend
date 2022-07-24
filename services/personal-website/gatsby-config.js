@@ -135,28 +135,35 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, recentContent } }) => {
-              return recentContent.nodes.map(content => {
-                const url = new URL(content.slug, site.siteMetadata.siteUrl)
-                const guid = url.toString()
-                url.searchParams.append('utm_source', 'feed')
+              return recentContent.nodes.map(entry => {
+                const rawUrl = new URL(entry.slug, site.siteMetadata.siteUrl)
+                const guid = rawUrl.toString()
+                rawUrl.searchParams.append('utm_source', 'feed')
+                const url = rawUrl.toString()
+                
+                const content = `
+                  ${entry.content.preview}<br />
+                  <a href="${url}">Read the full post here...</a>
+                `
+
+                const contentEncoded = sanitizeHtml(content, {
+                  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+                  allowedAttributes: false
+                })
+
                 return {
-                  title: content.title,
-                  description: content.content.snippet,
-                  date: content.date,
-                  url: url.toString(),
+                  title: entry.title,
+                  description: entry.content.snippet,
+                  date: entry.date,
+                  url,
                   guid,
                   custom_elements: [{
-                    "content:encoded": sanitizeHtml(
-                      `${content.content.preview}<br /><a href="${url}">Read the full article...</a>`,
-                      {
-                        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-                        allowedAttributes: false
-                      }
+                    "content:encoded": contentEncoded,
                     ),
                     "atom:link": {
                       "_attr": {
                         "rel": "self",
-                        "href": url.toString(),
+                        "href": url,
                         "type": "text/html"
                       }
                     }
@@ -165,10 +172,9 @@ module.exports = {
               })
             },
             query: `
-              fragment Content on MarkdownRemark {
-                html
+              fragment FeedContent on MarkdownRemark {
                 snippet: excerpt(pruneLength: 220, format: PLAIN)
-                preview: excerpt(pruneLength: 600, format: HTML)
+                preview: excerpt(pruneLength: 1000, format: HTML)
               }
 
               query Content {
@@ -181,7 +187,7 @@ module.exports = {
                     date
                     slug
                     content: parent {
-                      ...Content
+                      ...FeedContent
                     }
                   }
                 }
