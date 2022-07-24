@@ -159,7 +159,6 @@ module.exports = {
                   guid,
                   custom_elements: [{
                     "content:encoded": contentEncoded,
-                    ),
                     "atom:link": {
                       "_attr": {
                         "rel": "self",
