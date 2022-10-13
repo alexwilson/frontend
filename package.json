@@ -8,6 +8,6 @@
     "deploy": "lerna run deploy"
   },
   "devDependencies": {
-    "lerna": "^5.0.0"
+    "lerna": "^6.0.0"
   }
 }
