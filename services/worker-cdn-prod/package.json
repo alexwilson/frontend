@@ -13,6 +13,5 @@
     "@cloudflare/wrangler": "^1.9.1"
   },
   "dependencies": {
-    "@alexwilson/lib-cloudflare-error-pages": "^0.0.1"
   }
 }
