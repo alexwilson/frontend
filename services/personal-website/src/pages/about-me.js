@@ -43,7 +43,7 @@ export default function aboutMe({location}) {
               <p className="eta">
                   <b className="eta">Skills</b>
                   <ul className="eta">
-                      <li>8 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+                      <li>9 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
                       <li>Stakeholder management & requirement-gathering across business domains. Experience and knowledge of digital media domains.</li>
                       <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
                       <li>Tracing, diagnosing and mitigating faults in diverse technical stacks — Legacy, distributed systems, etc.</li>
