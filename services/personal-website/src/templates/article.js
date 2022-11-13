@@ -77,7 +77,7 @@ const ArticleTemplate = ({ data, location }) => {
                 <ul style={{marginTop: 0}}>
                   <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
                   <li class="bullet--twitter">
-                    On <a href="https://twitter.com/alexwilsonv1">Twitter</a>,
+                    On <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a> or <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
                   </li>
                   <li class="bullet--email">
                     <label for="subscribe_by_email">And in your inbox, by email:</label>
