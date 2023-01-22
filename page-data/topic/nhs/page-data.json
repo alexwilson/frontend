@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-topic-js",
+    "path": "/topic/nhs",
+    "result": {"data":{"topic":{"topic":"nhs"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"e368eb5e-c9c5-4482-bf10-1161dd27982f","title":"Weeknotes: Diagnosing — Week 3, 2023","slug":"/content/e368eb5e-c9c5-4482-bf10-1161dd27982f","date":"Sun Jan 22 2023 23:42:45 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"Reader, this week I learned why you never put a cannula in your dominant arm.  You become hyper-aware of every movement you make.  It's…"}}}]}},"pageContext":{"topicId":"5b8c1ca0-a858-5952-b850-acb9f9e07ba7"}},
+    "staticQueryHashes": []}
