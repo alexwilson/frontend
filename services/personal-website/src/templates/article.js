@@ -6,14 +6,14 @@ import { format } from "date-fns"
 import Header from "@alexwilson/legacy-components/src/header"
 import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Webmentions from "@alexwilson/legacy-components/src/webmentions"
-import {Form, InlineGroup, Input, Submit} from "@alexwilson/legacy-components/src/form"
+import { Form, InlineGroup, Input, Submit } from "@alexwilson/legacy-components/src/form"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
 import RelatedArticles from "../components/related-articles"
 
-const InfoBox = ({icon, children}) => (
+const InfoBox = ({ icon, children }) => (
   <p class="alex-article__infobox">
     {children}
   </p>
@@ -33,7 +33,7 @@ const ArticleTemplate = ({ data, location }) => {
       <div className="alex-article">
         <h1 class="alex-article__headline" itemProp="name headline">{post.title}</h1>
         <div className="alex-article__main">
-          <div className="alex-article__main__byline">
+          <div className="alex-article__byline">
             Posted
 
             {(post.author && post.author.name ?
@@ -45,7 +45,7 @@ const ArticleTemplate = ({ data, location }) => {
                   </a>
                 </span>
               </>
-            :null)}
+              : null)}
 
             {(datePublished ?
               <>
@@ -56,13 +56,13 @@ const ArticleTemplate = ({ data, location }) => {
                   itemProp="datePublished"
                 >{format(new Date(post.date), "PPPP")}</time>.
               </>
-            :null)}
+              : null)}
 
             {(post.image.credit ?
               <>
                 {` ${post.image.credit}`}
               </>
-            :null)}
+              : null)}
 
           </div>
           <article
@@ -71,30 +71,30 @@ const ArticleTemplate = ({ data, location }) => {
             itemProp="articleBody"
           />
 
-            <footer>
-              <InfoBox>
-                If you enjoyed this article and want to read more, you can follow me:
-                <ul style={{marginTop: 0}}>
-                  <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
-                  <li class="bullet--twitter">
-                    On <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a> or <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
-                  </li>
-                  <li class="bullet--email">
-                    <label for="subscribe_by_email">And in your inbox, by email:</label>
-                    <Form action="http://newsletter.alexwilson.tech/add_subscriber" method="post" rel="noreferrer" target="_blank">
-                      <InlineGroup>
-                        <Input placeholder="Your email address" type="email" name="member[email]" id="subscribe_by_email" />
-                        <Submit value="Subscribe" />
-                      </InlineGroup>
-                      <div class="text--small">
-                        By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.
-                      </div>
-                    </Form>
-                  </li>
-                </ul>
-                Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
-              </InfoBox>
-            </footer>
+          <footer>
+            <InfoBox>
+              If you enjoyed this article and want to read more, you can follow me:
+              <ul style={{ marginTop: 0 }}>
+                <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
+                <li class="bullet--twitter">
+                  On <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a> or <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
+                </li>
+                <li class="bullet--email">
+                  <label for="subscribe_by_email">And in your inbox, by email:</label>
+                  <Form action="http://newsletter.alexwilson.tech/add_subscriber" method="post" rel="noreferrer" target="_blank">
+                    <InlineGroup>
+                      <Input placeholder="Your email address" type="email" name="member[email]" id="subscribe_by_email" />
+                      <Submit value="Subscribe" />
+                    </InlineGroup>
+                    <div class="text--small">
+                      By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.
+                    </div>
+                  </Form>
+                </li>
+              </ul>
+              Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
+            </InfoBox>
+          </footer>
 
           <div class="alex-article__sharing-block">
 
@@ -108,16 +108,16 @@ const ArticleTemplate = ({ data, location }) => {
           <div className="alex-article__aside-start">
 
             {post.topics ?
-            <div className="alex-article__topics">
-              <strong>Topics: </strong>
-              <ul>
-              {post.topics.map(topic => {
-                return <li key={topic.topicId}>
-                  <Link to={topic.slug}>{topic.topic}</Link>
-                </li>
-              })}
-              </ul>
-            </div>:null}
+              <div className="alex-article__topics">
+                <strong>Topics: </strong>
+                <ul>
+                  {post.topics.map(topic => {
+                    return <li key={topic.topicId}>
+                      <Link to={topic.slug}>{topic.topic}</Link>
+                    </li>
+                  })}
+                </ul>
+              </div> : null}
 
           </div>
 
@@ -125,7 +125,7 @@ const ArticleTemplate = ({ data, location }) => {
 
             <div className="alex-article__recommended">
               <h2>Read Next</h2>
-              <RelatedArticles article={post}/>
+              <RelatedArticles article={post} />
             </div>
 
           </div>
