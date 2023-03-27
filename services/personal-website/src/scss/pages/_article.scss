@@ -5,7 +5,7 @@
     @include alex-row;
 
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 0 2em;
     grid-template-areas:
@@ -14,13 +14,13 @@
       "Aside";
 
     @include media(">tablet") {
-      grid-template-columns: 80% 20%;
+      grid-template-columns: 8fr 2fr;
       grid-template-areas:
         "Headline Headline"
         "Main Aside";
     }
     @include media(">desktop") {
-      grid-template-columns: 70% 30%;
+      grid-template-columns: 7fr 3fr;
       gap: 0 3em;
       grid-template-areas:
         "Headline Headline"
