@@ -39,6 +39,9 @@
 
 .alex-article__main {
     grid-area: Main;
+
+    /* This is not a permanent solution. It prevents anything escaping the content-well. */
+    overflow-x: auto;
 }
 
 .alex-article__aside {
