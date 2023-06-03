@@ -76,19 +76,18 @@ const ArticleTemplate = ({ data, location }) => {
               If you enjoyed this article and want to read more, you can follow me:
               <ul style={{ marginTop: 0 }}>
                 <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
-                <li class="bullet--twitter">
-                  On <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a> or <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
+                <li class="bullet--twitter">{`On `}
+                  <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a>{` , `}
+                  <a rel="me" href="https://bsky.app/profile/alexwilson.bsky.social">Bluesky</a>{` or `}
+                  <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
                 </li>
                 <li class="bullet--email">
                   <label for="subscribe_by_email">And in your inbox, by email:</label>
-                  <Form action="http://newsletter.alexwilson.tech/add_subscriber" method="post" rel="noreferrer" target="_blank">
+                  <Form action="https://tech.us21.list-manage.com/subscribe/post?u=e0869bce049cbcd034fc8edd2&amp;id=7733fc6e4f&amp;f_id=00ef5be1f0" method="post" rel="noreferrer" target="_blank">
                     <InlineGroup>
-                      <Input placeholder="Your email address" type="email" name="member[email]" id="subscribe_by_email" />
+                      <Input placeholder="Your email address" type="email" name="EMAIL" id="subscribe_by_email" />
                       <Submit value="Subscribe" />
                     </InlineGroup>
-                    <div class="text--small">
-                      By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.
-                    </div>
                   </Form>
                 </li>
               </ul>
@@ -140,7 +139,7 @@ const ArticleTemplate = ({ data, location }) => {
         </div>
 
       </div>
-      <SEO title={post.title} description={post.content.excerpt}>
+      <SEO title={post.title} description={post.content.excerpt} url={url} image={`${url}/twitter-card.jpg`}>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:description" content={post.content.excerpt} />
         <meta name="twitter:site" content="@alexwilsonv1" />
