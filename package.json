@@ -8,6 +8,7 @@
     "deploy": "lerna run deploy"
   },
   "devDependencies": {
-    "lerna": "^7.0.0"
+    "lerna": "^7.0.0",
+    "@lerna/legacy-package-management": "^7.0.2"
   }
 }
