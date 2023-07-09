@@ -1,10 +1,4 @@
 {
-  "packages": [
-    "components/*",
-    "libraries/*",
-    "packages/*",
-    "services/*"
-  ],
   "version": "independent",
   "hoist": false
 }

@@ -2,13 +2,17 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
     "deploy": "lerna run deploy"
   },
+  "workspaces": [
+    "components/*",
+    "libraries/*",
+    "packages/*",
+    "services/*"
+  ],
   "devDependencies": {
-    "lerna": "^7.0.0",
-    "@lerna/legacy-package-management": "^7.0.2"
+    "lerna": "^7.0.0"
   }
 }
