@@ -44,8 +44,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm config set legacy-peer-deps true
-        npm ci --ignore-scripts
-        npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
+        npm ci --ignore-scripts --workspace @alexwilson/personal-website
     - name: Build
       run: npx lerna run --scope @alexwilson/personal-website build
       env:
@@ -82,8 +81,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm config set legacy-peer-deps true
-        npm ci --ignore-scripts
-        npx lerna bootstrap --force-local --include-dependencies --scope @alexwilson/personal-website
+        npm ci --ignore-scripts --workspace @alexwilson/personal-website
     - name: Run Tests
       run: npx lerna run --scope @alexwilson/personal-website test
 

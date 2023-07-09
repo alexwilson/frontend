@@ -25,9 +25,9 @@ jobs:
         cache: 'npm'
     - name: Install Dependencies
       run: |
+        rm  services/personal-website/package.json
         npm config set legacy-peer-deps true
         npm ci --ignore-scripts --production=false
-        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - id: find-projects
       name: Find affected projects
       run: |
@@ -84,9 +84,9 @@ jobs:
         cache: 'npm'
     - name: Install Dependencies
       run: |
+        rm  services/personal-website/package.json
         npm config set legacy-peer-deps true
         npm ci --ignore-scripts --production=false
-        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Test
       run: npx lerna run test --scope ${{ matrix.name }}
 
@@ -117,9 +117,9 @@ jobs:
         cache: 'npm'
     - name: Install Dependencies
       run: |
+        rm  services/personal-website/package.json
         npm config set legacy-peer-deps true
         npm ci --ignore-scripts
-        npx lerna bootstrap --ignore @alexwilson/personal-website -- --production=false
     - name: Deploy
       run: npx lerna run deploy --scope ${{ matrix.name }}
       env:
