@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/languages",
-    "result": {"data":{"topic":{"topic":"languages"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c53951b-0a82-4e61-b704-23b4b79adcf2","title":"Weeknotes: Twelfth — 29th January 2022","slug":"/content/7c53951b-0a82-4e61-b704-23b4b79adcf2","date":"Sat Jan 29 2022 19:16:20 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"January’s nearly over.  That crept up quickly. A lot of my spare time this month went towards ... mid-terms and recovering from mid-terms…"}}}]}},"pageContext":{"topicId":"d4431e66-13a9-5021-a9b3-150db7c2b08c"}},
-    "staticQueryHashes": []}
+{"componentChunkName":"component---src-templates-topic-js","path":"/topic/languages","result":{"data":{"topic":{"topic":"languages"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c53951b-0a82-4e61-b704-23b4b79adcf2","title":"Weeknotes: Twelfth — 29th January 2022","slug":"/content/7c53951b-0a82-4e61-b704-23b4b79adcf2","date":"Sat Jan 29 2022 19:16:20 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"January’s nearly over.  That crept up quickly. A lot of my spare time this month went towards ... mid-terms and recovering from mid-terms…"}}}]}},"pageContext":{"topicId":"d4431e66-13a9-5021-a9b3-150db7c2b08c"}},"staticQueryHashes":[]}

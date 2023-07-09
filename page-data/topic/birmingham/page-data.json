@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/birmingham",
-    "result": {"data":{"topic":{"topic":"birmingham"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"9da78967-f8c4-49eb-9597-15757d50c4d7","title":"Weeknotes: Standing — Week 22, 2023","slug":"/content/9da78967-f8c4-49eb-9597-15757d50c4d7","date":"Sun Jun 04 2023 18:00:31 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"I last left you in a field.  It was a nice field.  I've been thinking about that field a lot. Got into the office quite early one morning…"}}}]}},"pageContext":{"topicId":"40a273e9-2782-5301-8dfc-123cf97f91ca"}},
-    "staticQueryHashes": []}
+{"componentChunkName":"component---src-templates-topic-js","path":"/topic/birmingham","result":{"data":{"topic":{"topic":"birmingham"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"9da78967-f8c4-49eb-9597-15757d50c4d7","title":"Weeknotes: Standing — Week 22, 2023","slug":"/content/9da78967-f8c4-49eb-9597-15757d50c4d7","date":"Sun Jun 04 2023 18:00:31 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"I last left you in a field.  It was a nice field.  I've been thinking about that field a lot. Got into the office quite early one morning…"}}}]}},"pageContext":{"topicId":"40a273e9-2782-5301-8dfc-123cf97f91ca"}},"staticQueryHashes":[]}

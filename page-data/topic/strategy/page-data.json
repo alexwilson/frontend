@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/strategy",
-    "result": {"data":{"topic":{"topic":"strategy"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c3ed03c-7f97-4e2b-897b-5cf10f830bb0","title":"How to be a CTO: Lessons from LeadingEng 2022","slug":"/content/7c3ed03c-7f97-4e2b-897b-5cf10f830bb0","date":"Sat Jun 25 2022 11:56:52 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"Recently I was lucky enough to attend LeadingEng London, here’s what I learned. LeadingEng is a new conference aimed at VP/Director/CTO…"}}}]}},"pageContext":{"topicId":"4efe94f6-5758-5b6d-960c-69fb9542f094"}},
-    "staticQueryHashes": []}
+{"componentChunkName":"component---src-templates-topic-js","path":"/topic/strategy","result":{"data":{"topic":{"topic":"strategy"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c3ed03c-7f97-4e2b-897b-5cf10f830bb0","title":"How to be a CTO: Lessons from LeadingEng 2022","slug":"/content/7c3ed03c-7f97-4e2b-897b-5cf10f830bb0","date":"Sat Jun 25 2022 11:56:52 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"Recently I was lucky enough to attend LeadingEng London, here’s what I learned. LeadingEng is a new conference aimed at VP/Director/CTO…"}}}]}},"pageContext":{"topicId":"4efe94f6-5758-5b6d-960c-69fb9542f094"}},"staticQueryHashes":[]}

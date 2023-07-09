@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/data",
-    "result": {"data":{"topic":{"topic":"data"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"48e0bf88-d974-4db6-9af7-2f07b74d0114","title":"Weeknotes: Instrumenting — 7th August 2022","slug":"/content/48e0bf88-d974-4db6-9af7-2f07b74d0114","date":"Sun Aug 07 2022 21:48:24 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"This week at work felt quite heavy in terms of operational activities - it flew by and I had only really made progress in one discrete area…"}}}]}},"pageContext":{"topicId":"0e283ea6-bf4a-525d-adfa-fd30bd5647e2"}},
-    "staticQueryHashes": []}
+{"componentChunkName":"component---src-templates-topic-js","path":"/topic/data","result":{"data":{"topic":{"topic":"data"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"48e0bf88-d974-4db6-9af7-2f07b74d0114","title":"Weeknotes: Instrumenting — 7th August 2022","slug":"/content/48e0bf88-d974-4db6-9af7-2f07b74d0114","date":"Sun Aug 07 2022 21:48:24 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"This week at work felt quite heavy in terms of operational activities - it flew by and I had only really made progress in one discrete area…"}}}]}},"pageContext":{"topicId":"0e283ea6-bf4a-525d-adfa-fd30bd5647e2"}},"staticQueryHashes":[]}

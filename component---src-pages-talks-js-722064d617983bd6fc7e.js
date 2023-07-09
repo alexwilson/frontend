@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_alexwilson_personal_website=self.webpackChunk_alexwilson_personal_website||[]).push([[185],{6033:function(e,a,t){t.r(a);var l=t(2784),n=t(8583),r=t(1256);a.default=function(e){var a=e.data,t=e.location;return l.createElement(n.Z,{location:t},l.createElement("div",{className:"alex-stream"},l.createElement("h1",null,"Talks"),a.talks.edges.map((function(e){var a=e.node;return l.createElement(r.Z,{key:a.id,article:a})}))))}}}]);
+//# sourceMappingURL=component---src-pages-talks-js-722064d617983bd6fc7e.js.map

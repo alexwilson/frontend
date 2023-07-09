@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-topic-js",
-    "path": "/topic/moving",
-    "result": {"data":{"topic":{"topic":"moving"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c23bcc5-0182-4767-ac4b-c39cd910d9ca","title":"Weeknotes:  Space — 24th October 2021","slug":"/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca","date":"Sun Oct 24 2021 17:48:16 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…"}}}]}},"pageContext":{"topicId":"78855442-66e1-5b53-9ec7-74e77e625e2c"}},
-    "staticQueryHashes": []}
+{"componentChunkName":"component---src-templates-topic-js","path":"/topic/moving","result":{"data":{"topic":{"topic":"moving"},"content":{"totalCount":1,"edges":[{"node":{"contentId":"7c23bcc5-0182-4767-ac4b-c39cd910d9ca","title":"Weeknotes:  Space — 24th October 2021","slug":"/content/7c23bcc5-0182-4767-ac4b-c39cd910d9ca","date":"Sun Oct 24 2021 17:48:16 GMT+0000 (Coordinated Universal Time)","content":{"excerpt":"Last week Nick helped me move my standing desk from Whitechapel, which was quite the adventure across London. ... and this week I got a…"}}}]}},"pageContext":{"topicId":"78855442-66e1-5b53-9ec7-74e77e625e2c"}},"staticQueryHashes":[]}
