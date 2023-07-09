@@ -53,10 +53,14 @@ jobs:
         echo "Github Event: $GITHUB_EVENT_NAME"
         echo "$ npx lerna list ${lerna_args[@]}"
         echo "$ jq ${jq_args[@]}"
-        echo "##[set-output name=projects;]$(     \
+        echo "$ echo projects=$(                  \
           npx lerna list ${lerna_args[@]}         \
           | jq -rjc -n '.include |= inputs'       \
-        )"
+        ) >> \$GITHUB_OUTPUT"
+        echo "projects=$(                         \
+          npx lerna list ${lerna_args[@]}         \
+          | jq -rjc -n '.include |= inputs'       \
+        )" >> $GITHUB_OUTPUT
       env:
         MAIN_BRANCH: "main"
 
