@@ -38,7 +38,7 @@
     "gatsby-plugin-react-helmet": "^5.4.0",
     "gatsby-plugin-sass": "^5.4.0",
     "gatsby-plugin-sharp": "^4.4.0",
-    "gatsby-plugin-sitemap": "^5.4.0",
+    "gatsby-plugin-sitemap": "^6.11.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-embed-gist": "^1.1.9",
     "gatsby-remark-embed-video": "^3.1.1",
