@@ -119,7 +119,7 @@ jobs:
       run: |
         rm  services/personal-website/package.json
         npm config set legacy-peer-deps true
-        npm ci --ignore-scripts
+        npm ci --ignore-scripts --production=false
     - name: Deploy
       run: npx lerna run deploy --scope ${{ matrix.name }}
       env:
