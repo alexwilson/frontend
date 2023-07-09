@@ -176,11 +176,13 @@ class Header extends Component {
 Header.propTypes = {
   siteTitle: PropTypes.string,
   image: PropTypes.string,
+  location: PropTypes.object
 }
 
 Header.defaultProps = {
   siteTitle: `Alex Wilson`,
   image: null,
+  location: { pathname: "/" }
 }
 
 export default Header
