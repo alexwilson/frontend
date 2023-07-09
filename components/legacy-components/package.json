@@ -8,12 +8,12 @@
   "license": "ISC",
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "sass": "^1.45.0"
   },
   "devDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "sass": "^1.45.0"
   },
   "dependencies": {
