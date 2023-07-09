@@ -47,7 +47,7 @@
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-source-git": "^1.1.0",
     "gatsby-transformer-remark": "^5.4.0",
-    "gatsby-transformer-sharp": "^4.4.0",
+    "gatsby-transformer-sharp": "^5.11.0",
     "isomorphic-fetch": "^3.0.0",
     "preact": "^10.6.4",
     "prismjs": "^1.25.0",
