@@ -1,8 +1,8 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
-import ArticleCard from "@alexwilson/legacy-components/src/article-card"
+import ArticleCard from "./article-card"
 
-export default ({article: currentArticle}) => {
+export default ({ article: currentArticle }) => {
   const data = useStaticQuery(graphql`
     query RelatedArticles {
       posts: allContent(
@@ -38,7 +38,7 @@ export default ({article: currentArticle}) => {
       if (article.contentId === currentArticle.contentId) continue;
       if (relatedArticles.size >= maxArticles) break;
 
-      const isWeeknote = (article.topics.filter(({topic}) => topic == "weeknotes").length > 0)
+      const isWeeknote = (article.topics.filter(({ topic }) => topic == "weeknotes").length > 0)
 
       // Hack to reduce relevance of weeknotes.
       if (granularity >= 1 && isWeeknote) {
@@ -65,7 +65,7 @@ export default ({article: currentArticle}) => {
     <>
       {Array.from(relatedArticles.values()).map(
         (article) => <ArticleCard key={article.contentId} article={article} withBody={false} withDate={false}
-      />)}
+        />)}
     </>
   )
 }
