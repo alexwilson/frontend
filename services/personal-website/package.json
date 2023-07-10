@@ -28,7 +28,7 @@
     "@alexwilson/legacy-components": "*",
     "@loadable/component": "^5.15.2",
     "date-fns": "^2.11.1",
-    "gatsby": "^4.4.0",
+    "gatsby": "^5.11.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-feed": "^5.11.0",
     "gatsby-plugin-google-analytics": "^5.11.0",
