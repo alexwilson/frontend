@@ -1,5 +1,8 @@
+const path = require('path')
+
 module.exports = {
     target: "webworker",
+    mode: 'production',
     resolve: {
         extensions: ['.js', '.json']
     },
@@ -11,5 +14,9 @@ module.exports = {
     },
     entry: {
         main: "./worker/index.js"
-    }
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'worker.js',
+    },
 }

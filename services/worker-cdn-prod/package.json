@@ -10,8 +10,6 @@
     "deploy": "wrangler publish"
   },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.9.1"
-  },
-  "dependencies": {
+    "wrangler": "^2.20.0"
   }
 }

@@ -17,14 +17,14 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash].js',
+        filename: 'client.[contenthash].js',
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']        
+                use: ['babel-loader']
             },
             {
                 test: /\.yml/,
@@ -52,5 +52,5 @@ module.exports = {
           directory: path.join(__dirname, 'dist'),
         },
         port: 9000,
-    }    
+    }
 }
