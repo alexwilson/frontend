@@ -1,0 +1,15 @@
+{
+    "name": "@alexwilson/gatsby-awt-json-exporter",
+    "version": "1.0.0",
+    "description": "Export JSON files",
+    "main": "index.js",
+    "author": "Alex Wilson <alex@alexwilson.tech>",
+    "license": "private",
+    "private": "true",
+    "dependencies": {
+    },
+    "peerDependencies": {
+      "gatsby": ">2.0.0-alpha"
+    }
+  }
+  

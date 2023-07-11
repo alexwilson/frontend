@@ -232,6 +232,9 @@ module.exports = {
           families: ['Overpass:400,600,800']
         }
       }
+    },
+    {
+      resolve: '@alexwilson/gatsby-awt-json-exporter'
     }
   ],
 }
