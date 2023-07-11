@@ -1,3 +1,4 @@
 name = "cdn_prod"
-type = "webpack"
 workers_dev = true
+main = "./index.js"
+compatibility_date = "2023-07-11"

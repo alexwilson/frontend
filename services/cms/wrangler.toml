@@ -1,6 +1,7 @@
 name = "cms"
-type = "webpack"
 workers_dev = true
 routes = ["https://alexwilson.tech/cms/*"]
-webpack_config = "webpack.worker.cjs"
-compatibility_date = "2021-10-10"
+compatibility_date = "2022-07-12"
+main = "./dist/worker.js"
+[build]
+command = "npm run build"
