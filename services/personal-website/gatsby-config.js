@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: `https://alexwilson.tech/`,
     author: `@antoligy`,
   },
+  trailingSlash: "never",
   plugins: [
     `gatsby-plugin-react-helmet`,
     // {
@@ -140,7 +141,7 @@ module.exports = {
                 const guid = rawUrl.toString()
                 rawUrl.searchParams.append('utm_source', 'feed')
                 const url = rawUrl.toString()
-                
+
                 const content = `
                   ${entry.content.preview}<br />
                   <a href="${url}">Read the full post here...</a>
