@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "deploy": "wrangler publish"
+    "deploy": "exit 0"
   },
   "devDependencies": {
     "wrangler": "^3.2.0"
