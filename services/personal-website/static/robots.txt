@@ -1,0 +1,8 @@
+# Material on this website may not be used for training machine-learning models without prior authorisation.
+
+User-agent: *
+Disallow: /cms/
+Crawl-Delay: 1
+
+User-agent: GPTBot
+Disallow: /
