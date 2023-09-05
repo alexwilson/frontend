@@ -2,6 +2,7 @@
 
 User-agent: *
 Disallow: /cms/
+Disallow: /cdn-cgi/
 Crawl-Delay: 1
 
 User-agent: GPTBot
