@@ -4,12 +4,20 @@
 @import "~@alexwilson/legacy-components/src/util-palette/palette";
 @import "~@alexwilson/legacy-components/src/util-typography/typography";
 
+@import "~prismjs/themes/prism-okaidia.css";
+@import "~prismjs/plugins/command-line/prism-command-line.css";
+
 // Page-specific styles
 @import "layout";
 @import "pages/home";
 @import "pages/article";
 @import "pages/listing";
 @import "pages/consultancy";
+
+// Force spans inside PrismJS to use parent font-family.
+code[class*="language-"] span, pre[class*="language-"] span {
+    font-family: inherit;
+}
 
 .panel {
 	background: $brand;

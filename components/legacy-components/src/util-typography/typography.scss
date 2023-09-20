@@ -1,14 +1,14 @@
 @import "../util-palette/palette";
 @import "./type/main";
 
- @mixin heading {
+* {
+    font-family: "Avenir Next", Avenir, Arial, sans-serif;
+}
+
+@mixin heading {
     .wf-active & {
         font-family: 'Overpass', sans-serif;
     }
-}
-
-* {
-    font-family: "Avenir Next", Avenir, Arial, sans-serif;
 }
 
 .alex-article {
