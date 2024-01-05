@@ -22,7 +22,7 @@ const IndexPage = ({ data, location }) => (
             </div>
         </section>
         <section className="alex-home__section">
-            <h2><a className="heading" href="/topic/weeknotes">Latest Weeknotes</a></h2>
+            <h2><a className="heading" href="/topic/weeknotes">Latest Notes</a></h2>
             <div className="alex-home__tilestack">
             {data.onlyWeeknotes.nodes.map((node) =>
               <div key={node.contentId} className="alex-home__tilestack-item">
