@@ -142,6 +142,8 @@ module.exports = {
                 rawUrl.searchParams.append('utm_source', 'feed')
                 const url = rawUrl.toString()
 
+                const author = entry?.author?.name ?? site.siteMetadata.title
+
                 const content = `
                   ${entry.content.preview}<br />
                   <a href="${url}">Read the full post here...</a>
@@ -158,6 +160,7 @@ module.exports = {
                   date: entry.date,
                   url,
                   guid,
+                  author,
                   custom_elements: [{
                     "content:encoded": contentEncoded,
                     "atom:link": {
@@ -186,6 +189,9 @@ module.exports = {
                     title
                     date
                     slug
+                    author {
+                      name
+                    }
                     content: parent {
                       ...FeedContent
                     }
