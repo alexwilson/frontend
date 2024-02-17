@@ -6,11 +6,10 @@ on:
       - main
   schedule:
     # Scheduled build so pipeline failures are noticed quicker.
-    - cron: '30 4 * * 3,6'
+    - cron: "30 4 * * 3,6"
   repository_dispatch:
     types:
       - content-update
-
 
 jobs:
   # Fetch dependencies and build Gatsby
@@ -19,42 +18,42 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/gh-pages'
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-    - name: Restore Cached Build
-      uses: actions/cache@v1
-      id: cache-public
-      with:
-        path: services/personal-website/public
-        key: build
-    - uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-        cache: 'npm'
-    - name: Restore node_modules
-      uses: actions/cache@master
-      id: cache-node_modules
-      with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          */*/node_modules
-    - name: Install Dependencies
-      run: |
-        npm config set legacy-peer-deps true
-        npm ci --ignore-scripts --workspace @alexwilson/personal-website
-    - name: Build
-      run: npx lerna run --scope @alexwilson/personal-website build
-      env:
-        GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
-        CI: true
-    - name: Save Build Artefact
-      uses: actions/upload-artifact@v1
-      with:
-        name: site-artefact
-        path: services/personal-website/public
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 1
+      - name: Restore Cached Build
+        uses: actions/cache@v4
+        id: cache-public
+        with:
+          path: services/personal-website/public
+          key: build
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Restore node_modules
+        uses: actions/cache@v4
+        id: cache-node_modules
+        with:
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: |
+            node_modules
+            */*/node_modules
+      - name: Install Dependencies
+        run: |
+          npm config set legacy-peer-deps true
+          npm ci --ignore-scripts --workspace @alexwilson/personal-website
+      - name: Build
+        run: npx lerna run --scope @alexwilson/personal-website build
+        env:
+          GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
+          CI: true
+      - name: Save Build Artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-artefact
+          path: services/personal-website/public
 
   # Run unit tests on the artefact we just built.
   test:
@@ -62,46 +61,46 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-        cache: 'npm'
-    - name: Restore node_modules
-      uses: actions/cache@master
-      id: cache-node_modules
-      with:
-        key: node_modules-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          */*/node_modules
-    - name: Install Dependencies
-      run: |
-        npm config set legacy-peer-deps true
-        npm ci --ignore-scripts --workspace @alexwilson/personal-website
-    - name: Run Tests
-      run: npx lerna run --scope @alexwilson/personal-website test
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Restore node_modules
+        uses: actions/cache@v4
+        id: cache-node_modules
+        with:
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: |
+            node_modules
+            */*/node_modules
+      - name: Install Dependencies
+        run: |
+          npm config set legacy-peer-deps true
+          npm ci --ignore-scripts --workspace @alexwilson/personal-website
+      - name: Run Tests
+        run: npx lerna run --scope @alexwilson/personal-website test
 
   validate-feed:
     name: "Validate feed"
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
         with:
           repository: w3c/feedvalidator
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.7'
+          python-version: "3.7"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Download Website Artefact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: site-artefact
           path: public
@@ -120,18 +119,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-    - name: Download Website Artefact
-      uses: actions/download-artifact@v1
-      with:
-        name: site-artefact
-        path: public
-    - name: Deploy to Github Pages
-      uses: ./.github/actions/github-pages/
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
-      with:
-        args: public
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 1
+      - name: Download Website Artefact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-artefact
+          path: public
+      - name: Deploy to Github Pages
+        uses: ./.github/actions/github-pages/
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
+        with:
+          args: public
