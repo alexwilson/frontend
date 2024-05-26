@@ -48,6 +48,7 @@
     "gatsby-source-git": "^1.1.0",
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
+    "graphql": "^16.8.1",
     "isomorphic-fetch": "^3.0.0",
     "preact": "^10.22.0",
     "prismjs": "^1.29.0",
