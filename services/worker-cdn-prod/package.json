@@ -10,6 +10,6 @@
     "deploy": "exit 0"
   },
   "devDependencies": {
-    "wrangler": "^3.2.0"
+    "wrangler": "^3.57.1"
   }
 }

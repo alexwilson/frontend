@@ -12,13 +12,13 @@
     "sass": "^1.45.0"
   },
   "devDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^18.2.0",
-    "sass": "^1.45.0"
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "sass": "^1.77.2"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
-    "date-fns": "^3.0.0",
+    "date-fns": "^3.6.0",
     "include-media": "^2.0.0",
     "isomorphic-fetch": "^3.0.0",
     "promise-image-loader": "^0.1.2"
