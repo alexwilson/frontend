@@ -1,5 +1,4 @@
 @import "../util-palette/palette";
-@import "../util-viewports/viewports";
 @import "./type/main";
 
 * {
@@ -8,7 +7,7 @@
 
 @mixin heading {
     .wf-active & {
-        font-family: "Overpass", sans-serif;
+        font-family: 'Overpass', sans-serif;
     }
 }
 
@@ -17,8 +16,7 @@
         @extend .typeset;
 
         // Override to add spacing between bullet-points.
-        ul,
-        ol {
+        ul, ol {
             li:not(:last-child) {
                 padding-bottom: 1em;
             }
@@ -33,11 +31,10 @@
 .heading {
     @include heading;
 
-    a,
-    a:visited {
+    a, a:visited {
         color: $grey-5;
     }
-}
+ }
 
 // Helpers for text-alignment
 .align-left {
@@ -50,29 +47,18 @@
     text-align: center;
 }
 
-h1,
-h2,
-h3,
-h4,
-ul.pager,
-ul.pagination {
+h1, h2, h3, h4, ul.pager, ul.pagination {
     @include heading;
     // font-weight: 800 !important;
     color: $grey-5;
 }
 
-h1,
-h2 {
+h1,h2 {
     text-transform: uppercase;
 }
 
-a,
-a:visited,
-a:hover,
-a:focus {
-    transition:
-        color 0.4s ease-out,
-        background 0.2s ease-in;
+a, a:visited, a:hover, a:focus {
+    transition: color .4s ease-out, background .2s ease-in;
     text-decoration: underline;
 }
 
