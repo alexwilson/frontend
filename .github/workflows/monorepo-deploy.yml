@@ -24,9 +24,10 @@ jobs:
           cache: "npm"
       - name: Install Dependencies
         run: |
-          rm  services/personal-website/package.json
+          rm services/personal-website/package.json
           npm config set legacy-peer-deps true
-          npm ci --ignore-scripts --production=false
+          npm install --include=dev
+          npm install lerna
       - id: find-projects
         name: Find affected projects
         run: |
@@ -70,6 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: ${{ secrets.NODE_ENV }}
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     steps:
@@ -85,7 +87,7 @@ jobs:
         run: |
           rm  services/personal-website/package.json
           npm config set legacy-peer-deps true
-          npm ci --ignore-scripts --production=false
+          npm install --include=dev
       - name: Test
         run: npx lerna run test --scope ${{ matrix.name }}
 
@@ -118,11 +120,12 @@ jobs:
         run: |
           rm  services/personal-website/package.json
           npm config set legacy-peer-deps true
-          npm ci --ignore-scripts --production=false
+          npm install --include=dev
       - name: Deploy
         run: npx lerna run deploy --scope ${{ matrix.name }}
         env:
           CI: true
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

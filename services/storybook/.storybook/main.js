@@ -1,34 +1,16 @@
-import { globby } from 'globby';
+import { globby } from "globby";
 
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
-  stories: async (list) => {
-    console.log(list)
-    const storyPaths = ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"];
-    const componentDirectories = await globby(["../../components/**"], {
-      gitignore: false,
-      expandDirectories: false,
-      onlyDirectories: true,
-      deep: 1
-    });
-    for (const componentDirectory of componentDirectories) {
-      const stories = await globby([
-        `${componentDirectory}/stories/*.stories.@(mdx|js|jsx|ts|tsx)`,
-        `${componentDirectory}/src/*.stories.@(mdx|js|jsx|ts|tsx)`
-      ], {
-        gitignore: false,
-        expandDirectories: false,
-        deep: 1
-      });
-      storyPaths.push(...stories.map(storyPath => `../${storyPath}`));
-    }
-    return storyPaths;
-  },
+  stories: [
+    "../../../components/**/src/*.stories.@(mdx|js|jsx|ts|tsx)",
+    "../../../components/**/stories/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/preset-scss"
+    "@storybook/preset-scss",
   ],
   framework: {
     name: "@storybook/react-webpack5",
@@ -37,10 +19,5 @@ const config = {
   docs: {
     autodocs: "tag",
   },
-  // webpackFinal: async config => {
-  //   config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
-  //   config.resolve.mainFields = ["browser", "module", "main"]
-  //   return config
-  // },
 };
 export default config;
