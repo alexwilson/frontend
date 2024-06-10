@@ -38,7 +38,7 @@
     "netlify-cms-backend-proxy": "^1.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "uuid": "^9.0.1"
+    "uuid": "^10.0.0"
   },
   "alias": {
     "uuid/v4": "./lib/uuid-v4"
