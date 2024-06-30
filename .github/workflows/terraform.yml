@@ -1,0 +1,80 @@
+name: Terraform Deployments
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-to-test:
+    concurrency:
+      group: ${{ github.workflow }}-test
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+
+    env:
+      FASTLY_API_KEY: ${{ secrets.TERRAFORM_FASTLY_API_KEY }}
+
+    defaults:
+      run:
+        working-directory: ./terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.9.0
+
+      - name: Set-up test workspace
+        run: |
+          terraform init
+          terraform workspace select -or-create test
+          terraform import --var-file=environments/test.tfvars module.fastly.fastly_service_vcl.cdn Fd19VLeN2NT4QGtaxR3lb2
+
+      - name: Apply test configuration
+        run: terraform apply -auto-approve -var-file=environments/test.tfvars
+
+      - name: Run tests against test
+        run: |
+          echo "Imagine these are real tests"
+
+  deploy-to-prod:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    concurrency:
+      group: ${{ github.workflow }}-prod
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    needs: deploy-to-test
+
+    env:
+      FASTLY_API_KEY: ${{ secrets.TERRAFORM_FASTLY_API_KEY }}
+
+    defaults:
+      run:
+        working-directory: ./terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.9.0
+
+      - name: Set-up prod workspace
+        run: |
+          terraform init
+          terraform workspace select -or-create prod
+          terraform import --var-file=environments/prod.tfvars module.fastly.fastly_service_vcl.cdn YNPeuDdYdC78w34AsmfIA7
+
+      - name: Apply prod configuration
+        run: terraform apply -auto-approve -var-file=environments/prod.tfvars
+
+      - name: Run tests against prod
+        run: |
+          echo "Imagine these are real tests"

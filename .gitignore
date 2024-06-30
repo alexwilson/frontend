@@ -7,6 +7,11 @@
 dist
 public
 
+# Ignore Terraform state
+terraform/.terraform
+terraform/.terraform.lock.hcl
+terraform/*.tfstate*
+
 # Ignoring dependencies.
 node_modules
 
