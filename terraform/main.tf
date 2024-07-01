@@ -9,15 +9,17 @@ terraform {
 }
 
 module "fastly" {
-  source      = "./modules/fastly"
-  domains     = var.fastly_domains
-  backends    = var.fastly_backends
-  environment = terraform.workspace
+  source            = "./modules/fastly"
+  domains           = var.fastly_domains
+  backends          = var.fastly_backends
+  environment       = terraform.workspace
+  honeycomb_token   = var.fastly_honeycomb_token
+  honeycomb_dataset = var.fastly_honeycomb_dataset
 }
 
 module "cloudflare_antoligycom" {
   source     = "./modules/cloudflare"
-  account_id = ""
+  account_id = var.cloudflare_account_id
   count      = terraform.workspace == "prod" ? 1 : 0
   zone       = "antoligy.com"
   redirect_rules = [{
@@ -31,7 +33,7 @@ module "cloudflare_antoligycom" {
 
 module "cloudflare_axgy" {
   source     = "./modules/cloudflare"
-  account_id = ""
+  account_id = var.cloudflare_account_id
   count      = terraform.workspace == "prod" ? 1 : 0
   zone       = "ax.gy"
   redirect_rules = [{

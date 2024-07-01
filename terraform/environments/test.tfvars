@@ -9,3 +9,4 @@ fastly_backends = [
     ssl_cert_hostname = "alexwilson.github.io"
   }
 ]
+fastly_honeycomb_dataset = "fastly:request"

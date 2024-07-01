@@ -45,4 +45,11 @@ resource "fastly_service_vcl" "cdn" {
       })
     }
   }
+
+  logging_honeycomb {
+    dataset = var.honeycomb_dataset
+    name    = "fastly-${var.environment}"
+    token   = var.honeycomb_token
+    format  = file("${path.module}/honeycomb/format.json")
+  }
 }
