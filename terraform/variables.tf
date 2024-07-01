@@ -1,9 +1,9 @@
-variable "domains" {
+variable "fastly_domains" {
   description = "A list of domain names to be used"
   type        = list(string)
 }
 
-variable "backends" {
+variable "fastly_backends" {
   description = "A list of backends"
   type = list(object({
     address           = string
@@ -13,4 +13,9 @@ variable "backends" {
     use_ssl           = bool
     ssl_cert_hostname = string
   }))
+}
+
+variable "cloudflare_account_id" {
+  description = "Cloudflare Account ID"
+  type        = string
 }
