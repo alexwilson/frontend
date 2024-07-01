@@ -1,6 +1,7 @@
 variable "account_id" {
   description = "Account ID"
   type        = string
+  sensitive   = true
 }
 
 variable "zone" {

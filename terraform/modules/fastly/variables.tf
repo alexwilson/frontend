@@ -18,3 +18,14 @@ variable "backends" {
 variable "environment" {
   description = "The environment name"
 }
+
+variable "honeycomb_dataset" {
+  description = "Name of dataset to stream to in Honeycomb"
+  type        = string
+}
+
+variable "honeycomb_token" {
+  description = "Name of dataset to stream to in Honeycomb"
+  sensitive   = true
+  type        = string
+}

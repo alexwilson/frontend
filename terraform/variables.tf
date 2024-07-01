@@ -15,7 +15,19 @@ variable "fastly_backends" {
   }))
 }
 
+variable "fastly_honeycomb_dataset" {
+  description = "Honeycomb Dataset for streaming Fastly logs to"
+  type        = string
+}
+
+variable "fastly_honeycomb_token" {
+  description = "Write token for Fastly to stream to Honeycomb"
+  type        = string
+  sensitive   = true
+}
+
 variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
   type        = string
+  sensitive   = true
 }
