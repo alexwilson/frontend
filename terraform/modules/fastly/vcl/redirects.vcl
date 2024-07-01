@@ -73,4 +73,11 @@ sub vcl_error {
         set obj.http.Location = obj.response;
         set obj.response = "Moved permanently";
     }
+
+    // A 602 error should include the destination in its response.
+    if (obj.status == 602 && obj.response) {
+        set obj.status = 302;
+        set obj.http.Location = obj.response;
+        set obj.response = "Found";
+    }
 }

@@ -4,5 +4,6 @@ include "fastly-boilerplate-begin.vcl";
 include "cloudflare-service-chain.vcl";
 include "security-headers.vcl";
 include "redirects.vcl";
+include "random-header-image.vcl";
 
 include "fastly-boilerplate-end.vcl";
