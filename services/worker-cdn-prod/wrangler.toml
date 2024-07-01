@@ -1,4 +1,0 @@
-name = "cdn_prod"
-workers_dev = true
-main = "./index.js"
-compatibility_date = "2023-07-11"
