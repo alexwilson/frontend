@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  vcl  = fileset("${path.module}/vcl", "*.vcl")
+  vcl         = fileset("${path.module}/vcl", "*.vcl")
   module_root = path.module
 }
 
