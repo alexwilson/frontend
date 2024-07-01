@@ -109,7 +109,7 @@ class Header extends Component {
 
   async fetchRandomImage() {
     try {
-      const response = await fetch('https://source.unsplash.com/collection/33719360/0x0')
+      const response = await fetch("https://alexwilson.tech/__service/random-header-image")
       if (response.ok && response.url) {
         const { origin, pathname } = new URL(response.url)
         this.setState({
