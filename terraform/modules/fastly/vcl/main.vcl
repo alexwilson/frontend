@@ -2,5 +2,6 @@
 include "fastly-boilerplate-begin.vcl";
 
 include "security-headers.vcl";
+include "redirects.vcl";
 
 include "fastly-boilerplate-end.vcl";
