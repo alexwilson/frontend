@@ -1,4 +1,5 @@
 {
   "version": "independent",
+  "npmClient": "pnpm",
   "hoist": false
 }
