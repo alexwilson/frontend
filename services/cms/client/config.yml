@@ -37,10 +37,6 @@ collections:
       - {label: Content Type, name: "type", options: ["article", "talk"], default: "article", widget: "select"}
       - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex"}
       - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime"}
-
-      # Deprecated/un-used fields.
-      - {label: "Legacy Slug (deprecated)", name: "_legacy_slug", widget: "hidden", required: false, default: null}
-      - {label: Layout, name: "layout", widget: "hidden", default: "blog"}
   - name: "talks"
     label: "Talks"
     folder: "/talks/"
