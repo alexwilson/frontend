@@ -1,13 +1,13 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-    - dependency-name: "unist-util-visit"
-      versions: ["3.x", "4.x", "5.x"]
-  reviewers:
-  - alexwilson
-  versioning-strategy: increase-if-necessary
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "unist-util-visit"
+        versions: ["3.x", "4.x", "5.x"]
+    reviewers:
+      - alexwilson
+    versioning-strategy: increase-if-necessary

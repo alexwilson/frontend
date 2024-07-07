@@ -2,11 +2,11 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "lerna run build",
     "test": "lerna run test",
     "deploy": "lerna run deploy"
   },
-  "workspaces": ["components/*", "libraries/*", "packages/*", "services/*"],
   "devDependencies": {
     "lerna": "^8.1.3"
   }

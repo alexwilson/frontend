@@ -28,10 +28,14 @@ jobs:
         with:
           path: services/personal-website/public
           key: build
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "npm"
+          cache: "pnpm"
       - name: Restore node_modules
         uses: actions/cache@v4
         id: cache-node_modules
@@ -42,10 +46,9 @@ jobs:
             */*/node_modules
       - name: Install Dependencies
         run: |
-          npm config set legacy-peer-deps true
-          npm ci --ignore-scripts --workspace @alexwilson/personal-website
+          pnpm install --ignore-scripts --filter @alexwilson/personal-website...
       - name: Build
-        run: npx lerna run --scope @alexwilson/personal-website build
+        run: pnpx lerna run --scope @alexwilson/personal-website build
         env:
           GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
           CI: true
@@ -65,10 +68,14 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 1
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "npm"
+          cache: "pnpm"
       - name: Restore node_modules
         uses: actions/cache@v4
         id: cache-node_modules
@@ -79,10 +86,9 @@ jobs:
             */*/node_modules
       - name: Install Dependencies
         run: |
-          npm config set legacy-peer-deps true
-          npm ci --ignore-scripts --workspace @alexwilson/personal-website
+          pnpm install --ignore-scripts --filter @alexwilson/personal-website...
       - name: Run Tests
-        run: npx lerna run --scope @alexwilson/personal-website test
+        run: pnpx lerna run --scope @alexwilson/personal-website test
 
   validate-feed:
     name: "Validate feed"
