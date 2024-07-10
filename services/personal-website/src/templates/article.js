@@ -22,7 +22,6 @@ const InfoBox = ({ icon, children }) => (
 const ArticleTemplate = ({ data, location }) => {
   const post = data.content
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
-  const alternativeUrls = post.deprecatedFields.legacySlugs.map(slug => new URL(slug, data.site.siteMetadata.siteUrl))
 
   const datePublished = new Date(post.date)
   const dateModified = new Date(post.flast_modified_at || datePublished)
@@ -132,7 +131,7 @@ const ArticleTemplate = ({ data, location }) => {
           <div className="alex-article__aside-bottom alex-article__sharing-block">
 
             <ShareWidget title={post.title} url={url} />
-            <Webmentions urls={[url, `${url}/`, ...alternativeUrls]} />
+            <Webmentions contentId={post.contentId} />
 
           </div>
 
