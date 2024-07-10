@@ -22,6 +22,7 @@ export class WebmentionStack extends cdk.Stack {
   public readonly apiv1: apigateway.Resource;
   public readonly database: dynamodb.Table;
   public readonly bucket: s3.Bucket;
+  public readonly distribution: cloudfront.Distribution;
 
   constructor(
     scope: Construct,
@@ -54,6 +55,36 @@ export class WebmentionStack extends cdk.Stack {
         resources: [`${this.bucket.bucketArn}/*`],
         principals: [new iam.ServicePrincipal("apigateway.amazonaws.com")],
       }),
+    );
+
+    // CloudFront Distribution
+    this.distribution = new cloudfront.Distribution(
+      this,
+      "WebmentionDistribution",
+      {
+        defaultBehavior: {
+          origin: new origins.S3Origin(this.bucket, {}),
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        },
+        additionalBehaviors: {
+          "v1/*": {
+            origin: new origins.RestApiOrigin(this.api, {
+              originPath: `/${this.api.deploymentStage.stageName}`,
+            }),
+            viewerProtocolPolicy:
+              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+            cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+          },
+        },
+        domainNames: [props.domainName],
+        certificate: acm.Certificate.fromCertificateArn(
+          this,
+          "Certificate",
+          props.certificateArn,
+        ),
+      },
     );
 
     // Lambda Function to handle webmentions
@@ -93,9 +124,11 @@ export class WebmentionStack extends cdk.Stack {
         environment: {
           DYNAMODB_TABLE: this.database.tableName,
           S3_BUCKET: this.bucket.bucketName,
+          CLOUDFRONT_DISTRIBUTION_ID: this.distribution.distributionId,
         },
       },
     );
+    this.distribution.grantCreateInvalidation(processWebmentionsLambda);
 
     // Event source for DynamoDB table to trigger serialization Lambda
     processWebmentionsLambda.addEventSource(
@@ -186,39 +219,9 @@ export class WebmentionStack extends cdk.Stack {
       value: this.api.url,
     });
 
-    // CloudFront Distribution
-    const distribution = new cloudfront.Distribution(
-      this,
-      "WebmentionDistribution",
-      {
-        defaultBehavior: {
-          origin: new origins.S3Origin(this.bucket, {}),
-          viewerProtocolPolicy:
-            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        },
-        additionalBehaviors: {
-          "v1/*": {
-            origin: new origins.RestApiOrigin(this.api, {
-              originPath: `/${this.api.deploymentStage.stageName}`,
-            }),
-            viewerProtocolPolicy:
-              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
-            cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-          },
-        },
-        domainNames: [props.domainName],
-        certificate: acm.Certificate.fromCertificateArn(
-          this,
-          "Certificate",
-          props.certificateArn,
-        ),
-      },
-    );
-
     // Output the CloudFront distribution URL
     new cdk.CfnOutput(this, "DistributionDomainName", {
-      value: distribution.domainName,
+      value: this.distribution.domainName,
     });
   }
 }

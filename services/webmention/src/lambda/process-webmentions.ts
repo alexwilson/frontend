@@ -61,7 +61,7 @@ export const handler: DynamoDBStreamHandler = async (
     await cloudfront
       .createInvalidation({
         DistributionId: distributionId,
-        invalidationBatch: {
+        InvalidationBatch: {
           CallerReference: String(Date.now()),
           Paths: {
             Quantity: 1,
