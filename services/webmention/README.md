@@ -1,8 +1,7 @@
-# Welcome to your CDK TypeScript project
+# Webmentions Service
 
-This is a blank project for CDK development with TypeScript.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This is a CDK project for persisting Webmentions.
+It supports receiving webhooks from webmention.io.
 
 ## Useful commands
 

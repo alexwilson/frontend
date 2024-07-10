@@ -7,7 +7,15 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import * as acm from "aws-cdk-lib/aws-certificatemanager";
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import type { Construct } from "constructs";
+
+interface WebmentionCertificateStackProps extends cdk.StackProps {
+  domainName: string;
+  certificateArn: string;
+}
 
 export class WebmentionStack extends cdk.Stack {
   public readonly api: apigateway.RestApi;
@@ -15,12 +23,17 @@ export class WebmentionStack extends cdk.Stack {
   public readonly database: dynamodb.Table;
   public readonly bucket: s3.Bucket;
 
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: WebmentionCertificateStackProps,
+  ) {
     super(scope, id, props);
 
     // API Gateway to receive webmention webhooks
     this.api = new apigateway.RestApi(this, "WebmentionGateway", {
       restApiName: "Webmention Service",
+      // name: cdk.PhysicalName.GENERATE_IF_NEEDED,
     });
     this.apiv1 = this.api.root.addResource("v1");
 
@@ -32,7 +45,9 @@ export class WebmentionStack extends cdk.Stack {
     });
 
     // S3 Bucket
-    this.bucket = new s3.Bucket(this, "WebmentionsBucket");
+    this.bucket = new s3.Bucket(this, "WebmentionsBucket", {
+      bucketName: cdk.PhysicalName.GENERATE_IF_NEEDED,
+    });
     this.bucket.addToResourcePolicy(
       new iam.PolicyStatement({
         actions: ["s3:GetObject"],
@@ -123,6 +138,22 @@ export class WebmentionStack extends cdk.Stack {
                 "integration.response.header.Content-Type",
             },
           },
+          {
+            statusCode: "404",
+            responseParameters: {
+              "method.response.header.Content-Type": "'application/json'",
+              "method.response.header.Cache-Control":
+                "'public, max-age=31536000'",
+            },
+            responseTemplates: {
+              "application/json": JSON.stringify({
+                type: "feed",
+                children: [],
+                message: "No webmentions found",
+              }),
+            },
+            selectionPattern: "403",
+          },
         ],
       },
     });
@@ -141,7 +172,53 @@ export class WebmentionStack extends cdk.Stack {
             "method.response.header.Content-Type": true,
           },
         },
+        {
+          responseParameters: {
+            "method.response.header.Content-Type": true,
+            "method.response.header.Cache-Control": true,
+          },
+          statusCode: "404",
+        },
       ],
+    });
+
+    new cdk.CfnOutput(this, "APIGateway", {
+      value: this.api.url,
+    });
+
+    // CloudFront Distribution
+    const distribution = new cloudfront.Distribution(
+      this,
+      "WebmentionDistribution",
+      {
+        defaultBehavior: {
+          origin: new origins.S3Origin(this.bucket, {}),
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        },
+        additionalBehaviors: {
+          "v1/*": {
+            origin: new origins.RestApiOrigin(this.api, {
+              originPath: `/${this.api.deploymentStage.stageName}`,
+            }),
+            viewerProtocolPolicy:
+              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+            cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+          },
+        },
+        domainNames: [props.domainName],
+        certificate: acm.Certificate.fromCertificateArn(
+          this,
+          "Certificate",
+          props.certificateArn,
+        ),
+      },
+    );
+
+    // Output the CloudFront distribution URL
+    new cdk.CfnOutput(this, "DistributionDomainName", {
+      value: distribution.domainName,
     });
   }
 }

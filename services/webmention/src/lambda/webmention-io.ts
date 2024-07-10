@@ -2,7 +2,6 @@ import type { APIGatewayProxyHandler, APIGatewayProxyEvent } from "aws-lambda";
 import * as AWS from "aws-sdk";
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const s3 = new AWS.S3();
 const NIL_UUID = "00000000-0000-0000-0000-000000000000";
 const tableName = process.env.DYNAMODB_TABLE || "";
 
