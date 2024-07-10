@@ -4,6 +4,7 @@ import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as secretsmanager from "aws-cdk-lib/aws-secretsmanager";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
@@ -88,6 +89,14 @@ export class WebmentionStack extends cdk.Stack {
     );
 
     // Lambda Function to handle webmentions
+    const webmentionIoWebhookToken = new secretsmanager.Secret(
+      this,
+      "WebmentionIOWebhookToken",
+      {
+        secretName: "webmention-io-webhook-token",
+      },
+    );
+
     const webmentionIOLambda = new lambdaNodeJS.NodejsFunction(
       this,
       "WebmentionIOHandler",
@@ -98,6 +107,9 @@ export class WebmentionStack extends cdk.Stack {
         environment: {
           DYNAMODB_TABLE: this.database.tableName,
           S3_BUCKET: this.bucket.bucketName,
+          WEBMENTION_IO_WEBHOOK_TOKEN: webmentionIoWebhookToken.secretValue
+            .unsafeUnwrap() // This is security by obscurity, it isn't a sensitive secret.
+            .toString(),
         },
       },
     );
