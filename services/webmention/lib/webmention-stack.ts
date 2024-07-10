@@ -77,6 +77,20 @@ export class WebmentionStack extends cdk.Stack {
               cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
             cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+            responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(
+              this,
+              "ResponseHeadersPolicy",
+              {
+                corsBehavior: {
+                  accessControlAllowCredentials: false,
+                  accessControlAllowMethods: ["GET", "POST"],
+                  accessControlAllowOrigins: ["*"],
+                  accessControlMaxAge: cdk.Duration.seconds(60),
+                  accessControlAllowHeaders: ["Content-Type"],
+                  originOverride: true,
+                },
+              },
+            ),
           },
         },
         domainNames: [props.domainName],
