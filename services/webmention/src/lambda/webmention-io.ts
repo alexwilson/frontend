@@ -20,7 +20,7 @@ export const handler: APIGatewayProxyHandler = async (
 
   const webmentionData = body.post;
   const webmentionId = String(body.post["wm-id"]);
-  const contentId = extractArticleIdFromUrl(body.target) || NIL_UUID;
+  const contentId = extractArticleIdFromUrl(body.target);
 
   // Persist entire webmention
   await dynamoDb
@@ -40,7 +40,12 @@ export const handler: APIGatewayProxyHandler = async (
   };
 };
 
+/**
+ * Extracts the article ID from a URL.
+ * @param {string} url The URL to extract the article ID from.
+ * @returns {string} The article ID, or NIL.
+ */
 function extractArticleIdFromUrl(url: string): string | null {
   const match = url.match(/\/content\/(........-....-....-....-............)/);
-  return match ? match[1] : null;
+  return match ? match[1] : NIL_UUID;
 }
