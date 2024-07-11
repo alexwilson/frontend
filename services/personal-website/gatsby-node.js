@@ -88,7 +88,7 @@ exports.createResolvers = ({ createResolvers }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions
+  const { createPage } = actions
   const {data} = await graphql(`
     query {
       content: allContent {
@@ -112,7 +112,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // Create a page
     createPage({
       path: node.slug,
-      component: node.type === "talks" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
+      component: node.type === "talk" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
       context: {
         contentId: node.contentId
       }

@@ -49,17 +49,7 @@ module.exports = {
         name: `posts`,
         remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
         branch: `main`,
-        patterns: `posts/**`,
-      }
-    },
-
-    {
-      resolve: `gatsby-source-git`,
-      options: {
-        name: `talks`,
-        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
-        branch: `main`,
-        patterns: `talks/**`,
+        patterns: [`posts/**`, `talks/**`],
       }
     },
 

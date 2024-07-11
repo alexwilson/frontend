@@ -23,7 +23,7 @@ export const query = graphql`
   query {
     talks: allContent(
       filter: {
-        type: {eq: "talks"}
+        type: {eq: "talk"}
       }
       sort: {
         fields: [date],
