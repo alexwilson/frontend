@@ -26,49 +26,53 @@ export const handler: DynamoDBStreamHandler = async (
     }
   }
 
-  for (const contentId of contentIds) {
-    // Query all webmentions for this article
-    const allWebmentions = await dynamoDb
-      .query({
-        TableName: tableName,
-        KeyConditionExpression: "contentId = :contentId",
-        ExpressionAttributeValues: {
-          ":contentId": contentId,
-        },
-      })
-      .promise();
-
-    const webmentions = allWebmentions.Items.map(
-      (data: { webmentionData: object }) => data.webmentionData,
-    );
-    const responseBody = {
-      type: "feed",
-      name: "Webmentions",
-      children: webmentions,
-    };
-
-    // Serialize webmentions to S3.
-    await s3
-      .putObject({
-        Bucket: bucketName,
-        Key: `webmentions/${contentId}.json`,
-        Body: JSON.stringify(responseBody),
-        ContentType: "application/json",
-      })
-      .promise();
-
-    // Purge cache for invalidation.
-    await cloudfront
-      .createInvalidation({
-        DistributionId: distributionId,
-        InvalidationBatch: {
-          CallerReference: String(Date.now()),
-          Paths: {
-            Quantity: 1,
-            Items: [`/v1/webmention/${contentId}`],
+  const promises: Array<Promise<void>> = Array.from(contentIds).map(
+    async (contentId) => {
+      // Query all webmentions for this article
+      const allWebmentions = await dynamoDb
+        .query({
+          TableName: tableName,
+          KeyConditionExpression: "contentId = :contentId",
+          ExpressionAttributeValues: {
+            ":contentId": contentId,
           },
-        },
-      })
-      .promise();
-  }
+        })
+        .promise();
+
+      const webmentions = allWebmentions.Items.map(
+        (data: { webmentionData: object }) => data.webmentionData,
+      );
+      const responseBody = {
+        type: "feed",
+        name: "Webmentions",
+        children: webmentions,
+      };
+
+      // Serialize webmentions to S3.
+      await s3
+        .putObject({
+          Bucket: bucketName,
+          Key: `webmentions/${contentId}.json`,
+          Body: JSON.stringify(responseBody),
+          ContentType: "application/json",
+        })
+        .promise();
+
+      // Purge cache for invalidation.
+      await cloudfront
+        .createInvalidation({
+          DistributionId: distributionId,
+          InvalidationBatch: {
+            CallerReference: String(Date.now()),
+            Paths: {
+              Quantity: 1,
+              Items: [`/v1/webmention/${contentId}`],
+            },
+          },
+        })
+        .promise();
+    },
+  );
+
+  await Promise.all(promises);
 };
