@@ -5,10 +5,7 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   const slug = `/content/${contentId}`
   const title = node.frontmatter['title'] || ''
   const date = new Date(node.frontmatter.date)
-
-  // Determine content type by looking at collection (aka parent node)
-  // @todo Move this into directly article schema instead?
-  const { sourceInstanceName: type } = getNode(node.parent)
+  const type = node.frontmatter['type'] || 'article'
 
   let image
   let thumbnail

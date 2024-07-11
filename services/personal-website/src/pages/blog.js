@@ -24,7 +24,7 @@ export const query = graphql`
   query {
     content: allContent(
       filter: {
-        type: {eq: "posts"}
+        type: {eq: "article"}
       }
       sort: {
         fields: [date],

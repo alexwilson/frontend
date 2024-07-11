@@ -8,7 +8,7 @@ export default ({article: currentArticle}) => {
       posts: allContent(
         sort: { order: DESC, fields: [date] }
         filter: {
-          type: {eq: "posts"}
+          type: {eq: "article"}
         }
         limit: 1000
       ) {
