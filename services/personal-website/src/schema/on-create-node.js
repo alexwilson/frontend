@@ -25,11 +25,6 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   let author
   if (node.frontmatter.author) author = node.frontmatter.author
 
-  const legacySlugs = []
-  if (node.frontmatter['_legacy_slug']) {
-    legacySlugs.push(node.frontmatter['_legacy_slug'])
-  }
-
   // Content schema
   const content = {
     contentId,
@@ -38,9 +33,6 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
     type,
     date,
     image: {},
-    deprecatedFields: {
-      legacySlugs
-    },
     topics: []
   }
   if (author) {

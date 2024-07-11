@@ -185,9 +185,6 @@ export const pageQuery = graphql`
         ...ArticleContent
       }
       slug
-      deprecatedFields {
-        legacySlugs
-      }
     }
     site {
       siteMetadata {

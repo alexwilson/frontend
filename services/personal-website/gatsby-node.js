@@ -41,7 +41,6 @@ exports.createSchemaCustomization = ({actions}) => {
       topics: [Topic] @link(by: "topicId")
 
       image: ContentImageFields!
-      deprecatedFields: ContentDeprecatedFields!
     }
 
     type ContentImageFields @dontInfer {
@@ -49,10 +48,6 @@ exports.createSchemaCustomization = ({actions}) => {
       thumbnail: String
       credit: String
       altText: String
-    }
-
-    type ContentDeprecatedFields @dontInfer {
-      legacySlugs: [String]
     }
 
     type Topic implements Node @dontInfer {
@@ -101,9 +96,6 @@ exports.createPages = async ({ graphql, actions }) => {
           contentId
           slug
           type
-          deprecatedFields {
-            legacySlugs
-          }
         }
       }
       topics: allTopic {
@@ -124,14 +116,6 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         contentId: node.contentId
       }
-    })
-
-    // Redirect from legacy slugs
-    node.deprecatedFields.legacySlugs.forEach(legacySlug => {
-      createRedirect({
-        fromPath: legacySlug,
-        toPath: node.slug,
-      })
     })
   })
   data.topics.nodes.forEach((node) => {
