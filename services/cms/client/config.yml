@@ -22,8 +22,8 @@ media_folder: pictures
 display_url: https://alexwilson.tech/
 
 collections:
-  - name: "blog"
-    label: "Blog"
+  - name: "content"
+    label: "Content"
     folder: "/posts/"
     create: true
     slug: "{{id}}"
@@ -37,9 +37,3 @@ collections:
       - {label: Content Type, name: "type", options: ["article", "talk"], default: "article", widget: "select"}
       - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex"}
       - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime"}
-  - name: "talks"
-    label: "Talks"
-    folder: "/talks/"
-    create: true
-    slug: "{{id}}"
-    fields: *contentFields
