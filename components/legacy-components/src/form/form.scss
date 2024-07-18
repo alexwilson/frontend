@@ -29,7 +29,7 @@
     @include alex-row;
     @include alex-column(10);
 
-    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 1, $breakpoint: all);
+    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 1);
 
     border: 1px solid $grey-4;
   }

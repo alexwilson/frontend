@@ -36,34 +36,14 @@ $max-widths: map-values($maxwidths);
 
 // Font-size in rems. Either set per breakpoint or for all.
 // Use values as you would for pixels i.e. 16 or use values from the modular scale.
-@mixin fontsize($fontsize, $breakpoint: 0) {
+@mixin fontsize($fontsize) {
   // Type of chosen variables.
   $font-value: type-of($fontsize);
-  $break-value: type-of($breakpoint);
 
   // Check if value exists in scale.
   $in-scale: in-modular-scale(scale-0, $fontsize);
 
-  // If specifying a breakpoint to use (and breakpoint exists).
-  @if $break-value == number and $breakpoint <= ($breakpoints-limit - 1) and $breakpoint >= 0 {
 
-    // If using a number for fontsize.
-    @if $font-value == number {
-      font-size: #{math.div($fontsize, nth($sizes, ($breakpoint + 1)))}rem;
-
-    // If using a variable from the scale for fontsize.
-    } @else if $in-scale == true {
-      $get-scale: map-get($modular-scale, scale-#{$breakpoint});
-      $get-size: map-get($get-scale, $fontsize);
-
-      font-size: #{math.div($get-size, nth($sizes, ($breakpoint + 1)))}rem;
-
-    } @else {
-      @warn "#{$fontsize} is not a valid scale variable";
-    }
-
-  // If want to use value for all breakpoints.
-  } @else if $breakpoint == all {
 
     // If using a number for fontsize.
     @if $font-value == number {
@@ -95,19 +75,14 @@ $max-widths: map-values($maxwidths);
     } @else {
       @warn "#{$fontsize} is not a valid scale variable";
     }
-
-  } @else {
-    @warn "#{$breakpoint} is not valid to use as a breakpoint";
-  }
 }
 
 // Advanced baseline magic.
 // ! Read the README to help understand what is going on here.
 // Parts based on https://gist.github.com/razwan/10662500
-@mixin baseline($fontsize, $font, $lineheight: 2, $below: 2, $breakpoint: 0) {
+@mixin baseline($fontsize, $font, $lineheight: 2, $below: 2) {
   // Type of chosen variables.
   $font-value: type-of($fontsize);
-  $break-value: type-of($breakpoint);
 
   // Cap height
   $cap-height: map-get($font, cap-height);
@@ -120,36 +95,6 @@ $max-widths: map-values($maxwidths);
     line-height: #{$lineheight}rem;
   }
 
-  // If specifying a breakpoint to use (and breakpoint exists).
-  @if $break-value == number and $breakpoint <= ($breakpoints-limit - 1) and $breakpoint >= 0 {
-
-    // If using a number for fontsize.
-    @if $font-value == number {
-      $rootsize: nth($sizes, ($breakpoint + 1));
-      $baseline-shift: #{math.div($fontsize * 0.5 * (math.div($lineheight * $rootsize, $fontsize) - $cap-height), $rootsize) + 0.00001};
-      $baseline-push: #{$below - (math.div($fontsize * 0.5 * (math.div($lineheight * $rootsize, $fontsize) - $cap-height), $rootsize) + 0.00001)};
-
-      margin-bottom: #{$baseline-push}rem;
-      padding-top: #{$baseline-shift}rem;
-
-    // If using a variable from the scale for fontsize.
-    } @else if $in-scale == true {
-      $get-scale: map-get($modular-scale, scale-#{$breakpoint});
-      $get-size: map-get($get-scale, $fontsize);
-      $rootsize: nth($sizes, ($breakpoint + 1));
-
-      $baseline-shift: #{math.div($get-size * 0.5 * (math.div($lineheight * $rootsize, $get-size) - $cap-height), $rootsize) + 0.00001};
-      $baseline-push: #{$below - (math.div($get-size * 0.5 * (math.div($lineheight * $rootsize, $get-size) - $cap-height), $rootsize) + 0.00001)};
-
-      margin-bottom: #{$baseline-push}rem;
-      padding-top: #{$baseline-shift}rem;
-
-    } @else {
-      @warn "#{$fontsize} is not a valid scale variable";
-    }
-
-  // If want to use value for all breakpoints.
-  } @else if $breakpoint == all {
 
     // If using a number for fontsize.
     @if $font-value == number {
@@ -202,46 +147,17 @@ $max-widths: map-values($maxwidths);
     } @else {
       @warn "#{$fontsize} is not a valid scale variable";
     }
-
-  } @else {
-    @warn "#{$breakpoint} is not valid to use as a breakpoint";
-  }
 }
 
 // Set fontsize and baseline at once. Mix of fontsize and baseline mixin.
-@mixin sassline($fontsize, $font, $lineheight: 2, $below: 2, $breakpoint: 0) {
+@mixin sassline($fontsize, $font, $lineheight: 2, $below: 2) {
   $font-value: type-of($fontsize);
-  $break-value: type-of($breakpoint);
   $cap-height: map-get($font, cap-height);
   $in-scale: in-modular-scale(scale-0, $fontsize);
 
   line-height: #{$lineheight}rem;
 
-  @if $break-value == number and $breakpoint <= ($breakpoints-limit - 1) and $breakpoint >= 0 {
-
-    @if $font-value == number {
-      $rootsize: nth($sizes, ($breakpoint + 1));
-      $baseline-shift: #{math.div($fontsize * 0.5 * (math.div($lineheight * $rootsize, $fontsize) - $cap-height), $rootsize) + 0.00001};
-      $baseline-push: #{$below - (math.div($fontsize * 0.5 * (math.div($lineheight * $rootsize, $fontsize) - $cap-height), $rootsize) + 0.00001)};
-      font-size: #{math.div($fontsize, nth($sizes, ($breakpoint + 1)))}rem;
-      margin-bottom: #{$baseline-push}rem;
-      padding-top: #{$baseline-shift}rem;
-
-    } @else if $in-scale == true {
-      $get-scale: map-get($modular-scale, scale-#{$breakpoint});
-      $get-size: map-get($get-scale, $fontsize);
-      $rootsize: nth($sizes, ($breakpoint + 1));
-      $baseline-shift: #{math.div($get-size * 0.5 * (math.div($lineheight * $rootsize, $get-size) - $cap-height), $rootsize) + 0.00001};
-      $baseline-push: #{$below - (math.div($get-size * 0.5 * (math.div($lineheight * $rootsize, $get-size) - $cap-height), $rootsize) + 0.00001)};
-      font-size: #{math.div($get-size, nth($sizes, ($breakpoint + 1)))}rem;
-      margin-bottom: #{$baseline-push}rem;
-      padding-top: #{$baseline-shift}rem;
-
-    } @else {
-      @warn "#{$fontsize} is not a valid scale variable";
-    }
-
-  } @else if $breakpoint == all {
+  
 
     @if $font-value == number {
       $rootsize: nth($sizes, 1);
@@ -288,8 +204,4 @@ $max-widths: map-values($maxwidths);
     } @else {
       @warn "#{$fontsize} is not a valid scale variable";
     }
-
-  } @else {
-    @warn "#{$breakpoint} is not valid to use as a breakpoint";
-  }
 }

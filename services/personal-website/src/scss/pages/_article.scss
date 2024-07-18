@@ -32,7 +32,7 @@
 }
 
 .alex-article__headline {
-  @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1, $breakpoint: all);
+  @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
 
   grid-area: Headline;
 }
@@ -101,16 +101,16 @@
     }
     h2 {
       text-transform: initial;
-      @include fontsize(epsilon, all);
+      @include fontsize($fontsize: epsilon);
     }
     h3 {
-      @include fontsize(zeta, all);
+      @include fontsize($fontsize: zeta);
     }
 }
 
 .alex-article__sharing-block {
   h3 {
-    @include fontsize(epsilon, all);
+    @include fontsize($fontsize: epsilon);
   }
   @include media("<tablet") {
     display: flex;

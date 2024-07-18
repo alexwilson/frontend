@@ -95,7 +95,7 @@
     }
 
     a, a:hover, a:visited {
-      @include fontsize(eta, all);
+      @include fontsize($fontsize: eta);
 
       color: white;
       padding: 1rem;
