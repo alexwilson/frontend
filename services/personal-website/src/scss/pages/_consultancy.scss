@@ -5,11 +5,11 @@
 
 
   h1 {
-    @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1, $breakpoint: all);
+    @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
     text-align: center;
   }
   p {
-    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2, $breakpoint: all);
+    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
   }
 }
 
@@ -30,7 +30,7 @@
 
   &__text {
     @include alex-column(8);
-    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2, $breakpoint: all);
+    @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
     padding: 1em;
     padding-top: 0;
     margin-top: 0;
@@ -67,7 +67,7 @@
   div {
     @include alex-row;
     @include alex-column(10);
-    @include sassline(eta, $headingtype, 2, 0, all);
+    @include sassline($fontsize: eta, $font: $headingtype, $lineheight: 2, $below: 0);
     text-align: center;
   }
 }

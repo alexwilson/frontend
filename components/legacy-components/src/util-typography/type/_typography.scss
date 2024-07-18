@@ -13,7 +13,7 @@ html {
 
   // Site-wide base styles.
   body {
-    @include fontsize(zeta, all);
+    @include fontsize($fontsize: zeta);
 
     font-family: unquote(map-get($bodytype, font-family));
     font-style: normal;
@@ -55,7 +55,7 @@ html {
 
     // Paragraphs. OpenType ligatures and oldstyle figures enabled if available.
     p {
-      @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2, $breakpoint: all);
+      @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
 
       font-family: unquote(map-get($bodytype, font-family));
       font-feature-settings: 'kern', 'onum', 'liga';
@@ -72,48 +72,48 @@ html {
 
     // Heading level 1.
     h1, .alpha {
-      @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1, $breakpoint: all);
+      @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
     }
 
     // Heading level 2.
     h2, .beta {
-      @include sassline(beta, $headingtype, 3, 1, all);
+      @include sassline($fontsize: beta, $font: $headingtype, $lineheight: 3, $below: 1);
     }
 
     // Heading level 3.
     h3, .gamma {
-      @include sassline(gamma, $headingtype, 3, 1, all);
+      @include sassline($fontsize: gamma, $font: $headingtype, $lineheight: 3, $below: 1);
     }
 
     // Heading level 4.
     h4, .delta {
-      @include sassline(delta, $headingtype, 2, 0, all);
+      @include sassline($fontsize: delta, $font: $headingtype, $lineheight: 2, $below: 0);
     }
 
     // Heading level 5.
     h5, .epsilon {
-      @include sassline(epsilon, $headingtype, 2, 0, all);
+      @include sassline($fontsize: epsilon, $font: $headingtype, $lineheight: 2, $below: 0);
     }
 
     // Heading level 6.
     h6, .zeta {
-      @include sassline(zeta, $headingtype, 2, 0, all);
+      @include sassline($fontsize: zeta, $font: $headingtype, $lineheight: 2, $below: 0);
     }
 
     // Smaller ...
     .eta {
-        @include sassline(eta, $headingtype, 2, 0, all);
+        @include sassline($fontsize: eta, $font: $headingtype, $lineheight: 2, $below: 0);
     }
     .theta {
-        @include sassline(theta, $headingtype, 2, 0, all);
+        @include sassline($fontsize: theta, $font: $headingtype, $lineheight: 2, $below: 0);
     }
     .iota {
-        @include sassline(iota, $headingtype, 2, 0, all);
+        @include sassline($fontsize: iota, $font: $headingtype, $lineheight: 2, $below: 0);
     }
 
     // Lists.
     ul, ol {
-      @include baseline(zeta, $bodytype, 2, 2, all);
+      @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
 
       li {
         font-family: unquote(map-get($bodytype, font-family));
@@ -209,7 +209,7 @@ html {
 
     // Definition lists.
     dl {
-      @include baseline(zeta, $bodytype, 2, 2, all);
+      @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
 
       dt, dd {
         font-feature-settings: 'kern', 'onum', 'liga';
@@ -231,7 +231,7 @@ html {
 
     // Tables.
     table {
-      @include sassline(eta, $headingtype, 2, 0, all);
+      @include sassline($fontsize: eta, $font: $headingtype, $lineheight: 2, $below: 0);
 
       font-family: unquote(map-get($headingtype, font-family));
       font-feature-settings: 'liga', 'lnum', 'tnum', 'kern';
@@ -242,7 +242,7 @@ html {
       thead {
 
         th {
-          @include sassline(zeta, $headingtype, 2, 0, all);
+          @include sassline($fontsize: zeta, $font: $headingtype, $lineheight: 2, $below: 0);
           padding-bottom: 1px;
         }
       }
@@ -262,7 +262,7 @@ html {
 
     // Caption and inline small text.
     small, .caption {
-      @include fontsize(theta, all);
+      @include fontsize($fontsize: theta);
 
       font-family: unquote(map-get($headingtype, font-family));
       font-style: normal;
@@ -274,7 +274,7 @@ html {
     }
 
     .caption {
-      @include baseline(theta, $headingtype, 2, 2, all);
+      @include baseline($fontsize: theta, $font: $bodytype, $lineheight: 2, $below: 2);
 
       color: $captionColour;
     }

@@ -63,7 +63,7 @@ a, a:visited, a:hover, a:focus {
 }
 
 .text--small {
-    @include fontsize(iota, all);
+    @include fontsize($fontsize: iota);
 }
 
 .spacer {
