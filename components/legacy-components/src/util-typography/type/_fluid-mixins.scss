@@ -1,0 +1,62 @@
+@use "sass:math";
+@use "sass:map";
+
+$rootsize: 16px;
+$default-min-bp: map.get($breakpoints, phone);
+$default-max-bp: map.get($breakpoints, large);
+
+@function to-rems($px) {
+  $rems: math.div($px, $rootsize) * 1rem;
+  @return $rems;
+}
+
+@function rnd($number, $places: 0) {
+  $n: 1;
+  @if $places > 0 {
+    @for $i from 1 through $places {
+      $n: $n * 10;
+    }
+  }
+  @return math.div(math.round($number * $n), $n);
+}
+
+@function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
+  $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+  $slope-vw: rnd($slope * 100, 2);
+  $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+  $min-rems: rnd(to-rems($min-px), 2);
+  $max-rems: rnd(to-rems($max-px), 2);
+  @return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+}
+
+@mixin fluid-rootsize() {
+    /* font-size: $rootsize; */
+    font-size: 100%;
+}
+
+@mixin fluid-fontsize($fontsize) {
+  $min-size: map-get(map-get($modular-scale, scale-0), $fontsize);
+  $max-size: map-get(map-get($modular-scale, scale-3), $fontsize);
+  font-size: clamped($min-size*1px, $max-size*1px);
+}
+
+@mixin fluid-baseline($fontsize, $font, $min-line-height: 1.5, $max-line-height: 2, $below: 2) {
+  $min-size: map-get(map-get($modular-scale, scale-0), $fontsize);
+  $max-size: map-get(map-get($modular-scale, scale-3), $fontsize);
+  $lineheight: $min-line-height;
+
+  $cap-height: map-get($font, cap-height);
+  $min-baseline-shift: math.div($min-size * 0.5 * (math.div($min-line-height * $rootsize, $min-size) - $cap-height), $rootsize);
+  $max-baseline-shift: math.div($max-size * 0.5 * (math.div($max-line-height * $rootsize, $max-size) - $cap-height), $rootsize);
+  $min-baseline-push: $below - $min-baseline-shift;
+  $max-baseline-push: $below - $max-baseline-shift;
+
+  margin-bottom: clamped($min-baseline-push*$rootsize, $max-baseline-push*$rootsize);
+  padding-top: clamped($min-baseline-shift*$rootsize, $max-baseline-shift*$rootsize);
+  line-height: clamped($min-line-height*$rootsize, $max-line-height*$rootsize);
+}
+
+@mixin fluid-sassline($fontsize, $font, $min-line-height: 1.5, $max-line-height: 2, $below: 2) {
+  @include fluid-fontsize($fontsize);
+  @include fluid-baseline($fontsize, $font, $min-line-height, $max-line-height, $below);
+}
