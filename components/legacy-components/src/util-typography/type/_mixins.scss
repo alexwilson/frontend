@@ -3,6 +3,7 @@
 
 // Global variables used in mixins.
 @use "sass:math";
+@import "fluid-mixins";
 
 // Number of breakpoints.
 $breakpoints-limit: length($breakpoints);
@@ -18,6 +19,12 @@ $points: map-values($breakpoints);
   @for $i from 2 through $breakpoints-limit {
     @media screen and (min-width: math.div(nth($points, $i), 16px) * 1em) {
       font-size: math.div(nth($sizes, $i), 16) * 100%;
+    }
+  }
+  
+  @at-root {
+    html[data-features*="fluid-typography:true"] {
+        @include fluid-rootsize();
     }
   }
 }
@@ -43,6 +50,12 @@ $points: map-values($breakpoints);
     }
   } @else {
     @warn "#{$fontsize} is not a valid scale variable";
+  }  
+  
+  @at-root {
+    html[data-features*="fluid-typography:true"] #{&} {
+        @include fluid-fontsize($fontsize: $fontsize);
+    }
   }
 }
 
@@ -74,6 +87,13 @@ $points: map-values($breakpoints);
   } @else {
     @warn "#{$fontsize} is not a valid scale variable";
   }
+
+  
+  @at-root {
+    html[data-features*="fluid-typography:true"] #{&} {
+        @include fluid-baseline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
+    }
+  }
 }
 
 @mixin generate-baseline($size, $font, $lineheight, $below, $rootsize) {
@@ -95,4 +115,11 @@ $points: map-values($breakpoints);
   @include set-line-height($lineheight);
   @include fontsize($fontsize);
   @include baseline($fontsize, $font, $lineheight, $below);
+
+  
+  @at-root {
+    html[data-features*="fluid-typography:true"] #{&} {
+        @include fluid-sassline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
+    }
+  }
 }
