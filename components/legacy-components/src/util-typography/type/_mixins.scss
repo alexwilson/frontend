@@ -5,121 +5,22 @@
 @use "sass:math";
 @import "fluid-mixins";
 
-// Number of breakpoints.
-$breakpoints-limit: length($breakpoints);
-
-// List of rootsizes, breakpoints, and max-widths.
-$sizes: map-values($rootsizes);
-$points: map-values($breakpoints);
-
 // Root font-size in %, outputted in correct breakpoints.
 @mixin rootsize {
-  font-size: math.div(nth($sizes, 1), 16) * 100%;
-
-  @for $i from 2 through $breakpoints-limit {
-    @media screen and (min-width: math.div(nth($points, $i), 16px) * 1em) {
-      font-size: math.div(nth($sizes, $i), 16) * 100%;
-    }
-  }
-  
-  @at-root {
-    html[data-features*="fluid-typography:true"] {
-        @include fluid-rootsize();
-    }
-  }
-}
-
-// Value in scale in $modular-scale?
-@function in-modular-scale($scale, $key) {
-  @return map-has-key(map-get($modular-scale, $scale), $key);
+    @include fluid-rootsize();
 }
 
 // Font-size in rems.
 @mixin fontsize($fontsize) {
-  @if type-of($fontsize) == number {
-    @include generate-fontsize($fontsize, nth($sizes, 1));
-  } @else if in-modular-scale(scale-0, $fontsize) {
-    $get-size: map-get(map-get($modular-scale, scale-0), $fontsize);
-    @include generate-fontsize($get-size, nth($sizes, 1));
-
-    @for $i from 2 through $breakpoints-limit {
-      $get-size: map-get(map-get($modular-scale, scale-#{$i - 1}), $fontsize);
-      @media screen and (min-width: math.div(nth($points, $i), 16px) * 1em) {
-        @include generate-fontsize($get-size, nth($sizes, $i));
-      }
-    }
-  } @else {
-    @warn "#{$fontsize} is not a valid scale variable";
-  }  
-  
-  @at-root {
-    html[data-features*="fluid-typography:true"] #{&} {
-        @include fluid-fontsize($fontsize: $fontsize);
-    }
-  }
-}
-
-@mixin generate-fontsize($size, $rootsize) {
-  font-size: #{math.div($size, $rootsize)}rem;
+    @include fluid-fontsize($fontsize: $fontsize);
 }
 
 // Advanced baseline magic.
 @mixin baseline($fontsize, $font, $lineheight: 2, $below: 2) {
-  @include set-line-height($lineheight);
-  @if type-of($fontsize) == number {
-    @include generate-baseline($fontsize, $font, $lineheight, $below, nth($sizes, 1));
-
-    @for $i from 2 through $breakpoints-limit {
-      @media screen and (min-width: math.div(nth($points, $i), 16px) * 1em) {
-        @include generate-baseline($fontsize, $font, $lineheight, $below, nth($sizes, $i));
-      }
-    }
-  } @else if in-modular-scale(scale-0, $fontsize) {
-    $get-size: map-get(map-get($modular-scale, scale-0), $fontsize);
-    @include generate-baseline($get-size, $font, $lineheight, $below, nth($sizes, 1));
-
-    @for $i from 2 through $breakpoints-limit {
-      $get-size: map-get(map-get($modular-scale, scale-#{$i - 1}), $fontsize);
-      @media screen and (min-width: math.div(nth($points, $i), 16px) * 1em) {
-        @include generate-baseline($get-size, $font, $lineheight, $below, nth($sizes, $i));
-      }
-    }
-  } @else {
-    @warn "#{$fontsize} is not a valid scale variable";
-  }
-
-  
-  @at-root {
-    html[data-features*="fluid-typography:true"] #{&} {
-        @include fluid-baseline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
-    }
-  }
-}
-
-@mixin generate-baseline($size, $font, $lineheight, $below, $rootsize) {
-  $cap-height: map-get($font, cap-height);
-  $baseline-shift: math.div($size * 0.5 * (math.div($lineheight * $rootsize, $size) - $cap-height), $rootsize);
-  $baseline-push: $below - $baseline-shift;
-  margin-bottom: $baseline-push * 1rem;
-  padding-top: $baseline-shift * 1rem;
-}
-
-@mixin set-line-height($lineheight) {
-  @if $lineheight != 0 {
-    line-height: #{$lineheight}rem;
-  }
+    @include fluid-baseline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
 }
 
 // Set fontsize and baseline at once.
 @mixin sassline($fontsize, $font, $lineheight: 2, $below: 2) {
-  @include set-line-height($lineheight);
-  @include fontsize($fontsize);
-  @include baseline($fontsize, $font, $lineheight, $below);
-
-  
-  @at-root {
-    html[data-features*="fluid-typography:true"] #{&} {
-        @include fluid-sassline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
-    }
-  }
+    @include fluid-sassline($fontsize: $fontsize, $font: $font, $min-line-height: $lineheight, $max-line-height: $lineheight, $below: $below);
 }
