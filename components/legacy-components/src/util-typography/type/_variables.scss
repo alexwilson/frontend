@@ -1,28 +1,6 @@
 // SCSS variables
 // ---------------------------------------
 
-// Note: For the following Sass maps enter values as if they would be px units.
-
-// Breakpoint sizes from px to ems. Add more values here to add more breakpoints.
-// Change names if you prefer, it wont break the mixin as long as they are strings not just numbers.
-$breakpoints: (
-  break-0: 0,     // 0px       Mobile first
-  break-1: 640,   // 640px   ~ Small tablet up
-  break-2: 800,   // 800px   ~ Large tablet up
-  break-3: 1024,  // 1024px  ~ Desktop up
-  break-4: 1600   // 1600px  ~ Large desktop up
-) !default;
-
-// Root font-sizes for each breakpoint. Set to half desired line-height of body text.
-// ! Make sure to have as many sizes as breakpoints above.
-$rootsizes: (
-  rootsize-0: 12,   // 24px line-height body text
-  rootsize-1: 14,   // 28px line-height body text
-  rootsize-2: 15,   // 30px line-height body text
-  rootsize-3: 17,   // 34px line-height body text
-  rootsize-4: 19    // 38px line-height body text
-) !default;
-
 // Add typefaces here.
 // Add weight and style details too.
 // ! Set cap height to set to the baseline.
@@ -56,7 +34,6 @@ $monospacetype: (
 
 // Text colours. British English.
 $headingColour: #2E2E2E !default;
-$bodyColour: #494949 !default;
 $linkColour: #0E58F5 !default;
 $hoverColour: #0B348B !default;
 $captionColour: #BDC8CC !default;
