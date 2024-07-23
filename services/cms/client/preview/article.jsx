@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { format } from "date-fns";
 
-import styles from "!css-loader!sass-loader!./article.scss";
+import styles from "./article.scss";
 export const ArticlePreviewStyles = styles;
 
 export class ArticlePreview extends Component {

@@ -27,6 +27,14 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
+                test: /\.scss$/,
+                use: ['css-loader', 'sass-loader']
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
                 test: /\.yml/,
                 type: 'json',
                 parser: {

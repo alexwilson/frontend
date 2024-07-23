@@ -1,5 +1,6 @@
 import CMS from "decap-cms-app";
 import config from "./config.yml";
+import styles from "./main.css";
 
 import { Uuid } from "./widgets/uuid.jsx";
 // import {YouTube} from "./widgets/editor/youtube.jsx";
