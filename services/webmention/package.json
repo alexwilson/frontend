@@ -14,7 +14,7 @@
     "@serverless/event-mocks": "^1.1.1",
     "@types/aws-lambda": "^8.10.140",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.9",
+    "@types/node": "^22.0.0",
     "aws-cdk": "2.150.0",
     "aws-sdk-mock": "^6.0.4",
     "jest": "^29.7.0",
