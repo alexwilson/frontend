@@ -15705,7 +15705,7 @@ snapshots:
 
   '@types/http-proxy@1.17.14':
     dependencies:
-      '@types/node': 22.0.2
+      '@types/node': 22.1.0
 
   '@types/is-hotkey@0.1.10': {}
 
