@@ -30,7 +30,7 @@ collections:
     fields: &contentFields
       - {label: ID, name: id, required: true, widget: "uuid"}
       - {label: Title, name: "title", required: true, widget: "string"}
-      - {label: Published Date, name: "date", required: true, format: *time_format, widget: "datetime"}
+      - {label: Published Date, name: "date", required: true, format: *time_format, widget: "datetime", default: "{{now}}"}
       - {label: Image, name: "image", required: false, widget: "image"}
       - {label: Tags, name: "tags", allow_add: true, label_singular: "Add", widget: "list"}
       - {label: Body, name: "body", widget: "markdown"}
