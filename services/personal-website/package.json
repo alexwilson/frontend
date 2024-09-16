@@ -27,7 +27,7 @@
     "@alexwilson/gatsby-remark-rewrite-images": "^1.0.0",
     "@alexwilson/legacy-components": "^1.0.0",
     "@loadable/component": "^5.16.4",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.0.0",
     "gatsby": "^5.13.5",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-feed": "^5.13.1",
