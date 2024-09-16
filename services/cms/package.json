@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@alexwilson/legacy-components": "^1.0.0",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.0.0",
     "decap-cms": "^3.3.2",
     "decap-cms-app": "^3.3.2",
     "decap-cms-backend-proxy": "^3.1.4",
