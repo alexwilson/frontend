@@ -1,10 +1,12 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
+import Header from "@alexwilson/legacy-components/src/header"
 
  const BlogPage = ({ data, location }) => {
   return (<Layout location={location}>
+    <Header location={location} section="blog" linkImplementation={Link} />
     <div className="alex-stream">
       <h1>My Blog</h1>
       <h4>{data.content.totalCount} Posts</h4>

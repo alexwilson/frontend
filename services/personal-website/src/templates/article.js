@@ -28,7 +28,7 @@ const ArticleTemplate = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <Header location={location} image={post.image.image} linkImplementation={Link} />
+      <Header location={location} section="blog" image={post.image.image} linkImplementation={Link} />
       <div className="alex-article">
         <h1 class="alex-article__headline" itemProp="name headline">{post.title}</h1>
         <div className="alex-article__main">

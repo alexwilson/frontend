@@ -121,6 +121,7 @@ class Header extends Component {
   }
 
   render() {
+    const { section = null } = this.props
     const { pathname } = this.props.location
     const name = this.props.name ? this.props.name : "Alex Wilson"
     const intro = this.props.intro ? this.props.intro : "On products, engineering & everything in-between."
@@ -155,8 +156,8 @@ class Header extends Component {
             <ul className="alex-header__nav" id="menu" aria-expanded={this.state.navigationExpanded}>
               <this.navItem url="/" active={pathname === "/"}>Home</this.navItem>
               <this.navItem url="/about-me" active={pathname === "/about-me"}>About Me</this.navItem>
-              <this.navItem url="/blog" active={pathname === "/blog" || pathname.startsWith("/content/")}>Writing</this.navItem>
-              <this.navItem url="/talks" active={pathname.startsWith("/talks/")}>Speaking</this.navItem>
+              <this.navItem url="/blog" active={section && section === "blog"}>Writing</this.navItem>
+              <this.navItem url="/talks" active={section && section === "talks"}>Speaking</this.navItem>
               <this.navItem url="/consultancy" active={pathname === "/consultancy"}>Hire Me</this.navItem>
 
               <NavSpacer />
@@ -174,13 +175,20 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
+  name: PropTypes.string,
+  intro: PropTypes.string,
   image: PropTypes.string,
+  location: PropTypes.object.isRequired,
+  section: PropTypes.oneOf(["blog", "talks"]),
+  linkImplementation: PropTypes.instanceOf(Link)
 }
 
 Header.defaultProps = {
-  siteTitle: `Alex Wilson`,
+  name: "Alex Wilson",
+  intro: "On products, engineering & everything in-between.",
   image: null,
+  section: null,
+  linkImplementation: Link
 }
 
 export default Header
