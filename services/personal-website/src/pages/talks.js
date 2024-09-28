@@ -1,10 +1,12 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
+import Header from "@alexwilson/legacy-components/src/header"
 
 const TalksPage = ({ data, location }) => {
   return (<Layout location={location}>
+    <Header location={location} section="talks" linkImplementation={Link} />
     <div className="alex-stream">
       <h1>Talks</h1>
       {data.talks.edges.map(({ node }) => (

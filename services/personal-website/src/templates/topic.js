@@ -1,14 +1,16 @@
 import React from "react"
 import PropTypes from "prop-types"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import Header from "@alexwilson/legacy-components/src/header"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {
   const { topic } = pageContext
   const { totalCount } = data.content
 
   return (<Layout location={location}>
+    <Header location={location} section="blog" linkImplementation={Link} />
     <div class="alex-stream">
       <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
       {data.content.edges.map(({ node }) => (

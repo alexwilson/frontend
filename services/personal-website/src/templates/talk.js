@@ -1,5 +1,6 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
+import Header from "@alexwilson/legacy-components/src/header"
 import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Layout from "../components/layout"
 
@@ -7,6 +8,7 @@ const TalkTemplate = ({ data, location }) => {
   const post = data.content
   return (
     <Layout location={location}>
+      <Header location={location} section="talks" linkImplementation={Link} />
       <div class="alex-article">
         <div class="alex-article__main">
           <h1 itemprop="name headline">{post.title}</h1>
