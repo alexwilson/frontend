@@ -15643,7 +15643,7 @@ snapshots:
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 22.7.0
+      '@types/node': 22.7.2
 
   '@types/cacheable-request@6.0.3':
     dependencies:
@@ -15659,7 +15659,7 @@ snapshots:
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 4.19.5
-      '@types/node': 22.7.0
+      '@types/node': 22.7.2
 
   '@types/connect@3.4.38':
     dependencies:
@@ -15805,7 +15805,6 @@ snapshots:
   '@types/node@22.7.2':
     dependencies:
       undici-types: 6.19.8
-    optional: true
 
   '@types/node@8.10.66': {}
 
@@ -15866,12 +15865,12 @@ snapshots:
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 22.7.0
+      '@types/node': 22.7.2
       '@types/send': 0.17.4
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 22.7.0
+      '@types/node': 22.7.2
 
   '@types/stack-utils@2.0.3': {}
 
@@ -15883,7 +15882,7 @@ snapshots:
 
   '@types/ws@8.5.10':
     dependencies:
-      '@types/node': 22.7.0
+      '@types/node': 22.7.2
 
   '@types/yargs-parser@21.0.3': {}
 
