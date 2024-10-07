@@ -311,8 +311,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0
       aws-cdk:
-        specifier: 2.161.0
-        version: 2.161.0
+        specifier: 2.161.1
+        version: 2.161.1
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.0.4
@@ -3636,8 +3636,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.161.0:
-    resolution: {integrity: sha512-MOsh0Acu3CFi5UlW93JUFwidA/9+j19l3kcFJN0Vc/vvyBPRF3ua2g3y2jLT6muW7MbO0P+C/7OyR80YA1vzvg==}
+  aws-cdk@2.161.1:
+    resolution: {integrity: sha512-aMQsiCv8VxR8uyZ7EX8sWt46q/rOHeIFiIJ6pBvzKzc1nWaoI149rSxykIGGTpt0puin0L5SwYl6f6Sp3zohzg==}
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
@@ -5565,6 +5565,7 @@ packages:
   eslint@7.32.0:
     resolution: {integrity: sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==}
     engines: {node: ^10.12.0 || >=12.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   eslint@9.6.0:
@@ -16743,7 +16744,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 38.0.1
       constructs: 10.3.0
 
-  aws-cdk@2.161.0:
+  aws-cdk@2.161.1:
     optionalDependencies:
       fsevents: 2.3.2
 
