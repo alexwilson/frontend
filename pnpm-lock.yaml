@@ -375,6 +375,10 @@ packages:
     resolution: {integrity: sha512-9ickoLz+hcXCeh7jrcin+/SLWm+GkxE2kTvoYyp38p4WkdFXfQJxDFGWp/YHjiKLPx06z2A7W8XKuqbReXDzsw==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/compat-data@7.25.8':
+    resolution: {integrity: sha512-ZsysZyXY4Tlx+Q53XdnOFmqwfB9QDTHYxaZYajWRoBLuLEAwI2UIbtxOjWh/cFaa9IKUlcB+DDuoskLuKu56JA==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/core@7.24.7':
     resolution: {integrity: sha512-nykK+LEK86ahTkX/3TgauT0ikKoNCfKHEaZYTUVupJdTLzGNvrblu4u6fa7DhZONAltdf8e662t/abY8idrd/g==}
     engines: {node: '>=6.9.0'}
@@ -11890,6 +11894,8 @@ snapshots:
 
   '@babel/compat-data@7.25.7': {}
 
+  '@babel/compat-data@7.25.8': {}
+
   '@babel/core@7.24.7':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -11973,7 +11979,7 @@ snapshots:
 
   '@babel/helper-compilation-targets@7.25.7':
     dependencies:
-      '@babel/compat-data': 7.25.7
+      '@babel/compat-data': 7.25.8
       '@babel/helper-validator-option': 7.25.7
       browserslist: 4.24.0
       lru-cache: 5.1.1
@@ -16710,7 +16716,7 @@ snapshots:
 
   babel-plugin-polyfill-corejs2@0.4.11(@babel/core@7.24.7):
     dependencies:
-      '@babel/compat-data': 7.25.7
+      '@babel/compat-data': 7.25.8
       '@babel/core': 7.24.7
       '@babel/helper-define-polyfill-provider': 0.6.2(@babel/core@7.24.7)
       semver: 6.3.1
@@ -16719,7 +16725,7 @@ snapshots:
 
   babel-plugin-polyfill-corejs2@0.4.11(@babel/core@7.25.7):
     dependencies:
-      '@babel/compat-data': 7.25.7
+      '@babel/compat-data': 7.25.8
       '@babel/core': 7.25.7
       '@babel/helper-define-polyfill-provider': 0.6.2(@babel/core@7.25.7)
       semver: 6.3.1
