@@ -95,7 +95,7 @@ jobs:
   validate-feed:
     name: "Validate feed"
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@main
         with:
