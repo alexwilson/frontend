@@ -7,3 +7,5 @@ Crawl-Delay: 1
 
 User-agent: GPTBot
 Disallow: /
+
+# Algolia-Crawler-Verif: CBC93F9EA752D15E
