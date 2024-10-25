@@ -23,7 +23,7 @@
     "typescript": "~5.6.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.163.1",
+    "aws-cdk-lib": "2.164.0",
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1655.0",
     "axios": "^1.7.2",
