@@ -11897,7 +11897,7 @@ snapshots:
       '@babel/parser': 7.25.9
       '@babel/runtime': 7.25.6
       '@babel/traverse': 7.25.9
-      '@babel/types': 7.25.9
+      '@babel/types': 7.26.0
       babel-preset-fbjs: 3.4.0(@babel/core@7.25.9)
       chalk: 4.1.2
       fb-watchman: 2.0.2
@@ -16058,7 +16058,6 @@ snapshots:
   '@types/node@22.8.1':
     dependencies:
       undici-types: 6.19.8
-    optional: true
 
   '@types/node@8.10.66': {}
 
@@ -16331,7 +16330,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 22.7.8
+      '@types/node': 22.8.1
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
