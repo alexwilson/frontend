@@ -16330,7 +16330,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 22.8.1
+      '@types/node': 22.8.2
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
