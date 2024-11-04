@@ -118,7 +118,7 @@ importers:
         version: 4.0.2(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4))
       sass-loader:
         specifier: ^16.0.0
-        version: 16.0.0(sass@1.80.5)(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4))
+        version: 16.0.0(sass@1.80.6)(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4))
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4))
@@ -10041,8 +10041,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sass@1.80.5:
-    resolution: {integrity: sha512-TQd2aoQl/+zsxRMEDSxVdpPIqeq9UFc6pr7PzkugiTx3VYCFPUaa3P4RrBQsqok4PO200Vkz0vXQBNlg7W907g==}
+  sass@1.80.6:
+    resolution: {integrity: sha512-ccZgdHNiBF1NHBsWvacvT5rju3y1d/Eu+8Ex6c21nHp2lZGLBEtuwc415QfiI1PJa1TpCo3iXwwSRjRpn2Ckjg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -15901,7 +15901,6 @@ snapshots:
   '@types/node@22.8.5':
     dependencies:
       undici-types: 6.19.8
-    optional: true
 
   '@types/node@8.10.66': {}
 
@@ -25491,11 +25490,11 @@ snapshots:
     optionalDependencies:
       sass: 1.77.6
 
-  sass-loader@16.0.0(sass@1.80.5)(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4)):
+  sass-loader@16.0.0(sass@1.80.6)(webpack@5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4)):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
-      sass: 1.80.5
+      sass: 1.80.6
       webpack: 5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4)
 
   sass@1.77.6:
@@ -25504,12 +25503,13 @@ snapshots:
       immutable: 4.3.6
       source-map-js: 1.2.0
 
-  sass@1.80.5:
+  sass@1.80.6:
     dependencies:
-      '@parcel/watcher': 2.4.1
       chokidar: 4.0.0
       immutable: 4.3.7
       source-map-js: 1.2.1
+    optionalDependencies:
+      '@parcel/watcher': 2.4.1
     optional: true
 
   sax@1.2.1: {}
