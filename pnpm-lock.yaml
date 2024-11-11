@@ -371,10 +371,6 @@ packages:
     resolution: {integrity: sha512-qJzAIcv03PyaWqxRgO4mSU3lihncDT296vnyuE2O8uA4w3UHWI4S3hgeZd1L8W1Bft40w9JxJ2b412iDUFFRhw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/compat-data@7.25.9':
-    resolution: {integrity: sha512-yD+hEuJ/+wAJ4Ox2/rpNv5HIuPG82x3ZlQvYVn8iYCprdxzE7P1udpGF1jyjQVBU4dgznN+k2h103vxZ7NdPyw==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/compat-data@7.26.0':
     resolution: {integrity: sha512-qETICbZSLe7uXv9VE8T/RWOdIE5qqyTucOt4zLYMafj2MRO271VGgLd4RACJMeBO37UPWhXiKMBk7YlJ0fOzQA==}
     engines: {node: '>=6.9.0'}
@@ -11897,8 +11893,6 @@ snapshots:
 
   '@babel/compat-data@7.24.7': {}
 
-  '@babel/compat-data@7.25.9': {}
-
   '@babel/compat-data@7.26.0': {}
 
   '@babel/core@7.24.7':
@@ -11977,7 +11971,7 @@ snapshots:
 
   '@babel/helper-compilation-targets@7.24.7':
     dependencies:
-      '@babel/compat-data': 7.25.9
+      '@babel/compat-data': 7.26.0
       '@babel/helper-validator-option': 7.25.9
       browserslist: 4.24.0
       lru-cache: 5.1.1
