@@ -3600,6 +3600,7 @@ packages:
   aws-cdk@2.167.0:
     resolution: {integrity: sha512-Hrz8sc7BYJSL+hF3el9jidUwfVAYxZ/TuMDngXHnqqUNsxPLBOG2xWzVVto0YezJkQImvWYrc2IDlDgkcNRTaw==}
     engines: {node: '>= 14.15.0'}
+    deprecated: Some authentication scenarios are broken in this version
     hasBin: true
 
   aws-lambda@1.0.7:
