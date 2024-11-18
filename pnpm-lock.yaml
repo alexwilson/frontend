@@ -311,8 +311,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0
       aws-cdk:
-        specifier: 2.167.0
-        version: 2.167.0
+        specifier: 2.167.1
+        version: 2.167.1
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.0.4
@@ -3597,10 +3597,9 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.167.0:
-    resolution: {integrity: sha512-Hrz8sc7BYJSL+hF3el9jidUwfVAYxZ/TuMDngXHnqqUNsxPLBOG2xWzVVto0YezJkQImvWYrc2IDlDgkcNRTaw==}
+  aws-cdk@2.167.1:
+    resolution: {integrity: sha512-GOFe5hj7xi7i7aqkaQ2PT1jmar+Ip+qNpA7hJoH4anz98rthcl4N2X01CdHiEc61/0urobwl5358xAZIhMd21g==}
     engines: {node: '>= 14.15.0'}
-    deprecated: Some authentication scenarios are broken in this version
     hasBin: true
 
   aws-lambda@1.0.7:
@@ -16541,7 +16540,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 38.0.1
       constructs: 10.3.0
 
-  aws-cdk@2.167.0:
+  aws-cdk@2.167.1:
     optionalDependencies:
       fsevents: 2.3.2
 
