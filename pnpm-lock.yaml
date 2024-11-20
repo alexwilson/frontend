@@ -15859,7 +15859,6 @@ snapshots:
   '@types/node@22.9.1':
     dependencies:
       undici-types: 6.19.8
-    optional: true
 
   '@types/node@8.10.66': {}
 
@@ -16132,7 +16131,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 22.8.7
+      '@types/node': 22.9.1
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
