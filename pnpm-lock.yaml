@@ -280,8 +280,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.170.0
-        version: 2.170.0(constructs@10.3.0)
+        specifier: 2.171.0
+        version: 2.171.0(constructs@10.3.0)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -3579,8 +3579,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.170.0:
-    resolution: {integrity: sha512-hlfoOJUZmAY3TjOXjWhAYKlrPcfGNTXA24NirwkEYOX+t1HD8OLSrYZvluMc7nWgIZf1Mq1g6M0xNEZJqykPrA==}
+  aws-cdk-lib@2.171.0:
+    resolution: {integrity: sha512-N0O0mWI+S8PAbiED7eV05qVfbJgHkdh+jQS4BOG6CUAc/i2s9U4w+XDRkK8auO0HgTM9+ahEaFfucMuQ4abRWQ==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -16531,7 +16531,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.170.0(constructs@10.3.0):
+  aws-cdk-lib@2.171.0(constructs@10.3.0):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.209
       '@aws-cdk/asset-kubectl-v20': 2.1.3
