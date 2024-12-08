@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 07 Dec 2024 06:54:16 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Not Unpacking — Week 48, 2024]]></title><description><![CDATA[This was one of these weird weeks where I didn’t have much on - because it was my time off between two jobs. It was a bit like a staycation?  But in a new place?  Lots of life-admin. Where did I leave you?  Ah yes…]]></description><link>https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 01 Dec 2024 10:59:00 GMT</pubDate><content:encoded>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sun, 08 Dec 2024 15:23:21 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Orienting — Week 49, 2024]]></title><description><![CDATA[This week felt considerably more normal than last week. Maybe the routine got me somewhere. Maybe it’s just the jet lag having worn off. Maybe it’s the nature of the life-admin changing. Maybe it’s something else…]]></description><link>https://alexwilson.tech/content/8c466999-be7c-4fb0-9f32-6bd5ff22899a?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/8c466999-be7c-4fb0-9f32-6bd5ff22899a</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 08 Dec 2024 14:32:00 GMT</pubDate><content:encoded>
+                  &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This week felt considerably more normal than last week. Maybe the routine got me somewhere. Maybe it’s just the jet lag having worn off. Maybe it’s the nature of the life-admin changing. Maybe it’s something else entirely.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This week in data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📼 Training videos watched: 5 hours&lt;/li&gt;
+&lt;li&gt;🌯 Team lunches: 3&lt;/li&gt;
+&lt;li&gt;🍵 Oi Ocha consumed: 3.5 litres&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Felt my first earthquake in yonks &lt;a href=&quot;https://www.data.jma.go.jp/multi/quake/quake_detail.html?eventID=20241204191551&amp;amp;lang=jp&quot;&gt;on Tuesday evening&lt;/a&gt;. It’s been a while (maybe 5 years?) so I’d forgotten how it feels. Intensity 1 so nobody else was even remotely fussed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This was my first week at work, and I’m feeling the same sense of awe and wonder one does exploring any new world. I’m pretty excited!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part of onboarding, or, I guess, being in a large company is needing an evergreen way of introducing yourself - and so one of my tasks involved writing a page about myself for an internal documentation hub.  (It also includes a link to the about me page on this blog, which, is somewhat out of date - sorry!)  It’s kind-of great, and reading others I realised that there’s lots to strike up conversations about.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
+                  &lt;a href=&quot;https://alexwilson.tech/content/8c466999-be7c-4fb0-9f32-6bd5ff22899a?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
+                </content:encoded></item><item><title><![CDATA[Weeknotes: Not Unpacking — Week 48, 2024]]></title><description><![CDATA[This was one of these weird weeks where I didn’t have much on - because it was my time off between two jobs. It was a bit like a staycation?  But in a new place?  Lots of life-admin. Where did I leave you?  Ah yes…]]></description><link>https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 01 Dec 2024 10:59:00 GMT</pubDate><content:encoded>
                   &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;This was one of these weird weeks where I didn’t have much on - because it was my time off between two jobs. It was a bit like a staycation?  But in a new place?  Lots of life-admin.&lt;/p&gt;
@@ -159,11 +181,4 @@
 &lt;li&gt;Thursday I left the house (after a last-minute assignment/call), and went to Paddington station via The Cockpit.  Why?  Meeting LF to catch a train to Reading.  Why?  Road-trip from there to Skegness in the morning.  We met up with JL and grabbed a ‘spoons dinner and siren chaser.&lt;/li&gt;
 &lt;li&gt;Friday we drove up to Skegness, picking up a McDs brekkie and LM on the way. There was a…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
                   &lt;a href=&quot;https://alexwilson.tech/content/3bfacc72-7403-4759-b921-6aad69f68c5d?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
-                </content:encoded></item><item><title><![CDATA[Weeknotes: Lightning — Week 39, 2024]]></title><description><![CDATA[My iPhone 16 Pro Max preorder arrived this week, and it’s glorious.  New iOS is great and I’m enjoying the new button + camera control, but the best thing is that I no longer have any devices that use a Lightning Cable…]]></description><link>https://alexwilson.tech/content/84384a91-f760-4d74-9589-a3a843df7317?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/84384a91-f760-4d74-9589-a3a843df7317</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 29 Sep 2024 22:03:00 GMT</pubDate><content:encoded>
-                  &lt;ul&gt;
-&lt;li&gt;My iPhone 16 Pro Max preorder arrived this week, and it’s &lt;em&gt;glorious&lt;/em&gt;.  New iOS is great and I’m enjoying the new button + camera control, but the best thing is that I no longer have any devices that use a Lightning Cable!  We are a USB-C only house.&lt;/li&gt;
-&lt;li&gt;One of my main focuses has been rolling forward a bunch of low-intervention changes which, once live, will make it far easier to monitor and reduce the usage of a legacy system.  It isn’t all done, but I’ve got it written up with a TDD and a lengthy living todo document.&lt;/li&gt;
-&lt;li&gt;Work hosted a “safety skills seminar” this week which featured an ex-copper coming in and talking about how to identify and avoid being the victim of phone thefts, etc. Lots of examples and lots learned, but my main takeaways are to take a breath before going into a new place (eg leaving the office) and to think like an adversary.&lt;/li&gt;
-&lt;li&gt;Made some headway with feedback loops: Model feedback as a hand-off in kanban terms, and when planning as a generic dependency.  Set some…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
-                  &lt;a href=&quot;https://alexwilson.tech/content/84384a91-f760-4d74-9589-a3a843df7317?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
                 </content:encoded></item></channel></rss>
