@@ -311,8 +311,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0
       aws-cdk:
-        specifier: 2.172.0
-        version: 2.172.0
+        specifier: 2.173.0
+        version: 2.173.0
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.0.4
@@ -3639,8 +3639,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.172.0:
-    resolution: {integrity: sha512-kacztcAl12F6zlBqKCuzCZmj4vrbMhzgDAxBB4T7fXR2amQyuu6W0nWcGWWvASXeBJcw2DJ6ulpfV4wuc9dksw==}
+  aws-cdk@2.173.0:
+    resolution: {integrity: sha512-riRGKSo5dzB0MSbdkZwXRC2t//dI220bgEUfVISilcEafBKj+BPzFBd/eNKuP/dEaS31njkCwtYrS7V7/lV4hQ==}
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
@@ -16772,7 +16772,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 38.0.1
       constructs: 10.3.0
 
-  aws-cdk@2.172.0:
+  aws-cdk@2.173.0:
     optionalDependencies:
       fsevents: 2.3.2
 
