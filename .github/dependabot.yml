@@ -8,6 +8,10 @@ updates:
     ignore:
       - dependency-name: "unist-util-visit"
         versions: ["3.x", "4.x", "5.x"]
+        
+      # React 19 includes some breaking change affecting bundling.
+      - dependency-name: "react"
+        versions: ["19.x"]
     reviewers:
       - alexwilson
     versioning-strategy: increase-if-necessary
