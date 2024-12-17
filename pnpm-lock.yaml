@@ -10685,6 +10685,7 @@ packages:
 
   sudo-prompt@8.2.5:
     resolution: {integrity: sha512-rlBo3HU/1zAJUrkY6jNxDOC9eVYliG6nS4JA8u8KAshITd07tafMc/Br7xQwCSseXwJ2iCcHCE8SNWX3q8Z+kw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -11977,7 +11978,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.1
 
   '@babel/code-frame@7.26.0':
     dependencies:
@@ -16709,7 +16710,7 @@ snapshots:
       caniuse-lite: 1.0.30001666
       fraction.js: 4.3.7
       normalize-range: 0.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.1
       postcss: 8.4.39
       postcss-value-parser: 4.2.0
 
@@ -22695,7 +22696,7 @@ snapshots:
 
   launch-editor@2.8.0:
     dependencies:
-      picocolors: 1.0.1
+      picocolors: 1.1.1
       shell-quote: 1.8.1
 
   lerc@3.0.0: {}
