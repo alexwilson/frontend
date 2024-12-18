@@ -20687,7 +20687,7 @@ snapshots:
       strip-ansi: 6.0.1
       style-loader: 2.0.0(webpack@5.97.0(esbuild@0.24.0))
       style-to-object: 0.4.4
-      terser-webpack-plugin: 5.3.10(esbuild@0.24.0)(webpack@5.97.0(esbuild@0.24.0))
+      terser-webpack-plugin: 5.3.11(esbuild@0.24.0)(webpack@5.97.0(esbuild@0.24.0))
       tmp: 0.2.3
       true-case-path: 2.2.1
       type-of: 2.0.1
@@ -20885,7 +20885,7 @@ snapshots:
       strip-ansi: 6.0.1
       style-loader: 2.0.0(webpack@5.97.0(esbuild@0.24.0))
       style-to-object: 0.4.4
-      terser-webpack-plugin: 5.3.10(esbuild@0.24.0)(webpack@5.97.0(esbuild@0.24.0))
+      terser-webpack-plugin: 5.3.11(esbuild@0.24.0)(webpack@5.97.0(esbuild@0.24.0))
       tmp: 0.2.3
       true-case-path: 2.2.1
       type-of: 2.0.1
@@ -26508,14 +26508,14 @@ snapshots:
     optionalDependencies:
       esbuild: 0.24.0
 
-  terser-webpack-plugin@5.3.10(esbuild@0.24.0)(webpack@5.97.0(esbuild@0.24.0)):
+  terser-webpack-plugin@5.3.11(esbuild@0.24.0)(webpack@5.92.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
-      schema-utils: 3.3.0
+      schema-utils: 4.3.0
       serialize-javascript: 6.0.2
       terser: 5.31.1
-      webpack: 5.97.0(esbuild@0.24.0)
+      webpack: 5.92.1(esbuild@0.24.0)(webpack-cli@5.1.4)
     optionalDependencies:
       esbuild: 0.24.0
 
@@ -27468,7 +27468,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(esbuild@0.24.0)(webpack@5.92.1)
+      terser-webpack-plugin: 5.3.11(esbuild@0.24.0)(webpack@5.92.1)
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
