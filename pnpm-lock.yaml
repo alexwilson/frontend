@@ -20164,7 +20164,7 @@ snapshots:
       common-tags: 1.8.2
       convert-hrtime: 3.0.0
       create-gatsby: 3.13.1
-      envinfo: 7.13.0
+      envinfo: 7.14.0
       execa: 5.1.1
       fs-exists-cached: 1.0.0
       fs-extra: 11.2.0
