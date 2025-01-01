@@ -54,7 +54,7 @@
     "promise-image-loader": "^0.1.2",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
     "sass": "^1.77.2",
     "uuid": "^11.0.1"
