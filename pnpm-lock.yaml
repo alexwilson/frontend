@@ -3652,6 +3652,7 @@ packages:
   aws-cdk@2.175.0:
     resolution: {integrity: sha512-vWMI/DRicvqH+yfOE0ykZolZwn/U9oRvpt1GyoNx1USS/NWc/60Pico9zx8Ui6fc1fYK3ow+Gwl3p/Cch9uscQ==}
     engines: {node: '>= 14.15.0'}
+    deprecated: This version has a bug affecting cdk destroy, see https://github.com/aws/aws-cdk/issues/32836
     hasBin: true
 
   aws-lambda@1.0.7:
