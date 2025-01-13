@@ -280,8 +280,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.175.0
-        version: 2.175.0(constructs@10.3.0)
+        specifier: 2.175.1
+        version: 2.175.1(constructs@10.3.0)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -3631,8 +3631,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.175.0:
-    resolution: {integrity: sha512-QZddiS+kFv7SuQtBTUHscO8BHhd3v3BOLMSe1tMR8dE7XvPhY50p6Amqdo4pI6lZqAJma1wC2SZkHmajzTzgVQ==}
+  aws-cdk-lib@2.175.1:
+    resolution: {integrity: sha512-2OiZDUeuAA5nBrWKxQVT0CHrQmLLx7SIpUeqyKRLEdiYPFlj3nCd/0KcVpsy6hPKS+IZp7Qm1kghmGMsV6JGoA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -3652,6 +3652,7 @@ packages:
   aws-cdk@2.175.0:
     resolution: {integrity: sha512-vWMI/DRicvqH+yfOE0ykZolZwn/U9oRvpt1GyoNx1USS/NWc/60Pico9zx8Ui6fc1fYK3ow+Gwl3p/Cch9uscQ==}
     engines: {node: '>= 14.15.0'}
+    deprecated: This version has a bug affecting cdk destroy, see https://github.com/aws/aws-cdk/issues/32836
     hasBin: true
 
   aws-lambda@1.0.7:
@@ -16744,7 +16745,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.175.0(constructs@10.3.0):
+  aws-cdk-lib@2.175.1(constructs@10.3.0):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.209
       '@aws-cdk/asset-kubectl-v20': 2.1.3
