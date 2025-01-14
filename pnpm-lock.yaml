@@ -118,7 +118,7 @@ importers:
         version: 4.0.2(webpack@5.92.1)
       sass-loader:
         specifier: ^16.0.0
-        version: 16.0.0(sass@1.83.1)(webpack@5.92.1)
+        version: 16.0.0(sass@1.83.4)(webpack@5.92.1)
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.92.1)
@@ -10136,8 +10136,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sass@1.83.1:
-    resolution: {integrity: sha512-EVJbDaEs4Rr3F0glJzFSOvtg2/oy2V/YrGFPqPY24UqcLDWcI9ZY5sN+qyO3c/QCZwzgfirvhXvINiJCE/OLcA==}
+  sass@1.83.4:
+    resolution: {integrity: sha512-B1bozCeNQiOgDcLd33e2Cs2U60wZwjUUXzh900ZyQF5qUasvMdDZYbQ566LJu7cqR+sAHlAfO6RMkaID5s6qpA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -25793,11 +25793,11 @@ snapshots:
     optionalDependencies:
       sass: 1.77.6
 
-  sass-loader@16.0.0(sass@1.83.1)(webpack@5.92.1):
+  sass-loader@16.0.0(sass@1.83.4)(webpack@5.92.1):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
-      sass: 1.83.1
+      sass: 1.83.4
       webpack: 5.92.1(esbuild@0.24.2)(webpack-cli@6.0.0)
 
   sass@1.77.6:
@@ -25806,7 +25806,7 @@ snapshots:
       immutable: 4.3.6
       source-map-js: 1.2.0
 
-  sass@1.83.1:
+  sass@1.83.4:
     dependencies:
       chokidar: 4.0.1
       immutable: 5.0.2
