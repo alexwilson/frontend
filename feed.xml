@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 18 Jan 2025 04:34:26 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Shipping — Week 1, 2025]]></title><description><![CDATA[Back in London this week to do, as I put in an email, the “grown-up parts of moving out”.  Also to celebrate the new year. Or at least, that was the plan.  You know what they say about the best laid plans?  Well lots of…]]></description><link>https://alexwilson.tech/content/acbeea07-f027-4ba8-a9cf-6b4b6f0f3b10?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/acbeea07-f027-4ba8-a9cf-6b4b6f0f3b10</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 05 Jan 2025 10:58:00 GMT</pubDate><content:encoded>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sun, 19 Jan 2025 08:27:41 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Hauling — Week 2, 2025]]></title><description><![CDATA[Cleanly breaking weeks with travel seems to work great for me: It creates a neat time-bounded window, or a context if you will. But long-distance travel — which can span days — are a lot fuzzier.  These journeys can form…]]></description><link>https://alexwilson.tech/content/ea01a831-6b81-424a-b97f-369da32eccf5?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/ea01a831-6b81-424a-b97f-369da32eccf5</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 12 Jan 2025 12:36:00 GMT</pubDate><content:encoded>
+                  &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cleanly breaking weeks with travel seems to work great for me: It creates a neat time-bounded window, or a context if you will. But long-distance travel — which can span &lt;em&gt;days&lt;/em&gt; — are a &lt;em&gt;lot&lt;/em&gt; fuzzier.  These journeys can form their own chapters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This week in data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leon wraps consumed: 0&lt;/li&gt;
+&lt;li&gt;Hours slept: Not enough. :(&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In my case, a chapter involving some extremely pointy elbows  and my rib-cage on the the first long leg of my journey back: Being allocated a middle-seat is the opposite of winning the lottery.  And it involved some &lt;em&gt;extremely&lt;/em&gt; tasty soup (at the pop-up Tin Kee) in Hong-Kong airport which almost made up for everything else...&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Long-haul flights get the travel out of the way, but, after you’ve done one or two (ever) they aren’t exactly exciting. You learn rules, tricks, optimisations to make the lost time  easier to manage.  You begin to trade these with your fellow travellers: This route has better food, this seat is easier to sleep in, this airline is much cheaper, this airport is to be avoided at all costs.  Long-haul travel becomes a part of the identity - and not one I enjoy embracing.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
+                  &lt;a href=&quot;https://alexwilson.tech/content/ea01a831-6b81-424a-b97f-369da32eccf5?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
+                </content:encoded></item><item><title><![CDATA[Weeknotes: Shipping — Week 1, 2025]]></title><description><![CDATA[Back in London this week to do, as I put in an email, the “grown-up parts of moving out”.  Also to celebrate the new year. Or at least, that was the plan.  You know what they say about the best laid plans?  Well lots of…]]></description><link>https://alexwilson.tech/content/acbeea07-f027-4ba8-a9cf-6b4b6f0f3b10?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/acbeea07-f027-4ba8-a9cf-6b4b6f0f3b10</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 05 Jan 2025 10:58:00 GMT</pubDate><content:encoded>
                   &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Back in London this week to do, as I put in an email, the “grown-up parts of moving out”.  Also to celebrate the new year.&lt;/p&gt;
@@ -174,18 +192,4 @@
 &lt;li&gt;
 &lt;p&gt;A lot can change in thirty hours: There&apos;s now a lot of commentary floating around, and with the exception of a few interesting anecdotes such as The Bronx being the biggest swing, I&apos;m mostly blocking it out. &lt;em&gt;Especially&lt;/em&gt; the hit-pieces rushing to apportion some blame.  &lt;em&gt;Mostly those, actually&lt;/em&gt;.  It isn&apos;t that I&apos;m apolitical — I am not — or even that I want this blog to be: I am just still processing, as I&apos;m sure many others are too.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
                   &lt;a href=&quot;https://alexwilson.tech/content/37fdd22f-4b69-491e-86ba-a84ae72a0646?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
-                </content:encoded></item><item><title><![CDATA[Weeknotes: Plant-Based Nuggets — Week 44, 2024]]></title><description><![CDATA[Spent a lot of the week helping with various aspects of US election coverage next week. Some assorted tasks and a real deep-dive into web performance and maps, the latter which I’ve not done much work with before…]]></description><link>https://alexwilson.tech/content/f1a69fcd-90b7-4838-af82-fa5ff93a05e8?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/f1a69fcd-90b7-4838-af82-fa5ff93a05e8</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 03 Nov 2024 22:41:00 GMT</pubDate><content:encoded>
-                  &lt;ul&gt;
-&lt;li&gt;Spent a lot of the week helping with various aspects of US election coverage next week. Some assorted tasks and a real deep-dive into web performance and maps, the latter which I’ve not done much work with before. Managed to get a 75% performance improvement in a crucial area which I’m quite happy with.&lt;/li&gt;
-&lt;li&gt;This week in numbers:
-&lt;ul&gt;
-&lt;li&gt;Ebay listings created: 2&lt;/li&gt;
-&lt;li&gt;Red-meat consumed: 0 grams&lt;/li&gt;
-&lt;li&gt;Headphones thrown away: 1.5 pairs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Starting to like React Hooks.  Yeah, I’ve not been thrilled at them until now.&lt;/li&gt;
-&lt;li&gt;LF and I went to &lt;a href=&quot;https://www.instagram.com/p/DBt44ZLoQdB&quot;&gt;Baron’s Bites&lt;/a&gt;, which was a League of Legends pop-up/takeover of &lt;a href=&quot;https://butchies.co.uk/&quot;&gt;Butchies&lt;/a&gt;.  Was it worth the twenty-minute queue?  No.  But I got a badge, which I gave away later that same evening.  I paid £11 for their finest plant-based nuggets which started out strong and ended in regret.  The queue seemed friendly.&lt;/li&gt;
-&lt;li&gt;The Apple Intelligence update dropped.  Um.  It’s not great, is it?  Here’s a doozy: “Cow sighting; desperate for cow manure”.  Here’s another: “One soup through a straw, deemed…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
-                  &lt;a href=&quot;https://alexwilson.tech/content/f1a69fcd-90b7-4838-af82-fa5ff93a05e8?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
                 </content:encoded></item></channel></rss>
