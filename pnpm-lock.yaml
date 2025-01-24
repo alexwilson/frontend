@@ -303,7 +303,7 @@ importers:
         version: 1.1.1
       '@types/aws-lambda':
         specifier: ^8.10.140
-        version: 8.10.140
+        version: 8.10.147
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
@@ -2930,8 +2930,8 @@ packages:
   '@turist/time@0.0.2':
     resolution: {integrity: sha512-qLOvfmlG2vCVw5fo/oz8WAZYlpe5a5OurgTj3diIxJCdjRHpapC+vQCz3er9LV79Vcat+DifBjeAhOAdmndtDQ==}
 
-  '@types/aws-lambda@8.10.140':
-    resolution: {integrity: sha512-4Dh3dk2TUcbdfHrX0Al90mNGJDvA9NBiTQPzbrjGi/dLxzKCGOYgT8YQ47jUKNFALkAJAadifq0pzyjIUlhVhg==}
+  '@types/aws-lambda@8.10.147':
+    resolution: {integrity: sha512-nD0Z9fNIZcxYX5Mai2CTmFD7wX7UldCkW2ezCF8D1T5hdiLsnTWDGRpfRYntU6VjTdLQjOvyszru7I1c1oCQew==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -16379,7 +16379,7 @@ snapshots:
 
   '@turist/time@0.0.2': {}
 
-  '@types/aws-lambda@8.10.140': {}
+  '@types/aws-lambda@8.10.147': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
