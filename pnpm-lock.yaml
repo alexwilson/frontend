@@ -311,8 +311,8 @@ importers:
         specifier: ^22.0.0
         version: 22.10.10
       aws-cdk:
-        specifier: 2.175.1
-        version: 2.175.1
+        specifier: 2.177.0
+        version: 2.177.0
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -3709,10 +3709,9 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.175.1:
-    resolution: {integrity: sha512-duvy0FtGAAYqJi/x0MjBfCp60ZlDYl0X5/GrADwMz4AfHQ8aTXCyaVsdJuCxz0ZMHSNaFRuCNkAlc2Xu43zQmQ==}
+  aws-cdk@2.177.0:
+    resolution: {integrity: sha512-TiBoyE5wMB5q4jX1bELwkklgbs5eLY1Phjfnb4Mof0K9tOSRJ9UEq6xEamF0esMS+TuYU7a/ESTpmKX3iYqA3w==}
     engines: {node: '>= 14.15.0'}
-    deprecated: This version has a bug affecting cdk destroy, see https://github.com/aws/aws-cdk/issues/32836
     hasBin: true
 
   aws-lambda@1.0.7:
@@ -17053,7 +17052,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 39.1.38
       constructs: 10.3.0
 
-  aws-cdk@2.175.1:
+  aws-cdk@2.177.0:
     optionalDependencies:
       fsevents: 2.3.2
 
