@@ -178,7 +178,7 @@ importers:
         version: 7.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(preact-render-to-string@5.2.6(preact@10.22.1))(preact@10.22.1)(webpack@5.97.1(esbuild@0.24.2))
       gatsby-plugin-react-helmet:
         specifier: ^6.13.1
-        version: 6.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(react-helmet@6.1.0(react@18.3.1))
+        version: 6.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(react-helmet@6.1.0(react@18.3.1))
       gatsby-plugin-sass:
         specifier: ^6.13.1
         version: 6.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(sass@1.83.4)(webpack@5.97.1(esbuild@0.24.2))
@@ -6104,8 +6104,8 @@ packages:
       preact: ^10.3.4
       preact-render-to-string: ^5.1.8
 
-  gatsby-plugin-react-helmet@6.13.1:
-    resolution: {integrity: sha512-Fwgf2UDOo1LQgw1vUmGmDMK5hXVrIXDR92URzu4DylQWgyfycfQ3D9FdU2JZ8jB6F3OI6Yx6YHC7zL3OAL7iOw==}
+  gatsby-plugin-react-helmet@6.14.0:
+    resolution: {integrity: sha512-OAAYx3BBYJAUi420cUl08X7Ql3t0/0X3rbDkOp6lWKUGD/NZgAK/RMDbPLI4xK6WG6CE2WWda5lVOS+32mSspw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
@@ -19339,7 +19339,7 @@ snapshots:
 
   gatsby-core-utils@4.14.0:
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.0
       ci-info: 2.0.0
       configstore: 5.0.1
       fastq: 1.18.0
@@ -19492,9 +19492,9 @@ snapshots:
     transitivePeerDependencies:
       - webpack
 
-  gatsby-plugin-react-helmet@6.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(react-helmet@6.1.0(react@18.3.1)):
+  gatsby-plugin-react-helmet@6.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(react-helmet@6.1.0(react@18.3.1)):
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.26.7
       gatsby: 5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2)))
       react-helmet: 6.1.0(react@18.3.1)
 
@@ -19571,7 +19571,7 @@ snapshots:
 
   gatsby-plugin-utils@4.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2))))(graphql@16.9.0):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.0
       fastq: 1.18.0
       fs-extra: 11.3.0
       gatsby: 5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.2)))
