@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 08 Feb 2025 04:34:36 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Soundproofing — Week 05, 2025]]></title><description><![CDATA[Happy new lunar year! This week in data: 🍣 Time taken to eat Ehomaki: 682.33 seconds ☁️ Average humidity: 27% Had a few delightful catch-ups with people outside my team this week, so I’m feeling like I’m starting to…]]></description><link>https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 02 Feb 2025 14:19:00 GMT</pubDate><content:encoded>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sun, 09 Feb 2025 16:46:22 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Emdashing — Week 6, 2025]]></title><description><![CDATA[Class update: Katakana are happening and they’re happening fast.  I’m staying (mostly) on top of vocab, at least. Learning katakana is making grocery shopping significantly easier, mind.  I finally found oatmeal, and in…]]></description><link>https://alexwilson.tech/content/b91a5f27-b922-428d-9cb2-58daa9d17911?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/b91a5f27-b922-428d-9cb2-58daa9d17911</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 09 Feb 2025 13:18:00 GMT</pubDate><content:encoded>
+                  &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Class update: Katakana are happening and they’re happening fast.  I’m staying (mostly) on top of vocab, at least.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Learning katakana &lt;em&gt;is&lt;/em&gt; making grocery shopping significantly easier, mind.  I finally found oatmeal, and in case the picture wasn’t enough, I know enough letters to now know that it says “OATMEAL”.  So that’s neat.  Lessons are already paying for themselves.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This week in data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🍣 Sushi consumed: 21 pieces&lt;/li&gt;
+&lt;li&gt;🥣 Oatmeal consumed: 270g&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;As part of my periodic LinkedIn doomscrolling (to reach &lt;a href=&quot;https://www.linkedin.com/games&quot;&gt;their daily puzzle games&lt;/a&gt; I must open the feed) I read an incredibly bad take that using emdashes is a tell-tale sign of the use of artificial intelligence in writing, because obviously nobody uses emdashes.  I remember being taught to use them in school, but, unfortunately, I do not remember &lt;em&gt;how&lt;/em&gt;.  Nonetheless I continue to use them.  I hope the inaccuracies are proof enough that, at least for now, my posts are still hand-cranked.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part of joining a new job is learning how the goal-setting and evaluation systems work, and I’ve just about crossed that threshold this week by setting my half-yearly objectives.  I’m quite happy with the approach, and the output.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
+                  &lt;a href=&quot;https://alexwilson.tech/content/b91a5f27-b922-428d-9cb2-58daa9d17911?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
+                </content:encoded></item><item><title><![CDATA[Weeknotes: Soundproofing — Week 5, 2025]]></title><description><![CDATA[Happy new lunar year! This week in data: 🍣 Time taken to eat Ehomaki: 682.33 seconds ☁️ Average humidity: 27% Had a few delightful catch-ups with people outside my team this week, so I’m feeling like I’m starting to…]]></description><link>https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 02 Feb 2025 14:19:00 GMT</pubDate><content:encoded>
                   &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Happy new lunar year!&lt;/p&gt;
@@ -151,15 +172,4 @@
 &lt;li&gt;
 &lt;p&gt;Part of onboarding, or, I guess, being in a large company is needing an evergreen way of introducing yourself - and so one of my tasks involved writing a page about myself for an internal documentation hub.  (It also includes a link to the about me page on this blog, which, is somewhat out of date - sorry!)  It’s kind-of great, and reading others I realised that there’s lots to strike up conversations about.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
                   &lt;a href=&quot;https://alexwilson.tech/content/8c466999-be7c-4fb0-9f32-6bd5ff22899a?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
-                </content:encoded></item><item><title><![CDATA[Weeknotes: Not Unpacking — Week 48, 2024]]></title><description><![CDATA[This was one of these weird weeks where I didn’t have much on - because it was my time off between two jobs. It was a bit like a staycation?  But in a new place?  Lots of life-admin. Where did I leave you?  Ah yes…]]></description><link>https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 01 Dec 2024 10:59:00 GMT</pubDate><content:encoded>
-                  &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This was one of these weird weeks where I didn’t have much on - because it was my time off between two jobs. It was a bit like a staycation?  But in a new place?  Lots of life-admin.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Where did I leave you?  Ah yes, watching Garfield on the plane.  Tray table went up, we landed, we taxied and we disembarked. Now for the moment I was dreading: I went to the immigration counter for residents and was presented with my very own residence card.  Phew - that was easy.  And then both it and my passport were taken from me and I was asked to take a seat and wait.  Uh-oh.  After what felt like an eternity (a few minutes) both were handed back and I was allowed through: I’d given the wrong post-code.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Collected my bags, and met an agent who handed me my SIM card, keys, and a few other bits I’d need, before escorting me to a taxi.  On the way I plug in my new SIM card on the way, message a few people to let them know I’ve landed.  Before I knew it, we’ve arrived and I’m standing alone on a brand new street with two suitcases, a backpack and some documents to keep me company.  And I now understand the confusion at border control: There&apos;s no building by the name I&apos;ve been given.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
-                  &lt;a href=&quot;https://alexwilson.tech/content/5db865f1-cefa-4378-a4c3-d315da8cb8cc?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
                 </content:encoded></item></channel></rss>
