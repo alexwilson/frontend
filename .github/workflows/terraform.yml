@@ -8,13 +8,14 @@ on:
 
 jobs:
   lint:
+    name: "Lint Terraform"
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./terraform
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -22,15 +23,32 @@ jobs:
       - name: Lint Terraform
         run: terraform fmt -check
 
-      # - name: Lint VCL
-      #   uses: ain/falco-github-action@v1
-      #   with:
-      #     subcommand: lint
-      #     options: "-vv -I ./modules/fastly/vcl/"
-      #     target: ./modules/fastly/vcl/main.vcl
+  lint-test-vcl:
+    name: "Lint & Test VCL files in Terraform modules"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform/modules/fastly/vcl
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Test
+        run: pwd && ls -Alish
+      - name: Lint VCL
+        uses: ain/falco-github-action@v1
+        with:
+          subcommand: lint
+          options: "-I ./terraform/modules/fastly/vcl"
+          target: ./terraform/modules/fastly/vcl/main.vcl
+      - name: Test VCL
+        uses: ain/falco-github-action@v1
+        with:
+          subcommand: test
+          options: "-I ./terraform/modules/fastly/vcl"
+          target: ./terraform/modules/fastly/vcl/main.vcl
 
   deploy-to-test:
-    needs: lint
+    needs: [lint, lint-test-vcl]
     concurrency:
       group: ${{ github.workflow }}-test
       cancel-in-progress: false
@@ -47,7 +65,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
@@ -85,7 +103,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
