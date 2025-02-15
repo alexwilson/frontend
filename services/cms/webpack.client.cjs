@@ -60,5 +60,11 @@ module.exports = {
           directory: path.join(__dirname, 'dist'),
         },
         port: 9000,
+    },
+    resolve: {
+        fallback: {
+          path: require.resolve("path-browserify"),
+          stream: require.resolve("stream-browserify")
+        }
     }
 }
