@@ -24,7 +24,7 @@ jobs:
         run: terraform fmt -check
 
   lint-test-vcl:
-    name: "Lint & Test VCL files in Terraform modules"
+    name: "Lint & Test VCL"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -32,20 +32,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Test
-        run: pwd && ls -Alish
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install Falco
+        run: brew install falco
       - name: Lint VCL
-        uses: ain/falco-github-action@v1
-        with:
-          subcommand: lint
-          options: "-I ./terraform/modules/fastly/vcl"
-          target: ./terraform/modules/fastly/vcl/main.vcl
+        run: falco lint -vv -I . main.vcl
       - name: Test VCL
-        uses: ain/falco-github-action@v1
-        with:
-          subcommand: test
-          options: "-I ./terraform/modules/fastly/vcl"
-          target: ./terraform/modules/fastly/vcl/main.vcl
+        run: falco test -vv -I . main.vcl
 
   deploy-to-test:
     needs: [lint, lint-test-vcl]
