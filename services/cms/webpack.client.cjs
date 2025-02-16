@@ -10,7 +10,11 @@ module.exports = {
     target: 'web',
     mode: isProduction ? 'production' : 'development',
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.yml']
+        extensions: ['.js', '.jsx', '.json', '.yml'],
+        fallback: {
+          path: require.resolve("path-browserify"),
+          stream: require.resolve("stream-browserify")
+        },
     },
     entry: {
         main: './client/main.js'
@@ -60,11 +64,5 @@ module.exports = {
           directory: path.join(__dirname, 'dist'),
         },
         port: 9000,
-    },
-    resolve: {
-        fallback: {
-          path: require.resolve("path-browserify"),
-          stream: require.resolve("stream-browserify")
-        }
     }
 }
