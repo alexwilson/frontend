@@ -181,7 +181,7 @@ importers:
         version: 6.13.2(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-preact:
         specifier: ^7.13.1
-        version: 7.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(preact-render-to-string@5.2.6(preact@10.25.4))(preact@10.25.4)(webpack@5.97.1(esbuild@0.24.0))
+        version: 7.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(preact-render-to-string@5.2.6(preact@10.26.0))(preact@10.26.0)(webpack@5.97.1(esbuild@0.24.0))
       gatsby-plugin-react-helmet:
         specifier: ^6.13.1
         version: 6.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(react-helmet@6.1.0(react@18.3.1))
@@ -226,7 +226,7 @@ importers:
         version: 3.0.0(encoding@0.1.13)
       preact:
         specifier: ^10.22.0
-        version: 10.25.4
+        version: 10.26.0
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -7814,11 +7814,11 @@ packages:
     resolution: {integrity: sha512-KvNT4XqAMzdcL6ka6Tl3i2lYeFDgXNCuIX+xNx6ZMVR1dFq+idXd9FLKNMOIx0t9mJ9/HudyX4oZWXZQ0UJHeg==}
     engines: {node: '>=14.16'}
 
+  launch-editor@2.10.0:
+    resolution: {integrity: sha512-D7dBRJo/qcGX9xlvt/6wUYzQxjh5G1RvZPgPv8vi4KRU99DVQL/oW7tnVOCCTm2HGeo3C5HvGE5Yrh6UBoZ0vA==}
+
   launch-editor@2.8.0:
     resolution: {integrity: sha512-vJranOAJrI/llyWGRQqiDM+adrw+k83fvmmx3+nV47g3+36xM15jE+zyZ6Ffel02+xSvuM0b2GDRosXZkbb6wA==}
-
-  launch-editor@2.9.1:
-    resolution: {integrity: sha512-Gcnl4Bd+hRO9P9icCP/RVVT2o8SFlPXofuCxvA2SaZuH45whSvf5p8x5oih5ftLiVhEI4sp5xDY+R+b3zJBh5w==}
 
   lerc@3.0.0:
     resolution: {integrity: sha512-Rm4J/WaHhRa93nCN2mwWDZFoRVF18G1f47C+kvQWyHGEZxFpTUi73p7lMVSAndyxGt6lJ2/CFbOcf9ra5p8aww==}
@@ -9488,8 +9488,8 @@ packages:
     peerDependencies:
       preact: '>=10'
 
-  preact@10.25.4:
-    resolution: {integrity: sha512-jLdZDb+Q+odkHJ+MpW/9U5cODzqnB+fy2EiHSZES7ldV5LK7yjlVzTp7R8Xy6W6y75kfK8iWYtFVH7lvjwrCMA==}
+  preact@10.26.0:
+    resolution: {integrity: sha512-6ugi/Mb7lyV5RA6KlnijFyDLMU253i7L0RRiObIzDoqj59KT9iTeNJbA/YGw6M7jP4vxaab0DOA8DgodTOA6EQ==}
 
   prebuild-install@7.1.2:
     resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
@@ -15990,18 +15990,18 @@ snapshots:
 
   '@prefresh/babel-plugin@0.4.4': {}
 
-  '@prefresh/core@1.5.2(preact@10.25.4)':
+  '@prefresh/core@1.5.2(preact@10.26.0)':
     dependencies:
-      preact: 10.25.4
+      preact: 10.26.0
 
   '@prefresh/utils@1.2.0': {}
 
-  '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.25.4)(webpack@5.97.1(esbuild@0.24.0))':
+  '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.26.0)(webpack@5.97.1(esbuild@0.24.0))':
     dependencies:
       '@prefresh/babel-plugin': 0.4.4
-      '@prefresh/core': 1.5.2(preact@10.25.4)
+      '@prefresh/core': 1.5.2(preact@10.26.0)
       '@prefresh/utils': 1.2.0
-      preact: 10.25.4
+      preact: 10.26.0
       webpack: 5.97.1(esbuild@0.24.0)
 
   '@reach/router@1.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
@@ -20760,15 +20760,15 @@ snapshots:
       - graphql
       - supports-color
 
-  gatsby-plugin-preact@7.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(preact-render-to-string@5.2.6(preact@10.25.4))(preact@10.25.4)(webpack@5.97.1(esbuild@0.24.0)):
+  gatsby-plugin-preact@7.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0))))(preact-render-to-string@5.2.6(preact@10.26.0))(preact@10.26.0)(webpack@5.97.1(esbuild@0.24.0)):
     dependencies:
       '@babel/runtime': 7.24.7
       '@gatsbyjs/webpack-hot-middleware': 2.25.3
       '@prefresh/babel-plugin': 0.4.4
-      '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.25.4)(webpack@5.97.1(esbuild@0.24.0))
+      '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.26.0)(webpack@5.97.1(esbuild@0.24.0))
       gatsby: 5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.24.0)))
-      preact: 10.25.4
-      preact-render-to-string: 5.2.6(preact@10.25.4)
+      preact: 10.26.0
+      preact-render-to-string: 5.2.6(preact@10.26.0)
     transitivePeerDependencies:
       - webpack
 
@@ -23160,16 +23160,16 @@ snapshots:
     dependencies:
       package-json: 8.1.1
 
-  launch-editor@2.8.0:
-    dependencies:
-      picocolors: 1.1.1
-      shell-quote: 1.8.1
-
-  launch-editor@2.9.1:
+  launch-editor@2.10.0:
     dependencies:
       picocolors: 1.1.1
       shell-quote: 1.8.2
     optional: true
+
+  launch-editor@2.8.0:
+    dependencies:
+      picocolors: 1.1.1
+      shell-quote: 1.8.1
 
   lerc@3.0.0: {}
 
@@ -25142,12 +25142,12 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  preact-render-to-string@5.2.6(preact@10.25.4):
+  preact-render-to-string@5.2.6(preact@10.26.0):
     dependencies:
-      preact: 10.25.4
+      preact: 10.26.0
       pretty-format: 3.8.0
 
-  preact@10.25.4: {}
+  preact@10.26.0: {}
 
   prebuild-install@7.1.2:
     dependencies:
@@ -27962,7 +27962,7 @@ snapshots:
       graceful-fs: 4.2.11
       http-proxy-middleware: 2.0.7(@types/express@4.17.21)
       ipaddr.js: 2.2.0
-      launch-editor: 2.9.1
+      launch-editor: 2.10.0
       open: 10.1.0
       p-retry: 6.2.1
       schema-utils: 4.3.0
