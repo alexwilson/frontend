@@ -121,7 +121,7 @@ importers:
         version: 4.0.2(webpack@5.92.1)
       sass-loader:
         specifier: ^16.0.0
-        version: 16.0.0(sass@1.82.0)(webpack@5.92.1)
+        version: 16.0.5(sass@1.82.0)(webpack@5.92.1)
       stream-browserify:
         specifier: ^3.0.0
         version: 3.0.0
@@ -7814,11 +7814,11 @@ packages:
     resolution: {integrity: sha512-KvNT4XqAMzdcL6ka6Tl3i2lYeFDgXNCuIX+xNx6ZMVR1dFq+idXd9FLKNMOIx0t9mJ9/HudyX4oZWXZQ0UJHeg==}
     engines: {node: '>=14.16'}
 
+  launch-editor@2.10.0:
+    resolution: {integrity: sha512-D7dBRJo/qcGX9xlvt/6wUYzQxjh5G1RvZPgPv8vi4KRU99DVQL/oW7tnVOCCTm2HGeo3C5HvGE5Yrh6UBoZ0vA==}
+
   launch-editor@2.8.0:
     resolution: {integrity: sha512-vJranOAJrI/llyWGRQqiDM+adrw+k83fvmmx3+nV47g3+36xM15jE+zyZ6Ffel02+xSvuM0b2GDRosXZkbb6wA==}
-
-  launch-editor@2.9.1:
-    resolution: {integrity: sha512-Gcnl4Bd+hRO9P9icCP/RVVT2o8SFlPXofuCxvA2SaZuH45whSvf5p8x5oih5ftLiVhEI4sp5xDY+R+b3zJBh5w==}
 
   lerc@3.0.0:
     resolution: {integrity: sha512-Rm4J/WaHhRa93nCN2mwWDZFoRVF18G1f47C+kvQWyHGEZxFpTUi73p7lMVSAndyxGt6lJ2/CFbOcf9ra5p8aww==}
@@ -10348,8 +10348,8 @@ packages:
       sass:
         optional: true
 
-  sass-loader@16.0.0:
-    resolution: {integrity: sha512-n13Z+3rU9A177dk4888czcVFiC8CL9dii4qpXWUg3YIIgZEvi9TCFKjOQcbK0kJM7DJu9VucrZFddvNfYCPwtw==}
+  sass-loader@16.0.5:
+    resolution: {integrity: sha512-oL+CMBXrj6BZ/zOq4os+UECPL+bWqt6OAC6DWS8Ln8GZRcMDjlJ4JC3FBDuHJdYaFWIdKNIBYmtZtK2MaMkNIw==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
@@ -23160,16 +23160,16 @@ snapshots:
     dependencies:
       package-json: 8.1.1
 
-  launch-editor@2.8.0:
-    dependencies:
-      picocolors: 1.1.1
-      shell-quote: 1.8.1
-
-  launch-editor@2.9.1:
+  launch-editor@2.10.0:
     dependencies:
       picocolors: 1.1.1
       shell-quote: 1.8.2
     optional: true
+
+  launch-editor@2.8.0:
+    dependencies:
+      picocolors: 1.1.1
+      shell-quote: 1.8.1
 
   lerc@3.0.0: {}
 
@@ -26209,7 +26209,7 @@ snapshots:
     optionalDependencies:
       sass: 1.77.6
 
-  sass-loader@16.0.0(sass@1.82.0)(webpack@5.92.1):
+  sass-loader@16.0.5(sass@1.82.0)(webpack@5.92.1):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
@@ -27962,7 +27962,7 @@ snapshots:
       graceful-fs: 4.2.11
       http-proxy-middleware: 2.0.7(@types/express@4.17.21)
       ipaddr.js: 2.2.0
-      launch-editor: 2.9.1
+      launch-editor: 2.10.0
       open: 10.1.0
       p-retry: 6.2.1
       schema-utils: 4.3.0
