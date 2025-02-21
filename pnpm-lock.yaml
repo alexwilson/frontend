@@ -220,7 +220,7 @@ importers:
         version: 6.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))
       gatsby-transformer-sharp:
         specifier: ^5.13.1
-        version: 5.13.1(gatsby-plugin-sharp@5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0))(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
+        version: 5.14.0(gatsby-plugin-sharp@5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0))(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
       isomorphic-fetch:
         specifier: ^3.0.0
         version: 3.0.0(encoding@0.1.13)
@@ -6866,8 +6866,8 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-transformer-sharp@5.13.1:
-    resolution: {integrity: sha512-H5gBpnKOn86ns65fv0cP8yIpnT//+dkpnSOZSrtrtYEgmwEFqblUHSSyolu2SURgE+Af55W7IKTYk2w2d9+PCQ==}
+  gatsby-transformer-sharp@5.14.0:
+    resolution: {integrity: sha512-U4Z3t6JBKgM1QSpoicMsUzD5+BJGdO1bXW4b09M1Ze46B86gIBZFtSoH57PI3pARLjx0TmA9aoADbAo1B0jWPw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
@@ -21625,17 +21625,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gatsby-transformer-sharp@5.13.1(gatsby-plugin-sharp@5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0))(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0):
+  gatsby-transformer-sharp@5.14.0(gatsby-plugin-sharp@5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0))(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0):
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.26.9
       bluebird: 3.7.2
       common-tags: 1.8.2
-      fs-extra: 11.2.0
+      fs-extra: 11.3.0
       gatsby: 5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0)))
       gatsby-plugin-sharp: 5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
-      gatsby-plugin-utils: 4.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
+      gatsby-plugin-utils: 4.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.2)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
       probe-image-size: 7.2.3
-      semver: 7.6.2
+      semver: 7.7.1
       sharp: 0.32.6
     transitivePeerDependencies:
       - bare-buffer
