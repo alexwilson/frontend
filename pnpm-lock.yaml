@@ -172,7 +172,7 @@ importers:
         version: 5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-google-analytics:
         specifier: ^5.13.1
-        version: 5.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-manifest:
         specifier: ^5.13.1
         version: 5.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(graphql@16.9.0)
@@ -6726,8 +6726,8 @@ packages:
       react: ^18.0.0 || ^0.0.0
       react-dom: ^18.0.0 || ^0.0.0
 
-  gatsby-plugin-google-analytics@5.13.1:
-    resolution: {integrity: sha512-6TzvUPW7CBpfpSIqpcvaRwRKTYgM3CKqSnfyRIY16vlAKYkAtZLXm3PkIbg0+mM+WzY6GRnAoeXqRkXJv0FK9A==}
+  gatsby-plugin-google-analytics@5.14.0:
+    resolution: {integrity: sha512-mzUXk+0nmRKYJilKtZFaajO05MYM1aDd3LkJYDH7kDhgiiAjHo9n404n3I2D7/3G7ikxmlY31zg7y6EsIzZX7w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
@@ -21375,9 +21375,9 @@ snapshots:
       - bare-buffer
       - graphql
 
-  gatsby-plugin-google-analytics@5.13.1(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  gatsby-plugin-google-analytics@5.14.0(gatsby@5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.26.9
       gatsby: 5.13.6(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.7.3)(webpack-dev-server@5.2.0(webpack@5.97.1(esbuild@0.25.0)))
       minimatch: 3.1.2
       react: 18.3.1
