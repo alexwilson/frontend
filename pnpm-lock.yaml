@@ -130,7 +130,7 @@ importers:
         version: 4.0.0(webpack@5.98.0)
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.12(esbuild@0.25.0)(webpack@5.98.0)
+        version: 5.3.13(esbuild@0.25.0)(webpack@5.98.0)
       webpack:
         specifier: ^5.91.0
         version: 5.98.0(esbuild@0.25.0)(webpack-cli@6.0.1)
@@ -3788,6 +3788,11 @@ packages:
 
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.1:
+    resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -11523,8 +11528,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser-webpack-plugin@5.3.12:
-    resolution: {integrity: sha512-jDLYqo7oF8tJIttjXO6jBY5Hk8p3A8W4ttih7cCEq64fQFWmgJ4VqAQjKr7WwIDlmXKEc6QeoRb5ecjZ+2afcg==}
+  terser-webpack-plugin@5.3.13:
+    resolution: {integrity: sha512-JG3pBixF6kx2o0Yfz2K6pqh72DpwTI08nooHd06tcj5WyIt5SsSiUYqRT+kemrGUNSuSzVhwfZ28aO8gogajNQ==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       '@swc/core': '*'
@@ -17127,6 +17132,8 @@ snapshots:
 
   acorn@8.14.0: {}
 
+  acorn@8.14.1: {}
+
   add-stream@1.0.0: {}
 
   address@1.2.2: {}
@@ -21585,7 +21592,7 @@ snapshots:
       strip-ansi: 6.0.1
       style-loader: 2.0.0(webpack@5.97.1(esbuild@0.25.0))
       style-to-object: 0.4.4
-      terser-webpack-plugin: 5.3.10(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0))
+      terser-webpack-plugin: 5.3.13(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0))
       tmp: 0.2.3
       true-case-path: 2.2.1
       type-of: 2.0.1
@@ -27572,7 +27579,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.0
 
-  terser-webpack-plugin@5.3.12(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0)):
+  terser-webpack-plugin@5.3.13(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
@@ -27583,7 +27590,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.0
 
-  terser-webpack-plugin@5.3.12(esbuild@0.25.0)(webpack@5.98.0):
+  terser-webpack-plugin@5.3.13(esbuild@0.25.0)(webpack@5.98.0):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
@@ -27604,7 +27611,7 @@ snapshots:
   terser@5.39.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.14.0
+      acorn: 8.14.1
       commander: 2.20.3
       source-map-support: 0.5.21
 
@@ -28461,7 +28468,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.12(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0))
+      terser-webpack-plugin: 5.3.13(esbuild@0.25.0)(webpack@5.97.1(esbuild@0.25.0))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -28491,7 +28498,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.12(esbuild@0.25.0)(webpack@5.98.0)
+      terser-webpack-plugin: 5.3.13(esbuild@0.25.0)(webpack@5.98.0)
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:
