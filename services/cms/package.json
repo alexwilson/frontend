@@ -35,7 +35,7 @@
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.0",
     "webpack-dev-server": "^5.0.4",
-    "wrangler": "^3.57.1"
+    "wrangler": "^4.0.0"
   },
   "dependencies": {
     "@alexwilson/legacy-components": "^1.0.0",
