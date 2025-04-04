@@ -12,6 +12,8 @@ updates:
       # React 19 includes some breaking changes affecting bundling.
       - dependency-name: "react"
         versions: ["19.x"]
+      - dependency-name: "react-dom"
+        versions: ["19.x"]
 
       # Recent Decap updates have not been stable.
       - dependency-name: "decap-cms"
