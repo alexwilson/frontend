@@ -7,7 +7,7 @@
     "build:worker": "webpack --config webpack.worker.cjs",
     "build": "npm-run-all build:*",
     "deploy:client": "aws s3 sync --acl=public-read --delete ./dist/ s3://alex-static-assets/cms/",
-    "deploy:worker": "wrangler publish",
+    "deploy:worker": "wrangler deploy",
     "deploy": "npm-run-all build:* deploy:*",
     "test": "npm-run-all build",
     "start": "webpack serve --config webpack.client.cjs"

@@ -4,7 +4,7 @@
   "description": "CMS authentication worker for Netlify CMS",
   "main": "src/index.js",
   "scripts": {
-    "deploy": "wrangler publish"
+    "deploy": "wrangler deploy"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
   "type": "module",

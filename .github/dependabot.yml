@@ -20,10 +20,6 @@ updates:
         versions: ["^3.5"]
       - dependency-name: "decap-cms-app"
         versions: ["^3.5"]
-
-      # Wrangler has deprecated the publish command.
-      - dependency-name: "wrangler"
-        versions: ["^4.0"]
     reviewers:
       - alexwilson
     versioning-strategy: increase-if-necessary
