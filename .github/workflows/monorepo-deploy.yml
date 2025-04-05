@@ -76,7 +76,13 @@ jobs:
       NODE_ENV: ${{ secrets.NODE_ENV }}
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
+    if: always()
     steps:
+      - name: Fail explicitly if Prepare failed
+        if: needs.prepare.result != 'success'
+        run: |
+          echo "Prepare failed."
+          exit 1
       - name: Checkout
         uses: actions/checkout@main
         with:
@@ -101,7 +107,13 @@ jobs:
     name: Tests Passed
     needs: [test]
     runs-on: ubuntu-latest
+    if: always()
     steps:
+      - name: Explicit fail if Test job failed
+        if: needs.test.result != 'success'
+        run: |
+          echo "Tests failed."
+          exit 1
       - run: echo "👍"
 
   deploy:
