@@ -64,7 +64,13 @@ jobs:
     name: Test
     needs: build
     runs-on: ubuntu-latest
+    if: always()
     steps:
+      - name: Check if Build succeeded
+        if: needs.build.result != 'success'
+        run: |
+          echo "Build failed."
+          exit 1
       - name: Checkout
         uses: actions/checkout@main
         with:
@@ -96,7 +102,13 @@ jobs:
     name: "Validate feed"
     needs: build
     runs-on: ubuntu-22.04
+    if: always()
     steps:
+      - name: Check if Build succeeded
+        if: needs.build.result != 'success'
+        run: |
+          echo "Build failed."
+          exit 1
       - uses: actions/checkout@main
         with:
           repository: w3c/feedvalidator
