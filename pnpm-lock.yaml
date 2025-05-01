@@ -317,8 +317,8 @@ importers:
         specifier: ^22.0.0
         version: 22.15.3
       aws-cdk:
-        specifier: 2.1012.0
-        version: 2.1012.0
+        specifier: 2.1013.0
+        version: 2.1013.0
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -4291,8 +4291,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1012.0:
-    resolution: {integrity: sha512-C6jSWkqP0hkY2Cs300VJHjspmTXDTMfB813kwZvRbd/OsKBfTBJBbYU16VoLAp1LVEOnQMf8otSlaSgzVF0X9A==}
+  aws-cdk@2.1013.0:
+    resolution: {integrity: sha512-cbq4cOoEIZueMWenGgfI4RujS+AQ9GaMCTlW/3CnvEIhMD8j/tgZx7PTtgMuvwYrRoEeb/wTxgLPgUd5FhsoHA==}
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
@@ -18395,7 +18395,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 41.2.0
       constructs: 10.4.2
 
-  aws-cdk@2.1012.0:
+  aws-cdk@2.1013.0:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -27263,7 +27263,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.7
       address: 1.2.2
-      browserslist: 4.24.4
+      browserslist: 4.24.2
       chalk: 4.1.2
       cross-spawn: 7.0.3
       detect-port-alt: 1.1.6
