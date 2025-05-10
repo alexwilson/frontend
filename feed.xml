@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 10 May 2025 04:37:08 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Eggs — Week 16, 2025]]></title><description><![CDATA[This was a cyclical week. Went to Microsoft HQ for hands-on training with Azure AI services. There I built a tool for getting answers from a large collection of technical documentation.  It comprised a processing…]]></description><link>https://alexwilson.tech/content/67faf168-26d5-4f38-8aa1-df86622e0f06?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/67faf168-26d5-4f38-8aa1-df86622e0f06</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Mon, 21 Apr 2025 12:18:00 GMT</pubDate><content:encoded>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 10 May 2025 12:16:04 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Candle — Week 17, 2025]]></title><description><![CDATA[When leaving the UK, I got a lot of advice. One bit stood out above the rest. “Find somewhere to live which reminds you that you’re in Japan”.  This week I moved into that place.  It’s within spitting distance of a…]]></description><link>https://alexwilson.tech/content/5432df00-8120-44ea-8b7d-b4de3ff5174c?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5432df00-8120-44ea-8b7d-b4de3ff5174c</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 27 Apr 2025 11:58:00 GMT</pubDate><content:encoded>
+                  &lt;ul&gt;
+&lt;li&gt;When leaving the UK, I got a &lt;em&gt;lot&lt;/em&gt; of advice. One bit stood out above the rest. “Find somewhere to live which reminds you that you’re in Japan”.  This week I moved into that place.  It’s within spitting distance of a centroid and from my window I can &lt;em&gt;just about&lt;/em&gt; see the &lt;a href=&quot;https://en.wikipedia.org/wiki/NTT_Docomo_Yoyogi_Building&quot;&gt;NTT Docomo Yoyogi building&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;There was some work stuff too this week, but I’ll spare you.&lt;/li&gt;
+&lt;li&gt;The actual move was very, very easy.  Faster than last time.    The hard part was actually cleaning my last apartment (by my count, making it the third time this year!).&lt;/li&gt;
+&lt;li&gt;I&apos;ll miss living in Azabu though.  It made me nostalgic for my flat in Sofia.&lt;/li&gt;
+&lt;li&gt;Only trouble with moving in for the first time, during peak moving season, is that I own no furniture.  Zip.  Nothing.  Nada.&lt;/li&gt;
+&lt;li&gt;So anyway, I’m temporarily sleeping on AB’s old futon.&lt;/li&gt;
+&lt;li&gt;Bought some essentials: Blinds, towels, kettle and a hair dryer which looks &amp;amp; sounds like a Dyson Supersonic but definitely isn’t.&lt;/li&gt;
+&lt;li&gt;Some reprieve at a Sushiro dinner (which was considerably more reasonably priced…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
+                  &lt;a href=&quot;https://alexwilson.tech/content/5432df00-8120-44ea-8b7d-b4de3ff5174c?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
+                </content:encoded></item><item><title><![CDATA[Weeknotes: Eggs — Week 16, 2025]]></title><description><![CDATA[This was a cyclical week. Went to Microsoft HQ for hands-on training with Azure AI services. There I built a tool for getting answers from a large collection of technical documentation.  It comprised a processing…]]></description><link>https://alexwilson.tech/content/67faf168-26d5-4f38-8aa1-df86622e0f06?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/67faf168-26d5-4f38-8aa1-df86622e0f06</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Mon, 21 Apr 2025 12:18:00 GMT</pubDate><content:encoded>
                   &lt;ul&gt;
 &lt;li&gt;This was a cyclical week.&lt;/li&gt;
 &lt;li&gt;Went to Microsoft HQ for hands-on training with Azure AI services. There I built a tool for getting answers from a large collection of technical documentation.  It comprised a processing pipeline and an agent, and because I have trust issues, I extended it to issue citations.&lt;/li&gt;
@@ -162,25 +173,4 @@
 &lt;li&gt;
 &lt;p&gt;Part of joining a new job is learning how the goal-setting and evaluation systems work, and I’ve just about crossed that threshold this week by setting my half-yearly objectives.  I’m quite happy with the approach, and the output.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
                   &lt;a href=&quot;https://alexwilson.tech/content/b91a5f27-b922-428d-9cb2-58daa9d17911?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
-                </content:encoded></item><item><title><![CDATA[Weeknotes: Soundproofing — Week 5, 2025]]></title><description><![CDATA[Happy new lunar year! This week in data: 🍣 Time taken to eat Ehomaki: 682.33 seconds ☁️ Average humidity: 27% Had a few delightful catch-ups with people outside my team this week, so I’m feeling like I’m starting to…]]></description><link>https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 02 Feb 2025 14:19:00 GMT</pubDate><content:encoded>
-                  &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Happy new lunar year!&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This week in data:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;🍣 Time taken to eat Ehomaki: 682.33 seconds&lt;/li&gt;
-&lt;li&gt;☁️ Average humidity: 27%&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Had a few delightful catch-ups with people outside my team this week, so I’m feeling like I’m starting to settle in better — but there’s still a lot of things for me to learn, as well as some cultural differences to navigate.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;I don’t normally do this sort of thing, but I’ve been using Endel (a soundscape app, e.g. for concentration, for activity, for sleep, etc.) - and I’m finding it incredibly good.  I&apos;ve used similar apps in the past - this generates music (not AI, dw), instead of playing back pre-recorded tracks, so it feels relatively fresh and non-repetitive.  My default soundscape has become &lt;a href=&quot;https://www.youtube.com/watch?v=FHRi_4rBcEM&quot;&gt;Richie Hawtin’s collaboration&lt;/a&gt; which I genuinely love.  This isn’t a referral-driven recommendation, but I do have &lt;a href=&quot;https://code.endel.io/?code=16hsnko&quot;&gt;a referral code/voucher which nets you a 14-day trial&lt;/a&gt; (regularly 7-days).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The weather is currently incredibly cold and also incredibly dry which is not doing good things to my skin.  To combat it, I went out and bought a humidifier and paired it with my IR hub - so now I have the ability to remotely heat and humidify my flat.  It seems to be helping?&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
-                  &lt;a href=&quot;https://alexwilson.tech/content/5f0ded1d-4f02-4ddd-8899-c37cd199346e?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
                 </content:encoded></item></channel></rss>
