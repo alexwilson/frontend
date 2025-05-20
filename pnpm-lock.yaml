@@ -286,8 +286,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.196.0
-        version: 2.196.0(constructs@10.4.2)
+        specifier: 2.196.1
+        version: 2.196.1(constructs@10.4.2)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -4257,8 +4257,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.196.0:
-    resolution: {integrity: sha512-CAy0ahDpUHuYArP0vhDrOZ9OUSyRAznCcKcbETJOPr438QZUCyv+tRVgk8VP5lFW1JuV9sNzIvxdZcsNVSCF7g==}
+  aws-cdk-lib@2.196.1:
+    resolution: {integrity: sha512-OsJ0luDUnagbJpd5Uweh+/6L7OLZQZB7EV9pD9i23uJF6uoe4M02T+kg67huxZdVJVJTZK6De4QxazlB2/mO6A==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -12537,6 +12537,7 @@ packages:
 
   uploadcare-widget@3.21.7:
     resolution: {integrity: sha512-+0twc+yp4zidcSS4K03+ugA3ETzSiC7L/rlAETwgoWV7fnLCo10kqM+EWj4OcBvuaQkssV03lRbJnqdS2ybZAA==}
+    deprecated: 'Support for jQuery File Uploader ends September 1, 2025. Migrate to our modern File Uploader: npm i @uploadcare/file-uploader'
 
   upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
@@ -13224,7 +13225,7 @@ snapshots:
       '@babel/core': 7.26.10
       '@babel/generator': 7.26.10
       '@babel/parser': 7.24.7
-      '@babel/runtime': 7.27.0
+      '@babel/runtime': 7.24.7
       '@babel/traverse': 7.24.7
       '@babel/types': 7.24.7
       babel-preset-fbjs: 3.4.0(@babel/core@7.26.10)
@@ -18631,7 +18632,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.196.0(constructs@10.4.2):
+  aws-cdk-lib@2.196.1(constructs@10.4.2):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.236
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
