@@ -24,7 +24,7 @@ const ArticleTemplate = ({ data, location }) => {
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
 
   const datePublished = new Date(post.date)
-  const dateModified = new Date(post.flast_modified_at || datePublished)
+  const dateModified = new Date(post.last_modified_at || datePublished)
 
   return (
     <Layout location={location}>
