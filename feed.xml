@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sat, 07 Jun 2025 04:37:35 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Stinky — Week 22, 2025]]></title><description><![CDATA[If the past few weeks had a tag-cloud, the word “lunch” would be somewhere near the top. Made a small breakthrough with a complicated but annoying framework problem, which banked me some serious JFDI energy. Encountered…]]></description><link>https://alexwilson.tech/content/6c125f69-a2a0-49b7-a3ff-4bea263e9b9d?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/6c125f69-a2a0-49b7-a3ff-4bea263e9b9d</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 01 Jun 2025 14:23:00 GMT</pubDate><content:encoded>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alex Wilson's writing]]></title><description><![CDATA[Alex on engineering, products & everything in-between]]></description><link>https://alexwilson.tech/</link><generator>alexwilson.tech</generator><lastBuildDate>Sun, 08 Jun 2025 17:20:25 GMT</lastBuildDate><ttl>360</ttl><atom:link rel="self" href="https://alexwilson.tech/feed.xml" type="application/rss+xml"/><item><title><![CDATA[Weeknotes: Anthropocene — Week 23, 2025]]></title><description><![CDATA[A few puzzle-pieces slotted into place this week.  People have noticed my use of the word なるほど.  Closed a meeting at work with 頑張っていきましょう！ to some smiles. This week in data: Voxpops dodged: 3 reporters Creepy-crawlies…]]></description><link>https://alexwilson.tech/content/72497298-d029-4249-8ab0-a43712fb02e7?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/72497298-d029-4249-8ab0-a43712fb02e7</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 08 Jun 2025 14:17:00 GMT</pubDate><content:encoded>
+                  &lt;ul&gt;
+&lt;li&gt;A few puzzle-pieces slotted into place this week.  People have noticed my use of the word なるほど.  Closed a meeting at work with &lt;em&gt;頑張っていきましょう！&lt;/em&gt; to some smiles.&lt;/li&gt;
+&lt;li&gt;This week in data:
+&lt;ul&gt;
+&lt;li&gt;Voxpops dodged: 3 reporters&lt;/li&gt;
+&lt;li&gt;Creepy-crawlies spotted: 7 large bugs&lt;/li&gt;
+&lt;li&gt;Regrets: 1 big mistake&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;We’re still working on the “How does Alex get home internet?” saga. This isn’t so high priority, because, you know, unlimited 5G. But it’s become clear this is more of a saga than an check-list item.&lt;/li&gt;
+&lt;li&gt;MT bullied me into sending a message.  A good friend.&lt;/li&gt;
+&lt;li&gt;After putting public speaking off for ages (other than a &lt;a href=&quot;https://alexwilson.tech/content/06fd4e46-dd48-4650-90aa-ec4ecde32479&quot;&gt;brief self-introduction&lt;/a&gt;, and right before that, &lt;a href=&quot;https://alexwilson.tech/content/198b3ab3-2b8d-4da8-8881-1262d3eb2366&quot;&gt;my leaving speech&lt;/a&gt;), I gave a progress update at an all-hands.  It went well, and it felt easy even, and I left it feeling unfazed.  Whatever has made me overthink public speaking recently, I seem to be getting over it?&lt;/li&gt;
+&lt;li&gt;Workload has climbed, &lt;em&gt;ever-so-slightly&lt;/em&gt;, this week.&lt;/li&gt;
+&lt;li&gt;Can I talk about how &lt;em&gt;good&lt;/em&gt; &lt;a href=&quot;https://www.mori.art.museum/en/exhibitions/machine_love/&quot;&gt;Machine Love&lt;/a&gt; was?  It was an exhibition at the Mori Art Museum on perhaps my favourite topic: In a cybernetic wold, what does it mean to be human?  I loved it all.  Three particular standouts were &lt;a href=&quot;http://ayoungkim.com/wp/3col/delivery-dancers-sphere-2022&quot;&gt;Delivery Dancer’s Sphere&lt;/a&gt; by Kim Ayoung (unfortunately not available online), &lt;a href=&quot;http://www.calculatingempires.com/&quot;&gt;Calculating Empires&lt;/a&gt; by Kate Crawford &amp;amp; Vladan Joler, and &lt;a href=&quot;http://luyang.asia/2023/05/20/doku-the-self/&quot;&gt;DOKU The Self&lt;/a&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
+                  &lt;a href=&quot;https://alexwilson.tech/content/72497298-d029-4249-8ab0-a43712fb02e7?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
+                </content:encoded></item><item><title><![CDATA[Weeknotes: Stinky — Week 22, 2025]]></title><description><![CDATA[If the past few weeks had a tag-cloud, the word “lunch” would be somewhere near the top. Made a small breakthrough with a complicated but annoying framework problem, which banked me some serious JFDI energy. Encountered…]]></description><link>https://alexwilson.tech/content/6c125f69-a2a0-49b7-a3ff-4bea263e9b9d?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/6c125f69-a2a0-49b7-a3ff-4bea263e9b9d</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 01 Jun 2025 14:23:00 GMT</pubDate><content:encoded>
                   &lt;ul&gt;
 &lt;li&gt;If the past few weeks had a tag-cloud, the word “lunch” would be somewhere near the top.&lt;/li&gt;
 &lt;li&gt;Made a small breakthrough with a complicated but annoying framework problem, which banked me some serious JFDI energy.&lt;/li&gt;
@@ -91,32 +107,4 @@
 &lt;li&gt;
 &lt;p&gt;On Thursday I packed up, picked up some laundry, had some emergency banh mi, and swatted away the biggest cockroach you ever did see, before collapsing into an airplane seat.  Onboard I watched &lt;a href=&quot;https://www.imdb.com/title/tt8368368&quot;&gt;The Apprentice (2024)&lt;/a&gt;, which I really rate, it’s a very good movie.  Solid 3/5.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
                   &lt;a href=&quot;https://alexwilson.tech/content/b2f53898-7914-40dc-b0a9-40f75e49b09a?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
-                </content:encoded></item><item><title><![CDATA[Weeknotes: Thanh — Week 11, 2025]]></title><description><![CDATA[This week was spent in Ho Chi Minh City 🇻🇳 for both a business trip, and my first trip outside of Tokyo since the big move. This week in data: 🌞 Average temperature: 31°C 🌫️ Average humidity 67.36% 🤢 Cockroaches…]]></description><link>https://alexwilson.tech/content/c7240558-389b-4c05-ae04-09839bf081ca?utm_source=feed</link><guid isPermaLink="false">https://alexwilson.tech/content/c7240558-389b-4c05-ae04-09839bf081ca</guid><dc:creator><![CDATA[alex]]></dc:creator><pubDate>Sun, 16 Mar 2025 11:15:00 GMT</pubDate><content:encoded>
-                  &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This week was spent in Ho Chi Minh City 🇻🇳 for both a business trip, and my first trip outside of Tokyo since the big move.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This week in data:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;🌞 Average temperature: 31°C&lt;/li&gt;
-&lt;li&gt;🌫️ Average humidity 67.36%&lt;/li&gt;
-&lt;li&gt;🤢 Cockroaches spotted: 34&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Monday begins mega early in Narita and possibly the slowest airport check in I’ve ever done.  Nearly an hour.  Thankfully the rest of the journey to the gate was speedy, but, reader, I’d be lying if I didn’t say that this felt mega dicey.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Immediately on landing I’m struck by the heat.  It’s hot.  It’s so hot that every minute feels like five.  By the time we get to a taxi my brain has nearly adjusted.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Our first meal is Phở at a local place, and it ends up being one of the tastiest meals of the week as well as due to my choice of toppings probably the least healthy.  We get oodles of free vegetables which - coming from Tokyo - is amazing.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Bikes.  Bikes everywhere.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;With many of us colocated in the same space for the first time in a while, we ran through lots of workshops ranging from talking about our backgrounds to experiencing what it’s like for users to use one of our products.  Great energy all around and I enjoyed the time with people I don’t normally work with.&lt;/p&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;
-                  &lt;a href=&quot;https://alexwilson.tech/content/c7240558-389b-4c05-ae04-09839bf081ca?utm_source=feed&quot;&gt;Read the full post here...&lt;/a&gt;
                 </content:encoded></item></channel></rss>
