@@ -13,7 +13,7 @@
   "devDependencies": {
     "@serverless/event-mocks": "^1.1.1",
     "@types/aws-lambda": "^8.10.140",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.0",
     "aws-cdk": "2.1018.1",
     "aws-sdk-mock": "^6.0.4",
