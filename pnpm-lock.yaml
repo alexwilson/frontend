@@ -309,7 +309,7 @@ importers:
         version: 1.1.1
       '@types/aws-lambda':
         specifier: ^8.10.140
-        version: 8.10.149
+        version: 8.10.150
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
@@ -3147,8 +3147,8 @@ packages:
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
 
-  '@types/aws-lambda@8.10.149':
-    resolution: {integrity: sha512-NXSZIhfJjnXqJgtS7IwutqIF/SOy1Wz5Px4gUY1RWITp3AYTyuJS4xaXr/bIJY1v15XMzrJ5soGnPM+7uigZjA==}
+  '@types/aws-lambda@8.10.150':
+    resolution: {integrity: sha512-AX+AbjH/rH5ezX1fbK8onC/a+HyQHo7QGmvoxAE42n22OsciAxvZoZNEr22tbXs8WfP1nIsBjKDpgPm3HjOZbA==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -17241,7 +17241,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@types/aws-lambda@8.10.149': {}
+  '@types/aws-lambda@8.10.150': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
