@@ -317,8 +317,8 @@ importers:
         specifier: ^24.0.0
         version: 24.0.3
       aws-cdk:
-        specifier: 2.1018.1
-        version: 2.1018.1
+        specifier: 2.1019.1
+        version: 2.1019.1
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -4117,8 +4117,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1018.1:
-    resolution: {integrity: sha512-kFPRox5kSm+ktJ451o0ng9rD+60p5Kt1CZIWw8kXnvqbsxN2xv6qbmyWSXw7sGVXVwqrRKVj+71/JeDr+LMAZw==}
+  aws-cdk@2.1019.1:
+    resolution: {integrity: sha512-G2jxKuTsYTrYZX80CDApCrKcZ+AuFxxd+b0dkb0KEkfUsela7RqrDGLm5wOzSCIc3iH6GocR8JDVZuJ+0nNuKg==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -15593,10 +15593,10 @@ snapshots:
 
   '@graphql-tools/graphql-tag-pluck@7.5.2(@babel/core@7.27.4)(graphql@16.11.0)':
     dependencies:
-      '@babel/parser': 7.27.5
+      '@babel/parser': 7.26.1
       '@babel/plugin-syntax-import-assertions': 7.24.7(@babel/core@7.27.4)
       '@babel/traverse': 7.25.9
-      '@babel/types': 7.27.6
+      '@babel/types': 7.24.7
       '@graphql-tools/utils': 9.2.1(graphql@16.11.0)
       graphql: 16.11.0
       tslib: 2.7.0
@@ -18340,7 +18340,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 44.5.0
       constructs: 10.4.2
 
-  aws-cdk@2.1018.1:
+  aws-cdk@2.1019.1:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -18376,7 +18376,7 @@ snapshots:
 
   axios@1.10.0:
     dependencies:
-      follow-redirects: 1.15.9(debug@4.4.1)
+      follow-redirects: 1.15.9
       form-data: 4.0.3
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -21894,6 +21894,8 @@ snapshots:
 
   focus-group@0.3.1: {}
 
+  follow-redirects@1.15.9: {}
+
   follow-redirects@1.15.9(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5
@@ -23642,7 +23644,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9(debug@4.4.1)
+      follow-redirects: 1.15.9
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
