@@ -1,0 +1,4 @@
+name = "activity"
+type = "webpack"
+routes = ["https://alexwilson.tech/activity"]
+webpack_config = "webpack.config.js"
