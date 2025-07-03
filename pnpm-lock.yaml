@@ -286,8 +286,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.203.0
-        version: 2.203.0(constructs@10.4.2)
+        specifier: 2.203.1
+        version: 2.203.1(constructs@10.4.2)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -296,7 +296,7 @@ importers:
         version: 2.1692.0
       axios:
         specifier: ^1.7.2
-        version: 1.10.0
+        version: 1.10.0(debug@4.4.1)
       constructs:
         specifier: ^10.0.0
         version: 10.4.2
@@ -4107,8 +4107,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.203.0:
-    resolution: {integrity: sha512-9aB/oIZ2nNVfuqCJuZ66122U/pkkOfR4OcC8aXbgRLc1hKSnTXtGC9W2LlortweBZwTaTs4sk4xaQ9TYHgk0CQ==}
+  aws-cdk-lib@2.203.1:
+    resolution: {integrity: sha512-tvxWV0aGk4UJngcDfkHL7SOx4kE1xZXNlf5x8Hw7tBLtvwwRHQ65JwFleEBQ93jOBF0pXDEruHXV/f3sfmHfBQ==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -18521,7 +18521,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.203.0(constructs@10.4.2):
+  aws-cdk-lib@2.203.1(constructs@10.4.2):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.242
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
@@ -18561,14 +18561,6 @@ snapshots:
   axe-core@4.10.3: {}
 
   axe-core@4.9.1: {}
-
-  axios@1.10.0:
-    dependencies:
-      follow-redirects: 1.15.9
-      form-data: 4.0.3
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   axios@1.10.0(debug@4.4.1):
     dependencies:
@@ -22093,8 +22085,6 @@ snapshots:
 
   focus-group@0.3.1: {}
 
-  follow-redirects@1.15.9: {}
-
   follow-redirects@1.15.9(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5
@@ -23841,7 +23831,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -26187,7 +26177,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.10.0
+      axios: 1.10.0(debug@4.4.1)
       chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
