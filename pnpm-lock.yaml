@@ -57,7 +57,7 @@ importers:
     devDependencies:
       wrangler:
         specifier: ^4.7.2
-        version: 4.25.0
+        version: 4.25.1
 
   services/cms:
     dependencies:
@@ -145,7 +145,7 @@ importers:
         version: 5.2.2(webpack-cli@6.0.1)(webpack@5.100.2)
       wrangler:
         specifier: ^4.7.2
-        version: 4.25.0
+        version: 4.25.1
 
   services/personal-website:
     dependencies:
@@ -1449,9 +1449,6 @@ packages:
 
   '@emnapi/runtime@1.4.3':
     resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
-
-  '@emnapi/runtime@1.4.4':
-    resolution: {integrity: sha512-hHyapA4A3gPaDCNfiqyZUStTMqIkKRshqPIuDOXv1hcBnD4U3l8cP0T1HMCfGRxQ6V64TGCcoswChANyOAwbQg==}
 
   '@emnapi/runtime@1.4.5':
     resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
@@ -9201,8 +9198,8 @@ packages:
     peerDependencies:
       webpack: ^4.4.0 || ^5.0.0
 
-  miniflare@4.20250712.0:
-    resolution: {integrity: sha512-o7zYqG4pMi3gQTjiGhgZ82bQfexNwK+bzAaNlu8f7m3Kra4DcU5LC9nznfq2rfIBnUnMgwtU2VUfMlN1TuI8Og==}
+  miniflare@4.20250712.1:
+    resolution: {integrity: sha512-46gB3FGPOsy+EpFGufjhr8agYycO/55d6l0y7hNJ13NcTVwrObMg/0HmI3pC5yQj0974IVXzBgUfDBMAX6thow==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -12414,8 +12411,8 @@ packages:
   undici-types@7.8.0:
     resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
-  undici@7.11.0:
-    resolution: {integrity: sha512-heTSIac3iLhsmZhUCjyS3JQEkZELateufzZuBaVM5RHXdSBMb1LPMQf5x+FH7qjsZYDP0ttAc3nnVpUB+wYbOg==}
+  undici@7.12.0:
+    resolution: {integrity: sha512-GrKEsc3ughskmGA9jevVlIOPMiiAHJ4OFUtaAH+NhfTUSiZ1wMPIQqQvAJUrJspFXJt3EBWgpAeoHEDVT1IBug==}
     engines: {node: '>=20.18.1'}
 
   unenv@2.0.0-rc.17:
@@ -13003,8 +13000,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.25.0:
-    resolution: {integrity: sha512-SepXQbzWkdp0O7qAx3i0go+fw5I0VkDqLV2G3ewbffO5k8kpvuCkhalS23KO+7+o8+Oa3vfC7x+16IL3rj2n4w==}
+  wrangler@4.25.1:
+    resolution: {integrity: sha512-4Tlg+jmqxCX3xFm+Nz1b4jHHY9iOu1EyJ17SSCCJ6MGp+FCGtXgr+CynT94+MP0v/qKQUkMKjoeJ5FNDunZ9cA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -15656,11 +15653,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@emnapi/runtime@1.4.4':
-    dependencies:
-      tslib: 2.8.1
-    optional: true
-
   '@emnapi/runtime@1.4.5':
     dependencies:
       tslib: 2.8.1
@@ -16464,7 +16456,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.33.5':
     dependencies:
-      '@emnapi/runtime': 1.4.4
+      '@emnapi/runtime': 1.4.5
     optional: true
 
   '@img/sharp-win32-ia32@0.33.5':
@@ -26341,7 +26333,7 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.8)
       webpack-sources: 1.4.3
 
-  miniflare@4.20250712.0:
+  miniflare@4.20250712.1:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -26350,7 +26342,7 @@ snapshots:
       glob-to-regexp: 0.4.1
       sharp: 0.33.5
       stoppable: 1.1.0
-      undici: 7.11.0
+      undici: 7.12.0
       workerd: 1.20250712.0
       ws: 8.18.0
       youch: 4.1.0-beta.10
@@ -30174,7 +30166,7 @@ snapshots:
 
   undici-types@7.8.0: {}
 
-  undici@7.11.0: {}
+  undici@7.12.0: {}
 
   unenv@2.0.0-rc.17:
     dependencies:
@@ -31119,13 +31111,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250712.0
       '@cloudflare/workerd-windows-64': 1.20250712.0
 
-  wrangler@4.25.0:
+  wrangler@4.25.1:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.3(unenv@2.0.0-rc.17)(workerd@1.20250712.0)
       blake3-wasm: 2.1.5
       esbuild: 0.25.4
-      miniflare: 4.20250712.0
+      miniflare: 4.20250712.1
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.17
       workerd: 1.20250712.0
