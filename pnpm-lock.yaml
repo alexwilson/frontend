@@ -18757,7 +18757,7 @@ snapshots:
 
   axios@1.11.0:
     dependencies:
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -22271,8 +22271,6 @@ snapshots:
 
   focus-group@0.3.1: {}
 
-  follow-redirects@1.15.9: {}
-
   follow-redirects@1.15.9(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5
@@ -24022,7 +24020,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
