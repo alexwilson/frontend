@@ -286,8 +286,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.207.0
-        version: 2.207.0(constructs@10.4.2)
+        specifier: 2.208.0
+        version: 2.208.0(constructs@10.4.2)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -4185,8 +4185,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.207.0:
-    resolution: {integrity: sha512-DlXUeg6cK6T71jyf6UQAUquRVnG388dIsxb4IuW0Wkn+9t6z4NO39sGCs91mV2RZtPChWy+e8BRVtQx/uBdLww==}
+  aws-cdk-lib@2.208.0:
+    resolution: {integrity: sha512-lZW475enKz36A/hZvS7xUwfjeqLqxKgBmZ2cGA7BB5PAlQsjBfN70ZGDgGl0egug5fb/hsYy1Dy4OrclfNzxFg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -18706,7 +18706,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.207.0(constructs@10.4.2):
+  aws-cdk-lib@2.208.0(constructs@10.4.2):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.242
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
