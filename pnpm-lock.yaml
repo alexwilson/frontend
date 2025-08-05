@@ -69,10 +69,10 @@ importers:
         version: 4.1.0
       decap-cms:
         specifier: ~3.4.0
-        version: 3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(graphql@15.10.1)(webpack@5.101.0)
+        version: 3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(graphql@15.10.1)(webpack@5.101.0)
       decap-cms-app:
         specifier: ~3.4.0
-        version: 3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       decap-cms-backend-proxy:
         specifier: ^3.1.4
         version: 3.3.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
@@ -278,7 +278,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^30.0.0
-        version: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+        version: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       postcss:
         specifier: ^8.4.38
         version: 8.5.6
@@ -315,7 +315,7 @@ importers:
         version: 30.0.0
       '@types/node':
         specifier: ^24.0.0
-        version: 24.1.0
+        version: 24.2.0
       aws-cdk:
         specifier: 2.1023.0
         version: 2.1023.0
@@ -324,13 +324,13 @@ importers:
         version: 6.2.1
       jest:
         specifier: ^30.0.0
-        version: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+        version: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       ts-jest:
         specifier: ^29.1.5
-        version: 29.4.1(@babel/core@7.28.0)(@jest/transform@30.0.5)(@jest/types@30.0.5)(babel-jest@30.0.5(@babel/core@7.28.0))(esbuild@0.25.8)(jest-util@30.0.5)(jest@30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2)))(typescript@5.9.2)
+        version: 29.4.1(@babel/core@7.28.0)(@jest/transform@30.0.5)(@jest/types@30.0.5)(babel-jest@30.0.5(@babel/core@7.28.0))(esbuild@0.25.8)(jest-util@30.0.5)(jest@30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)))(typescript@5.9.2)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@24.1.0)(typescript@5.9.2)
+        version: 10.9.2(@types/node@24.2.0)(typescript@5.9.2)
       typescript:
         specifier: ~5.9.2
         version: 5.9.2
@@ -3412,8 +3412,8 @@ packages:
   '@types/node@24.0.0':
     resolution: {integrity: sha512-yZQa2zm87aRVcqDyH5+4Hv9KYgSdgwX1rFnGvpbzMaC7YAljmhBET93TPiTd3ObwTL+gSpIzPKg5BqVxdCvxKg==}
 
-  '@types/node@24.1.0':
-    resolution: {integrity: sha512-ut5FthK5moxFKH2T1CUOC6ctR67rQRvvHdFLCD2Ql6KXmMuCrjsSsRI9UsLCm9M18BMwClv4pn327UvB7eeO1w==}
+  '@types/node@24.2.0':
+    resolution: {integrity: sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==}
 
   '@types/node@8.10.66':
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
@@ -12254,6 +12254,9 @@ packages:
   underscore.string@3.3.6:
     resolution: {integrity: sha512-VoC83HWXmCrF6rgkyxS9GHv8W9Q5nhMKho+OadDJGzL2oDYbYEppBaCMH6pFlwLeqj2QS+hhkw2kpXkSdD1JxQ==}
 
+  undici-types@7.10.0:
+    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
+
   undici-types@7.8.0:
     resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
@@ -16210,13 +16213,13 @@ snapshots:
   '@jest/console@30.0.5':
     dependencies:
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       jest-message-util: 30.0.5
       jest-util: 30.0.5
       slash: 3.0.0
 
-  '@jest/core@30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))':
+  '@jest/core@30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))':
     dependencies:
       '@jest/console': 30.0.5
       '@jest/pattern': 30.0.1
@@ -16224,14 +16227,14 @@ snapshots:
       '@jest/test-result': 30.0.5
       '@jest/transform': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.3.0
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.0.5
-      jest-config: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      jest-config: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       jest-haste-map: 30.0.5
       jest-message-util: 30.0.5
       jest-regex-util: 30.0.1
@@ -16260,7 +16263,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-mock: 30.0.5
 
   '@jest/expect-utils@30.0.0':
@@ -16282,7 +16285,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.0.5
       '@sinonjs/fake-timers': 13.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-message-util: 30.0.5
       jest-mock: 30.0.5
       jest-util: 30.0.5
@@ -16302,12 +16305,12 @@ snapshots:
 
   '@jest/pattern@30.0.0':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-regex-util: 30.0.0
 
   '@jest/pattern@30.0.1':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-regex-util: 30.0.1
 
   '@jest/reporters@30.0.5':
@@ -16318,7 +16321,7 @@ snapshots:
       '@jest/transform': 30.0.5
       '@jest/types': 30.0.5
       '@jridgewell/trace-mapping': 0.3.29
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit-x: 0.2.2
@@ -16403,7 +16406,7 @@ snapshots:
       '@jest/schemas': 30.0.0
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -16413,7 +16416,7 @@ snapshots:
       '@jest/schemas': 30.0.5
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -17745,17 +17748,17 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/cacheable-request@6.0.3':
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/responselike': 1.0.3
 
   '@types/common-tags@1.8.4': {}
@@ -17765,17 +17768,17 @@ snapshots:
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 4.19.6
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/cookie@0.4.1': {}
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/debug@0.0.30': {}
 
@@ -17800,7 +17803,7 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.6':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -17840,7 +17843,7 @@ snapshots:
 
   '@types/http-proxy@1.17.16':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/is-hotkey@0.1.10': {}
 
@@ -17865,7 +17868,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/lodash@4.17.15': {}
 
@@ -17891,7 +17894,7 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/node@16.9.1': {}
 
@@ -17901,9 +17904,9 @@ snapshots:
     dependencies:
       undici-types: 7.8.0
 
-  '@types/node@24.1.0':
+  '@types/node@24.2.0':
     dependencies:
-      undici-types: 7.8.0
+      undici-types: 7.10.0
 
   '@types/node@8.10.66': {}
 
@@ -17938,7 +17941,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/retry@0.12.2': {}
 
@@ -17956,7 +17959,7 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/serve-index@1.9.4':
     dependencies:
@@ -17965,12 +17968,12 @@ snapshots:
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/send': 0.17.4
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/stack-utils@2.0.3': {}
 
@@ -17982,7 +17985,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -18240,7 +18243,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
@@ -20238,7 +20241,7 @@ snapshots:
 
   decamelize@1.2.0: {}
 
-  decap-cms-app@3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  decap-cms-app@3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.1.8)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1)
@@ -20252,7 +20255,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.2.2(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@15.10.1)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-test: 3.1.3(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)(uuid@8.3.2)
-      decap-cms-core: 3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
+      decap-cms-core: 3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
       decap-cms-editor-component-image: 3.1.3(react@18.3.1)
       decap-cms-lib-auth: 3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.2.0(immutable@3.8.2)(lodash@4.17.21)
@@ -20289,7 +20292,7 @@ snapshots:
       - react-native
       - supports-color
 
-  decap-cms-app@3.6.2(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  decap-cms-app@3.6.2(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.1.8)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1)
@@ -20304,7 +20307,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.2.2(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@15.10.1)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-test: 3.1.3(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)(uuid@8.3.2)
-      decap-cms-core: 3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
+      decap-cms-core: 3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
       decap-cms-editor-component-image: 3.1.3(react@18.3.1)
       decap-cms-lib-auth: 3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.2.0(immutable@3.8.2)(lodash@4.17.21)
@@ -20484,7 +20487,7 @@ snapshots:
       react: 18.3.1
       uuid: 8.3.2
 
-  decap-cms-core@3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
+  decap-cms-core@3.6.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(decap-cms-editor-component-image@3.1.3(react@18.3.1))(decap-cms-lib-auth@3.0.5(immutable@3.8.2)(lodash@4.17.21)(uuid@11.1.0))(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.1.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.1.4(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.1.8)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@18.3.1))(@types/react@19.1.8)(react@18.3.1)
@@ -20516,7 +20519,7 @@ snapshots:
       node-polyglot: 2.6.0
       prop-types: 15.8.1
       react: 18.3.1
-      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(react@18.3.1)
+      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(react@18.3.1)
       react-dnd-html5-backend: 14.1.0
       react-dom: 18.3.1(react@18.3.1)
       react-frame-component: 5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -20796,11 +20799,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  decap-cms@3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(graphql@15.10.1)(webpack@5.101.0):
+  decap-cms@3.4.0(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))(graphql@15.10.1)(webpack@5.101.0):
     dependencies:
       codemirror: 5.65.18
       create-react-class: 15.7.0
-      decap-cms-app: 3.6.2(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      decap-cms-app: 3.6.2(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       decap-cms-media-library-cloudinary: 3.0.3(decap-cms-lib-util@3.2.0(immutable@3.8.2)(lodash@4.17.21))
       decap-cms-media-library-uploadcare: 3.0.2
       file-loader: 6.2.0(webpack@5.101.0)
@@ -21155,7 +21158,7 @@ snapshots:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.19
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -24697,7 +24700,7 @@ snapshots:
       '@jest/expect': 30.0.5
       '@jest/test-result': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.6.0(babel-plugin-macros@3.1.0)
@@ -24717,15 +24720,15 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2)):
+  jest-cli@30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      '@jest/core': 30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       '@jest/test-result': 30.0.5
       '@jest/types': 30.0.5
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      jest-config: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       jest-util: 30.0.5
       jest-validate: 30.0.5
       yargs: 17.7.2
@@ -24736,7 +24739,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-config@30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2)):
+  jest-config@30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)):
     dependencies:
       '@babel/core': 7.28.0
       '@jest/get-type': 30.0.1
@@ -24763,8 +24766,8 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 24.1.0
-      ts-node: 10.9.2(@types/node@24.1.0)(typescript@5.9.2)
+      '@types/node': 24.2.0
+      ts-node: 10.9.2(@types/node@24.2.0)(typescript@5.9.2)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -24807,7 +24810,7 @@ snapshots:
       '@jest/environment': 30.0.5
       '@jest/fake-timers': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-mock: 30.0.5
       jest-util: 30.0.5
       jest-validate: 30.0.5
@@ -24817,7 +24820,7 @@ snapshots:
   jest-haste-map@30.0.5:
     dependencies:
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -24875,13 +24878,13 @@ snapshots:
   jest-mock@30.0.0:
     dependencies:
       '@jest/types': 30.0.0
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-util: 30.0.0
 
   jest-mock@30.0.5:
     dependencies:
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       jest-util: 30.0.5
 
   jest-pnp-resolver@1.2.3(jest-resolve@30.0.5):
@@ -24917,7 +24920,7 @@ snapshots:
       '@jest/test-result': 30.0.5
       '@jest/transform': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -24946,7 +24949,7 @@ snapshots:
       '@jest/test-result': 30.0.5
       '@jest/transform': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       cjs-module-lexer: 2.1.0
       collect-v8-coverage: 1.0.2
@@ -24993,7 +24996,7 @@ snapshots:
   jest-util@30.0.0:
     dependencies:
       '@jest/types': 30.0.0
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       ci-info: 4.3.0
       graceful-fs: 4.2.11
@@ -25002,7 +25005,7 @@ snapshots:
   jest-util@30.0.5:
     dependencies:
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       chalk: 4.1.2
       ci-info: 4.3.0
       graceful-fs: 4.2.11
@@ -25021,7 +25024,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 30.0.5
       '@jest/types': 30.0.5
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -25030,30 +25033,30 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@30.0.5:
     dependencies:
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@ungap/structured-clone': 1.3.0
       jest-util: 30.0.5
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2)):
+  jest@30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      '@jest/core': 30.0.5(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       '@jest/types': 30.0.5
       import-local: 3.2.0
-      jest-cli: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      jest-cli: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -27507,7 +27510,7 @@ snapshots:
     dependencies:
       dnd-core: 14.0.1
 
-  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.6)(@types/node@24.1.0)(@types/react@19.1.8)(react@18.3.1):
+  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.6)(@types/node@24.2.0)(@types/react@19.1.8)(react@18.3.1):
     dependencies:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
@@ -27517,7 +27520,7 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       '@types/hoist-non-react-statics': 3.3.6
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       '@types/react': 19.1.8
 
   react-dom@18.3.1(react@18.3.1):
@@ -29497,12 +29500,12 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  ts-jest@29.4.1(@babel/core@7.28.0)(@jest/transform@30.0.5)(@jest/types@30.0.5)(babel-jest@30.0.5(@babel/core@7.28.0))(esbuild@0.25.8)(jest-util@30.0.5)(jest@30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2)))(typescript@5.9.2):
+  ts-jest@29.4.1(@babel/core@7.28.0)(@jest/transform@30.0.5)(@jest/types@30.0.5)(babel-jest@30.0.5(@babel/core@7.28.0))(esbuild@0.25.8)(jest-util@30.0.5)(jest@30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)))(typescript@5.9.2):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.8
-      jest: 30.0.5(@types/node@24.1.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2))
+      jest: 30.0.5(@types/node@24.2.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2))
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
@@ -29518,14 +29521,14 @@ snapshots:
       esbuild: 0.25.8
       jest-util: 30.0.5
 
-  ts-node@10.9.2(@types/node@24.1.0)(typescript@5.9.2):
+  ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 24.1.0
+      '@types/node': 24.2.0
       acorn: 8.12.1
       acorn-walk: 8.3.3
       arg: 4.1.3
@@ -29705,6 +29708,8 @@ snapshots:
     dependencies:
       sprintf-js: 1.1.3
       util-deprecate: 1.0.2
+
+  undici-types@7.10.0: {}
 
   undici-types@7.8.0: {}
 
