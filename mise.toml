@@ -1,0 +1,4 @@
+[settings]
+env_file = ".env"
+idiomatic_version_file_enable_tools = ["node", "terraform"]
+
