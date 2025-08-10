@@ -123,6 +123,15 @@
         border-bottom: white solid 0.5rem !important;
       }
     }
+    
+    &--width-thin {
+        @include media(">phone") {
+            a, a:hover, a:visited {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    }
   }
 
   &__intro {

@@ -6,9 +6,10 @@ import fetch from "isomorphic-fetch"
 
 const NavItemFactory = (linkImplementation) => {
   const LinkImplementation = (linkImplementation) ? linkImplementation : Link;
-  const NavItem = ({ url, rel, active, children }) => {
+  const NavItem = ({ url, rel, active, width, children }) => {
     const classList = ["alex-header__nav-item"]
     if (active) classList.push("alex-header__nav-item--active")
+    if (width) classList.push(`alex-header__nav-item--width-${width}`)
     return (
       <li className={classList.join(' ')}>
         <LinkImplementation rel={rel} to={url}>{children}</LinkImplementation>
@@ -162,10 +163,11 @@ class Header extends Component {
 
               <NavSpacer />
 
-              <this.navItem url="https://mastodon.social/@alexwilson" rel='me'><Icon src="/svg/mastodon.svg" title="Mastodon" /></this.navItem>
-              <this.navItem url="https://twitter.com/alexwilsonv1" rel='me'><Icon src="/svg/twitter.svg" title="Twitter" /></this.navItem>
-              <this.navItem url="https://www.linkedin.com/in/alex-/" rel='me'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></this.navItem>
-              <this.navItem url="https://github.com/alexwilson" rel='me'><Icon src="/svg/github.svg" title="Github" /></this.navItem>
+              <this.navItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></this.navItem>
+              <this.navItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></this.navItem>
+              <this.navItem url="https://www.instagram.com/alexwilson.tech" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></this.navItem>
+              <this.navItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src="/svg/mastodon.svg" title="Mastodon" /></this.navItem>
+              <this.navItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></this.navItem>
             </ul>
           </nav>
 

@@ -10,8 +10,8 @@ const ShareWidget = ({url, title}) => (
         </a>
       </li>
       <li>
-        <a href={`http://www.facebook.com/sharer.php?u=${url}&amp;t=${title}`}>
-          <img src="/svg/facebook.svg" alt="Facebook" title="Share on Facebook" />
+        <a href={`https://bsky.app/intent/compose?text=${title}%0A${url}`}>
+          <img src="/svg/bluesky.svg" alt="Bluesky" title="Share on Bluesky" />
         </a>
       </li>
       <li>
