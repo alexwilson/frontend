@@ -16,10 +16,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Get Terraform Version
+        id: tf_version
+        run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.0
+          terraform_version: ${{ steps.tf_version.outputs.value }}
       - name: Lint Terraform
         run: terraform fmt -check
 
@@ -61,11 +64,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: Get Terraform Version
+        id: tf_version
+        run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.0
+          terraform_version: ${{ steps.tf_version.outputs.value }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
 
       - name: Set-up test workspace
@@ -99,11 +104,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: Get Terraform Version
+        id: tf_version
+        run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.0
+          terraform_version: ${{ steps.tf_version.outputs.value }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
 
       - name: Set-up prod workspace
