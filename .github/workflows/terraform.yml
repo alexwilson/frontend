@@ -19,6 +19,7 @@ jobs:
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
+        working-directory: .
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -67,6 +68,7 @@ jobs:
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
+        working-directory: .
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -107,6 +109,7 @@ jobs:
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
+        working-directory: .
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
