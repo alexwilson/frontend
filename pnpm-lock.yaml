@@ -57,7 +57,7 @@ importers:
     devDependencies:
       wrangler:
         specifier: ^4.7.2
-        version: 4.31.0
+        version: 4.32.0
 
   services/cms:
     dependencies:
@@ -145,7 +145,7 @@ importers:
         version: 5.2.2(webpack-cli@6.0.1)(webpack@5.101.3)
       wrangler:
         specifier: ^4.7.2
-        version: 4.31.0
+        version: 4.32.0
 
   services/personal-website:
     dependencies:
@@ -296,7 +296,7 @@ importers:
         version: 2.1692.0
       axios:
         specifier: ^1.7.2
-        version: 1.11.0
+        version: 1.11.0(debug@4.4.1)
       constructs:
         specifier: ^10.0.0
         version: 10.4.2
@@ -9092,8 +9092,8 @@ packages:
     peerDependencies:
       webpack: ^4.4.0 || ^5.0.0
 
-  miniflare@4.20250816.0:
-    resolution: {integrity: sha512-HuakGvmsU8aC60wsHP7Su+BgJFly1GmKbmbR/nqIz0Xlk6wcd/pp3vZ7jtbT3unf+aeBOlEO/CzcUb8xFsJLdA==}
+  miniflare@4.20250816.1:
+    resolution: {integrity: sha512-2X8yMy5wWw0dF1pNU4kztzZgp0jWv2KMqAOOb2FeQ/b11yck4aczmYHi7UYD3uyOgtj8WFhwG/KdRWAaATTtRA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -12909,8 +12909,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.31.0:
-    resolution: {integrity: sha512-blb8NfA4BGscvSzvLm2mEQRuUTmaMCiglkqHiR3EIque78UXG39xxVtFXlKhK32qaVvGI7ejdM//HC9plVPO3w==}
+  wrangler@4.32.0:
+    resolution: {integrity: sha512-q7TRSavBW3Eg3pp4rxqKJwSK+u/ieFOBdNvUsq1P1EMmyj3//tN/iXDokFak+dkW0vDYjsVG3PfOfHxU92OS6w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -18889,14 +18889,6 @@ snapshots:
 
   axe-core@4.9.1: {}
 
-  axios@1.11.0:
-    dependencies:
-      follow-redirects: 1.15.9
-      form-data: 4.0.4
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-
   axios@1.11.0(debug@4.4.1):
     dependencies:
       follow-redirects: 1.15.9(debug@4.4.1)
@@ -22422,8 +22414,6 @@ snapshots:
 
   focus-group@0.3.1: {}
 
-  follow-redirects@1.15.9: {}
-
   follow-redirects@1.15.9(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5
@@ -24171,7 +24161,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -26089,7 +26079,7 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.9)
       webpack-sources: 1.4.3
 
-  miniflare@4.20250816.0:
+  miniflare@4.20250816.1:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -26517,7 +26507,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.11.0
+      axios: 1.11.0(debug@4.4.1)
       chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -30713,13 +30703,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250816.0
       '@cloudflare/workerd-windows-64': 1.20250816.0
 
-  wrangler@4.31.0:
+  wrangler@4.32.0:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.6.2(unenv@2.0.0-rc.19)(workerd@1.20250816.0)
       blake3-wasm: 2.1.5
       esbuild: 0.25.4
-      miniflare: 4.20250816.0
+      miniflare: 4.20250816.1
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.19
       workerd: 1.20250816.0
