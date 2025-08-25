@@ -296,7 +296,7 @@ importers:
         version: 2.1692.0
       axios:
         specifier: ^1.7.2
-        version: 1.11.0(debug@4.4.1)
+        version: 1.11.0
       constructs:
         specifier: ^10.0.0
         version: 10.4.2
@@ -317,8 +317,8 @@ importers:
         specifier: ^24.0.0
         version: 24.3.0
       aws-cdk:
-        specifier: 2.1025.0
-        version: 2.1025.0
+        specifier: 2.1026.0
+        version: 2.1026.0
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -4250,8 +4250,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1025.0:
-    resolution: {integrity: sha512-qKYM+RG5+U/UbGpjTt8ZaxBEfKJMPdOmtPtFNidsIGlrdIWSIFdNcFYi13zo33FkMk6ZFA6yBnjfDry3fNR+hQ==}
+  aws-cdk@2.1026.0:
+    resolution: {integrity: sha512-JdXR20s9gMHY3niweK5/D9tILLG8u2FOyJjWgSaNZGJ+pq9u0sBFxufXPO4VxJzDitGFOIW5VvQThXP+Y2VrVA==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -18855,7 +18855,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 48.4.0
       constructs: 10.4.2
 
-  aws-cdk@2.1025.0:
+  aws-cdk@2.1026.0:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -18888,6 +18888,14 @@ snapshots:
   axe-core@4.10.3: {}
 
   axe-core@4.9.1: {}
+
+  axios@1.11.0:
+    dependencies:
+      follow-redirects: 1.15.9
+      form-data: 4.0.4
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
 
   axios@1.11.0(debug@4.4.1):
     dependencies:
@@ -22414,6 +22422,8 @@ snapshots:
 
   focus-group@0.3.1: {}
 
+  follow-redirects@1.15.9: {}
+
   follow-redirects@1.15.9(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5
@@ -24161,7 +24171,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9(debug@4.4.1)
+      follow-redirects: 1.15.9
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -26507,7 +26517,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.11.0(debug@4.4.1)
+      axios: 1.11.0
       chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
