@@ -1,7 +1,12 @@
 const {v5} = require('uuid')
+const short = require('short-uuid')
+const translator = short(short.constants.flickrBase58)
 
 const contentFromMarkdownRemark = ({node, getNode}) => {
   const contentId = node.frontmatter.id
+  const shortId = translator.fromUUID(contentId)
+  console.log(`/content/${shortId}`)
+
   const slug = `/content/${contentId}`
   const title = node.frontmatter['title'] || ''
   const date = new Date(node.frontmatter.date)
@@ -56,9 +61,11 @@ const topicsFromMarkdownRemark = ({node}) => {
   if (node.frontmatter && node.frontmatter.tags) {
     for (const topicSlug of node.frontmatter.tags) {
 
+      // Deterministically generate a UUIDv5 from a topic slug, namespaced to `https://alexwilson.tech/topics/`.      
+      const topicId = v5(topicSlug, v5('https://alexwilson.tech/topic/', v5.URL));
+
       const topic = {
-        // Deterministically generate a UUIDv5 from a topic slug, namespaced to `https://alexwilson.tech/topics/`.
-        topicId: v5(topicSlug, v5('https://alexwilson.tech/topic/', v5.URL)),
+        topicId,
         slug: `/topic/${topicSlug}`,
         topic: topicSlug
       }
