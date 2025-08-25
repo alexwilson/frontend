@@ -38,10 +38,11 @@ const ArticleTemplate = ({ data, location }) => {
             {(post.author && post.author.name ?
               <>
                 {` by `}
-                <span itemProp="author" itemType="http://schema.org/Person">
-                  <a href="/">
+                <span itemProp="author" itemScope itemType="http://schema.org/Person">
+                  <a href="/about-me">
                     <span itemProp="name">Alex</span>
                   </a>
+                  <meta itemProp="url" content={`https://alexwilson.tech/`} />
                 </span>
               </>
               : null)}

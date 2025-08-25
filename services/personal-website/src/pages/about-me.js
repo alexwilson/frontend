@@ -13,35 +13,34 @@ export default function aboutMe({ location }) {
         <article className="alex-article__body">
 
           <p>
-            My name is Alex. I'm a driven full-stack software engineer and technology lead, passionate about web-standards, journalism and solving business problems.<br />
-            I want to help improve the web, for everybody.
+            My name is Alex. I'm a driven engineering lead, and at work I enjoy both building teams and products.<br />
           </p>
 
           <p>
-            In my downtime, I enjoy travelling, music production and photography. Most often I can be found reading, or tinkering with computers, servers and code.
+            Outside of work I enjoy travelling, music production and photography.  And writing this blog.  I'm also a perpetually injured runner.
           </p>
           <div className="alex-article__pane">
             <p className="alex-article__pane-half iota">
               <h2 className="eta">Ask Me About</h2>
-              🏙 Architecture & Design: Software is shown-up by the ingenuity in buildings and everyday objects.<br />
-              💊 Biohacking & Kaizen: I employ a data-driven approach to my life following the quantified-self principle.<br />
-              🇯🇵 Japan: Having lived and worked there for a couple of months, I have fallen in love with the country.<br />
+              🏙 <strong>Architecture & Design</strong>: We're surrounded by ingenuity in buildings and everyday objects.<br />
+              🎵 <strong>Music</strong>: I'm an avid listener, and enjoy producing & playing electronic music under a pseudonym.<br />
+              📰 <strong>Journalism</strong>: I love investigative and data reporting, and am always reading longform narratives like <a href="https://www.goodreads.com/book/show/37976541-bad-blood">Bad Blood</a>.
             </p>
             <p className="alex-article__pane-half iota">
               <h2 className="eta">Secret Answers</h2>
               🐠 My first pet was an Angel fish named Angel.<br />
-              💼 My favourite film director is Tarantino.<br />
-              👻 My favourite anime is Ghost in the Shell.<br />
+              💼 My favourite film director is Nolan.<br />
+              ♟️ My favourite boardgame is Chess.<br />
               🕹️ My favourite videogame is Super Metroid.<br />
               📺 I don't have a favourite TV series.<br />
-              🎵 There's too much good music.<br />
+              🔐 I'm not telling you if I use a password manager.<br />
             </p>
           </div>
 
           <p>
             <h2 className="eta">Skills</h2>
             <ul className="eta">
-              <li>10 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+              <li>11 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
               <li>Stakeholder management & requirement-gathering across business domains. Experience and knowledge of digital media domains.</li>
               <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
               <li>Tracing, diagnosing and mitigating faults in diverse technical stacks — Legacy, distributed systems, etc.</li>
@@ -70,7 +69,8 @@ export default function aboutMe({ location }) {
           <p>
             <h2 className="eta">Work Experience</h2>
             <ul className="eta">
-              <li><i>Jan 2022–Present</i>: Principal Engineer, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
+              <li><i>Dec 2025–Present</i>: Staff Engineer, Business Platform Development, <a href="https://www.moneyforward.com/">Money Forward</a></li>
+              <li><i>Jan 2022–Nov 2024</i>: Principal Engineer, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Jun 2022–Jan 2023</i>: Acting Technical Director, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Jan 2021–Jan 2022</i>: Principal Engineer, New Products & Enterprise, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Apr 2019–Jan 2021</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
