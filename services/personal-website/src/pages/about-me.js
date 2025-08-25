@@ -69,7 +69,7 @@ export default function aboutMe({ location }) {
           <p>
             <h2 className="eta">Work Experience</h2>
             <ul className="eta">
-              <li><i>Dec 2025–Present</i>: Staff Engineer, Business Platform Development, <a href="https://www.moneyforward.com/">Money Forward</a></li>
+              <li><i>Dec 2024–Present</i>: Staff Engineer, Business Platform Development, <a href="https://www.moneyforward.com/">Money Forward</a></li>
               <li><i>Jan 2022–Nov 2024</i>: Principal Engineer, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Jun 2022–Jan 2023</i>: Acting Technical Director, Customer Products, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Jan 2021–Jan 2022</i>: Principal Engineer, New Products & Enterprise, <a href="https://www.ft.com/">Financial Times</a></li>
