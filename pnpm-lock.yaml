@@ -181,7 +181,7 @@ importers:
         version: 6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-preact:
         specifier: ^7.13.1
-        version: 7.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(preact-render-to-string@5.2.6(preact@10.27.1))(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9))
+        version: 7.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(preact-render-to-string@5.2.6(preact@10.27.1))(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9))
       gatsby-plugin-react-helmet:
         specifier: ^6.13.1
         version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react-helmet@6.1.0(react@18.3.1))
@@ -3111,13 +3111,13 @@ packages:
   '@prefresh/babel-plugin@0.4.4':
     resolution: {integrity: sha512-/EvgIFMDL+nd20WNvMO0JQnzIl1EJPgmSaSYrZUww7A+aSdKsi37aL07TljrZR1cBMuzFxcr4xvqsUQLFJEukw==}
 
-  '@prefresh/core@1.5.3':
-    resolution: {integrity: sha512-nDzxj0tA1/M6APNAWqaxkZ+3sTdPHESa+gol4+Bw7rMc2btWdkLoNH7j9rGhUb8SThC0Vz0VoXtq+U+9azGLHg==}
+  '@prefresh/core@1.5.7':
+    resolution: {integrity: sha512-AsyeitiPwG7UkT0mqgKzIDuydmYSKtBlzXEb5ymzskvxewcmVGRjQkcHDy6PCNBT7soAyHpQ0mPgXX4IeyOlUg==}
     peerDependencies:
-      preact: ^10.0.0
+      preact: ^10.0.0 || ^11.0.0-0
 
-  '@prefresh/utils@1.2.0':
-    resolution: {integrity: sha512-KtC/fZw+oqtwOLUFM9UtiitB0JsVX0zLKNyRTA332sqREqSALIIQQxdUCS1P3xR/jT1e2e8/5rwH6gdcMLEmsQ==}
+  '@prefresh/utils@1.2.1':
+    resolution: {integrity: sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw==}
 
   '@prefresh/webpack@3.3.4':
     resolution: {integrity: sha512-RiXS/hvXDup5cQw/267kxkKie81kxaAB7SFbkr8ppshobDEzwgUN1tbGbHNx6Uari0Ql2XByC6HIgQGpaq2Q7w==}
@@ -6976,8 +6976,8 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-plugin-preact@7.14.0:
-    resolution: {integrity: sha512-ECFXnGz7Y4VP7hEnuShut+6KDLmZzmeakKECUxjJX5ZDN/H+FQux2NbGAXPaCNheMu7y58cSAlmx2nJNyURhag==}
+  gatsby-plugin-preact@7.15.0:
+    resolution: {integrity: sha512-eazoh7yC5aBPshgHCDYbu5xMh1UeHRCXz98pOMeWrqUJNTq6h70U11oNVk8RXuNIy474ioXuUKgk1xVsI8W3KA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
@@ -17758,17 +17758,17 @@ snapshots:
 
   '@prefresh/babel-plugin@0.4.4': {}
 
-  '@prefresh/core@1.5.3(preact@10.27.1)':
+  '@prefresh/core@1.5.7(preact@10.27.1)':
     dependencies:
       preact: 10.27.1
 
-  '@prefresh/utils@1.2.0': {}
+  '@prefresh/utils@1.2.1': {}
 
   '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9))':
     dependencies:
       '@prefresh/babel-plugin': 0.4.4
-      '@prefresh/core': 1.5.3(preact@10.27.1)
-      '@prefresh/utils': 1.2.0
+      '@prefresh/core': 1.5.7(preact@10.27.1)
+      '@prefresh/utils': 1.2.1
       preact: 10.27.1
       webpack: 5.98.0(esbuild@0.25.9)
 
@@ -23024,9 +23024,9 @@ snapshots:
       - graphql
       - supports-color
 
-  gatsby-plugin-preact@7.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(preact-render-to-string@5.2.6(preact@10.27.1))(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9)):
+  gatsby-plugin-preact@7.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(preact-render-to-string@5.2.6(preact@10.27.1))(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9)):
     dependencies:
-      '@babel/runtime': 7.26.9
+      '@babel/runtime': 7.28.3
       '@gatsbyjs/webpack-hot-middleware': 2.25.3
       '@prefresh/babel-plugin': 0.4.4
       '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.27.1)(webpack@5.98.0(esbuild@0.25.9))
