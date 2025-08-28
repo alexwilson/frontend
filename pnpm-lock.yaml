@@ -199,7 +199,7 @@ importers:
         version: 1.0.4
       gatsby-remark-embed-gist:
         specifier: ^1.2.1
-        version: 1.2.1(encoding@0.1.13)(gatsby-transformer-remark@6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react@18.3.1)
+        version: 1.2.1(encoding@0.1.13)(gatsby-transformer-remark@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react@18.3.1)
       gatsby-remark-embed-video:
         specifier: ^3.2.1
         version: 3.2.1
@@ -217,7 +217,7 @@ importers:
         version: 1.1.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))
       gatsby-transformer-remark:
         specifier: ^6.13.1
-        version: 6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))
+        version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))
       gatsby-transformer-sharp:
         specifier: ^5.13.1
         version: 5.15.0(gatsby-plugin-sharp@5.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(graphql@16.11.0))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(graphql@16.11.0)
@@ -7108,8 +7108,8 @@ packages:
     peerDependencies:
       gatsby: '>2.0.0-alpha'
 
-  gatsby-transformer-remark@6.14.0:
-    resolution: {integrity: sha512-npiLoL49LC2NhErb1/Q6ckY+Fo3OfAptWRM3cj6M0Ayoa+GA8nZMRn0UfVS6t1RM+NQ6HusKul/QXtkoVJhWRw==}
+  gatsby-transformer-remark@6.15.0:
+    resolution: {integrity: sha512-7CtIXsUIGk8dIimjcXBh6XcHyLHH7W8l5VT+Rem6IQaAOS4mWUAAKz7p+uaa3RBwsNSEDFs9Nf0kNg7fL+D8XQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
@@ -11216,8 +11216,8 @@ packages:
   sanitize-filename@1.6.3:
     resolution: {integrity: sha512-y/52Mcy7aw3gRm7IrcGDFx/bCk4AhRh2eI9luHOQM86nZsqwiRkkq2GekHXBBD+SmPidc8i2PqtYZl+pWJ8Oeg==}
 
-  sanitize-html@2.14.0:
-    resolution: {integrity: sha512-CafX+IUPxZshXqqRaG9ZClSlfPVjSxI0td7n07hk8QO2oO+9JDnlcL8iM8TWeOXOIBFgIOx6zioTzM53AOMn3g==}
+  sanitize-html@2.17.0:
+    resolution: {integrity: sha512-dLAADUSS8rBwhaevT12yCezvioCA+bmUTPH/u57xKPT8d++voeYE6HeluA/bPbQ15TwDBG2ii+QZIEmYx8VdxA==}
 
   sass-loader@10.5.2:
     resolution: {integrity: sha512-vMUoSNOUKJILHpcNCCyD23X34gve1TS7Rjd9uXHeKqhvBG39x6XbswFDtpbTElj6XdMFezoWhkh5vtKudf2cgQ==}
@@ -23101,13 +23101,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  gatsby-remark-embed-gist@1.2.1(encoding@0.1.13)(gatsby-transformer-remark@6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react@18.3.1):
+  gatsby-remark-embed-gist@1.2.1(encoding@0.1.13)(gatsby-transformer-remark@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.24.7
       async-unist-util-visit: 1.0.0
       cheerio: 1.0.0-rc.12
       gatsby: 5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))
-      gatsby-transformer-remark: 6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))
+      gatsby-transformer-remark: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9))))
       node-fetch: 2.7.0(encoding@0.1.13)
       parse-numeric-range: 1.3.0
       react: 18.3.1
@@ -23201,11 +23201,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gatsby-transformer-remark@6.14.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))):
+  gatsby-transformer-remark@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))):
     dependencies:
-      '@babel/runtime': 7.26.9
+      '@babel/runtime': 7.28.3
       gatsby: 5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.2)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.9)))
-      gatsby-core-utils: 4.14.0
+      gatsby-core-utils: 4.15.0
       gray-matter: 4.0.3
       hast-util-raw: 6.1.0
       hast-util-to-html: 7.1.3
@@ -23220,7 +23220,7 @@ snapshots:
       remark-retext: 4.0.0
       remark-stringify: 9.0.1
       retext-english: 3.0.4
-      sanitize-html: 2.14.0
+      sanitize-html: 2.17.0
       underscore.string: 3.3.6
       unified: 9.2.2
       unist-util-remove-position: 3.0.0
@@ -28626,7 +28626,7 @@ snapshots:
     dependencies:
       truncate-utf8-bytes: 1.0.2
 
-  sanitize-html@2.14.0:
+  sanitize-html@2.17.0:
     dependencies:
       deepmerge: 4.3.1
       escape-string-regexp: 4.0.0
