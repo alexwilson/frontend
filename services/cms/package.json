@@ -45,7 +45,7 @@
     "decap-cms-backend-proxy": "^3.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "uuid": "^12.0.0"
+    "uuid": "^13.0.0"
   },
   "alias": {
     "uuid/v4": "./lib/uuid-v4"
