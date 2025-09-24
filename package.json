@@ -8,7 +8,7 @@
     "deploy": "lerna run deploy"
   },
   "devDependencies": {
-    "lerna": "^8.1.3"
+    "lerna": "^9.0.0"
   },
   "dependencies": {
     "esbuild": "^0.25.0"
