@@ -40,7 +40,7 @@ export default function aboutMe({ location }) {
           <p>
             <h2 className="eta">Skills</h2>
             <ul className="eta">
-              <li>11 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
+              <li>12 years commercial experience in full-stack software engineering, with JS, PHP, Java, Ruby and Golang: Utilising the overall-best-fit tools to solve a problem.</li>
               <li>Stakeholder management & requirement-gathering across business domains. Experience and knowledge of digital media domains.</li>
               <li>Team leadership & line-management experience, growing multi-disciplinary teams from the ground up through to feature delivery.</li>
               <li>Tracing, diagnosing and mitigating faults in diverse technical stacks — Legacy, distributed systems, etc.</li>
@@ -75,8 +75,8 @@ export default function aboutMe({ location }) {
               <li><i>Jan 2021–Jan 2022</i>: Principal Engineer, New Products & Enterprise, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Apr 2019–Jan 2021</i>: Principal Engineer, FT Group Products, <a href="https://www.ft.com/">Financial Times</a></li>
               <li><i>Oct 2016–Apr 2019</i>: Principal Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
-              <li><i>Sep 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
-              <li><i>Sep 2009—Jul 2013</i>: Part-Time Software Developer & SysAdmin, <a href="https://alexwilson.tech/">Freelance</a></li>
+              <li><i>Oct 2013–Oct 2016</i>: Software Developer, <a href="https://www.bluetel.co.uk/">Bluetel</a></li>
+              <li><i>Sep 2009—Jul 2013</i>: Software Developer & SysAdmin, <a href="https://alexwilson.tech/">Freelance</a></li>
             </ul>
           </p>
         </article>
