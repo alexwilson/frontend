@@ -124,8 +124,6 @@ class Header extends Component {
   render() {
     const { section = null } = this.props
     const { pathname } = this.props.location
-    const name = this.props.name ? this.props.name : "Alex Wilson"
-    const intro = this.props.intro ? this.props.intro : "On products, engineering & everything in-between."
 
     return (
       <header role="banner" className={`alex-header`} ref={this.header}>
@@ -135,12 +133,12 @@ class Header extends Component {
         <div className="alex-header--container">
 
           <div className="alex-header__about">
-            <h1 className="alex-header__name">{name}</h1>
-            {intro && <span className="alex-header__intro">{intro}</span>}
+            <h1 className="alex-header__name">Alex Wilson</h1>
+            <span className="alex-header__intro">On products, engineering & everything in-between.</span>
           </div>
 
 
-          <nav ref={this.headerNav} class="alex-header__nav--container">
+          <nav ref={this.headerNav} className="alex-header__nav--container">
             <a
               className="alex-header__menu-button" role="button"
               aria-pressed={this.state.navigationExpanded}
@@ -159,8 +157,6 @@ class Header extends Component {
               <this.navItem url="/about-me" active={pathname === "/about-me"}>About Me</this.navItem>
               <this.navItem url="/blog" active={section && section === "blog"}>Writing</this.navItem>
               <this.navItem url="/talks" active={section && section === "talks"}>Speaking</this.navItem>
-              <this.navItem url="/consultancy" active={pathname === "/consultancy"}>Hire Me</this.navItem>
-
               <NavSpacer />
 
               <this.navItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></this.navItem>
@@ -177,17 +173,13 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  name: PropTypes.string,
-  intro: PropTypes.string,
   image: PropTypes.string,
   location: PropTypes.object.isRequired,
   section: PropTypes.oneOf(["blog", "talks"]),
-  linkImplementation: PropTypes.instanceOf(Link)
+  linkImplementation: PropTypes.elementType
 }
 
 Header.defaultProps = {
-  name: "Alex Wilson",
-  intro: "On products, engineering & everything in-between.",
   image: null,
   section: null,
   linkImplementation: Link

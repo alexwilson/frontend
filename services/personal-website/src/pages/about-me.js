@@ -64,7 +64,7 @@ export default function aboutMe({ location }) {
           </p>
 
           <p>
-            I am not actively seeking a full-time role, however <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please connect with me on LinkedIn</a>. I am also <Link to={'/consultancy/'}>available for consultancy</Link>.
+            I am not actively seeking a full-time role, however <a href="https://alexwilson.tech/cv">you may see my full CV here</a>, alternatively, <a href="https://www.linkedin.com/in/alex-/">please connect with me on LinkedIn</a>.
           </p>
           <p>
             <h2 className="eta">Work Experience</h2>
