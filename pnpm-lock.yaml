@@ -286,8 +286,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.219.0
-        version: 2.219.0(constructs@10.4.2)
+        specifier: 2.220.0
+        version: 2.220.0(constructs@10.4.2)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -353,8 +353,8 @@ packages:
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.0':
     resolution: {integrity: sha512-7bY3J8GCVxLupn/kNmpPc5VJz8grx+4RKfnnJiO1LG+uxkZfANZG3RMHhE+qQxxwkyQ9/MfPtTpf748UhR425A==}
 
-  '@aws-cdk/cloud-assembly-schema@48.12.0':
-    resolution: {integrity: sha512-/GNDW8+O5FZldDXVtNJSMnd6+hG8DmwLt02cqlYHqWjpqTap7XzFFv3pqGTl/lL7s97jlbgj/568pLjpUWh2Dw==}
+  '@aws-cdk/cloud-assembly-schema@48.14.0':
+    resolution: {integrity: sha512-mo1MaPKsNVh3QSuosREcwIh8TrVZ9deHVLAjzbjkQuTxb/7LGqkf1E5HHxlAt6Z0+z+DZt7dTPIJ92NcR0tjDQ==}
     engines: {node: '>= 18.0.0'}
     bundledDependencies:
       - jsonschema
@@ -4415,8 +4415,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.219.0:
-    resolution: {integrity: sha512-Rq1/f3exfFEWee1znNq8yvR1TuRQ4xQZz3JNkliBW9dFwyrDe7l/dmlAf6DVvB3nuiZAaUS+vh4ua1LZ7Ec8kg==}
+  aws-cdk-lib@2.220.0:
+    resolution: {integrity: sha512-mOEyPP1ymWiLnSE0xFxWjG00E1DQ5wtbcgKUmtGjxyNdoG/Qret1nDLqE43YGZEbwca43WO/a2LDuSL6+hN7Lg==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -13609,7 +13609,7 @@ snapshots:
 
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.0': {}
 
-  '@aws-cdk/cloud-assembly-schema@48.12.0': {}
+  '@aws-cdk/cloud-assembly-schema@48.14.0': {}
 
   '@babel/code-frame@7.12.11':
     dependencies:
@@ -19570,11 +19570,11 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.219.0(constructs@10.4.2):
+  aws-cdk-lib@2.220.0(constructs@10.4.2):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.242
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
-      '@aws-cdk/cloud-assembly-schema': 48.12.0
+      '@aws-cdk/cloud-assembly-schema': 48.14.0
       constructs: 10.4.2
 
   aws-cdk@2.1030.0:
@@ -23073,12 +23073,6 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
-  file-loader@6.2.0(webpack@5.102.1(esbuild@0.25.10)):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 5.102.1(esbuild@0.25.10)
-
   file-loader@6.2.0(webpack@5.102.1):
     dependencies:
       loader-utils: 2.0.4
@@ -24261,7 +24255,7 @@ snapshots:
       express-http-proxy: 1.6.3
       fastest-levenshtein: 1.0.16
       fastq: 1.19.1
-      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.25.10))
+      file-loader: 6.2.0(webpack@5.98.0(esbuild@0.25.10))
       find-cache-dir: 3.3.2
       fs-exists-cached: 1.0.0
       fs-extra: 11.3.1
@@ -24343,7 +24337,7 @@ snapshots:
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.25.10)))(webpack@5.98.0(esbuild@0.25.10))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.102.1(esbuild@0.25.10)))(webpack@5.98.0(esbuild@0.25.10))
       uuid: 8.3.2
       webpack: 5.98.0(esbuild@0.25.10)
       webpack-dev-middleware: 5.3.4(webpack@5.98.0(esbuild@0.25.10))
@@ -31110,15 +31104,6 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.10)
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.98.0(esbuild@0.25.10))
-
-  url-loader@4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.25.10)))(webpack@5.98.0(esbuild@0.25.10)):
-    dependencies:
-      loader-utils: 2.0.4
-      mime-types: 2.1.35
-      schema-utils: 3.3.0
-      webpack: 5.98.0(esbuild@0.25.10)
-    optionalDependencies:
-      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.25.10))
 
   url-parse-lax@3.0.0:
     dependencies:
