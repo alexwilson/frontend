@@ -8,7 +8,7 @@ const TalkTemplate = ({ data, location }) => {
   const post = data.content
   return (
     <Layout location={location}>
-      <Header location={location} section="talks" linkImplementation={Link} />
+      <Header location={location} section="talks" />
       <div class="alex-article">
         <div class="alex-article__main">
           <h1 itemprop="name headline">{post.title}</h1>

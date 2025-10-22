@@ -10,7 +10,7 @@ const TopicsTemplate = ({ pageContext, data, location }) => {
   const { totalCount } = data.content
 
   return (<Layout location={location}>
-    <Header location={location} section="blog" linkImplementation={Link} />
+    <Header location={location} section="blog" />
     <div class="alex-stream">
       <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
       {data.content.edges.map(({ node }) => (
