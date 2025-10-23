@@ -1,23 +1,18 @@
-import { Link } from '@reach/router'
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
+import Link from "../link"
 
-const NavItemFactory = (linkImplementation) => {
-  const LinkImplementation = (linkImplementation) ? linkImplementation : Link;
-  const NavItem = ({ url, rel, active, width, children }) => {
-    const classList = ["alex-header__nav-item"]
-    if (active) classList.push("alex-header__nav-item--active")
-    if (width) classList.push(`alex-header__nav-item--width-${width}`)
-    return (
-      <li className={classList.join(' ')}>
-        <LinkImplementation rel={rel} to={url}>{children}</LinkImplementation>
-      </li>
-    );
-  }
-
-  return NavItem;
+const NavItem = ({ url, rel, active, width, children }) => {
+  const classList = ["alex-header__nav-item"]
+  if (active) classList.push("alex-header__nav-item--active")
+  if (width) classList.push(`alex-header__nav-item--width-${width}`)
+  return (
+    <li className={classList.join(' ')}>
+      <Link rel={rel} to={url}>{children}</Link>
+    </li>
+  );
 }
 
 const NavSpacer = () => (
@@ -89,7 +84,6 @@ class Header extends Component {
 
   constructor(props) {
     super(props)
-    this.navItem = NavItemFactory(props.linkImplementation)
     this.header = React.createRef()
     this.headerNav = React.createRef()
     this.state = {
@@ -153,17 +147,17 @@ class Header extends Component {
               <span></span>
             </a>
             <ul className="alex-header__nav" id="menu" aria-expanded={this.state.navigationExpanded}>
-              <this.navItem url="/" active={pathname === "/"}>Home</this.navItem>
-              <this.navItem url="/about-me" active={pathname === "/about-me"}>About Me</this.navItem>
-              <this.navItem url="/blog" active={section && section === "blog"}>Writing</this.navItem>
-              <this.navItem url="/talks" active={section && section === "talks"}>Speaking</this.navItem>
+              <NavItem url="/" active={pathname === "/"}>Home</NavItem>
+              <NavItem url="/about-me" active={pathname === "/about-me"}>About Me</NavItem>
+              <NavItem url="/blog" active={section && section === "blog"}>Writing</NavItem>
+              <NavItem url="/talks" active={section && section === "talks"}>Speaking</NavItem>
               <NavSpacer />
 
-              <this.navItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></this.navItem>
-              <this.navItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></this.navItem>
-              <this.navItem url="https://www.instagram.com/alexwilson.tech" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></this.navItem>
-              <this.navItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src="/svg/mastodon.svg" title="Mastodon" /></this.navItem>
-              <this.navItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></this.navItem>
+              <NavItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></NavItem>
+              <NavItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
+              <NavItem url="https://www.instagram.com/alexwilson.tech" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></NavItem>
+              <NavItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src="/svg/mastodon.svg" title="Mastodon" /></NavItem>
+              <NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></NavItem>
             </ul>
           </nav>
 
@@ -175,14 +169,12 @@ class Header extends Component {
 Header.propTypes = {
   image: PropTypes.string,
   location: PropTypes.object.isRequired,
-  section: PropTypes.oneOf(["blog", "talks"]),
-  linkImplementation: PropTypes.elementType
+  section: PropTypes.oneOf(["blog", "talks"])
 }
 
 Header.defaultProps = {
   image: null,
-  section: null,
-  linkImplementation: Link
+  section: null
 }
 
 export default Header

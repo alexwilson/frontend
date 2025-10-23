@@ -8,15 +8,13 @@
 import React, {Children} from "react"
 import PropTypes from "prop-types"
 
-import { Link } from "gatsby"
-
 import Header from "@alexwilson/legacy-components/src/header"
 import Footer from "@alexwilson/legacy-components/src/footer"
 import "../scss/main.scss"
 
 const Layout = ({ location, children }) => {
 
-  let HeaderElement = <Header location={location} linkImplementation={Link} />
+  let HeaderElement = <Header location={location} />
   let FooterElement = <Footer />
 
   const layoutChildren = Children.toArray(children)
