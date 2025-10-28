@@ -6,7 +6,7 @@ import Header from "@alexwilson/legacy-components/src/header"
 
 const TalksPage = ({ data, location }) => {
   return (<Layout location={location}>
-    <Header location={location} section="talks" linkImplementation={Link} />
+    <Header location={location} section="talks" />
     <div className="alex-stream">
       <h1>Talks</h1>
       {data.talks.edges.map(({ node }) => (
