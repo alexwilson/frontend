@@ -317,8 +317,8 @@ importers:
         specifier: ^24.0.0
         version: 24.9.2
       aws-cdk:
-        specifier: 2.1031.0
-        version: 2.1031.0
+        specifier: 2.1031.1
+        version: 2.1031.1
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -1419,7 +1419,7 @@ packages:
 
   '@builder.io/partytown@0.7.6':
     resolution: {integrity: sha512-snXIGNiZpqjno3XYQN2lbBB+05hsQR/LSttbtIW1c0gmZ7Kh/DIo0YrxlDxCDulAMFPFM8J+4voLwvYepSj3sw==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    deprecated: Use @qwik.dev/partytown instead
     hasBin: true
 
   '@cloudflare/kv-asset-handler@0.4.0':
@@ -4461,8 +4461,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1031.0:
-    resolution: {integrity: sha512-iotbdOIvHoLCz1u7PUVDQbcpGpVqMk8HzAeOP4PGRqD9PoAEsCb3mwGTxHMrNGEGWdJXQxiTOGSaMmlwEvACxA==}
+  aws-cdk@2.1031.1:
+    resolution: {integrity: sha512-y/ovZDtOKvgJFtwE7NDFKRgJB3stgUUrAu6b31icuFO8+vnZ+4BIt0McQfbVR8ky5QOj2TW1G1sk55k8Yv+BnQ==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -19643,7 +19643,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 48.16.0
       constructs: 10.4.2
 
-  aws-cdk@2.1031.0:
+  aws-cdk@2.1031.1:
     optionalDependencies:
       fsevents: 2.3.2
 
