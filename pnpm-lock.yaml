@@ -57,7 +57,7 @@ importers:
     devDependencies:
       wrangler:
         specifier: ^4.7.2
-        version: 4.45.2
+        version: 4.45.3
 
   services/cms:
     dependencies:
@@ -145,7 +145,7 @@ importers:
         version: 5.2.2(webpack-cli@6.0.1)(webpack@5.102.1)
       wrangler:
         specifier: ^4.7.2
-        version: 4.45.2
+        version: 4.45.3
 
   services/personal-website:
     dependencies:
@@ -13354,8 +13354,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.45.2:
-    resolution: {integrity: sha512-+G24gD+Rh7iBus5QiVBhNgSLzyAiyuZSm+3Ih5li8+PEA+gosAXfDSZlNZwsVmXd8VJTjq+BR4vhUiruQRWgTw==}
+  wrangler@4.45.3:
+    resolution: {integrity: sha512-0ddEA9t4HeBgSVTVTcqtBHl7Z5CorWZ8tGgTQCP5XuL+9E1TJRwS6t/zzG51Ruwjb17SZYCaLchoM8V629S8cw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -23153,6 +23153,12 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
+  file-loader@6.2.0(webpack@5.102.1(esbuild@0.25.11)):
+    dependencies:
+      loader-utils: 2.0.4
+      schema-utils: 3.3.0
+      webpack: 5.102.1(esbuild@0.25.11)
+
   file-loader@6.2.0(webpack@5.102.1):
     dependencies:
       loader-utils: 2.0.4
@@ -24335,7 +24341,7 @@ snapshots:
       express-http-proxy: 1.6.3
       fastest-levenshtein: 1.0.16
       fastq: 1.19.1
-      file-loader: 6.2.0(webpack@5.98.0(esbuild@0.25.11))
+      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.25.11))
       find-cache-dir: 3.3.2
       fs-exists-cached: 1.0.0
       fs-extra: 11.3.1
@@ -24417,7 +24423,7 @@ snapshots:
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.102.1(esbuild@0.25.11)))(webpack@5.98.0(esbuild@0.25.11))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.25.11)))(webpack@5.98.0(esbuild@0.25.11))
       uuid: 8.3.2
       webpack: 5.98.0(esbuild@0.25.11)
       webpack-dev-middleware: 5.3.4(webpack@5.98.0(esbuild@0.25.11))
@@ -31175,6 +31181,15 @@ snapshots:
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.98.0(esbuild@0.25.11))
 
+  url-loader@4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.25.11)))(webpack@5.98.0(esbuild@0.25.11)):
+    dependencies:
+      loader-utils: 2.0.4
+      mime-types: 2.1.35
+      schema-utils: 3.3.0
+      webpack: 5.98.0(esbuild@0.25.11)
+    optionalDependencies:
+      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.25.11))
+
   url-parse-lax@3.0.0:
     dependencies:
       prepend-http: 2.0.0
@@ -31872,7 +31887,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20251011.0
       '@cloudflare/workerd-windows-64': 1.20251011.0
 
-  wrangler@4.45.2:
+  wrangler@4.45.3:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.8(unenv@2.0.0-rc.21)(workerd@1.20251011.0)
