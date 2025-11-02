@@ -11,6 +11,9 @@ module.exports = {
     mode: isProduction ? 'production' : 'development',
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.yml'],
+        alias: {
+          'clean-stack': false
+        },
         fallback: {
           path: require.resolve("path-browserify"),
           stream: require.resolve("stream-browserify")
