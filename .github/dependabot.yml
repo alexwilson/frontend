@@ -15,11 +15,6 @@ updates:
       - dependency-name: "react-dom"
         versions: ["19.x"]
 
-      # Recent Decap updates have not been stable.
-      - dependency-name: "decap-cms"
-        versions: ["^3.5"]
-      - dependency-name: "decap-cms-app"
-        versions: ["^3.5"]
     reviewers:
       - alexwilson
     versioning-strategy: increase-if-necessary
