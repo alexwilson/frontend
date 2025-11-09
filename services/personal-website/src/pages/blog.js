@@ -3,9 +3,12 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 import Header from "@alexwilson/legacy-components/src/header"
+import SEO from "../components/seo"
 
  const BlogPage = ({ data, location }) => {
+  const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
   return (<Layout location={location}>
+    <SEO title="Blog" url={url} />
     <Header location={location} section="blog" />
     <div className="alex-stream">
       <h1>My Blog</h1>
@@ -47,6 +50,11 @@ export const query = graphql`
             ...BlogPageContent
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

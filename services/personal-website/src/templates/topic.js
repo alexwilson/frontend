@@ -4,12 +4,15 @@ import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Header from "@alexwilson/legacy-components/src/header"
+import SEO from "../components/seo"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {
   const { topic } = pageContext
   const { totalCount } = data.content
+  const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
 
   return (<Layout location={location}>
+    <SEO title={data.topic.topic} url={url} />
     <Header location={location} section="blog" />
     <div class="alex-stream">
       <h1>{`${totalCount} post${totalCount === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
@@ -45,6 +48,11 @@ export const pageQuery = graphql`
             ...TopicPageContent
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
