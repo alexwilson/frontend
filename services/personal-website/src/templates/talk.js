@@ -3,11 +3,14 @@ import { graphql, Link } from "gatsby"
 import Header from "@alexwilson/legacy-components/src/header"
 import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const TalkTemplate = ({ data, location }) => {
   const post = data.content
+  const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
   return (
     <Layout location={location}>
+      <SEO title={post.title} url={url} image={`${url}/twitter-card.jpg`} />
       <Header location={location} section="talks" />
       <div class="alex-article">
         <div class="alex-article__main">
