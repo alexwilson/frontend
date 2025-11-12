@@ -6,11 +6,15 @@ import Link from "../link"
 
 const NavItem = ({ url, rel, active, width, children }) => {
   const classList = ["alex-header__nav-item"]
+  const isExternal = url.startsWith("http")
   if (active) classList.push("alex-header__nav-item--active")
   if (width) classList.push(`alex-header__nav-item--width-${width}`)
   return (
     <li className={classList.join(' ')}>
-      <Link rel={rel} to={url}>{children}</Link>
+      {isExternal
+        ? <a href={url} rel={rel}>{children}</a>
+        : <Link rel={rel} to={url}>{children}</Link>
+      }
     </li>
   );
 }
