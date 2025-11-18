@@ -326,8 +326,8 @@ importers:
         specifier: ^24.0.0
         version: 24.10.1
       aws-cdk:
-        specifier: 2.1031.2
-        version: 2.1031.2
+        specifier: 2.1032.0
+        version: 2.1032.0
       aws-sdk-mock:
         specifier: ^6.0.4
         version: 6.2.1
@@ -4472,8 +4472,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1031.2:
-    resolution: {integrity: sha512-FI8XkslwC1Vatjdu5MXu2ww++FcZPkPt45/DJklApxMF+aGcCKOuLf+COc12QYK88GOrLBeCED6lDjNc9m/ueA==}
+  aws-cdk@2.1032.0:
+    resolution: {integrity: sha512-OFvTnwPrRsFklmPdTAX1li9s6yBWknVlojVy7geuBeJyMZo3aNIe6sbINYjKagRNFhacidbz2RocM7LcwQVY7w==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -19739,7 +19739,7 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 48.18.0
       constructs: 10.4.3
 
-  aws-cdk@2.1031.2:
+  aws-cdk@2.1032.0:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -23727,12 +23727,6 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
-  file-loader@6.2.0(webpack@5.102.1(esbuild@0.27.0)):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 5.102.1(esbuild@0.27.0)
-
   file-loader@6.2.0(webpack@5.102.1):
     dependencies:
       loader-utils: 2.0.4
@@ -24915,7 +24909,7 @@ snapshots:
       express-http-proxy: 1.6.3
       fastest-levenshtein: 1.0.16
       fastq: 1.19.1
-      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.27.0))
+      file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.0))
       find-cache-dir: 3.3.2
       fs-exists-cached: 1.0.0
       fs-extra: 11.3.1
@@ -24997,7 +24991,7 @@ snapshots:
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.0)))(webpack@5.98.0(esbuild@0.27.0))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.102.1(esbuild@0.27.0)))(webpack@5.98.0(esbuild@0.27.0))
       uuid: 8.3.2
       webpack: 5.98.0(esbuild@0.27.0)
       webpack-dev-middleware: 5.3.4(webpack@5.98.0(esbuild@0.27.0))
@@ -32009,15 +32003,6 @@ snapshots:
       webpack: 5.98.0(esbuild@0.27.0)
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.0))
-
-  url-loader@4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.0)))(webpack@5.98.0(esbuild@0.27.0)):
-    dependencies:
-      loader-utils: 2.0.4
-      mime-types: 2.1.35
-      schema-utils: 3.3.0
-      webpack: 5.98.0(esbuild@0.27.0)
-    optionalDependencies:
-      file-loader: 6.2.0(webpack@5.102.1(esbuild@0.27.0))
 
   url-parse-lax@3.0.0:
     dependencies:
