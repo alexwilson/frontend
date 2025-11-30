@@ -1,0 +1,124 @@
+name: Purge CDN
+
+on:
+  workflow_dispatch:
+    inputs:
+      purge_type:
+        description: "Purge content immediately? (Fastly: soft purges mark content stale)"
+        required: false
+        default: "soft"
+        type: choice
+        options:
+          - hard
+          - soft
+      purge_method:
+        required: true
+        description: "How to target this purge action?"
+        type: choice
+        options:
+          - all
+          - tag
+          - path
+      purge_target:
+        description: "Target of the purge"
+        required: true
+        type: string
+
+jobs:
+  purge_fastly:
+    runs-on: ubuntu-latest
+    env:
+      FASTLY_API_KEY: ${{ secrets.PURGER_FASTLY_API_KEY }}
+      FASTLY_SERVICE_ID: ${{ secrets.PURGER_FASTLY_SERVICE_ID }}
+      PURGE_TYPE: ${{ github.event.inputs.purge_type }}
+      PURGE_TARGET: ${{ github.event.inputs.purge_target }}
+    steps:
+      - name: Set Soft Purge Header Value
+        id: set_header
+        run: |
+          # Set the Soft Purge header value (1 for soft, 0/omitted for hard)
+          if [ "${{ github.event.inputs.purge_type }}" == "soft" ]; then
+            echo "SOFT_PURGE_HEADER=1" >> $GITHUB_ENV
+            echo "Purge Type: SOFT"
+          else
+            echo "SOFT_PURGE_HEADER=0" >> $GITHUB_ENV
+            echo "Purge Type: HARD"
+          fi
+
+      - name: Purge all (Fastly)
+        if: github.event.inputs.purge_method == 'all'
+        run: |
+          echo "Sending Fastly 'purge all' request (always hard purge)..."
+          FASTLY_RESPONSE=$(curl -s -X POST \
+            -H "Fastly-Key: ${FASTLY_API_KEY}" \
+            "https://api.fastly.com/service/${FASTLY_SERVICE_ID}/purge_all" \
+          )
+          echo "Fastly Purge All initiated. Response: $FASTLY_RESPONSE"
+
+      - name: Purge path (Fastly)
+        if: github.event.inputs.purge_method == 'path'
+        run: |
+          echo "Sending Fastly Purge by Path request..."
+          FASTLY_RESPONSE=$(curl -s -X POST \
+            -H "Fastly-Key: ${FASTLY_API_KEY}" \
+            -H "Fastly-Soft-Purge: ${SOFT_PURGE_HEADER}" \
+            "https://api.fastly.com/service/${FASTLY_SERVICE_ID}/purge/${PURGE_TARGET}" \
+          )
+          echo "Fastly Purge by Path initiated. Response: $FASTLY_RESPONSE"
+
+      - name: Purge tag (Fastly)
+        if: github.event.inputs.purge_method == 'tag'
+        run: |
+          echo "Sending Fastly Purge by Surrogate Key request..."
+          FASTLY_RESPONSE=$(curl -s -X POST \
+            -H "Fastly-Key: ${FASTLY_API_KEY}" \
+            -H "Fastly-Soft-Purge: ${SOFT_PURGE_HEADER}" \
+            -H "Content-Type: application/json" \
+            -d '{"surrogate_keys": ["'${PURGE_TARGET}'"]}' \
+            "https://api.fastly.com/service/${FASTLY_SERVICE_ID}/purge" \
+          )
+          echo "Fastly Purge by Tag initiated. Response: $FASTLY_RESPONSE"
+          
+  purge_cloudflare:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.PURGER_CF_API_TOKEN }}
+      CLOUDFLARE_ZONE_ID: ${{ secrets.PURGER_CF_ZONE_ID }}
+      PURGE_TARGET: ${{ github.event.inputs.purge_target }}
+    steps:
+
+      - name: Purge all (Cloudflare)
+        if: github.event.inputs.purge_method == 'all'
+        run: |
+          echo "Sending Cloudflare 'purge all' request..."
+          CF_RESPONSE=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything": true}' \
+          )
+          echo "Cloudflare Purge All initiated. Response: $CF_RESPONSE"
+
+      - name: Purge path (Cloudflare)
+        if: github.event.inputs.purge_method == 'path'
+        run: |
+          echo "Sending Cloudflare Purge by Path request..."
+          CF_RESPONSE=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"files": ["'${PURGE_TARGET}'"]}' \
+          )
+          echo "Cloudflare Purge by Path initiated. Response: $CF_RESPONSE"
+
+      - name: Purge tag (Cloudflare)
+        if: github.event.inputs.purge_method == 'tag'
+        run: |
+          echo "Sending Cloudflare Purge by Cache-Tag request..."
+          CF_RESPONSE=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"tags": ["'${PURGE_TARGET}'"]}' \
+          )
+          echo "Cloudflare Purge by Tag initiated. Response: $CF_RESPONSE"
