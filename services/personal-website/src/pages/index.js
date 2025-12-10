@@ -46,14 +46,15 @@ export const query = graphql`
       filter: { topics: { elemMatch: { topic: { ne: "weeknotes" }} }}
       limit: 3
     ) {
-      nodes {
-        contentId
-        title
-        slug
-        date
-        content: parent {
-          ...HomepageContent
-        }
+        nodes {
+          contentId
+          title
+          url
+          slug
+          date
+          content: parent {
+            ...HomepageContent
+          }
       }
     }
     onlyWeeknotes: allContent(
@@ -61,14 +62,15 @@ export const query = graphql`
       filter: { topics: { elemMatch: { topic: { eq: "weeknotes" }} }}
       limit: 3
     ) {
-      nodes {
-        contentId
-        title
-        slug
-        date
-        content: parent {
-          ...HomepageContent
-        }
+        nodes {
+          contentId
+          title
+          url
+          slug
+          date
+          content: parent {
+            ...HomepageContent
+          }
       }
     }
   }

@@ -6,6 +6,8 @@ import ResponsiveImage from '../responsive-image'
 export default function articleCard({article, withBody = true, withImage = true, withDate = true}) {
 
   const date = new Date(article.date)
+  const destination = article.url || article.slug
+  const isInternalLink = destination && destination.startsWith('/')
 
   return (
     <div className="alex-card">
@@ -13,7 +15,11 @@ export default function articleCard({article, withBody = true, withImage = true,
       <div className="alex-card__content--container">
 
         <div className="alex-card__title">
-          <h3><Link to={ article.slug }>{ article.title }</Link></h3>
+          <h3>
+            {isInternalLink
+              ? <Link to={ destination }>{ article.title }</Link>
+              : <a href={ destination }>{ article.title }</a>}
+          </h3>
         </div>
 
         {(withBody !== false) ?

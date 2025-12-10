@@ -33,6 +33,7 @@ exports.createSchemaCustomization = ({actions}) => {
       contentId: String!
       title: String!
       slug: String!
+      url: String!
       type: String!
       date: Date!
 
@@ -41,6 +42,8 @@ exports.createSchemaCustomization = ({actions}) => {
       topics: [Topic] @link(by: "topicId")
 
       image: ContentImageFields!
+
+      link: String
     }
 
     type ContentImageFields @dontInfer {
@@ -89,6 +92,9 @@ exports.createResolvers = ({ createResolvers }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const articleTemplate = path.resolve(`./src/templates/article.js`)
+  const talkTemplate = path.resolve(`./src/templates/talk.js`)
+  const placeholderTemplate = path.resolve(`./src/templates/content-placeholder.js`)
   const {data} = await graphql(`
     query {
       content: allContent {
@@ -110,9 +116,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   data.content.nodes.forEach((node) => {
     // Create a page
+    const component = node.type === "talk" ? talkTemplate : node.type === "content-placeholder" ? placeholderTemplate : articleTemplate
     createPage({
       path: node.slug,
-      component: node.type === "talk" ? path.resolve(`./src/templates/talk.js`) : path.resolve(`./src/templates/article.js`),
+      component,
       context: {
         contentId: node.contentId
       }

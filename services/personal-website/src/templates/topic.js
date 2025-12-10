@@ -43,6 +43,7 @@ export const pageQuery = graphql`
           contentId
           title
           slug
+          url
           date
           content: parent {
             ...TopicPageContent
