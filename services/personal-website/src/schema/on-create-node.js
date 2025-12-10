@@ -6,6 +6,8 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   const title = node.frontmatter['title'] || ''
   const date = new Date(node.frontmatter.date)
   const type = node.frontmatter['type'] || 'article'
+  const link = node.frontmatter['link']
+  const url = link || slug
 
   let image
   let thumbnail
@@ -26,11 +28,16 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   const content = {
     contentId,
     slug,
+    url,
     title,
     type,
     date,
     image: {},
     topics: []
+  }
+
+  if (link) {
+    content.link = link
   }
   if (author) {
     content.author = {

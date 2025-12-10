@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Organization from "../schema-org/organization"
 import Person from "../schema-org/person"
 
-function SEO({ description, lang, meta, keywords, title, children }) {
+function SEO({ description, lang, meta, keywords, title, canonicalUrl, children }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -81,6 +81,7 @@ function SEO({ description, lang, meta, keywords, title, children }) {
         .concat(meta)}
     >
       <link rel="alternate" type="application/rss+xml" title="Alex Wilson's writing via RSS" href="/feed.xml" />
+      {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
       <script type="application/ld+json">{JSON.stringify({
         "@type":"WebPage",
         "@context":"http://schema.org",
@@ -108,6 +109,7 @@ SEO.propTypes = {
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  canonicalUrl: PropTypes.string,
 }
 
 export default SEO

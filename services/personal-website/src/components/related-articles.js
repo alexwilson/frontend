@@ -28,6 +28,7 @@ export default ({ article: currentArticle }) => {
         nodes {
           contentId
           slug
+          url
           date
           title
           topics {

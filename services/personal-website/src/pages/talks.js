@@ -40,6 +40,7 @@ export const query = graphql`
           contentId
           title
           date
+          url
           slug
           image {
             thumbnail

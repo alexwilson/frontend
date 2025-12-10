@@ -127,7 +127,10 @@ module.exports = {
           {
             serialize: ({ query: { site, recentContent } }) => {
               return recentContent.nodes.map(entry => {
-                const rawUrl = new URL(entry.slug, site.siteMetadata.siteUrl)
+                const urlSource = entry.url || entry.slug
+                const rawUrl = urlSource && urlSource.startsWith('http')
+                  ? new URL(urlSource)
+                  : new URL(urlSource, site.siteMetadata.siteUrl)
                 const guid = rawUrl.toString()
                 rawUrl.searchParams.append('utm_source', 'feed')
                 const url = rawUrl.toString()
@@ -178,6 +181,7 @@ module.exports = {
                   nodes {
                     title
                     date
+                    url
                     slug
                     author {
                       name

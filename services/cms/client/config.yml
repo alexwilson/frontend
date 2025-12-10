@@ -34,6 +34,7 @@ collections:
       - {label: Image, name: "image", required: false, widget: "image"}
       - {label: Tags, name: "tags", allow_add: true, label_singular: "Add", widget: "list"}
       - {label: Body, name: "body", widget: "markdown"}
-      - {label: Content Type, name: "type", options: ["article", "talk"], default: "article", widget: "select"}
+      - {label: Content Type, name: "type", options: ["article", "talk", "content-placeholder"], default: "article", widget: "select"}
+      - {label: "Destination URL", name: "link", required: false, widget: "string"}
       - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex"}
       - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime"}
