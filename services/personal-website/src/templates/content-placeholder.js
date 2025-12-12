@@ -14,24 +14,24 @@ const ensureAbsoluteUrl = (url, siteUrl) => {
 }
 
 const ContentPlaceholderTemplate = ({ data, location }) => {
+  const isSamePage = data.content.url === location.pathname
   const destination = ensureAbsoluteUrl(data.content.url, data.site.siteMetadata.siteUrl)
-
   useEffect(() => {
-    if (destination) {
+    if (!isSamePage) {
       window.location.replace(destination)
     }
-  }, [destination])
+  }, [isSamePage, destination])
+
+  if (isSamePage) {
+    // return null;
+  }
 
   return (
     <Layout location={location}>
       <SEO title={data.content.title} description={data.content?.content?.excerpt} canonicalUrl={destination}>
-        <meta httpEquiv="refresh" content={`0;url=${destination}`} />
+        <meta httpEquiv="refresh" content={`15;url=${destination}?a`} />
       </SEO>
-      <div className="alex-article">
-        <p>
-          Redirecting to <a href={destination}>{destination}</a>...
-        </p>
-      </div>
+      Redirecting to <a href={destination}>{destination}</a>...
     </Layout>
   )
 }
