@@ -7,14 +7,14 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data, location }) => (
   <Layout location={location}>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Home" />
     <div className="alex-home">
         <section className="alex-home__section">
         </section>
         <section className="alex-home__section">
             <h2><a className="heading" href="/blog/">Latest Writing</a></h2>
             <div className="alex-home__tilestack">
-            {data.allButWeeknotes.nodes.map((node) =>
+            {data.allButWeeknotesAndLists.nodes.map((node) =>
               <div key={node.contentId} className="alex-home__tilestack-item">
                 <ArticleCard article={node} withImage={false} withDate={false} />
               </div>
@@ -41,9 +41,9 @@ export const query = graphql`
   }
 
   query {
-    allButWeeknotes: allContent(
+    allButWeeknotesAndLists: allContent(
       sort: {fields: [date], order: DESC}
-      filter: { topics: { elemMatch: { topic: { ne: "weeknotes" }} }}
+      filter: { topics: { elemMatch: { topic: { nin: ["weeknotes", "lists"] }} }}
       limit: 3
     ) {
         nodes {
@@ -60,6 +60,22 @@ export const query = graphql`
     onlyWeeknotes: allContent(
       sort: {fields: [date], order: DESC}
       filter: { topics: { elemMatch: { topic: { eq: "weeknotes" }} }}
+      limit: 3
+    ) {
+        nodes {
+          contentId
+          title
+          url
+          slug
+          date
+          content: parent {
+            ...HomepageContent
+          }
+      }
+    }
+    onlyLists: allContent(
+      sort: {fields: [date], order: DESC}
+      filter: { topics: { elemMatch: { topic: { eq: "lists" }} }}
       limit: 3
     ) {
         nodes {

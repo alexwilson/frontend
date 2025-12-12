@@ -29,7 +29,8 @@ export const query = graphql`
   query {
     content: allContent(
       filter: {
-        type: {eq: "article"}
+        type: {in: ["article", "content-placeholder"]}
+        topics: {elemMatch: {topic: {ne: "lists"}}}
       }
       sort: {
         fields: [date],

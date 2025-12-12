@@ -115,11 +115,23 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   data.content.nodes.forEach((node) => {
-    // Create a page
-    const component = node.type === "talk" ? talkTemplate : node.type === "content-placeholder" ? placeholderTemplate : articleTemplate
+    const templateFromContentType = (contentType) => {
+      switch (contentType) {
+        case 'content-placeholder': {
+          return placeholderTemplate;
+        }
+        case 'talk': {
+          return talkTemplate;
+        }
+        case 'article': {
+          return articleTemplate;
+        }
+      }
+      return articleTemplate;
+    }
     createPage({
       path: node.slug,
-      component,
+      component: templateFromContentType(node.type),
       context: {
         contentId: node.contentId
       }
