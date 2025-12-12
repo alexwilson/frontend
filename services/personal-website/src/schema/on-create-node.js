@@ -7,7 +7,11 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   const date = new Date(node.frontmatter.date)
   const type = node.frontmatter['type'] || 'article'
   const link = node.frontmatter['link']
-  const url = link || slug
+
+  let url = slug
+  if (node.type === 'content-placeholder') {
+    url = link
+  }
 
   let image
   let thumbnail
