@@ -9,8 +9,8 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
   const link = node.frontmatter['link']
 
   let url = slug
-  if (node.type === 'content-placeholder') {
-    url = link
+  if (type === 'content-placeholder') {
+    url = link;
   }
 
   let image
@@ -40,9 +40,6 @@ const contentFromMarkdownRemark = ({node, getNode}) => {
     topics: []
   }
 
-  if (link) {
-    content.link = link
-  }
   if (author) {
     content.author = {
       name: author
