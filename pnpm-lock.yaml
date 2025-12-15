@@ -14,7 +14,7 @@ importers:
     devDependencies:
       lerna:
         specifier: ^9.0.0
-        version: 9.0.3(@types/node@24.10.1)(babel-plugin-macros@3.1.0)
+        version: 9.0.3(@types/node@25.0.2)(babel-plugin-macros@3.1.0)
 
   components/legacy-components:
     dependencies:
@@ -69,10 +69,10 @@ importers:
         version: 4.1.0
       decap-cms:
         specifier: ^3.4.0
-        version: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.103.0)
+        version: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.103.0)
       decap-cms-app:
         specifier: ^3.4.0
-        version: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       decap-cms-backend-proxy:
         specifier: ^3.3.0
         version: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
@@ -136,7 +136,7 @@ importers:
         version: 4.0.0(webpack@5.103.0)
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.14(esbuild@0.27.1)(webpack@5.103.0)
+        version: 5.3.15(esbuild@0.27.1)(webpack@5.103.0)
       url:
         specifier: ^0.11.4
         version: 0.11.4
@@ -3675,6 +3675,9 @@ packages:
 
   '@types/node@24.3.0':
     resolution: {integrity: sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow==}
+
+  '@types/node@25.0.2':
+    resolution: {integrity: sha512-gWEkeiyYE4vqjON/+Obqcoeffmk0NF15WSBwSs7zwVA2bAbTaE0SJ7P0WNGoJn8uE7fiaV5a7dKYIJriEqOrmA==}
 
   '@types/node@8.10.66':
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
@@ -12420,6 +12423,38 @@ packages:
       uglify-js:
         optional: true
 
+  terser-webpack-plugin@5.3.15:
+    resolution: {integrity: sha512-PGkOdpRFK+rb1TzVz+msVhw4YMRT9txLF4kRqvJhGhCM324xuR3REBSHALN+l+sAhKUmz0aotnjp5D+P83mLhQ==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+
+  terser-webpack-plugin@5.3.16:
+    resolution: {integrity: sha512-h9oBFCWrq78NyWWVcSwZarJkZ01c2AyGrzs1crmHZO3QUg9D61Wu4NPjBy69n7JqylFF5y+CsUZYmYEIZ3mR+Q==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+
   terser@5.31.1:
     resolution: {integrity: sha512-37upzU1+viGvuFtBo9NPufCb9dwM0+l9hMxYyWfBA+fbwrPqNJAhbZ6W47bBFnZHKHTUBnMvi87434qq+qnxOg==}
     engines: {node: '>=10'}
@@ -16974,128 +17009,128 @@ snapshots:
 
   '@inquirer/ansi@1.0.2': {}
 
-  '@inquirer/checkbox@4.3.2(@types/node@24.10.1)':
+  '@inquirer/checkbox@4.3.2(@types/node@25.0.2)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/confirm@5.1.21(@types/node@24.10.1)':
+  '@inquirer/confirm@5.1.21(@types/node@25.0.2)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/core@10.3.2(@types/node@24.10.1)':
+  '@inquirer/core@10.3.2(@types/node@25.0.2)':
     dependencies:
       '@inquirer/ansi': 1.0.2
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
       cli-width: 4.1.0
       mute-stream: 2.0.0
       signal-exit: 4.1.0
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/editor@4.2.23(@types/node@24.10.1)':
+  '@inquirer/editor@4.2.23(@types/node@25.0.2)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/external-editor': 1.0.3(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/expand@4.0.23(@types/node@24.10.1)':
+  '@inquirer/expand@4.0.23(@types/node@25.0.2)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/external-editor@1.0.3(@types/node@24.10.1)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.0.2)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.0
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@inquirer/figures@1.0.15': {}
 
-  '@inquirer/input@4.3.1(@types/node@24.10.1)':
+  '@inquirer/input@4.3.1(@types/node@25.0.2)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/number@3.0.23(@types/node@24.10.1)':
+  '@inquirer/number@3.0.23(@types/node@25.0.2)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/password@4.0.23(@types/node@24.10.1)':
-    dependencies:
-      '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
-    optionalDependencies:
-      '@types/node': 24.10.1
-
-  '@inquirer/prompts@7.10.1(@types/node@24.10.1)':
-    dependencies:
-      '@inquirer/checkbox': 4.3.2(@types/node@24.10.1)
-      '@inquirer/confirm': 5.1.21(@types/node@24.10.1)
-      '@inquirer/editor': 4.2.23(@types/node@24.10.1)
-      '@inquirer/expand': 4.0.23(@types/node@24.10.1)
-      '@inquirer/input': 4.3.1(@types/node@24.10.1)
-      '@inquirer/number': 3.0.23(@types/node@24.10.1)
-      '@inquirer/password': 4.0.23(@types/node@24.10.1)
-      '@inquirer/rawlist': 4.1.11(@types/node@24.10.1)
-      '@inquirer/search': 3.2.2(@types/node@24.10.1)
-      '@inquirer/select': 4.4.2(@types/node@24.10.1)
-    optionalDependencies:
-      '@types/node': 24.10.1
-
-  '@inquirer/rawlist@4.1.11(@types/node@24.10.1)':
-    dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
-      yoctocolors-cjs: 2.1.3
-    optionalDependencies:
-      '@types/node': 24.10.1
-
-  '@inquirer/search@3.2.2(@types/node@24.10.1)':
-    dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
-      yoctocolors-cjs: 2.1.3
-    optionalDependencies:
-      '@types/node': 24.10.1
-
-  '@inquirer/select@4.4.2(@types/node@24.10.1)':
+  '@inquirer/password@4.0.23(@types/node@25.0.2)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
+    optionalDependencies:
+      '@types/node': 25.0.2
+
+  '@inquirer/prompts@7.10.1(@types/node@25.0.2)':
+    dependencies:
+      '@inquirer/checkbox': 4.3.2(@types/node@25.0.2)
+      '@inquirer/confirm': 5.1.21(@types/node@25.0.2)
+      '@inquirer/editor': 4.2.23(@types/node@25.0.2)
+      '@inquirer/expand': 4.0.23(@types/node@25.0.2)
+      '@inquirer/input': 4.3.1(@types/node@25.0.2)
+      '@inquirer/number': 3.0.23(@types/node@25.0.2)
+      '@inquirer/password': 4.0.23(@types/node@25.0.2)
+      '@inquirer/rawlist': 4.1.11(@types/node@25.0.2)
+      '@inquirer/search': 3.2.2(@types/node@25.0.2)
+      '@inquirer/select': 4.4.2(@types/node@25.0.2)
+    optionalDependencies:
+      '@types/node': 25.0.2
+
+  '@inquirer/rawlist@4.1.11(@types/node@25.0.2)':
+    dependencies:
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
-  '@inquirer/type@3.0.10(@types/node@24.10.1)':
+  '@inquirer/search@3.2.2(@types/node@25.0.2)':
+    dependencies:
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/figures': 1.0.15
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
+      yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
+
+  '@inquirer/select@4.4.2(@types/node@25.0.2)':
+    dependencies:
+      '@inquirer/ansi': 1.0.2
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/figures': 1.0.15
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
+      yoctocolors-cjs: 2.1.3
+    optionalDependencies:
+      '@types/node': 25.0.2
+
+  '@inquirer/type@3.0.10(@types/node@25.0.2)':
+    optionalDependencies:
+      '@types/node': 25.0.2
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -17656,7 +17691,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
-  '@lerna/create@9.0.3(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
+  '@lerna/create@9.0.3(@types/node@25.0.2)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
     dependencies:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
@@ -17683,7 +17718,7 @@ snapshots:
       has-unicode: 2.0.1
       ini: 1.3.8
       init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@24.10.1)
+      inquirer: 12.9.6(@types/node@25.0.2)
       is-ci: 3.0.1
       is-stream: 2.0.0
       js-yaml: 4.1.1
@@ -18709,7 +18744,7 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/bonjour@3.5.13':
     dependencies:
@@ -18719,7 +18754,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       '@types/responselike': 1.0.3
 
   '@types/common-tags@1.8.4': {}
@@ -18733,13 +18768,13 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/cookie@0.4.1': {}
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/debug@0.0.30': {}
 
@@ -18827,7 +18862,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/lodash@4.17.18': {}
 
@@ -18851,7 +18886,7 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/node@16.9.1': {}
 
@@ -18868,6 +18903,10 @@ snapshots:
   '@types/node@24.3.0':
     dependencies:
       undici-types: 7.10.0
+
+  '@types/node@25.0.2':
+    dependencies:
+      undici-types: 7.16.0
 
   '@types/node@8.10.66': {}
 
@@ -18906,7 +18945,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   '@types/retry@0.12.2': {}
 
@@ -19213,7 +19252,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
@@ -21324,7 +21363,7 @@ snapshots:
 
   decamelize@1.2.0: {}
 
-  decap-cms-app@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  decap-cms-app@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.2)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1)
@@ -21342,7 +21381,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.4.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.11.0)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-test: 3.2.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)(uuid@8.3.2)
-      decap-cms-core: 3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
+      decap-cms-core: 3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
       decap-cms-editor-component-image: 3.2.1(react@18.3.1)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.3.1(immutable@3.8.2)(lodash@4.17.21)
@@ -21380,7 +21419,7 @@ snapshots:
       - react-native
       - supports-color
 
-  decap-cms-app@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  decap-cms-app@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.2)(react@19.2.0)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@19.2.0)
@@ -21398,7 +21437,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.4.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.11.0)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@19.2.0)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@19.2.0)
       decap-cms-backend-test: 3.2.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@19.2.0)(uuid@8.3.2)
-      decap-cms-core: 3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.0(react@19.2.0))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.0)
+      decap-cms-core: 3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.0(react@19.2.0))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.0)
       decap-cms-editor-component-image: 3.2.1(react@19.2.0)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.3.1(immutable@3.8.2)(lodash@4.17.21)
@@ -21738,7 +21777,7 @@ snapshots:
       react: 19.2.0
       uuid: 8.3.2
 
-  decap-cms-core@3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.0(react@19.2.0))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.0):
+  decap-cms-core@3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.0(react@19.2.0))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.0):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.2)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1)
@@ -21769,7 +21808,7 @@ snapshots:
       path-browserify: 1.0.1
       prop-types: 15.8.1
       react: 19.2.0
-      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(react@19.2.0)
+      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(react@19.2.0)
       react-dnd-html5-backend: 14.1.0
       react-dom: 19.2.0(react@19.2.0)
       react-frame-component: 5.2.7(prop-types@15.8.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -21806,7 +21845,7 @@ snapshots:
       - react-native
       - supports-color
 
-  decap-cms-core@3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
+  decap-cms-core@3.9.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.2.1(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.2)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@18.3.1))(@types/react@19.2.2)(react@18.3.1)
@@ -21837,7 +21876,7 @@ snapshots:
       path-browserify: 1.0.1
       prop-types: 15.8.1
       react: 18.3.1
-      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(react@18.3.1)
+      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(react@18.3.1)
       react-dnd-html5-backend: 14.1.0
       react-dom: 18.3.1(react@18.3.1)
       react-frame-component: 5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -22360,11 +22399,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  decap-cms@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.103.0):
+  decap-cms@3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.103.0):
     dependencies:
       codemirror: 5.65.20
       create-react-class: 15.7.0
-      decap-cms-app: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      decap-cms-app: 3.9.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(graphql@16.11.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       decap-cms-media-library-cloudinary: 3.1.0(decap-cms-lib-util@3.3.1(immutable@3.8.2)(lodash@4.17.21))
       decap-cms-media-library-uploadcare: 3.0.2
       file-loader: 6.2.0(webpack@5.103.0)
@@ -22743,7 +22782,7 @@ snapshots:
   engine.io@6.6.4:
     dependencies:
       '@types/cors': 2.8.19
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.7.2
@@ -25049,7 +25088,7 @@ snapshots:
       strip-ansi: 6.0.1
       style-loader: 2.0.0(webpack@5.98.0(esbuild@0.27.1))
       style-to-object: 0.4.4
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1))
+      terser-webpack-plugin: 5.3.16(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1))
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
@@ -25930,17 +25969,17 @@ snapshots:
 
   inline-style-parser@0.1.1: {}
 
-  inquirer@12.9.6(@types/node@24.10.1):
+  inquirer@12.9.6(@types/node@25.0.2):
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@24.10.1)
-      '@inquirer/prompts': 7.10.1(@types/node@24.10.1)
-      '@inquirer/type': 3.0.10(@types/node@24.10.1)
+      '@inquirer/core': 10.3.2(@types/node@25.0.2)
+      '@inquirer/prompts': 7.10.1(@types/node@25.0.2)
+      '@inquirer/type': 3.0.10(@types/node@25.0.2)
       mute-stream: 2.0.0
       run-async: 4.0.6
       rxjs: 7.8.2
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
 
   inquirer@7.3.3:
     dependencies:
@@ -26579,7 +26618,7 @@ snapshots:
   jest-haste-map@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -26764,7 +26803,7 @@ snapshots:
   jest-util@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       chalk: 4.1.2
       ci-info: 4.3.0
       graceful-fs: 4.2.11
@@ -26792,19 +26831,19 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@30.2.0:
     dependencies:
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       '@ungap/structured-clone': 1.3.0
       jest-util: 30.2.0
       merge-stream: 2.0.0
@@ -26981,9 +27020,9 @@ snapshots:
 
   lerc@3.0.0: {}
 
-  lerna@9.0.3(@types/node@24.10.1)(babel-plugin-macros@3.1.0):
+  lerna@9.0.3(@types/node@25.0.2)(babel-plugin-macros@3.1.0):
     dependencies:
-      '@lerna/create': 9.0.3(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
+      '@lerna/create': 9.0.3(@types/node@25.0.2)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
       '@npmcli/run-script': 10.0.2
@@ -27013,7 +27052,7 @@ snapshots:
       import-local: 3.1.0
       ini: 1.3.8
       init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@24.10.1)
+      inquirer: 12.9.6(@types/node@25.0.2)
       is-ci: 3.0.1
       is-stream: 2.0.0
       jest-diff: 30.2.0
@@ -29409,7 +29448,7 @@ snapshots:
     dependencies:
       dnd-core: 14.0.1
 
-  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(react@18.3.1):
+  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(react@18.3.1):
     dependencies:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
@@ -29419,10 +29458,10 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.2)
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       '@types/react': 19.2.2
 
-  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@24.10.1)(@types/react@19.2.2)(react@19.2.0):
+  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.2))(@types/node@25.0.2)(@types/react@19.2.2)(react@19.2.0):
     dependencies:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
@@ -29432,7 +29471,7 @@ snapshots:
       react: 19.2.0
     optionalDependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.2)
-      '@types/node': 24.10.1
+      '@types/node': 25.0.2
       '@types/react': 19.2.2
 
   react-dom@18.3.1(react@18.3.1):
@@ -31510,35 +31549,35 @@ snapshots:
     optionalDependencies:
       esbuild: 0.27.0
 
-  terser-webpack-plugin@5.3.14(esbuild@0.27.1)(webpack@5.103.0(esbuild@0.27.1)):
+  terser-webpack-plugin@5.3.15(esbuild@0.27.1)(webpack@5.103.0(esbuild@0.27.1)):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 4.3.0
+      schema-utils: 4.3.3
       serialize-javascript: 6.0.2
-      terser: 5.39.0
+      terser: 5.44.1
       webpack: 5.103.0(esbuild@0.27.1)
     optionalDependencies:
       esbuild: 0.27.1
 
-  terser-webpack-plugin@5.3.14(esbuild@0.27.1)(webpack@5.103.0):
+  terser-webpack-plugin@5.3.15(esbuild@0.27.1)(webpack@5.103.0):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 4.3.0
+      schema-utils: 4.3.3
       serialize-javascript: 6.0.2
-      terser: 5.39.0
+      terser: 5.44.1
       webpack: 5.103.0(esbuild@0.27.1)(webpack-cli@6.0.1)
     optionalDependencies:
       esbuild: 0.27.1
 
-  terser-webpack-plugin@5.3.14(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1)):
+  terser-webpack-plugin@5.3.16(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1)):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.30
       jest-worker: 27.5.1
-      schema-utils: 4.3.0
+      schema-utils: 4.3.3
       serialize-javascript: 6.0.2
-      terser: 5.39.0
+      terser: 5.44.1
       webpack: 5.98.0(esbuild@0.27.1)
     optionalDependencies:
       esbuild: 0.27.1
@@ -32600,7 +32639,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.1)(webpack@5.103.0(esbuild@0.27.1))
+      terser-webpack-plugin: 5.3.15(esbuild@0.27.1)(webpack@5.103.0(esbuild@0.27.1))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
@@ -32632,7 +32671,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.1)(webpack@5.103.0)
+      terser-webpack-plugin: 5.3.15(esbuild@0.27.1)(webpack@5.103.0)
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     optionalDependencies:
@@ -32694,7 +32733,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1))
+      terser-webpack-plugin: 5.3.16(esbuild@0.27.1)(webpack@5.98.0(esbuild@0.27.1))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
