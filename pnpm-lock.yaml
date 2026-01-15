@@ -145,10 +145,10 @@ importers:
         version: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
       webpack-bundle-analyzer:
         specifier: ^5.0.0
-        version: 5.1.0
+        version: 5.1.1
       webpack-cli:
         specifier: ^6.0.0
-        version: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+        version: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
       webpack-dev-server:
         specifier: ^5.0.4
         version: 5.2.2(webpack-cli@6.0.1)(webpack@5.104.1)
@@ -13157,8 +13157,8 @@ packages:
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
-  webpack-bundle-analyzer@5.1.0:
-    resolution: {integrity: sha512-WAWwIoIUx4yC2AEBqXbDkcmh/LzAaenv0+nISBflP5l+XIXO9/x6poWarGA3RTrfavk9H3oWQ64Wm0z26/UGKA==}
+  webpack-bundle-analyzer@5.1.1:
+    resolution: {integrity: sha512-UzoaIA0Aigo5lUvoUkIkSoHtUK5rBJh9e2vW3Eqct0jc/L8hcruBCz/jsXEvB1hDU1G3V94jo2EJqPcFKeSSeQ==}
     engines: {node: '>= 20.9.0'}
     hasBin: true
 
@@ -19173,17 +19173,17 @@ snapshots:
   '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.104.1)':
     dependencies:
       webpack: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
 
   '@webpack-cli/info@3.0.1(webpack-cli@6.0.1)(webpack@5.104.1)':
     dependencies:
       webpack: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
 
   '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)':
     dependencies:
       webpack: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
     optionalDependencies:
       webpack-dev-server: 5.2.2(webpack-cli@6.0.1)(webpack@5.104.1)
 
@@ -23696,6 +23696,12 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
+  file-loader@6.2.0(webpack@5.104.1(esbuild@0.27.2)):
+    dependencies:
+      loader-utils: 2.0.4
+      schema-utils: 3.3.0
+      webpack: 5.104.1(esbuild@0.27.2)
+
   file-loader@6.2.0(webpack@5.104.1):
     dependencies:
       loader-utils: 2.0.4
@@ -24878,7 +24884,7 @@ snapshots:
       express-http-proxy: 1.6.3
       fastest-levenshtein: 1.0.16
       fastq: 1.19.1
-      file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.2))
+      file-loader: 6.2.0(webpack@5.104.1(esbuild@0.27.2))
       find-cache-dir: 3.3.2
       fs-exists-cached: 1.0.0
       fs-extra: 11.3.1
@@ -24960,7 +24966,7 @@ snapshots:
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.104.1(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2))
       uuid: 8.3.2
       webpack: 5.98.0(esbuild@0.27.2)
       webpack-dev-middleware: 5.3.4(webpack@5.98.0(esbuild@0.27.2))
@@ -31986,6 +31992,15 @@ snapshots:
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.2))
 
+  url-loader@4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2)):
+    dependencies:
+      loader-utils: 2.0.4
+      mime-types: 2.1.35
+      schema-utils: 3.3.0
+      webpack: 5.98.0(esbuild@0.27.2)
+    optionalDependencies:
+      file-loader: 6.2.0(webpack@5.104.1(esbuild@0.27.2))
+
   url-parse-lax@3.0.0:
     dependencies:
       prepend-http: 2.0.0
@@ -32165,7 +32180,7 @@ snapshots:
 
   webidl-conversions@3.0.1: {}
 
-  webpack-bundle-analyzer@5.1.0:
+  webpack-bundle-analyzer@5.1.1:
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       acorn: 8.15.0
@@ -32182,7 +32197,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1):
+  webpack-cli@6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1):
     dependencies:
       '@discoveryjs/json-ext': 0.6.3
       '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.104.1)
@@ -32199,7 +32214,7 @@ snapshots:
       webpack: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
       webpack-merge: 6.0.1
     optionalDependencies:
-      webpack-bundle-analyzer: 5.1.0
+      webpack-bundle-analyzer: 5.1.1
       webpack-dev-server: 5.2.2(webpack-cli@6.0.1)(webpack@5.104.1)
 
   webpack-dev-middleware@5.3.4(webpack@5.98.0(esbuild@0.27.2)):
@@ -32278,7 +32293,7 @@ snapshots:
       ws: 8.18.2
     optionalDependencies:
       webpack: 5.104.1(esbuild@0.27.2)(webpack-cli@6.0.1)
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -32448,7 +32463,7 @@ snapshots:
       watchpack: 2.5.0
       webpack-sources: 3.3.3
     optionalDependencies:
-      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.0)(webpack-dev-server@5.2.2)(webpack@5.104.1)
+      webpack-cli: 6.0.1(webpack-bundle-analyzer@5.1.1)(webpack-dev-server@5.2.2)(webpack@5.104.1)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
