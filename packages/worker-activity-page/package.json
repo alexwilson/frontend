@@ -1,0 +1,27 @@
+{
+  "name": "@alexwilson/worker-activity-page",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Activity statistics",
+  "main": "index.js",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "scripts": {
+    "deploy": "wrangler publish"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^2.0.0",
+    "@cloudflare/wrangler": "^1.9.1",
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "jest": "^26.2.2",
+    "ts-jest": "^26.1.4",
+    "ts-loader": "^8.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
