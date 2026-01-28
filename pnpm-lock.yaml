@@ -295,8 +295,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.235.0
-        version: 2.235.0(constructs@10.4.5)
+        specifier: 2.235.1
+        version: 2.235.1(constructs@10.4.5)
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
@@ -4849,8 +4849,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.235.0:
-    resolution: {integrity: sha512-zoTa+fw4J0sjYrn4LJcWAKxQ8i9DMqWdLo7MkP6nNgtqEaypajF9t6Ucasx93/pAQ2bmGV61EM2oVEOtVnpenA==}
+  aws-cdk-lib@2.235.1:
+    resolution: {integrity: sha512-qKAsbunxtveIOIaeJSBgH2PZgdIiPkKtfsa+BxeNDOv2idw6Oa0dJW3Q0sdu8XBopY1KZI2Owrg8r56BOyyohA==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -20594,7 +20594,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-cdk-lib@2.235.0(constructs@10.4.5):
+  aws-cdk-lib@2.235.1(constructs@10.4.5):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.261
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
@@ -24622,12 +24622,6 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
-  file-loader@6.2.0(webpack@5.104.1(esbuild@0.27.2)):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 5.104.1(esbuild@0.27.2)
-
   file-loader@6.2.0(webpack@5.104.1):
     dependencies:
       loader-utils: 2.0.4
@@ -25822,7 +25816,7 @@ snapshots:
       express-http-proxy: 1.6.3
       fastest-levenshtein: 1.0.16
       fastq: 1.19.1
-      file-loader: 6.2.0(webpack@5.104.1(esbuild@0.27.2))
+      file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.2))
       find-cache-dir: 3.3.2
       fs-exists-cached: 1.0.0
       fs-extra: 11.3.1
@@ -25904,7 +25898,7 @@ snapshots:
       tmp: 0.2.5
       true-case-path: 2.2.1
       type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.104.1(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2))
       uuid: 8.3.2
       webpack: 5.98.0(esbuild@0.27.2)
       webpack-dev-middleware: 5.3.4(webpack@5.98.0(esbuild@0.27.2))
@@ -33158,15 +33152,6 @@ snapshots:
       webpack: 5.98.0(esbuild@0.27.2)
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.98.0(esbuild@0.27.2))
-
-  url-loader@4.1.1(file-loader@6.2.0(webpack@5.98.0(esbuild@0.27.2)))(webpack@5.98.0(esbuild@0.27.2)):
-    dependencies:
-      loader-utils: 2.0.4
-      mime-types: 2.1.35
-      schema-utils: 3.3.0
-      webpack: 5.98.0(esbuild@0.27.2)
-    optionalDependencies:
-      file-loader: 6.2.0(webpack@5.104.1(esbuild@0.27.2))
 
   url-parse-lax@3.0.0:
     dependencies:
