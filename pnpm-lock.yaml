@@ -187,7 +187,7 @@ importers:
         version: 5.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(graphql@16.11.0)
       gatsby-plugin-offline:
         specifier: ^6.13.2
-        version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-preact:
         specifier: ^7.13.1
         version: 7.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(preact-render-to-string@5.2.6(preact@10.28.2))(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2))
@@ -7657,13 +7657,13 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-plugin-offline@6.15.0:
-    resolution: {integrity: sha512-qrHDth/1rIXIQA/X7Z2fG2hNlF6xoOykzB33uMADZj3LACk/Y7ZJmBunkTNzfk3KteLemK6YODZi51Fy+C5p9g==}
-    engines: {node: '>=18.0.0'}
+  gatsby-plugin-offline@6.16.0:
+    resolution: {integrity: sha512-sJTkDrRHL/zmds0VGpFylXk4bnYW/IiWxYVPNwHpMhFWfny8TmR8hQ6Z8iC3C2ba6+Q+UsO1Sw5lom4fklDIyg==}
+    engines: {node: '>=18.0.0 <26'}
     peerDependencies:
       gatsby: ^5.0.0-next
-      react: ^18.0.0 || ^0.0.0
-      react-dom: ^18.0.0 || ^0.0.0
+      react: ^18.0.0 || ^19.0.0 || ^0.0.0
+      react-dom: ^18.0.0 || ^19.0.0 || ^0.0.0
 
   gatsby-plugin-page-creator@5.14.0:
     resolution: {integrity: sha512-H7Yk6Z+kRgOKlco6gFyj9tay+V9eeufZce+NSH6tqHq7pQ56+/X46y4XdeBsrr6wnRs0dBy+Z9rmJTD5w78c2w==}
@@ -8006,10 +8006,6 @@ packages:
 
   glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
-
-  glob@10.4.5:
-    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
-    hasBin: true
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
@@ -17070,7 +17066,7 @@ snapshots:
     dependencies:
       '@expo/sudo-prompt': 9.3.2
       debug: 3.2.7
-      glob: 10.4.5
+      glob: 10.5.0
     transitivePeerDependencies:
       - supports-color
 
@@ -17891,7 +17887,7 @@ snapshots:
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit-x: 0.2.2
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-instrument: 6.0.3
@@ -25099,6 +25095,25 @@ snapshots:
       tmp: 0.2.5
       xdg-basedir: 4.0.0
 
+  gatsby-core-utils@4.16.0:
+    dependencies:
+      '@babel/runtime': 7.28.6
+      ci-info: 2.0.0
+      configstore: 5.0.1
+      fastq: 1.20.1
+      file-type: 16.5.4
+      fs-extra: 11.3.3
+      got: 11.8.6
+      hash-wasm: 4.12.0
+      import-from: 4.0.0
+      lmdb: 2.5.3
+      lock: 1.1.0
+      node-object-hash: 2.3.10
+      proper-lockfile: 4.1.2
+      resolve-from: 5.0.0
+      tmp: 0.2.5
+      xdg-basedir: 4.0.0
+
   gatsby-graphiql-explorer@3.14.1: {}
 
   gatsby-graphiql-explorer@3.15.0: {}
@@ -25227,15 +25242,15 @@ snapshots:
       - bare-buffer
       - graphql
 
-  gatsby-plugin-offline@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  gatsby-plugin-offline@6.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       cheerio: 1.0.0-rc.12
       gatsby: 5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2)))
-      gatsby-core-utils: 4.15.0
+      gatsby-core-utils: 4.16.0
       glob: 7.2.3
       idb-keyval: 3.2.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       workbox-build: 4.3.1
@@ -26132,15 +26147,6 @@ snapshots:
   glob-to-regexp@0.3.0: {}
 
   glob-to-regexp@0.4.1: {}
-
-  glob@10.4.5:
-    dependencies:
-      foreground-child: 3.3.1
-      jackspeak: 3.4.3
-      minimatch: 9.0.5
-      minipass: 7.1.2
-      package-json-from-dist: 1.0.1
-      path-scurry: 1.11.1
 
   glob@10.5.0:
     dependencies:
@@ -27445,7 +27451,7 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.3.0
       deepmerge: 4.3.1
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-circus: 30.2.0(babel-plugin-macros@3.1.0)
       jest-docblock: 30.2.0
@@ -27478,7 +27484,7 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.3.0
       deepmerge: 4.3.1
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-circus: 30.2.0(babel-plugin-macros@3.1.0)
       jest-docblock: 30.2.0
@@ -27511,7 +27517,7 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.3.0
       deepmerge: 4.3.1
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-circus: 30.2.0(babel-plugin-macros@3.1.0)
       jest-docblock: 30.2.0
@@ -27705,7 +27711,7 @@ snapshots:
       chalk: 4.1.2
       cjs-module-lexer: 2.1.0
       collect-v8-coverage: 1.0.2
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
@@ -33837,7 +33843,7 @@ snapshots:
 
   workbox-build@4.3.1:
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       '@hapi/joi': 15.1.1
       common-tags: 1.8.2
       fs-extra: 4.0.3
