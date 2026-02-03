@@ -14,7 +14,7 @@ importers:
     devDependencies:
       lerna:
         specifier: ^9.0.0
-        version: 9.0.3(@types/node@25.1.0)(babel-plugin-macros@3.1.0)
+        version: 9.0.3(@types/node@25.2.0)(babel-plugin-macros@3.1.0)
 
   components/legacy-components:
     dependencies:
@@ -69,10 +69,10 @@ importers:
         version: 4.1.0
       decap-cms:
         specifier: ^3.4.0
-        version: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.104.1)
+        version: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.104.1)
       decap-cms-app:
         specifier: ^3.4.0
-        version: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       decap-cms-backend-proxy:
         specifier: ^3.3.0
         version: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
@@ -202,7 +202,7 @@ importers:
         version: 5.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(graphql@16.11.0)
       gatsby-plugin-sitemap:
         specifier: ^6.13.1
-        version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-web-font-loader:
         specifier: ^1.0.4
         version: 1.0.4
@@ -4073,6 +4073,9 @@ packages:
   '@types/node@25.1.0':
     resolution: {integrity: sha512-t7frlewr6+cbx+9Ohpl0NOTKXZNV9xHRmNOvql47BFJKcEG1CxtxlPEEe+gR9uhVWM4DwhnvTF110mIL4yP9RA==}
 
+  '@types/node@25.2.0':
+    resolution: {integrity: sha512-DZ8VwRFUNzuqJ5khrvwMXHmvPe+zGayJhr2CDNiKB1WBE1ST8Djl00D0IC4vvNmHMdj6DlbYRIaFE7WHjlDl5w==}
+
   '@types/node@8.10.66':
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
 
@@ -7690,13 +7693,13 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-plugin-sitemap@6.15.0:
-    resolution: {integrity: sha512-T4gchKmWh9n3ld0AylXfyfr498IAwMawIHM9U4oC8twxpOb6AOtmitba3UvSykUK1/FBNEriJFVi+slQylUZvg==}
-    engines: {node: '>=18.0.0'}
+  gatsby-plugin-sitemap@6.16.0:
+    resolution: {integrity: sha512-qZhPkYdjgddHxqOdq7vpMVL7PjUZGFITLsQC9Y8l1wsFQ+HXAR8ngpM0BeKwTnhGgGww4RD3b4wZMVjxagfkMw==}
+    engines: {node: '>=18.0.0 <26'}
     peerDependencies:
       gatsby: ^5.0.0-next
-      react: ^18.0.0 || ^0.0.0
-      react-dom: ^18.0.0 || ^0.0.0
+      react: ^18.0.0 || ^19.0.0 || ^0.0.0
+      react-dom: ^18.0.0 || ^19.0.0 || ^0.0.0
 
   gatsby-plugin-typescript@5.14.0:
     resolution: {integrity: sha512-rvdNtBKGYV0HpvZ78up39rLu5057pVTil1Z7O65MVIQyB99FGfYy96dygWOQhf9wBh0tt9oFYvaU/VMY9Gwyrg==}
@@ -12076,11 +12079,9 @@ packages:
   sax@1.2.1:
     resolution: {integrity: sha512-8I2a3LovHTOpm7NV5yOyO8IHqgVsfK4+UuySrXU8YXkSRX7k6hCV9b3HrkKCr3nMpgj+0bmocaJJWpvp1oc7ZA==}
 
-  sax@1.4.1:
-    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
-
-  sax@1.4.3:
-    resolution: {integrity: sha512-yqYn1JhPczigF94DMS+shiDMjDowYO6y9+wB/4WgO0Y19jWYk0lQ4tuG5KI7kj4FTp1wxPj5IFfcrz/s1c3jjQ==}
+  sax@1.4.4:
+    resolution: {integrity: sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==}
+    engines: {node: '>=11.0.0'}
 
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
@@ -14106,7 +14107,7 @@ snapshots:
       '@babel/core': 7.27.4
       '@babel/generator': 7.27.5
       '@babel/parser': 7.27.5
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.28.3
       '@babel/traverse': 7.24.7
       '@babel/types': 7.27.6
       babel-preset-fbjs: 3.4.0(@babel/core@7.27.4)
@@ -17571,128 +17572,128 @@ snapshots:
 
   '@inquirer/ansi@1.0.2': {}
 
-  '@inquirer/checkbox@4.3.2(@types/node@25.1.0)':
+  '@inquirer/checkbox@4.3.2(@types/node@25.2.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/confirm@5.1.21(@types/node@25.1.0)':
+  '@inquirer/confirm@5.1.21(@types/node@25.2.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/core@10.3.2(@types/node@25.1.0)':
+  '@inquirer/core@10.3.2(@types/node@25.2.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
       cli-width: 4.1.0
       mute-stream: 2.0.0
       signal-exit: 4.1.0
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/editor@4.2.23(@types/node@25.1.0)':
+  '@inquirer/editor@4.2.23(@types/node@25.2.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/external-editor': 1.0.3(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/expand@4.0.23(@types/node@25.1.0)':
+  '@inquirer/expand@4.0.23(@types/node@25.2.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.1.0)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.2.0)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
   '@inquirer/figures@1.0.15': {}
 
-  '@inquirer/input@4.3.1(@types/node@25.1.0)':
+  '@inquirer/input@4.3.1(@types/node@25.2.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/number@3.0.23(@types/node@25.1.0)':
+  '@inquirer/number@3.0.23(@types/node@25.2.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/password@4.0.23(@types/node@25.1.0)':
-    dependencies:
-      '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
-    optionalDependencies:
-      '@types/node': 25.1.0
-
-  '@inquirer/prompts@7.10.1(@types/node@25.1.0)':
-    dependencies:
-      '@inquirer/checkbox': 4.3.2(@types/node@25.1.0)
-      '@inquirer/confirm': 5.1.21(@types/node@25.1.0)
-      '@inquirer/editor': 4.2.23(@types/node@25.1.0)
-      '@inquirer/expand': 4.0.23(@types/node@25.1.0)
-      '@inquirer/input': 4.3.1(@types/node@25.1.0)
-      '@inquirer/number': 3.0.23(@types/node@25.1.0)
-      '@inquirer/password': 4.0.23(@types/node@25.1.0)
-      '@inquirer/rawlist': 4.1.11(@types/node@25.1.0)
-      '@inquirer/search': 3.2.2(@types/node@25.1.0)
-      '@inquirer/select': 4.4.2(@types/node@25.1.0)
-    optionalDependencies:
-      '@types/node': 25.1.0
-
-  '@inquirer/rawlist@4.1.11(@types/node@25.1.0)':
-    dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
-      yoctocolors-cjs: 2.1.3
-    optionalDependencies:
-      '@types/node': 25.1.0
-
-  '@inquirer/search@3.2.2(@types/node@25.1.0)':
-    dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
-      yoctocolors-cjs: 2.1.3
-    optionalDependencies:
-      '@types/node': 25.1.0
-
-  '@inquirer/select@4.4.2(@types/node@25.1.0)':
+  '@inquirer/password@4.0.23(@types/node@25.2.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
+    optionalDependencies:
+      '@types/node': 25.2.0
+
+  '@inquirer/prompts@7.10.1(@types/node@25.2.0)':
+    dependencies:
+      '@inquirer/checkbox': 4.3.2(@types/node@25.2.0)
+      '@inquirer/confirm': 5.1.21(@types/node@25.2.0)
+      '@inquirer/editor': 4.2.23(@types/node@25.2.0)
+      '@inquirer/expand': 4.0.23(@types/node@25.2.0)
+      '@inquirer/input': 4.3.1(@types/node@25.2.0)
+      '@inquirer/number': 3.0.23(@types/node@25.2.0)
+      '@inquirer/password': 4.0.23(@types/node@25.2.0)
+      '@inquirer/rawlist': 4.1.11(@types/node@25.2.0)
+      '@inquirer/search': 3.2.2(@types/node@25.2.0)
+      '@inquirer/select': 4.4.2(@types/node@25.2.0)
+    optionalDependencies:
+      '@types/node': 25.2.0
+
+  '@inquirer/rawlist@4.1.11(@types/node@25.2.0)':
+    dependencies:
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
-  '@inquirer/type@3.0.10(@types/node@25.1.0)':
+  '@inquirer/search@3.2.2(@types/node@25.2.0)':
+    dependencies:
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/figures': 1.0.15
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
+      yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
+
+  '@inquirer/select@4.4.2(@types/node@25.2.0)':
+    dependencies:
+      '@inquirer/ansi': 1.0.2
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/figures': 1.0.15
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
+      yoctocolors-cjs: 2.1.3
+    optionalDependencies:
+      '@types/node': 25.2.0
+
+  '@inquirer/type@3.0.10(@types/node@25.2.0)':
+    optionalDependencies:
+      '@types/node': 25.2.0
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -17969,14 +17970,14 @@ snapshots:
 
   '@jimp/bmp@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       bmp-js: 0.1.0
 
   '@jimp/core@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/utils': 0.16.13
       any-base: 1.1.0
       buffer: 5.7.1
@@ -17990,12 +17991,12 @@ snapshots:
 
   '@jimp/custom@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/core': 0.16.13
 
   '@jimp/gif@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       gifwrap: 0.9.4
@@ -18003,39 +18004,39 @@ snapshots:
 
   '@jimp/jpeg@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       jpeg-js: 0.4.4
 
   '@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-circle@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       tinycolor2: 1.6.0
 
   '@jimp/plugin-contain@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18044,7 +18045,7 @@ snapshots:
 
   '@jimp/plugin-cover@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18053,62 +18054,62 @@ snapshots:
 
   '@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-displace@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-dither@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-fisheye@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-flip@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-rotate': 0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-gaussian@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-invert@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-mask@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-normalize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-print@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
@@ -18116,13 +18117,13 @@ snapshots:
 
   '@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
@@ -18131,14 +18132,14 @@ snapshots:
 
   '@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-shadow@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blur': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18146,7 +18147,7 @@ snapshots:
 
   '@jimp/plugin-threshold@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-color': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18154,7 +18155,7 @@ snapshots:
 
   '@jimp/plugins@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-blur': 0.16.13(@jimp/custom@0.16.13)
@@ -18181,20 +18182,20 @@ snapshots:
 
   '@jimp/png@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       pngjs: 3.4.0
 
   '@jimp/tiff@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       utif: 2.0.1
 
   '@jimp/types@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/bmp': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/custom': 0.16.13
       '@jimp/gif': 0.16.13(@jimp/custom@0.16.13)
@@ -18205,7 +18206,7 @@ snapshots:
 
   '@jimp/utils@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       regenerator-runtime: 0.13.11
 
   '@jridgewell/gen-mapping@0.3.13':
@@ -18398,7 +18399,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
-  '@lerna/create@9.0.3(@types/node@25.1.0)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
+  '@lerna/create@9.0.3(@types/node@25.2.0)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
     dependencies:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
@@ -18425,7 +18426,7 @@ snapshots:
       has-unicode: 2.0.1
       ini: 1.3.8
       init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@25.1.0)
+      inquirer: 12.9.6(@types/node@25.2.0)
       is-ci: 3.0.1
       is-stream: 2.0.0
       js-yaml: 4.1.1
@@ -19554,7 +19555,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       '@types/responselike': 1.0.3
 
   '@types/common-tags@1.8.4': {}
@@ -19574,7 +19575,7 @@ snapshots:
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
   '@types/debug@0.0.30': {}
 
@@ -19666,7 +19667,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
   '@types/lodash@4.17.18': {}
 
@@ -19701,6 +19702,10 @@ snapshots:
       undici-types: 7.16.0
 
   '@types/node@25.1.0':
+    dependencies:
+      undici-types: 7.16.0
+
+  '@types/node@25.2.0':
     dependencies:
       undici-types: 7.16.0
 
@@ -19741,7 +19746,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
   '@types/retry@0.12.2': {}
 
@@ -20052,7 +20057,7 @@ snapshots:
 
   '@wry/context@0.4.4':
     dependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       tslib: 1.14.1
 
   '@wry/equality@0.1.11':
@@ -22143,7 +22148,7 @@ snapshots:
 
   decamelize@1.2.0: {}
 
-  decap-cms-app@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  decap-cms-app@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.8)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1)
@@ -22161,7 +22166,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.4.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.11.0)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@18.3.1)
       decap-cms-backend-test: 3.2.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@18.3.1)(uuid@8.3.2)
-      decap-cms-core: 3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
+      decap-cms-core: 3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1)
       decap-cms-editor-component-image: 3.2.1(react@18.3.1)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.4.0(immutable@3.8.2)(lodash@4.17.21)
@@ -22199,7 +22204,7 @@ snapshots:
       - react-native
       - supports-color
 
-  decap-cms-app@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  decap-cms-app@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.8)(react@19.2.3)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@19.2.3)
@@ -22217,7 +22222,7 @@ snapshots:
       decap-cms-backend-gitlab: 3.4.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.11.0)(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react@19.2.3)
       decap-cms-backend-proxy: 3.3.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(prop-types@15.8.1)(react@19.2.3)
       decap-cms-backend-test: 3.2.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react@19.2.3)(uuid@8.3.2)
-      decap-cms-core: 3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.3)
+      decap-cms-core: 3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.3)
       decap-cms-editor-component-image: 3.2.1(react@19.2.3)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2)
       decap-cms-lib-util: 3.4.0(immutable@3.8.2)(lodash@4.17.21)
@@ -22557,7 +22562,7 @@ snapshots:
       react: 19.2.3
       uuid: 8.3.2
 
-  decap-cms-core@3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.3):
+  decap-cms-core@3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@13.0.0))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@19.2.3):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.8)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1)
@@ -22587,7 +22592,7 @@ snapshots:
       path-browserify: 1.0.1
       prop-types: 15.8.1
       react: 19.2.3
-      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(react@19.2.3)
+      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(react@19.2.3)
       react-dnd-html5-backend: 14.1.0
       react-dom: 19.2.3(react@19.2.3)
       react-frame-component: 5.2.7(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -22624,7 +22629,7 @@ snapshots:
       - react-native
       - supports-color
 
-  decap-cms-core@3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
+  decap-cms-core@3.10.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-editor-component-image@3.2.1(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.2)(lodash@4.17.21)(uuid@8.3.2))(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-lib-widgets@3.3.0(immutable@3.8.2)(lodash@4.17.21))(decap-cms-ui-default@3.5.0(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(immutable@3.8.2)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react-immutable-proptypes@2.2.0(immutable@3.8.2))(react@18.3.1):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.8)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@18.3.1))(@types/react@19.2.8)(react@18.3.1)
@@ -22654,7 +22659,7 @@ snapshots:
       path-browserify: 1.0.1
       prop-types: 15.8.1
       react: 18.3.1
-      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(react@18.3.1)
+      react-dnd: 14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(react@18.3.1)
       react-dnd-html5-backend: 14.1.0
       react-dom: 18.3.1(react@18.3.1)
       react-frame-component: 5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -23177,11 +23182,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  decap-cms@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.104.1):
+  decap-cms@3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))(graphql@16.11.0)(webpack@5.104.1):
     dependencies:
       codemirror: 5.65.20
       create-react-class: 15.7.0
-      decap-cms-app: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      decap-cms-app: 3.10.0(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(graphql@16.11.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       decap-cms-media-library-cloudinary: 3.1.0(decap-cms-lib-util@3.4.0(immutable@3.8.2)(lodash@4.17.21))
       decap-cms-media-library-uploadcare: 3.0.2
       file-loader: 6.2.0(webpack@5.104.1)
@@ -23558,7 +23563,7 @@ snapshots:
   engine.io@6.6.4:
     dependencies:
       '@types/cors': 2.8.19
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.7.2
@@ -25282,9 +25287,9 @@ snapshots:
       - graphql
       - supports-color
 
-  gatsby-plugin-sitemap@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  gatsby-plugin-sitemap@6.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       common-tags: 1.8.2
       gatsby: 5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2)))
       minimatch: 3.1.2
@@ -25431,7 +25436,7 @@ snapshots:
 
   gatsby-source-filesystem@2.11.1(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2)))):
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       better-queue: 3.8.12
       chokidar: 3.6.0
       file-type: 16.5.4
@@ -26784,17 +26789,17 @@ snapshots:
 
   inline-style-parser@0.1.1: {}
 
-  inquirer@12.9.6(@types/node@25.1.0):
+  inquirer@12.9.6(@types/node@25.2.0):
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.1.0)
-      '@inquirer/prompts': 7.10.1(@types/node@25.1.0)
-      '@inquirer/type': 3.0.10(@types/node@25.1.0)
+      '@inquirer/core': 10.3.2(@types/node@25.2.0)
+      '@inquirer/prompts': 7.10.1(@types/node@25.2.0)
+      '@inquirer/type': 3.0.10(@types/node@25.2.0)
       mute-stream: 2.0.0
       run-async: 4.0.6
       rxjs: 7.8.2
     optionalDependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
 
   inquirer@7.3.3:
     dependencies:
@@ -27739,7 +27744,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
@@ -27785,7 +27790,7 @@ snapshots:
 
   jimp@0.16.13:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugins': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/types': 0.16.13(@jimp/custom@0.16.13)
@@ -27939,9 +27944,9 @@ snapshots:
 
   lerc@3.0.0: {}
 
-  lerna@9.0.3(@types/node@25.1.0)(babel-plugin-macros@3.1.0):
+  lerna@9.0.3(@types/node@25.2.0)(babel-plugin-macros@3.1.0):
     dependencies:
-      '@lerna/create': 9.0.3(@types/node@25.1.0)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
+      '@lerna/create': 9.0.3(@types/node@25.2.0)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
       '@npmcli/run-script': 10.0.2
@@ -27971,7 +27976,7 @@ snapshots:
       import-local: 3.1.0
       ini: 1.3.8
       init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@25.1.0)
+      inquirer: 12.9.6(@types/node@25.2.0)
       is-ci: 3.0.1
       is-stream: 2.0.0
       jest-diff: 30.2.0
@@ -28910,7 +28915,7 @@ snapshots:
     dependencies:
       debug: 3.2.7
       iconv-lite: 0.4.24
-      sax: 1.4.3
+      sax: 1.4.4
     transitivePeerDependencies:
       - supports-color
 
@@ -30337,7 +30342,7 @@ snapshots:
     dependencies:
       dnd-core: 14.0.1
 
-  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(react@18.3.1):
+  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(react@18.3.1):
     dependencies:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
@@ -30347,10 +30352,10 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.8)
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       '@types/react': 19.2.8
 
-  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.1.0)(@types/react@19.2.8)(react@19.2.3):
+  react-dnd@14.0.5(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.8))(@types/node@25.2.0)(@types/react@19.2.8)(react@19.2.3):
     dependencies:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
@@ -30360,7 +30365,7 @@ snapshots:
       react: 19.2.3
     optionalDependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.8)
-      '@types/node': 25.1.0
+      '@types/node': 25.2.0
       '@types/react': 19.2.8
 
   react-dom@18.3.1(react@18.3.1):
@@ -31404,9 +31409,7 @@ snapshots:
 
   sax@1.2.1: {}
 
-  sax@1.4.1: {}
-
-  sax@1.4.3: {}
+  sax@1.4.4: {}
 
   scheduler@0.23.2:
     dependencies:
@@ -31768,7 +31771,7 @@ snapshots:
       '@types/node': 17.0.45
       '@types/sax': 1.2.7
       arg: 5.0.2
-      sax: 1.4.1
+      sax: 1.4.4
 
   slash@3.0.0: {}
 
@@ -33791,7 +33794,7 @@ snapshots:
 
   workbox-build@4.3.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.3
       '@hapi/joi': 15.1.1
       common-tags: 1.8.2
       fs-extra: 4.0.3
@@ -33969,7 +33972,7 @@ snapshots:
 
   xml2js@0.5.0:
     dependencies:
-      sax: 1.4.3
+      sax: 1.4.4
       xmlbuilder: 11.0.1
 
   xml2js@0.6.2:
