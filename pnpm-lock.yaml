@@ -190,7 +190,7 @@ importers:
         version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-plugin-preact:
         specifier: ^7.13.1
-        version: 7.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(preact-render-to-string@5.2.6(preact@10.28.2))(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2))
+        version: 7.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(preact-render-to-string@5.2.6(preact@10.28.2))(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2))
       gatsby-plugin-react-helmet:
         specifier: ^6.13.1
         version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(react-helmet@6.1.0(react@18.3.1))
@@ -3729,8 +3729,8 @@ packages:
   '@prefresh/babel-plugin@0.4.4':
     resolution: {integrity: sha512-/EvgIFMDL+nd20WNvMO0JQnzIl1EJPgmSaSYrZUww7A+aSdKsi37aL07TljrZR1cBMuzFxcr4xvqsUQLFJEukw==}
 
-  '@prefresh/core@1.5.7':
-    resolution: {integrity: sha512-AsyeitiPwG7UkT0mqgKzIDuydmYSKtBlzXEb5ymzskvxewcmVGRjQkcHDy6PCNBT7soAyHpQ0mPgXX4IeyOlUg==}
+  '@prefresh/core@1.5.9':
+    resolution: {integrity: sha512-IKBKCPaz34OFVC+adiQ2qaTF5qdztO2/4ZPf4KsRTgjKosWqxVXmEbxCiUydYZRY8GVie+DQlKzQr9gt6HQ+EQ==}
     peerDependencies:
       preact: ^10.0.0 || ^11.0.0-0
 
@@ -7662,9 +7662,9 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-plugin-preact@7.15.0:
-    resolution: {integrity: sha512-eazoh7yC5aBPshgHCDYbu5xMh1UeHRCXz98pOMeWrqUJNTq6h70U11oNVk8RXuNIy474ioXuUKgk1xVsI8W3KA==}
-    engines: {node: '>=18.0.0'}
+  gatsby-plugin-preact@7.16.0:
+    resolution: {integrity: sha512-R1hZ4Bovc3b5IKDpbpkY+L0Hwxa3ki6kIVWLR51Tu699TXYfMHj0FghOLazc+L/r/6dGhxJx5pOeC04m/jkubQ==}
+    engines: {node: '>=18.0.0 <26'}
     peerDependencies:
       gatsby: ^5.0.0-next
       preact: ^10.3.4
@@ -14106,7 +14106,7 @@ snapshots:
       '@babel/core': 7.27.4
       '@babel/generator': 7.27.5
       '@babel/parser': 7.27.5
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.28.3
       '@babel/traverse': 7.24.7
       '@babel/types': 7.27.6
       babel-preset-fbjs: 3.4.0(@babel/core@7.27.4)
@@ -17969,14 +17969,14 @@ snapshots:
 
   '@jimp/bmp@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       bmp-js: 0.1.0
 
   '@jimp/core@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/utils': 0.16.13
       any-base: 1.1.0
       buffer: 5.7.1
@@ -17990,12 +17990,12 @@ snapshots:
 
   '@jimp/custom@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/core': 0.16.13
 
   '@jimp/gif@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       gifwrap: 0.9.4
@@ -18003,39 +18003,39 @@ snapshots:
 
   '@jimp/jpeg@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       jpeg-js: 0.4.4
 
   '@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-circle@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       tinycolor2: 1.6.0
 
   '@jimp/plugin-contain@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18044,7 +18044,7 @@ snapshots:
 
   '@jimp/plugin-cover@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18053,62 +18053,62 @@ snapshots:
 
   '@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-displace@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-dither@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-fisheye@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-flip@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-rotate': 0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-gaussian@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-invert@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-mask@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-normalize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-print@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
@@ -18116,13 +18116,13 @@ snapshots:
 
   '@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
@@ -18131,14 +18131,14 @@ snapshots:
 
   '@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
 
   '@jimp/plugin-shadow@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blur': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18146,7 +18146,7 @@ snapshots:
 
   '@jimp/plugin-threshold@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-color': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -18154,7 +18154,7 @@ snapshots:
 
   '@jimp/plugins@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-blur': 0.16.13(@jimp/custom@0.16.13)
@@ -18181,20 +18181,20 @@ snapshots:
 
   '@jimp/png@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       pngjs: 3.4.0
 
   '@jimp/tiff@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       utif: 2.0.1
 
   '@jimp/types@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/bmp': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/custom': 0.16.13
       '@jimp/gif': 0.16.13(@jimp/custom@0.16.13)
@@ -18205,7 +18205,7 @@ snapshots:
 
   '@jimp/utils@0.16.13':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       regenerator-runtime: 0.13.11
 
   '@jridgewell/gen-mapping@0.3.13':
@@ -19318,7 +19318,7 @@ snapshots:
 
   '@prefresh/babel-plugin@0.4.4': {}
 
-  '@prefresh/core@1.5.7(preact@10.28.2)':
+  '@prefresh/core@1.5.9(preact@10.28.2)':
     dependencies:
       preact: 10.28.2
 
@@ -19327,7 +19327,7 @@ snapshots:
   '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2))':
     dependencies:
       '@prefresh/babel-plugin': 0.4.4
-      '@prefresh/core': 1.5.7(preact@10.28.2)
+      '@prefresh/core': 1.5.9(preact@10.28.2)
       '@prefresh/utils': 1.2.1
       preact: 10.28.2
       webpack: 5.104.1(esbuild@0.27.2)
@@ -25232,9 +25232,9 @@ snapshots:
       - graphql
       - supports-color
 
-  gatsby-plugin-preact@7.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(preact-render-to-string@5.2.6(preact@10.28.2))(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2)):
+  gatsby-plugin-preact@7.16.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2))))(preact-render-to-string@5.2.6(preact@10.28.2))(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2)):
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       '@gatsbyjs/webpack-hot-middleware': 2.25.3
       '@prefresh/babel-plugin': 0.4.4
       '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.28.2)(webpack@5.104.1(esbuild@0.27.2))
@@ -25431,7 +25431,7 @@ snapshots:
 
   gatsby-source-filesystem@2.11.1(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(encoding@0.1.13)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.104.1(esbuild@0.27.2)))):
     dependencies:
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.6
       better-queue: 3.8.12
       chokidar: 3.6.0
       file-type: 16.5.4
@@ -27785,7 +27785,7 @@ snapshots:
 
   jimp@0.16.13:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugins': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/types': 0.16.13(@jimp/custom@0.16.13)
@@ -33791,7 +33791,7 @@ snapshots:
 
   workbox-build@4.3.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.3
       '@hapi/joi': 15.1.1
       common-tags: 1.8.2
       fs-extra: 4.0.3
