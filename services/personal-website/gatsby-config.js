@@ -193,6 +193,10 @@ module.exports = {
                 }
               }
             `,
+            setup: (options) => ({
+              ...options,
+              lastBuildDate: false,
+            }),
             output: "/feed.xml",
             title: "Alex Wilson's writing",
             description: "Alex on engineering, products & everything in-between",

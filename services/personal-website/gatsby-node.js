@@ -1,5 +1,4 @@
 const path = require('path')
-const fs = require('fs')
 const {v5} = require('uuid')
 
 const { contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode } = require('./src/schema/on-create-node.js')
@@ -148,15 +147,6 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-}
-
-exports.onPostBuild = async () => {
-  const feedPath = path.resolve(__dirname, 'public', 'feed.xml')
-  if (fs.existsSync(feedPath)) {
-    let xml = fs.readFileSync(feedPath, 'utf8')
-    xml = xml.replace(/<lastBuildDate>.*?<\/lastBuildDate>\s*/g, '')
-    fs.writeFileSync(feedPath, xml, 'utf8')
-  }
 }
 
 const gatsbyLinkAdapter = path.resolve(__dirname, 'src/components/GatsbyLink.js')

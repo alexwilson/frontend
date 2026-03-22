@@ -12,5 +12,10 @@
   },
   "dependencies": {
     "esbuild": "^0.27.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "rss@1.2.2": "patches/rss@1.2.2.patch"
+    }
   }
 }
