@@ -159,7 +159,7 @@ class Header extends Component {
 
               <NavItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></NavItem>
               <NavItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
-              <NavItem url="https://www.instagram.com/alexwilson.tech" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></NavItem>
+              <NavItem url="https://www.instagram.com/alx.946" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></NavItem>
               <NavItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src="/svg/mastodon.svg" title="Mastodon" /></NavItem>
               <NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></NavItem>
             </ul>
