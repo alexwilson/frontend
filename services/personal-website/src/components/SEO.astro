@@ -1,0 +1,63 @@
+---
+import Organization from '../schema-org/organization.js';
+import Person from '../schema-org/person.js';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+  keywords?: string[];
+  canonicalUrl?: string;
+  image?: string;
+}
+
+const siteMetadata = {
+  title: 'Alex Wilson',
+  description: 'Software Engineer, Technical Architect — Helping build a better, faster internet.',
+  siteUrl: 'https://alexwilson.tech/',
+  author: '@antoligy',
+};
+
+const {
+  title,
+  description,
+  lang = 'en',
+  keywords = [],
+  canonicalUrl,
+  image,
+} = Astro.props;
+
+const metaDescription = description || siteMetadata.description;
+const pageTitle = `${title} - ${siteMetadata.title}`;
+
+const webPageSchema = {
+  '@type': 'WebPage',
+  '@context': 'http://schema.org',
+  name: siteMetadata.title,
+  description: siteMetadata.description,
+  copyrightHolder: Person(),
+  publisher: Organization(),
+};
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={metaDescription} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metaDescription} />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content={siteMetadata.author} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={metaDescription} />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+{image && <meta property="og:image" content={image} />}
+
+<link rel="alternate" type="application/rss+xml" title="Alex Wilson's writing via RSS" href="/feed.xml" />
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+
+<link rel="webmention" href="https://webmention.io/alexwilson.tech/webmention" />
+<link rel="pingback" href="https://webmention.io/alexwilson.tech/xmlrpc" />
+
+<slot />

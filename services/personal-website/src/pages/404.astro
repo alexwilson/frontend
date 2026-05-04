@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import SEO from '../components/SEO.astro';
+import Layout from '../components/Layout.astro';
+---
+
+<Base>
+  <SEO title="404: Not found" slot="head" />
+  <Layout pathname="/404">
+    <h1 class="heading heading--large">Content not found.</h1>
+    <h2 class="heading">The content or page you are trying to access can't be found. It may have been renamed, moved or deleted.</h2>
+  </Layout>
+</Base>

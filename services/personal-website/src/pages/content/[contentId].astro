@@ -1,0 +1,210 @@
+---
+import { getCollection, render } from 'astro:content';
+import { format } from 'date-fns';
+import Base from '../../layouts/Base.astro';
+import SEO from '../../components/SEO.astro';
+import Layout from '../../components/Layout.astro';
+import ShareWidget from '@alexwilson/legacy-components/src/share-widget';
+import Webmentions from '@alexwilson/legacy-components/src/webmentions';
+import { Form, InlineGroup, Input, Submit } from '@alexwilson/legacy-components/src/form';
+import ArticleCard from '@alexwilson/legacy-components/src/article-card';
+import ArticleSchema from '../../schema-org/article.js';
+import { resolveContent } from '../../lib/content';
+import { resolveTopics } from '../../lib/topics';
+import { findRelatedArticles } from '../../lib/related-articles';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  return allPosts.map((entry) => ({
+    params: { contentId: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const topics = resolveTopics(entry.data.tags);
+const post = resolveContent(entry, topics);
+
+const siteUrl = 'https://alexwilson.tech';
+const url = new URL(post.slug, siteUrl);
+
+// Render markdown
+const { Content } = await render(entry);
+
+// Get all articles for related articles
+const allPosts = await getCollection('posts');
+const allContent = allPosts
+  .map((e) => resolveContent(e, resolveTopics(e.data.tags)))
+  .filter((c) => c.type === 'article')
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const relatedArticles = post.type === 'article' ? findRelatedArticles(post, allContent) : [];
+
+const datePublished = new Date(post.date);
+const dateModified = new Date(post.date);
+
+// Handle content-placeholder redirect
+const isPlaceholder = post.type === 'content-placeholder';
+const destination = isPlaceholder
+  ? (() => {
+      try {
+        return new URL(post.url).toString();
+      } catch {
+        return new URL(post.url, siteUrl).toString();
+      }
+    })()
+  : null;
+---
+
+{isPlaceholder ? (
+  <Base>
+    <Fragment slot="head">
+      <SEO title={post.title} canonicalUrl={destination || undefined} />
+      {destination && <meta http-equiv="refresh" content={`15;url=${destination}?a`} />}
+    </Fragment>
+    <Layout pathname={Astro.url.pathname}>
+      Redirecting to <a href={destination}>{destination}</a>...
+    </Layout>
+    {destination && (
+      <script define:vars={{ destination }}>
+        window.location.replace(destination);
+      </script>
+    )}
+  </Base>
+) : post.type === 'talk' ? (
+  <Base>
+    <Fragment slot="head">
+      <SEO title={post.title} image={`${url}/twitter-card.jpg`} />
+    </Fragment>
+    <Layout pathname={Astro.url.pathname} section="talks">
+      <div class="alex-article">
+        <div class="alex-article__main">
+          <h1>{post.title}</h1>
+          <article class="alex-article__body article-description">
+            <Content />
+          </article>
+          <ShareWidget client:load title={post.title} url={url.toString()} />
+        </div>
+        <div class="alex-article__aside">
+        </div>
+      </div>
+    </Layout>
+  </Base>
+) : (
+  <Base>
+    <Fragment slot="head">
+      <SEO title={post.title} image={`${url}/twitter-card.jpg`} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@alexwilsonv1" />
+      <meta name="twitter:title" content={post.title} />
+      <meta name="twitter:image" content={`${url}/twitter-card.jpg`} />
+      <script type="application/ld+json" set:html={JSON.stringify(ArticleSchema({
+        url: url.toString(),
+        title: post.title,
+        image: post.image.image || '',
+        description: '',
+        dateModified,
+        datePublished,
+      }))} />
+    </Fragment>
+    <Layout pathname={Astro.url.pathname} section="blog" headerImage={post.image.image}>
+      <div class="alex-article">
+        <h1 class="alex-article__headline">{post.title}</h1>
+        <div class="alex-article__main">
+          <div class="alex-article__byline">
+            Posted
+            {post.author?.name && (
+              <>
+                {' by '}
+                <span itemscope itemtype="http://schema.org/Person">
+                  <a href="/about-me">
+                    <span itemprop="name">Alex</span>
+                  </a>
+                  <meta itemprop="url" content="https://alexwilson.tech/" />
+                </span>
+              </>
+            )}
+            {datePublished && (
+              <>
+                {' on '}
+                <time
+                  class="alex-article__main__date"
+                  datetime={datePublished.toISOString()}
+                >{format(datePublished, 'PPPP')}</time>.
+              </>
+            )}
+            {post.image.credit && (
+              <>
+                {` ${post.image.credit}`}
+              </>
+            )}
+          </div>
+          <article class="alex-article__body article-description">
+            <Content />
+          </article>
+
+          <footer>
+            <div class="alex-article__infobox">
+              <p>If you enjoyed this article and want to read more, you can follow me:</p>
+              <ul style="margin-top: 0">
+                <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
+                <li class="bullet--twitter">
+                  On{' '}
+                  <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a>{', '}
+                  <a rel="me" href="https://bsky.app/profile/alexwilson.bsky.social">Bluesky</a>{' or '}
+                  <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
+                </li>
+                <li class="bullet--email">
+                  <label for="subscribe_by_email">And in your inbox, by email:</label>
+                  <Form client:load action="https://tech.us21.list-manage.com/subscribe/post?u=e0869bce049cbcd034fc8edd2&amp;id=7733fc6e4f&amp;f_id=00ef5be1f0" method="post" rel="noreferrer" target="_blank">
+                    <InlineGroup client:load>
+                      <Input client:load placeholder="Your email address" type="email" name="EMAIL" id="subscribe_by_email" />
+                      <Submit client:load value="Subscribe" />
+                    </InlineGroup>
+                  </Form>
+                </li>
+              </ul>
+              <p>Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!</p>
+            </div>
+          </footer>
+
+          <div class="alex-article__sharing-block">
+          </div>
+
+        </div>
+
+        <div class="alex-article__aside">
+          <div class="alex-article__aside-start">
+            {post.topics.length > 0 && (
+              <div class="alex-article__topics">
+                <strong>Topics: </strong>
+                <ul>
+                  {post.topics.map((topic) => (
+                    <li>
+                      <a href={topic.slug}>{topic.topic}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div class="alex-article__aside-mid">
+            <div class="alex-article__recommended">
+              <h2>Read Next</h2>
+              {relatedArticles.map((article) => (
+                <ArticleCard client:load article={article} withBody={false} withDate={false} />
+              ))}
+            </div>
+          </div>
+
+          <div class="alex-article__aside-bottom alex-article__sharing-block">
+            <ShareWidget client:load title={post.title} url={url.toString()} />
+            <Webmentions client:load contentId={post.contentId} />
+          </div>
+        </div>
+
+      </div>
+    </Layout>
+  </Base>
+)}
