@@ -1,0 +1,23 @@
+---
+import Header from '@alexwilson/legacy-components/src/header';
+import Footer from '@alexwilson/legacy-components/src/footer';
+
+interface Props {
+  pathname: string;
+  section?: string;
+  headerImage?: string;
+}
+
+const { pathname, section, headerImage } = Astro.props;
+const hasCustomHeader = Astro.slots.has('header');
+---
+
+{hasCustomHeader ? (
+  <slot name="header" />
+) : (
+  <Header client:load location={{ pathname }} section={section} image={headerImage} />
+)}
+<main>
+  <slot />
+</main>
+<Footer client:load />

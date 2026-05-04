@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SEO from '../components/SEO.astro';
+import Layout from '../components/Layout.astro';
+import ArticleCard from '@alexwilson/legacy-components/src/article-card';
+import { resolveContent } from '../lib/content';
+import { resolveTopics } from '../lib/topics';
+
+const siteUrl = 'https://alexwilson.tech';
+const url = new URL('/talks', siteUrl);
+
+const allPosts = await getCollection('posts');
+
+function resolve(entry: (typeof allPosts)[0]) {
+  const topics = resolveTopics(entry.data.tags);
+  return resolveContent(entry, topics);
+}
+
+const talks = allPosts
+  .map(resolve)
+  .filter((c) => c.type === 'talk')
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+---
+
+<Base>
+  <SEO title="Talks" slot="head" />
+  <Layout pathname={Astro.url.pathname} section="talks">
+    <div class="alex-stream">
+      <h1>Talks</h1>
+      {talks.map((node) => (
+        <ArticleCard client:load article={node} />
+      ))}
+    </div>
+  </Layout>
+</Base>

@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SEO from '../../components/SEO.astro';
+import Layout from '../../components/Layout.astro';
+import ArticleCard from '@alexwilson/legacy-components/src/article-card';
+import { resolveContent } from '../../lib/content';
+import { resolveTopics, getAllTopics } from '../../lib/topics';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const allTopics = getAllTopics(allPosts);
+
+  return allTopics.map((topic) => ({
+    params: { topicSlug: topic.topic },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+
+const siteUrl = 'https://alexwilson.tech';
+const url = new URL(topic.slug, siteUrl);
+
+const allPosts = await getCollection('posts');
+const content = allPosts
+  .filter((entry) => entry.data.tags.includes(topic.topic))
+  .map((entry) => resolveContent(entry, resolveTopics(entry.data.tags)))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const totalCount = content.length;
+---
+
+<Base>
+  <SEO title={topic.topic} slot="head" />
+  <Layout pathname={Astro.url.pathname} section="blog">
+    <div class="alex-stream">
+      <h1>{`${totalCount} post${totalCount === 1 ? '' : 's'} tagged with "${topic.topic}"`}</h1>
+      {content.map((node) => (
+        <ArticleCard client:load article={node} />
+      ))}
+    </div>
+  </Layout>
+</Base>

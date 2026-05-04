@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SEO from '../components/SEO.astro';
+import Layout from '../components/Layout.astro';
+import ArticleCard from '@alexwilson/legacy-components/src/article-card';
+import { resolveContent } from '../lib/content';
+import { resolveTopics } from '../lib/topics';
+
+const allPosts = await getCollection('posts');
+
+function resolve(entry: (typeof allPosts)[0]) {
+  const topics = resolveTopics(entry.data.tags);
+  return resolveContent(entry, topics);
+}
+
+const allContent = allPosts.map(resolve).sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const allButWeeknotesAndLists = allContent
+  .filter((c) => !c.topics.some((t) => t.topic === 'weeknotes' || t.topic === 'lists'))
+  .slice(0, 3);
+
+const onlyWeeknotes = allContent
+  .filter((c) => c.topics.some((t) => t.topic === 'weeknotes'))
+  .slice(0, 3);
+---
+
+<Base>
+  <SEO title="Home" slot="head" />
+  <Layout pathname={Astro.url.pathname}>
+    <div class="alex-home">
+      <section class="alex-home__section">
+      </section>
+      <section class="alex-home__section">
+        <h2><a class="heading" href="/blog/">Latest Writing</a></h2>
+        <div class="alex-home__tilestack">
+          {allButWeeknotesAndLists.map((node) => (
+            <div class="alex-home__tilestack-item">
+              <ArticleCard client:load article={node} withImage={false} withDate={false} />
+            </div>
+          ))}
+        </div>
+      </section>
+      <section class="alex-home__section">
+        <h2><a class="heading" href="/topic/weeknotes">Latest Notes</a></h2>
+        <div class="alex-home__tilestack">
+          {onlyWeeknotes.map((node) => (
+            <div class="alex-home__tilestack-item">
+              <ArticleCard client:load article={node} withImage={false} withDate={false} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </Layout>
+</Base>
