@@ -1,23 +1,66 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React, { useState, useMemo } from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import Stream from "../components/stream"
+import StreamFilters from "../components/stream-filters"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 import Header from "@alexwilson/legacy-components/src/header"
 import SEO from "../components/seo"
 
- const BlogPage = ({ data, location }) => {
+const BlogPage = ({ data, location }) => {
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
-  return (<Layout location={location}>
-    <SEO title="Blog" url={url} />
-    <Header location={location} section="blog" />
-    <div className="alex-stream">
-      <h1>My Blog</h1>
-      <h4>{data.content.totalCount} Posts</h4>
-      {data.content.edges.map(({ node }) => (
-          <ArticleCard key={node.id} article={node} />
-      ))}
-    </div>
-  </Layout>)
+
+  const [selectedYears, setSelectedYears] = useState([])
+
+  const allPosts = data.content.edges.map(({ node }) => node)
+
+  const years = useMemo(() => {
+    const ys = [...new Set(allPosts.map(n => new Date(n.date).getFullYear()))].sort((a, b) => b - a)
+    return ys
+  }, [allPosts])
+
+  const topics = useMemo(() => {
+    const seen = new Map()
+    allPosts.forEach(n => {
+      (n.topics || []).forEach(t => {
+        if (!seen.has(t.topicId)) seen.set(t.topicId, t)
+      })
+    })
+    return [...seen.values()].sort((a, b) => a.topic.localeCompare(b.topic))
+  }, [allPosts])
+
+  const toggleYear = (year) => setSelectedYears(prev =>
+    prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
+  )
+
+  const filteredPosts = useMemo(() => {
+    return allPosts.filter(node => {
+      if (selectedYears.length > 0 && !selectedYears.includes(new Date(node.date).getFullYear())) return false
+      return true
+    })
+  }, [allPosts, selectedYears])
+
+  const sidebar = (
+    <StreamFilters
+      years={years}
+      selectedYears={selectedYears}
+      onYearToggle={toggleYear}
+      topics={topics}
+      onClear={() => setSelectedYears([])}
+    />
+  )
+
+  return (
+    <Layout location={location}>
+      <SEO title="Blog" url={url} />
+      <Header location={location} section="blog" compact />
+      <Stream sidebar={sidebar} header={<><h1>My Blog</h1><h4>{filteredPosts.length} Posts</h4></>}>
+        {filteredPosts.map(node => (
+          <ArticleCard key={node.id} article={node} withImage={false} />
+        ))}
+      </Stream>
+    </Layout>
+  )
 }
 
 export default BlogPage
@@ -45,8 +88,10 @@ export const query = graphql`
           date
           url
           slug
-          image {
-            thumbnail
+          topics {
+            topicId
+            topic
+            slug
           }
           content: parent {
             ...BlogPageContent

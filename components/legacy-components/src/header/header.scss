@@ -49,11 +49,6 @@
   }
 
   &__menu-button {
-    @include media(">phone") {
-      display: none;
-      visibility: hidden;
-    }
-
     position: relative;
     display: block;
     border: 0;
@@ -61,6 +56,11 @@
     cursor: pointer;
     width: 1.5em;
     height: 1.5em;
+
+    @include media(">phone") {
+      display: none;
+      visibility: hidden;
+    }
 
     > span {
       display: block;

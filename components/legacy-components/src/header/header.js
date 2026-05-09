@@ -120,20 +120,22 @@ class Header extends Component {
   }
 
   render() {
-    const { section = null } = this.props
+    const { section = null, compact = false } = this.props
     const { pathname } = this.props.location
 
     return (
-      <header role="banner" className={`alex-header`} ref={this.header}>
+      <header role="banner" className={`alex-header${compact ? ' alex-header--compact' : ''}`} ref={this.header}>
 
         <HeaderImage src={this.state.backgroundImage} blur={this.state.navigationExpanded} />
 
         <div className="alex-header--container">
 
-          <div className="alex-header__about">
-            <h1 className="alex-header__name">Alex Wilson</h1>
-            <span className="alex-header__intro">On products, engineering & everything in-between.</span>
-          </div>
+          {!compact && (
+            <div className="alex-header__about">
+              <h1 className="alex-header__name">Alex Wilson</h1>
+              <span className="alex-header__intro">On products, engineering & everything in-between.</span>
+            </div>
+          )}
 
 
           <nav ref={this.headerNav} className="alex-header__nav--container">
@@ -173,12 +175,14 @@ class Header extends Component {
 Header.propTypes = {
   image: PropTypes.string,
   location: PropTypes.object.isRequired,
-  section: PropTypes.oneOf(["blog", "talks"])
+  section: PropTypes.oneOf(["blog", "talks"]),
+  compact: PropTypes.bool
 }
 
 Header.defaultProps = {
   image: null,
-  section: null
+  section: null,
+  compact: false
 }
 
 export default Header
