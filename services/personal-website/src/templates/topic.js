@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react"
-import PropTypes from "prop-types"
+import React, { useState, useMemo } from "react"
 import ArticleCard from "@alexwilson/legacy-components/src/article-card"
 import { graphql, navigate } from "gatsby"
 import Layout from "../components/layout"
@@ -9,7 +8,6 @@ import Header from "@alexwilson/legacy-components/src/header"
 import SEO from "../components/seo"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {
-  const { topic } = pageContext
   const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
 
   const [selectedYears, setSelectedYears] = useState([])
