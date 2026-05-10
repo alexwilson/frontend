@@ -91,14 +91,13 @@
 
     &--spacer {
       margin-left: auto;
-      margin-right: auto;
     }
 
     a, a:hover, a:visited {
       @include fontsize($fontsize: eta);
 
       color: white;
-      padding: 1rem;
+      padding: 1.5rem 0.75rem 1rem;
       position: relative;
       display: block;
       text-decoration: none;
@@ -134,20 +133,76 @@
     }
   }
 
+  &--compact &__about {
+    width: auto;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  &--compact &__name {
+    font-size: 18pt;
+    margin: 0;
+
+    @include media(">phone", "<tablet") {
+      display: none;
+    }
+  }
+
+  &--compact &__intro {
+    display: none;
+  }
+
+  &--compact .alex-header--container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    @include media(">phone", "<tablet") {
+      gap: 0.5rem;
+    }
+
+    @include media("<phone") {
+      .alex-header__about { order: 2; }
+      .alex-header__nav--container { order: 1; }
+    }
+  }
+
+  &--compact &__nav--container {
+    flex: 1;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.25),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.35);
+    display: block;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  &--compact &__avatar {
+    width: 32px;
+    height: 32px;
+  }
+
   &__intro {
     font-size: 1rem;
   }
 
   &__about {
     width: 100%;
-
-    display: block;
-    text-align: center;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: white;
     font-weight: 500;
-
     padding: 1em 0 0 0;
+
     @include media(">tablet") {
       padding-top: 3em;
       padding-bottom: 1em;
@@ -167,12 +222,27 @@
     }
   }
 
+  &__about-primary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    gap: 0.75em;
+  }
+
   &__name {
     color: white;
     font-weight: 700;
     text-transform: initial;
     font-size: 40pt;
     white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__surname {
+    @include media("<phone") {
+      display: none;
+    }
   }
 }
 
