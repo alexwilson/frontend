@@ -130,9 +130,16 @@ class Header extends Component {
 
         <div className="alex-header--container">
 
-          {!compact && (
+          {!(compact && this.state.navigationExpanded) && (
             <div className="alex-header__about">
-              <h1 className="alex-header__name">Alex Wilson</h1>
+              <div className="alex-header__about-primary">
+                <img
+                  className="alex-header__avatar"
+                  src="https://avatars.githubusercontent.com/u/440052"
+                  alt="Alex"
+                />
+                <h1 className="alex-header__name">{compact ? 'Alex' : <>Alex <span className="alex-header__surname">Wilson</span></>}</h1>
+              </div>
               <span className="alex-header__intro">On products, engineering & everything in-between.</span>
             </div>
           )}
@@ -162,8 +169,7 @@ class Header extends Component {
               <NavItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></NavItem>
               <NavItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
               <NavItem url="https://www.instagram.com/alx.946" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></NavItem>
-              <NavItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src="/svg/mastodon.svg" title="Mastodon" /></NavItem>
-              <NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></NavItem>
+<NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></NavItem>
             </ul>
           </nav>
 
