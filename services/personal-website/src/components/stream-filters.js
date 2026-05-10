@@ -10,9 +10,6 @@ const StreamFilters = ({
   onClear,
 }) => {
   const hasFilters = selectedYears.length > 0
-  const yearsLabel = selectedYears.length === 0
-    ? "All years"
-    : `${selectedYears.length} year${selectedYears.length > 1 ? "s" : ""} selected`
 
   return (
     <>
