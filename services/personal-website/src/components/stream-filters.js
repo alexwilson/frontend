@@ -15,7 +15,7 @@ const StreamFilters = ({
     <>
       {topics.length > 0 && (
         <details className="alex-stream__filter-section" open={selectedTopics.length > 0 || undefined}>
-          <summary><strong>Topics:</strong></summary>
+          <summary><strong>Topics</strong></summary>
           <ul className="alex-stream__topics-list alex-stream__topics-list--links">
             {[...topics]
               .sort((a, b) => {
@@ -41,7 +41,7 @@ const StreamFilters = ({
 
       {years.length > 0 && (
         <details className="alex-stream__filter-section">
-          <summary><strong>Year:</strong></summary>
+          <summary><strong>Year</strong></summary>
           <ul className="alex-stream__topics-list">
             {years.map(y => (
               <li key={y}>
