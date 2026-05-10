@@ -102,15 +102,22 @@
         }
 
         &--links {
-            a {
+            a, a:visited {
                 color: $grey-5;
                 text-decoration: none;
+            }
 
-                &:hover { color: $blue; }
+            a:hover, a:focus {
+                color: $grey-4;
+                text-decoration: underline;
+            }
 
-                &.alex-stream__topic-link--active {
-                    font-weight: 600;
-                }
+            a:active {
+                color: $grey-5;
+            }
+
+            a.alex-stream__topic-link--active {
+                font-weight: 600;
             }
         }
     }
