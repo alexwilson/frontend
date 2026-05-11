@@ -181,7 +181,7 @@ class Header extends Component {
 Header.propTypes = {
   image: PropTypes.string,
   location: PropTypes.object.isRequired,
-  section: PropTypes.oneOf(["blog", "talks"]),
+  section: PropTypes.oneOf([null, "blog", "talks"]),
   compact: PropTypes.bool
 }
 
