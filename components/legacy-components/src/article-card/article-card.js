@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
 import { format as formatDate } from 'date-fns'
 import React from "react"
+import Link from '../link'
 import ResponsiveImage from '../responsive-image'
 
 export default function articleCard({article, withBody = true, withImage = true, withDate = true}) {
