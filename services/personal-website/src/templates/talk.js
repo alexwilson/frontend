@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Header from "@alexwilson/legacy-components/src/header"
-import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
+import Header from "@alexwilson/ds-legacy-components/src/header"
+import ShareWidget from "@alexwilson/ds-legacy-components/src/share-widget"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 

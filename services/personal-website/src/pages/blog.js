@@ -3,8 +3,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "../components/stream"
 import StreamFilters from "../components/stream-filters"
-import ArticleCard from "@alexwilson/legacy-components/src/article-card"
-import Header from "@alexwilson/legacy-components/src/header"
+import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
+import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
 
 const BlogPage = ({ data, location }) => {

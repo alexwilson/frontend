@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ResponsiveImage from "@alexwilson/legacy-components/src/responsive-image"
+import ResponsiveImage from "@alexwilson/ds-legacy-components/src/responsive-image"
 
 export default function aboutMe({ location }) {
   return <Layout location={location}>

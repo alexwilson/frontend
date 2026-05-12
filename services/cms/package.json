@@ -41,7 +41,7 @@
     "wrangler": "^4.7.2"
   },
   "dependencies": {
-    "@alexwilson/legacy-components": "^1.0.0",
+    "@alexwilson/ds-legacy-components": "^1.0.0",
     "date-fns": "^4.1.0",
     "decap-cms": "^3.4.0",
     "decap-cms-app": "^3.4.0",

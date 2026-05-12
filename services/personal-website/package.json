@@ -26,7 +26,8 @@
   "homepage": "https://github.com/alexwilson/personal-website#readme",
   "dependencies": {
     "@alexwilson/gatsby-remark-rewrite-images": "^1.0.0",
-    "@alexwilson/legacy-components": "^1.0.0",
+    "@alexwilson/ds-icons": "workspace:*",
+    "@alexwilson/ds-legacy-components": "^1.0.0",
     "@loadable/component": "^5.16.4",
     "date-fns": "^4.0.0",
     "gatsby": "^5.13.5",

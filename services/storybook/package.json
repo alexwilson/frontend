@@ -7,7 +7,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@alexwilson/legacy-components": "workspace:*"
+    "@alexwilson/ds-legacy-components": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
