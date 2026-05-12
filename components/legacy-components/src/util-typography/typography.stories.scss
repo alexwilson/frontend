@@ -1,0 +1,38 @@
+@import "../util-viewports/viewports";
+@import "../util-palette/palette";
+@import "./type/main";
+
+.ds-type-scale {
+  padding: 2rem;
+}
+
+.ds-scale-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid $grey-2;
+
+  &__label {
+    font-family: monospace;
+    font-size: 12px;
+    color: $grey-4;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  &__sample {
+    font-family: 'Overpass', Helvetica, sans-serif;
+    color: $grey-5;
+  }
+}
+
+.ds-scale-alpha   { @include fontsize($fontsize: alpha); }
+.ds-scale-beta    { @include fontsize($fontsize: beta); }
+.ds-scale-gamma   { @include fontsize($fontsize: gamma); }
+.ds-scale-delta   { @include fontsize($fontsize: delta); }
+.ds-scale-epsilon { @include fontsize($fontsize: epsilon); }
+.ds-scale-zeta    { @include fontsize($fontsize: zeta); }
+.ds-scale-eta     { @include fontsize($fontsize: eta); }
+.ds-scale-theta   { @include fontsize($fontsize: theta); }
+.ds-scale-iota    { @include fontsize($fontsize: iota); }

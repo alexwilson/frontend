@@ -1,7 +1,7 @@
 import Form, { Input, TextArea, Submit, InlineGroup } from '.'
 
 export default {
-  title: 'Legacy/Form',
+  title: 'Legacy/Molecules/Form',
   component: Form,
 }
 

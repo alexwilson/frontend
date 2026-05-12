@@ -1,7 +1,7 @@
 import Header from '.'
 
 export default {
-  title: 'Legacy/Header',
+  title: 'Legacy/Organisms/Header',
   component: Header,
   args: {
     location: { pathname: '/' },

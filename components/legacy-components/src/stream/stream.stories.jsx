@@ -16,7 +16,7 @@ const sampleTopics = [
 ]
 
 export default {
-  title: 'Legacy/Stream',
+  title: 'Legacy/Organisms/Stream',
   component: Stream,
   parameters: { layout: 'fullscreen' },
 }

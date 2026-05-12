@@ -1,5 +1,11 @@
 /** @type { import('@storybook/react-webpack5').Preview } */
 const preview = {
+  decorators: [
+    (Story) => {
+      document.documentElement.classList.add('wf-active')
+      return Story()
+    },
+  ],
   parameters: {
     controls: {
       matchers: {

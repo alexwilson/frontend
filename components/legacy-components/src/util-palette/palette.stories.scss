@@ -1,0 +1,51 @@
+@import "./palette";
+
+.ds-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.ds-swatch {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  font-family: monospace;
+  font-size: 11px;
+
+  &__chip {
+    height: 64px;
+  }
+
+  &__label {
+    padding: 6px 8px;
+    background: white;
+    color: #333;
+    line-height: 1.4;
+  }
+}
+
+.chip--white         { background: $white; border: 1px solid #e0e0e0; }
+.chip--grey-1        { background: $grey-1; }
+.chip--grey-2        { background: $grey-2; }
+.chip--grey-3        { background: $grey-3; }
+.chip--grey-4        { background: $grey-4; }
+.chip--grey-5        { background: $grey-5; }
+.chip--grey-6        { background: $grey-6; }
+.chip--blue          { background: $blue; }
+.chip--blue-1        { background: $blue-1; }
+.chip--blue-2        { background: $blue-2; }
+.chip--blue-3        { background: $blue-3; }
+.chip--blue-4        { background: $blue-4; }
+.chip--orange        { background: $orange; }
+.chip--orange-1      { background: $orange-1; }
+.chip--orange-2      { background: $orange-2; }
+.chip--orange-3      { background: $orange-3; }
+.chip--orange-4      { background: $orange-4; }
+.chip--brand         { background: $brand; }
+.chip--complement    { background: $complement; }
+.chip--header-bg     { background: $header-background; }
