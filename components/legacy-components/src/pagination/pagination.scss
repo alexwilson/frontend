@@ -1,3 +1,5 @@
+@import "../util-palette/palette";
+
 .alex-pagination {
   padding-left: 0;
   margin: 1em 0;
@@ -10,15 +12,15 @@
     > span {
       display: inline-block;
       padding: 5px 14px;
-      background-color: $pager-bg;
-      border: 1px solid $pager-border;
-      border-radius: $pager-border-radius;
+      background-color: $white;
+      border: 1px solid $grey-2;
+      border-radius: 3px;
     }
 
     > a:hover,
     > a:focus {
       text-decoration: none;
-      background-color: $pager-hover-bg;
+      background-color: $blue-4;
     }
   }
 
@@ -41,8 +43,8 @@
     > a:hover,
     > a:focus,
     > span {
-      color: $pager-disabled-color;
-      background-color: $pager-bg;
+      color: $grey-3;
+      background-color: $white;
       cursor: not-allowed;
     }
   }

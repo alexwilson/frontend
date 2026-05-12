@@ -1,0 +1,125 @@
+@import "../util-viewports/viewports";
+@import "../util-grid/grid";
+@import "../util-palette/palette";
+@import "../util-typography/type/variables";
+@import "../util-typography/type/modular-scale";
+@import "../util-typography/type/mixins";
+
+.alex-article {
+  @include alex-container();
+  @include alex-row;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 0 2em;
+  grid-template-areas:
+    "Headline"
+    "Main"
+    "Aside";
+
+  @include media(">tablet") {
+    grid-template-columns: 8fr 2fr;
+    grid-template-areas:
+      "Headline Headline"
+      "Main Aside";
+  }
+
+  @include media(">desktop") {
+    grid-template-columns: 7fr 3fr;
+    gap: 0 3em;
+    grid-template-areas:
+      "Headline Headline"
+      "Main Aside";
+  }
+}
+
+.alex-article__headline {
+  grid-area: Headline;
+}
+
+.alex-article__main {
+  grid-area: Main;
+  overflow-x: auto;
+}
+
+.alex-article__aside {
+  grid-area: Aside;
+  display: inline-grid !important;
+  grid-template-rows: min-content auto min-content;
+  gap: 2em;
+}
+
+.alex-article__aside-start  { grid-row: 1; }
+.alex-article__aside-mid    { grid-row: 2; }
+.alex-article__aside-bottom { grid-row: 3; }
+
+.alex-article__topics {
+  display: none;
+
+  @include media(">tablet") {
+    display: block;
+  }
+
+  ul {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline;
+
+    &::after        { content: ', '; }
+    &:last-child::after { content: '.'; }
+    &:nth-last-child(2)::after { content: ' & '; }
+  }
+}
+
+.alex-article__recommended {
+  @include media(">tablet") {
+    position: sticky;
+    top: 15em;
+  }
+
+  h2 { @include fontsize($fontsize: epsilon); text-transform: initial; }
+  h3 { @include fontsize($fontsize: zeta); }
+}
+
+.alex-article__sharing-block {
+  h3 { @include fontsize($fontsize: epsilon); }
+
+  @include media("<tablet") {
+    display: flex;
+    > div { flex: 1; }
+  }
+}
+
+.alex-article__image {
+  background: no-repeat center center;
+  background-color: $grey-3;
+  background-attachment: scroll;
+  background-size: cover;
+  margin-top: -4em;
+  height: 400px;
+}
+
+.alex-article__pane {
+  @include alex-row;
+
+  &-half {
+    padding-right: .5rem;
+    @include alex-column(10);
+
+    @include media(">phone") {
+      @include alex-column(5);
+    }
+  }
+}
+
+.alex-article__body {
+  img {
+    max-width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card";
+import RelatedArticles from "@alexwilson/ds-legacy-components/src/related-articles";
 
 function isWeeknote(article) {
   return article.topics.some(({ topic }) => topic === "weeknotes");
@@ -85,16 +85,5 @@ export default ({ article: currentArticle }) => {
     }
   }
 
-  return (
-    <>
-      {Array.from(relatedArticles.values()).map((article) => (
-        <ArticleCard
-          key={article.contentId}
-          article={article}
-          withBody={false}
-          withDate={false}
-        />
-      ))}
-    </>
-  );
+  return <RelatedArticles articles={Array.from(relatedArticles.values())} />;
 };
