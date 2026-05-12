@@ -3,6 +3,11 @@ import React, { Component } from "react"
 import promiseImageLoader from 'promise-image-loader'
 import fetch from "isomorphic-fetch"
 import Link from "../link"
+import blueskyUrl from '@alexwilson/ds-icons/bluesky.svg'
+import linkedinUrl from '@alexwilson/ds-icons/linkedin.svg'
+import instagramUrl from '@alexwilson/ds-icons/instagram.svg'
+import mastodonUrl from '@alexwilson/ds-icons/mastodon.svg'
+import githubUrl from '@alexwilson/ds-icons/github.svg'
 
 const NavItem = ({ url, rel, active, width, children }) => {
   const classList = ["alex-header__nav-item"]
@@ -166,10 +171,11 @@ class Header extends Component {
               <NavItem url="/talks" active={section && section === "talks"}>Speaking</NavItem>
               <NavSpacer />
 
-              <NavItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src="/svg/bluesky.svg" title="Bluesky" /></NavItem>
-              <NavItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src="/svg/linkedin.svg" title="LinkedIn" /></NavItem>
-              <NavItem url="https://www.instagram.com/alx.946" rel='me' width='thin'><Icon src="/svg/instagram.svg" title="instagram" /></NavItem>
-<NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src="/svg/github.svg" title="Github" /></NavItem>
+              <NavItem url="https://bsky.app/profile/alexwilson.bsky.social" rel='me' width='thin'><Icon src={blueskyUrl} title="Bluesky" /></NavItem>
+              <NavItem url="https://www.linkedin.com/in/alex-/" rel='me' width='thin'><Icon src={linkedinUrl} title="LinkedIn" /></NavItem>
+              <NavItem url="https://www.instagram.com/alx.946" rel='me' width='thin'><Icon src={instagramUrl} title="Instagram" /></NavItem>
+              <NavItem url="https://mastodon.social/@alexwilson" rel='me' width='thin'><Icon src={mastodonUrl} title="Mastodon" /></NavItem>
+              <NavItem url="https://github.com/alexwilson" rel='me' width='thin'><Icon src={githubUrl} title="GitHub" /></NavItem>
             </ul>
           </nav>
 

@@ -3,10 +3,10 @@ import { graphql, Link } from "gatsby"
 
 import { format } from "date-fns"
 
-import Header from "@alexwilson/legacy-components/src/header"
-import ShareWidget from "@alexwilson/legacy-components/src/share-widget"
-import Webmentions from "@alexwilson/legacy-components/src/webmentions"
-import { Form, InlineGroup, Input, Submit } from "@alexwilson/legacy-components/src/form"
+import Header from "@alexwilson/ds-legacy-components/src/header"
+import ShareWidget from "@alexwilson/ds-legacy-components/src/share-widget"
+import Webmentions from "@alexwilson/ds-legacy-components/src/webmentions"
+import { Form, InlineGroup, Input, Submit } from "@alexwilson/ds-legacy-components/src/form"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"

@@ -11,8 +11,6 @@ module.exports = {
   webpackFinal: async (config) => {
     const componentsDir = path.resolve(__dirname, '../../../components')
 
-    // Transpile JSX from monorepo components with automatic runtime so
-    // story files don't need to import React explicitly.
     config.module.rules.push({
       test: /\.(js|jsx)$/,
       include: [componentsDir],
@@ -30,6 +28,11 @@ module.exports = {
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],
+    })
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      type: 'asset/resource',
     })
 
     return config

@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import ArticleCard from "@alexwilson/legacy-components/src/article-card";
+import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card";
 
 function isWeeknote(article) {
   return article.topics.some(({ topic }) => topic === "weeknotes");

@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from "react"
-import ArticleCard from "@alexwilson/legacy-components/src/article-card"
+import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import { graphql, navigate } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "../components/stream"
 import StreamFilters from "../components/stream-filters"
-import Header from "@alexwilson/legacy-components/src/header"
+import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
 
 const TopicsTemplate = ({ pageContext, data, location }) => {

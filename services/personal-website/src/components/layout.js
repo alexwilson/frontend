@@ -8,8 +8,8 @@
 import React, {Children} from "react"
 import PropTypes from "prop-types"
 
-import Header from "@alexwilson/legacy-components/src/header"
-import Footer from "@alexwilson/legacy-components/src/footer"
+import Header from "@alexwilson/ds-legacy-components/src/header"
+import Footer from "@alexwilson/ds-legacy-components/src/footer"
 import "../scss/main.scss"
 
 const Layout = ({ location, children }) => {

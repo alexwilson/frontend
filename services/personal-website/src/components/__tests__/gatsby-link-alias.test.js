@@ -1,5 +1,5 @@
 import GatsbyLink from '../GatsbyLink'
-import Link, { Link as NamedLink } from '@alexwilson/legacy-components/src/link'
+import Link, { Link as NamedLink } from '@alexwilson/ds-legacy-components/src/link'
 
 describe('gatsby webpack alias for legacy link', () => {
   it('maps the legacy link entry point to GatsbyLink', () => {

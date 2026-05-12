@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from 'gatsby'
 
-import ArticleCard from "@alexwilson/legacy-components/src/article-card"
+import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 

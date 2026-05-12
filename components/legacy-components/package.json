@@ -1,5 +1,5 @@
 {
-  "name": "@alexwilson/legacy-components",
+  "name": "@alexwilson/ds-legacy-components",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "sass": "^1.77.2"
   },
   "dependencies": {
+    "@alexwilson/ds-icons": "workspace:*",
     "@reach/router": "^1.3.4",
     "date-fns": "^4.0.0",
     "include-media": "^2.0.0",

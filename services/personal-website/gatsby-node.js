@@ -151,13 +151,28 @@ exports.createPages = async ({ graphql, actions }) => {
 
 const gatsbyLinkAdapter = path.resolve(__dirname, 'src/components/GatsbyLink.js')
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        '@alexwilson/legacy-components/src/link': gatsbyLinkAdapter,
-        '@alexwilson/legacy-components/src/link/index.js': gatsbyLinkAdapter
-      }
-    }
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+
+  // Gatsby's url-loader rule inlines small files (including SVGs) as base64 data URIs.
+  // Remove SVG from that rule so they get emitted as separate files instead.
+  const urlLoaderRule = config.module.rules.find(
+    rule => rule.test && rule.test.source && rule.test.source.includes('svg')
+  )
+  if (urlLoaderRule) {
+    urlLoaderRule.test = /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/
+  }
+
+  config.module.rules.push({
+    test: /\.svg$/,
+    type: 'asset/resource',
   })
+
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    '@alexwilson/ds-legacy-components/src/link': gatsbyLinkAdapter,
+    '@alexwilson/ds-legacy-components/src/link/index.js': gatsbyLinkAdapter,
+  }
+
+  actions.replaceWebpackConfig(config)
 }
