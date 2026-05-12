@@ -1,7 +1,7 @@
 import Footer from '.'
 
 export default {
-  title: 'Legacy/Footer',
+  title: 'Legacy/Organisms/Footer',
   component: Footer,
 }
 

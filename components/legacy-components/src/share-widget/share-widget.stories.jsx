@@ -1,7 +1,7 @@
 import ShareWidget from '.'
 
 export default {
-  title: 'Legacy/ShareWidget',
+  title: 'Legacy/Molecules/ShareWidget',
   component: ShareWidget,
   args: {
     url: 'https://alexwilson.tech/blog/example-post',

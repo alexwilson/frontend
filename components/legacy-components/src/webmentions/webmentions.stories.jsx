@@ -25,7 +25,7 @@ const withFetchStub = (mentions) => ({
 })
 
 export default {
-  title: 'Legacy/Webmentions',
+  title: 'Legacy/Organisms/Webmentions',
   component: Webmentions,
 }
 

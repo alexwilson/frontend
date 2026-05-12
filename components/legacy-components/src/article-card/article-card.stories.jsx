@@ -1,7 +1,7 @@
 import ArticleCard from '.'
 
 export default {
-  title: 'Legacy/ArticleCard',
+  title: 'Legacy/Molecules/ArticleCard',
   component: ArticleCard,
   args: {
     article: {
