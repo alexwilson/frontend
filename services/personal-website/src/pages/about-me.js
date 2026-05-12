@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import ArticleLayout from "@alexwilson/ds-legacy-components/src/article-layout"
+import ResponsiveImage from "@alexwilson/ds-legacy-components/src/responsive-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ResponsiveImage from "@alexwilson/ds-legacy-components/src/responsive-image"
 
 export default function aboutMe({ location }) {
   return <Layout location={location}>
     <SEO title="About Alex Wilson" keywords={[`alex wilson`, `software engineer`]} url="https://alexwilson.tech/about-me" />
-    <div className="alex-article">
-      <div className="alex-article__main" itemScope="author" itemType="http://schema.org/Person">
-        <article className="alex-article__body">
+    <ArticleLayout aside={<ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="A photograph of Alex Wilson" />}>
+      <article className="alex-article__body" itemScope="author" itemType="http://schema.org/Person">
 
           <p>
             My name is Alex. I'm a driven engineering lead, and at work I enjoy both building teams and products.<br />
@@ -79,13 +79,7 @@ export default function aboutMe({ location }) {
               <li><i>Sep 2009—Jul 2013</i>: Software Developer & SysAdmin, <a href="https://alexwilson.tech/">Freelance</a></li>
             </ul>
           </p>
-        </article>
-      </div>
-
-      <div className="alex-article__aside">
-        <br />
-        <ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="A photograph of Alex Wilson" />
-      </div>
-    </div>
+      </article>
+    </ArticleLayout>
   </Layout>
 }

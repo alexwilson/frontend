@@ -9,9 +9,7 @@
 
 // Page-specific styles
 @import "layout";
-@import "pages/home";
 @import "pages/article";
-@import "pages/listing";
 
 // Force spans inside PrismJS to use parent font-family.
 code[class*="language-"] span, pre[class*="language-"] span {
