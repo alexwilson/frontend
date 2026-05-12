@@ -3,7 +3,7 @@ const path = require('path')
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 module.exports = {
   stories: ['../../../components/**/src/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-essentials'],
+  addons: ['@storybook/addon-docs'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
@@ -34,6 +34,11 @@ module.exports = {
       test: /\.svg$/,
       type: 'asset/resource',
     })
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'isomorphic-fetch': path.resolve(__dirname, 'isomorphic-fetch-stub.js'),
+    }
 
     return config
   },

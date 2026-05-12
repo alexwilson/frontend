@@ -31,3 +31,27 @@ export const TalksSection = {
 export const NoImage = {
   args: { image: null },
 }
+
+export const Compact = {
+  args: { compact: true },
+}
+
+export const CompactBlog = {
+  args: {
+    compact: true,
+    location: { pathname: '/blog' },
+    section: 'blog',
+  },
+}
+
+export const CompactTalks = {
+  args: {
+    compact: true,
+    location: { pathname: '/talks' },
+    section: 'talks',
+  },
+}
+
+export const CompactNoImage = {
+  args: { compact: true, image: null },
+}

@@ -149,8 +149,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
 }
 
-const gatsbyLinkAdapter = path.resolve(__dirname, 'src/components/GatsbyLink.js')
-
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   const config = getConfig()
 
@@ -167,12 +165,6 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
     test: /\.svg$/,
     type: 'asset/resource',
   })
-
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    '@alexwilson/ds-legacy-components/src/link': gatsbyLinkAdapter,
-    '@alexwilson/ds-legacy-components/src/link/index.js': gatsbyLinkAdapter,
-  }
 
   actions.replaceWebpackConfig(config)
 }

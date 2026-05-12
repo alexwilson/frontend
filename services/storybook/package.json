@@ -13,12 +13,10 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-essentials": "^8.6.0",
-    "@storybook/test": "^8.6.0",
     "babel-loader": "^9.0.0",
-    "storybook": "^8.6.0",
-    "@storybook/react": "^8.6.0",
-    "@storybook/react-webpack5": "^8.6.0",
+    "storybook": "^10.3.6",
+    "@storybook/react": "^10.3.6",
+    "@storybook/react-webpack5": "^10.3.6",
     "chromatic": "^16.0.0",
     "css-loader": "^7.0.0",
     "prop-types": "^15.8.1",
@@ -27,6 +25,7 @@
     "sass": "^1.77.0",
     "sass-loader": "^16.0.0",
     "style-loader": "^4.0.0",
-    "webpack": "^5.0.0"
+    "webpack": "^5.0.0",
+    "@storybook/addon-docs": "^10.3.6"
   }
 }
