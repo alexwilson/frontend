@@ -1,0 +1,34 @@
+@import "../util-viewports/viewports";
+@import "../util-grid/grid";
+
+.alex-home {
+  @include alex-container;
+
+  &__section {
+    padding-bottom: 1em;
+
+    a, a:visited {
+      text-decoration: none;
+    }
+  }
+
+  &__tilestack {
+    @include alex-row;
+  }
+
+  &__tilestack-item {
+    @include alex-column(10);
+
+    @include media(">phone") {
+      @include alex-column(5);
+    }
+
+    @include media(">tablet") {
+      @include alex-column(3);
+    }
+
+    .alex-card {
+      border-bottom: none;
+    }
+  }
+}

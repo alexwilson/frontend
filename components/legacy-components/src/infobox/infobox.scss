@@ -1,10 +1,6 @@
-@import "~@alexwilson/ds-legacy-components/src/article-layout/article-layout";
+@import "../util-palette/palette";
 
-.alex-article__headline {
-  @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
-}
-
-.alex-article__infobox {
+.alex-infobox {
   background: $blue-4;
   padding: 1em;
 
@@ -17,7 +13,7 @@
   }
 
   .bullet--twitter {
-    &::marker { font-size: 1.5em; }
     list-style-image: url("~@alexwilson/ds-icons/twitter.svg");
+    &::marker { font-size: 1.5em; }
   }
 }

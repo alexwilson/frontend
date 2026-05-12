@@ -2,36 +2,35 @@ import React from "react"
 import { graphql } from 'gatsby'
 
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
+import HomeLayout, { HomeSection, HomeTilestack, HomeTilestackItem } from "@alexwilson/ds-legacy-components/src/home-layout"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const IndexPage = ({ data, location }) => (
   <Layout location={location}>
     <SEO title="Home" />
-    <div className="alex-home">
-        <section className="alex-home__section">
-        </section>
-        <section className="alex-home__section">
-            <h2><a className="heading" href="/blog/">Latest Writing</a></h2>
-            <div className="alex-home__tilestack">
-            {data.allButWeeknotesAndLists.nodes.map((node) =>
-              <div key={node.contentId} className="alex-home__tilestack-item">
-                <ArticleCard article={node} withImage={false} withDate={false} />
-              </div>
-            )}
-            </div>
-        </section>
-        <section className="alex-home__section">
-            <h2><a className="heading" href="/topic/weeknotes">Latest Notes</a></h2>
-            <div className="alex-home__tilestack">
-            {data.onlyWeeknotes.nodes.map((node) =>
-              <div key={node.contentId} className="alex-home__tilestack-item">
-                <ArticleCard article={node} withImage={false} withDate={false} />
-              </div>
-            )}
-            </div>
-        </section>
-    </div>
+    <HomeLayout>
+      <HomeSection>
+        <h2><a className="heading" href="/blog/">Latest Writing</a></h2>
+        <HomeTilestack>
+          {data.allButWeeknotesAndLists.nodes.map((node) =>
+            <HomeTilestackItem key={node.contentId}>
+              <ArticleCard article={node} withImage={false} withDate={false} />
+            </HomeTilestackItem>
+          )}
+        </HomeTilestack>
+      </HomeSection>
+      <HomeSection>
+        <h2><a className="heading" href="/topic/weeknotes">Latest Notes</a></h2>
+        <HomeTilestack>
+          {data.onlyWeeknotes.nodes.map((node) =>
+            <HomeTilestackItem key={node.contentId}>
+              <ArticleCard article={node} withImage={false} withDate={false} />
+            </HomeTilestackItem>
+          )}
+        </HomeTilestack>
+      </HomeSection>
+    </HomeLayout>
   </Layout>
 )
 
