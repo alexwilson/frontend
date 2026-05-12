@@ -22,7 +22,7 @@ export default function init() {
   CMS.init({ config });
   CMS.registerWidget("uuid", Uuid);
   //CMS.registerEditorComponent(YouTube)
-  CMS.registerPreviewTemplate("blog", ArticlePreview);
+  CMS.registerPreviewTemplate("content", ArticlePreview);
   CMS.registerPreviewStyle(ArticlePreviewStyles.toString(), { raw: true });
 }
 

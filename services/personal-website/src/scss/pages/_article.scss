@@ -1,6 +1,0 @@
-@import "~@alexwilson/ds-legacy-components/src/article-layout/article-layout";
-
-.alex-article__headline {
-  @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
-}
-
