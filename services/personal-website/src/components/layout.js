@@ -7,7 +7,9 @@
 
 import React, {Children} from "react"
 import PropTypes from "prop-types"
+import { Link as GatsbyLink } from 'gatsby'
 
+import { LinkContext } from "@alexwilson/ds-legacy-components/src/link"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import Footer from "@alexwilson/ds-legacy-components/src/footer"
 import "../scss/main.scss"
@@ -34,11 +36,11 @@ const Layout = ({ location, children }) => {
     })
 
   return (
-      <>
+      <LinkContext.Provider value={GatsbyLink}>
         {HeaderElement}
         <main>{layoutChildren}</main>
         {FooterElement}
-      </>
+      </LinkContext.Provider>
     )
 }
 

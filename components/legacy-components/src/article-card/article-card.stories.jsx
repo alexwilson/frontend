@@ -28,6 +28,10 @@ export const WithoutBody = {
   args: { withBody: false },
 }
 
+export const RelatedArticle = {
+  args: { withBody: false, withDate: false },
+}
+
 export const ExternalLink = {
   args: {
     article: {
