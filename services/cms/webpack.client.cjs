@@ -12,7 +12,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.yml'],
         alias: {
-          'clean-stack': false
+          'clean-stack': false,
+          ajv$: path.resolve(__dirname, 'node_modules/ajv'),
         },
         fallback: {
           path: require.resolve("path-browserify"),
@@ -31,7 +32,17 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: false,
+                        configFile: false,
+                        presets: [
+                            require.resolve('@babel/preset-env'),
+                            require.resolve('@babel/preset-react'),
+                        ],
+                    },
+                }]
             },
             {
                 test: /\.scss$/,

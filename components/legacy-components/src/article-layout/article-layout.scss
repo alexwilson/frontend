@@ -36,6 +36,10 @@
 
 .alex-article__headline {
   grid-area: Headline;
+
+  h1 {
+    @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
+  }
 }
 
 .alex-article__main {

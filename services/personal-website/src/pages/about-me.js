@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 export default function aboutMe({ location }) {
   return <Layout location={location}>
     <SEO title="About Alex Wilson" keywords={[`alex wilson`, `software engineer`]} url="https://alexwilson.tech/about-me" />
-    <ArticleLayout aside={<ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="A photograph of Alex Wilson" />}>
+    <ArticleLayout aside={<><br /><ResponsiveImage src="https://avatars.githubusercontent.com/u/440052" width={300} alt="A photograph of Alex Wilson" /></>}>
       <article className="alex-article__body" itemScope="author" itemType="http://schema.org/Person">
 
           <p>

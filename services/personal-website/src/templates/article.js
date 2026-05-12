@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import { format } from "date-fns"
 
+import ArticleLayout from "@alexwilson/ds-legacy-components/src/article-layout"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import Infobox from "@alexwilson/ds-legacy-components/src/infobox"
 import ShareWidget from "@alexwilson/ds-legacy-components/src/share-widget"
@@ -24,112 +25,99 @@ const ArticleTemplate = ({ data, location }) => {
   return (
     <Layout location={location}>
       <Header location={location} section="blog" image={post.image.image} compact />
-      <div className="alex-article">
-        <h1 className="alex-article__headline" itemProp="name headline">{post.title}</h1>
-        <div className="alex-article__main">
-          <div className="alex-article__byline">
-            Posted
-
-            {(post.author && post.author.name ?
-              <>
-                {` by `}
-                <span itemProp="author" itemScope itemType="http://schema.org/Person">
-                  <a href="/about-me">
-                    <span itemProp="name">Alex</span>
-                  </a>
-                  <meta itemProp="url" content={`https://alexwilson.tech/`} />
-                </span>
-              </>
-              : null)}
-
-            {(datePublished ?
-              <>
-                {` on `}
-                <time
-                  className="alex-article__main__date"
-                  dateTime={datePublished}
-                  itemProp="datePublished"
-                >{format(new Date(post.date), "PPPP")}</time>.
-              </>
-              : null)}
-
-            {(post.image.credit ?
-              <>
-                {` ${post.image.credit}`}
-              </>
-              : null)}
-
-          </div>
-          <article
-            dangerouslySetInnerHTML={{ __html: post.content.html }}
-            className="alex-article__body article-description"
-            itemProp="articleBody"
-          />
-
-          <footer>
-            <Infobox>
-              If you enjoyed this article and want to read more, you can follow me:
-              <ul style={{ marginTop: 0 }}>
-                <li className="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
-                <li className="bullet--twitter">{`On `}
-                  <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a>{` , `}
-                  <a rel="me" href="https://bsky.app/profile/alexwilson.bsky.social">Bluesky</a>{` or `}
-                  <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
-                </li>
-                <li className="bullet--email">
-                  <label htmlFor="subscribe_by_email">And in your inbox, by email:</label>
-                  <Form action="https://tech.us21.list-manage.com/subscribe/post?u=e0869bce049cbcd034fc8edd2&amp;id=7733fc6e4f&amp;f_id=00ef5be1f0" method="post" rel="noreferrer" target="_blank">
-                    <InlineGroup>
-                      <Input placeholder="Your email address" type="email" name="EMAIL" id="subscribe_by_email" />
-                      <Submit value="Subscribe" />
-                    </InlineGroup>
-                  </Form>
-                </li>
-              </ul>
-              Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
-            </Infobox>
-          </footer>
-
-        </div>
-
-
-        <div className="alex-article__aside">
-
-          <div className="alex-article__aside-start">
-
-            {post.topics ?
-              <div className="alex-article__topics">
-                <strong>Topics: </strong>
-                <ul>
-                  {post.topics.map(topic => {
-                    return <li key={topic.topicId}>
-                      <Link to={topic.slug}>{topic.topic}</Link>
-                    </li>
-                  })}
-                </ul>
-              </div> : null}
-
-          </div>
-
-          <div className="alex-article__aside-mid">
-
-            <div className="alex-article__recommended">
-              <h2>Read Next</h2>
-              <RelatedArticles article={post} />
+      <ArticleLayout
+        headline={<h1 itemProp="name headline">{post.title}</h1>}
+        aside={
+          <>
+            <div className="alex-article__aside-start">
+              {post.topics ?
+                <div className="alex-article__topics">
+                  <strong>Topics: </strong>
+                  <ul>
+                    {post.topics.map(topic => (
+                      <li key={topic.topicId}>
+                        <Link to={topic.slug}>{topic.topic}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div> : null}
             </div>
+            <div className="alex-article__aside-mid">
+              <div className="alex-article__recommended">
+                <h2>Read Next</h2>
+                <RelatedArticles article={post} />
+              </div>
+            </div>
+            <div className="alex-article__aside-bottom alex-article__sharing-block">
+              <ShareWidget title={post.title} url={url} />
+              <Webmentions contentId={post.contentId} />
+            </div>
+          </>
+        }
+      >
+        <div className="alex-article__byline">
+          Posted
 
-          </div>
+          {(post.author && post.author.name ?
+            <>
+              {` by `}
+              <span itemProp="author" itemScope itemType="http://schema.org/Person">
+                <a href="/about-me">
+                  <span itemProp="name">Alex</span>
+                </a>
+                <meta itemProp="url" content={`https://alexwilson.tech/`} />
+              </span>
+            </>
+            : null)}
 
-          <div className="alex-article__aside-bottom alex-article__sharing-block">
+          {(datePublished ?
+            <>
+              {` on `}
+              <time
+                className="alex-article__main__date"
+                dateTime={datePublished}
+                itemProp="datePublished"
+              >{format(new Date(post.date), "PPPP")}</time>.
+            </>
+            : null)}
 
-            <ShareWidget title={post.title} url={url} />
-            <Webmentions contentId={post.contentId} />
-
-          </div>
+          {(post.image.credit ?
+            <>
+              {` ${post.image.credit}`}
+            </>
+            : null)}
 
         </div>
+        <article
+          dangerouslySetInnerHTML={{ __html: post.content.html }}
+          className="alex-article__body article-description"
+          itemProp="articleBody"
+        />
 
-      </div>
+        <footer>
+          <Infobox>
+            If you enjoyed this article and want to read more, you can follow me:
+            <ul style={{ marginTop: 0 }}>
+              <li className="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
+              <li className="bullet--twitter">{`On `}
+                <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a>{` , `}
+                <a rel="me" href="https://bsky.app/profile/alexwilson.bsky.social">Bluesky</a>{` or `}
+                <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
+              </li>
+              <li className="bullet--email">
+                <label htmlFor="subscribe_by_email">And in your inbox, by email:</label>
+                <Form action="https://tech.us21.list-manage.com/subscribe/post?u=e0869bce049cbcd034fc8edd2&amp;id=7733fc6e4f&amp;f_id=00ef5be1f0" method="post" rel="noreferrer" target="_blank">
+                  <InlineGroup>
+                    <Input placeholder="Your email address" type="email" name="EMAIL" id="subscribe_by_email" />
+                    <Submit value="Subscribe" />
+                  </InlineGroup>
+                </Form>
+              </li>
+            </ul>
+            Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
+          </Infobox>
+        </footer>
+      </ArticleLayout>
       <SEO title={post.title} description={post.content.excerpt} url={url} image={`${url}/twitter-card.jpg`}>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:description" content={post.content.excerpt} />
