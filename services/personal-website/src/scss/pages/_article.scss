@@ -4,20 +4,3 @@
   @include sassline($fontsize: alpha, $font: $headingtype, $lineheight: 3, $below: 1);
 }
 
-.alex-article__infobox {
-  background: $blue-4;
-  padding: 1em;
-
-  .bullet--rss {
-    list-style-image: url("~@alexwilson/ds-icons/rss.svg");
-  }
-
-  .bullet--email {
-    list-style-image: url("~@alexwilson/ds-icons/email.svg");
-  }
-
-  .bullet--twitter {
-    &::marker { font-size: 1.5em; }
-    list-style-image: url("~@alexwilson/ds-icons/twitter.svg");
-  }
-}

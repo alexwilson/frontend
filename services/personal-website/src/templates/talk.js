@@ -12,17 +12,15 @@ const TalkTemplate = ({ data, location }) => {
     <Layout location={location}>
       <SEO title={post.title} url={url} image={`${url}/twitter-card.jpg`} />
       <Header location={location} section="talks" />
-      <div class="alex-article">
-        <div class="alex-article__main">
-          <h1 itemprop="name headline">{post.title}</h1>
+      <div className="alex-article">
+        <div className="alex-article__main">
+          <h1 itemProp="name headline">{post.title}</h1>
           <article
             dangerouslySetInnerHTML={{ __html: post.content.html }}
             className="alex-article__body article-description"
-            itemprop="articleBody"
+            itemProp="articleBody"
           />
           <ShareWidget title={post.title} url={new URL(post.slug, data.site.siteMetadata.siteUrl)} />
-        </div>
-        <div class="alex-article__aside">
         </div>
       </div>
     </Layout>

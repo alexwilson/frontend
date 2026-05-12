@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby"
 import { format } from "date-fns"
 
 import Header from "@alexwilson/ds-legacy-components/src/header"
+import Infobox from "@alexwilson/ds-legacy-components/src/infobox"
 import ShareWidget from "@alexwilson/ds-legacy-components/src/share-widget"
 import Webmentions from "@alexwilson/ds-legacy-components/src/webmentions"
 import { Form, InlineGroup, Input, Submit } from "@alexwilson/ds-legacy-components/src/form"
@@ -12,12 +13,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../schema-org/article";
 import RelatedArticles from "../components/related-articles"
-
-const InfoBox = ({ icon, children }) => (
-  <p class="alex-article__infobox">
-    {children}
-  </p>
-)
 
 const ArticleTemplate = ({ data, location }) => {
   const post = data.content
@@ -30,7 +25,7 @@ const ArticleTemplate = ({ data, location }) => {
     <Layout location={location}>
       <Header location={location} section="blog" image={post.image.image} compact />
       <div className="alex-article">
-        <h1 class="alex-article__headline" itemProp="name headline">{post.title}</h1>
+        <h1 className="alex-article__headline" itemProp="name headline">{post.title}</h1>
         <div className="alex-article__main">
           <div className="alex-article__byline">
             Posted
@@ -72,17 +67,17 @@ const ArticleTemplate = ({ data, location }) => {
           />
 
           <footer>
-            <InfoBox>
+            <Infobox>
               If you enjoyed this article and want to read more, you can follow me:
               <ul style={{ marginTop: 0 }}>
-                <li class="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
-                <li class="bullet--twitter">{`On `}
+                <li className="bullet--rss"><a href="/feed.xml">With your feed reader</a>,</li>
+                <li className="bullet--twitter">{`On `}
                   <a rel="me" href="https://twitter.com/alexwilsonv1">Twitter</a>{` , `}
                   <a rel="me" href="https://bsky.app/profile/alexwilson.bsky.social">Bluesky</a>{` or `}
                   <a rel="me" href="https://mastodon.social/@alexwilson">Mastodon</a>,
                 </li>
-                <li class="bullet--email">
-                  <label for="subscribe_by_email">And in your inbox, by email:</label>
+                <li className="bullet--email">
+                  <label htmlFor="subscribe_by_email">And in your inbox, by email:</label>
                   <Form action="https://tech.us21.list-manage.com/subscribe/post?u=e0869bce049cbcd034fc8edd2&amp;id=7733fc6e4f&amp;f_id=00ef5be1f0" method="post" rel="noreferrer" target="_blank">
                     <InlineGroup>
                       <Input placeholder="Your email address" type="email" name="EMAIL" id="subscribe_by_email" />
@@ -92,12 +87,8 @@ const ArticleTemplate = ({ data, location }) => {
                 </li>
               </ul>
               Before you go, if you're here via social media: Please leave a like, reply or repost. It really helps with reach!
-            </InfoBox>
+            </Infobox>
           </footer>
-
-          <div class="alex-article__sharing-block">
-
-          </div>
 
         </div>
 
