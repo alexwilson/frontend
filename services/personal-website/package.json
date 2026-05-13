@@ -9,7 +9,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react"
+import React, { Children, isValidElement, ReactNode } from "react"
 import { Link as GatsbyLink } from "gatsby"
 
 import { LinkContext } from "@alexwilson/ds-legacy-components/src/link"
@@ -15,7 +15,9 @@ const Layout = ({ location, children }: LayoutProps) => {
   let HeaderElement: ReactNode = <Header location={location} />
   let FooterElement: ReactNode = <Footer />
 
-  const layoutChildren = Children.toArray(children).filter((child: any) => {
+  const layoutChildren = Children.toArray(children).filter((child) => {
+    if (!isValidElement(child)) return true
+
     if (child.type === Header || Header.isPrototypeOf(child.type)) {
       HeaderElement = child
       return false

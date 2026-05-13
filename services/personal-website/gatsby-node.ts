@@ -17,15 +17,18 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
 }) => {
   if (node.internal.type === `MarkdownRemark`) {
     const { createNodeField } = actions
+    const markdownNode = node as unknown as Parameters<
+      typeof contentFromMarkdownRemark
+    >[0]["node"]
 
-    const content = contentFromMarkdownRemark({ node })
-    const topics = topicsFromMarkdownRemark({ node })
+    const content = contentFromMarkdownRemark({ node: markdownNode })
+    const topics = topicsFromMarkdownRemark({ node: markdownNode })
 
-    content.topics = topics.map(({ topicId }: { topicId: string }) => topicId)
+    content.topics = topics.map(({ topicId }) => topicId)
 
     for (const topic of topics) {
       createTopicNode(topic, {
-        node,
+        node: markdownNode,
         createNodeId,
         getNode,
         createContentDigest,
@@ -33,7 +36,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
       })
     }
     createContentNode(content, {
-      node,
+      node: markdownNode,
       createNodeId,
       createContentDigest,
       actions,
@@ -86,12 +89,26 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
   createTypes(typeDefs)
 }
 
+type TopicResolverSource = { topicId: string }
+type ResolverContext = {
+  nodeModel: {
+    findAll: (args: {
+      type: string
+      query: unknown
+    }) => Promise<{ entries: unknown[] }>
+  }
+}
+
 export const createResolvers: GatsbyNode["createResolvers"] = ({ createResolvers }) => {
   createResolvers({
     Topic: {
       content: {
         type: "[Content]",
-        resolve: async (source: any, _args: unknown, context: any) => {
+        resolve: async (
+          source: TopicResolverSource,
+          _args: unknown,
+          context: ResolverContext,
+        ) => {
           const result = await context.nodeModel.findAll({
             type: "Content",
             query: {
@@ -178,10 +195,12 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 }) => {
   const config = getConfig()
 
-  const urlLoaderRule = config.module.rules.find(
-    (rule: any) =>
-      rule.test && rule.test.source && rule.test.source.includes("svg"),
-  )
+  type WebpackRule = { test?: RegExp | string | unknown }
+  const hasSvgTest = (rule: unknown): rule is WebpackRule & { test: RegExp } => {
+    const r = rule as WebpackRule
+    return r.test instanceof RegExp && r.test.source.includes("svg")
+  }
+  const urlLoaderRule = config.module.rules.find(hasSvgTest)
   if (urlLoaderRule) {
     urlLoaderRule.test = /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/
   }

@@ -5,7 +5,6 @@ import RelatedArticles from "@alexwilson/ds-legacy-components/src/related-articl
 type Article = {
   contentId: string
   slug: string
-  url: string
   date: string
   title: string
   topics: { topicId: string; topic: string; slug: string }[]
@@ -40,7 +39,6 @@ const RelatedArticlesContainer = ({ article: currentArticle }: Props) => {
         nodes {
           contentId
           slug
-          url
           date
           title
           topics {
