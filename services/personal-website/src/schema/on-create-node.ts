@@ -1,38 +1,69 @@
 import { v5 } from "uuid"
+import type { Node, NodePluginArgs } from "gatsby"
 
-export const contentFromMarkdownRemark = ({ node }: any): any => {
+type Frontmatter = {
+  id: string
+  title?: string
+  date: string
+  type?: string
+  link?: string
+  image?: string
+  image_cropped?: string
+  thumbnail?: string
+  image_credit?: string
+  alt_text?: string
+  author?: string
+  tags?: string[]
+}
+
+type MarkdownRemarkNode = Node & {
+  frontmatter: Frontmatter
+}
+
+type Topic = { topicId: string; slug: string; topic: string }
+
+type ContentEntity = {
+  contentId: string
+  slug: string
+  url: string
+  title: string
+  type: string
+  date: Date
+  image: {
+    image?: string
+    thumbnail?: string
+    credit?: string
+    altText?: string
+  }
+  topics: string[]
+  author?: { name: string }
+}
+
+type NodeBuildArgs = Pick<
+  NodePluginArgs,
+  "createNodeId" | "getNode" | "createContentDigest" | "actions"
+> & {
+  node: MarkdownRemarkNode
+}
+
+export const contentFromMarkdownRemark = ({
+  node,
+}: {
+  node: MarkdownRemarkNode
+}): ContentEntity => {
   const contentId = node.frontmatter.id
   const slug = `/content/${contentId}`
-  const title = node.frontmatter["title"] || ""
+  const title = node.frontmatter.title || ""
   const date = new Date(node.frontmatter.date)
-  const type = node.frontmatter["type"] || "article"
-  const link = node.frontmatter["link"]
+  const type = node.frontmatter.type || "article"
+  const link = node.frontmatter.link
 
   let url = slug
-  if (type === "content-placeholder") {
+  if (type === "content-placeholder" && link) {
     url = link
   }
 
-  let image
-  let thumbnail
-  let credit
-  let altText
-  if (node.frontmatter.image) {
-    image = node.frontmatter.image_cropped
-      ? node.frontmatter.image_cropped
-      : node.frontmatter.image
-    thumbnail = node.frontmatter.thumbnail
-      ? node.frontmatter.thumbnail
-      : node.frontmatter.image
-
-    if (node.frontmatter["image_credit"]) credit = node.frontmatter["image_credit"]
-    if (node.frontmatter["alt_text"]) altText = node.frontmatter["alt_text"]
-  }
-
-  let author
-  if (node.frontmatter.author) author = node.frontmatter.author
-
-  const content: any = {
+  const content: ContentEntity = {
     contentId,
     slug,
     url,
@@ -43,35 +74,36 @@ export const contentFromMarkdownRemark = ({ node }: any): any => {
     topics: [],
   }
 
-  if (author) {
-    content.author = {
-      name: author,
+  if (node.frontmatter.image) {
+    content.image = {
+      image: node.frontmatter.image_cropped || node.frontmatter.image,
+      thumbnail: node.frontmatter.thumbnail || node.frontmatter.image,
+      credit: node.frontmatter.image_credit,
+      altText: node.frontmatter.alt_text,
     }
   }
-  if (image) {
-    content.image = {
-      image,
-      thumbnail,
-      credit,
-      altText,
-    }
+
+  if (node.frontmatter.author) {
+    content.author = { name: node.frontmatter.author }
   }
 
   return content
 }
 
-export const topicsFromMarkdownRemark = ({ node }: any) => {
-  const topics: { topicId: string; slug: string; topic: string }[] = []
+export const topicsFromMarkdownRemark = ({
+  node,
+}: {
+  node: MarkdownRemarkNode
+}): Topic[] => {
+  const topics: Topic[] = []
 
   if (node.frontmatter && node.frontmatter.tags) {
     for (const topicSlug of node.frontmatter.tags) {
-      const topic = {
+      topics.push({
         topicId: v5(topicSlug, v5("https://alexwilson.tech/topic/", v5.URL)),
         slug: `/topic/${topicSlug}`,
         topic: topicSlug,
-      }
-
-      topics.push(topic)
+      })
     }
   }
 
@@ -79,14 +111,14 @@ export const topicsFromMarkdownRemark = ({ node }: any) => {
 }
 
 export const createTopicNode = (
-  topic: { topicId: string; slug: string; topic: string },
+  topic: Topic,
   {
     node,
     createNodeId,
     getNode,
     createContentDigest,
     actions,
-  }: any,
+  }: NodeBuildArgs,
 ) => {
   const { createNode, createParentChildLink } = actions
 
@@ -101,6 +133,8 @@ export const createTopicNode = (
       internal: {
         content: topic.slug,
         type: "Topic",
+        contentDigest: "",
+        owner: "",
       },
       ...topic,
     }
@@ -115,8 +149,13 @@ export const createTopicNode = (
 }
 
 export const createContentNode = (
-  content: any,
-  { node, createNodeId, createContentDigest, actions }: any,
+  content: ContentEntity,
+  {
+    node,
+    createNodeId,
+    createContentDigest,
+    actions,
+  }: Omit<NodeBuildArgs, "getNode">,
 ) => {
   const { createNode, createParentChildLink } = actions
   const contentNode = {
@@ -127,6 +166,7 @@ export const createContentNode = (
       content: JSON.stringify(node),
       type: "Content",
       contentDigest: "",
+      owner: "",
     },
     ...content,
   }

@@ -1,7 +1,5 @@
 import React from "react"
-import { graphql, HeadProps, Link as GatsbyLink, PageProps } from "gatsby"
-
-const Link: any = GatsbyLink
+import { graphql, HeadProps, Link, PageProps } from "gatsby"
 
 import { format } from "date-fns"
 
@@ -71,7 +69,7 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
             <div className="alex-article__aside-mid">
               <div className="alex-article__recommended">
                 <h2>Read Next</h2>
-                <RelatedArticles article={post as any} />
+                <RelatedArticles article={post} />
               </div>
             </div>
             <div className="alex-article__aside-bottom alex-article__sharing-block">

@@ -100,8 +100,24 @@ const config: GatsbyConfig = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, recentContent } }: any) => {
-              return recentContent.nodes.map((entry: any) => {
+            serialize: ({
+              query: { site, recentContent },
+            }: {
+              query: {
+                site: { siteMetadata: { title: string; siteUrl: string } }
+                recentContent: {
+                  nodes: {
+                    title: string
+                    date: string
+                    url?: string
+                    slug: string
+                    author?: { name: string } | null
+                    content: { snippet: string; preview: string }
+                  }[]
+                }
+              }
+            }) => {
+              return recentContent.nodes.map((entry) => {
                 const urlSource = entry.url || entry.slug
                 const rawUrl =
                   urlSource && urlSource.startsWith("http")
