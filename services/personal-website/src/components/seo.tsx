@@ -9,6 +9,9 @@ type SEOProps = {
   keywords?: string[]
   title: string
   canonicalUrl?: string
+  twitterCard?: "summary" | "summary_large_image"
+  twitterImage?: string
+  twitterSite?: string
   children?: ReactNode
 }
 
@@ -18,6 +21,9 @@ function SEO({
   keywords = [],
   title,
   canonicalUrl,
+  twitterCard = "summary",
+  twitterImage,
+  twitterSite,
   children,
 }: SEOProps) {
   const { site } = useStaticQuery<{
@@ -49,10 +55,12 @@ function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:creator" content={site.siteMetadata.author} />
+      {twitterSite && <meta name="twitter:site" content={twitterSite} />}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
+      {twitterImage && <meta name="twitter:image" content={twitterImage} />}
       {keywords.length > 0 && (
         <meta name="keywords" content={keywords.join(", ")} />
       )}

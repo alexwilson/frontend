@@ -184,12 +184,13 @@ export const Head = ({ data, location }: HeadProps<ArticleData>) => {
   const dateModified = new Date(post.flast_modified_at || datePublished)
 
   return (
-    <SEO title={post.title} description={post.content.excerpt}>
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:description" content={post.content.excerpt} />
-      <meta name="twitter:site" content="@alexwilsonv1" />
-      <meta name="twitter:title" content={post.title} />
-      <meta name="twitter:image" content={`${url}/twitter-card.jpg`} />
+    <SEO
+      title={post.title}
+      description={post.content.excerpt}
+      twitterCard="summary_large_image"
+      twitterSite="@alexwilsonv1"
+      twitterImage={`${url}/twitter-card.jpg`}
+    >
       <script type="application/ld+json">
         {JSON.stringify(
           Article({
