@@ -1,13 +1,32 @@
 import React from "react"
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from "gatsby"
 
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import Header from "@alexwilson/ds-legacy-components/src/header"
-import HomeLayout, { HomeSection, HomeTilestack, HomeTilestackItem } from "@alexwilson/ds-legacy-components/src/home-layout"
+import HomeLayout, {
+  HomeSection,
+  HomeTilestack,
+  HomeTilestackItem,
+} from "@alexwilson/ds-legacy-components/src/home-layout"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ data, location }) => {
+type ContentNode = {
+  contentId: string
+  title: string
+  url: string
+  slug: string
+  date: string
+  content: { excerpt: string } | null
+}
+
+type FourOhFourData = {
+  allButWeeknotesAndLists: { nodes: ContentNode[] }
+  onlyWeeknotes: { nodes: ContentNode[] }
+  onlyLists: { nodes: ContentNode[] }
+}
+
+const NotFoundPage = ({ data, location }: PageProps<FourOhFourData>) => {
   const nodes = [
     ...data.allButWeeknotesAndLists.nodes,
     ...data.onlyWeeknotes.nodes,
@@ -17,21 +36,30 @@ const NotFoundPage = ({ data, location }) => {
   return (
     <Layout location={location}>
       <Header location={location} compact />
-      <SEO title="404: Not found" />
       <HomeLayout>
         <h1 className="heading heading--large">Page Not Found</h1>
-        {nodes.length > 0 && <>
-          <p>Sorry, but that page could not be found, it was either moved, deleted or hasn't been written yet! Here's what I've been writing recently:</p>
-          <HomeSection>
-            <HomeTilestack>
-              {nodes.map(node => (
-                <HomeTilestackItem key={node.contentId}>
-                  <ArticleCard article={node} withImage={false} withDate={false} />
-                </HomeTilestackItem>
-              ))}
-            </HomeTilestack>
-          </HomeSection>
-        </>}
+        {nodes.length > 0 && (
+          <>
+            <p>
+              Sorry, but that page could not be found, it was either moved,
+              deleted or hasn't been written yet! Here's what I've been writing
+              recently:
+            </p>
+            <HomeSection>
+              <HomeTilestack>
+                {nodes.map((node) => (
+                  <HomeTilestackItem key={node.contentId}>
+                    <ArticleCard
+                      article={node}
+                      withImage={false}
+                      withDate={false}
+                    />
+                  </HomeTilestackItem>
+                ))}
+              </HomeTilestack>
+            </HomeSection>
+          </>
+        )}
       </HomeLayout>
     </Layout>
   )
@@ -44,8 +72,10 @@ export const query = graphql`
 
   query {
     allButWeeknotesAndLists: allContent(
-      sort: {fields: [date], order: DESC}
-      filter: { topics: { elemMatch: { topic: { nin: ["weeknotes", "lists"] }} }}
+      sort: { fields: [date], order: DESC }
+      filter: {
+        topics: { elemMatch: { topic: { nin: ["weeknotes", "lists"] } } }
+      }
       limit: 1
     ) {
       nodes {
@@ -60,8 +90,8 @@ export const query = graphql`
       }
     }
     onlyWeeknotes: allContent(
-      sort: {fields: [date], order: DESC}
-      filter: { topics: { elemMatch: { topic: { eq: "weeknotes" }} }}
+      sort: { fields: [date], order: DESC }
+      filter: { topics: { elemMatch: { topic: { eq: "weeknotes" } } } }
       limit: 1
     ) {
       nodes {
@@ -76,8 +106,8 @@ export const query = graphql`
       }
     }
     onlyLists: allContent(
-      sort: {fields: [date], order: DESC}
-      filter: { topics: { elemMatch: { topic: { eq: "lists" }} }}
+      sort: { fields: [date], order: DESC }
+      filter: { topics: { elemMatch: { topic: { eq: "lists" } } } }
       limit: 1
     ) {
       nodes {
@@ -95,3 +125,5 @@ export const query = graphql`
 `
 
 export default NotFoundPage
+
+export const Head = () => <SEO title="404: Not found" />

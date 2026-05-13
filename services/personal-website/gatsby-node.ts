@@ -1,32 +1,51 @@
-const path = require('path')
-const {v5} = require('uuid')
+import path from "path"
+import type { GatsbyNode } from "gatsby"
 
-const { contentFromMarkdownRemark, topicsFromMarkdownRemark, createTopicNode, createContentNode } = require('./src/schema/on-create-node.js')
+import {
+  contentFromMarkdownRemark,
+  topicsFromMarkdownRemark,
+  createTopicNode,
+  createContentNode,
+} from "./src/schema/on-create-node"
 
-exports.onCreateNode = ({ node, createNodeId, getNode, createContentDigest, actions }) => {
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  node,
+  createNodeId,
+  getNode,
+  createContentDigest,
+  actions,
+}) => {
   if (node.internal.type === `MarkdownRemark`) {
+    const { createNodeField } = actions
 
-    const {createNodeField} = actions
-
-    // Generate content & topic entities from RemarkNode
-    const content = contentFromMarkdownRemark({ node, getNode })
+    const content = contentFromMarkdownRemark({ node })
     const topics = topicsFromMarkdownRemark({ node })
 
-    // Append topic IDs back to content entity.
-    content.topics = topics.map(({topicId}) => (topicId))
+    content.topics = topics.map(({ topicId }: { topicId: string }) => topicId)
 
-    // Create nodes for topics and content
     for (const topic of topics) {
-      createTopicNode(topic, {node, createNodeId, getNode, createContentDigest, actions})
+      createTopicNode(topic, {
+        node,
+        createNodeId,
+        getNode,
+        createContentDigest,
+        actions,
+      })
     }
-    createContentNode(content, {node, createNodeId, createContentDigest, actions})
+    createContentNode(content, {
+      node,
+      createNodeId,
+      createContentDigest,
+      actions,
+    })
 
-    // For compat. with other plugins, stub the slug field.
-    createNodeField({ node, name: 'slug', value: content.slug })
+    createNodeField({ node, name: "slug", value: content.slug })
   }
 }
 
-exports.createSchemaCustomization = ({actions}) => {
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({
+  actions,
+}) => {
   const { createTypes } = actions
   const typeDefs = `
     type Content implements Node @dontInfer {
@@ -67,35 +86,41 @@ exports.createSchemaCustomization = ({actions}) => {
   createTypes(typeDefs)
 }
 
-exports.createResolvers = ({ createResolvers }) => {
+export const createResolvers: GatsbyNode["createResolvers"] = ({ createResolvers }) => {
   createResolvers({
     Topic: {
       content: {
         type: "[Content]",
-        resolve: async (source, args, context, info) => {
+        resolve: async (source: any, _args: unknown, context: any) => {
           const result = await context.nodeModel.findAll({
             type: "Content",
             query: {
               filter: {
-                topics: { elemMatch: {
-                    topicId: { eq: source.topicId }
-                } }
-              }
-            }
+                topics: { elemMatch: { topicId: { eq: source.topicId } } },
+              },
+            },
           })
           return result.entries
-        }
-      }
-    }
+        },
+      },
+    },
   })
 }
 
-exports.createPages = async ({ graphql, actions }) => {
+export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const articleTemplate = path.resolve(`./src/templates/article.js`)
-  const talkTemplate = path.resolve(`./src/templates/talk.js`)
-  const placeholderTemplate = path.resolve(`./src/templates/content-placeholder.js`)
-  const {data} = await graphql(`
+  const articleTemplate = path.resolve(`./src/templates/article.tsx`)
+  const talkTemplate = path.resolve(`./src/templates/talk.tsx`)
+  const placeholderTemplate = path.resolve(`./src/templates/content-placeholder.tsx`)
+
+  type ContentNode = { contentId: string; slug: string; type: string }
+  type TopicNode = { topicId: string; topic: string; slug: string }
+  type CreatePagesQuery = {
+    content: { nodes: ContentNode[] }
+    topics: { nodes: TopicNode[] }
+  }
+
+  const { data } = await graphql<CreatePagesQuery>(`
     query {
       content: allContent {
         nodes {
@@ -114,48 +139,48 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
+  if (!data) return
+
   data.content.nodes.forEach((node) => {
-    const templateFromContentType = (contentType) => {
+    const templateFromContentType = (contentType: string) => {
       switch (contentType) {
-        case 'content-placeholder': {
-          return placeholderTemplate;
-        }
-        case 'talk': {
-          return talkTemplate;
-        }
-        case 'article': {
-          return articleTemplate;
-        }
+        case "content-placeholder":
+          return placeholderTemplate
+        case "talk":
+          return talkTemplate
+        case "article":
+          return articleTemplate
       }
-      return articleTemplate;
+      return articleTemplate
     }
     createPage({
       path: node.slug,
       component: templateFromContentType(node.type),
       context: {
-        contentId: node.contentId
-      }
+        contentId: node.contentId,
+      },
     })
   })
   data.topics.nodes.forEach((node) => {
     createPage({
       path: node.slug,
-      component: path.resolve(`./src/templates/topic.js`),
+      component: path.resolve(`./src/templates/topic.tsx`),
       context: {
-        topicId: node.topicId
-      }
+        topicId: node.topicId,
+      },
     })
   })
-
 }
 
-exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
+  actions,
+  getConfig,
+}) => {
   const config = getConfig()
 
-  // Gatsby's url-loader rule inlines small files (including SVGs) as base64 data URIs.
-  // Remove SVG from that rule so they get emitted as separate files instead.
   const urlLoaderRule = config.module.rules.find(
-    rule => rule.test && rule.test.source && rule.test.source.includes('svg')
+    (rule: any) =>
+      rule.test && rule.test.source && rule.test.source.includes("svg"),
   )
   if (urlLoaderRule) {
     urlLoaderRule.test = /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/
@@ -163,7 +188,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 
   config.module.rules.push({
     test: /\.svg$/,
-    type: 'asset/resource',
+    type: "asset/resource",
   })
 
   actions.replaceWebpackConfig(config)

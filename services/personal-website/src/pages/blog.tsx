@@ -1,5 +1,5 @@
 import React, { useMemo } from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
@@ -8,20 +8,57 @@ import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
 import useStreamFilters from "../hooks/useStreamFilters"
 
-const BlogPage = ({ data, location }) => {
-  const url = new URL(location.pathname, data.site.siteMetadata.siteUrl)
-  const allPosts = useMemo(() => data.content.edges.map(({ node }) => node), [data])
-  const { selectedYears, years, topics, toggleYear, filteredItems, clearYears } = useStreamFilters(allPosts)
+type Post = {
+  id?: string
+  contentId: string
+  title: string
+  date: string
+  url: string
+  slug: string
+  topics: { topicId: string; topic: string; slug: string }[]
+  content: { excerpt: string } | null
+}
+
+type BlogData = {
+  content: { totalCount: number; edges: { node: Post }[] }
+  site: { siteMetadata: { siteUrl: string } }
+}
+
+const BlogPage = ({ data, location }: PageProps<BlogData>) => {
+  const allPosts = useMemo(
+    () => data.content.edges.map(({ node }) => node),
+    [data],
+  )
+  const {
+    selectedYears,
+    years,
+    topics,
+    toggleYear,
+    filteredItems,
+    clearYears,
+  } = useStreamFilters(allPosts)
 
   return (
     <Layout location={location}>
-      <SEO title="Blog" url={url} />
       <Header location={location} section="blog" compact />
       <Stream
-        sidebar={<StreamFilters years={years} selectedYears={selectedYears} onYearToggle={toggleYear} topics={topics} onClear={clearYears} />}
-        header={<><h1>My Blog</h1><h4>{filteredItems.length} Posts</h4></>}
+        sidebar={
+          <StreamFilters
+            years={years}
+            selectedYears={selectedYears}
+            onYearToggle={toggleYear}
+            topics={topics}
+            onClear={clearYears}
+          />
+        }
+        header={
+          <>
+            <h1>My Blog</h1>
+            <h4>{filteredItems.length} Posts</h4>
+          </>
+        }
       >
-        {filteredItems.map(node => (
+        {filteredItems.map((node) => (
           <ArticleCard key={node.id} article={node} withImage={false} />
         ))}
       </Stream>
@@ -31,6 +68,8 @@ const BlogPage = ({ data, location }) => {
 
 export default BlogPage
 
+export const Head = () => <SEO title="Blog" />
+
 export const query = graphql`
   fragment BlogPageContent on MarkdownRemark {
     excerpt: excerpt
@@ -38,13 +77,10 @@ export const query = graphql`
   query {
     content: allContent(
       filter: {
-        type: {in: ["article", "content-placeholder"]}
-        topics: {elemMatch: {topic: {ne: "lists"}}}
+        type: { in: ["article", "content-placeholder"] }
+        topics: { elemMatch: { topic: { ne: "lists" } } }
       }
-      sort: {
-        fields: [date],
-        order: DESC
-      }
+      sort: { fields: [date], order: DESC }
     ) {
       totalCount
       edges {
