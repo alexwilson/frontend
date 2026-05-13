@@ -1,10 +1,20 @@
 import React, { useEffect } from "react"
-import { graphql } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const ensureAbsoluteUrl = (url, siteUrl) => {
+type PlaceholderData = {
+  content: {
+    contentId: string
+    title: string
+    url: string
+    content: { excerpt: string } | null
+  }
+  site: { siteMetadata: { siteUrl: string } }
+}
+
+const ensureAbsoluteUrl = (url: string | undefined, siteUrl: string) => {
   if (!url) return siteUrl
   try {
     return new URL(url).toString()
@@ -13,24 +23,23 @@ const ensureAbsoluteUrl = (url, siteUrl) => {
   }
 }
 
-const ContentPlaceholderTemplate = ({ data, location }) => {
+const ContentPlaceholderTemplate = ({
+  data,
+  location,
+}: PageProps<PlaceholderData>) => {
   const isSamePage = data.content.url === location.pathname
-  const destination = ensureAbsoluteUrl(data.content.url, data.site.siteMetadata.siteUrl)
+  const destination = ensureAbsoluteUrl(
+    data.content.url,
+    data.site.siteMetadata.siteUrl,
+  )
   useEffect(() => {
     if (!isSamePage) {
       window.location.replace(destination)
     }
   }, [isSamePage, destination])
 
-  if (isSamePage) {
-    // return null;
-  }
-
   return (
     <Layout location={location}>
-      <SEO title={data.content.title} description={data.content?.content?.excerpt} canonicalUrl={destination}>
-        <meta httpEquiv="refresh" content={`15;url=${destination}?a`} />
-      </SEO>
       Redirecting to <a href={destination}>{destination}</a>...
     </Layout>
   )
@@ -38,12 +47,28 @@ const ContentPlaceholderTemplate = ({ data, location }) => {
 
 export default ContentPlaceholderTemplate
 
+export const Head = ({ data }: HeadProps<PlaceholderData>) => {
+  const destination = ensureAbsoluteUrl(
+    data.content.url,
+    data.site.siteMetadata.siteUrl,
+  )
+  return (
+    <SEO
+      title={data.content.title}
+      description={data.content?.content?.excerpt}
+      canonicalUrl={destination}
+    >
+      <meta httpEquiv="refresh" content={`15;url=${destination}?a`} />
+    </SEO>
+  )
+}
+
 export const pageQuery = graphql`
   fragment PlaceholderContent on MarkdownRemark {
     excerpt
   }
   query PlaceholderBySlug($contentId: String!) {
-    content(contentId: {eq: $contentId}) {
+    content(contentId: { eq: $contentId }) {
       contentId
       title
       url

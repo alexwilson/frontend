@@ -1,6 +1,7 @@
-const sanitizeHtml = require("sanitize-html")
+import type { GatsbyConfig } from "gatsby"
+import sanitizeHtml from "sanitize-html"
 
-module.exports = {
+const config: GatsbyConfig = {
   siteMetadata: {
     title: `Alex Wilson`,
     description: `Software Engineer, Technical Architect — Helping build a better, faster internet.`,
@@ -9,38 +10,13 @@ module.exports = {
   },
   trailingSlash: "never",
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `images`,
-    //     path: `${__dirname}/src/images`,
-    //   },
-    // },
-    // `gatsby-transformer-sharp`,
-    // `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `gatsby-starter-default`,
-    //     short_name: `starter`,
-    //     start_url: `/`,
-    //     background_color: `#663399`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'null',
+        name: "null",
         path: `${__dirname}`,
-        ignore: [/.*/ig]
-      }
+        ignore: [/.*/gi],
+      },
     },
 
     {
@@ -50,11 +26,11 @@ module.exports = {
         remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
         branch: `main`,
         patterns: [`posts/**`],
-      }
+      },
     },
 
     {
-      resolve: '@alexwilson/gatsby-remark-rewrite-images'
+      resolve: "@alexwilson/gatsby-remark-rewrite-images",
     },
 
     {
@@ -65,39 +41,38 @@ module.exports = {
             resolve: "gatsby-remark-embed-video",
             options: {
               width: "100%",
-              loadingStrategy: 'lazy',
+              loadingStrategy: "lazy",
               containerClass: "embed-container",
               iframeId: true,
             },
           },
           {
-            resolve: `gatsby-remark-embed-gist`
+            resolve: `gatsby-remark-embed-gist`,
           },
           {
-            resolve: '@alexwilson/gatsby-remark-rewrite-images'
+            resolve: "@alexwilson/gatsby-remark-rewrite-images",
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
               showLineNumbers: false,
               prompt: {
-                global: false
-              }
-            }
+                global: false,
+              },
+            },
           },
           {
             resolve: `gatsby-remark-twitter-cards`,
             options: {
               title: false,
               separator: false,
-              author: 'Alex Wilson',
-              background: '#000000',
-              fontColor: '#FFFFFF',
+              author: "Alex Wilson",
+              background: "#000000",
+              fontColor: "#FFFFFF",
               titleFontSize: 96,
               subtitleFontSize: 60,
-              fontStyle: 'monospace'
+              fontStyle: "monospace",
             },
-
           },
         ],
       },
@@ -105,7 +80,7 @@ module.exports = {
 
     {
       resolve: `gatsby-plugin-sitemap`,
-      options: {}
+      options: {},
     },
 
     {
@@ -125,14 +100,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, recentContent } }) => {
-              return recentContent.nodes.map(entry => {
+            serialize: ({ query: { site, recentContent } }: any) => {
+              return recentContent.nodes.map((entry: any) => {
                 const urlSource = entry.url || entry.slug
-                const rawUrl = urlSource && urlSource.startsWith('http')
-                  ? new URL(urlSource)
-                  : new URL(urlSource, site.siteMetadata.siteUrl)
+                const rawUrl =
+                  urlSource && urlSource.startsWith("http")
+                    ? new URL(urlSource)
+                    : new URL(urlSource, site.siteMetadata.siteUrl)
                 const guid = rawUrl.toString()
-                rawUrl.searchParams.append('utm_source', 'feed')
+                rawUrl.searchParams.append("utm_source", "feed")
                 const url = rawUrl.toString()
 
                 const author = entry?.author?.name ?? site.siteMetadata.title
@@ -143,8 +119,8 @@ module.exports = {
                 `
 
                 const contentEncoded = sanitizeHtml(content, {
-                  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-                  allowedAttributes: false
+                  allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+                  allowedAttributes: false,
                 })
 
                 return {
@@ -154,16 +130,18 @@ module.exports = {
                   url,
                   guid,
                   author,
-                  custom_elements: [{
-                    "content:encoded": contentEncoded,
-                    "atom:link": {
-                      "_attr": {
-                        "rel": "self",
-                        "href": url,
-                        "type": "text/html"
-                      }
-                    }
-                  }],
+                  custom_elements: [
+                    {
+                      "content:encoded": contentEncoded,
+                      "atom:link": {
+                        _attr: {
+                          rel: "self",
+                          href: url,
+                          type: "text/html",
+                        },
+                      },
+                    },
+                  ],
                 }
               })
             },
@@ -201,38 +179,40 @@ module.exports = {
             site_url: "https://alexwilson.tech/",
             generator: "alexwilson.tech",
             custom_namespaces: {
-              "atom": "http://www.w3.org/2005/Atom"
+              atom: "http://www.w3.org/2005/Atom",
             },
-            custom_elements: [{
-              "atom:link": {
-                "_attr": {
-                  "rel": "self",
-                  "href": "https://alexwilson.tech/feed.xml",
-                  "type": "application/rss+xml"
-                }
-              }
-            }]
+            custom_elements: [
+              {
+                "atom:link": {
+                  _attr: {
+                    rel: "self",
+                    href: "https://alexwilson.tech/feed.xml",
+                    type: "application/rss+xml",
+                  },
+                },
+              },
+            ],
           },
         ],
       },
     },
 
-
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        implementation: require('sass'),
+        implementation: require("sass"),
       },
     },
-
 
     {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: ['Overpass:400,600,800']
-        }
-      }
-    }
+          families: ["Overpass:400,600,800"],
+        },
+      },
+    },
   ],
 }
+
+export default config
