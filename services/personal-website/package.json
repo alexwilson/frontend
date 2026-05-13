@@ -8,7 +8,8 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -49,17 +50,15 @@
     "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
     "@types/node": "^25.7.0",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "@types/react-helmet": "^6.1.11",
     "@types/sanitize-html": "^2.16.1",
-    "babel-jest": "^30.4.1",
-    "babel-preset-gatsby": "^3.16.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.4.2",
-    "typescript": "^5.9.3"
+    "@vitejs/plugin-react": "^6.0.1",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.6"
   },
   "resolutions": {
     "graphql": "^16.0.0"
