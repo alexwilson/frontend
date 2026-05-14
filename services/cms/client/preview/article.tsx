@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { format } from "date-fns";
+import type { PreviewTemplateComponentProps } from 'decap-cms-core';
 
 import ArticleLayout from "@alexwilson/ds-legacy-components/src/article-layout";
 
 import styles from "./article.scss";
 export const ArticlePreviewStyles = styles;
 
-export class ArticlePreview extends Component {
+export class ArticlePreview extends Component<PreviewTemplateComponentProps> {
   render() {
     const { entry } = this.props;
-    const title = entry.getIn(["data", "title"]);
-    const date = entry.getIn(["data", "date"]);
-    const author = entry.getIn(["data", "author"]);
-    const tags = entry.getIn(["data", "tags"])?.toJS() || [];
+    const title = entry.getIn(["data", "title"]) as string | undefined;
+    const date = entry.getIn(["data", "date"]) as string | undefined;
+    const author = entry.getIn(["data", "author"]) as string | undefined;
+    const tags = (entry.getIn(["data", "tags"]) as { toJS(): string[] } | undefined)?.toJS() || [];
 
     return (
       <ArticleLayout

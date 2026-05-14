@@ -10,7 +10,7 @@ module.exports = {
     target: 'web',
     mode: isProduction ? 'production' : 'development',
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.yml'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.yml'],
         alias: {
           'clean-stack': false,
           ajv$: path.resolve(__dirname, 'node_modules/ajv'),
@@ -21,7 +21,7 @@ module.exports = {
         },
     },
     entry: {
-        main: './client/main.js'
+        main: './client/main.ts'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -30,7 +30,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
                 use: [{
                     loader: 'babel-loader',
@@ -39,7 +39,8 @@ module.exports = {
                         configFile: false,
                         presets: [
                             require.resolve('@babel/preset-env'),
-                            require.resolve('@babel/preset-react'),
+                            [require.resolve('@babel/preset-react'), { runtime: 'automatic' }],
+                            require.resolve('@babel/preset-typescript'),
                         ],
                     },
                 }]
