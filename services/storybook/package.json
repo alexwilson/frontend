@@ -13,7 +13,7 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^9.0.0",
+    "babel-loader": "^10.1.1",
     "storybook": "^10.3.6",
     "@storybook/react": "^10.3.6",
     "@storybook/react-webpack5": "^10.3.6",
