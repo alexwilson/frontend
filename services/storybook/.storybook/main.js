@@ -12,7 +12,7 @@ module.exports = {
     const componentsDir = path.resolve(__dirname, '../../../components')
 
     config.module.rules.push({
-      test: /\.(js|jsx)$/,
+      test: /\.(js|jsx|ts|tsx)$/,
       include: [componentsDir],
       use: {
         loader: 'babel-loader',
@@ -20,10 +20,17 @@ module.exports = {
           presets: [
             '@babel/preset-env',
             ['@babel/preset-react', { runtime: 'automatic' }],
+            '@babel/preset-typescript',
           ],
         },
       },
     })
+
+    config.resolve.extensions = [
+      ...(config.resolve.extensions ?? []),
+      '.ts',
+      '.tsx',
+    ]
 
     config.module.rules.push({
       test: /\.scss$/,
