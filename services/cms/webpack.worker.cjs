@@ -4,16 +4,33 @@ module.exports = {
     target: "webworker",
     mode: 'production',
     resolve: {
-        extensions: ['.js', '.json']
+        extensions: ['.ts', '.js', '.json']
     },
     module: {
-        rules: [{
-            test: /\.html$/i,
-            use: 'raw-loader'
-        }]
+        rules: [
+            {
+                test: /\.html$/i,
+                use: 'raw-loader'
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: false,
+                        configFile: false,
+                        presets: [
+                            require.resolve('@babel/preset-env'),
+                            require.resolve('@babel/preset-typescript'),
+                        ],
+                    },
+                }]
+            }
+        ]
     },
     entry: {
-        main: "./worker/index.js"
+        main: "./worker/index.ts"
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

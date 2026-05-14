@@ -1,8 +1,9 @@
 import { v4 } from 'uuid';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import type { CmsWidgetControlProps } from 'decap-cms-core';
 
-export class Uuid extends Component {
-    constructor(props) {
+export class Uuid extends Component<CmsWidgetControlProps<string>> {
+    constructor(props: CmsWidgetControlProps<string>) {
         super(props)
         if (props.value) return
         this.generateUuid()
@@ -21,8 +22,8 @@ export class Uuid extends Component {
         const { forID, classNameWrapper, value } = this.props;
         return (
             <div className={classNameWrapper}>
-                <input type="hidden" id={forID} value={value} /> 
-                <tt>{value}</tt>
+                <input type="hidden" id={forID} value={value} />
+                <code>{value}</code>
             </div>
         );
     }
