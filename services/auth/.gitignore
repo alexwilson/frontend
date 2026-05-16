@@ -1,0 +1,11 @@
+worker
+.env
+.env.local
+.dev.vars
+.wrangler/
+node_modules/
+
+# Output of `pnpm db:generate` — a snapshot of better-auth's emitted schema.
+# Used as a diff target when authoring new migration files; never applied
+# directly. Migrations live under ./migrations/ and are version-controlled.
+schema-snapshot.sql

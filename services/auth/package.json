@@ -1,0 +1,35 @@
+{
+  "name": "@alexwilson/auth-cms",
+  "version": "2.0.0",
+  "description": "Auth worker (better-auth on Cloudflare Workers + D1)",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply auth-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply auth-db --remote",
+    "db:migrate:list": "wrangler d1 migrations list auth-db --remote",
+    "db:migrate:create": "wrangler d1 migrations create auth-db"
+  },
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/request": "^9.1.0",
+    "better-auth": "^1.0.0",
+    "drizzle-orm": "^0.36.0"
+  },
+  "devDependencies": {
+    "@better-auth/cli": "^1.0.0",
+    "@cloudflare/workers-types": "^4.0.0",
+    "@types/better-sqlite3": "^7.6.0",
+    "better-sqlite3": "^11.0.0",
+    "drizzle-kit": "^0.30.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0",
+    "wrangler": "^4.7.2"
+  }
+}
