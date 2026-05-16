@@ -1,6 +1,9 @@
 packages:
-  - "packages/**"
-  - "services/**"
-  - "components/**"
-  - "libraries/**"
-  - "!**/test/**"
+  - packages/**
+  - services/**
+  - components/**
+  - libraries/**
+  - '!**/test/**'
+
+onlyBuiltDependencies:
+  - better-sqlite3

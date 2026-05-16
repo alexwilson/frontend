@@ -1,0 +1,11 @@
+# Copy to .dev.vars (gitignored). Wrangler injects these as env bindings when
+# you run `wrangler dev`. Production secrets go via `wrangler secret put`.
+BETTER_AUTH_SECRET=
+
+# Identity App — sign-in only (scope: user:email)
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
+# CMS App — installed on the content repo; linked lazily on first CMS access
+GITHUB_CMS_CLIENT_ID=
+GITHUB_CMS_CLIENT_SECRET=

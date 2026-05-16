@@ -1,0 +1,17 @@
+name = "auth"
+workers_dev = false
+routes = ["https://alexwilson.tech/auth/*"]
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+main = "./src/index.ts"
+
+[vars]
+BASE_URL = "https://alexwilson.tech"
+COOKIE_DOMAIN = "alexwilson.tech"
+TRUSTED_ORIGINS = "https://alexwilson.tech,https://local.alexwilson.tech"
+
+[[d1_databases]]
+binding = "AUTH_DB"
+database_name = "auth-db"
+database_id = "70ccc48c-646f-4d82-825b-f4ad227059aa"
+migrations_dir = "./migrations"
