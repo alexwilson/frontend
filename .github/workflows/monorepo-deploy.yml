@@ -21,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies
         run: |
           rm services/personal-website/package.json
-          pnpm install --ignore-scripts --prod=false
+          pnpm install --prod=false
       - id: find-projects
         name: Find affected projects
         run: |
@@ -90,7 +90,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -99,7 +99,7 @@ jobs:
       - name: Install Dependencies
         run: |
           rm  services/personal-website/package.json
-          pnpm install --ignore-scripts --prod=false
+          pnpm install --prod=false
       - name: Test
         run: pnpx lerna run test --scope ${{ matrix.name }}
 
@@ -131,7 +131,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -140,7 +140,7 @@ jobs:
       - name: Install Dependencies
         run: |
           rm services/personal-website/package.json
-          pnpm install --ignore-scripts --prod=false
+          pnpm install --prod=false
       - name: Publish to Chromatic
         run: pnpm --filter @alexwilson/storybook exec chromatic --exit-zero-on-changes
         env:
@@ -163,7 +163,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -172,7 +172,7 @@ jobs:
       - name: Install Dependencies
         run: |
           rm  services/personal-website/package.json
-          pnpm install --ignore-scripts --prod=false
+          pnpm install --prod=false
       - name: Deploy
         run: pnpx lerna run deploy --scope ${{ matrix.name }}
         env:
