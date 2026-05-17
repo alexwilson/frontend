@@ -14,7 +14,7 @@ const makeMention = (id: number, property: string, name: string, photo?: string)
   author: {
     name,
     url: `https://example.com/${name.toLowerCase().replace(' ', '-')}`,
-    photo: photo ?? `https://picsum.photos/seed/${id}/64/64`,
+    photo: photo ?? `https://picsum.photos/id/${id}/64/64`,
   },
 })
 
