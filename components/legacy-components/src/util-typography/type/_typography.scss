@@ -2,6 +2,7 @@
 // ---------------------------------------
 
 // Setting root sizes and base styles.
+@use "sass:color";
 @use "sass:math";
 
 html {
@@ -39,7 +40,7 @@ html {
     // Nice underlines for text links.
     p a, li a {
       font-family: unquote(map-get($bodytype, font-family));
-      background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,lighten($linkColour,20%) 50%);
+      background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,color.adjust($linkColour, $lightness: 20%) 50%);
       background-position: 0 93%;
       background-repeat: repeat-x;
       background-size: 100% 0.15rem;
@@ -49,7 +50,7 @@ html {
                   -0.15rem 0 $backgroundColour;
 
       &:hover, &:active, &:focus {
-        background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,lighten($hoverColour,20%) 50%);
+        background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,color.adjust($hoverColour, $lightness: 20%) 50%);
       }
     }
 
