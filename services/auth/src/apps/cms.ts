@@ -91,10 +91,8 @@ export class CmsApp implements AppPlugin {
     await this.revokeAtGitHub(env, accessToken)
   }
 
-  // Admin-driven unlink (no GitHub revocation by default — admin may want to
-  // leave the user's GitHub authorization standing; only the local link goes).
   async onUnlink(ctx: AppContext): Promise<void> {
-    await accounts.unlink(dbFor(ctx.env), ctx.userId, this.providerId)
+    await accounts.unlink(dbFor(ctx.env), ctx.env, this, ctx.userId)
   }
 
   // App-specific claims returned alongside the token. Decap doesn't read these

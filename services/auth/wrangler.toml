@@ -22,6 +22,13 @@ database_name = "auth-db"
 database_id = "70ccc48c-646f-4d82-825b-f4ad227059aa"
 migrations_dir = "./migrations"
 
+# namespace_id is per-account and scoped to this worker; pick a free integer.
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 30, period = 60 }
+
 # Import .css files as plain text strings — lets us bundle PicoCSS into the
 # /auth/manage HTML response without a separate static asset hop.
 [[rules]]
