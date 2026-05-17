@@ -4,21 +4,18 @@
 // holds instances; handlers dispatch by id and call lifecycle methods.
 //
 // Inspired by Passport.js strategies and better-auth's own plugin pattern.
-import type { DrizzleD1Database } from 'drizzle-orm/d1'
 import type { Env } from '../env'
 import type { Auth } from '../auth'
-import type { schema } from '../schema'
 import type { Scope } from '../scopes'
 
-export type Db = DrizzleD1Database<typeof schema>
-
 // What an app sees when invoked. A request-scoped bundle — env and auth come
-// from the worker boot, the rest from the live request.
+// from the worker boot, the rest from the live request. Notably absent: a
+// `db` handle. App lifecycle hooks (onSignOut etc.) read/write through
+// src/domain/, the single owner of DB access in this worker.
 export interface AppContext {
   readonly request: Request
   readonly env: Env
   readonly auth: Auth
-  readonly db: Db
   readonly userId: string
   readonly userEmail: string
   readonly userRole: string

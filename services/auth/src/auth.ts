@@ -3,28 +3,10 @@ import { APIError } from 'better-auth/api'
 import { admin, genericOAuth, jwt } from 'better-auth/plugins'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { drizzle } from 'drizzle-orm/d1'
-import { eq } from 'drizzle-orm'
 import type { Env } from './env'
 import { APPS } from './apps/registry'
-import { schema, allowedEmail } from './schema'
-import { normalizeEmail } from './email-normalize'
-
-// Looks up the email in the allowlist. Returns true if present (sign-up
-// permitted), false otherwise. Both sides normalize through the same
-// `normalizeEmail` pipeline (NFKC + mixed-script rejection) so the
-// comparison is between canonical forms — a homoglyph email coming from
-// GitHub won't match a Latin allowlist entry even if it renders identically.
-async function isEmailAllowed(env: Env, email: string): Promise<boolean> {
-  const result = normalizeEmail(email)
-  if (!result.ok) return false
-  const db = drizzle(env.AUTH_DB, { schema })
-  const row = await db
-    .select({ email: allowedEmail.email })
-    .from(allowedEmail)
-    .where(eq(allowedEmail.email, result.email))
-    .get()
-  return !!row
-}
+import { schema } from './schema'
+import * as allowlist from './domain/allowlist'
 
 export function createAuth(env: Env) {
   const db = drizzle(env.AUTH_DB, { schema })
@@ -81,7 +63,7 @@ export function createAuth(env: Env) {
       user: {
         create: {
           before: async (user: { email: string }) => {
-            if (!(await isEmailAllowed(env, user.email))) {
+            if (!(await allowlist.isAllowed(env, user.email))) {
               throw new APIError('FORBIDDEN', {
                 message: 'Email not on allowlist',
                 code: 'EMAIL_NOT_ALLOWED',

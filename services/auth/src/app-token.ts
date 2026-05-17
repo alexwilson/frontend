@@ -25,14 +25,13 @@
 // sessions) and services/cms/BFF.md for the design notes.
 import type { Context } from 'hono'
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie'
-import { drizzle } from 'drizzle-orm/d1'
-import { and, eq } from 'drizzle-orm'
 import type { Env } from './env'
 import type { Auth } from './auth'
 import { APPS, makeAppContext } from './apps/registry'
 import { runHookSafely, type AppPlugin } from './apps/types'
 import { intersectScopes, parseScopeParam, scopesForRole } from './scopes'
-import { schema, account, session } from './schema'
+import * as accounts from './domain/accounts'
+import * as sessionsDomain from './domain/sessions'
 
 type Ctx = Context<{ Bindings: Env }>
 
@@ -129,16 +128,9 @@ async function verifyIdentityJwt(
     if (typeof p.sub !== 'string' || typeof p.email !== 'string' || typeof p.sid !== 'string') return null
 
     // Session-row existence check — the live check that gives us per-device
-    // revocation. One indexed PK lookup on D1; sub-millisecond.
-    const db = drizzle(c.env.AUTH_DB, { schema })
-    const sessionRow = await db
-      .select({ userId: session.userId, expiresAt: session.expiresAt })
-      .from(session)
-      .where(eq(session.id, p.sid))
-      .get()
-    if (!sessionRow) return null
-    if (sessionRow.userId !== p.sub) return null
-    if (sessionRow.expiresAt.getTime() < Date.now()) return null
+    // revocation. Indexed PK lookup; sub-millisecond.
+    const active = await sessionsDomain.getActive(c.env, p.sid)
+    if (!active || active.userId !== p.sub) return null
 
     return { sub: p.sub, email: p.email, role: p.role ?? '', app: p.app, sid: p.sid }
   } catch {
@@ -242,11 +234,7 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   // Stamp last_issued_at so the idle-revocation cron (src/cron.ts) can tell
   // this account is in active use. Done after access-token success so we
   // don't keep alive accounts whose underlying tokens are dead.
-  await appCtx.db
-    .update(account)
-    .set({ lastIssuedAt: new Date() })
-    .where(and(eq(account.userId, identity.sub), eq(account.providerId, app.providerId)))
-    .run()
+  await accounts.markIssued(c.env, identity.sub, app.providerId)
 
   const accessPayload: AccessPayload = {
     sub: identity.sub,

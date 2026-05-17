@@ -2,6 +2,9 @@
 // 303 redirect. No client framework. Better-auth's admin plugin owns
 // /auth/admin/* for its own API surface — we live at /auth/manage to avoid that.
 //
+// Pure presentation + thin controller. All DB access goes through src/domain/
+// — handlers in this file never import drizzle directly.
+//
 // Styling: PicoCSS (~10KB) inlined for tables/forms/typography defaults, plus
 // a small CUSTOM_CSS block for badges + inline-form layout. No external fonts
 // (Pico uses system-ui).
@@ -9,14 +12,14 @@
 // Composition: tiny template-string "component" layer (Badge / Button /
 // ActionForm) — same mental model as React components, zero runtime.
 import type { Context } from 'hono'
-import { drizzle } from 'drizzle-orm/d1'
-import { and, asc, desc, eq, gt, sql } from 'drizzle-orm'
 import picoCss from '@picocss/pico/css/pico.min.css'
 import type { Env } from './env'
 import type { Auth } from './auth'
-import { appById, revokeAndClearAccessToken } from './apps/registry'
-import { schema, user, session, account, allowedEmail } from './schema'
-import { normalizeEmail } from './email-normalize'
+import { appById } from './apps/registry'
+import * as users from './domain/users'
+import * as sessionsDomain from './domain/sessions'
+import * as accounts from './domain/accounts'
+import * as allowlist from './domain/allowlist'
 
 type Ctx = Context<{ Bindings: Env }>
 
@@ -27,11 +30,8 @@ const IDLE_THRESHOLD_MS = 10 * 60 * 1000
 // Capability app for the per-user "CMS" column + "Revoke token" / "Unlink"
 // actions. When the admin UI gains a per-row app selector, this becomes a map.
 const CMS_APP = appById('cms')!
-const CMS_PROVIDER_ID = CMS_APP.providerId
 
 const ROLES = ['user', 'cms-editor', 'admin'] as const
-
-const dbFor = (env: Env) => drizzle(env.AUTH_DB, { schema })
 
 const esc = (s: unknown): string =>
   String(s ?? '').replace(/[&<>"']/g, (c) =>
@@ -76,7 +76,7 @@ function formatAgo(ms: number): string {
   return `${Math.floor(h / 24)}d`
 }
 
-function cmsStatusBadge(info: CmsAccountInfo | undefined): string {
+function cmsStatusBadge(info: accounts.AccountInfo | undefined): string {
   if (!info?.hasRow) return Badge('unlinked', 'Not linked', 'No CMS account row for this user')
   if (!info.hasToken) return Badge('cleared', 'Token cleared', 'Account linked, refresh token kept; transparently re-issues on next use')
   if (!info.lastIssuedAt) return Badge('idle', 'Idle', 'Token exists but never brokered — cron will revoke on next tick')
@@ -88,158 +88,16 @@ function cmsStatusBadge(info: CmsAccountInfo | undefined): string {
   return Badge('idle', 'Idle', `Last brokered ${ago} ago — cron will revoke on next tick`)
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────
-
-interface AdminUser {
-  id: string
-  email: string
-  name?: string
-  role?: string
-  banned?: boolean
-  banReason?: string | null
-}
-
-interface CmsAccountInfo {
-  hasRow: boolean
-  hasToken: boolean
-  lastIssuedAt: Date | null
-}
-
-interface SessionStats {
-  count: number
-  lastSeen: Date | null
-}
-
-interface AllowedEmail {
-  email: string
-  createdAt: string
-  createdBy: string | null
-}
-
-async function listUsers(env: Env): Promise<AdminUser[]> {
-  const rows = await dbFor(env)
-    .select({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-      banned: user.banned,
-      banReason: user.banReason,
-    })
-    .from(user)
-    .orderBy(desc(user.role), asc(user.email))
-    .all()
-  return rows.map((r) => ({
-    id: r.id,
-    email: r.email,
-    name: r.name ?? undefined,
-    role: r.role ?? undefined,
-    banned: r.banned ?? undefined,
-    banReason: r.banReason ?? undefined,
-  }))
-}
-
-async function listCmsAccounts(env: Env): Promise<Map<string, CmsAccountInfo>> {
-  const rows = await dbFor(env)
-    .select({
-      userId: account.userId,
-      accessToken: account.accessToken,
-      lastIssuedAt: account.lastIssuedAt,
-    })
-    .from(account)
-    .where(eq(account.providerId, CMS_PROVIDER_ID))
-    .all()
-  const map = new Map<string, CmsAccountInfo>()
-  for (const r of rows) {
-    map.set(r.userId, {
-      hasRow: true,
-      hasToken: r.accessToken !== null,
-      lastIssuedAt: r.lastIssuedAt ?? null,
-    })
-  }
-  return map
-}
-
-async function listSessionStats(env: Env): Promise<Map<string, SessionStats>> {
-  // Drizzle's `count` aggregate returns string in some adapters; cast through
-  // sql template to be explicit. Filter expired sessions so we don't count
-  // dead rows the user can no longer use.
-  const rows = await dbFor(env)
-    .select({
-      userId: session.userId,
-      count: sql<number>`count(*)`.as('count'),
-      lastSeen: sql<number | null>`max(${session.updatedAt})`.as('last_seen'),
-    })
-    .from(session)
-    .where(gt(session.expiresAt, new Date()))
-    .groupBy(session.userId)
-    .all()
-  const map = new Map<string, SessionStats>()
-  for (const r of rows) {
-    map.set(r.userId, {
-      count: Number(r.count),
-      lastSeen: r.lastSeen ? new Date(r.lastSeen) : null,
-    })
-  }
-  return map
-}
-
-async function listAllowedEmails(env: Env): Promise<AllowedEmail[]> {
-  return dbFor(env)
-    .select({
-      email: allowedEmail.email,
-      createdAt: allowedEmail.createdAt,
-      createdBy: allowedEmail.createdBy,
-    })
-    .from(allowedEmail)
-    .orderBy(asc(allowedEmail.email))
-    .all()
-}
-
-async function allowEmail(env: Env, normalizedEmail: string, createdBy: string): Promise<void> {
-  await dbFor(env)
-    .insert(allowedEmail)
-    .values({
-      email: normalizedEmail,
-      createdAt: new Date().toISOString(),
-      createdBy,
-    })
-    .onConflictDoNothing()
-    .run()
-}
-
-async function revokeEmail(env: Env, normalizedEmail: string): Promise<void> {
-  await dbFor(env)
-    .delete(allowedEmail)
-    .where(eq(allowedEmail.email, normalizedEmail))
-    .run()
-}
-
-async function unlinkCms(env: Env, userId: string): Promise<void> {
-  await dbFor(env)
-    .delete(account)
-    .where(and(eq(account.userId, userId), eq(account.providerId, CMS_PROVIDER_ID)))
-    .run()
-}
-
-// Forces re-login on every device for this user by deleting all session rows.
-// JWT #1 cookies on those devices will fail verification on next use (their
-// `sid` claim refers to a row that no longer exists). The CMS account row +
-// refresh token are untouched; re-login still gets transparent access.
-async function signOutEverywhere(env: Env, userId: string): Promise<void> {
-  await dbFor(env).delete(session).where(eq(session.userId, userId)).run()
-}
-
 // ─── Auth ────────────────────────────────────────────────────────────────
 
 async function requireAdmin(
   c: Ctx,
   auth: Auth,
-): Promise<{ user: AdminUser } | Response> {
+): Promise<{ user: users.AdminUser } | Response> {
   const fullSession = await auth.api.getSession({ headers: c.req.raw.headers })
   if (!fullSession?.user) return c.redirect('/auth/manage/sign-in', 302)
   if (fullSession.user.role !== 'admin') return c.text('Forbidden — admin role required', 403)
-  return { user: fullSession.user as AdminUser }
+  return { user: fullSession.user as users.AdminUser }
 }
 
 export async function handleManageSignIn(c: Ctx, auth: Auth): Promise<Response> {
@@ -334,7 +192,7 @@ document.querySelectorAll('form[data-confirm]').forEach(function(f){
 </script>`
 
 function page(opts: {
-  me: AdminUser
+  me: users.AdminUser
   body: string
   flash?: { kind: 'ok' | 'err'; text: string }
 }): string {
@@ -360,7 +218,11 @@ ${CONFIRM_JS}
 </body></html>`
 }
 
-function userRow(u: AdminUser, cms: CmsAccountInfo | undefined, sessions: SessionStats | undefined): string {
+function userRow(
+  u: users.AdminUser,
+  cms: accounts.AccountInfo | undefined,
+  sessions: sessionsDomain.SessionStats | undefined,
+): string {
   return `<tr${u.banned ? ' style="opacity:.55"' : ''}>
     <td class="user-cell">
       <div>
@@ -433,7 +295,7 @@ function userRow(u: AdminUser, cms: CmsAccountInfo | undefined, sessions: Sessio
   </tr>`
 }
 
-function allowlistRow(a: AllowedEmail): string {
+function allowlistRow(a: allowlist.AllowedEmail): string {
   return `<tr>
     <td><strong>${esc(a.email)}</strong></td>
     <td class="muted">${esc(a.createdAt.slice(0, 10))}${a.createdBy ? ` · by ${esc(a.createdBy)}` : ''}</td>
@@ -454,11 +316,11 @@ async function renderManage(
   const gate = await requireAdmin(c, auth)
   if (gate instanceof Response) return gate
 
-  const [users, allowed, cmsAccounts, sessionStats] = await Promise.all([
-    listUsers(c.env),
-    listAllowedEmails(c.env),
-    listCmsAccounts(c.env),
-    listSessionStats(c.env),
+  const [userList, allowed, cmsAccounts, sessionStats] = await Promise.all([
+    users.list(c.env),
+    allowlist.list(c.env),
+    accounts.listByProvider(c.env, CMS_APP.providerId),
+    sessionsDomain.listStats(c.env),
   ])
 
   const body = `
@@ -477,12 +339,12 @@ async function renderManage(
     </article>
 
     <article>
-      <header><strong>Users</strong> <span class="muted">(${users.length})</span></header>
+      <header><strong>Users</strong> <span class="muted">(${userList.length})</span></header>
       <table>
         <thead><tr>
           <th>User</th><th>Role</th><th>CMS</th><th>Sessions</th><th>Actions</th>
         </tr></thead>
-        <tbody>${users.map((u) => userRow(u, cmsAccounts.get(u.id), sessionStats.get(u.id))).join('')}</tbody>
+        <tbody>${userList.map((u) => userRow(u, cmsAccounts.get(u.id), sessionStats.get(u.id))).join('')}</tbody>
       </table>
     </article>
   `
@@ -503,26 +365,23 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
   const form = await c.req.parseBody()
   const action = String(form._action ?? '')
 
-  // Allowlist actions normalize email and reject homoglyphs.
+  // Allowlist actions: domain layer handles normalization + mixed-script
+  // rejection, returns a structured result we can flash.
   if (action === 'allow-email' || action === 'revoke-email') {
     const raw = String(form.email ?? '')
-    const result = normalizeEmail(raw)
+    const result = action === 'allow-email'
+      ? await allowlist.allow(c.env, raw, gate.user.email)
+      : await allowlist.revoke(c.env, raw)
     if (!result.ok) return renderManage(c, auth, { kind: 'err', text: result.error })
-    try {
-      if (action === 'allow-email') await allowEmail(c.env, result.email, gate.user.email)
-      else await revokeEmail(c.env, result.email)
-    } catch (e) {
-      return renderManage(c, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
-    }
     return c.redirect('/auth/manage', 303)
   }
 
   const userId = String(form.userId ?? '')
   if (!userId) return renderManage(c, auth, { kind: 'err', text: 'Missing user' })
 
-  // Foot-gun guard. 'sign-out-everywhere' added to the list because signing
+  // Foot-gun guard. 'sign-out-everywhere' is in the list because signing
   // yourself out of all devices via the manage UI is almost certainly a
-  // mistake (you're currently in one of those devices).
+  // mistake (you're in one of those devices now).
   const destructive = ['ban', 'delete', 'sign-out-everywhere'].includes(action)
   if (destructive && userId === gate.user.id) {
     return renderManage(c, auth, { kind: 'err', text: "Can't apply that action to yourself" })
@@ -549,13 +408,13 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
         await auth.api.removeUser({ body: { userId }, headers: c.req.raw.headers })
         break
       case 'unlink-cms':
-        await unlinkCms(c.env, userId)
+        await accounts.unlink(c.env, userId, CMS_APP.providerId)
         break
       case 'revoke-token':
-        await revokeAndClearAccessToken(dbFor(c.env), c.env, CMS_APP, userId)
+        await accounts.revokeAndClear(c.env, CMS_APP, userId)
         break
       case 'sign-out-everywhere':
-        await signOutEverywhere(c.env, userId)
+        await sessionsDomain.signOutEverywhere(c.env, userId)
         break
       default:
         throw new Error('unknown action')
