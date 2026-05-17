@@ -12,13 +12,9 @@
 // untouched, so when the user comes back the next /auth/app/<id>/token call
 // refresh-grants a fresh access token transparently.
 import { appByProviderId } from './apps/registry'
+import { dbFor } from './domain/db'
 import * as accounts from './domain/accounts'
 import type { Env } from './env'
-
-// Tokens whose last_issued_at (or, for pre-migration rows, created_at) is
-// older than this are considered idle and have their access token revoked
-// at the upstream provider on the next cron tick.
-const IDLE_THRESHOLD_MS = 10 * 60 * 1000
 
 export async function handleScheduled(
   _event: ScheduledController,
@@ -32,13 +28,14 @@ export async function handleScheduled(
 }
 
 async function revokeIdleTokens(env: Env): Promise<void> {
-  const thresholdMs = Date.now() - IDLE_THRESHOLD_MS
-  const rows = await accounts.listIdle(env, thresholdMs)
+  const db = dbFor(env)
+  const thresholdMs = Date.now() - accounts.IDLE_THRESHOLD_MS
+  const rows = await accounts.listIdle(db, thresholdMs)
   if (rows.length === 0) return
 
   for (const row of rows) {
     const app = appByProviderId(row.providerId)
     // eslint-disable-next-line no-await-in-loop
-    await accounts.clearByRowId(env, row, app)
+    await accounts.clearByRowId(db, env, row, app)
   }
 }

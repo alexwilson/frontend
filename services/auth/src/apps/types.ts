@@ -54,6 +54,8 @@ export interface OAuthProviderConfig {
 export interface AppPlugin {
   /** Public app id — appears in the URL as /auth/app/<id>/token. */
   readonly id: string
+  /** Human-readable display name — shown in the admin UI. */
+  readonly name: string
   /** Better-auth providerId — the row in the `account` table. */
   readonly providerId: string
   /**

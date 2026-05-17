@@ -2,6 +2,7 @@ import { request as octokitRequest } from '@octokit/request'
 import type { Env } from '../env'
 import type { AppContext, AppPlugin, OAuthProviderConfig } from './types'
 import { SCOPES } from '../scopes'
+import { dbFor } from '../domain/db'
 import * as accounts from '../domain/accounts'
 
 // Fetches GitHub user info via the App's user-to-server token, falling back
@@ -44,6 +45,7 @@ async function githubUserInfo(tokens: { accessToken?: string }) {
 
 export class CmsApp implements AppPlugin {
   readonly id = 'cms'
+  readonly name = 'CMS'
   readonly providerId = 'github-cms'
   // Scopes this app can grant. The endpoint intersects this with the
   // caller's request + the user's role-derived set, so possessing 'cms-editor'
@@ -79,7 +81,7 @@ export class CmsApp implements AppPlugin {
   // DELETEing the row would force every other device to re-OAuth — surprising
   // and bad UX. See SECURITY.md and services/cms/BFF.md for the design notes.
   async onSignOut(ctx: AppContext): Promise<void> {
-    await accounts.revokeAndClear(ctx.env, this, ctx.userId)
+    await accounts.revokeAndClear(dbFor(ctx.env), ctx.env, this, ctx.userId)
   }
 
   // Public AppPlugin contract — same revocation call as onSignOut uses, but
@@ -92,7 +94,7 @@ export class CmsApp implements AppPlugin {
   // Admin-driven unlink (no GitHub revocation by default — admin may want to
   // leave the user's GitHub authorization standing; only the local link goes).
   async onUnlink(ctx: AppContext): Promise<void> {
-    await accounts.unlink(ctx.env, ctx.userId, this.providerId)
+    await accounts.unlink(dbFor(ctx.env), ctx.userId, this.providerId)
   }
 
   // App-specific claims returned alongside the token. Decap doesn't read these

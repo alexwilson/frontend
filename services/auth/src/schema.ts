@@ -37,6 +37,22 @@ export const session = sqliteTable('session', {
   userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
   // admin plugin field
   impersonatedBy: text('impersonated_by'),
+  // Geo / network context captured at session creation from request.cf
+  // (Cloudflare Workers populates this on every incoming request). Stored
+  // at creation time only — represents "where did this device sign in
+  // from" rather than "where is it now." A databaseHooks.session.create
+  // hook in auth.ts reads from request.cf and writes these. Outside CF
+  // (tests, local dev) the hook leaves them null.
+  //
+  // `asOrganization` is the human-readable network name (ISP / cloud /
+  // VPN / Tor exit). `asn` is the numeric autonomous system number,
+  // displayed alongside the org name as e.g. "British Telecom (AS5400)".
+  country: text('country'),
+  region: text('region'),
+  city: text('city'),
+  asn: integer('asn'),
+  asOrganization: text('as_organization'),
+  timezone: text('timezone'),
 }, (t) => ({
   userIdIdx: index('session_user_id_idx').on(t.userId),
 }))

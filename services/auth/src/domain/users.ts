@@ -5,12 +5,9 @@
 // the admin UI's user list. Mutations (set role, ban, delete) go through
 // better-auth's admin API directly from the handler — wrapping them here
 // would add an indirection hop with no value.
-import { drizzle } from 'drizzle-orm/d1'
 import { asc, desc } from 'drizzle-orm'
-import type { Env } from '../env'
-import { schema, user } from '../schema'
-
-const dbFor = (env: Env) => drizzle(env.AUTH_DB, { schema })
+import { user } from '../schema'
+import type { Db } from './db'
 
 export interface AdminUser {
   id: string
@@ -25,8 +22,8 @@ export interface AdminUser {
 // then alpha by email. Direct DB read rather than paginating through
 // better-auth's admin.listUsers — we already have the binding and this gives
 // us full control over ordering + the exact columns we need.
-export async function list(env: Env): Promise<AdminUser[]> {
-  const rows = await dbFor(env)
+export async function list(db: Db): Promise<AdminUser[]> {
+  const rows = await db
     .select({
       id: user.id,
       email: user.email,

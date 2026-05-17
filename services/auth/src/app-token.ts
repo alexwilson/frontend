@@ -30,6 +30,7 @@ import type { Auth } from './auth'
 import { APPS, makeAppContext } from './apps/registry'
 import { runHookSafely, type AppPlugin } from './apps/types'
 import { intersectScopes, parseScopeParam, scopesForRole } from './scopes'
+import { dbFor } from './domain/db'
 import * as accounts from './domain/accounts'
 import * as sessionsDomain from './domain/sessions'
 
@@ -129,7 +130,7 @@ async function verifyIdentityJwt(
 
     // Session-row existence check — the live check that gives us per-device
     // revocation. Indexed PK lookup; sub-millisecond.
-    const active = await sessionsDomain.getActive(c.env, p.sid)
+    const active = await sessionsDomain.getActive(dbFor(c.env), p.sid)
     if (!active || active.userId !== p.sub) return null
 
     return { sub: p.sub, email: p.email, role: p.role ?? '', app: p.app, sid: p.sid }
@@ -234,7 +235,7 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   // Stamp last_issued_at so the idle-revocation cron (src/cron.ts) can tell
   // this account is in active use. Done after access-token success so we
   // don't keep alive accounts whose underlying tokens are dead.
-  await accounts.markIssued(c.env, identity.sub, app.providerId)
+  await accounts.markIssued(dbFor(c.env), identity.sub, app.providerId)
 
   const accessPayload: AccessPayload = {
     sub: identity.sub,

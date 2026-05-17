@@ -5,6 +5,7 @@ import { appById } from './apps/registry'
 import { handleAppToken, handleAppSignOut } from './app-token'
 import { handleManage, handleManageSignIn } from './manage'
 import { handleScheduled } from './cron'
+import { renderErrorPageFromCode } from './views/error'
 import type { Env } from './env'
 
 export type { Env } from './env'
@@ -67,6 +68,13 @@ app.on(['GET', 'POST'], '/auth/manage', async (c) => {
 app.get('/auth/manage/sign-in', async (c) => {
   const auth = createAuth(c.env)
   return handleManageSignIn(c, auth)
+})
+
+// Error landing page — better-auth's onAPIError.errorURL redirects here
+// with ?error=<code>. Public; no auth gate (the user usually isn't signed
+// in when seeing this).
+app.get('/auth/error', (c) => {
+  return c.html(renderErrorPageFromCode(c.req.query('error')))
 })
 
 // Everything else under /auth/* is owned by better-auth.

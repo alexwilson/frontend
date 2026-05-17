@@ -6,6 +6,7 @@ import { drizzle } from 'drizzle-orm/d1'
 import type { Env } from './env'
 import { APPS } from './apps/registry'
 import { schema } from './schema'
+import { dbFor } from './domain/db'
 import * as allowlist from './domain/allowlist'
 
 export function createAuth(env: Env) {
@@ -23,11 +24,59 @@ export function createAuth(env: Env) {
     basePath: '/auth',
     trustedOrigins: env.TRUSTED_ORIGINS.split(',').map((s) => s.trim()),
 
+    // Declares our `last_issued_at` column to better-auth so account-shaped
+    // API responses (e.g. internalAdapter.findAccounts, any future admin
+    // SPA reading through better-auth's APIs) include it. The physical
+    // column still lives in src/schema.ts (drizzle is the storage layer);
+    // this just teaches better-auth that the field exists semantically.
+    //
+    //   input: false   → never settable via API input. Our cron stamps it
+    //                    directly via the drizzle update in domain/accounts.ts;
+    //                    we don't want clients ever providing this value.
+    //   required: false → nullable, matches the schema column.
+    account: {
+      additionalFields: {
+        lastIssuedAt: { type: 'date', required: false, input: false },
+      },
+    },
+
+    // Geo + network fields captured from request.cf at session creation
+    // (see databaseHooks.session.create.before below). Declared here so
+    // they appear in any better-auth API response that returns sessions,
+    // and so client-side type inference picks them up.
+    session: {
+      // How often `updated_at` (and the sliding `expires_at` window) is
+      // bumped on session activity. Better-auth defaults to 1 day, which
+      // makes the admin UI's "last seen" near-useless — your own session
+      // wouldn't tick over even while you're actively clicking buttons.
+      // 5 minutes is the sweet spot: meaningful freshness for the UI,
+      // still cheap (~1 DB write per session per 5 min, not per request).
+      updateAge: 5 * 60,
+      additionalFields: {
+        country: { type: 'string', required: false, input: false },
+        region: { type: 'string', required: false, input: false },
+        city: { type: 'string', required: false, input: false },
+        asn: { type: 'number', required: false, input: false },
+        asOrganization: { type: 'string', required: false, input: false },
+        timezone: { type: 'string', required: false, input: false },
+      },
+    },
+
+    // When better-auth (or our OAuth callbacks) redirects on error, land
+    // users on /auth/error so a friendly page renders (see src/views/error.ts).
+    // Default would be ${baseURL}/error, which lives outside our worker's
+    // /auth/* route prefix and would 404.
+    onAPIError: { errorURL: `${env.BASE_URL}/auth/error` },
+
     advanced: {
       // `auth.` namespace — all cookies the worker sets are prefixed with it,
       // so they group nicely in DevTools and never collide with cookies set by
       // unrelated apps on the same domain.
       cookiePrefix: 'auth',
+      // We're behind Cloudflare; the real client IP is in cf-connecting-ip,
+      // not x-forwarded-for (which can be spoofed by upstream proxies if any
+      // existed). Better-auth stamps this into session.ip_address at creation.
+      ipAddress: { ipAddressHeaders: ['cf-connecting-ip'] },
       cookies: {
         session_token: {
           // Final cookie name: `__Secure-auth.session` (in prod, since baseURL
@@ -63,13 +112,41 @@ export function createAuth(env: Env) {
       user: {
         create: {
           before: async (user: { email: string }) => {
-            if (!(await allowlist.isAllowed(env, user.email))) {
+            if (!(await allowlist.isAllowed(dbFor(env), user.email))) {
               throw new APIError('FORBIDDEN', {
                 message: 'Email not on allowlist',
                 code: 'EMAIL_NOT_ALLOWED',
               })
             }
             return { data: user }
+          },
+        },
+      },
+      session: {
+        create: {
+          // Capture geo + network context from request.cf at session creation.
+          // The fields are declared via session.additionalFields above so
+          // better-auth treats them as first-class. The hook just populates
+          // them; drizzle persists them via the session column declarations
+          // in src/schema.ts.
+          //
+          // Outside Cloudflare (tests, certain local dev configs) `cf` is
+          // absent and the fields stay null — by design.
+          before: async (sessionData, context) => {
+            const req = (context as { request?: Request } | undefined)?.request
+            const cf = req?.cf as IncomingRequestCfProperties | undefined
+            if (!cf) return { data: sessionData }
+            return {
+              data: {
+                ...sessionData,
+                country: cf.country ?? null,
+                region: cf.region ?? null,
+                city: cf.city ?? null,
+                asn: typeof cf.asn === 'number' ? cf.asn : null,
+                asOrganization: cf.asOrganization ?? null,
+                timezone: cf.timezone ?? null,
+              },
+            }
           },
         },
       },
