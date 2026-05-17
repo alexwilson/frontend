@@ -151,12 +151,14 @@ export async function clearByRowId(
     .run()
 }
 
-// Hard unlink — delete the account row entirely (refresh token included).
-// Forces the user through full OAuth re-link on next use. Used by admin
-// "Unlink CMS" action and by CmsApp.onUnlink.
-export async function unlink(db: Db, userId: string, providerId: string): Promise<void> {
+// The signature takes `env` + `app` rather than a bare `providerId` so the
+// upstream-revoke prerequisite is enforced at the type level — there is no
+// way to drop an account row through this module without going through the
+// revoke path.
+export async function unlink(db: Db, env: Env, app: AppPlugin, userId: string): Promise<void> {
+  await revokeAndClear(db, env, app, userId)
   await db
     .delete(account)
-    .where(and(eq(account.userId, userId), eq(account.providerId, providerId)))
+    .where(and(eq(account.userId, userId), eq(account.providerId, app.providerId)))
     .run()
 }

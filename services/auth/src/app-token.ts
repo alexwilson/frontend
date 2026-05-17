@@ -24,7 +24,7 @@
 // (Plan B/E)?  See SECURITY.md (Shared upstream token across concurrent
 // sessions) and services/cms/BFF.md for the design notes.
 import type { Context } from 'hono'
-import { getCookie, setCookie, deleteCookie } from 'hono/cookie'
+import { getCookie, setCookie, deleteCookie, generateCookie } from 'hono/cookie'
 import type { Env } from './env'
 import type { Auth } from './auth'
 import { APPS, makeAppContext } from './apps/registry'
@@ -67,6 +67,15 @@ interface AccessPayload extends Record<string, unknown> {
   access_token: string
 }
 
+interface StandardClaims {
+  iss: string
+  aud: string
+  jti: string
+  iat: number
+  nbf: number
+  exp: number
+}
+
 // __Secure- prefix only on https origins — Secure-prefixed cookies are
 // silently dropped by browsers on http:// (incl. localhost in some configs).
 function useSecurePrefix(env: Env): boolean {
@@ -88,11 +97,25 @@ function jwt1CookieOpts(env: Env, app: AppPlugin) {
   }
 }
 
-// auth.api.signJWT is typed loosely — better-auth lets you put anything in
-// the payload. Wrapper here just adds iat/exp.
-async function signJwt(auth: Auth, payload: Record<string, unknown>, ttlSeconds: number): Promise<string> {
+// Passing `body: { payload }` to better-auth's signJWT replaces its default
+// claim construction, so iss/aud/jti/iat/nbf/exp must be set explicitly.
+async function signJwt(
+  auth: Auth,
+  env: Env,
+  payload: Record<string, unknown>,
+  ttlSeconds: number,
+  audience: string,
+): Promise<string> {
   const now = Math.floor(Date.now() / 1000)
-  const fullPayload = { ...payload, iat: now, exp: now + ttlSeconds }
+  const claims: StandardClaims = {
+    iss: env.BASE_URL,
+    aud: audience,
+    jti: crypto.randomUUID(),
+    iat: now,
+    nbf: now,
+    exp: now + ttlSeconds,
+  }
+  const fullPayload = { ...payload, ...claims }
   const result = (await (auth.api as { signJWT: (i: unknown) => Promise<{ token: string }> }).signJWT({
     body: { payload: fullPayload },
   })) as { token: string }
@@ -123,10 +146,11 @@ async function verifyIdentityJwt(
   try {
     const result = (await (auth.api as { verifyJWT: (i: unknown) => Promise<{ payload: unknown }> }).verifyJWT({
       body: { token },
-    })) as { payload: IdentityPayload | null }
+    })) as { payload: (IdentityPayload & Partial<StandardClaims>) | null }
     const p = result.payload
     if (!p || p.typ !== 'identity' || p.app !== expectedApp) return null
     if (typeof p.sub !== 'string' || typeof p.email !== 'string' || typeof p.sid !== 'string') return null
+    if (p.iss !== c.env.BASE_URL || p.aud !== expectedApp) return null
 
     // Session-row existence check — the live check that gives us per-device
     // revocation. Indexed PK lookup; sub-millisecond.
@@ -166,11 +190,15 @@ async function resolveIdentity(
 // Pulls requested scopes from either query (GET) or form/JSON body (POST).
 // RFC 6749 §3.3 — space-delimited list. If empty/missing, returns null
 // (caller treats null as "everything I'm allowed").
+const MAX_TOKEN_BODY_BYTES = 4 * 1024
+
 async function readRequestedScope(c: Ctx): Promise<string[] | null> {
   const fromQuery = c.req.query('scope')
   if (fromQuery) return parseScopeParam(fromQuery)
 
   if (c.req.method === 'POST') {
+    const len = Number(c.req.header('content-length') ?? '0')
+    if (Number.isFinite(len) && len > MAX_TOKEN_BODY_BYTES) return null
     const contentType = c.req.header('content-type') ?? ''
     try {
       if (contentType.includes('application/json')) {
@@ -246,7 +274,7 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
     access_token: accessToken,
     ...extraClaims,
   }
-  const jwt2 = await signJwt(auth, accessPayload, JWT2_TTL_SECONDS)
+  const jwt2 = await signJwt(auth, c.env, accessPayload, JWT2_TTL_SECONDS, app.id)
 
   // Mint JWT #1 on every successful call. Cheap (signing only), and ensures
   // the cookie's TTL slides forward — caller doesn't decay into session
@@ -259,7 +287,7 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
     typ: 'identity',
     sid: identity.sid,
   }
-  const jwt1 = await signJwt(auth, identityPayload, JWT1_TTL_SECONDS)
+  const jwt1 = await signJwt(auth, c.env, identityPayload, JWT1_TTL_SECONDS, app.id)
 
   setCookie(c, jwt1CookieName(c.env), jwt1, jwt1CookieOpts(c.env, app))
   return c.json({ jwt: jwt2 })
@@ -285,16 +313,11 @@ export async function handleAppSignOut(c: Ctx, auth: Auth): Promise<Response> {
   const downstream = await auth.handler(c.req.raw)
   const response = new Response(downstream.body, downstream)
   for (const app of APPS) {
-    const opts = jwt1CookieOpts(c.env, app)
-    const parts = [
-      `${jwt1CookieName(c.env)}=`,
-      `Path=${opts.path}`,
-      `Max-Age=0`,
-      `HttpOnly`,
-      `SameSite=${opts.sameSite}`,
-    ]
-    if (opts.secure) parts.push('Secure')
-    response.headers.append('Set-Cookie', parts.join('; '))
+    const header = generateCookie(jwt1CookieName(c.env), '', {
+      ...jwt1CookieOpts(c.env, app),
+      maxAge: 0,
+    })
+    response.headers.append('Set-Cookie', header)
   }
   return response
 }

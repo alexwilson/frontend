@@ -238,12 +238,15 @@ describe('accounts.clearByRowId', () => {
 })
 
 describe('accounts.unlink', () => {
-  it('deletes the row entirely (refresh token gone)', async () => {
+  it('revokes upstream then deletes the row entirely (refresh token gone)', async () => {
     await seedUser('u1')
-    await seedAccount({ id: 'a', userId: 'u1', providerId: 'github-cms' })
+    await seedAccount({ id: 'a', userId: 'u1', providerId: 'github-cms', accessToken: 'ghu_live' })
+    const revoke = vi.fn(async () => undefined)
+    const app = stubApp('cms', 'github-cms', revoke)
 
-    await accounts.unlink(t.db, 'u1', 'github-cms')
+    await accounts.unlink(t.db, env, app, 'u1')
 
+    expect(revoke).toHaveBeenCalledWith(env, 'ghu_live')
     const map = await accounts.listAllByUser(t.db)
     expect(map.has('u1')).toBe(false)
   })
@@ -252,11 +255,23 @@ describe('accounts.unlink', () => {
     await seedUser('u1')
     await seedAccount({ id: 'a', userId: 'u1', providerId: 'github-cms' })
     await seedAccount({ id: 'b', userId: 'u1', providerId: 'github-photo' })
+    const app = stubApp('cms', 'github-cms', async () => undefined)
 
-    await accounts.unlink(t.db, 'u1', 'github-cms')
+    await accounts.unlink(t.db, env, app, 'u1')
 
     const map = await accounts.listAllByUser(t.db)
     expect(map.get('u1')?.has('github-photo')).toBe(true)
     expect(map.get('u1')?.has('github-cms')).toBe(false)
+  })
+
+  it('deletes the row even if the upstream revoke throws', async () => {
+    await seedUser('u1')
+    await seedAccount({ id: 'a', userId: 'u1', providerId: 'github-cms', accessToken: 'ghu_live' })
+    const app = stubApp('cms', 'github-cms', async () => { throw new Error('github down') })
+
+    await accounts.unlink(t.db, env, app, 'u1')
+
+    const map = await accounts.listAllByUser(t.db)
+    expect(map.has('u1')).toBe(false)
   })
 })

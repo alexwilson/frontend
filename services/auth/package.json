@@ -1,7 +1,7 @@
 {
-  "name": "@alexwilson/auth-cms",
+  "name": "@alexwilson/auth",
   "version": "2.0.0",
-  "description": "Auth worker (better-auth on Cloudflare Workers + D1)",
+  "description": "Auth Worker",
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",

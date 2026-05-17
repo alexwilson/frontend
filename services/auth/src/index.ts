@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+import { Hono, type MiddlewareHandler } from 'hono'
 import { cors } from 'hono/cors'
 import { createAuth } from './auth'
 import { appById } from './apps/registry'
@@ -6,7 +6,8 @@ import { handleAppToken, handleAppSignOut } from './app-token'
 import { handleManage, handleManageSignIn } from './manage'
 import { handleScheduled } from './cron'
 import { renderErrorPageFromCode } from './views/error'
-import type { Env } from './env'
+import { applyHtmlSecurityHeaders } from './views/headers'
+import { validateEnv, type Env } from './env'
 
 export type { Env } from './env'
 
@@ -15,6 +16,22 @@ function trustedOrigins(env: Env): string[] {
 }
 
 const app = new Hono<{ Bindings: Env }>()
+
+app.use('*', async (c, next) => {
+  validateEnv(c.env)
+  await next()
+})
+
+// Per-IP rate limit. No-op if the binding isn't configured.
+const rateLimit: MiddlewareHandler<{ Bindings: Env }> = async (c, next) => {
+  const limiter = c.env.RATE_LIMITER
+  if (limiter) {
+    const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
+    const { success } = await limiter.limit({ key: `${c.req.path}:${ip}` })
+    if (!success) return c.text('Too Many Requests', 429)
+  }
+  await next()
+}
 
 // CORS — scoped to SPA-callable routes only. Routes called same-origin or
 // server-to-server (admin UI, better-auth's admin plugin endpoints) do NOT
@@ -60,12 +77,16 @@ app.post('/auth/sign-out', async (c) => {
 })
 
 // Server-rendered admin UI. Same handler for GET (render) + POST (mutate).
-app.on(['GET', 'POST'], '/auth/manage', async (c) => {
+app.get('/auth/manage', async (c) => {
+  const auth = createAuth(c.env)
+  return handleManage(c, auth)
+})
+app.post('/auth/manage', rateLimit, async (c) => {
   const auth = createAuth(c.env)
   return handleManage(c, auth)
 })
 
-app.get('/auth/manage/sign-in', async (c) => {
+app.get('/auth/manage/sign-in', rateLimit, async (c) => {
   const auth = createAuth(c.env)
   return handleManageSignIn(c, auth)
 })
@@ -74,6 +95,8 @@ app.get('/auth/manage/sign-in', async (c) => {
 // with ?error=<code>. Public; no auth gate (the user usually isn't signed
 // in when seeing this).
 app.get('/auth/error', (c) => {
+  applyHtmlSecurityHeaders(c)
+  c.header('cache-control', 'no-store')
   return c.html(renderErrorPageFromCode(c.req.query('error')))
 })
 

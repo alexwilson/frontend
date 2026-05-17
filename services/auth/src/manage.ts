@@ -15,10 +15,18 @@ import * as sessionsDomain from './domain/sessions'
 import * as accounts from './domain/accounts'
 import * as allowlist from './domain/allowlist'
 import { renderManagePage } from './views/manage'
+import { applyHtmlSecurityHeaders } from './views/headers'
 
 type Ctx = Context<{ Bindings: Env }>
 
 const ROLES = ['user', 'cms-editor', 'admin'] as const
+
+const MAX_ADMIN_BODY_BYTES = 16 * 1024
+
+function bodyTooLarge(c: Ctx, maxBytes: number): boolean {
+  const len = Number(c.req.header('content-length') ?? '0')
+  return Number.isFinite(len) && len > maxBytes
+}
 
 // ─── Auth ────────────────────────────────────────────────────────────────
 
@@ -96,6 +104,7 @@ async function renderManage(
   })
 
   c.header('cache-control', 'private, no-store')
+  applyHtmlSecurityHeaders(c)
   return c.html(html)
 }
 
@@ -104,6 +113,10 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
   const origin = c.req.header('Origin')
   if (!origin || origin !== c.env.BASE_URL) {
     return c.text('Forbidden — bad origin', 403)
+  }
+
+  if (bodyTooLarge(c, MAX_ADMIN_BODY_BYTES)) {
+    return c.text('Payload Too Large', 413)
   }
 
   const gate = await requireAdmin(c, auth)
@@ -161,6 +174,12 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
           body: { userId, role: role as 'user' | 'admin' },
           headers: c.req.raw.headers,
         })
+        // Evict the user's JWT #1s by killing every session: JWT #1 carries
+        // `role` and is sid-bound, so a stale role can't outlive the change.
+        await auth.api.revokeUserSessions({
+          body: { userId },
+          headers: c.req.raw.headers,
+        })
         break
       }
       case 'ban':
@@ -175,7 +194,7 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
       case 'unlink-app': {
         const app = appById(String(form.appId ?? ''))
         if (!app) throw new Error('unknown app')
-        await accounts.unlink(db, userId, app.providerId)
+        await accounts.unlink(db, c.env, app, userId)
         break
       }
       case 'revoke-app-token': {

@@ -59,3 +59,46 @@ describe('CORS preflight', () => {
     expect(res.headers.get('access-control-allow-origin')).toBeNull()
   })
 })
+
+describe('/auth/error security headers', () => {
+  it('emits CSP + the standard hardening headers', async () => {
+    const res = await app.fetch(new Request('https://auth.test/auth/error?error=EMAIL_NOT_ALLOWED'), env)
+    expect(res.status).toBe(200)
+    const csp = res.headers.get('content-security-policy') ?? ''
+    expect(csp).toContain("default-src 'self'")
+    expect(csp).toContain("frame-ancestors 'none'")
+    expect(res.headers.get('x-frame-options')).toBe('DENY')
+    expect(res.headers.get('x-content-type-options')).toBe('nosniff')
+    expect(res.headers.get('referrer-policy')).toBe('strict-origin-when-cross-origin')
+    expect(res.headers.get('strict-transport-security') ?? '').toContain('max-age=')
+  })
+})
+
+describe('rate limiting', () => {
+  it('429 when the limiter binding rejects', async () => {
+    const limiterEnv = {
+      ...env,
+      RATE_LIMITER: { limit: async () => ({ success: false }) },
+    }
+    const res = await app.fetch(
+      new Request('https://auth.test/auth/manage/sign-in', {
+        headers: { 'cf-connecting-ip': '203.0.113.1' },
+      }),
+      limiterEnv,
+    )
+    expect(res.status).toBe(429)
+  })
+
+  it('passes through when the binding is absent', async () => {
+    // No RATE_LIMITER in env → skipped. Sign-in path will attempt auth and
+    // fail downstream because AUTH_DB is undefined, but we should at least
+    // not 429.
+    const res = await app.fetch(
+      new Request('https://auth.test/auth/manage/sign-in', {
+        headers: { 'cf-connecting-ip': '203.0.113.1' },
+      }),
+      env,
+    )
+    expect(res.status).not.toBe(429)
+  })
+})
