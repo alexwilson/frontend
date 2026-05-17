@@ -108,15 +108,24 @@ export const ArticleContent: Story = {
       <h1>A Sample Article Heading</h1>
       <p className="caption">Posted on 1 January 2025 by Alex Wilson</p>
       <p>
-        This story demonstrates the full typeset treatment as applied to article body content.
+        This story demonstrates the full typeset treatment as applied to article body content. The typography
+        system uses a modular scale derived from classic typographic ratios &mdash; Major Third at smaller viewports,
+        shifting to Perfect Fourth at larger screens.
       </p>
       <h2>A Section Heading</h2>
       <p>
-        Headings are set in Helvetica sans-serif with OpenType features enabled where available. <a href="#">Links within paragraphs</a> receive a refined underline treatment.
+        Headings are set in Helvetica sans-serif with OpenType features enabled where available. Body copy
+        uses Georgia serif for readability. <a href="#">Links within paragraphs</a> receive a refined
+        underline treatment using background gradients rather than the default text-decoration.
       </p>
       <blockquote>
         <p>Good typography is invisible; it carries the reader without interruption.</p>
       </blockquote>
+      <h3>Code and Technical Content</h3>
+      <p>
+        The design system supports <strong>technical writing</strong> with bold emphasis, <em>editorial
+        emphasis in italic</em>, and <small>small captions for supplementary information</small>.
+      </p>
       <ul>
         <li>Consistent vertical rhythm throughout</li>
         <li>Baseline grid maintained across all sizes</li>
@@ -140,6 +149,18 @@ export const TextUtilities: Story = {
           <span className={`typeset ${cls}`}>{sample}</span>
         </div>
       ))}
+      <div style={{ marginTop: '2rem' }}>
+        <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#888' }}>Alignment helpers</p>
+        <div style={{ border: '1px solid #eee', padding: '0.5rem', marginBottom: '0.5rem' }}>
+          <p className="align-left">.align-left &mdash; text aligned left</p>
+        </div>
+        <div style={{ border: '1px solid #eee', padding: '0.5rem', marginBottom: '0.5rem' }}>
+          <p className="align-center">.align-center &mdash; text aligned centre</p>
+        </div>
+        <div style={{ border: '1px solid #eee', padding: '0.5rem' }}>
+          <p className="align-right">.align-right &mdash; text aligned right</p>
+        </div>
+      </div>
     </div>
   ),
 }
