@@ -33,7 +33,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -49,7 +49,7 @@ jobs:
             */*/node_modules
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts --filter @alexwilson/personal-website...
+          pnpm install --filter @alexwilson/personal-website...
       - name: Build
         run: pnpx lerna run --scope @alexwilson/personal-website build
         env:
@@ -80,7 +80,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
       - uses: actions/setup-node@v4
         with:
@@ -96,7 +96,7 @@ jobs:
             */*/node_modules
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts --filter @alexwilson/personal-website...
+          pnpm install --filter @alexwilson/personal-website...
       - name: Run Tests
         run: pnpx lerna run --scope @alexwilson/personal-website test
 
