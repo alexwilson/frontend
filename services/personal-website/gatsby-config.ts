@@ -217,6 +217,10 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-sass`,
       options: {
         implementation: require("sass"),
+        api: "modern",
+        sassOptions: {
+          importers: [new (require("sass").NodePackageImporter)()],
+        },
       },
     },
 

@@ -12,5 +12,10 @@
   },
   "dependencies": {
     "esbuild": "^0.28.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "gatsby-plugin-sass>sass-loader": "^16.0.0"
+    }
   }
 }

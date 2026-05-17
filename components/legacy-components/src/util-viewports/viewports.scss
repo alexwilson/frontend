@@ -1,4 +1,4 @@
-@forward "include-media/dist/include-media" with (
+@forward "pkg:include-media" with (
     $breakpoints: (
         phone: 576px,
         tablet: 768px,
