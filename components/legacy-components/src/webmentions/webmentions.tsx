@@ -104,6 +104,7 @@ export default class Webmentions extends Component<WebmentionsProps, Webmentions
         replies: repliesFromWebmentions(webmentions),
       })
     }
+    this.setState({ isLoaded: true })
   }
 
   async fetchWebmentionsByContentId(contentId: string) {
@@ -126,7 +127,9 @@ export default class Webmentions extends Component<WebmentionsProps, Webmentions
           replies: repliesFromWebmentions(webmentions),
         })
       }
-    } catch {}
+    } catch {} finally {
+      this.setState({ isLoaded: true })
+    }
   }
 
   componentDidMount() {
