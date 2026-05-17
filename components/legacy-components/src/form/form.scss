@@ -1,7 +1,7 @@
-@import "../util-viewports/viewports";
-@import "../util-grid/grid";
-@import "../util-palette/palette";
-@import "../util-typography/typography";
+@use "../util-viewports/viewports" as *;
+@use "../util-grid/grid" as *;
+@use "../util-palette/palette" as *;
+@use "../util-typography/typography" as *;
 
 .alex-form {
   @include alex-container($max-width: 100%);

@@ -1,5 +1,7 @@
-@import "../util-palette/palette";
-@import "./type/main";
+@forward "../util-palette/palette";
+@forward "./type/main";
+@use "../util-palette/palette" as *;
+@use "./type/main" as *;
 
 * {
     font-family: "Avenir Next", Avenir, Arial, sans-serif;

@@ -1,4 +1,4 @@
-@import "../util-palette/palette";
+@use "../util-palette/palette" as *;
 
 .alex-pagination {
   padding-left: 0;

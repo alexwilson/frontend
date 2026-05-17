@@ -1,6 +1,6 @@
-@import "../util-viewports/viewports";
-@import "../util-palette/palette";
-@import "./type/main";
+@use "../util-viewports/viewports" as *;
+@use "../util-palette/palette" as *;
+@use "./type/main" as *;
 
 .ds-type-scale {
   padding: 2rem;

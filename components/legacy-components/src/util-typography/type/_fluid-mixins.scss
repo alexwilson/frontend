@@ -1,5 +1,7 @@
 @use "sass:math";
 @use "sass:map";
+@use "../../util-viewports/viewports" as *;
+@use "modular-scale" as *;
 
 $rootsize: 16px;
 $default-min-bp: map.get($breakpoints, phone);

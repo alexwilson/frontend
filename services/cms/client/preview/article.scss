@@ -1,3 +1,3 @@
-@import "~@alexwilson/ds-legacy-components/src/util-viewports/viewports";
-@import "~@alexwilson/ds-legacy-components/src/util-typography/typography";
-@import "~@alexwilson/ds-legacy-components/src/article-layout/article-layout";
+@use "~@alexwilson/ds-legacy-components/src/util-viewports/viewports" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-typography/typography" as *;
+@use "~@alexwilson/ds-legacy-components/src/article-layout/article-layout" as *;

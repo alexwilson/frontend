@@ -1,6 +1,6 @@
-@import "../util-viewports/viewports";
-@import "../util-palette/palette";
-@import "../util-typography/typography";
+@use "../util-viewports/viewports" as *;
+@use "../util-palette/palette" as *;
+@use "../util-typography/typography" as *;
 
 @mixin webmentions__facestack {
   ul {

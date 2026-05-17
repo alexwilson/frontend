@@ -1,5 +1,5 @@
-@import "../util-viewports/viewports";
-@import "./grid";
+@use "../util-viewports/viewports" as *;
+@use "./grid" as *;
 
 .ds-container {
   @include alex-container();

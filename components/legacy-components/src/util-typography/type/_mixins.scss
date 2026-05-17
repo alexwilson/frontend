@@ -3,7 +3,7 @@
 
 // Global variables used in mixins.
 @use "sass:math";
-@import "fluid-mixins";
+@use "fluid-mixins" as *;
 
 // Root font-size in %, outputted in correct breakpoints.
 @mixin rootsize {
