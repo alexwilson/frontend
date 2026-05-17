@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const yaml = require('js-yaml')
+const sass = require('sass')
 
 const isProduction = (process?.env?.NODE_ENV === 'production' || false)
 
@@ -47,7 +48,18 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['css-loader', 'sass-loader']
+                use: [
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            api: 'modern',
+                            sassOptions: {
+                                importers: [new sass.NodePackageImporter()],
+                            },
+                        },
+                    },
+                ]
             },
             {
                 test: /\.css$/,

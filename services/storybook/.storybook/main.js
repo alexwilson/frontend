@@ -1,4 +1,5 @@
 const path = require('path')
+const sass = require('sass')
 
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 module.exports = {
@@ -34,7 +35,19 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            api: 'modern',
+            sassOptions: {
+              importers: [new sass.NodePackageImporter()],
+            },
+          },
+        },
+      ],
     })
 
     config.module.rules.push({
