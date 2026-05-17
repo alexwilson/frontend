@@ -1,0 +1,1 @@
+ALTER TABLE `account` ADD `last_issued_at` integer;

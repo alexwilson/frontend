@@ -16,6 +16,5 @@ export interface Env {
 
   // Vars — set in wrangler.toml [vars]
   BASE_URL: string
-  COOKIE_DOMAIN: string
   TRUSTED_ORIGINS: string
 }

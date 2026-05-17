@@ -6,7 +6,7 @@
 // Keep plugins in sync with src/auth.ts if better-auth's CLI ever needs to
 // introspect for non-migration reasons.
 import { betterAuth } from 'better-auth'
-import { admin, genericOAuth } from 'better-auth/plugins'
+import { admin, genericOAuth, jwt } from 'better-auth/plugins'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { APPS } from './apps/registry'
 import { schema } from './schema'
@@ -20,6 +20,7 @@ export const auth = betterAuth({
   },
   plugins: [
     admin({ defaultRole: 'user', adminRoles: ['admin'] }),
+    jwt({ jwt: { issuer: 'http://localhost', audience: 'http://localhost', expirationTime: '15m' } }),
     genericOAuth({
       config: APPS.map((app) => ({
         providerId: app.providerId,

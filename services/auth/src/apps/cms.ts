@@ -3,6 +3,8 @@ import { and, eq } from 'drizzle-orm'
 import type { Env } from '../env'
 import type { AppContext, AppPlugin, OAuthProviderConfig } from './types'
 import { account } from '../schema'
+import { SCOPES } from '../scopes'
+import { revokeAndClearAccessToken } from './registry'
 
 // Fetches GitHub user info via the App's user-to-server token, falling back
 // to /user/emails when /user.email is null (private emails). Better-auth's
@@ -45,7 +47,10 @@ async function githubUserInfo(tokens: { accessToken?: string }) {
 export class CmsApp implements AppPlugin {
   readonly id = 'cms'
   readonly providerId = 'github-cms'
-  readonly requiredRoles = ['cms-editor', 'admin'] as const
+  // Scopes this app can grant. The endpoint intersects this with the
+  // caller's request + the user's role-derived set, so possessing 'cms-editor'
+  // (which carries cms:read/write/publish) is what unlocks these in practice.
+  readonly grantedScopes = [SCOPES.CMS_READ, SCOPES.CMS_WRITE, SCOPES.CMS_PUBLISH] as const
 
   oauthConfig(env: Env): OAuthProviderConfig {
     const { id, secret } = this.creds(env)
@@ -55,6 +60,12 @@ export class CmsApp implements AppPlugin {
       clientSecret: secret,
       authorizationUrl: 'https://github.com/login/oauth/authorize',
       tokenUrl: 'https://github.com/login/oauth/access_token',
+      // RFC 9207 issuer. GitHub doesn't currently include `iss` in OAuth
+      // callbacks (the RFC is from 2022; GitHub's OAuth predates it). Setting
+      // this is a no-op today — better-auth's check only runs when ?iss is
+      // present. If GitHub ever starts emitting it, we'll validate against
+      // this value automatically without a code change. See threat model T14.
+      issuer: 'https://github.com',
       getUserInfo: githubUserInfo,
       // GitHub Apps ignore OAuth scope=; what matters is the App's User
       // permissions configured on github.com. Kept here for documentation +
@@ -63,23 +74,23 @@ export class CmsApp implements AppPlugin {
     }
   }
 
-  // Revoke the user-to-server token at GitHub and drop the account row.
-  // GitHub revocation kills both access + refresh tokens within seconds,
-  // bounding the post-sign-out exposure of the 8h-floor access token.
+  // Per-device sign-out: revoke the upstream access token at GitHub and NULL
+  // it in our DB, but keep the row + refresh_token. Other concurrent sessions
+  // for the same user transparently refresh-grant on their next call.
+  // Better-auth's session model is shared-token-per-(user,provider), so
+  // DELETEing the row would force every other device to re-OAuth — surprising
+  // and bad UX. See SECURITY.md and services/cms/BFF.md for the design notes.
+  // Delegates to the shared helper so this stays in sync with the admin UI's
+  // "Revoke token" action.
   async onSignOut(ctx: AppContext): Promise<void> {
-    const row = await ctx.db
-      .select({ accessToken: account.accessToken })
-      .from(account)
-      .where(and(eq(account.userId, ctx.userId), eq(account.providerId, this.providerId)))
-      .get()
+    await revokeAndClearAccessToken(ctx.db, ctx.env, this, ctx.userId)
+  }
 
-    if (row?.accessToken) {
-      await this.revokeAtGitHub(ctx.env, row.accessToken)
-    }
-    await ctx.db
-      .delete(account)
-      .where(and(eq(account.userId, ctx.userId), eq(account.providerId, this.providerId)))
-      .run()
+  // Public AppPlugin contract — same revocation call as onSignOut uses, but
+  // exposed so the idle-revocation cron can call it without going through
+  // the full sign-out path (which would also delete the row + refresh token).
+  async revokeAccessToken(env: Env, accessToken: string): Promise<void> {
+    await this.revokeAtGitHub(env, accessToken)
   }
 
   // Admin-driven unlink (no GitHub revocation by default — admin may want to

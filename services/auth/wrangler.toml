@@ -7,11 +7,24 @@ main = "./src/index.ts"
 
 [vars]
 BASE_URL = "https://alexwilson.tech"
-COOKIE_DOMAIN = "alexwilson.tech"
 TRUSTED_ORIGINS = "https://alexwilson.tech,https://local.alexwilson.tech"
+
+[triggers]
+# Idle-revocation cron: every 5 min, src/cron.ts revokes upstream access
+# tokens whose accounts have been idle longer than IDLE_THRESHOLD_MS (10 min).
+# Refresh tokens are left intact so legitimate returns transparently get new
+# access tokens via the refresh-grant flow.
+crons = ["*/5 * * * *"]
 
 [[d1_databases]]
 binding = "AUTH_DB"
 database_name = "auth-db"
 database_id = "70ccc48c-646f-4d82-825b-f4ad227059aa"
 migrations_dir = "./migrations"
+
+# Import .css files as plain text strings — lets us bundle PicoCSS into the
+# /auth/manage HTML response without a separate static asset hop.
+[[rules]]
+type = "Text"
+globs = ["**/*.css"]
+fallthrough = true
