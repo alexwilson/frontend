@@ -3,7 +3,13 @@
 
 // Setting root sizes and base styles.
 @use "sass:color";
+@use "sass:map";
 @use "sass:math";
+@use "sass:string";
+@use "variables" as *;
+@use "mixins" as *;
+@use "../../util-palette/palette" as *;
+@use "../../util-viewports/viewports" as *;
 
 html {
     @include rootsize;
@@ -16,9 +22,9 @@ html {
   body {
     @include fontsize($fontsize: zeta);
 
-    font-family: unquote(map-get($bodytype, font-family));
+    font-family: string.unquote(map.get($bodytype, font-family));
     font-style: normal;
-    font-weight: map-get($bodytype, regular);
+    font-weight: map.get($bodytype, regular);
     line-height: 2rem;
   }
 
@@ -39,7 +45,7 @@ html {
 
     // Nice underlines for text links.
     p a, li a {
-      font-family: unquote(map-get($bodytype, font-family));
+      font-family: string.unquote(map.get($bodytype, font-family));
       background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,color.adjust($linkColour, $lightness: 20%) 50%);
       background-position: 0 93%;
       background-repeat: repeat-x;
@@ -58,17 +64,17 @@ html {
     p {
       @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
 
-      font-family: unquote(map-get($bodytype, font-family));
+      font-family: string.unquote(map.get($bodytype, font-family));
       font-feature-settings: 'kern', 'onum', 'liga';
     }
 
     // Headings. OpenType ligatures, discretionary ligatures and lining figures enabled if available.
     h1, h2, h3, h4, h5, h6 {
       color: $headingColour;
-      font-family: unquote(map-get($headingtype, font-family));
+      font-family: string.unquote(map.get($headingtype, font-family));
       font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
       font-style: normal;
-      font-weight: map-get($headingtype, bold);
+      font-weight: map.get($headingtype, bold);
     }
 
     // Heading level 1.
@@ -117,7 +123,7 @@ html {
       @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
 
       li {
-        font-family: unquote(map-get($bodytype, font-family));
+        font-family: string.unquote(map.get($bodytype, font-family));
         font-feature-settings: 'kern', 'onum', 'liga';
         margin-left: 1rem;
 
@@ -222,7 +228,7 @@ html {
       }
 
       dt {
-        font-weight: map-get($bodytype, bold);
+        font-weight: map.get($bodytype, bold);
       }
 
       dd + dt {
@@ -234,10 +240,10 @@ html {
     table {
       @include sassline($fontsize: eta, $font: $headingtype, $lineheight: 2, $below: 0);
 
-      font-family: unquote(map-get($headingtype, font-family));
+      font-family: string.unquote(map.get($headingtype, font-family));
       font-feature-settings: 'liga', 'lnum', 'tnum', 'kern';
       font-style: normal;
-      font-weight: map-get($headingtype, regular);
+      font-weight: map.get($headingtype, regular);
       width: 100%;
 
       thead {
@@ -251,23 +257,23 @@ html {
 
     // Bold.
     b, strong, .bold {
-      font-family: unquote(map-get($bodytype, font-family));
-      font-weight: map-get($bodytype, bold);
+      font-family: string.unquote(map.get($bodytype, font-family));
+      font-weight: map.get($bodytype, bold);
     }
 
     // Italic.
     em, i, .italic {
-      font-family: unquote(map-get($bodytype, font-family));
-      font-style: map-get($bodytype, italic);
+      font-family: string.unquote(map.get($bodytype, font-family));
+      font-style: map.get($bodytype, italic);
     }
 
     // Caption and inline small text.
     small, .caption {
       @include fontsize($fontsize: theta);
 
-      font-family: unquote(map-get($headingtype, font-family));
+      font-family: string.unquote(map.get($headingtype, font-family));
       font-style: normal;
-      font-weight: map-get($headingtype, regular);
+      font-weight: map.get($headingtype, regular);
     }
 
     small {
@@ -294,7 +300,7 @@ html {
 
       p {
         border-left: 0.15rem solid $linkColour;
-        font-style: map-get($bodytype, italic);
+        font-style: map.get($bodytype, italic);
         padding-left: 1rem;
         @include baseline($fontsize: zeta, $font: $bodytype, $lineheight: 2, $below: 2);
       }
@@ -319,7 +325,7 @@ html {
     // // Code block.
     // code, pre {
     //   background-color: $codeBackgroundColour;
-    //   font-family: unquote(map-get($monospacetype, font-family));
+    //   font-family: string.unquote(map.get($monospacetype, font-family));
     // }
 
     // pre {

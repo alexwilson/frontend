@@ -1,9 +1,9 @@
-@import "../util-viewports/viewports";
-@import "../util-grid/grid";
-@import "../util-palette/palette";
-@import "../util-typography/type/variables";
-@import "../util-typography/type/modular-scale";
-@import "../util-typography/type/mixins";
+@use "../util-viewports/viewports" as *;
+@use "../util-grid/grid" as *;
+@use "../util-palette/palette" as *;
+@use "../util-typography/type/variables" as *;
+@use "../util-typography/type/modular-scale" as *;
+@use "../util-typography/type/mixins" as *;
 
 .alex-article {
   @include alex-container();

@@ -1,14 +1,12 @@
-// Utilities
-@import "~@alexwilson/ds-legacy-components/src/util-viewports/viewports";
-@import "~@alexwilson/ds-legacy-components/src/util-grid/grid";
-@import "~@alexwilson/ds-legacy-components/src/util-palette/palette";
-@import "~@alexwilson/ds-legacy-components/src/util-typography/typography";
+@use "~@alexwilson/ds-legacy-components/src/util-viewports/viewports" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-grid/grid" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-palette/palette" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-typography/typography" as *;
+@use "layout" as *;
 
+// Plain CSS imports — pass through, not the deprecated Sass @import.
 @import "~prismjs/themes/prism-okaidia.css";
 @import "~prismjs/plugins/command-line/prism-command-line.css";
-
-// Page-specific styles
-@import "layout";
 
 // Force spans inside PrismJS to use parent font-family.
 code[class*="language-"] span, pre[class*="language-"] span {

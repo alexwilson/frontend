@@ -1,6 +1,6 @@
-@import "../util-viewports/viewports";
-@import "../util-grid/grid";
-@import "../util-palette/palette";
+@use "../util-viewports/viewports" as *;
+@use "../util-grid/grid" as *;
+@use "../util-palette/palette" as *;
 
 .alex-stream {
     @include alex-container();

@@ -1,4 +1,4 @@
-@import "./palette";
+@use "./palette" as *;
 
 .ds-swatches {
   display: flex;
