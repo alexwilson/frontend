@@ -6,7 +6,21 @@
       "idx": 0,
       "version": "6",
       "when": 1778933135477,
-      "tag": "0000_unusual_george_stacy",
+      "tag": "0000_initial_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1778945601620,
+      "tag": "0001_add_jwks_table",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1778991079944,
+      "tag": "0002_account_last_issued_at",
       "breakpoints": true
     }
   ]

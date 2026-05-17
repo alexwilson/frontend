@@ -8,6 +8,7 @@ import type { DrizzleD1Database } from 'drizzle-orm/d1'
 import type { Env } from '../env'
 import type { Auth } from '../auth'
 import type { schema } from '../schema'
+import type { Scope } from '../scopes'
 
 export type Db = DrizzleD1Database<typeof schema>
 
@@ -21,6 +22,8 @@ export interface AppContext {
   readonly userId: string
   readonly userEmail: string
   readonly userRole: string
+  /** Scopes the user holds *for this app* — already intersected with grantedScopes. */
+  readonly grantedScopes: readonly string[]
 }
 
 // Better-auth's GenericOAuthConfig isn't re-exported cleanly across versions;
@@ -33,6 +36,15 @@ export interface OAuthProviderConfig {
   tokenUrl: string
   userInfoUrl?: string
   scopes?: string[]
+  // Expected issuer identifier (RFC 9207). Better-auth checks ?iss on the
+  // OAuth callback against this. Belt-and-suspenders against mix-up attacks
+  // — the primary defence is per-provider callback paths + hardcoded
+  // authorizationUrl/tokenUrl. Setting `issuer` here costs nothing today
+  // (most OAuth providers don't return iss yet, so the check is a no-op),
+  // but starts validating automatically if/when the provider implements
+  // RFC 9207. Don't set `requireIssuerValidation: true` until the provider
+  // actually sends it, or the flow will fail closed.
+  issuer?: string
   getUserInfo?: (tokens: { accessToken?: string }) => Promise<{
     id: string
     name?: string
@@ -43,12 +55,16 @@ export interface OAuthProviderConfig {
 }
 
 export interface AppPlugin {
-  /** Public app id — what callers send as ?app=. */
+  /** Public app id — appears in the URL as /auth/app/<id>/token. */
   readonly id: string
   /** Better-auth providerId — the row in the `account` table. */
   readonly providerId: string
-  /** Role(s) permitted to obtain this app's token. */
-  readonly requiredRoles: readonly string[]
+  /**
+   * Scopes this app is willing to grant. The token-exchange handler
+   * intersects this with the caller's requested scope and the user's
+   * role-derived scope set. An app can never hand out a scope it doesn't own.
+   */
+  readonly grantedScopes: readonly Scope[]
 
   /** Provider registration consumed by better-auth's genericOAuth plugin. */
   oauthConfig(env: Env): OAuthProviderConfig
@@ -63,9 +79,19 @@ export interface AppPlugin {
   onUnlink?(ctx: AppContext): Promise<void>
 
   /**
-   * Optional app-specific claims merged into the /auth/app/token response.
-   * Pure data — no signing. Clients trust the auth worker; if you ever need
-   * third-party verifiable claims, sign a JWT here instead.
+   * Revoke a single upstream access token. Called by the idle-revocation
+   * cron (src/cron.ts) when this account's lastIssuedAt has been quiet for
+   * longer than the idle threshold. Must NOT touch the refresh token —
+   * legitimate returns refresh-grant transparently. Must be idempotent
+   * (the same token may be revoked twice if the cron retries after a partial
+   * failure).
+   */
+  revokeAccessToken?(env: Env, accessToken: string): Promise<void>
+
+  /**
+   * Optional app-specific claims merged into JWT #2's payload alongside the
+   * standard identity + scope + access_token claims. Pure data — signing is
+   * handled centrally so the claim set is verifiable via /auth/jwks.
    */
   claims?(ctx: AppContext): Promise<Record<string, unknown>>
 }

@@ -55,9 +55,28 @@ export const account = sqliteTable('account', {
   password: text('password'),
   createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).notNull(),
+  // Our addition: timestamp of the most recent JWT #2 issuance for this
+  // (user, provider). Used by the idle-revocation cron in src/cron.ts to
+  // identify access tokens that haven't been handed to a client recently.
+  // Nullable for pre-migration rows and freshly-OAuth-linked rows that
+  // haven't yet had a token brokered; the cron uses
+  // COALESCE(last_issued_at, created_at) so existing rows fall back to
+  // their creation time (and get revoked on first tick if old enough).
+  lastIssuedAt: integer('last_issued_at', { mode: 'timestamp_ms' }),
 }, (t) => ({
   userIdIdx: index('account_user_id_idx').on(t.userId),
 }))
+
+// Signing-key store for the JWT plugin. Plugin generates a keypair on first
+// use and rotates per its config. Schema declared by better-auth's
+// plugins/jwt/schema; we mirror it in Drizzle for migration generation.
+export const jwks = sqliteTable('jwks', {
+  id: text('id').primaryKey(),
+  publicKey: text('public_key').notNull(),
+  privateKey: text('private_key').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull(),
+  expiresAt: integer('expires_at', { mode: 'timestamp_ms' }),
+})
 
 export const verification = sqliteTable('verification', {
   id: text('id').primaryKey(),
@@ -85,5 +104,6 @@ export const schema = {
   session,
   account,
   verification,
+  jwks,
   allowedEmail,
 }

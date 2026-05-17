@@ -2,19 +2,34 @@
 // 303 redirect. No client framework. Better-auth's admin plugin owns
 // /auth/admin/* for its own API surface — we live at /auth/manage to avoid that.
 //
-// All actions go through better-auth's server API (auth.api.*), which enforces
-// role='admin' under the hood. Our own requireAdmin is defence-in-depth +
-// gives us a nice 401 → sign-in redirect for unauthenticated browsers.
+// Styling: PicoCSS (~10KB) inlined for tables/forms/typography defaults, plus
+// a small CUSTOM_CSS block for badges + inline-form layout. No external fonts
+// (Pico uses system-ui).
+//
+// Composition: tiny template-string "component" layer (Badge / Button /
+// ActionForm) — same mental model as React components, zero runtime.
+import type { Context } from 'hono'
 import { drizzle } from 'drizzle-orm/d1'
-import { and, asc, desc, eq } from 'drizzle-orm'
+import { and, asc, desc, eq, gt, sql } from 'drizzle-orm'
+import picoCss from '@picocss/pico/css/pico.min.css'
 import type { Env } from './env'
 import type { Auth } from './auth'
-import { appById } from './apps/registry'
-import { schema, user, account, allowedEmail } from './schema'
+import { appById, revokeAndClearAccessToken } from './apps/registry'
+import { schema, user, session, account, allowedEmail } from './schema'
+import { normalizeEmail } from './email-normalize'
 
-// Capability app for the "Unlink" button on the user list. If/when the admin
-// UI grows to manage multiple capabilities, this becomes a per-row dropdown.
-const CMS_PROVIDER_ID = appById('cms')!.providerId
+type Ctx = Context<{ Bindings: Env }>
+
+// Keep in sync with cron.ts; if it grows a third caller, extract to a shared
+// constants module.
+const IDLE_THRESHOLD_MS = 10 * 60 * 1000
+
+// Capability app for the per-user "CMS" column + "Revoke token" / "Unlink"
+// actions. When the admin UI gains a per-row app selector, this becomes a map.
+const CMS_APP = appById('cms')!
+const CMS_PROVIDER_ID = CMS_APP.providerId
+
+const ROLES = ['user', 'cms-editor', 'admin'] as const
 
 const dbFor = (env: Env) => drizzle(env.AUTH_DB, { schema })
 
@@ -22,6 +37,58 @@ const esc = (s: unknown): string =>
   String(s ?? '').replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!),
   )
+
+// ─── Components ──────────────────────────────────────────────────────────
+// Typed template functions. Same authoring ergonomics as React without the
+// runtime — each takes typed props and returns an HTML string.
+
+type BadgeKind = 'active' | 'idle' | 'cleared' | 'unlinked' | 'admin' | 'banned'
+const Badge = (kind: BadgeKind, text: string, hint?: string): string =>
+  `<span class="badge badge-${kind}"${hint ? ` title="${esc(hint)}"` : ''}>${esc(text)}</span>`
+
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'warn'
+const Button = (variant: ButtonVariant, label: string): string =>
+  `<button type="submit" class="btn btn-${variant}">${esc(label)}</button>`
+
+// Wraps a button-form. If `confirm` is set, vanilla JS confirms before submit.
+type ActionFormProps = {
+  action: string
+  fields: Record<string, string>
+  button: string
+  confirm?: string
+}
+const ActionForm = (p: ActionFormProps): string =>
+  `<form method="post" action="/auth/manage" class="inline-form"${p.confirm ? ` data-confirm="${esc(p.confirm)}"` : ''}>
+    <input type="hidden" name="_action" value="${esc(p.action)}"/>
+    ${Object.entries(p.fields).map(([k, v]) => `<input type="hidden" name="${esc(k)}" value="${esc(v)}"/>`).join('')}
+    ${p.button}
+  </form>`
+
+// ─── Status helpers ──────────────────────────────────────────────────────
+
+function formatAgo(ms: number): string {
+  const s = Math.floor(ms / 1000)
+  if (s < 60) return `${s}s`
+  const m = Math.floor(s / 60)
+  if (m < 60) return `${m}m`
+  const h = Math.floor(m / 60)
+  if (h < 24) return `${h}h`
+  return `${Math.floor(h / 24)}d`
+}
+
+function cmsStatusBadge(info: CmsAccountInfo | undefined): string {
+  if (!info?.hasRow) return Badge('unlinked', 'Not linked', 'No CMS account row for this user')
+  if (!info.hasToken) return Badge('cleared', 'Token cleared', 'Account linked, refresh token kept; transparently re-issues on next use')
+  if (!info.lastIssuedAt) return Badge('idle', 'Idle', 'Token exists but never brokered — cron will revoke on next tick')
+  const age = Date.now() - info.lastIssuedAt.getTime()
+  const ago = formatAgo(age)
+  if (age < IDLE_THRESHOLD_MS) {
+    return Badge('active', 'Active', `Last brokered ${ago} ago`)
+  }
+  return Badge('idle', 'Idle', `Last brokered ${ago} ago — cron will revoke on next tick`)
+}
+
+// ─── Data ────────────────────────────────────────────────────────────────
 
 interface AdminUser {
   id: string
@@ -32,65 +99,24 @@ interface AdminUser {
   banReason?: string | null
 }
 
-async function requireAdmin(
-  request: Request,
-  auth: Auth,
-): Promise<{ user: AdminUser } | Response> {
-  const session = await auth.api.getSession({ headers: request.headers })
-  if (!session?.user) {
-    return new Response(null, {
-      status: 302,
-      headers: { Location: '/auth/manage/sign-in' },
-    })
-  }
-  if (session.user.role !== 'admin') {
-    return new Response('Forbidden — admin role required', { status: 403 })
-  }
-  return { user: session.user as AdminUser }
+interface CmsAccountInfo {
+  hasRow: boolean
+  hasToken: boolean
+  lastIssuedAt: Date | null
 }
 
-// Server-side trigger for the GitHub OAuth flow. Calls better-auth's signIn
-// API and propagates its Set-Cookie headers onto a 302 to the GitHub authorize
-// URL. The Set-Cookie carries the OAuth state — dropping it produces
-// state_mismatch on the callback.
-export async function handleManageSignIn(
-  request: Request,
-  _env: Env,
-  auth: Auth,
-): Promise<Response> {
-  try {
-    const apiResponse = (await auth.api.signInSocial({
-      body: { provider: 'github', callbackURL: '/auth/manage' },
-      headers: request.headers,
-      asResponse: true,
-    } as Parameters<typeof auth.api.signInSocial>[0])) as unknown as Response
+interface SessionStats {
+  count: number
+  lastSeen: Date | null
+}
 
-    // If the API already returns a redirect, pass it straight through.
-    if (
-      apiResponse.status >= 300 &&
-      apiResponse.status < 400 &&
-      apiResponse.headers.get('location')
-    ) {
-      return apiResponse
-    }
-
-    // Otherwise it's JSON { url }; build a 302 that keeps Set-Cookie.
-    const data = (await apiResponse.json()) as { url?: string }
-    if (!data.url) throw new Error('no redirect url')
-
-    const headers = new Headers(apiResponse.headers)
-    headers.set('Location', data.url)
-    headers.delete('content-type')
-    headers.delete('content-length')
-    return new Response(null, { status: 302, headers })
-  } catch (e) {
-    return new Response(`Sign-in failed: ${(e as Error).message}`, { status: 500 })
-  }
+interface AllowedEmail {
+  email: string
+  createdAt: string
+  createdBy: string | null
 }
 
 async function listUsers(env: Env): Promise<AdminUser[]> {
-  // Direct DB read — simpler than paginating through admin.listUsers and we
-  // already have the binding. Order: admins first, then alpha by email.
   const rows = await dbFor(env)
     .select({
       id: user.id,
@@ -113,19 +139,49 @@ async function listUsers(env: Env): Promise<AdminUser[]> {
   }))
 }
 
-async function userHasCmsLink(env: Env, userId: string): Promise<boolean> {
-  const row = await dbFor(env)
-    .select({ userId: account.userId })
+async function listCmsAccounts(env: Env): Promise<Map<string, CmsAccountInfo>> {
+  const rows = await dbFor(env)
+    .select({
+      userId: account.userId,
+      accessToken: account.accessToken,
+      lastIssuedAt: account.lastIssuedAt,
+    })
     .from(account)
-    .where(and(eq(account.userId, userId), eq(account.providerId, CMS_PROVIDER_ID)))
-    .get()
-  return !!row
+    .where(eq(account.providerId, CMS_PROVIDER_ID))
+    .all()
+  const map = new Map<string, CmsAccountInfo>()
+  for (const r of rows) {
+    map.set(r.userId, {
+      hasRow: true,
+      hasToken: r.accessToken !== null,
+      lastIssuedAt: r.lastIssuedAt ?? null,
+    })
+  }
+  return map
 }
 
-interface AllowedEmail {
-  email: string
-  createdAt: string
-  createdBy: string | null
+async function listSessionStats(env: Env): Promise<Map<string, SessionStats>> {
+  // Drizzle's `count` aggregate returns string in some adapters; cast through
+  // sql template to be explicit. Filter expired sessions so we don't count
+  // dead rows the user can no longer use.
+  const rows = await dbFor(env)
+    .select({
+      userId: session.userId,
+      count: sql<number>`count(*)`.as('count'),
+      lastSeen: sql<number | null>`max(${session.updatedAt})`.as('last_seen'),
+    })
+    .from(session)
+    .where(gt(session.expiresAt, new Date()))
+    .groupBy(session.userId)
+    .all()
+  const map = new Map<string, SessionStats>()
+  for (const r of rows) {
+    map.set(r.userId, {
+      count: Number(r.count),
+      lastSeen: r.lastSeen ? new Date(r.lastSeen) : null,
+    })
+  }
+  return map
 }
 
 async function listAllowedEmails(env: Env): Promise<AllowedEmail[]> {
@@ -140,12 +196,11 @@ async function listAllowedEmails(env: Env): Promise<AllowedEmail[]> {
     .all()
 }
 
-async function allowEmail(env: Env, email: string, createdBy: string): Promise<void> {
-  // ON CONFLICT DO NOTHING — idempotent. Re-adding an existing email is a no-op.
+async function allowEmail(env: Env, normalizedEmail: string, createdBy: string): Promise<void> {
   await dbFor(env)
     .insert(allowedEmail)
     .values({
-      email: email.toLowerCase(),
+      email: normalizedEmail,
       createdAt: new Date().toISOString(),
       createdBy,
     })
@@ -153,10 +208,10 @@ async function allowEmail(env: Env, email: string, createdBy: string): Promise<v
     .run()
 }
 
-async function revokeEmail(env: Env, email: string): Promise<void> {
+async function revokeEmail(env: Env, normalizedEmail: string): Promise<void> {
   await dbFor(env)
     .delete(allowedEmail)
-    .where(eq(allowedEmail.email, email.toLowerCase()))
+    .where(eq(allowedEmail.email, normalizedEmail))
     .run()
 }
 
@@ -167,32 +222,116 @@ async function unlinkCms(env: Env, userId: string): Promise<void> {
     .run()
 }
 
-const CSS = `
-*{box-sizing:border-box;margin:0;padding:0}
-body{font:14px/1.5 system-ui,sans-serif;background:#f5f5f5;color:#222}
-header{background:#1a1a2e;color:#fff;padding:.85rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
-header strong{font-size:1rem}
-main{max-width:1100px;margin:1.5rem auto;padding:0 1rem}
-h2{font-size:.95rem;margin-bottom:.75rem;font-weight:600}
-table{width:100%;background:#fff;border-collapse:collapse;box-shadow:0 1px 3px rgba(0,0,0,.08);border-radius:6px;overflow:hidden}
-th,td{padding:.6rem .75rem;text-align:left;border-bottom:1px solid #eee;vertical-align:middle;font-size:.85rem}
-th{background:#fafafa;font-weight:600;color:#555;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
-tr:last-child td{border-bottom:none}
-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#666}
-.actions{display:flex;gap:.35rem;flex-wrap:wrap}
-.btn{display:inline-block;padding:.3rem .55rem;border:none;border-radius:4px;cursor:pointer;font-size:.78rem;background:#e5e7eb;color:#333}
-.btn-primary{background:#2563eb;color:#fff}
-.btn-danger{background:#dc2626;color:#fff}
-.btn-warn{background:#d97706;color:#fff}
-form.inline{display:inline}
-select,input[type=text]{padding:.25rem .4rem;border:1px solid #d1d5db;border-radius:4px;font-size:.82rem}
-.banned{background:#fef2f2}
-.banned td:first-child::before{content:"banned ";color:#dc2626;font-weight:600}
-.flash{margin-bottom:1rem;padding:.6rem .85rem;border-radius:4px;font-size:.85rem}
-.flash-ok{background:#d1fae5;color:#065f46}
-.flash-err{background:#fee2e2;color:#991b1b}
-.muted{color:#888;font-size:.8rem}
+// Forces re-login on every device for this user by deleting all session rows.
+// JWT #1 cookies on those devices will fail verification on next use (their
+// `sid` claim refers to a row that no longer exists). The CMS account row +
+// refresh token are untouched; re-login still gets transparent access.
+async function signOutEverywhere(env: Env, userId: string): Promise<void> {
+  await dbFor(env).delete(session).where(eq(session.userId, userId)).run()
+}
+
+// ─── Auth ────────────────────────────────────────────────────────────────
+
+async function requireAdmin(
+  c: Ctx,
+  auth: Auth,
+): Promise<{ user: AdminUser } | Response> {
+  const fullSession = await auth.api.getSession({ headers: c.req.raw.headers })
+  if (!fullSession?.user) return c.redirect('/auth/manage/sign-in', 302)
+  if (fullSession.user.role !== 'admin') return c.text('Forbidden — admin role required', 403)
+  return { user: fullSession.user as AdminUser }
+}
+
+export async function handleManageSignIn(c: Ctx, auth: Auth): Promise<Response> {
+  try {
+    const apiResponse = (await auth.api.signInSocial({
+      body: { provider: 'github', callbackURL: '/auth/manage' },
+      headers: c.req.raw.headers,
+      asResponse: true,
+    } as Parameters<typeof auth.api.signInSocial>[0])) as unknown as Response
+
+    if (
+      apiResponse.status >= 300 &&
+      apiResponse.status < 400 &&
+      apiResponse.headers.get('location')
+    ) {
+      return apiResponse
+    }
+
+    const data = (await apiResponse.json()) as { url?: string }
+    if (!data.url) throw new Error('no redirect url')
+
+    const headers = new Headers(apiResponse.headers)
+    headers.set('Location', data.url)
+    headers.delete('content-type')
+    headers.delete('content-length')
+    return new Response(null, { status: 302, headers })
+  } catch (e) {
+    return c.text(`Sign-in failed: ${(e as Error).message}`, 500)
+  }
+}
+
+// ─── CSS ─────────────────────────────────────────────────────────────────
+// Layers on top of Pico's tokens (--pico-*). Adds badges + inline-form
+// horizontal layout (Pico defaults to vertical stacking for form elements).
+// Colours hardcoded rather than reused from --pico-color-* so the semantic
+// meaning is obvious at the call site (active = green, idle = amber, etc.).
+const CUSTOM_CSS = `
+:root { --pico-form-element-spacing-vertical: .4rem; --pico-form-element-spacing-horizontal: .6rem; }
+main.container { padding-top: 1rem; padding-bottom: 2rem; }
+header.app-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .85rem 0; margin-bottom: 1rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+article { padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+article > header { padding: 0 0 .75rem; margin: 0 0 1rem; background: transparent; }
+table { font-size: .9rem; margin-bottom: 0; }
+table th, table td { padding: .5rem .6rem; }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: .72rem; font-weight: 600; vertical-align: middle;
+  letter-spacing: .02em;
+}
+.badge-active { background: #d1fae5; color: #065f46; }
+.badge-idle { background: #fef3c7; color: #92400e; }
+.badge-cleared { background: #e5e7eb; color: #374151; }
+.badge-unlinked { background: transparent; color: var(--pico-muted-color); border: 1px dashed var(--pico-muted-border-color); }
+.badge-admin { background: #dbeafe; color: #1e40af; }
+.badge-banned { background: #fee2e2; color: #991b1b; }
+.inline-form { display: inline-flex; gap: 4px; align-items: center; margin: 0; }
+.inline-form select, .inline-form input { margin: 0; }
+.btn {
+  display: inline-block; padding: .35rem .7rem; border-radius: var(--pico-border-radius);
+  border: 1px solid transparent; font-size: .8rem; font-weight: 500; cursor: pointer;
+  background: var(--pico-secondary-background); color: var(--pico-secondary-inverse);
+}
+.btn-primary { background: var(--pico-primary-background); color: var(--pico-primary-inverse); }
+.btn-secondary { background: transparent; border-color: var(--pico-muted-border-color); color: var(--pico-color); }
+.btn-warn { background: #d97706; color: #fff; }
+.btn-danger { background: #dc2626; color: #fff; }
+.actions { display: flex; gap: 4px; flex-wrap: wrap; }
+.muted { color: var(--pico-muted-color); font-size: .85rem; }
+.flash {
+  padding: .75rem 1rem; margin-bottom: 1rem;
+  border-radius: var(--pico-border-radius); font-size: .9rem;
+}
+.flash-ok { background: #d1fae5; color: #065f46; }
+.flash-err { background: #fee2e2; color: #991b1b; }
+.id-code {
+  font-family: var(--pico-font-family-monospace); font-size: .68rem;
+  color: var(--pico-muted-color); margin-top: 2px;
+}
+.user-cell strong { font-weight: 600; }
 `
+
+const CONFIRM_JS = `<script>
+document.querySelectorAll('form[data-confirm]').forEach(function(f){
+  f.addEventListener('submit', function(e){
+    if(!confirm(f.getAttribute('data-confirm'))) e.preventDefault()
+  })
+})
+</script>`
 
 function page(opts: {
   me: AdminUser
@@ -204,67 +343,91 @@ function page(opts: {
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="color-scheme" content="light dark"/>
 <title>auth · manage</title>
-<style>${CSS}</style>
+<style>${picoCss}</style>
+<style>${CUSTOM_CSS}</style>
 </head><body>
-<header>
+<main class="container">
+<header class="app-header">
   <strong>auth · manage</strong>
   <span class="muted">${esc(me.email)}</span>
 </header>
-<main>
 ${flash ? `<div class="flash flash-${flash.kind}">${esc(flash.text)}</div>` : ''}
 ${body}
 </main>
+${CONFIRM_JS}
 </body></html>`
 }
 
-const ROLES = ['user', 'cms-editor', 'admin'] as const
-
-function userRow(u: AdminUser, hasCms: boolean): string {
-  const cls = u.banned ? 'banned' : ''
-  return `<tr class="${cls}">
-    <td>
-      <div><strong>${esc(u.email)}</strong></div>
+function userRow(u: AdminUser, cms: CmsAccountInfo | undefined, sessions: SessionStats | undefined): string {
+  return `<tr${u.banned ? ' style="opacity:.55"' : ''}>
+    <td class="user-cell">
+      <div>
+        <strong>${esc(u.email)}</strong>
+        ${u.role === 'admin' ? ' ' + Badge('admin', 'admin') : ''}
+        ${u.banned ? ' ' + Badge('banned', 'banned') : ''}
+      </div>
       ${u.name ? `<div class="muted">${esc(u.name)}</div>` : ''}
-      <code>${esc(u.id)}</code>
+      <div class="id-code">${esc(u.id)}</div>
     </td>
     <td>
-      <form method="post" action="/auth/manage" class="inline">
+      <form method="post" action="/auth/manage" class="inline-form">
         <input type="hidden" name="_action" value="set-role"/>
         <input type="hidden" name="userId" value="${esc(u.id)}"/>
         <select name="role">
           ${ROLES.map((r) => `<option value="${r}" ${r === u.role ? 'selected' : ''}>${r}</option>`).join('')}
         </select>
-        <button type="submit" class="btn btn-primary">Save</button>
+        ${Button('primary', 'Save')}
       </form>
     </td>
+    <td>${cmsStatusBadge(cms)}</td>
     <td>
-      ${hasCms
-        ? `<form method="post" action="/auth/manage" class="inline" data-confirm="Unlink CMS access for ${esc(u.email)}?">
-            <input type="hidden" name="_action" value="unlink-cms"/>
-            <input type="hidden" name="userId" value="${esc(u.id)}"/>
-            <button type="submit" class="btn btn-warn">Unlink</button>
-          </form>`
-        : `<span class="muted">—</span>`}
+      ${sessions && sessions.count > 0
+        ? `<span title="Last seen ${sessions.lastSeen ? formatAgo(Date.now() - sessions.lastSeen.getTime()) + ' ago' : 'never'}">${sessions.count} session${sessions.count === 1 ? '' : 's'}</span>`
+        : `<span class="muted">none</span>`
+      }
     </td>
     <td>
       <div class="actions">
+        ${cms?.hasToken
+          ? ActionForm({
+              action: 'revoke-token',
+              fields: { userId: u.id },
+              button: Button('warn', 'Revoke token'),
+              confirm: `Revoke access token for ${u.email}? They'll transparently get a new one on next CMS use (refresh token kept).`,
+            })
+          : ''}
+        ${sessions && sessions.count > 0
+          ? ActionForm({
+              action: 'sign-out-everywhere',
+              fields: { userId: u.id },
+              button: Button('warn', 'Sign out all'),
+              confirm: `Sign out ${u.email} from all ${sessions.count} device${sessions.count === 1 ? '' : 's'}? They'll need to sign in again everywhere.`,
+            })
+          : ''}
+        ${cms?.hasRow
+          ? ActionForm({
+              action: 'unlink-cms',
+              fields: { userId: u.id },
+              button: Button('warn', 'Unlink CMS'),
+              confirm: `Unlink CMS for ${u.email}? They'll need to re-OAuth the GitHub App.`,
+            })
+          : ''}
         ${u.banned
-          ? `<form method="post" action="/auth/manage" class="inline">
-              <input type="hidden" name="_action" value="unban"/>
-              <input type="hidden" name="userId" value="${esc(u.id)}"/>
-              <button type="submit" class="btn">Unban</button>
-            </form>`
-          : `<form method="post" action="/auth/manage" class="inline" data-confirm="Ban ${esc(u.email)}?">
-              <input type="hidden" name="_action" value="ban"/>
-              <input type="hidden" name="userId" value="${esc(u.id)}"/>
-              <button type="submit" class="btn btn-warn">Ban</button>
-            </form>`}
-        <form method="post" action="/auth/manage" class="inline" data-confirm="Delete ${esc(u.email)} permanently?">
-          <input type="hidden" name="_action" value="delete"/>
-          <input type="hidden" name="userId" value="${esc(u.id)}"/>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+          ? ActionForm({ action: 'unban', fields: { userId: u.id }, button: Button('secondary', 'Unban') })
+          : ActionForm({
+              action: 'ban',
+              fields: { userId: u.id },
+              button: Button('warn', 'Ban'),
+              confirm: `Ban ${u.email}?`,
+            })}
+        ${ActionForm({
+          action: 'delete',
+          fields: { userId: u.id },
+          button: Button('danger', 'Delete'),
+          confirm: `Delete ${u.email} permanently? This removes the user, sessions, and account links.`,
+        })}
       </div>
     </td>
   </tr>`
@@ -274,157 +437,137 @@ function allowlistRow(a: AllowedEmail): string {
   return `<tr>
     <td><strong>${esc(a.email)}</strong></td>
     <td class="muted">${esc(a.createdAt.slice(0, 10))}${a.createdBy ? ` · by ${esc(a.createdBy)}` : ''}</td>
-    <td>
-      <form method="post" action="/auth/manage" class="inline" data-confirm="Revoke sign-up for ${esc(a.email)}?">
-        <input type="hidden" name="_action" value="revoke-email"/>
-        <input type="hidden" name="email" value="${esc(a.email)}"/>
-        <button type="submit" class="btn btn-danger">Revoke</button>
-      </form>
-    </td>
+    <td>${ActionForm({
+      action: 'revoke-email',
+      fields: { email: a.email },
+      button: Button('danger', 'Revoke'),
+      confirm: `Revoke sign-up for ${a.email}?`,
+    })}</td>
   </tr>`
 }
 
-const CONFIRM_JS = `
-document.querySelectorAll('form[data-confirm]').forEach(function(f){
-  f.addEventListener('submit',function(e){
-    if(!confirm(f.getAttribute('data-confirm')))e.preventDefault()
-  })
-})`
-
-async function handleGet(
-  request: Request,
-  env: Env,
+async function renderManage(
+  c: Ctx,
   auth: Auth,
   flash?: { kind: 'ok' | 'err'; text: string },
 ): Promise<Response> {
-  const gate = await requireAdmin(request, auth)
+  const gate = await requireAdmin(c, auth)
   if (gate instanceof Response) return gate
 
-  const [users, allowed] = await Promise.all([listUsers(env), listAllowedEmails(env)])
-  const cmsLinks = new Map<string, boolean>()
-  for (const u of users) cmsLinks.set(u.id, await userHasCmsLink(env, u.id))
+  const [users, allowed, cmsAccounts, sessionStats] = await Promise.all([
+    listUsers(c.env),
+    listAllowedEmails(c.env),
+    listCmsAccounts(c.env),
+    listSessionStats(c.env),
+  ])
 
   const body = `
-    <h2>Allowed emails (${allowed.length})</h2>
-    <p class="muted" style="margin-bottom:.75rem">
-      Only emails on this list can complete sign-up. Existing users keep access regardless.
-    </p>
-    <table>
-      <thead><tr>
-        <th>Email</th><th>Added</th><th>Actions</th>
-      </tr></thead>
-      <tbody>${allowed.map(allowlistRow).join('') || '<tr><td colspan="3" class="muted" style="text-align:center;padding:1rem">No emails allowed yet — sign-up is blocked.</td></tr>'}</tbody>
-    </table>
-    <form method="post" action="/auth/manage" style="margin:1rem 0 2rem">
-      <input type="hidden" name="_action" value="allow-email"/>
-      <input type="email" name="email" placeholder="email@example.com" required style="width:240px"/>
-      <button type="submit" class="btn btn-primary">Allow sign-up</button>
-    </form>
+    <article>
+      <header><strong>Allowed emails</strong> <span class="muted">(${allowed.length})</span></header>
+      <p class="muted" style="margin-top:-.25rem">Only emails on this list can complete sign-up. Existing users keep access.</p>
+      <table>
+        <thead><tr><th>Email</th><th>Added</th><th></th></tr></thead>
+        <tbody>${allowed.map(allowlistRow).join('') || '<tr><td colspan="3" class="muted" style="text-align:center">No emails allowed yet — sign-up is blocked.</td></tr>'}</tbody>
+      </table>
+      <form method="post" action="/auth/manage" style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;flex-wrap:wrap">
+        <input type="hidden" name="_action" value="allow-email"/>
+        <input type="email" name="email" placeholder="email@example.com" required style="margin:0;flex:1;max-width:320px"/>
+        ${Button('primary', 'Allow sign-up')}
+      </form>
+    </article>
 
-    <h2>Users (${users.length})</h2>
-    <table>
-      <thead><tr>
-        <th>User</th><th>Role</th><th>CMS link</th><th>Actions</th>
-      </tr></thead>
-      <tbody>${users.map((u) => userRow(u, cmsLinks.get(u.id) ?? false)).join('')}</tbody>
-    </table>
-    <script>${CONFIRM_JS}</script>
+    <article>
+      <header><strong>Users</strong> <span class="muted">(${users.length})</span></header>
+      <table>
+        <thead><tr>
+          <th>User</th><th>Role</th><th>CMS</th><th>Sessions</th><th>Actions</th>
+        </tr></thead>
+        <tbody>${users.map((u) => userRow(u, cmsAccounts.get(u.id), sessionStats.get(u.id))).join('')}</tbody>
+      </table>
+    </article>
   `
-  return new Response(page({ me: gate.user, body, flash }), {
-    headers: {
-      'content-type': 'text/html; charset=utf-8',
-      'cache-control': 'private, no-store',
-    },
-  })
+  c.header('cache-control', 'private, no-store')
+  return c.html(page({ me: gate.user, body, flash }))
 }
 
-async function handlePost(
-  request: Request,
-  env: Env,
-  auth: Auth,
-): Promise<Response> {
-  // CSRF defence: reject POSTs whose Origin doesn't match BASE_URL. The
-  // session cookie is SameSite=Lax + Domain=alexwilson.tech, so a malicious
-  // page on a *takenover subdomain* of alexwilson.tech could otherwise forge
-  // admin actions (cookie sent, session valid, role passes). Browsers reliably
-  // attach Origin to POST requests; missing Origin from a real browser POST
-  // is also suspicious and rejected.
-  const origin = request.headers.get('Origin')
-  if (!origin || origin !== env.BASE_URL) {
-    return new Response('Forbidden — bad origin', { status: 403 })
+async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
+  // CSRF defence: reject POSTs whose Origin doesn't match BASE_URL.
+  const origin = c.req.header('Origin')
+  if (!origin || origin !== c.env.BASE_URL) {
+    return c.text('Forbidden — bad origin', 403)
   }
 
-  const gate = await requireAdmin(request, auth)
+  const gate = await requireAdmin(c, auth)
   if (gate instanceof Response) return gate
 
-  const form = await request.formData()
-  const action = String(form.get('_action') ?? '')
+  const form = await c.req.parseBody()
+  const action = String(form._action ?? '')
 
-  // Allowlist actions operate on emails (not user ids) and run before the
-  // userId check below.
+  // Allowlist actions normalize email and reject homoglyphs.
   if (action === 'allow-email' || action === 'revoke-email') {
-    const email = String(form.get('email') ?? '').trim()
-    if (!email) return handleGet(request, env, auth, { kind: 'err', text: 'Missing email' })
+    const raw = String(form.email ?? '')
+    const result = normalizeEmail(raw)
+    if (!result.ok) return renderManage(c, auth, { kind: 'err', text: result.error })
     try {
-      if (action === 'allow-email') await allowEmail(env, email, gate.user.email)
-      else await revokeEmail(env, email)
+      if (action === 'allow-email') await allowEmail(c.env, result.email, gate.user.email)
+      else await revokeEmail(c.env, result.email)
     } catch (e) {
-      return handleGet(request, env, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
+      return renderManage(c, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
     }
-    return new Response(null, { status: 303, headers: { Location: '/auth/manage' } })
+    return c.redirect('/auth/manage', 303)
   }
 
-  const userId = String(form.get('userId') ?? '')
-  if (!userId) return handleGet(request, env, auth, { kind: 'err', text: 'Missing user' })
+  const userId = String(form.userId ?? '')
+  if (!userId) return renderManage(c, auth, { kind: 'err', text: 'Missing user' })
 
-  // Don't allow operating on yourself for destructive actions — easy
-  // foot-gun otherwise (lock yourself out, delete your own row).
-  const destructive = ['ban', 'delete'].includes(action)
+  // Foot-gun guard. 'sign-out-everywhere' added to the list because signing
+  // yourself out of all devices via the manage UI is almost certainly a
+  // mistake (you're currently in one of those devices).
+  const destructive = ['ban', 'delete', 'sign-out-everywhere'].includes(action)
   if (destructive && userId === gate.user.id) {
-    return handleGet(request, env, auth, { kind: 'err', text: "Can't apply that action to yourself" })
+    return renderManage(c, auth, { kind: 'err', text: "Can't apply that action to yourself" })
   }
 
   try {
     switch (action) {
       case 'set-role': {
-        const role = String(form.get('role') ?? '')
+        const role = String(form.role ?? '')
         if (!ROLES.includes(role as typeof ROLES[number])) throw new Error('invalid role')
-        // setRole's body type only knows the admin plugin's default roles
-        // ('user' | 'admin'); we widen here because our app registry adds more.
         await auth.api.setRole({
           body: { userId, role: role as 'user' | 'admin' },
-          headers: request.headers,
+          headers: c.req.raw.headers,
         })
         break
       }
       case 'ban':
-        await auth.api.banUser({ body: { userId }, headers: request.headers })
+        await auth.api.banUser({ body: { userId }, headers: c.req.raw.headers })
         break
       case 'unban':
-        await auth.api.unbanUser({ body: { userId }, headers: request.headers })
+        await auth.api.unbanUser({ body: { userId }, headers: c.req.raw.headers })
         break
       case 'delete':
-        await auth.api.removeUser({ body: { userId }, headers: request.headers })
+        await auth.api.removeUser({ body: { userId }, headers: c.req.raw.headers })
         break
       case 'unlink-cms':
-        await unlinkCms(env, userId)
+        await unlinkCms(c.env, userId)
+        break
+      case 'revoke-token':
+        await revokeAndClearAccessToken(dbFor(c.env), c.env, CMS_APP, userId)
+        break
+      case 'sign-out-everywhere':
+        await signOutEverywhere(c.env, userId)
         break
       default:
         throw new Error('unknown action')
     }
   } catch (e) {
-    return handleGet(request, env, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
+    return renderManage(c, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
   }
 
-  // PRG — POST then redirect so refresh doesn't re-submit
-  return new Response(null, { status: 303, headers: { Location: '/auth/manage' } })
+  return c.redirect('/auth/manage', 303)
 }
 
-export async function handleManage(
-  request: Request,
-  env: Env,
-  auth: Auth,
-): Promise<Response> {
-  if (request.method === 'POST') return handlePost(request, env, auth)
-  return handleGet(request, env, auth)
+export async function handleManage(c: Ctx, auth: Auth): Promise<Response> {
+  if (c.req.method === 'POST') return handlePost(c, auth)
+  return renderManage(c, auth)
 }
