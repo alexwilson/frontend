@@ -9,13 +9,19 @@
 // the upstream call to the app. That way there's exactly one place that
 // knows "what 'revoke this token' means in our system" and exactly one
 // place that knows "how does GitHub revoke a token."
-import { drizzle } from 'drizzle-orm/d1'
 import { and, eq, sql } from 'drizzle-orm'
 import type { Env } from '../env'
 import type { AppPlugin } from '../apps/types'
-import { schema, account } from '../schema'
+import { account } from '../schema'
+import type { Db } from './db'
 
-const dbFor = (env: Env) => drizzle(env.AUTH_DB, { schema })
+// Idle threshold for an account's last_issued_at to be considered stale.
+// Read by:
+//   • cron.ts — what counts as "sweep me"
+//   • manage.ts — what counts as Active vs Idle in the status badge
+// Single value across both so the UI's "Idle" state and the cron's eviction
+// align (no surprising "showed Active but got revoked" race).
+export const IDLE_THRESHOLD_MS = 10 * 60 * 1000
 
 export interface AccountInfo {
   hasRow: boolean
@@ -29,21 +35,28 @@ export interface IdleAccountRow {
   accessToken: string
 }
 
-// One entry per user that has a row for `providerId`. Caller `.get`s by
-// userId; missing entry means "not linked."
-export async function listByProvider(env: Env, providerId: string): Promise<Map<string, AccountInfo>> {
-  const rows = await dbFor(env)
+// All account rows, grouped first by userId then by providerId. The admin
+// UI's "Apps" column iterates the registered apps and looks up each user's
+// status per app via this map (missing entry → "not linked"). Single query
+// regardless of how many apps are registered.
+export async function listAllByUser(db: Db): Promise<Map<string, Map<string, AccountInfo>>> {
+  const rows = await db
     .select({
       userId: account.userId,
+      providerId: account.providerId,
       accessToken: account.accessToken,
       lastIssuedAt: account.lastIssuedAt,
     })
     .from(account)
-    .where(eq(account.providerId, providerId))
     .all()
-  const map = new Map<string, AccountInfo>()
+  const map = new Map<string, Map<string, AccountInfo>>()
   for (const r of rows) {
-    map.set(r.userId, {
+    let inner = map.get(r.userId)
+    if (!inner) {
+      inner = new Map()
+      map.set(r.userId, inner)
+    }
+    inner.set(r.providerId, {
       hasRow: true,
       hasToken: r.accessToken !== null,
       lastIssuedAt: r.lastIssuedAt ?? null,
@@ -55,8 +68,8 @@ export async function listByProvider(env: Env, providerId: string): Promise<Map<
 // Idle sweep: rows with a still-set access_token whose
 // COALESCE(last_issued_at, created_at) is older than the threshold. Used by
 // the cron handler to evict tokens whose users have stopped interacting.
-export async function listIdle(env: Env, thresholdMs: number): Promise<IdleAccountRow[]> {
-  const rows = await dbFor(env)
+export async function listIdle(db: Db, thresholdMs: number): Promise<IdleAccountRow[]> {
+  const rows = await db
     .select({
       id: account.id,
       providerId: account.providerId,
@@ -77,8 +90,8 @@ export async function listIdle(env: Env, thresholdMs: number): Promise<IdleAccou
 // for the idle sweep. Called from handleAppToken on every successful JWT #2
 // mint. No-op if the row doesn't exist (better-auth's getAccessToken would
 // have already failed by then).
-export async function markIssued(env: Env, userId: string, providerId: string): Promise<void> {
-  await dbFor(env)
+export async function markIssued(db: Db, userId: string, providerId: string): Promise<void> {
+  await db
     .update(account)
     .set({ lastIssuedAt: new Date() })
     .where(and(eq(account.userId, userId), eq(account.providerId, providerId)))
@@ -92,8 +105,7 @@ export async function markIssued(env: Env, userId: string, providerId: string): 
 // Best-effort upstream revoke (failures don't block — the token dies at its
 // natural TTL anyway). Then NULL access_token + last_issued_at, keep the
 // row + refresh_token so legitimate returns transparently refresh-grant.
-export async function revokeAndClear(env: Env, app: AppPlugin, userId: string): Promise<void> {
-  const db = dbFor(env)
+export async function revokeAndClear(db: Db, env: Env, app: AppPlugin, userId: string): Promise<void> {
   const row = await db
     .select({ accessToken: account.accessToken })
     .from(account)
@@ -118,6 +130,7 @@ export async function revokeAndClear(env: Env, app: AppPlugin, userId: string): 
 // `revokeAccessToken` for symmetry — but skips it if the providerId no
 // longer matches any registered app (stale row, app removed).
 export async function clearByRowId(
+  db: Db,
   env: Env,
   row: IdleAccountRow,
   app: AppPlugin | undefined,
@@ -131,7 +144,7 @@ export async function clearByRowId(
       return
     }
   }
-  await dbFor(env)
+  await db
     .update(account)
     .set({ accessToken: null, lastIssuedAt: null })
     .where(eq(account.id, row.id))
@@ -141,8 +154,8 @@ export async function clearByRowId(
 // Hard unlink — delete the account row entirely (refresh token included).
 // Forces the user through full OAuth re-link on next use. Used by admin
 // "Unlink CMS" action and by CmsApp.onUnlink.
-export async function unlink(env: Env, userId: string, providerId: string): Promise<void> {
-  await dbFor(env)
+export async function unlink(db: Db, userId: string, providerId: string): Promise<void> {
+  await db
     .delete(account)
     .where(and(eq(account.userId, userId), eq(account.providerId, providerId)))
     .run()

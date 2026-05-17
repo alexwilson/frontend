@@ -3,13 +3,10 @@
 // Owns the `allowed_email` table. Wraps normalization (NFKC + mixed-script
 // rejection) so handlers don't need to remember to call it. Single source of
 // truth for "is this email allowed to sign up?"
-import { drizzle } from 'drizzle-orm/d1'
 import { asc, eq } from 'drizzle-orm'
-import type { Env } from '../env'
-import { schema, allowedEmail } from '../schema'
+import { allowedEmail } from '../schema'
 import { normalizeEmail } from '../email-normalize'
-
-const dbFor = (env: Env) => drizzle(env.AUTH_DB, { schema })
+import type { Db } from './db'
 
 export interface AllowedEmail {
   email: string
@@ -19,8 +16,8 @@ export interface AllowedEmail {
 
 export type MutationResult = { ok: true } | { ok: false; error: string }
 
-export async function list(env: Env): Promise<AllowedEmail[]> {
-  return dbFor(env)
+export async function list(db: Db): Promise<AllowedEmail[]> {
+  return db
     .select({
       email: allowedEmail.email,
       createdAt: allowedEmail.createdAt,
@@ -35,10 +32,10 @@ export async function list(env: Env): Promise<AllowedEmail[]> {
 // email before comparing so a homoglyph won't accidentally match a Latin
 // allowlist entry (the normalization yields different canonical forms for
 // e.g. Cyrillic а vs Latin a).
-export async function isAllowed(env: Env, rawEmail: string): Promise<boolean> {
+export async function isAllowed(db: Db, rawEmail: string): Promise<boolean> {
   const result = normalizeEmail(rawEmail)
   if (!result.ok) return false
-  const row = await dbFor(env)
+  const row = await db
     .select({ email: allowedEmail.email })
     .from(allowedEmail)
     .where(eq(allowedEmail.email, result.email))
@@ -46,11 +43,11 @@ export async function isAllowed(env: Env, rawEmail: string): Promise<boolean> {
   return !!row
 }
 
-export async function allow(env: Env, rawEmail: string, createdBy: string): Promise<MutationResult> {
+export async function allow(db: Db, rawEmail: string, createdBy: string): Promise<MutationResult> {
   const result = normalizeEmail(rawEmail)
   if (!result.ok) return { ok: false, error: result.error }
   // ON CONFLICT DO NOTHING — idempotent. Re-adding an existing email is a no-op.
-  await dbFor(env)
+  await db
     .insert(allowedEmail)
     .values({
       email: result.email,
@@ -62,10 +59,10 @@ export async function allow(env: Env, rawEmail: string, createdBy: string): Prom
   return { ok: true }
 }
 
-export async function revoke(env: Env, rawEmail: string): Promise<MutationResult> {
+export async function revoke(db: Db, rawEmail: string): Promise<MutationResult> {
   const result = normalizeEmail(rawEmail)
   if (!result.ok) return { ok: false, error: result.error }
-  await dbFor(env)
+  await db
     .delete(allowedEmail)
     .where(eq(allowedEmail.email, result.email))
     .run()
