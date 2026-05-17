@@ -1,10 +1,8 @@
 import { request as octokitRequest } from '@octokit/request'
-import { and, eq } from 'drizzle-orm'
 import type { Env } from '../env'
 import type { AppContext, AppPlugin, OAuthProviderConfig } from './types'
-import { account } from '../schema'
 import { SCOPES } from '../scopes'
-import { revokeAndClearAccessToken } from './registry'
+import * as accounts from '../domain/accounts'
 
 // Fetches GitHub user info via the App's user-to-server token, falling back
 // to /user/emails when /user.email is null (private emails). Better-auth's
@@ -80,10 +78,8 @@ export class CmsApp implements AppPlugin {
   // Better-auth's session model is shared-token-per-(user,provider), so
   // DELETEing the row would force every other device to re-OAuth — surprising
   // and bad UX. See SECURITY.md and services/cms/BFF.md for the design notes.
-  // Delegates to the shared helper so this stays in sync with the admin UI's
-  // "Revoke token" action.
   async onSignOut(ctx: AppContext): Promise<void> {
-    await revokeAndClearAccessToken(ctx.db, ctx.env, this, ctx.userId)
+    await accounts.revokeAndClear(ctx.env, this, ctx.userId)
   }
 
   // Public AppPlugin contract — same revocation call as onSignOut uses, but
@@ -96,10 +92,7 @@ export class CmsApp implements AppPlugin {
   // Admin-driven unlink (no GitHub revocation by default — admin may want to
   // leave the user's GitHub authorization standing; only the local link goes).
   async onUnlink(ctx: AppContext): Promise<void> {
-    await ctx.db
-      .delete(account)
-      .where(and(eq(account.userId, ctx.userId), eq(account.providerId, this.providerId)))
-      .run()
+    await accounts.unlink(ctx.env, ctx.userId, this.providerId)
   }
 
   // App-specific claims returned alongside the token. Decap doesn't read these
