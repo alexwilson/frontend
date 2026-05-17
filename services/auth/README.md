@@ -2,6 +2,8 @@
 
 Cloudflare Worker providing identity and capability brokering for personal apps on `alexwilson.tech`. Built on [better-auth](https://better-auth.com) with Cloudflare D1 as the session store.
 
+> **Why this exists, and the load-bearing decisions:** see [`doc/arch/`](./doc/arch/) (Architecture Decision Records). This README is an operator-facing reference for the resulting system; the ADRs are the rationale for each choice.
+
 ## Architecture
 
 Two layers, deliberately separated:
@@ -36,10 +38,10 @@ Two layers, deliberately separated:
 
 The capability endpoint family uses a **token-exchange** shape:
 
-- **JWT #1 — identity assertion** for one app. HttpOnly cookie at `Path=/auth/app/<id>/`, name `auth.id` (with `__Secure-` prefix on https). Short-lived (15m). Caches the session lookup so subsequent calls skip the DB round-trip and re-verify statelessly via JWKS.
+- **JWT #1 — identity assertion** for one app. HttpOnly cookie at `Path=/auth/app/<id>/`, name `auth.id` (with `__Secure-` prefix on https). Short-lived (15m). Carries a `sid` claim (the session row's PK); verification is signature + exp + a single indexed session-row existence check. This is what gives us per-device revocation despite better-auth's shared-upstream-token model — admin deletes the session row, the JWT dies on next use even though it'd still verify cryptographically.
 - **JWT #2 — capability/access**. Returned in the response body as `{ jwt: "..." }`. Carries identity claims + intersected `scope` + the upstream `access_token`. The SPA decodes it to extract whatever it needs.
 
-Both JWTs are signed by the same JWKS (managed by better-auth's `jwt` plugin, exposed at `/auth/jwks`). Type-confusion is prevented by the `typ` claim (`identity` vs `access`); cross-app confusion by the `app` claim.
+Both JWTs are signed by the same JWKS (managed by better-auth's `jwt` plugin, exposed at `/auth/jwks`). Type-confusion is prevented by the `typ` claim (`identity` vs `access`); cross-app confusion by the `app` claim. See [ADR 0005](./doc/arch/0005-two-jwt-token-exchange.md) and [ADR 0009](./doc/arch/0009-session-bound-jwt-1.md).
 
 ### Scope-based authorization
 
@@ -113,7 +115,7 @@ sequenceDiagram
     participant GH as GitHub (CMS App)
 
     CMS->>Worker: GET /auth/app/cms/token (Cookie: __Secure-auth.session, __Secure-auth.id)
-    Worker->>Worker: Verify JWT #1 (statelessly via JWKS — no DB read)
+    Worker->>Worker: Verify JWT #1 (signature + indexed session-row lookup via sid)
     alt access token within expiry
         Worker-->>CMS: 200 { jwt: <JWT#2 with cached access_token> }
     else access token expired
@@ -125,6 +127,8 @@ sequenceDiagram
 ```
 
 Refresh tokens last 6 months; access tokens 8 hours. JWT #1 + JWT #2 both 15 minutes — the SPA silently refreshes by re-hitting the endpoint, which slides the JWT #1 cookie forward each time.
+
+A **cron trigger** (every 5 min, see `wrangler.toml [triggers]`) sweeps accounts whose `last_issued_at` is older than 10 minutes and revokes their access token at the upstream provider, NULL-ing it locally while keeping the refresh token for transparent re-issue on the user's return. This caps stolen-token lifetime at ~10–15 minutes regardless of user behaviour. See [ADR 0010](./doc/arch/0010-idle-revocation-cron.md).
 
 ## Adding another app
 
@@ -147,7 +151,9 @@ Better-auth owns `/auth/*` and exposes the standard endpoints (sign-in, callback
 | Route | Method | Purpose |
 |---|---|---|
 | `/auth/app/<id>/token` | GET, POST | Token exchange for the named app. Returns `{ jwt: "..." }` (JWT #2) on success. Sets the `auth.id` cookie at `Path=/auth/app/<id>/`. 401 `{ needsLink, provider }` if the user hasn't linked the underlying account yet. 403 if no scope overlap. |
-| `/auth/manage` | GET, POST | Server-rendered admin UI. Role-gated to `admin`. Manages users, roles, bans, CMS-link revocation, allowlist. |
+| `/auth/manage` | GET, POST | Server-rendered admin UI. Role-gated to `admin`. Manages users, roles, bans, invitations (allowlist), per-app token revocation, per-device session revocation, full sign-out-everywhere. Renders each session with location + ISP captured at sign-in. |
+| `/auth/manage/sign-in` | GET | Server-side redirect to GitHub OAuth, returning to `/auth/manage` on success. |
+| `/auth/error` | GET | Friendly error page. better-auth's `onAPIError.errorURL` redirects here with `?error=<code>` on OAuth or callback failures. |
 | `/auth/sign-out` | POST | Intercepted to run each app's `onSignOut` hook (upstream revocation) and clear all per-app JWT #1 cookies before clearing the session. |
 | `/auth/jwks` | GET | Owned by better-auth's `jwt` plugin — public keys for verifying any JWT we issue. |
 | `/auth/*` | various | Owned by better-auth. See [better-auth docs](https://better-auth.com/docs). |
@@ -162,17 +168,23 @@ GET /auth/app/cms/token?scope=cms%3Aread+cms%3Awrite
 
 ## Standards
 
-| Standard | Role |
-|---|---|
-| [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749) — OAuth 2.0 | Authorization Code grant for identity + capability flows; Refresh Token grant for silent renewal; `scope` parameter shape (§3.3) |
-| [RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636) — PKCE | S256 code challenge on every OAuth round-trip (handled by better-auth) |
-| [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693) — Token Exchange (shape only) | The `/auth/app/<id>/token` endpoint follows the spirit of token exchange: caller presents a subject token (session cookie or JWT #1), receives an access token (JWT #2) intersected against requested scope. We don't implement the full RFC surface (`subject_token`, `grant_type`, etc.) — registrations are static and the exchange is one-shot. |
-| [RFC 9068](https://datatracker.ietf.org/doc/html/rfc9068) — JWT Access Tokens (shape only) | JWT #2 follows the JWT-profile-for-access-tokens shape: `sub`, `aud`-equivalent (via `app` claim), `scope`, `iat`, `exp`, signed by JWKS. |
-| [RFC 9700](https://datatracker.ietf.org/doc/html/rfc9700) — OAuth 2.0 Security BCP | PKCE mandatory, state CSRF binding, exact redirect URI matching |
-| [RFC 6265](https://datatracker.ietf.org/doc/html/rfc6265) — HTTP Cookies | Cookie attributes: `HttpOnly`, `Secure`, `SameSite=Lax`, path-scoped per role (session vs per-app), `__Secure-` prefix on https origins |
-| [RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) — Bearer Token Usage | `ghu_*` access_token wrapped in JWT #2's payload; SPA presents it to GitHub API as `Authorization: Bearer <token>` |
-| [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591) — Dynamic Client Registration (shape only) | Per-app `genericOAuth` registrations follow the providerId / clientId / clientSecret / endpoints schema; registrations are static in code, not dynamic |
-| [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517) — JWK Set | `/auth/jwks` exposes the public keys for verifying any JWT we issue |
+Each standard below has a corresponding ADR (or ADRs) in [`doc/arch/`](./doc/arch/) where the specific use is justified.
+
+| Standard | Role | ADR |
+|---|---|---|
+| [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749) — OAuth 2.0 | Authorization Code grant for identity + capability flows; Refresh Token grant for silent renewal; `scope` parameter shape (§3.3) | [0001](./doc/arch/0001-use-better-auth.md), [0008](./doc/arch/0008-scope-based-authorization.md) |
+| [RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636) — PKCE | S256 code challenge on every OAuth round-trip (handled by better-auth) | [0001](./doc/arch/0001-use-better-auth.md) |
+| [RFC 9700](https://datatracker.ietf.org/doc/html/rfc9700) — OAuth 2.0 Security BCP | PKCE mandatory, state CSRF binding, exact redirect URI matching | [0001](./doc/arch/0001-use-better-auth.md) |
+| [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) — JSON Web Token | Both JWT #1 (identity) and JWT #2 (capability) are JWTs signed by our JWKS | [0005](./doc/arch/0005-two-jwt-token-exchange.md) |
+| [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693) — Token Exchange (shape only) | `/auth/app/<id>/token` follows the spirit of token exchange: caller presents a subject token (session cookie or JWT #1), receives an access token (JWT #2) intersected against requested scope. Not the full RFC surface — registrations are static, exchange is one-shot. | [0005](./doc/arch/0005-two-jwt-token-exchange.md) |
+| [RFC 9068](https://datatracker.ietf.org/doc/html/rfc9068) — JWT Access Tokens (shape only) | JWT #2 follows the JWT-profile-for-access-tokens shape: `sub`, `aud`-equivalent (via `app` claim), `scope`, `iat`, `exp`, signed by JWKS. | [0005](./doc/arch/0005-two-jwt-token-exchange.md), [0008](./doc/arch/0008-scope-based-authorization.md) |
+| [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517) — JWK Set | `/auth/jwks` exposes the public keys for verifying any JWT we issue | [0005](./doc/arch/0005-two-jwt-token-exchange.md) |
+| [RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) — Bearer Token Usage | `ghu_*` access_token wrapped in JWT #2's payload; SPA presents it to GitHub API as `Authorization: Bearer <token>` | [0005](./doc/arch/0005-two-jwt-token-exchange.md) |
+| [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591) — Dynamic Client Registration (shape only) | Per-app `genericOAuth` registrations follow the providerId / clientId / clientSecret / endpoints schema; registrations are static in code, not dynamic | [0004](./doc/arch/0004-appplugin-registry.md) |
+| [OIDC Front-Channel Logout 1.0](https://openid.net/specs/openid-connect-frontchannel-1_0.html#OPLogout) — `sid` claim | JWT #1's `sid` carries the session row's PK so we can revoke a specific JWT by deleting its session row. | [0009](./doc/arch/0009-session-bound-jwt-1.md) |
+| [RFC 6265](https://datatracker.ietf.org/doc/html/rfc6265) — HTTP Cookies | Cookie attributes: `HttpOnly`, `Secure`, `SameSite=Lax`, host-only (no `Domain`), path-scoped per role (session vs per-app), `__Secure-` prefix on https origins | [0006](./doc/arch/0006-per-app-cookie-path-scoping.md), [0007](./doc/arch/0007-host-only-cookies.md) |
+| [OWASP — Subdomain Takeover](https://owasp.org/www-community/attacks/Subdomain_takeover) | Threat model justifying the host-only cookie decision | [0007](./doc/arch/0007-host-only-cookies.md) |
+| [Unicode TR15](https://www.unicode.org/reports/tr15/) — NFKC Normalization, [Unicode TR39](https://www.unicode.org/reports/tr39/) — Security Mechanisms | Email-allowlist comparisons NFKC-normalised; allowlist write path rejects identifiers mixing Latin with confusable scripts. | [0011](./doc/arch/0011-email-allowlist-nfkc.md) |
 
 ## Environment
 
@@ -187,8 +199,17 @@ GET /auth/app/cms/token?scope=cms%3Aread+cms%3Awrite
 | Variable | Purpose |
 |---|---|
 | `BASE_URL` | Origin where the worker is reachable (e.g. `https://alexwilson.tech`). Determines the `__Secure-` cookie prefix (https → on, http → off). |
-| `COOKIE_DOMAIN` | Domain for cookies (e.g. `alexwilson.tech`) |
 | `TRUSTED_ORIGINS` | Comma-separated origins permitted to call `/auth/*` (CSRF + CORS) |
+
+Cookies are host-only — no `Domain` attribute is set. A takenover subdomain of `alexwilson.tech` cannot read or be sent these cookies. Cross-subdomain SPA fetches still attach the cookie because the cookie matches the request target host. See [ADR 0007](./doc/arch/0007-host-only-cookies.md).
+
+### Cron triggers (wrangler.toml `[triggers]`)
+
+```toml
+crons = ["*/5 * * * *"]
+```
+
+Fires `src/cron.ts`'s `handleScheduled` every 5 minutes for idle-token revocation (see [ADR 0010](./doc/arch/0010-idle-revocation-cron.md)).
 
 ### Secrets (`wrangler secret put` / `.dev.vars`)
 
