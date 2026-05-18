@@ -14,7 +14,7 @@ describe('safeNavigate', () => {
   it('accepts https://github.com URLs', () => {
     // jsdom logs its own navigation-not-implemented error; filter for ours.
     expect(safeNavigate('https://github.com/login/oauth/authorize?x=1')).toBe(true)
-    expect(errSpy.mock.calls.some(args => /untrusted origin/.test(String(args[0])))).toBe(false)
+    expect(errSpy.mock.calls.some((args: unknown[]) => /untrusted origin/.test(String(args[0])))).toBe(false)
   })
 
   it('rejects javascript: URLs whose hostname spoofs github.com', () => {
