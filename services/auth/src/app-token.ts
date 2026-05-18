@@ -187,32 +187,49 @@ async function resolveIdentity(
   }
 }
 
-// Pulls requested scopes from either query (GET) or form/JSON body (POST).
-// RFC 6749 §3.3 — space-delimited list. If empty/missing, returns null
-// (caller treats null as "everything I'm allowed").
+// Distinguish absent from parse-failure so handleAppToken never silently
+// widens scope on a malformed request. absent → default to available per
+// RFC 6749 §3.3; invalid → caller returns 4xx instead of granting full scope.
+export type ScopeRequest =
+  | { kind: 'absent' }
+  | { kind: 'parsed'; scopes: string[] }
+  | { kind: 'invalid'; status: 400 | 413; reason: string }
+
 const MAX_TOKEN_BODY_BYTES = 4 * 1024
 
-async function readRequestedScope(c: Ctx): Promise<string[] | null> {
+export async function readRequestedScope(c: Ctx): Promise<ScopeRequest> {
   const fromQuery = c.req.query('scope')
-  if (fromQuery) return parseScopeParam(fromQuery)
-
-  if (c.req.method === 'POST') {
-    const len = Number(c.req.header('content-length') ?? '0')
-    if (Number.isFinite(len) && len > MAX_TOKEN_BODY_BYTES) return null
-    const contentType = c.req.header('content-type') ?? ''
-    try {
-      if (contentType.includes('application/json')) {
-        const body = (await c.req.json()) as { scope?: string }
-        return body.scope ? parseScopeParam(body.scope) : null
-      }
-      const form = await c.req.parseBody()
-      const raw = form.scope
-      return typeof raw === 'string' ? parseScopeParam(raw) : null
-    } catch {
-      return null
-    }
+  if (fromQuery !== undefined) {
+    return { kind: 'parsed', scopes: parseScopeParam(fromQuery) }
   }
-  return null
+
+  if (c.req.method !== 'POST') return { kind: 'absent' }
+
+  const len = Number(c.req.header('content-length') ?? '0')
+  if (Number.isFinite(len) && len > MAX_TOKEN_BODY_BYTES) {
+    return { kind: 'invalid', status: 413, reason: 'request body exceeds limit' }
+  }
+
+  const contentType = c.req.header('content-type') ?? ''
+  try {
+    if (contentType.includes('application/json')) {
+      const body = (await c.req.json()) as { scope?: unknown }
+      if (body.scope === undefined) return { kind: 'absent' }
+      if (typeof body.scope !== 'string') {
+        return { kind: 'invalid', status: 400, reason: 'scope must be a string' }
+      }
+      return { kind: 'parsed', scopes: parseScopeParam(body.scope) }
+    }
+    const form = await c.req.parseBody()
+    const raw = form.scope
+    if (raw === undefined) return { kind: 'absent' }
+    if (typeof raw !== 'string') {
+      return { kind: 'invalid', status: 400, reason: 'scope must be a string' }
+    }
+    return { kind: 'parsed', scopes: parseScopeParam(raw) }
+  } catch {
+    return { kind: 'invalid', status: 400, reason: 'request body is malformed' }
+  }
 }
 
 export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promise<Response> {
@@ -224,9 +241,15 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   const userScopes = scopesForRole(identity.role)
   const available = intersectScopes(app.grantedScopes, userScopes)
   const requested = await readRequestedScope(c)
-  const finalScope = requested === null
+  if (requested.kind === 'invalid') {
+    return c.json(
+      { error: 'invalid_request', error_description: requested.reason },
+      requested.status,
+    )
+  }
+  const finalScope = requested.kind === 'absent'
     ? available
-    : intersectScopes(requested, available)
+    : intersectScopes(requested.scopes, available)
 
   if (finalScope.length === 0) {
     return c.json(
