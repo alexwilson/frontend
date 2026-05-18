@@ -10,6 +10,7 @@ jobs:
   lint:
     name: "Lint Terraform"
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     defaults:
       run:
         working-directory: ./terraform
@@ -30,6 +31,7 @@ jobs:
   lint-test-vcl:
     name: "Lint & Test VCL"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     defaults:
       run:
         working-directory: ./terraform/modules/fastly/vcl
@@ -52,6 +54,7 @@ jobs:
       group: ${{ github.workflow }}-test
       cancel-in-progress: false
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     env:
       FASTLY_API_KEY: ${{ secrets.TERRAFORM_FASTLY_API_KEY }}
@@ -92,6 +95,7 @@ jobs:
       group: ${{ github.workflow }}-prod
       cancel-in-progress: false
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: deploy-to-test
 
     env:

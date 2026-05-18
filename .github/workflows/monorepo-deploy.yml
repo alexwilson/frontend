@@ -8,10 +8,15 @@ on:
     # Scheduled build so pipeline failures are noticed quicker.
     - cron: "30 4 * * 1,3,5,0"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   prepare:
     name: "Prepare (Find Projects, Warm dependency caches)"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       projects: ${{ steps.find-projects.outputs.projects }}
     steps:
@@ -72,9 +77,11 @@ jobs:
     needs: [prepare]
     name: Test ${{ matrix.name }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       NODE_ENV: ${{ secrets.NODE_ENV }}
     strategy:
+      fail-fast: false
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     if: always()
     steps:
@@ -107,6 +114,7 @@ jobs:
     name: Tests Passed
     needs: [test]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     if: always()
     steps:
       - name: Explicit fail if Test job failed
@@ -120,6 +128,7 @@ jobs:
     name: Publish to Chromatic
     needs: [prepare]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     if: always() && needs.prepare.result == 'success'
@@ -148,10 +157,12 @@ jobs:
 
   deploy:
     strategy:
+      fail-fast: false
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
     name: Deploy ${{ matrix.name }}
     needs: [prepare, tests-passed]
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     env:
       NODE_ENV: ${{ secrets.NODE_ENV }}
