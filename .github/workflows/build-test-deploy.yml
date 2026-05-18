@@ -34,27 +34,12 @@ jobs:
           path: |
             services/personal-website/public
             services/personal-website/.cache
-          key: build
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+          key: build-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            build-
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Restore node_modules
-        uses: actions/cache@v4
-        id: cache-node_modules
-        with:
-          key: node_modules-${{ hashFiles('pnpm-lock.yaml') }}
-          path: |
-            node_modules
-            */*/node_modules
-      - name: Install Dependencies
-        run: |
-          pnpm install --filter @alexwilson/personal-website...
+          install-filter: '@alexwilson/personal-website...'
       - name: Build
         run: pnpx lerna run --scope @alexwilson/personal-website build
         env:
@@ -83,26 +68,11 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 1
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Restore node_modules
-        uses: actions/cache@v4
-        id: cache-node_modules
-        with:
-          key: node_modules-${{ hashFiles('pnpm-lock.yaml') }}
-          path: |
-            node_modules
-            */*/node_modules
-      - name: Install Dependencies
-        run: |
-          pnpm install --filter @alexwilson/personal-website...
+          install-filter: '@alexwilson/personal-website...'
+      - name: Typecheck
+        run: pnpx lerna run --scope @alexwilson/personal-website typecheck
       - name: Run Tests
         run: pnpx lerna run --scope @alexwilson/personal-website test
 
