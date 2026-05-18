@@ -11,7 +11,7 @@ jobs:
     steps:
       # Enable auto-merge *before* issuing an approval.
       - name: Enable Github Automerge
-        uses: alexwilson/enable-github-automerge-action@main
+        uses: alexwilson/enable-github-automerge-action@56e3117d1ae1540309dc8f7a9f2825bc3c5f06ff # 2.0.0
         with:
           github-token: "${{ secrets.PR_GH_TOKEN }}"
 

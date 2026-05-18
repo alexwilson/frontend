@@ -18,20 +18,20 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "@octokit/request": "^10.0.8",
-    "better-auth": "^1.0.0",
-    "drizzle-orm": "^0.45.2",
-    "hono": "^4.12.19"
+    "@octokit/request": "10.0.8",
+    "better-auth": "1.6.11",
+    "drizzle-orm": "0.45.2",
+    "hono": "4.12.19"
   },
   "devDependencies": {
-    "@better-auth/cli": "^1.0.0",
-    "@cloudflare/workers-types": "^4.0.0",
-    "@picocss/pico": "^2.1.1",
-    "@types/better-sqlite3": "^7.6.0",
-    "better-sqlite3": "^12.9.0",
-    "drizzle-kit": "^0.31.10",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.5",
-    "wrangler": "^4.7.2"
+    "@better-auth/cli": "1.4.21",
+    "@cloudflare/workers-types": "4.20260511.1",
+    "@picocss/pico": "2.1.1",
+    "@types/better-sqlite3": "7.6.13",
+    "better-sqlite3": "12.9.0",
+    "drizzle-kit": "0.31.10",
+    "typescript": "5.9.3",
+    "vitest": "4.1.5",
+    "wrangler": "4.90.0"
   }
 }

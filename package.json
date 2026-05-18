@@ -8,10 +8,10 @@
     "deploy": "lerna run deploy"
   },
   "devDependencies": {
-    "lerna": "^9.0.0"
+    "lerna": "9.0.7"
   },
   "dependencies": {
-    "esbuild": "^0.28.0"
+    "esbuild": "0.28.0"
   },
   "pnpm": {
     "overrides": {

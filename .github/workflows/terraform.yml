@@ -16,13 +16,13 @@ jobs:
         working-directory: ./terraform
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
         working-directory: .
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v4
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: ${{ steps.tf_version.outputs.value }}
       - name: Lint Terraform
@@ -37,10 +37,10 @@ jobs:
         working-directory: ./terraform/modules/fastly/vcl
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@8eb7f2efa6ab636da09aef605b497fd5b8a7587d # main
       - name: Install Falco
         run: brew install falco
       - name: Lint VCL
@@ -69,13 +69,13 @@ jobs:
         working-directory: ./terraform
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
         working-directory: .
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v4
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: ${{ steps.tf_version.outputs.value }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
@@ -88,7 +88,7 @@ jobs:
         continue-on-error: true
 
       - name: Post plan to PR
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           PLAN_STDOUT: ${{ steps.plan.outputs.stdout }}
           PLAN_OUTCOME: ${{ steps.plan.outcome }}
@@ -145,13 +145,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
         working-directory: .
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v4
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: ${{ steps.tf_version.outputs.value }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
@@ -187,13 +187,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Get Terraform Version
         id: tf_version
         run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
         working-directory: .
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v4
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: ${{ steps.tf_version.outputs.value }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
