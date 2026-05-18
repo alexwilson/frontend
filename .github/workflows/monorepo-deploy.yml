@@ -42,13 +42,25 @@ jobs:
           lerna_args+=('--all')
           lerna_args+=('--loglevel silent')
           lerna_args+=('--ignore @alexwilson/personal-website')
+          lerna_args+=('--include-dependents')
 
-          # Narrow to packages changed since the event's base ref + anything that
-          # depends on them. PR base SHA for PRs, previous commit for pushes.
-          # Schedule/dispatch events have no base ref and fall through to "all packages".
+          # Narrow to packages changed since the base ref + their dependents.
+          # Two cases fall through to "all packages":
+          #   1. BASE_REF unset (schedule / dispatch).
+          #   2. Narrowing returns nothing — i.e. a CI-only, docs-only, or
+          #      root-config-only change. Anything that touches build/deploy
+          #      plumbing should exercise the whole workspace, because the
+          #      plumbing is what we'd be validating.
           if [ -n "$BASE_REF" ] && [ "$BASE_REF" != "0000000000000000000000000000000000000000" ]; then
-            if [[ $(pnpx lerna list "${lerna_args[@]}" --since "$BASE_REF" --include-dependents | head -c1 | wc -c) -ne 0 ]]; then
-              lerna_args+=(--since "$BASE_REF" --include-dependents)
+            if changed=$(pnpx lerna list ${lerna_args[@]} --since "$BASE_REF" 2>/dev/null); then
+              if [ -n "$changed" ]; then
+                lerna_args+=(--since "$BASE_REF")
+                echo "Narrowed to changed packages and their dependents."
+              else
+                echo "No workspace packages changed; running all packages."
+              fi
+            else
+              echo "::warning::lerna --since errored; falling back to all packages."
             fi
           fi
 
@@ -58,8 +70,9 @@ jobs:
           echo "Base ref: ${BASE_REF:-<none>}"
           echo "$ pnpx lerna list ${lerna_args[*]}"
           # --include-dependents in lerna overrides --ignore, so post-filter personal-website out.
-          projects=$(pnpx lerna list "${lerna_args[@]}" \
+          projects=$(pnpx lerna list ${lerna_args[@]} \
             | jq -rjc -n '.include |= [inputs[] | select(.name != "@alexwilson/personal-website")]')
+
           echo "Matrix:"
           echo "$projects" | jq .
           echo "projects=$projects" >> "$GITHUB_OUTPUT"
@@ -75,8 +88,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
-    # auth-cms has no tests — skip to save a runner minute. It's still deployed via the deploy matrix.
-    if: always() && matrix.name != '@alexwilson/auth-cms'
+    if: always()
     steps:
       - name: Fail explicitly if Prepare failed
         if: needs.prepare.result != 'success'
