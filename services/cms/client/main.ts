@@ -4,8 +4,8 @@ import config from "./config.yml";
 import styles from "./main.css";
 
 import { Uuid } from "./widgets/uuid";
-// import { YouTube } from "./widgets/editor/youtube";
 import { ArticlePreview, ArticlePreviewStyles } from "./preview/article";
+import { BrokeredGitHubBackend } from "./backends/brokered-github";
 
 export default function init() {
   const useTestBackend = Boolean(process.env.CMS_BACKEND === "test");
@@ -15,11 +15,14 @@ export default function init() {
 
   if (useTestBackend) {
     mutableConfig.backend = { name: "test-repo" };
+  } else if (process.env.CMS_AUTH_URL) {
+    const originalBackend = (mutableConfig.backend ?? {}) as Record<string, unknown>
+    mutableConfig.backend = { ...originalBackend, name: "github-app" };
   }
 
+  CMS.registerBackend("github-app", BrokeredGitHubBackend);
   CMS.init({ config: mutableConfig as unknown as CmsConfig });
   CMS.registerWidget("uuid", Uuid);
-  // CMS.registerEditorComponent(YouTube)
   CMS.registerPreviewTemplate("content", ArticlePreview);
   CMS.registerPreviewStyle(ArticlePreviewStyles.toString(), { raw: true });
 }

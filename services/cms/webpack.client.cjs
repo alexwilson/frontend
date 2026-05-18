@@ -77,13 +77,15 @@ module.exports = {
     plugins: [
         new webpack.EnvironmentPlugin({
             'CMS_BACKEND': null,
+            'CMS_AUTH_URL': null,
         }),
         new HtmlWebpackPlugin({
             title: 'Alex CMS',
             publicPath: isProduction ? 'https://static.alexwilson.tech/cms/' : 'auto'
         }),
         new BundleAnalyzerPlugin({
-            analyzerMode: 'static'
+            analyzerMode: 'static',
+            openAnalyzer: false
         })
     ],
     devServer: {
