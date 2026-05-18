@@ -24,11 +24,11 @@ jobs:
     if: github.ref != 'refs/heads/gh-pages'
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
       - name: Restore Cached Build
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-public
         with:
           path: |
@@ -46,7 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
           CI: true
       - name: Save Build Artefact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: site-artefact
           path: services/personal-website/public
@@ -65,7 +65,7 @@ jobs:
           echo "Build failed."
           exit 1
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
       - uses: ./.github/actions/setup-monorepo
@@ -88,10 +88,10 @@ jobs:
         run: |
           echo "Build failed."
           exit 1
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v5
         with:
           repository: w3c/feedvalidator
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.7"
       - name: Install dependencies
@@ -99,7 +99,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Download Website Artefact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: site-artefact
           path: public
@@ -120,11 +120,11 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
       - name: Download Website Artefact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: site-artefact
           path: public
