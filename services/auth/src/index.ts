@@ -60,9 +60,11 @@ app.use('/auth/*', async (c, next) => {
   return corsMiddleware(c, next)
 })
 
-// Per-app capability endpoint. `:id` matches anything; appById gates on the
-// registry. Unknown ids 404 before any auth work happens.
-app.on(['GET', 'POST'], '/auth/app/:id/token', async (c) => {
+// Per-app capability endpoint. POST-only per RFC 6749 §3.2 — GET would leak
+// the requested scope to URL bars, server logs, and Referer headers.
+// `:id` matches anything; appById gates on the registry. Unknown ids 404
+// before any auth work happens.
+app.post('/auth/app/:id/token', async (c) => {
   const plugin = appById(c.req.param('id'))
   if (!plugin) return c.notFound()
   const auth = createAuth(c.env)

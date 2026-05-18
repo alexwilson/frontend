@@ -17,7 +17,7 @@
 // the controller — better-auth's admin plugin handles it and gives us a
 // free permission re-check.
 import { asc, eq, gt, sql } from 'drizzle-orm'
-import { session } from '../schema'
+import { session, user } from '../schema'
 import type { Db } from './db'
 
 export interface SessionStats {
@@ -28,6 +28,9 @@ export interface SessionStats {
 export interface ActiveSession {
   userId: string
   expiresAt: Date
+  // Current role from `user` (joined). Source of truth — never trust role
+  // claims baked into a JWT, which can survive a demote until the JWT expires.
+  role: string | null
 }
 
 // Per-row session details shown in the admin UI's expandable session list.
@@ -119,15 +122,19 @@ export async function listAllByUser(db: Db): Promise<Map<string, SessionRow[]>> 
 // in app-token.ts — a JWT whose session row is gone is treated as invalid
 // even if its signature + exp would otherwise pass. This is what gives us
 // per-device revocation despite better-auth's shared-upstream-token model.
+//
+// JOINs user so scope authorization can use the live role, not whatever
+// was baked into the JWT at issuance.
 export async function getActive(db: Db, sessionId: string): Promise<ActiveSession | null> {
   const row = await db
-    .select({ userId: session.userId, expiresAt: session.expiresAt })
+    .select({ userId: session.userId, expiresAt: session.expiresAt, role: user.role })
     .from(session)
+    .innerJoin(user, eq(session.userId, user.id))
     .where(eq(session.id, sessionId))
     .get()
   if (!row) return null
   if (row.expiresAt.getTime() < Date.now()) return null
-  return { userId: row.userId, expiresAt: row.expiresAt }
+  return { userId: row.userId, expiresAt: row.expiresAt, role: row.role }
 }
 
 // Per-device sign-out: delete a single session row by id. JWT #1s minted
