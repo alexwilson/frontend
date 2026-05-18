@@ -26,18 +26,21 @@ interface EffectCtx {
   cancelled: () => boolean
 }
 
-// Anywhere we'd hand control to a URL the auth worker returned, gate on a
-// hostname allowlist first. better-auth populates these from the configured
+// Anywhere we'd hand control to a URL the auth worker returned, gate on an
+// origin allowlist first. better-auth populates these from the configured
 // OAuth provider, but a worker bug or compromise shouldn't translate into
-// an open redirect.
-const TRUSTED_NAVIGATION_HOSTS = new Set(['github.com'])
+// an open redirect — or, worse, script execution: a hostname-only check
+// would wave `javascript://github.com/%0A...` through (its hostname parses
+// as 'github.com'). Matching `URL.origin` collapses the protocol+host check
+// into one and rejects opaque schemes (whose origin is the literal "null").
+const TRUSTED_NAVIGATION_ORIGINS = new Set(['https://github.com'])
 
-function safeNavigate(rawUrl: unknown): boolean {
+export function safeNavigate(rawUrl: unknown): boolean {
   if (typeof rawUrl !== 'string') return false
   let parsed: URL
   try { parsed = new URL(rawUrl) } catch { return false }
-  if (!TRUSTED_NAVIGATION_HOSTS.has(parsed.hostname)) {
-    console.error(`[BrokeredGitHubBackend] refused to navigate to untrusted host: ${parsed.hostname}`)
+  if (!TRUSTED_NAVIGATION_ORIGINS.has(parsed.origin)) {
+    console.error(`[BrokeredGitHubBackend] refused to navigate to untrusted origin: ${parsed.origin}`)
     return false
   }
   window.location.href = parsed.href
