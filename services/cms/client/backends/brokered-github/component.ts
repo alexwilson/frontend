@@ -26,13 +26,8 @@ interface EffectCtx {
   cancelled: () => boolean
 }
 
-// Anywhere we'd hand control to a URL the auth worker returned, gate on an
-// origin allowlist first. better-auth populates these from the configured
-// OAuth provider, but a worker bug or compromise shouldn't translate into
-// an open redirect — or, worse, script execution: a hostname-only check
-// would wave `javascript://github.com/%0A...` through (its hostname parses
-// as 'github.com'). Matching `URL.origin` collapses the protocol+host check
-// into one and rejects opaque schemes (whose origin is the literal "null").
+// Origin, not hostname: `javascript://github.com/…` parses with hostname
+// "github.com" but origin "null" (opaque schemes).
 const TRUSTED_NAVIGATION_ORIGINS = new Set(['https://github.com'])
 
 export function safeNavigate(rawUrl: unknown): boolean {
@@ -62,7 +57,12 @@ async function followLink(providerId: string, ctx: EffectCtx): Promise<void> {
   }
 }
 
-async function runBootstrap(ctx: EffectCtx): Promise<void> {
+interface ProbePolicy {
+  onLink: (providerId: string) => void | Promise<void>
+  onOtherError: (e: Error) => void | Promise<void>
+}
+
+async function probeAndAdvance(ctx: EffectCtx, policy: ProbePolicy): Promise<void> {
   try {
     const result = await probeCmsToken(ctx.authUrl)
     if (ctx.cancelled()) return
@@ -70,49 +70,37 @@ async function runBootstrap(ctx: EffectCtx): Promise<void> {
       ctx.dispatch({ type: 'tokenReady', token: result.data })
       return
     }
-    ctx.dispatch({ type: 'noSessionToBroker' })
+    await policy.onLink(result.providerId)
   } catch (e) {
     if (ctx.cancelled()) return
     if (e instanceof RoleDeniedError) {
       ctx.dispatch({ type: 'fail', message: e.message })
       return
     }
-    ctx.dispatch({ type: 'noSessionToBroker' })
+    await policy.onOtherError(e as Error)
   }
 }
 
-async function runResume(ctx: EffectCtx): Promise<void> {
-  try {
-    const result = await probeCmsToken(ctx.authUrl)
-    if (ctx.cancelled()) return
-    if (result.kind === 'token') {
-      ctx.dispatch({ type: 'tokenReady', token: result.data })
-      return
-    }
-    await followLink(result.providerId, ctx)
-  } catch (e) {
-    if (!ctx.cancelled()) ctx.dispatch({ type: 'fail', message: (e as Error).message })
-  }
+function runBootstrap(ctx: EffectCtx): Promise<void> {
+  const noSession = () => ctx.dispatch({ type: 'noSessionToBroker' })
+  return probeAndAdvance(ctx, { onLink: noSession, onOtherError: noSession })
 }
 
-async function runRedirecting(ctx: EffectCtx): Promise<void> {
-  try {
-    const result = await probeCmsToken(ctx.authUrl)
-    if (ctx.cancelled()) return
-    if (result.kind === 'token') {
-      ctx.dispatch({ type: 'tokenReady', token: result.data })
-      return
-    }
-    await followLink(result.providerId, ctx)
-    return
-  } catch (e) {
-    if (ctx.cancelled()) return
-    if (e instanceof RoleDeniedError) {
-      ctx.dispatch({ type: 'fail', message: e.message })
-      return
-    }
-  }
+function runResume(ctx: EffectCtx): Promise<void> {
+  return probeAndAdvance(ctx, {
+    onLink: (id) => followLink(id, ctx),
+    onOtherError: (e) => ctx.dispatch({ type: 'fail', message: e.message }),
+  })
+}
 
+function runRedirecting(ctx: EffectCtx): Promise<void> {
+  return probeAndAdvance(ctx, {
+    onLink: (id) => followLink(id, ctx),
+    onOtherError: () => runFreshOAuth(ctx),
+  })
+}
+
+async function runFreshOAuth(ctx: EffectCtx): Promise<void> {
   const { data, error: signInErr } = await ctx.authClient.signIn.social({
     provider: 'github',
     callbackURL: pendingCallbackURL(),
