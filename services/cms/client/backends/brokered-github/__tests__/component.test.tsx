@@ -199,6 +199,23 @@ describe('CmsLogin', () => {
     expect(social).not.toHaveBeenCalled()
   })
 
+  it('rejects redirect URLs whose scheme is not https (open-redirect / javascript:)', async () => {
+    // Hostname allowlist alone isn't enough: `new URL('javascript://github.com/%0Aalert(1)')`
+    // parses with hostname 'github.com', so a bad worker response could turn into
+    // script execution in the CMS origin. safeNavigate must require https:.
+    const social = vi.fn().mockResolvedValue({
+      data: { url: 'javascript://github.com/%0Aalert(1)' },
+      error: null,
+    })
+    const Component = makeCmsLogin('https://auth.test', stubAuthClient({ signIn: { social } }))
+    render(<Component onLogin={vi.fn()} />)
+
+    const btn = await screen.findByRole('button', { name: /^sign in$/i })
+    fireEvent.click(btn)
+
+    await waitFor(() => expect(screen.getByText(/unexpected redirect target/i)).toBeDefined())
+  })
+
   it('button is disabled and shows progress label while redirecting', async () => {
     // signIn.social hangs forever after bootstrap+click probe falls through.
     const social = vi.fn(() => new Promise(() => {}))

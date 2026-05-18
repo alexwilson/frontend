@@ -27,15 +27,22 @@ interface EffectCtx {
 }
 
 // Anywhere we'd hand control to a URL the auth worker returned, gate on a
-// hostname allowlist first. better-auth populates these from the configured
-// OAuth provider, but a worker bug or compromise shouldn't translate into
-// an open redirect.
+// scheme + hostname allowlist first. better-auth populates these from the
+// configured OAuth provider, but a worker bug or compromise shouldn't
+// translate into an open redirect — or, worse, a `javascript:` navigation
+// that runs script in the CMS origin (the hostname check alone wouldn't
+// catch `javascript://github.com/%0A...`).
 const TRUSTED_NAVIGATION_HOSTS = new Set(['github.com'])
+const TRUSTED_NAVIGATION_PROTOCOLS = new Set(['https:'])
 
 function safeNavigate(rawUrl: unknown): boolean {
   if (typeof rawUrl !== 'string') return false
   let parsed: URL
   try { parsed = new URL(rawUrl) } catch { return false }
+  if (!TRUSTED_NAVIGATION_PROTOCOLS.has(parsed.protocol)) {
+    console.error(`[BrokeredGitHubBackend] refused to navigate with untrusted scheme: ${parsed.protocol}`)
+    return false
+  }
   if (!TRUSTED_NAVIGATION_HOSTS.has(parsed.hostname)) {
     console.error(`[BrokeredGitHubBackend] refused to navigate to untrusted host: ${parsed.hostname}`)
     return false
