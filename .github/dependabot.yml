@@ -19,7 +19,7 @@ updates:
 
     reviewers:
       - alexwilson
-    versioning-strategy: increase-if-necessary
+    versioning-strategy: increase
     groups:
       react:
         patterns:
