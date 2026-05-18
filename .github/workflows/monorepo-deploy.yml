@@ -22,20 +22,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
         with:
-          fetch-depth: 10
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Install Dependencies
-        run: |
-          rm services/personal-website/package.json
-          pnpm install --prod=false
+          install-filter: '!@alexwilson/personal-website'
       - id: find-projects
         name: Find affected projects
         run: |
@@ -83,7 +73,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.prepare.outputs.projects) }}
-    if: always()
+    # auth-cms has no tests — skip to save a runner minute. It's still deployed via the deploy matrix.
+    if: always() && matrix.name != '@alexwilson/auth-cms'
     steps:
       - name: Fail explicitly if Prepare failed
         if: needs.prepare.result != 'success'
@@ -94,19 +85,11 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 1
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Install Dependencies
-        run: |
-          rm  services/personal-website/package.json
-          pnpm install --prod=false
+          install-filter: '!@alexwilson/personal-website'
+      - name: Typecheck
+        run: pnpx lerna run typecheck --scope ${{ matrix.name }}
       - name: Test
         run: pnpx lerna run test --scope ${{ matrix.name }}
 
@@ -137,19 +120,9 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Install Dependencies
-        run: |
-          rm services/personal-website/package.json
-          pnpm install --prod=false
+          install-filter: '!@alexwilson/personal-website'
       - name: Publish to Chromatic
         run: pnpm --filter @alexwilson/storybook exec chromatic --exit-zero-on-changes
         env:
@@ -171,19 +144,9 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 1
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - uses: ./.github/actions/setup-monorepo
         with:
-          version: 10
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-      - name: Install Dependencies
-        run: |
-          rm  services/personal-website/package.json
-          pnpm install --prod=false
+          install-filter: '!@alexwilson/personal-website'
       - name: Deploy
         run: pnpx lerna run deploy --scope ${{ matrix.name }}
         env:
