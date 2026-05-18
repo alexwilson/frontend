@@ -20,3 +20,47 @@ updates:
     reviewers:
       - alexwilson
     versioning-strategy: increase-if-necessary
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+          - "@testing-library/react"
+          - "@vitejs/plugin-react"
+        update-types: ["minor", "patch"]
+      gatsby:
+        patterns: ["gatsby", "gatsby-*"]
+        update-types: ["minor", "patch"]
+      typescript:
+        patterns: ["typescript", "ts-*"]
+        update-types: ["minor", "patch"]
+      babel:
+        patterns: ["@babel/*", "babel-*"]
+        update-types: ["minor", "patch"]
+      storybook:
+        patterns: ["storybook", "@storybook/*", "chromatic"]
+        update-types: ["minor", "patch"]
+      types:
+        patterns: ["@types/*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: github-actions
+    cooldown:
+      default-days: 7
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    reviewers:
+      - alexwilson
+
+  - package-ecosystem: terraform
+    cooldown:
+      default-days: 7
+    directory: "/terraform"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    reviewers:
+      - alexwilson
