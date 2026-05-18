@@ -48,6 +48,84 @@ jobs:
       - name: Test VCL
         run: falco test -vv -I . main.vcl
 
+  plan-prod:
+    name: "Plan (prod) — preview only"
+    if: github.event_name == 'pull_request'
+    needs: [lint, lint-test-vcl]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+
+    env:
+      FASTLY_API_KEY: ${{ secrets.TERRAFORM_FASTLY_API_KEY }}
+      TF_WORKSPACE: "prod"
+      TF_LOG: "warn"
+      TF_IN_AUTOMATION: "1"
+
+    defaults:
+      run:
+        working-directory: ./terraform
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get Terraform Version
+        id: tf_version
+        run: echo "value=$(cat .terraform-version)" >> $GITHUB_OUTPUT
+        working-directory: .
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ steps.tf_version.outputs.value }}
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_API_TOKEN }}
+
+      - run: terraform init
+
+      - name: terraform plan
+        id: plan
+        run: terraform plan -no-color -input=false -var-file=environments/prod.tfvars
+        continue-on-error: true
+
+      - name: Post plan to PR
+        uses: actions/github-script@v7
+        env:
+          PLAN_STDOUT: ${{ steps.plan.outputs.stdout }}
+          PLAN_OUTCOME: ${{ steps.plan.outcome }}
+        with:
+          script: |
+            const marker = '<!-- terraform-plan-prod -->';
+            const max = 60000;
+            let plan = process.env.PLAN_STDOUT || '(no output)';
+            if (plan.length > max) plan = plan.slice(0, max) + '\n…(truncated)…\n';
+            const status = process.env.PLAN_OUTCOME === 'success' ? '✅' : '❌';
+            const body = `${marker}\n### ${status} Terraform plan (\`prod\`)\n\n<details><summary>Show plan</summary>\n\n\`\`\`terraform\n${plan}\n\`\`\`\n\n</details>`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body && c.body.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail if plan errored
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
   deploy-to-test:
     needs: [lint, lint-test-vcl]
     concurrency:
