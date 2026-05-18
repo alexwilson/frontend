@@ -18,8 +18,19 @@ const env = {
 
 describe('routing', () => {
   it('unknown app id under /auth/app/:id/token → 404', async () => {
-    const res = await app.fetch(new Request('https://auth.test/auth/app/unknown/token'), env)
+    const res = await app.fetch(
+      new Request('https://auth.test/auth/app/unknown/token', { method: 'POST' }),
+      env,
+    )
     expect(res.status).toBe(404)
+  })
+
+  it('GET on /auth/app/:id/token is not a registered route (no scope-in-URL)', async () => {
+    // POST-only — RFC 6749 §3.2. A GET request shouldn't match our handler;
+    // if it falls through to the better-auth catch-all, that's fine. The
+    // assertion is just that we don't return a 200 minted-token response.
+    const res = await app.fetch(new Request('https://auth.test/auth/app/cms/token'), env)
+    expect(res.status).not.toBe(200)
   })
 
   it('paths outside /auth → 404 (no fall-through)', async () => {

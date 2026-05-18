@@ -46,7 +46,6 @@ const JWT2_TTL_SECONDS = 15 * 60
 interface IdentityPayload extends Record<string, unknown> {
   sub: string
   email: string
-  role: string
   app: string
   typ: 'identity'
   // `sid` (session id) binds the JWT to the better-auth session that
@@ -54,7 +53,9 @@ interface IdentityPayload extends Record<string, unknown> {
   // deleted (the user signed out on this device, or admin revoked it),
   // the JWT is dead even though its signature + exp would otherwise pass.
   // This is what gives us per-device revocation despite better-auth's
-  // shared-upstream-token model.
+  // shared-upstream-token model. The session lookup also returns the user's
+  // current role — role is deliberately NOT in this payload so a stale role
+  // can't survive a demote until the JWT expires.
   sid: string
 }
 
@@ -153,11 +154,12 @@ async function verifyIdentityJwt(
     if (p.iss !== c.env.BASE_URL || p.aud !== expectedApp) return null
 
     // Session-row existence check — the live check that gives us per-device
-    // revocation. Indexed PK lookup; sub-millisecond.
+    // revocation. Indexed PK lookup + user JOIN; sub-millisecond. Role comes
+    // from the user row so a demote takes effect on the next request.
     const active = await sessionsDomain.getActive(dbFor(c.env), p.sid)
     if (!active || active.userId !== p.sub) return null
 
-    return { sub: p.sub, email: p.email, role: p.role ?? '', app: p.app, sid: p.sid }
+    return { sub: p.sub, email: p.email, role: active.role ?? '', app: p.app, sid: p.sid }
   } catch {
     return null
   }
@@ -305,7 +307,6 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   const identityPayload: IdentityPayload = {
     sub: identity.sub,
     email: identity.email,
-    role: identity.role,
     app: app.id,
     typ: 'identity',
     sid: identity.sid,
@@ -313,6 +314,9 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   const jwt1 = await signJwt(auth, c.env, identityPayload, JWT1_TTL_SECONDS, app.id)
 
   setCookie(c, jwt1CookieName(c.env), jwt1, jwt1CookieOpts(c.env, app))
+  // RFC 6749 §5.1 — JWT #2 carries the upstream access_token; never cache.
+  c.header('cache-control', 'no-store')
+  c.header('pragma', 'no-cache')
   return c.json({ jwt: jwt2 })
 }
 

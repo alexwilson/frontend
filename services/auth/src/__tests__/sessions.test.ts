@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { eq } from 'drizzle-orm'
 import { makeTestDb, type TestDb } from './test-db'
 import * as sessionsDomain from '../domain/sessions'
 import { user, session } from '../schema'
@@ -10,9 +11,10 @@ afterEach(() => { t.close() })
 
 // Seed helpers — bypass better-auth's schema validation and write directly
 // via the same drizzle handle the domain uses. Keeps test setup terse.
-function seedUser(id: string, email: string) {
+function seedUser(id: string, email: string, role?: string) {
   return t.db.insert(user).values({
     id, email, name: email, emailVerified: true,
+    role: role ?? null,
     createdAt: new Date(), updatedAt: new Date(),
   }).run()
 }
@@ -89,6 +91,27 @@ describe('sessions.getActive', () => {
     const got = await sessionsDomain.getActive(t.db, 's1')
     expect(got?.userId).toBe('u1')
     expect(got?.expiresAt.getTime()).toBe(future.getTime())
+    expect(got?.role).toBeNull()
+  })
+
+  it('returns the live role from the user row', async () => {
+    const future = new Date(Date.now() + 1000 * 60 * 60)
+    await seedUser('admin-u', 'admin@example.com', 'admin')
+    await seedSession({ id: 's-admin', userId: 'admin-u', expiresAt: future })
+
+    const got = await sessionsDomain.getActive(t.db, 's-admin')
+    expect(got?.role).toBe('admin')
+  })
+
+  it('a role change on the user row is visible immediately (no JWT staleness)', async () => {
+    const future = new Date(Date.now() + 1000 * 60 * 60)
+    await seedUser('u-promote', 'p@example.com', 'user')
+    await seedSession({ id: 's-p', userId: 'u-promote', expiresAt: future })
+
+    expect((await sessionsDomain.getActive(t.db, 's-p'))?.role).toBe('user')
+
+    await t.db.update(user).set({ role: 'admin', updatedAt: new Date() }).where(eq(user.id, 'u-promote')).run()
+    expect((await sessionsDomain.getActive(t.db, 's-p'))?.role).toBe('admin')
   })
 
   it('returns null for an unknown session id', async () => {
