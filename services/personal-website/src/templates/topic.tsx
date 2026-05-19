@@ -123,7 +123,7 @@ export const pageQuery = graphql`
       }
     }
     content: allContent(
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
       filter: { topics: { elemMatch: { topicId: { eq: $topicId } } } }
     ) {
       totalCount

@@ -80,7 +80,7 @@ export const query = graphql`
         type: { in: ["article", "content-placeholder"] }
         topics: { elemMatch: { topic: { ne: "lists" } } }
       }
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
     ) {
       totalCount
       edges {
