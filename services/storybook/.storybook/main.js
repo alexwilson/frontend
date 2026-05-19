@@ -55,11 +55,6 @@ module.exports = {
       type: 'asset/resource',
     })
 
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'isomorphic-fetch': path.resolve(__dirname, 'isomorphic-fetch-stub.js'),
-    }
-
     return config
   },
 }
