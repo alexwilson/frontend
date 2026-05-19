@@ -1,0 +1,62 @@
+name: 'Validate feed'
+description: 'Validate an Atom/RSS feed using the W3C feedvalidator.'
+
+inputs:
+  feed:
+    description: 'Path or URL of the feed to validate.'
+    required: true
+  rewrite-url:
+    description: >
+      Only meaningful when `feed` is a local file. If set, occurrences of this
+      URL in the feed are rewritten to http://www.feedvalidator.org/public/feed.xml
+      so the W3C validator's strict origin check passes.
+    required: false
+    default: ''
+  python-version:
+    description: 'Python version to install for running the validator.'
+    required: false
+    default: '3.x'
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout w3c/feedvalidator
+      shell: bash
+      id: checkout
+      run: |
+        dir="$(mktemp -d)"
+        git clone --depth 1 https://github.com/w3c/feedvalidator.git "$dir"
+        echo "dir=$dir" >> "$GITHUB_OUTPUT"
+    - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install dependencies
+      shell: bash
+      working-directory: ${{ steps.checkout.outputs.dir }}
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Rewrite feed URL for local testing
+      if: inputs.rewrite-url != ''
+      shell: bash
+      env:
+        FEED: ${{ inputs.feed }}
+        REWRITE_URL: ${{ inputs.rewrite-url }}
+      run: |
+        case "$FEED" in
+          http://*|https://*)
+            echo "feed is a URL; skipping rewrite" ;;
+          *)
+            sed -i "s|${REWRITE_URL}|http://www.feedvalidator.org/public/feed.xml|g" "$FEED" ;;
+        esac
+    - name: Validate feed
+      shell: bash
+      working-directory: ${{ steps.checkout.outputs.dir }}
+      env:
+        FEED: ${{ inputs.feed }}
+      run: |
+        case "$FEED" in
+          http://*|https://*|/*) target="$FEED" ;;
+          *)                     target="$GITHUB_WORKSPACE/$FEED" ;;
+        esac
+        python src/demo.py "$target"
