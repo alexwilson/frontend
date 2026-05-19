@@ -170,7 +170,7 @@ const config: GatsbyConfig = {
               query Content {
                 recentContent: allContent(
                   limit: 10,
-                  sort: { order: DESC, fields: [date] }
+                  sort: { date: DESC }
                 ) {
                   nodes {
                     title

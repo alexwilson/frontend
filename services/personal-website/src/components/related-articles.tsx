@@ -32,7 +32,7 @@ const RelatedArticlesContainer = ({ article: currentArticle }: Props) => {
   const data = useStaticQuery<{ posts: { nodes: Article[] } }>(graphql`
     query RelatedArticles {
       posts: allContent(
-        sort: { order: DESC, fields: [date] }
+        sort: { date: DESC }
         filter: { type: { eq: "article" } }
         limit: 1000
       ) {

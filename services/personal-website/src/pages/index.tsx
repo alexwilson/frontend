@@ -67,7 +67,7 @@ export const query = graphql`
 
   query {
     allButWeeknotesAndLists: allContent(
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
       filter: {
         topics: { elemMatch: { topic: { nin: ["weeknotes", "lists"] } } }
       }
@@ -85,7 +85,7 @@ export const query = graphql`
       }
     }
     onlyWeeknotes: allContent(
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
       filter: { topics: { elemMatch: { topic: { eq: "weeknotes" } } } }
       limit: 3
     ) {
@@ -101,7 +101,7 @@ export const query = graphql`
       }
     }
     onlyLists: allContent(
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
       filter: { topics: { elemMatch: { topic: { eq: "lists" } } } }
       limit: 3
     ) {

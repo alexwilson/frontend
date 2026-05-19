@@ -78,7 +78,7 @@ export const query = graphql`
   query {
     talks: allContent(
       filter: { type: { eq: "talk" } }
-      sort: { fields: [date], order: DESC }
+      sort: { date: DESC }
     ) {
       edges {
         node {
