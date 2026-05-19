@@ -35,9 +35,6 @@ importers:
       include-media:
         specifier: https://github.com/eduardoboucas/include-media.git#78c6aebae262202dc857dbc08e31504323dcbd04
         version: https://codeload.github.com/eduardoboucas/include-media/tar.gz/78c6aebae262202dc857dbc08e31504323dcbd04
-      isomorphic-fetch:
-        specifier: 3.0.0
-        version: 3.0.0(encoding@0.1.13)
       promise-image-loader:
         specifier: 0.1.2
         version: 0.1.2
@@ -9347,9 +9344,6 @@ packages:
   isomorphic-base64@1.0.2:
     resolution: {integrity: sha512-pQFyLwShVPA1Qr0dE1ZPguJkbOsFGDfSq6Wzz6XaO33v74X6/iQjgYPozwkeKGQxOI1/H3Fz7+ROtnV1veyKEg==}
 
-  isomorphic-fetch@3.0.0:
-    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
-
   isurl@1.0.0:
     resolution: {integrity: sha512-1P/yWsxPlDtn7QeRD+ULKQPaIaN6yF368GZ2vDfv0AL0NwpStafjWCDDdn0k8wgFMWpVAqG7oJhxHnlud42i9w==}
     engines: {node: '>= 4'}
@@ -13949,9 +13943,6 @@ packages:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
     deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
-
-  whatwg-fetch@3.6.20:
-    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -25663,13 +25654,6 @@ snapshots:
 
   isomorphic-base64@1.0.2: {}
 
-  isomorphic-fetch@3.0.0(encoding@0.1.13):
-    dependencies:
-      node-fetch: 2.7.0(encoding@0.1.13)
-      whatwg-fetch: 3.6.20
-    transitivePeerDependencies:
-      - encoding
-
   isurl@1.0.0:
     dependencies:
       has-to-string-tag-x: 1.4.1
@@ -31684,8 +31668,6 @@ snapshots:
   whatwg-encoding@3.1.1:
     dependencies:
       iconv-lite: 0.6.3
-
-  whatwg-fetch@3.6.20: {}
 
   whatwg-mimetype@4.0.0: {}
 
