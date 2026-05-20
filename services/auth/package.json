@@ -18,7 +18,7 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "@octokit/request": "10.0.8",
+    "@octokit/request": "10.0.9",
     "better-auth": "1.6.11",
     "drizzle-orm": "0.45.2",
     "hono": "4.12.19"
