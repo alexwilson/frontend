@@ -422,8 +422,8 @@ importers:
   services/webmention:
     dependencies:
       aws-cdk-lib:
-        specifier: 2.253.1
-        version: 2.253.1(constructs@10.6.0)
+        specifier: 2.254.0
+        version: 2.254.0(constructs@10.6.0)
       aws-lambda:
         specifier: 1.0.7
         version: 1.0.7
@@ -491,8 +491,8 @@ packages:
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.2':
     resolution: {integrity: sha512-pDiuqH+qY3zM9lhhLjbKJ1tnKOHzQ2V4Wr/3qsxyKeKAkuPMI/BVGvZG1PbrikUw949cGVTfVEt4ETKKYnrj0Q==}
 
-  '@aws-cdk/cloud-assembly-schema@53.24.0':
-    resolution: {integrity: sha512-rCwsd0Y9z4CUmV5FhzjbO2MprXjKG0rxCACuLEY40lD+wInvgcHer0lSDo7Xq9Sxe/IoNe/Wxb2YP3GgxvT3GA==}
+  '@aws-cdk/cloud-assembly-schema@53.27.0':
+    resolution: {integrity: sha512-OTxe/L2Vc60r2nYih7kFaFpn93sa7shJu9T0tQZsryeDE3HHOAuazKNmS6tLInOjJjVx/dvM5XGyUA+lZAiKxA==}
     engines: {node: '>= 18.0.0'}
     bundledDependencies:
       - jsonschema
@@ -5091,8 +5091,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-cdk-lib@2.253.1:
-    resolution: {integrity: sha512-vy+hA15/ZfSQpivkNdlIn2ZDA2hesp3WJgmtIZJDFwu6xzwv7wH7glbAdu5xCHGcOjepOaTKZSvCPC6sN+0/Vw==}
+  aws-cdk-lib@2.254.0:
+    resolution: {integrity: sha512-O7fn6fu1FXb0BgoO/+WeiBXZ16H/q6z4fOndjdG62c9bPU7Z/UeW5gz7qBiwLm4ERvTObobLCqv7wjd8bp+v3A==}
     engines: {node: '>= 20.0.0'}
     peerDependencies:
       constructs: ^10.5.0
@@ -14083,7 +14083,7 @@ snapshots:
 
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.2': {}
 
-  '@aws-cdk/cloud-assembly-schema@53.24.0': {}
+  '@aws-cdk/cloud-assembly-schema@53.27.0': {}
 
   '@babel/code-frame@7.12.11':
     dependencies:
@@ -19268,11 +19268,11 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws-cdk-lib@2.253.1(constructs@10.6.0):
+  aws-cdk-lib@2.254.0(constructs@10.6.0):
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.273
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.2
-      '@aws-cdk/cloud-assembly-schema': 53.24.0
+      '@aws-cdk/cloud-assembly-schema': 53.27.0
       constructs: 10.6.0
 
   aws-cdk@2.1121.0: {}
