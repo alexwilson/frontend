@@ -23,7 +23,7 @@
     "aws-cdk-lib": "2.253.1",
     "aws-lambda": "1.0.7",
     "aws-sdk": "2.1693.0",
-    "axios": "1.16.0",
+    "axios": "1.16.1",
     "constructs": "10.6.0",
     "source-map-support": "0.5.21"
   },
