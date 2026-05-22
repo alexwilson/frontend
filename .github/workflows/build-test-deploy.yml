@@ -91,6 +91,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 1
+          submodules: true
       - name: Download Website Artefact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
@@ -99,7 +100,8 @@ jobs:
       - uses: ./.github/actions/validate-feed
         with:
           feed: public/feed.xml
-          rewrite-url: https://alexwilson.tech/feed.xml
+          origin-url: https://alexwilson.tech/feed.xml
+          compatibility: AA
 
   # Deploy to Github Pages environment
   deploy-ghpages:
