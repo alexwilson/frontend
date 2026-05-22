@@ -16,9 +16,9 @@
     "@babel/preset-typescript": "7.28.5",
     "@types/react": "18.3.28",
     "babel-loader": "10.1.1",
-    "storybook": "10.3.6",
-    "@storybook/react": "10.3.6",
-    "@storybook/react-webpack5": "10.3.6",
+    "storybook": "10.4.0",
+    "@storybook/react": "10.4.0",
+    "@storybook/react-webpack5": "10.4.0",
     "chromatic": "16.10.0",
     "css-loader": "7.1.4",
     "prop-types": "15.8.1",
@@ -28,6 +28,6 @@
     "sass-loader": "16.0.8",
     "style-loader": "4.0.0",
     "webpack": "5.106.2",
-    "@storybook/addon-docs": "10.3.6"
+    "@storybook/addon-docs": "10.4.0"
   }
 }
