@@ -1,0 +1,8 @@
+# Source of truth for the action's Python dependencies.
+# Run `pip-compile --generate-hashes requirements.in` after any change
+# (including a vendor/feedvalidator submodule bump) to regenerate
+# requirements.lock with fresh hashes.
+-r vendor/feedvalidator/requirements.txt
+
+# pytest is included so the same lock is used in CI to run contract tests.
+pytest

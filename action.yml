@@ -52,12 +52,11 @@ runs:
         python-version: ${{ inputs.python-version }}
     - name: Install vendored feedvalidator dependencies
       shell: bash
-      working-directory: ${{ github.action_path }}/vendor/feedvalidator
       env:
         PIP_DISABLE_PIP_VERSION_CHECK: '1'
       run: |
         echo "::group::pip install"
-        pip install -q -r requirements.txt
+        pip install -q --require-hashes -r "${{ github.action_path }}/requirements.lock"
         echo "::endgroup::"
     - name: Validate feed
       id: validate

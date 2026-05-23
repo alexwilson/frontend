@@ -5,24 +5,64 @@ on:
     branches: [main]
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
+  regenerate-lockfile:
+    name: Regenerate lockfile (Dependabot submodule bumps)
+    # Actor check + same-repo check belts-and-braces against fork PRs ever
+    # reaching the write-permission code path.
+    if: >-
+      github.event_name == 'pull_request'
+      && github.actor == 'dependabot[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          submodules: true
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.x'
+      - name: Regenerate lockfile
+        env:
+          PIP_DISABLE_PIP_VERSION_CHECK: '1'
+        run: |
+          pip install -q pip-tools
+          pip-compile --generate-hashes --quiet --output-file requirements.lock requirements.in
+          if [ -n "$(git status --porcelain requirements.lock)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add requirements.lock
+            git commit -m "chore: regenerate lockfile for submodule bump"
+            git push
+          fi
+
   test:
     name: Run contract tests
+    needs: [regenerate-lockfile]
+    # `always()` so tests still run when regen is skipped (non-Dependabot PRs,
+    # pushes to main) or when regen fails (loud failure is what we want).
+    if: always()
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           submodules: true
+          # For PRs, check out the head branch by name so the checkout picks
+          # up any commit the regenerate-lockfile job just pushed.
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.x'
       - name: Install dependencies
         env:
           PIP_DISABLE_PIP_VERSION_CHECK: '1'
-        run: pip install -q -r vendor/feedvalidator/requirements.txt pytest
+        run: pip install -q --require-hashes -r requirements.lock
       - name: Run tests
         run: pytest tests/
