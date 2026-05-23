@@ -13,7 +13,6 @@ type Props = {
   onYearToggle?: (year: number) => void
   topics?: Topic[]
   selectedTopics?: string[]
-  onTopicToggle?: (topicId: string) => void
   onClear?: () => void
 }
 
@@ -23,7 +22,6 @@ const StreamFilters = ({
   onYearToggle,
   topics = [],
   selectedTopics = [],
-  onTopicToggle,
   onClear,
 }: Props) => {
   const hasFilters = selectedYears.length > 0
@@ -42,26 +40,16 @@ const StreamFilters = ({
                 if (!aActive && bActive) return 1
                 return 0
               })
-              .map(t => (
-                <li key={t.topicId}>
-                  {onTopicToggle
-                    ? <button
-                        className={`alex-stream__topic-button${selectedTopics.includes(t.topicId) ? ' alex-stream__topic-link--active' : ''}`}
-                        onClick={() => onTopicToggle(t.topicId)}
-                      >
-                        {t.topic}
-                      </button>
-                    : t.slug
-                      ? <Link
-                          to={t.slug}
-                          className={selectedTopics.includes(t.topicId) ? 'alex-stream__topic-link--active' : ''}
-                        >
-                          {t.topic}
-                        </Link>
-                      : <span className={selectedTopics.includes(t.topicId) ? 'alex-stream__topic-link--active' : ''}>{t.topic}</span>
-                  }
-                </li>
-              ))}
+              .map(t => {
+                const isActive = selectedTopics.includes(t.topicId)
+                return (
+                  <li key={t.topicId}>
+                    {isActive || !t.slug
+                      ? <span className={isActive ? 'alex-stream__topic-link--active' : ''}>{t.topic}</span>
+                      : <Link to={t.slug}>{t.topic}</Link>}
+                  </li>
+                )
+              })}
           </ul>
         </details>
       )}
