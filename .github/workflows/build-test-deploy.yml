@@ -98,7 +98,7 @@ jobs:
           feed: public/feed.xml
           origin-url: https://alexwilson.tech/feed.xml
           compatibility: AAA
-          fail-on: info
+          fail-on: warning
 
   # Deploy to Github Pages environment
   deploy-ghpages:
