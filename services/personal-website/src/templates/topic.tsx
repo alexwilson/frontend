@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
-import { graphql, navigate, HeadProps, PageProps } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
@@ -48,15 +48,6 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
       prev.includes(year) ? prev.filter((y) => y !== year) : [...prev, year],
     )
 
-  const toggleTopic = (topicId: string) => {
-    if (topicId === data.topic.topicId) {
-      navigate("/blog")
-    } else {
-      const t = allTopics.find((t) => t.topicId === topicId)
-      if (t?.slug) navigate(t.slug)
-    }
-  }
-
   const filteredPosts = useMemo(() => {
     return allPosts.filter((node) => {
       if (
@@ -75,7 +66,6 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
       onYearToggle={toggleYear}
       topics={allTopics}
       selectedTopics={[data.topic.topicId]}
-      onTopicToggle={toggleTopic}
       onClear={
         selectedYears.length > 0 ? () => setSelectedYears([]) : undefined
       }
