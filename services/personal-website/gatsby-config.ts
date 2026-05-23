@@ -11,21 +11,15 @@ const config: GatsbyConfig = {
   trailingSlash: "never",
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: "null",
-        path: `${__dirname}`,
-        ignore: [/.*/gi],
-      },
-    },
-
-    {
-      resolve: `gatsby-source-git`,
+      resolve: `gatsby-source-github-repository`,
       options: {
         name: `posts`,
-        remote: `https://alexwilson:${process.env.GITHUB_TOKEN}@github.com/alexwilson/content.git`,
-        branch: `main`,
+        owner: `alexwilson`,
+        repo: `content`,
+        ref: `main`,
         patterns: [`posts/**`],
+        token: process.env.GITHUB_TOKEN,
+        pollInterval: process.env.NODE_ENV === `development` ? 30 : 0,
       },
     },
 
