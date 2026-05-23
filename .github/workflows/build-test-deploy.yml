@@ -34,9 +34,9 @@ jobs:
           path: |
             services/personal-website/public
             services/personal-website/.cache
-          key: build-${{ hashFiles('pnpm-lock.yaml') }}
+          key: build-v2-${{ hashFiles('pnpm-lock.yaml', 'services/personal-website/gatsby-config.ts', 'services/personal-website/gatsby-node.ts') }}
           restore-keys: |
-            build-
+            build-v2-
       - uses: ./.github/actions/setup-monorepo
         with:
           install-filter: '@alexwilson/personal-website...'
