@@ -1,0 +1,54 @@
+{
+  "name": "gatsby-source-github-repository",
+  "version": "0.1.0",
+  "description": "Source Gatsby File nodes from a GitHub repository via the GitHub API, with App authentication and content-addressed caching.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./gatsby-node": {
+      "types": "./dist/gatsby-node.d.ts",
+      "default": "./gatsby-node.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "gatsby-node.js",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "@octokit/request": "^10.0.0",
+    "gatsby-source-filesystem": "^5.16.0",
+    "minimatch": "^10.0.0"
+  },
+  "peerDependencies": {
+    "gatsby": ">=5"
+  },
+  "devDependencies": {
+    "@octokit/request-error": "^6.1.0",
+    "@types/node": "^25.7.0",
+    "@vitest/coverage-v8": "4.1.7",
+    "gatsby": "^5.16.1",
+    "joi": "^17.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}
