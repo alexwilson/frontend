@@ -1,0 +1,3 @@
+[submodule "vendor/feedvalidator"]
+	path = vendor/feedvalidator
+	url = https://github.com/w3c/feedvalidator.git

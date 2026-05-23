@@ -1,8 +1,22 @@
-# validate-feed
+# feed-validator-action
 
-Validates an Atom/RSS feed using a vendored copy of the W3C feedvalidator (pinned via git submodule at `vendor/feedvalidator`). The action installs the validator's Python dependencies, then runs `entrypoint.py`, which uses the library directly and emits a workflow summary, annotations, and step outputs.
+Validates an Atom/RSS feed in CI using a vendored copy of the W3C feedvalidator (pinned via git submodule at `vendor/feedvalidator`). The action installs the validator's Python dependencies, then runs `entrypoint.py`, which uses the library directly and emits a workflow summary, annotations, and step outputs.
 
-The submodule pin gives reproducible validation: bumping it is a single SHA change with the diff visible against upstream. Forks consuming the action need `submodules: true` on their `actions/checkout`.
+The submodule pin gives reproducible validation: bumping it is a single SHA change with the diff visible against upstream, and Dependabot drives those bumps automatically.
+
+## Usage
+
+```yaml
+- uses: actions/checkout@v5
+  with:
+    submodules: true
+- uses: alexwilson/feed-validator-action@v1
+  with:
+    feed: public/feed.xml
+    origin-url: https://example.com/feed.xml
+```
+
+> The caller's `actions/checkout` does not need `submodules: true` for the action's own vendored feedvalidator — that ships inside the published action. `submodules: true` is only needed if your *own* feed file lives in a submodule.
 
 ## Inputs
 
@@ -20,28 +34,25 @@ The submodule pin gives reproducible validation: bumping it is a single SHA chan
 |---|---|
 | `errors` | Number of errors reported. |
 | `warnings` | Number of warnings reported. |
-| `issues` | Total reported issues including informational events. |
-| `report-path` | Path to the captured report text file. Useful for `actions/upload-artifact`. |
+| `issues` | Total of errors + warnings (info events are excluded). |
+| `report-path` | Path to the captured report text file — includes info events. Useful for `actions/upload-artifact`. |
 
 ## Examples
 
 A built feed from an earlier CI step, validated against the URL it will be served from:
 
 ```yaml
-- uses: actions/checkout@v5
-  with:
-    submodules: true
-- uses: ./.github/actions/validate-feed
+- uses: alexwilson/feed-validator-action@v1
   with:
     feed: public/feed.xml
     origin-url: https://example.com/feed.xml
 ```
 
-A live feed, reporting only:
+A live feed, reporting only, with the report saved as an artifact:
 
 ```yaml
 - id: feed
-  uses: ./.github/actions/validate-feed
+  uses: alexwilson/feed-validator-action@v1
   with:
     feed: https://example.com/feed.xml
     fail-on: never
@@ -50,6 +61,10 @@ A live feed, reporting only:
     name: feed-validator-report
     path: ${{ steps.feed.outputs.report-path }}
 ```
+
+## Versioning
+
+Tags follow semver. Pin to a major (`@v1`) for automatic patch/minor updates, or to a full version (`@v1.2.3`) for strict reproducibility. Vendored-feedvalidator bumps ship as patch releases.
 
 ## Development
 
@@ -61,13 +76,19 @@ python3.12 -m venv .venv
 .venv/bin/pytest tests/
 ```
 
-The tests cover both the validator contract (valid fixtures → no errors; invalid fixtures → errors) and the exit-code semantics of `fail-on`. They lock in the upstream behaviour we depend on; a submodule bump that changes classification should break a test before it breaks CI.
+The tests cover the validator contract (valid fixtures → no errors; invalid fixtures → errors) and the exit-code semantics of `fail-on`. They lock in the upstream behaviour we depend on; a submodule bump that changes classification should break a test before it breaks consumers' CI.
 
-## Bumping the vendored validator
+## Bumping the vendored validator manually
+
+Dependabot does this automatically. To do it by hand:
 
 ```sh
-git -C .github/actions/validate-feed/vendor/feedvalidator fetch
-git -C .github/actions/validate-feed/vendor/feedvalidator checkout <new-sha>
+git -C vendor/feedvalidator fetch
+git -C vendor/feedvalidator checkout <new-sha>
 .venv/bin/pytest tests/   # verify contract still holds
-git add .github/actions/validate-feed/vendor/feedvalidator
+git add vendor/feedvalidator
 ```
+
+## License
+
+MIT — same as the vendored W3C feedvalidator.
