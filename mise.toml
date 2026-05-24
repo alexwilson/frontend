@@ -3,15 +3,19 @@ env_file = ".env"
 idiomatic_version_file_enable_tools = ["node", "terraform"]
 
 [tools]
-jq         = "1.7.1"
-pnpm       = "10.23.0"
-shellcheck = "0.11.0"
+jq     = "1.7.1"
+pnpm   = "10.23.0"
+python = "3.12"
 
-[tasks."util:list"]
-description = "List workspace projects, optionally narrowed to those affected since a base git ref. Args: [--json] [base-ref]"
-run = "./scripts/list-projects.sh"
+[tasks."projects:list"]
+description = "List monorepo projects, optionally narrowed. Args: [--json] [--since <ref>] [--filter <expr>]..."
+run = "./tools/projects_list.py"
 
-[tasks."lint:shell"]
-description = "Run shellcheck against repo shell scripts."
-run = "shellcheck scripts/*.sh"
+[tasks."projects:graph"]
+description = "Show first-order project dependencies. Args: [--format tree|dot]"
+run = "./tools/projects_graph.py"
+
+[tasks."test:tools"]
+description = "Run the stdlib unittest suite for tools/."
+run = "python -m unittest discover -s tools/tests -t tools -p 'test_*.py'"
 
