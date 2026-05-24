@@ -93,9 +93,9 @@ jobs:
         with:
           install-filter: '!@alexwilson/personal-website'
       - name: Typecheck
-        run: pnpm --filter ${{ matrix.name }} run typecheck
+        run: pnpm --filter ${{ matrix.name }} run --if-present typecheck
       - name: Test
-        run: pnpm --filter ${{ matrix.name }} run test
+        run: pnpm --filter ${{ matrix.name }} run --if-present test
 
   tests-passed:
     name: Tests Passed
@@ -152,7 +152,7 @@ jobs:
         with:
           install-filter: '!@alexwilson/personal-website'
       - name: Deploy
-        run: pnpm --filter ${{ matrix.name }} run deploy
+        run: pnpm --filter ${{ matrix.name }} run --if-present deploy
         env:
           CI: true
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
