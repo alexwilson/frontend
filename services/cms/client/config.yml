@@ -21,20 +21,26 @@ media_folder: pictures
 
 display_url: https://alexwilson.tech/
 
+i18n:
+  structure: multiple_folders
+  locales: [en, ja]
+  default_locale: en
+
 collections:
   - name: "content"
     label: "Content"
     folder: "/posts/"
     create: true
     slug: "{{id}}"
+    i18n: true
     fields: &contentFields
-      - {label: ID, name: id, required: true, widget: "uuid"}
-      - {label: Title, name: "title", required: true, widget: "string"}
-      - {label: Published Date, name: "date", required: true, format: *time_format, widget: "datetime", default: "{{now}}"}
-      - {label: Image, name: "image", required: false, widget: "image"}
+      - {label: ID, name: id, required: true, widget: "uuid", i18n: duplicate}
+      - {label: Title, name: "title", required: true, widget: "string", i18n: true}
+      - {label: Published Date, name: "date", required: true, format: *time_format, widget: "datetime", default: "{{now}}", i18n: duplicate}
+      - {label: Image, name: "image", required: false, widget: "image", i18n: duplicate}
       - {label: Tags, name: "tags", allow_add: true, label_singular: "Add", widget: "list"}
-      - {label: Body, name: "body", widget: "markdown"}
-      - {label: Content Type, name: "type", options: ["article", "talk", "content-placeholder"], default: "article", widget: "select"}
-      - {label: "Link", name: "link", required: false, widget: "string"}
-      - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex"}
-      - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime"}
+      - {label: Body, name: "body", widget: "markdown", i18n: true}
+      - {label: Content Type, name: "type", options: ["article", "talk", "content-placeholder"], default: "article", widget: "select", i18n: duplicate}
+      - {label: "Link", name: "link", required: false, widget: "string", i18n: duplicate}
+      - {label: "Author(s)", name: "author", widget: "select", options: ["alex"], default: "alex", i18n: duplicate}
+      - {label: Updated Date, name: "last_modified_at", default: "", format: *time_format, required: false, widget: "datetime", i18n: duplicate}
