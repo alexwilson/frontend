@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import type { CmsWidgetControlProps } from 'decap-cms-core';
 
 // Decap passes `locale` to widgets in i18n-enabled collections but doesn't
@@ -11,12 +11,22 @@ type Props = CmsWidgetControlProps<string> & { locale?: string };
 const DEFAULT_LOCALE = 'en';
 
 export function Uuid({ forID, classNameWrapper, value, onChange, locale }: Props) {
-    // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally mount-only; re-running on value/onChange changes would regenerate the UUID
+    // Lock once any value is observed (minted by us, loaded from storage, or
+    // synced by i18n: duplicate) so the widget never rotates an existing id,
+    // even if the value is later transiently cleared or the effect is replayed
+    // by strict mode / Fast Refresh / future remount-like features.
+    const locked = useRef(false)
+
     useEffect(() => {
-        if (value) return
+        if (locked.current) return
+        if (value) {
+            locked.current = true
+            return
+        }
         if (locale && locale !== DEFAULT_LOCALE) return
         onChange(crypto.randomUUID())
-    }, [])
+        locked.current = true
+    }, [value, locale, onChange])
 
     return (
         <div className={classNameWrapper}>
