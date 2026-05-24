@@ -14,5 +14,6 @@ variable "redirect_rules" {
   type = list(object({
     target     = string
     forward_to = string
+    priority   = number
   }))
 }
