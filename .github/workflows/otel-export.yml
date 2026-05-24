@@ -8,6 +8,7 @@ on:
       - "Monorepo Deploy Pipeline"
       - "Purge CDN"
       - "Terraform Deployments"
+      - "Test Monorepo Tooling"
     types: [completed]
 
 permissions:
