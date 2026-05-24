@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
-"""
-List monorepo projects. With no flags, lists every project; --since and
---filter narrow the set (combined via pnpm's union semantics).
+"""List monorepo projects, optionally narrowed by --since or --filter.
 
-Invoked via `mise run projects:list`. See doc/design/monorepo-tooling.md for
-the language-choice rationale (orthogonal tooling: no JS dependency tree).
-
-Output:
-  Default — name + path table, sorted by path, bold header on TTY.
-  --json  — JSON array [{"name": "...", "path": "..."}, ...].
-            CI consumers wrap as their own matrix shape.
-
-Pluggable by design: each source function takes a Context and returns a list
-of Project; main() merges and deduplicates. Add a function, chain it in.
+Invoked via `mise run projects:list`. See doc/design/monorepo-tooling.md.
 """
 from __future__ import annotations
 
@@ -53,7 +42,6 @@ def repo_root() -> Path:
 
 
 def pnpm_list(root: Path, *filters: str) -> list[Project]:
-    """Run `pnpm -r [--filter X]... list --depth -1 --json` and parse."""
     args = ["pnpm", "-r"]
     for f in filters:
         args += ["--filter", f]
@@ -73,11 +61,11 @@ def pnpm_list(root: Path, *filters: str) -> list[Project]:
 
 
 def js_source(ctx: Context) -> list[Project]:
-    """Pnpm workspace source. Mirrors the bash script's semantics:
-       --since becomes a "[ref]..." filter; user --filter args are appended.
-       Multiple filters union (pnpm default). If --since's filter is the only
-       one and it errors or returns empty, fall back to all packages — same
-       as the old `lerna list --since` behaviour for no-change PRs."""
+    """Pnpm workspace source.
+
+    When --since is the only narrow and it errors or returns empty, fall back
+    to all packages — a no-change PR still needs CI plumbing exercised.
+    """
     filters: list[str] = []
     since_only = False
 
@@ -106,8 +94,6 @@ def js_source(ctx: Context) -> list[Project]:
     return projects
 
 
-# To add a source: write a Context -> list[Project] function and append it to
-# SOURCES below. Each source is independently fallible; main() unions them.
 SOURCES: tuple[Source, ...] = (js_source,)
 
 

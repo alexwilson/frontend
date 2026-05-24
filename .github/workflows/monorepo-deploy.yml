@@ -17,6 +17,9 @@ jobs:
     name: "Prepare (Find Projects, Warm dependency caches)"
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      # Don't let `mise run` auto-install tools beyond what install_args asked for.
+      MISE_TASK_RUN_AUTO_INSTALL: "false"
     outputs:
       projects: ${{ steps.find-projects.outputs.projects }}
     steps:
@@ -30,6 +33,10 @@ jobs:
           if [ -n "$BASE_SHA" ] && [ "$BASE_SHA" != "0000000000000000000000000000000000000000" ]; then
             git fetch --depth=1 origin "$BASE_SHA"
           fi
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
+        with:
+          install_args: python pnpm
+          cache_key_prefix: mise-monorepo-prepare
       - uses: ./.github/actions/setup-monorepo
         with:
           install-filter: '!@alexwilson/personal-website'
@@ -38,40 +45,23 @@ jobs:
         env:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          lerna_args=()
-          lerna_args+=('--all')
-          lerna_args+=('--loglevel silent')
-          lerna_args+=('--ignore @alexwilson/personal-website')
-          lerna_args+=('--include-dependents')
-
-          # Narrow to packages changed since the base ref + their dependents.
-          # Two cases fall through to "all packages":
-          #   1. BASE_REF unset (schedule / dispatch).
-          #   2. Narrowing returns nothing — i.e. a CI-only, docs-only, or
-          #      root-config-only change. Anything that touches build/deploy
-          #      plumbing should exercise the whole workspace, because the
-          #      plumbing is what we'd be validating.
+          args=(--json)
+          # Narrowing to packages changed since the base ref + their dependents
+          # is handled by projects:list when --since is passed. Empty / zero-SHA
+          # base ref (schedule, dispatch) or a no-change narrow both fall back
+          # to "all packages" inside the tool — see tools/projects_list.py and
+          # its tests for the exact semantics.
           if [ -n "$BASE_REF" ] && [ "$BASE_REF" != "0000000000000000000000000000000000000000" ]; then
-            if changed=$(pnpx lerna list ${lerna_args[@]} --since "$BASE_REF" 2>/dev/null); then
-              if [ -n "$changed" ]; then
-                lerna_args+=(--since "$BASE_REF")
-                echo "Narrowed to changed packages and their dependents."
-              else
-                echo "No workspace packages changed; running all packages."
-              fi
-            else
-              echo "::warning::lerna --since errored; falling back to all packages."
-            fi
+            args+=(--since "$BASE_REF")
           fi
-
-          lerna_args+=(--json)
 
           echo "Event: $GITHUB_EVENT_NAME"
           echo "Base ref: ${BASE_REF:-<none>}"
-          echo "$ pnpx lerna list ${lerna_args[*]}"
-          # --include-dependents in lerna overrides --ignore, so post-filter personal-website out.
-          projects=$(pnpx lerna list ${lerna_args[@]} \
-            | jq -rjc -n '.include |= [inputs[] | select(.name != "@alexwilson/personal-website")]')
+          echo "$ mise run projects:list -- ${args[*]}"
+
+          # Personal-website is handled by build-test-deploy.yml separately.
+          projects=$(mise run --quiet projects:list -- "${args[@]}" \
+            | jq -c '{include: map(select(.name != "@alexwilson/personal-website"))}')
 
           echo "Matrix:"
           echo "$projects" | jq .
@@ -103,9 +93,9 @@ jobs:
         with:
           install-filter: '!@alexwilson/personal-website'
       - name: Typecheck
-        run: pnpx lerna run typecheck --scope ${{ matrix.name }}
+        run: pnpm --filter ${{ matrix.name }} run typecheck
       - name: Test
-        run: pnpx lerna run test --scope ${{ matrix.name }}
+        run: pnpm --filter ${{ matrix.name }} run test
 
   tests-passed:
     name: Tests Passed
@@ -162,7 +152,7 @@ jobs:
         with:
           install-filter: '!@alexwilson/personal-website'
       - name: Deploy
-        run: pnpx lerna run deploy --scope ${{ matrix.name }}
+        run: pnpm --filter ${{ matrix.name }} run deploy
         env:
           CI: true
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}

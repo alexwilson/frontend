@@ -1,25 +1,7 @@
 #!/usr/bin/env python3
-"""
-Show monorepo project dependencies. First-order only.
-
-Edges come from two sources:
-  - build (default): package.json dependencies + devDependencies, filtered to
-    workspace projects (external deps like react/gatsby are excluded).
-  - runtime: each service's service.toml [runtime].depends_on. Every service
-    carries a service.toml; depends_on may be empty. Declares deploy/runtime
-    relationships that aren't visible to pnpm (e.g. one worker calling
-    another over HTTP).
+"""Show first-order monorepo project dependencies.
 
 Invoked via `mise run projects:graph`. See doc/design/monorepo-tooling.md.
-
-Output:
-  Default — tree view, project per block, deps shown beneath. Each edge is
-    suffixed with its kind: `(build)` or `(runtime)`. On TTY, project names
-    are bold, build suffixes dim, runtime suffixes highlighted yellow.
-  --format dot — DOT for Graphviz. Runtime edges rendered with style=dashed.
-
-Pluggable: each source returns {project: [Edge, ...]}; main() merges by
-(src, dst, kind). Add a function to SOURCES.
 """
 from __future__ import annotations
 
@@ -59,11 +41,6 @@ def repo_root() -> Path:
 
 
 def workspace_packages(ctx: Context) -> list[dict]:
-    """Fetch the workspace package list from pnpm.
-
-    Shared between sources so each can do its own transform without re-running
-    pnpm. (We currently call it once per source; that's fine at this scale.)
-    """
     proc = subprocess.run(
         ["pnpm", "-r", "list", "--depth", "0", "--json"],
         cwd=ctx.root, capture_output=True, text=True,
@@ -76,23 +53,17 @@ def workspace_packages(ctx: Context) -> list[dict]:
 
 
 def read_service_toml(path: Path) -> dict | None:
-    """Read a service.toml file, returning None if absent. Centralised so
-    tests can patch this without mocking tomllib / Path directly."""
     if not path.exists():
         return None
     with open(path, "rb") as f:
         return tomllib.load(f)
 
 
-# --- sources ---------------------------------------------------------------
-
 def js_first_order(ctx: Context) -> dict[str, list[Edge]]:
-    """Workspace-internal first-order build deps from pnpm."""
     return extract_build_edges(workspace_packages(ctx))
 
 
 def runtime_deps_from_toml(ctx: Context) -> dict[str, list[Edge]]:
-    """Runtime deps declared in each project's service.toml."""
     pkgs = workspace_packages(ctx)
     configs: dict[str, dict] = {}
     for pkg in pkgs:
@@ -106,17 +77,10 @@ def runtime_deps_from_toml(ctx: Context) -> dict[str, list[Edge]]:
     return extract_runtime_edges(pkgs, configs)
 
 
-# To add a source: write a Context -> Graph function and append it to SOURCES.
 SOURCES: tuple[Source, ...] = (js_first_order, runtime_deps_from_toml)
 
 
-# --- pure transforms (directly testable) -----------------------------------
-
 def extract_build_edges(pkgs: list[dict]) -> dict[str, list[Edge]]:
-    """pnpm list JSON -> {name: [Edge(dst, kind='build'), ...]}.
-
-    Filters external deps; only edges to other workspace projects.
-    """
     workspace_names = {p["name"] for p in pkgs if p.get("name") not in (None, "root")}
     graph: dict[str, list[Edge]] = {}
     for pkg in pkgs:
@@ -136,10 +100,6 @@ def extract_runtime_edges(
     pkgs: list[dict],
     configs: dict[str, dict],
 ) -> dict[str, list[Edge]]:
-    """pkgs + {name: parsed service.toml} -> {name: [Edge(dst, kind='runtime')]}.
-
-    Pure: caller does the file reading.
-    """
     graph: dict[str, list[Edge]] = {}
     for pkg in pkgs:
         name = pkg.get("name")
@@ -155,8 +115,7 @@ def extract_runtime_edges(
 
 
 def merge(graphs: list[Graph]) -> dict[str, list[Edge]]:
-    """Union edges across sources. Edges are deduped by (dst, kind), so the
-    same pair as both a build and runtime edge keeps both."""
+    """Union edges across sources, deduped by (dst, kind)."""
     merged: dict[str, set[Edge]] = {}
     for g in graphs:
         for src, edges in g.items():
@@ -167,11 +126,9 @@ def merge(graphs: list[Graph]) -> dict[str, list[Edge]]:
     }
 
 
-# --- formatters ------------------------------------------------------------
-
 KIND_STYLE_TTY = {
-    "build": "\033[2m",     # dim — recoverable from package.json, background
-    "runtime": "\033[33m",  # yellow — load-bearing service relationship
+    "build": "\033[2m",
+    "runtime": "\033[33m",
 }
 
 
@@ -211,8 +168,6 @@ def emit_dot(graph: Graph, file=None) -> None:
 
 FORMATTERS = {"tree": emit_tree, "dot": emit_dot}
 
-
-# --- CLI -------------------------------------------------------------------
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(

@@ -41,7 +41,7 @@ jobs:
         with:
           install-filter: '@alexwilson/personal-website...'
       - name: Build
-        run: pnpx lerna run --scope @alexwilson/personal-website build
+        run: pnpm --filter @alexwilson/personal-website run build
         env:
           GITHUB_TOKEN: ${{ secrets.CONTENT_ACCESS_TOKEN }}
           CI: true
@@ -72,9 +72,9 @@ jobs:
         with:
           install-filter: '@alexwilson/personal-website...'
       - name: Typecheck
-        run: pnpx lerna run --scope @alexwilson/personal-website typecheck
+        run: pnpm --filter @alexwilson/personal-website run typecheck
       - name: Run Tests
-        run: pnpx lerna run --scope @alexwilson/personal-website test
+        run: pnpm --filter @alexwilson/personal-website run test
 
   validate-feed:
     name: "Validate feed"

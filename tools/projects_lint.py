@@ -1,20 +1,8 @@
 #!/usr/bin/env python3
-"""
-Lint monorepo project structure. Reports projects missing required components.
-
-Today's rules:
-  - Every directory in services/* must contain service.toml.
-  - Every directory in components/* must contain package.json.
-
-Output:
-  Default — silent on success; on failure, one line per issue. Red `✗` on TTY.
-  --json  — JSON array of {path, message}. Always emits (empty array if clean).
-
-Exit code: 0 if no issues; 1 if any.
+"""Lint monorepo project structure for missing required components.
 
 Invoked via `mise run projects:lint`. See doc/design/monorepo-tooling.md.
-
-Pluggable: each rule is a Context -> list[Issue] function. Add to RULES.
+Exit code: 0 if no issues, 1 if any.
 """
 from __future__ import annotations
 
@@ -29,8 +17,8 @@ from typing import Callable
 
 @dataclass(frozen=True)
 class Issue:
-    path: str      # relative to repo root, e.g. "services/cms"
-    message: str   # human-readable description
+    path: str
+    message: str
 
 
 @dataclass(frozen=True)
@@ -52,8 +40,6 @@ def repo_root() -> Path:
 def _children_missing_file(
     ctx: Context, subdir: str, required: str, message: str,
 ) -> list[Issue]:
-    """Helper: every direct child directory of <root>/<subdir>/ must contain
-    <required> at its top level. Stray files at the subdir level are ignored."""
     issues: list[Issue] = []
     parent = ctx.root / subdir
     if not parent.is_dir():
@@ -70,8 +56,6 @@ def _children_missing_file(
     return issues
 
 
-# --- rules -----------------------------------------------------------------
-
 def services_have_service_toml(ctx: Context) -> list[Issue]:
     return _children_missing_file(ctx, "services", "service.toml", "missing service.toml")
 
@@ -80,14 +64,11 @@ def components_have_package_json(ctx: Context) -> list[Issue]:
     return _children_missing_file(ctx, "components", "package.json", "missing package.json")
 
 
-# To add a rule: write a Context -> list[Issue] function and append it to RULES.
 RULES: tuple[Rule, ...] = (
     services_have_service_toml,
     components_have_package_json,
 )
 
-
-# --- formatters ------------------------------------------------------------
 
 def emit_text(issues: list[Issue], file=None) -> None:
     if file is None:
@@ -107,8 +88,6 @@ def emit_json(issues: list[Issue], file=None) -> None:
     json.dump([asdict(i) for i in issues], file, separators=(",", ":"))
     file.write("\n")
 
-
-# --- CLI -------------------------------------------------------------------
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
