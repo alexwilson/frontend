@@ -63,7 +63,7 @@ def js_source(ctx: Context) -> list[Project]:
     since_only = False
 
     if ctx.since and ctx.since not in EMPTY_REFS:
-        filters.append(f"[{ctx.since}]...")
+        filters.append(f"...[{ctx.since}]")
         since_only = not ctx.filters
 
     filters.extend(ctx.filters)
@@ -74,7 +74,7 @@ def js_source(ctx: Context) -> list[Project]:
         if not since_only:
             raise
         print(
-            f"::warning::pnpm '[{ctx.since}]...' filter errored ({err}); "
+            f"::warning::pnpm '...[{ctx.since}]' filter errored ({err}); "
             "falling back to all JS packages.",
             file=sys.stderr,
         )
