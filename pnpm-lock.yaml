@@ -10,10 +10,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      esbuild:
-        specifier: 0.28.0
-        version: 0.28.0
     devDependencies:
       lerna:
         specifier: 9.0.7
@@ -19319,7 +19315,7 @@ snapshots:
 
   axios@1.15.0:
     dependencies:
-      follow-redirects: 1.16.0(debug@4.4.3)
+      follow-redirects: 1.16.0
       form-data: 4.0.5
       proxy-from-env: 2.1.0
     transitivePeerDependencies:
@@ -22948,6 +22944,8 @@ snapshots:
   focus-group@0.3.1: {}
 
   follow-redirects@1.15.11: {}
+
+  follow-redirects@1.16.0: {}
 
   follow-redirects@1.16.0(debug@4.4.3):
     optionalDependencies:
