@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""Tests for projects_graph.py. Stdlib-only.
-
-Run via: mise run test:tools
-"""
+"""Tests for projects_graph.py."""
 from __future__ import annotations
 
 import contextlib

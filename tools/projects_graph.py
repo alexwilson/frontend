@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""Show first-order monorepo project dependencies.
-
-Invoked via `mise run projects:graph`. See doc/design/monorepo-tooling.md.
-"""
+"""Show first-order monorepo project dependencies."""
 from __future__ import annotations
 
 import argparse
