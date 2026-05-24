@@ -1,21 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { APIGatewayProxyEvent, Context } from "aws-lambda";
 
-const { putMock } = vi.hoisted(() => ({ putMock: vi.fn() }));
+const { sendMock } = vi.hoisted(() => ({ sendMock: vi.fn() }));
 
-vi.mock("aws-sdk", () => {
-  class DocumentClient {
-    put = (params: unknown) => ({
-      promise: () => putMock(params),
-    });
-  }
-  const mocked = {
-    DynamoDB: { DocumentClient },
-    S3: class {},
-    CloudFront: class {},
-  };
-  return { ...mocked, default: mocked };
-});
+vi.mock("@aws-sdk/client-dynamodb", () => ({
+  DynamoDBClient: class {},
+}));
+
+vi.mock("@aws-sdk/lib-dynamodb", () => ({
+  DynamoDBDocumentClient: {
+    from: () => ({ send: sendMock }),
+  },
+  PutCommand: class PutCommand {
+    constructor(public input: unknown) {}
+  },
+}));
 
 const TABLE = "webmentions-test-table";
 const TOKEN = "shared-secret-abc";
@@ -70,8 +69,8 @@ async function call(body: unknown) {
 }
 
 beforeEach(() => {
-  putMock.mockReset();
-  putMock.mockResolvedValue({});
+  sendMock.mockReset();
+  sendMock.mockResolvedValue({});
 });
 
 describe("webmention-io handler — auth", () => {
@@ -84,7 +83,7 @@ describe("webmention-io handler — auth", () => {
 
     expect(res.statusCode).toBe(401);
     expect(JSON.parse(res.body)).toEqual({ message: "Unauthorized" });
-    expect(putMock).not.toHaveBeenCalled();
+    expect(sendMock).not.toHaveBeenCalled();
   });
 
   it("accepts a request whose secret matches the configured token", async () => {
@@ -95,7 +94,7 @@ describe("webmention-io handler — auth", () => {
     });
 
     expect(res.statusCode).toBe(200);
-    expect(putMock).toHaveBeenCalledOnce();
+    expect(sendMock).toHaveBeenCalledOnce();
   });
 });
 
@@ -108,8 +107,8 @@ describe("webmention-io handler — DynamoDB persistence", () => {
       post,
     });
 
-    expect(putMock).toHaveBeenCalledOnce();
-    const params = putMock.mock.calls[0][0];
+    expect(sendMock).toHaveBeenCalledOnce();
+    const params = sendMock.mock.calls[0][0].input;
     expect(params.TableName).toBe(TABLE);
     expect(params.Item.contentId).toBe(ARTICLE_UUID);
     expect(params.Item.webmentionId).toBe("98765");
@@ -129,7 +128,7 @@ describe("webmention-io handler — DynamoDB persistence", () => {
       post,
     });
 
-    const params = putMock.mock.calls[0][0];
+    const params = sendMock.mock.calls[0][0].input;
     expect(params.Item.webmentionData).toEqual(post);
   });
 
@@ -145,7 +144,7 @@ describe("webmention-io handler — DynamoDB persistence", () => {
       post: makePost({ "wm-id": "1" }),
     });
 
-    const [first, second] = putMock.mock.calls.map((c) => c[0]);
+    const [first, second] = sendMock.mock.calls.map((c) => c[0].input);
     expect(first.Item.webmentionId).toBe("1");
     expect(second.Item.webmentionId).toBe("1");
   });
@@ -171,7 +170,7 @@ describe("webmention-io handler — contentId extraction", () => {
       target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
       post: makePost(),
     });
-    expect(putMock.mock.calls[0][0].Item.contentId).toBe(ARTICLE_UUID);
+    expect(sendMock.mock.calls[0][0].input.Item.contentId).toBe(ARTICLE_UUID);
   });
 
   it("tolerates a query string after the UUID", async () => {
@@ -180,7 +179,7 @@ describe("webmention-io handler — contentId extraction", () => {
       target: `https://alexwilson.tech/content/${ARTICLE_UUID}?utm=foo`,
       post: makePost(),
     });
-    expect(putMock.mock.calls[0][0].Item.contentId).toBe(ARTICLE_UUID);
+    expect(sendMock.mock.calls[0][0].input.Item.contentId).toBe(ARTICLE_UUID);
   });
 
   it("tolerates a fragment after the UUID", async () => {
@@ -189,7 +188,7 @@ describe("webmention-io handler — contentId extraction", () => {
       target: `https://alexwilson.tech/content/${ARTICLE_UUID}#section`,
       post: makePost(),
     });
-    expect(putMock.mock.calls[0][0].Item.contentId).toBe(ARTICLE_UUID);
+    expect(sendMock.mock.calls[0][0].input.Item.contentId).toBe(ARTICLE_UUID);
   });
 
   it("tolerates a trailing slash", async () => {
@@ -198,7 +197,7 @@ describe("webmention-io handler — contentId extraction", () => {
       target: `https://alexwilson.tech/content/${ARTICLE_UUID}/`,
       post: makePost(),
     });
-    expect(putMock.mock.calls[0][0].Item.contentId).toBe(ARTICLE_UUID);
+    expect(sendMock.mock.calls[0][0].input.Item.contentId).toBe(ARTICLE_UUID);
   });
 
   it("falls back to the nil UUID when the URL does not match /content/{uuid}", async () => {
@@ -207,7 +206,7 @@ describe("webmention-io handler — contentId extraction", () => {
       target: "https://alexwilson.tech/blog/some-other-path",
       post: makePost(),
     });
-    expect(putMock.mock.calls[0][0].Item.contentId).toBe(NIL_UUID);
+    expect(sendMock.mock.calls[0][0].input.Item.contentId).toBe(NIL_UUID);
   });
 });
 
@@ -231,7 +230,7 @@ describe("webmention-io handler — Webmention wm-property coverage", () => {
         post,
       });
 
-      const stored = putMock.mock.calls[0][0].Item.webmentionData as {
+      const stored = sendMock.mock.calls[0][0].input.Item.webmentionData as {
         "wm-property": WmProperty;
       };
       expect(stored["wm-property"]).toBe(property);
@@ -250,7 +249,7 @@ describe("webmention-io handler — Webmention wm-property coverage", () => {
       post: makePost({ author }),
     });
 
-    const stored = putMock.mock.calls[0][0].Item.webmentionData as {
+    const stored = sendMock.mock.calls[0][0].input.Item.webmentionData as {
       author: typeof author;
     };
     expect(stored.author).toEqual(author);
@@ -276,7 +275,7 @@ describe("webmention-io handler — no webhook token configured", () => {
       )) as { statusCode: number; body: string };
 
       expect(res.statusCode).toBe(200);
-      expect(putMock).toHaveBeenCalledOnce();
+      expect(sendMock).toHaveBeenCalledOnce();
     } finally {
       process.env.WEBMENTION_IO_WEBHOOK_TOKEN = previous;
       vi.resetModules();
@@ -287,12 +286,12 @@ describe("webmention-io handler — no webhook token configured", () => {
 describe("webmention-io handler — malformed input", () => {
   it("throws on a non-JSON body (callers/API Gateway should reject upstream)", async () => {
     await expect(call("this is not json")).rejects.toThrow();
-    expect(putMock).not.toHaveBeenCalled();
+    expect(sendMock).not.toHaveBeenCalled();
   });
 
   it("throws on an empty body rather than silently writing garbage", async () => {
     await expect(call("")).rejects.toThrow();
-    expect(putMock).not.toHaveBeenCalled();
+    expect(sendMock).not.toHaveBeenCalled();
   });
 
   it("throws when the post object is missing", async () => {
@@ -302,6 +301,6 @@ describe("webmention-io handler — malformed input", () => {
         target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
       }),
     ).rejects.toThrow();
-    expect(putMock).not.toHaveBeenCalled();
+    expect(sendMock).not.toHaveBeenCalled();
   });
 });

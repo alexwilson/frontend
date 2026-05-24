@@ -3,12 +3,17 @@ import type {
   DynamoDBStreamHandler,
   StreamRecord,
 } from "aws-lambda";
-import * as AWS from "aws-sdk";
-import axios from "axios";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  CloudFrontClient,
+  CreateInvalidationCommand,
+} from "@aws-sdk/client-cloudfront";
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const s3 = new AWS.S3();
-const cloudfront = new AWS.CloudFront();
+const dynamoDb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
+const s3 = new S3Client({});
+const cloudfront = new CloudFrontClient({});
 const tableName = process.env.DYNAMODB_TABLE || "";
 const bucketName = process.env.S3_BUCKET || "";
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || "";
@@ -29,18 +34,18 @@ export const handler: DynamoDBStreamHandler = async (
   const promises: Array<Promise<void>> = Array.from(contentIds).map(
     async (contentId) => {
       // Query all webmentions for this article
-      const allWebmentions = await dynamoDb
-        .query({
+      const allWebmentions = await dynamoDb.send(
+        new QueryCommand({
           TableName: tableName,
           KeyConditionExpression: "contentId = :contentId",
           ExpressionAttributeValues: {
             ":contentId": contentId,
           },
-        })
-        .promise();
+        }),
+      );
 
-      const webmentions = allWebmentions.Items.map(
-        (data: { webmentionData: object }) => data.webmentionData,
+      const webmentions = (allWebmentions.Items ?? []).map(
+        (data) => (data as { webmentionData: object }).webmentionData,
       );
       const responseBody = {
         type: "feed",
@@ -49,18 +54,18 @@ export const handler: DynamoDBStreamHandler = async (
       };
 
       // Serialize webmentions to S3.
-      await s3
-        .putObject({
+      await s3.send(
+        new PutObjectCommand({
           Bucket: bucketName,
           Key: `webmentions/${contentId}.json`,
           Body: JSON.stringify(responseBody),
           ContentType: "application/json",
-        })
-        .promise();
+        }),
+      );
 
       // Purge cache for invalidation.
-      await cloudfront
-        .createInvalidation({
+      await cloudfront.send(
+        new CreateInvalidationCommand({
           DistributionId: distributionId,
           InvalidationBatch: {
             CallerReference: String(Date.now()),
@@ -69,8 +74,8 @@ export const handler: DynamoDBStreamHandler = async (
               Items: [`/v1/webmention/${contentId}`],
             },
           },
-        })
-        .promise();
+        }),
+      );
     },
   );
 
