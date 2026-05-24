@@ -175,7 +175,9 @@ KIND_STYLE_TTY = {
 }
 
 
-def emit_tree(graph: Graph, file=sys.stdout) -> None:
+def emit_tree(graph: Graph, file=None) -> None:
+    if file is None:
+        file = sys.stdout
     is_tty = file.isatty()
     bold = "\033[1m" if is_tty else ""
     reset = "\033[0m" if is_tty else ""
@@ -191,7 +193,9 @@ def emit_tree(graph: Graph, file=sys.stdout) -> None:
             print(f"{connector} {edge.dst} {style}({edge.kind}){suffix_reset}", file=file)
 
 
-def emit_dot(graph: Graph, file=sys.stdout) -> None:
+def emit_dot(graph: Graph, file=None) -> None:
+    if file is None:
+        file = sys.stdout
     print("digraph projects {", file=file)
     print('  rankdir="LR";', file=file)
     print("  node [shape=box];", file=file)

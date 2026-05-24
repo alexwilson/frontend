@@ -15,6 +15,10 @@ run = "./tools/projects_list.py"
 description = "Show first-order project dependencies. Args: [--format tree|dot]"
 run = "./tools/projects_graph.py"
 
+[tasks."projects:lint"]
+description = "Lint project structure (required files per kind). Exits non-zero on issues. Args: [--json]"
+run = "./tools/projects_lint.py"
+
 [tasks."test:tools"]
 description = "Run the stdlib unittest suite for tools/."
 run = "python -m unittest discover -s tools/tests -t tools -p 'test_*.py'"
