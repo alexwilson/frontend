@@ -1,3 +1,7 @@
+# Environment variables
+.env
+!.env.dist
+
 # Ignoring system files
 .DS_Store
 
@@ -15,7 +19,8 @@ terraform/*.tfstate*
 # Ignoring dependencies.
 node_modules
 
-# Python bytecode caches (mise tools/)
+# Python bytecode caches
 __pycache__
 
-lerna-debug.log
+# Logfiles
+*.log
