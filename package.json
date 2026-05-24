@@ -9,7 +9,8 @@
   },
   "pnpm": {
     "overrides": {
-      "gatsby-plugin-sass>sass-loader": "^16.0.0"
+      "gatsby-plugin-sass>sass-loader": "^16.0.0",
+      "graphql": "^16.0.0"
     }
   }
 }

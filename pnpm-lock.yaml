@@ -6,6 +6,7 @@ settings:
 
 overrides:
   gatsby-plugin-sass>sass-loader: ^16.0.0
+  graphql: ^16.0.0
 
 importers:
 
@@ -473,7 +474,7 @@ packages:
     resolution: {integrity: sha512-9anThAaj1dQr6IGmzBMcfzOQKTa5artjuPmw8NYK/fiGEMjADbSguBY2FMDykt+QhilR3wc9VA/3yVju7JHg7Q==}
     hasBin: true
     peerDependencies:
-      graphql: '*'
+      graphql: ^16.0.0
 
   '@asamuzakjp/css-color@5.1.11':
     resolution: {integrity: sha512-KVw6qIiCTUQhByfTd78h2yD1/00waTmm9uy/R7Ck/ctUyAPj+AEDLkQIdJW0T8+qGgj3j5bpNKK7Q3G+LedJWg==}
@@ -2462,92 +2463,92 @@ packages:
   '@graphql-codegen/add@3.2.3':
     resolution: {integrity: sha512-sQOnWpMko4JLeykwyjFTxnhqjd/3NOG2OyMuvK76Wnnwh8DRrNf2VEs2kmSvLl7MndMlOj7Kh5U154dVcvhmKQ==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/core@2.6.8':
     resolution: {integrity: sha512-JKllNIipPrheRgl+/Hm/xuWMw9++xNQ12XJR/OHHgFopOg4zmN3TdlRSyYcv/K90hCFkkIwhlHFUQTfKrm8rxQ==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/plugin-helpers@2.7.2':
     resolution: {integrity: sha512-kln2AZ12uii6U59OQXdjLk5nOlh1pHis1R98cDZGFnfaiAbX9V3fxcZ1MMJkB7qFUymTALzyjZoXXdyVmPMfRg==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/plugin-helpers@3.1.2':
     resolution: {integrity: sha512-emOQiHyIliVOIjKVKdsI5MXj312zmRDwmHpyUTZMjfpvxq/UVAHUJIVdVf+lnjjrI+LXBTgMlTWTgHQfmICxjg==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/schema-ast@2.6.1':
     resolution: {integrity: sha512-5TNW3b1IHJjCh07D2yQNGDQzUpUl2AD+GVe1Dzjqyx/d2Fn0TPMxLsHsKPS4Plg4saO8FK/QO70wLsP7fdbQ1w==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/typescript-operations@2.5.13':
     resolution: {integrity: sha512-3vfR6Rx6iZU0JRt29GBkFlrSNTM6t+MSLF86ChvL4d/Jfo/JYAGuB3zNzPhirHYzJPCvLOAx2gy9ID1ltrpYiw==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/typescript@2.8.8':
     resolution: {integrity: sha512-A0oUi3Oy6+DormOlrTC4orxT9OBZkIglhbJBcDmk34jAKKUgesukXRd4yOhmTrnbchpXz2T8IAOFB3FWIaK4Rw==}
     peerDependencies:
-      graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-codegen/visitor-plugin-common@2.13.8':
     resolution: {integrity: sha512-IQWu99YV4wt8hGxIbBQPtqRuaWZhkQRG2IZKbMoSvh0vGeWb3dB0n0hSgKaOOxDY+tljtOf9MTcUYvJslQucMQ==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/code-file-loader@7.3.23':
     resolution: {integrity: sha512-8Wt1rTtyTEs0p47uzsPJ1vAtfAx0jmxPifiNdmo9EOCuUPyQGEbMaik/YkqZ7QUFIEYEQu+Vgfo8tElwOPtx5Q==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/graphql-tag-pluck@7.5.2':
     resolution: {integrity: sha512-RW+H8FqOOLQw0BPXaahYepVSRjuOHw+7IL8Opaa5G5uYGOBxoXR7DceyQ7BcpMgktAOOmpDNQ2WtcboChOJSRA==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/load@7.8.14':
     resolution: {integrity: sha512-ASQvP+snHMYm+FhIaLxxFgVdRaM0vrN9wW2BKInQpktwWTXVyk+yP5nQUCEGmn0RTdlPKrffBaigxepkEAJPrg==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/merge@8.4.2':
     resolution: {integrity: sha512-XbrHAaj8yDuINph+sAfuq3QCZ/tKblrTLOpirK0+CAgNlZUCHs0Fa+xtMUURgwCVThLle1AF7svJCxFizygLsw==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/optimize@1.4.0':
     resolution: {integrity: sha512-dJs/2XvZp+wgHH8T5J2TqptT9/6uVzIYvA6uFACha+ufvdMBedkfR4b4GbT8jAKLRARiqRTxy3dctnwkTM2tdw==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/relay-operation-optimizer@6.5.18':
     resolution: {integrity: sha512-mc5VPyTeV+LwiM+DNvoDQfPqwQYhPV/cl5jOBjTgSniyaq8/86aODfMkrE2OduhQ5E00hqrkuL2Fdrgk0w1QJg==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/schema@9.0.19':
     resolution: {integrity: sha512-oBRPoNBtCkk0zbUsyP4GaIzCt8C0aCI4ycIRUL67KK5pOHljKLBBtGT+Jr6hkzA74C8Gco8bpZPe7aWFjiaK2w==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/utils@8.13.1':
     resolution: {integrity: sha512-qIh9yYpdUFmctVqovwMdheVNJqFh+DQNWIhX87FJStfXYnmweBUDATok9fWPleKeFwxnW8IapKmY8m8toJEkAw==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-tools/utils@9.2.1':
     resolution: {integrity: sha512-WUw506Ql6xzmOORlriNrD6Ugx+HjVgYxt9KCXD9mHAak+eaXSwuGGPyE60hy9xaDEoXKBsG7SkG69ybitaVl6A==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@graphql-typed-document-node/core@3.2.0':
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+      graphql: ^16.0.0
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -4879,17 +4880,17 @@ packages:
   apollo-cache-inmemory@1.6.6:
     resolution: {integrity: sha512-L8pToTW/+Xru2FFAhkZ1OA9q4V4nuvfoPecBM34DecAugUZEBhI2Hmpgnzq2hTKZ60LAMrlqiASm0aqAY6F8/A==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-cache@1.3.5:
     resolution: {integrity: sha512-1XoDy8kJnyWY/i/+gLTEbYLnoiVtS8y7ikBr/IfmML4Qb+CM7dEEbIUOjnY716WqmZ/UpXIxTfJsY7rMcqiCXA==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-client@2.6.10:
     resolution: {integrity: sha512-jiPlMTN6/5CjZpJOkGeUV0mb4zxx33uXWdj/xQCfAMkuNAC3HN7CvYDyMHHEzmcQ5GV12LszWoQ/VlxET24CtA==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-link-context@1.0.20:
     resolution: {integrity: sha512-MLLPYvhzNb8AglNsk2NcL9AvhO/Vc9hn2ZZuegbhRHGet3oGr0YH9s30NS9+ieoM0sGT11p7oZ6oAILM/kiRBA==}
@@ -4897,22 +4898,22 @@ packages:
   apollo-link-http-common@0.2.16:
     resolution: {integrity: sha512-2tIhOIrnaF4UbQHf7kjeQA/EmSorB7+HyJIIrUjJOKBgnXwuexi8aMecRlqTIDWcyVXCeqLhUnztMa6bOH/jTg==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-link-http@1.5.17:
     resolution: {integrity: sha512-uWcqAotbwDEU/9+Dm9e1/clO7hTB2kQ/94JYcGouBVLjoKmTeJTUPQKcJGpPwUjZcSqgYicbFqQSoJIW0yrFvg==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-link@1.2.14:
     resolution: {integrity: sha512-p67CMEFP7kOG1JZ0ZkYZwRDa369w5PIjtMjvrQd/HnIV8FRsHRqLqK+oAZQnFa1DDdZtOtHTi+aMIW6EatC2jg==}
     peerDependencies:
-      graphql: ^0.11.3 || ^0.12.3 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   apollo-utilities@1.3.4:
     resolution: {integrity: sha512-pk2hiWrCXMAy2fRPwEyhvka+mqwzeP60Jr1tRYi5xru+3ko94HI9o6lK0CT33/w4RDlxWchmdhDCrvdr+pHCig==}
     peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^16.0.0
 
   append-field@1.0.0:
     resolution: {integrity: sha512-klpgFSWLW1ZEs8svjfb7g4qWY0YS5imI82dTg+QahUvJ8YqAY0P10Uk8tTyh9ZGuYEZEMaeJYCF5BFuX552hsw==}
@@ -7780,28 +7781,24 @@ packages:
   graphql-compose@9.1.0:
     resolution: {integrity: sha512-nFL2+oeF8IlKjXPzmFL9rlBhrHlJMKGC0JeuBfOkWLLNqAtlFV+M1YGuuORyx0+mbLsBl9XToKWBPPfCHL8HHA==}
     peerDependencies:
-      graphql: ^14.2.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   graphql-http@1.22.4:
     resolution: {integrity: sha512-OC3ucK988teMf+Ak/O+ZJ0N2ukcgrEurypp8ePyJFWq83VzwRAmHxxr+XxrMpxO/FIwI4a7m/Fzv3tWGJv0wPA==}
     engines: {node: '>=12'}
     peerDependencies:
-      graphql: '>=0.11 <=16'
+      graphql: ^16.0.0
 
   graphql-tag@2.12.6:
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
     peerDependencies:
-      graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0
 
   graphql-type-json@0.3.2:
     resolution: {integrity: sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==}
     peerDependencies:
-      graphql: '>=0.8.0'
-
-  graphql@15.10.2:
-    resolution: {integrity: sha512-1PRqdDPAmViWr4h1GVBT8RoPZfWSGZa7kDzleTilOfVIslsgf+cia3Nl95v1KDmR4iERPaT7WzQ+tN4MJmbg3w==}
-    engines: {node: '>= 10.x'}
+      graphql: ^16.0.0
 
   graphql@16.14.0:
     resolution: {integrity: sha512-BBvQ/406p+4CZbTpCbVPSxfzrZrbnuWSP1ELYgyS6B+hNeKzgrdB4JczCa5VZUBQrDa9hUngm0KnexY6pJRN5Q==}
@@ -17600,15 +17597,6 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
-  apollo-cache-inmemory@1.6.6(graphql@15.10.2):
-    dependencies:
-      apollo-cache: 1.3.5(graphql@15.10.2)
-      apollo-utilities: 1.3.4(graphql@15.10.2)
-      graphql: 15.10.2
-      optimism: 0.10.3
-      ts-invariant: 0.4.4
-      tslib: 1.14.1
-
   apollo-cache-inmemory@1.6.6(graphql@16.14.0):
     dependencies:
       apollo-cache: 1.3.5(graphql@16.14.0)
@@ -17618,29 +17606,11 @@ snapshots:
       ts-invariant: 0.4.4
       tslib: 1.14.1
 
-  apollo-cache@1.3.5(graphql@15.10.2):
-    dependencies:
-      apollo-utilities: 1.3.4(graphql@15.10.2)
-      graphql: 15.10.2
-      tslib: 1.14.1
-
   apollo-cache@1.3.5(graphql@16.14.0):
     dependencies:
       apollo-utilities: 1.3.4(graphql@16.14.0)
       graphql: 16.14.0
       tslib: 1.14.1
-
-  apollo-client@2.6.10(graphql@15.10.2):
-    dependencies:
-      '@types/zen-observable': 0.8.7
-      apollo-cache: 1.3.5(graphql@15.10.2)
-      apollo-link: 1.2.14(graphql@15.10.2)
-      apollo-utilities: 1.3.4(graphql@15.10.2)
-      graphql: 15.10.2
-      symbol-observable: 1.2.0
-      ts-invariant: 0.4.4
-      tslib: 1.14.1
-      zen-observable: 0.8.15
 
   apollo-client@2.6.10(graphql@16.14.0):
     dependencies:
@@ -17654,13 +17624,6 @@ snapshots:
       tslib: 1.14.1
       zen-observable: 0.8.15
 
-  apollo-link-context@1.0.20(graphql@15.10.2):
-    dependencies:
-      apollo-link: 1.2.14(graphql@15.10.2)
-      tslib: 1.14.1
-    transitivePeerDependencies:
-      - graphql
-
   apollo-link-context@1.0.20(graphql@16.14.0):
     dependencies:
       apollo-link: 1.2.14(graphql@16.14.0)
@@ -17668,25 +17631,11 @@ snapshots:
     transitivePeerDependencies:
       - graphql
 
-  apollo-link-http-common@0.2.16(graphql@15.10.2):
-    dependencies:
-      apollo-link: 1.2.14(graphql@15.10.2)
-      graphql: 15.10.2
-      ts-invariant: 0.4.4
-      tslib: 1.14.1
-
   apollo-link-http-common@0.2.16(graphql@16.14.0):
     dependencies:
       apollo-link: 1.2.14(graphql@16.14.0)
       graphql: 16.14.0
       ts-invariant: 0.4.4
-      tslib: 1.14.1
-
-  apollo-link-http@1.5.17(graphql@15.10.2):
-    dependencies:
-      apollo-link: 1.2.14(graphql@15.10.2)
-      apollo-link-http-common: 0.2.16(graphql@15.10.2)
-      graphql: 15.10.2
       tslib: 1.14.1
 
   apollo-link-http@1.5.17(graphql@16.14.0):
@@ -17696,14 +17645,6 @@ snapshots:
       graphql: 16.14.0
       tslib: 1.14.1
 
-  apollo-link@1.2.14(graphql@15.10.2):
-    dependencies:
-      apollo-utilities: 1.3.4(graphql@15.10.2)
-      graphql: 15.10.2
-      ts-invariant: 0.4.4
-      tslib: 1.14.1
-      zen-observable-ts: 0.8.21
-
   apollo-link@1.2.14(graphql@16.14.0):
     dependencies:
       apollo-utilities: 1.3.4(graphql@16.14.0)
@@ -17711,14 +17652,6 @@ snapshots:
       ts-invariant: 0.4.4
       tslib: 1.14.1
       zen-observable-ts: 0.8.21
-
-  apollo-utilities@1.3.4(graphql@15.10.2):
-    dependencies:
-      '@wry/equality': 0.1.11
-      fast-json-stable-stringify: 2.1.0
-      graphql: 15.10.2
-      ts-invariant: 0.4.4
-      tslib: 1.14.1
 
   apollo-utilities@1.3.4(graphql@16.14.0):
     dependencies:
@@ -19233,18 +19166,18 @@ snapshots:
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      apollo-cache-inmemory: 1.6.6(graphql@15.10.2)
-      apollo-client: 2.6.10(graphql@15.10.2)
-      apollo-link-context: 1.0.20(graphql@15.10.2)
-      apollo-link-http: 1.5.17(graphql@15.10.2)
+      apollo-cache-inmemory: 1.6.6(graphql@16.14.0)
+      apollo-client: 2.6.10(graphql@16.14.0)
+      apollo-link-context: 1.0.20(graphql@16.14.0)
+      apollo-link-http: 1.5.17(graphql@16.14.0)
       common-tags: 1.8.2
       decap-cms-backend-github: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2))(decap-cms-lib-util@3.5.0(immutable@3.8.3)(lodash@4.18.1))(decap-cms-ui-default@3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2)
       decap-cms-lib-util: 3.5.0(immutable@3.8.3)(lodash@4.18.1)
       decap-cms-ui-auth: 3.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2))(decap-cms-ui-default@3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-ui-default: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      graphql: 15.10.2
-      graphql-tag: 2.12.6(graphql@15.10.2)
+      graphql: 16.14.0
+      graphql-tag: 2.12.6(graphql@16.14.0)
       js-base64: 3.7.8
       lodash: 4.18.1
       prop-types: 15.8.1
@@ -19255,18 +19188,18 @@ snapshots:
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      apollo-cache-inmemory: 1.6.6(graphql@15.10.2)
-      apollo-client: 2.6.10(graphql@15.10.2)
-      apollo-link-context: 1.0.20(graphql@15.10.2)
-      apollo-link-http: 1.5.17(graphql@15.10.2)
+      apollo-cache-inmemory: 1.6.6(graphql@16.14.0)
+      apollo-client: 2.6.10(graphql@16.14.0)
+      apollo-link-context: 1.0.20(graphql@16.14.0)
+      apollo-link-http: 1.5.17(graphql@16.14.0)
       common-tags: 1.8.2
       decap-cms-backend-github: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2))(decap-cms-lib-util@3.5.0(immutable@3.8.3)(lodash@4.18.1))(decap-cms-ui-default@3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-lib-auth: 3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2)
       decap-cms-lib-util: 3.5.0(immutable@3.8.3)(lodash@4.18.1)
       decap-cms-ui-auth: 3.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(decap-cms-lib-auth@3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2))(decap-cms-ui-default@3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react@18.3.1)
       decap-cms-ui-default: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      graphql: 15.10.2
-      graphql-tag: 2.12.6(graphql@15.10.2)
+      graphql: 16.14.0
+      graphql-tag: 2.12.6(graphql@16.14.0)
       js-base64: 3.7.8
       lodash: 4.18.1
       prop-types: 15.8.1
@@ -19409,16 +19342,16 @@ snapshots:
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      apollo-cache-inmemory: 1.6.6(graphql@15.10.2)
-      apollo-client: 2.6.10(graphql@15.10.2)
-      apollo-link-context: 1.0.20(graphql@15.10.2)
-      apollo-link-http: 1.5.17(graphql@15.10.2)
+      apollo-cache-inmemory: 1.6.6(graphql@16.14.0)
+      apollo-client: 2.6.10(graphql@16.14.0)
+      apollo-link-context: 1.0.20(graphql@16.14.0)
+      apollo-link-http: 1.5.17(graphql@16.14.0)
       common-tags: 1.8.2
       decap-cms-lib-auth: 3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2)
       decap-cms-lib-util: 3.5.0(immutable@3.8.3)(lodash@4.18.1)
       decap-cms-ui-default: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      graphql: 15.10.2
-      graphql-tag: 2.12.6(graphql@15.10.2)
+      graphql: 16.14.0
+      graphql-tag: 2.12.6(graphql@16.14.0)
       js-base64: 3.7.8
       lodash: 4.18.1
       path-browserify: 1.0.1
@@ -19430,16 +19363,16 @@ snapshots:
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      apollo-cache-inmemory: 1.6.6(graphql@15.10.2)
-      apollo-client: 2.6.10(graphql@15.10.2)
-      apollo-link-context: 1.0.20(graphql@15.10.2)
-      apollo-link-http: 1.5.17(graphql@15.10.2)
+      apollo-cache-inmemory: 1.6.6(graphql@16.14.0)
+      apollo-client: 2.6.10(graphql@16.14.0)
+      apollo-link-context: 1.0.20(graphql@16.14.0)
+      apollo-link-http: 1.5.17(graphql@16.14.0)
       common-tags: 1.8.2
       decap-cms-lib-auth: 3.0.6(immutable@3.8.3)(lodash@4.18.1)(uuid@8.3.2)
       decap-cms-lib-util: 3.5.0(immutable@3.8.3)(lodash@4.18.1)
       decap-cms-ui-default: 3.6.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(lodash@4.18.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      graphql: 15.10.2
-      graphql-tag: 2.12.6(graphql@15.10.2)
+      graphql: 16.14.0
+      graphql-tag: 2.12.6(graphql@16.14.0)
       js-base64: 3.7.8
       lodash: 4.18.1
       path-browserify: 1.0.1
@@ -22719,11 +22652,6 @@ snapshots:
     dependencies:
       graphql: 16.14.0
 
-  graphql-tag@2.12.6(graphql@15.10.2):
-    dependencies:
-      graphql: 15.10.2
-      tslib: 2.8.1
-
   graphql-tag@2.12.6(graphql@16.14.0):
     dependencies:
       graphql: 16.14.0
@@ -22732,8 +22660,6 @@ snapshots:
   graphql-type-json@0.3.2(graphql@16.14.0):
     dependencies:
       graphql: 16.14.0
-
-  graphql@15.10.2: {}
 
   graphql@16.14.0: {}
 
