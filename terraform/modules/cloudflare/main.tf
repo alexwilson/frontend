@@ -16,6 +16,7 @@ resource "cloudflare_page_rule" "rules" {
   for_each = { for rule in var.redirect_rules : rule.target => rule }
   zone_id  = cloudflare_zone.zone.id
   target   = each.value.target
+  priority = each.value.priority
   actions {
     forwarding_url {
       url         = each.value.forward_to

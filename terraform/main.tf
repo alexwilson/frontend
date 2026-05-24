@@ -25,9 +25,11 @@ module "cloudflare_antoligycom" {
   redirect_rules = [{
     target     = "www.antoligy.com/*"
     forward_to = "https://ax.gy/$1"
+    priority   = 1
     }, {
     target     = "antoligy.com/*"
     forward_to = "https://ax.gy/$1"
+    priority   = 2
   }]
 }
 
@@ -39,8 +41,10 @@ module "cloudflare_axgy" {
   redirect_rules = [{
     target     = "www.ax.gy/*"
     forward_to = "https://alexwilson.tech/$1"
+    priority   = 1
     }, {
     target     = "ax.gy/*"
     forward_to = "https://alexwilson.tech/$1"
+    priority   = 2
   }]
 }
