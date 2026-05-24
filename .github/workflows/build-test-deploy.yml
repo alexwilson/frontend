@@ -107,6 +107,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -120,6 +122,19 @@ jobs:
       - name: Deploy to Github Pages
         uses: ./.github/actions/github-pages/
         env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_GH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           args: public
+      - name: Mint Pages build token
+        id: pages-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.PAGES_BUILD_CLIENT_ID }}
+          private-key: ${{ secrets.PAGES_BUILD_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-pages: write
+      - name: Trigger Pages build
+        env:
+          GH_TOKEN: ${{ steps.pages-token.outputs.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds
