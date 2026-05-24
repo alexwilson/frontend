@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "deploy": "lerna run deploy"
+    "build": "pnpm -r run --if-present build",
+    "test": "pnpm -r run --if-present test",
+    "deploy": "pnpm -r run --if-present deploy"
   },
   "devDependencies": {
     "lerna": "9.0.7"
