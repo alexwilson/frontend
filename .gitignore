@@ -15,4 +15,7 @@ terraform/*.tfstate*
 # Ignoring dependencies.
 node_modules
 
+# Python bytecode caches (mise tools/)
+__pycache__
+
 lerna-debug.log
