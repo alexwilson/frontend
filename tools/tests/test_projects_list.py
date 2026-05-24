@@ -76,7 +76,7 @@ class JsSourceTest(unittest.TestCase):
     def test_since_translates_to_bracket_filter(self):
         with patch.object(lp, "pnpm_list", return_value=[lp.Project("a", "p/a")]) as m:
             lp.js_source(self._ctx(since="HEAD~1"))
-        m.assert_called_once_with(self.ROOT, "[HEAD~1]...")
+        m.assert_called_once_with(self.ROOT, "...[HEAD~1]")
 
     def test_filter_passed_through(self):
         with patch.object(lp, "pnpm_list", return_value=[]) as m:
@@ -86,7 +86,7 @@ class JsSourceTest(unittest.TestCase):
     def test_since_plus_filter_unions_in_one_call(self):
         with patch.object(lp, "pnpm_list", return_value=[lp.Project("x", "p/x")]) as m:
             lp.js_source(self._ctx(since="HEAD~1", filters=("@scope/a",)))
-        m.assert_called_once_with(self.ROOT, "[HEAD~1]...", "@scope/a")
+        m.assert_called_once_with(self.ROOT, "...[HEAD~1]", "@scope/a")
 
     def test_since_only_empty_result_falls_back_to_all(self):
         responses = [[], [lp.Project("a", "p/a"), lp.Project("b", "p/b")]]
