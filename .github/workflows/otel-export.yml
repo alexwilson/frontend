@@ -1,0 +1,32 @@
+name: Export CI/CD Telemetry
+
+on:
+  workflow_run:
+    workflows:
+      - "Automatically Update Dependencies"
+      - "Build, Test and Deploy Gatsby"
+      - "Monorepo Deploy Pipeline"
+      - "Purge CDN"
+      - "Terraform Deployments"
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+  checks: read
+
+jobs:
+  export:
+    name: Export to Honeycomb
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event.workflow_run.conclusion != 'skipped'
+    steps:
+      - uses: corentinmusard/otel-cicd-action@071ddd89b7b76442153cecb03f39490cda3b7fbd # v4.0.1
+        with:
+          otlpEndpoint: grpc://api.honeycomb.io:443/
+          otlpHeaders: x-honeycomb-team=${{ secrets.HONEYCOMB_CICD_INGEST_KEY }},x-honeycomb-dataset=cicd
+          otelServiceName: cicd
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          runId: ${{ github.event.workflow_run.id }}
