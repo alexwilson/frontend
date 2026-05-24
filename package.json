@@ -7,9 +7,6 @@
     "test": "pnpm -r run --if-present test",
     "deploy": "pnpm -r run --if-present deploy"
   },
-  "devDependencies": {
-    "lerna": "9.0.7"
-  },
   "pnpm": {
     "overrides": {
       "gatsby-plugin-sass>sass-loader": "^16.0.0"
