@@ -1,11 +1,10 @@
 [settings]
 env_file = ".env"
-idiomatic_version_file_enable_tools = ["node", "terraform"]
+idiomatic_version_file_enable_tools = ["node", "python", "terraform"]
 
 [tools]
 jq     = "1.7.1"
 pnpm   = "10.23.0"
-python = "3.12"
 
 [tasks."projects:list"]
 description = "List monorepo projects, optionally narrowed. Args: [--json] [--since <ref>] [--filter <expr>]..."
