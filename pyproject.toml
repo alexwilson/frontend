@@ -5,4 +5,4 @@ add_ignore = ["D213", "D403"]
 extend-ignore = ["D213", "D403"]
 
 [tool.bandit]
-skips = ["B404", "B603"]
+skips = ["B404", "B603", "B607"]

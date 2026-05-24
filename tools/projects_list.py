@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""List monorepo projects, optionally narrowed by --since or --filter.
-
-Invoked via `mise run projects:list`. See doc/design/monorepo-tooling.md.
-"""
+"""List monorepo projects, optionally narrowed by --since or --filter."""
 from __future__ import annotations
 
 import argparse
@@ -61,11 +58,7 @@ def pnpm_list(root: Path, *filters: str) -> list[Project]:
 
 
 def js_source(ctx: Context) -> list[Project]:
-    """Pnpm workspace source.
-
-    When --since is the only narrow and it errors or returns empty, fall back
-    to all packages — a no-change PR still needs CI plumbing exercised.
-    """
+    """Pnpm source; falls back to all packages when --since narrows to empty."""
     filters: list[str] = []
     since_only = False
 

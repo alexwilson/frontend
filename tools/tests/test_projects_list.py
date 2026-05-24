@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""Tests for projects_list.py. Stdlib-only (unittest + unittest.mock + io).
-
-Run via: mise run test:tools
-"""
+"""Tests for projects_list.py."""
 from __future__ import annotations
 
 import contextlib

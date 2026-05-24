@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Lint monorepo project structure for missing required components.
-
-Invoked via `mise run projects:lint`. See doc/design/monorepo-tooling.md.
-Exit code: 0 if no issues, 1 if any.
-"""
+"""Lint monorepo project structure for missing required components."""
 from __future__ import annotations
 
 import argparse
