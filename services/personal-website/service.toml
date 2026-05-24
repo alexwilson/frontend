@@ -1,0 +1,4 @@
+[runtime]
+depends_on = [
+  "@alexwilson/webmention-service",
+]
