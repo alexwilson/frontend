@@ -24,7 +24,7 @@ jobs:
     timeout-minutes: 5
     if: github.event.workflow_run.conclusion != 'skipped'
     steps:
-      - uses: corentinmusard/otel-cicd-action@071ddd89b7b76442153cecb03f39490cda3b7fbd # v4.0.1
+      - uses: corentinmusard/otel-cicd-action@f2d88ecf54d9dd3e01ea95e25f93603212ee93d3 # v4.0.1
         with:
           otlpEndpoint: grpc://api.honeycomb.io:443/
           otlpHeaders: x-honeycomb-team=${{ secrets.HONEYCOMB_CICD_INGEST_KEY }},x-honeycomb-dataset=cicd
