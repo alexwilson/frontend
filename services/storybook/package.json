@@ -19,7 +19,7 @@
     "@storybook/react-webpack5": "10.4.0",
     "@types/react": "18.3.28",
     "babel-loader": "10.1.1",
-    "chromatic": "16.10.0",
+    "chromatic": "16.10.1",
     "css-loader": "7.1.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
