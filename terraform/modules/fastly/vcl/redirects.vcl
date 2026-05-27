@@ -6,6 +6,14 @@ table redirects {
   // All pictures come from media.alexwilson.tech.
   "/pictures/**": "https://media.alexwilson.tech/**",
 
+  // Deprecated topics
+  "/topic/conference": "/topic/conferences",
+  "/topic/super-metroid": "/topic/metroid",
+  "/topic/netflix": "/topic/tv",
+  "/topic/technical-strategy": "/topic/technology-leadership",
+  "/topic/languages": "/topic/japanese",
+  "/topic/reinvent": "/topic/aws",
+
   // Old blog slugs: Probably can be removed soon.
   "/blog/2015/01/17/getting-past-cloudflare/": "/content/09b2a1eb-4a1f-4087-b261-79ceee6e2bc6",
   "/blog/2016/07/01/ten-deploys-per-day/": "/content/d7bb0bc3-5bab-4ce7-97ee-602052d007aa",
