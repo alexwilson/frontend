@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@alexwilson/ds-icons": "workspace:*",
-    "date-fns": "4.1.0",
+    "date-fns": "4.2.1",
     "include-media": "https://github.com/eduardoboucas/include-media.git#78c6aebae262202dc857dbc08e31504323dcbd04",
     "promise-image-loader": "0.1.2"
   }
