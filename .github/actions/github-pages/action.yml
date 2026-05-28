@@ -1,0 +1,17 @@
+name: 'GitHub Pages Deploy'
+description: 'Push a directory to the gh-pages branch.'
+inputs:
+  path:
+    description: 'Directory to publish to GitHub Pages.'
+    required: true
+  token:
+    description: 'Token with contents:write used to push to gh-pages.'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        PUBLISH_DIR: ${{ inputs.path }}
+      run: "$GITHUB_ACTION_PATH/entrypoint.sh"

@@ -130,10 +130,9 @@ jobs:
           path: public
       - name: Deploy to Github Pages
         uses: ./.github/actions/github-pages/
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         with:
-          args: public
+          path: public
+          token: ${{ github.token }}
       - name: Mint Pages build token
         id: pages-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
