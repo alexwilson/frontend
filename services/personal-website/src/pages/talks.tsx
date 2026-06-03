@@ -1,5 +1,5 @@
 import React, { useMemo } from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
@@ -83,7 +83,9 @@ const TalksPage = ({ data, location }: PageProps<TalksData>) => {
 
 export default TalksPage
 
-export const Head = () => <SEO title="Talks" />
+export const Head = ({ location }: HeadProps) => (
+  <SEO title="Talks" pathname={location.pathname} />
+)
 
 export const query = graphql`
   fragment TalkPageContent on MarkdownRemark {
