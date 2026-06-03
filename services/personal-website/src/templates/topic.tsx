@@ -91,8 +91,8 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
 
 export default TopicsTemplate
 
-export const Head = ({ data }: HeadProps<TopicData>) => (
-  <SEO title={data.topic.topic} />
+export const Head = ({ data, location }: HeadProps<TopicData>) => (
+  <SEO title={data.topic.topic} pathname={location.pathname} />
 )
 
 export const pageQuery = graphql`

@@ -8,6 +8,7 @@ type SEOProps = {
   lang?: string
   keywords?: string[]
   title: string
+  pathname?: string
   canonicalUrl?: string
   twitterCard?: "summary" | "summary_large_image"
   twitterImage?: string
@@ -20,6 +21,7 @@ function SEO({
   lang = "en",
   keywords = [],
   title,
+  pathname,
   canonicalUrl,
   twitterCard = "summary",
   twitterImage,
@@ -28,7 +30,12 @@ function SEO({
 }: SEOProps) {
   const { site } = useStaticQuery<{
     site: {
-      siteMetadata: { title: string; description: string; author: string }
+      siteMetadata: {
+        title: string
+        description: string
+        author: string
+        siteUrl: string
+      }
     }
   }>(
     graphql`
@@ -38,6 +45,7 @@ function SEO({
             title
             description
             author
+            siteUrl
           }
         }
       }
@@ -46,6 +54,11 @@ function SEO({
 
   const metaDescription = description || site.siteMetadata.description
   const fullTitle = `${title} - ${site.siteMetadata.title}`
+  const resolvedCanonical =
+    canonicalUrl ??
+    (pathname
+      ? new URL(pathname, site.siteMetadata.siteUrl).toString()
+      : undefined)
 
   return (
     <>
@@ -70,7 +83,9 @@ function SEO({
         title="Alex Wilson's writing via RSS"
         href="/feed.xml"
       />
-      {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+      {resolvedCanonical ? (
+        <link rel="canonical" href={resolvedCanonical} />
+      ) : null}
       <script type="application/ld+json">
         {JSON.stringify({
           "@type": "WebPage",

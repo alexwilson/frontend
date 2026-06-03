@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import HomeLayout, {
@@ -120,4 +120,6 @@ export const query = graphql`
 `
 export default IndexPage
 
-export const Head = () => <SEO title="Home" />
+export const Head = ({ location }: HeadProps) => (
+  <SEO title="Home" pathname={location.pathname} />
+)
