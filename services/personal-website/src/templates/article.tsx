@@ -185,6 +185,7 @@ export const Head = ({ data, location }: HeadProps<ArticleData>) => {
     <SEO
       title={post.title}
       description={post.content.excerpt}
+      pathname={location.pathname}
       twitterCard="summary_large_image"
       twitterSite="@alexwilsonv1"
       twitterImage={`${url}/twitter-card.jpg`}

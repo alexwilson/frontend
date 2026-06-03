@@ -42,8 +42,8 @@ const TalkTemplate = ({ data, location }: PageProps<TalkData>) => {
 
 export default TalkTemplate
 
-export const Head = ({ data }: HeadProps<TalkData>) => (
-  <SEO title={data.content.title} />
+export const Head = ({ data, location }: HeadProps<TalkData>) => (
+  <SEO title={data.content.title} pathname={location.pathname} />
 )
 
 export const pageQuery = graphql`
