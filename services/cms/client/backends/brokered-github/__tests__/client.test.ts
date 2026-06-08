@@ -180,7 +180,7 @@ describe('probeCmsToken', () => {
     expect(fetchSpy).toHaveBeenCalledWith(
       'https://auth.example/auth/app/cms/token',
       expect.objectContaining({
-        method: 'GET',
+        method: 'POST',
         credentials: 'include',
       }),
     )
