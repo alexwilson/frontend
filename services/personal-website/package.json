@@ -26,7 +26,7 @@
   "dependencies": {
     "@alexwilson/ds-legacy-components": "workspace:*",
     "@alexwilson/gatsby-remark-rewrite-images": "workspace:*",
-    "date-fns": "4.1.0",
+    "date-fns": "4.4.0",
     "gatsby": "5.16.1",
     "gatsby-plugin-feed": "5.16.0",
     "gatsby-plugin-sass": "6.16.0",

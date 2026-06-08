@@ -54,7 +54,7 @@
   "dependencies": {
     "@alexwilson/ds-legacy-components": "workspace:*",
     "better-auth": "1.6.11",
-    "date-fns": "4.1.0",
+    "date-fns": "4.4.0",
     "decap-cms": "3.14.0",
     "decap-cms-app": "3.14.0",
     "decap-cms-backend-github": "3.7.0",
