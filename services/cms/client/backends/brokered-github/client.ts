@@ -62,7 +62,7 @@ async function parseTokenJwt(jwt: string, authUrl: string): Promise<CmsTokenResu
 
 export async function probeCmsToken(authUrl: string): Promise<ProbeResult> {
   const res = await fetch(`${authUrl}/auth/app/cms/token`, {
-    method: 'GET',
+    method: 'POST',
     credentials: 'include',
   })
   if (res.ok) {
