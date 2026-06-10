@@ -257,7 +257,7 @@ describe("webmention-io handler — Webmention wm-property coverage", () => {
 });
 
 describe("webmention-io handler — no webhook token configured", () => {
-  it("skips the secret check when WEBMENTION_IO_WEBHOOK_TOKEN is unset", async () => {
+  it("rejects every request when WEBMENTION_IO_WEBHOOK_TOKEN is unset (fail closed)", async () => {
     vi.resetModules();
     const previous = process.env.WEBMENTION_IO_WEBHOOK_TOKEN;
     delete process.env.WEBMENTION_IO_WEBHOOK_TOKEN;
@@ -274,8 +274,8 @@ describe("webmention-io handler — no webhook token configured", () => {
         () => {},
       )) as { statusCode: number; body: string };
 
-      expect(res.statusCode).toBe(200);
-      expect(sendMock).toHaveBeenCalledOnce();
+      expect(res.statusCode).toBe(401);
+      expect(sendMock).not.toHaveBeenCalled();
     } finally {
       process.env.WEBMENTION_IO_WEBHOOK_TOKEN = previous;
       vi.resetModules();
@@ -284,23 +284,120 @@ describe("webmention-io handler — no webhook token configured", () => {
 });
 
 describe("webmention-io handler — malformed input", () => {
-  it("throws on a non-JSON body (callers/API Gateway should reject upstream)", async () => {
-    await expect(call("this is not json")).rejects.toThrow();
+  it("returns 400 on a non-JSON body", async () => {
+    const res = await call("this is not json");
+    expect(res.statusCode).toBe(400);
     expect(sendMock).not.toHaveBeenCalled();
   });
 
-  it("throws on an empty body rather than silently writing garbage", async () => {
-    await expect(call("")).rejects.toThrow();
+  it("returns 400 on an empty body", async () => {
+    const res = await call("");
+    expect(res.statusCode).toBe(400);
     expect(sendMock).not.toHaveBeenCalled();
   });
 
-  it("throws when the post object is missing", async () => {
-    await expect(
-      call({
-        secret: TOKEN,
-        target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
+  it("returns 400 when the post object is missing", async () => {
+    const res = await call({
+      secret: TOKEN,
+      target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
+    });
+    expect(res.statusCode).toBe(400);
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when post is not an object", async () => {
+    const res = await call({
+      secret: TOKEN,
+      target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
+      post: ["not", "a", "post"],
+    });
+    expect(res.statusCode).toBe(400);
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when wm-id is missing", async () => {
+    const res = await call({
+      secret: TOKEN,
+      target: `https://alexwilson.tech/content/${ARTICLE_UUID}`,
+      post: makePost({ "wm-id": undefined }),
+    });
+    expect(res.statusCode).toBe(400);
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when target is not a string", async () => {
+    const res = await call({
+      secret: TOKEN,
+      target: 42,
+      post: makePost(),
+    });
+    expect(res.statusCode).toBe(400);
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+});
+
+describe("webmention-io handler — hostile URLs are rejected, not stored", () => {
+  const VALID_TARGET = `https://alexwilson.tech/content/${ARTICLE_UUID}`;
+
+  async function expectRejected(post: Record<string, unknown>) {
+    const res = await call({ secret: TOKEN, target: VALID_TARGET, post });
+    expect(res.statusCode).toBe(400);
+    expect(sendMock).not.toHaveBeenCalled();
+  }
+
+  it("rejects a javascript: author url", async () => {
+    await expectRejected(
+      makePost({
+        author: {
+          name: "Mallory",
+          photo: "https://example.test/me.png",
+          url: "javascript:alert(document.domain)",
+        },
       }),
-    ).rejects.toThrow();
-    expect(sendMock).not.toHaveBeenCalled();
+    );
+  });
+
+  it("rejects a data: author photo", async () => {
+    await expectRejected(
+      makePost({
+        author: {
+          name: "Mallory",
+          photo: "data:text/html,<script>alert(1)</script>",
+          url: "https://example.test",
+        },
+      }),
+    );
+  });
+
+  it("rejects a non-URL author url", async () => {
+    await expectRejected(
+      makePost({
+        author: {
+          name: "Mallory",
+          photo: "https://example.test/me.png",
+          url: "not a url at all",
+        },
+      }),
+    );
+  });
+
+  it("rejects a non-object author", async () => {
+    await expectRejected(makePost({ author: "Mallory" }));
+  });
+
+  it("rejects a javascript: post url", async () => {
+    await expectRejected(makePost({ url: "javascript:alert(1)" }));
+  });
+
+  it("rejects a javascript: wm-source", async () => {
+    await expectRejected(makePost({ "wm-source": "javascript:alert(1)" }));
+  });
+
+  it("still stores a valid post with no author", async () => {
+    const post = makePost();
+    delete (post as Record<string, unknown>).author;
+    const res = await call({ secret: TOKEN, target: VALID_TARGET, post });
+    expect(res.statusCode).toBe(200);
+    expect(sendMock).toHaveBeenCalledOnce();
   });
 });
