@@ -4,11 +4,9 @@ __constants:
   time_format: &time_format "YYYY-MM-DDTHH:mm:ssZ"
 
 backend:
-  name: github
+  name: github-app
   repo: alexwilson/content
   branch: main
-  base_url: https://alexwilson.tech/
-  auth_endpoint: "auth/cms"
   use_graphql: true
   cms_label_prefix: status/
 

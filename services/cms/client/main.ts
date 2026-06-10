@@ -15,9 +15,6 @@ export default function init() {
 
   if (useTestBackend) {
     mutableConfig.backend = { name: "test-repo" };
-  } else if (process.env.CMS_AUTH_URL) {
-    const originalBackend = (mutableConfig.backend ?? {}) as Record<string, unknown>
-    mutableConfig.backend = { ...originalBackend, name: "github-app" };
   }
 
   CMS.registerBackend("github-app", BrokeredGitHubBackend);
