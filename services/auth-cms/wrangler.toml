@@ -1,5 +1,0 @@
-name = "auth-cms"
-workers_dev = true
-routes = ["https://alexwilson.tech/auth/cms*"]
-compatibility_date = "2023-07-11"
-main = "./src/index.js"

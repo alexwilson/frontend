@@ -1,5 +1,4 @@
 [runtime]
 depends_on = [
   "@alexwilson/auth",
-  "@alexwilson/auth-cms",
 ]
