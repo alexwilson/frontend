@@ -77,7 +77,7 @@ module.exports = {
     plugins: [
         new webpack.EnvironmentPlugin({
             'CMS_BACKEND': null,
-            'CMS_AUTH_URL': null,
+            'CMS_AUTH_URL': 'https://alexwilson.tech',
         }),
         new HtmlWebpackPlugin({
             title: 'Alex CMS',
