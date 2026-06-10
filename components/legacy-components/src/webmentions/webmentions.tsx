@@ -26,16 +26,31 @@ const repliesFromWebmentions = (webmentions: Webmention[]) =>
 
 type FaceProps = { webmention: Webmention }
 
+// Webmentions are third-party input: only link author URLs with a safe scheme.
+const safeAuthorUrl = (value: string) => {
+  try {
+    const url = new URL(value)
+    return url.protocol === "http:" || url.protocol === "https:" ? url.href : null
+  } catch {
+    return null
+  }
+}
+
 function Face({ webmention }: FaceProps) {
-  return (
-    <a href={webmention.author.url} title={webmention.author.name}>
-      <ResponsiveImage
-        src={webmention.author.photo}
-        width={64}
-        height={64}
-        quality={"lossless"}
-        format={"png"}
-      />
+  const photo = (
+    <ResponsiveImage
+      src={webmention.author.photo}
+      width={64}
+      height={64}
+      quality={"lossless"}
+      format={"png"}
+    />
+  )
+  const url = safeAuthorUrl(webmention.author.url)
+
+  return url === null ? photo : (
+    <a href={url} title={webmention.author.name} rel="noopener noreferrer">
+      {photo}
     </a>
   )
 }
