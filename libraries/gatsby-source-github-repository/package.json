@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@octokit/request-error": "^6.1.0",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.9.1",
     "@vitest/coverage-v8": "4.1.7",
     "gatsby": "^5.16.1",
     "joi": "^17.0.0",
