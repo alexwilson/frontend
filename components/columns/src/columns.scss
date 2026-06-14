@@ -3,7 +3,9 @@
 .alex-columns {
   display: grid;
   gap: 1.5em;
-  margin-block: 2em;
+  // Match the article's margin-bottom-only rhythm.
+  // @todo Reference this with a token.
+  margin-block: 0 1.5em;
   align-items: start;
 
   &[data-split="two-equal"],
