@@ -1,0 +1,40 @@
+@use "~@alexwilson/ds-legacy-components/src/util-viewports/viewports" as *;
+
+.alex-columns {
+  display: grid;
+  gap: 1.5em;
+  margin-block: 2em;
+  align-items: start;
+
+  &[data-split="two-equal"],
+  &[data-split="three"] {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  &[data-split="full"] {
+    grid-template-columns: 1fr;
+  }
+
+  &[data-split="two-wide-left"] {
+    grid-template-columns: 2fr 1fr;
+  }
+  &[data-split="two-wide-right"] {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @include media("<tablet") {
+    &[data-split="two-wide-left"],
+    &[data-split="two-wide-right"] {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.alex-column {
+  > :first-child {
+    margin-block-start: 0;
+  }
+  > :last-child {
+    margin-block-end: 0;
+  }
+}

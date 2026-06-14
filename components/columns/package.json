@@ -1,0 +1,31 @@
+{
+  "name": "@alexwilson/ds-columns",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Component implementing columns",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "sass": "^1.45.0"
+  },
+  "dependencies": {
+    "@alexwilson/content": "workspace:*",
+    "@alexwilson/ds-legacy-components": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.28",
+    "react": "18.3.1",
+    "sass": "1.99.0",
+    "typescript": "5.9.3"
+  }
+}
