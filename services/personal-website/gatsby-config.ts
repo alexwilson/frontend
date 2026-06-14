@@ -16,7 +16,7 @@ const config: GatsbyConfig = {
         name: `posts`,
         owner: `alexwilson`,
         repo: `content`,
-        ref: `main`,
+        ref: process.env.CONTENT_REF ?? `main`,
         patterns: [`posts/**`],
         token: process.env.GITHUB_TOKEN,
         pollInterval: process.env.NODE_ENV === `development` ? 30 : 0,
