@@ -43,7 +43,7 @@
     "gatsby": ">=5"
   },
   "devDependencies": {
-    "@octokit/request-error": "^6.1.0",
+    "@octokit/request-error": "^7.1.0",
     "@types/node": "^25.7.0",
     "@vitest/coverage-v8": "4.1.7",
     "gatsby": "^5.16.1",
