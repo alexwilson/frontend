@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/alexwilson/personal-website#readme",
   "dependencies": {
+    "@alexwilson/ds-columns": "workspace:*",
     "@alexwilson/ds-legacy-components": "workspace:*",
+    "@alexwilson/gatsby-remark-content-blocks": "workspace:*",
     "@alexwilson/gatsby-remark-rewrite-images": "workspace:*",
     "date-fns": "4.4.0",
     "gatsby": "5.16.1",

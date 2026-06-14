@@ -11,7 +11,8 @@
     "deploy": "npm-run-all build:* deploy:*",
     "test": "NODE_ENV=test vitest run",
     "test:watch": "NODE_ENV=test vitest",
-    "start": "webpack serve --config webpack.client.cjs",
+    "develop": "webpack serve --config webpack.client.cjs",
+    "start": "NODE_ENV=production PROFILE=true webpack serve --config webpack.client.cjs",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json"
   },
   "author": "Alex Wilson <alex@alexwilson.tech>",
@@ -52,6 +53,8 @@
     "wrangler": "4.93.0"
   },
   "dependencies": {
+    "@alexwilson/content": "workspace:*",
+    "@alexwilson/ds-columns": "workspace:*",
     "@alexwilson/ds-legacy-components": "workspace:*",
     "better-auth": "1.6.11",
     "date-fns": "4.4.0",
@@ -62,6 +65,12 @@
     "decap-cms-ui-default": "3.8.0",
     "jose": "6.2.3",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "rehype-stringify": "10.0.1",
+    "remark-directive": "3.0.1",
+    "remark-parse": "11.0.0",
+    "remark-rehype": "11.1.2",
+    "remark-stringify": "11.0.0",
+    "unified": "11.0.5"
   }
 }

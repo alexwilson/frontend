@@ -19,6 +19,11 @@ media_folder: pictures
 
 display_url: https://alexwilson.tech/
 
+i18n:
+  structure: single_file
+  locales: ["en", "ja"]
+  default_locale: en
+
 collections:
   - name: "content"
     label: "Content"

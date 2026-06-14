@@ -1,0 +1,19 @@
+{
+  "name": "@alexwilson/gatsby-remark-content-blocks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "gatsby-transformer-remark sub-plugin: registers remark-directive + @alexwilson/remark-content-blocks via setParserPlugins so content blocks render through the html field.",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "@alexwilson/remark-content-blocks": "workspace:*",
+    "remark-directive": "^1.0.1"
+  },
+  "peerDependencies": {
+    "gatsby-transformer-remark": ">=6"
+  }
+}

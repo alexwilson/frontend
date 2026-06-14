@@ -15,6 +15,11 @@ module.exports = {
         alias: {
           'clean-stack': false,
           ajv$: path.resolve(__dirname, 'node_modules/ajv'),
+          // PROFILE=true swaps in React's production *profiling* build, so the
+          // React DevTools profiler works against a production-speed bundle.
+          ...(process.env.PROFILE === 'true' && {
+            'react-dom$': 'react-dom/profiling',
+          }),
         },
         fallback: {
           path: require.resolve("path-browserify"),
@@ -81,7 +86,9 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'Alex CMS',
-            publicPath: isProduction ? 'https://static.alexwilson.tech/cms/' : 'auto'
+            // PROFILE builds are served locally, so use a relative path; real
+            // production deploys to the CDN.
+            publicPath: (isProduction && process.env.PROFILE !== 'true') ? 'https://static.alexwilson.tech/cms/' : 'auto'
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static',

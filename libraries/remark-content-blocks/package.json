@@ -1,0 +1,49 @@
+{
+  "name": "@alexwilson/remark-content-blocks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The remark utility that implements the content blocks described by @alexwilson/content: parses, checks conformance, and stamps render hints. Build-time, no React.",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@alexwilson/content": "workspace:*",
+    "@alexwilson/ds-columns": "workspace:*",
+    "unist-util-visit": "5.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "4.0.4",
+    "mdast-util-directive": "3.1.0",
+    "mdast-util-to-hast": "13.2.1",
+    "rehype-stringify": "10.0.1",
+    "remark-directive": "3.0.1",
+    "remark-parse": "11.0.0",
+    "remark-rehype": "11.1.2",
+    "typescript": "5.9.3",
+    "unified": "11.0.5",
+    "vfile": "6.0.3",
+    "vitest": "4.1.8"
+  }
+}
