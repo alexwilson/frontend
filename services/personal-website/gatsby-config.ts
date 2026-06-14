@@ -31,6 +31,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `@alexwilson/gatsby-remark-content-blocks`,
           {
             resolve: "gatsby-remark-embed-video",
             options: {

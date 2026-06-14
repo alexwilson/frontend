@@ -3,6 +3,7 @@
 @use "~@alexwilson/ds-legacy-components/src/util-palette/palette" as *;
 @use "~@alexwilson/ds-legacy-components/src/util-typography/typography" as *;
 @use "layout" as *;
+@use "~@alexwilson/ds-columns/src/columns";
 
 // Plain CSS imports — pass through, not the deprecated Sass @import.
 @import "~prismjs/themes/prism-okaidia.css";

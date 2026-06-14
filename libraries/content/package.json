@@ -1,0 +1,40 @@
+{
+  "name": "@alexwilson/content",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A declarative description of what is possible with content: the node vocabulary, types and DOM-decoration contract for custom blocks. No behaviour, no presentation.",
+  "author": "Alex Wilson <alex@alexwilson.tech>",
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/mdast": "4.0.4",
+    "@types/unist": "3.0.3",
+    "mdast-util-directive": "3.1.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vitest": "4.1.8"
+  }
+}
