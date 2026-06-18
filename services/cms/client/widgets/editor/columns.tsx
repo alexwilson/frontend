@@ -50,7 +50,14 @@ export function makeColumnsEditorComponent(locales: string[]) {
         max: 3,
         collapsed: true,
         fields: [
-          { name: "content", label: "Content", widget: "richtext" },
+          {
+            name: "content",
+            label: "Content",
+            widget: "richtext",
+            // Allow-list the built-in blocks only, so columns can't be nested
+            // inside a column.
+            editor_components: ["image", "code-block"],
+          },
           {
             name: "options",
             label: "Options",
