@@ -1,0 +1,15 @@
+name = "reader-data"
+main = "./worker/index.ts"
+workers_dev = false
+routes = ["https://alexwilson.tech/reader/api/*"]
+compatibility_date = "2025-09-23"
+
+[vars]
+AUTH_BASE_URL = "https://alexwilson.tech"
+FEEDS_OWNER = "alexwilson"
+FEEDS_REPO = "flat-feeds"
+# GitHub credential — App preferred (installation resolved at runtime), flat
+# token fallback (worker/github.ts).
+# App:   set GITHUB_APP_ID var, then `wrangler secret put GITHUB_APP_PRIVATE_KEY`
+# Token: `wrangler secret put GITHUB_TOKEN`  (fine-grained PAT, contents:read)
+# Local dev lives in .dev.vars — see .dev.vars.example.
