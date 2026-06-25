@@ -102,6 +102,34 @@
             }
         }
 
+        .alex-stream__filter-option {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4em;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none;
+            font: inherit;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+            color: $grey-5;
+
+            &:hover { color: $blue; }
+            &--active { font-weight: 600; }
+        }
+
+        .alex-stream__filter-label {
+            flex: 1;
+        }
+
+        .alex-stream__filter-count {
+            color: $grey-4;
+            font-size: 0.8rem;
+        }
+
         &--links {
             a, a:visited {
                 color: $grey-5;
