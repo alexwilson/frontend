@@ -1,25 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { graphql, Link, PageProps } from "gatsby"
-import Layout from "../components/layout"
+import { useLoaderData, useRevalidator } from "react-router-dom"
+
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters, {
   FilterSection,
 } from "@alexwilson/ds-legacy-components/src/stream-filters"
+
 import { FeedList } from "../components/feed-list"
 import { FeedEntry, byPublishedDesc, relativeTime } from "../lib/entries"
 import { useReadState } from "../lib/read-state"
+import { getIndex, getRiver, type Feed, type Index, type River } from "../lib/api"
+import { refreshToken } from "../lib/auth"
+import { invalidate, swr } from "../lib/cache"
 
-type Feed = {
-  id: string
-  title: string | null
-  folders: string[] | null
-  postsPerWeek: number | null
-}
-
-type ReaderData = {
-  feedRiver: { generatedAt: string | null; entries: FeedEntry[] | null } | null
-  feedIndex: { feeds: Feed[] | null } | null
-}
+const REFRESH_MS = 5 * 60_000
 
 const ALL = "all"
 type View = "firehose" | "slow"
@@ -32,10 +26,7 @@ const HALFLIFE_DAYS = 10
 const slowOrder = (entries: FeedEntry[], postsPerWeek: Map<string, number>) => {
   const now = Date.now()
   const scored = entries.map((entry) => {
-    const ageDays = Math.max(
-      0,
-      (now - Date.parse(entry.publishedAt)) / 86_400_000,
-    )
+    const ageDays = Math.max(0, (now - Date.parse(entry.publishedAt)) / 86_400_000)
     const recency = Math.exp(-ageDays / HALFLIFE_DAYS)
     const freq = Math.max(0.1, postsPerWeek.get(entry.feedId ?? "") ?? 1)
     return { entry, score: recency / Math.sqrt(freq) }
@@ -44,17 +35,47 @@ const slowOrder = (entries: FeedEntry[], postsPerWeek: Map<string, number>) => {
   return scored.map((s) => s.entry)
 }
 
-const ReaderPage = ({ data, location }: PageProps<ReaderData>) => {
-  const feeds = data.feedIndex?.feeds ?? []
-  const generatedAt = data.feedRiver?.generatedAt ?? null
+export async function readerLoader() {
+  const [river, index] = await Promise.all([swr("river", getRiver), swr("index", getIndex)])
+  return { river, index }
+}
 
-  const river = useMemo(() => {
-    const nodes = data.feedRiver?.entries ?? []
-    return [...nodes].sort(byPublishedDesc)
-  }, [data])
+export function ReaderRoute() {
+  const { river, index } = useLoaderData() as { river: River; index: Index }
+  const revalidator = useRevalidator()
 
-  // Only feeds that actually appear in the firehose — empty feeds/categories are
-  // just noise in the filter.
+  useEffect(() => {
+    document.title = "Reader"
+  }, [])
+
+  // Background refresh as a revalidation (not a navigation) so the page stays put.
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      invalidate("river")
+      refreshToken().then(() => revalidator.revalidate())
+    }, REFRESH_MS)
+    return () => window.clearInterval(id)
+  }, [revalidator])
+
+  return (
+    <ReaderView
+      entries={river.entries ?? []}
+      feeds={index.feeds ?? []}
+      generatedAt={river.generatedAt}
+    />
+  )
+}
+
+type ReaderViewProps = {
+  entries: FeedEntry[]
+  feeds: Feed[]
+  generatedAt: string | null
+}
+
+function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
+  const river = useMemo(() => [...entries].sort(byPublishedDesc), [entries])
+
+  // Only feeds present in the firehose — empty ones are just filter noise.
   const presentFeedIds = useMemo(() => {
     const ids = new Set<string>()
     for (const entry of river) if (entry.feedId) ids.add(entry.feedId)
@@ -93,8 +114,7 @@ const ReaderPage = ({ data, location }: PageProps<ReaderData>) => {
   const [view, setView] = useState<View>("firehose")
   const [showSummary, setShowSummary] = useState(true)
 
-  // Filters live in the URL so Back / reload / share restores them. Read once
-  // after mount (avoids SSR/hydration drift); each setter writes its param.
+  // Filters live in the URL (Back / reload / share restores them).
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     if (params.get("view") === "slow") setView("slow")
@@ -174,8 +194,7 @@ const ReaderPage = ({ data, location }: PageProps<ReaderData>) => {
   }, [river, matches, view, feedFreq])
 
   const visible = useMemo(
-    () =>
-      unreadOnly ? arranged.filter((e) => !readIds.has(e.id)) : arranged,
+    () => (unreadOnly ? arranged.filter((e) => !readIds.has(e.id)) : arranged),
     [arranged, unreadOnly, readIds],
   )
   const unreadCount = useMemo(
@@ -183,7 +202,6 @@ const ReaderPage = ({ data, location }: PageProps<ReaderData>) => {
     [arranged, readIds],
   )
 
-  // Filter counts: unread within the firehose, per facet.
   const unreadTotal = useMemo(
     () => river.filter((e) => !readIds.has(e.id)).length,
     [river, readIds],
@@ -246,120 +264,82 @@ const ReaderPage = ({ data, location }: PageProps<ReaderData>) => {
       unreadTotal,
       unreadBySource,
       unreadByCategory,
+      changeSource,
+      changeCategory,
     ],
   )
 
   const filtersActive = source !== ALL || category !== ALL || unreadOnly
 
   return (
-    <Layout location={location}>
-      <Stream
-        className="reader-stream"
-        header={
-          <div className="reader-toolbar">
-            <h1>{view === "slow" ? "Slow" : "Firehose"}</h1>
-            <h4 className="reader-toolbar__count">{unreadCount} unread</h4>
-            {generatedAt && (
-              <span className="reader-updated" suppressHydrationWarning>
-                Updated {relativeTime(generatedAt)}
-              </span>
-            )}
-            <div className="reader-tabs" role="group" aria-label="View">
-              <button
-                type="button"
-                aria-pressed={view === "firehose"}
-                className={view === "firehose" ? "is-active" : undefined}
-                onClick={() => changeView("firehose")}
-              >
-                Firehose
-              </button>
-              <button
-                type="button"
-                aria-pressed={view === "slow"}
-                className={view === "slow" ? "is-active" : undefined}
-                onClick={() => changeView("slow")}
-              >
-                Slow
-              </button>
-            </div>
-          </div>
-        }
-        sidebar={
-          <>
-            <Link className="reader-sidebar-link" to="/feeds">
-              Browse all feeds →
-            </Link>
-            <StreamFilters sections={sections} />
-            <label className="reader-filter__toggle">
-              <input
-                type="checkbox"
-                checked={unreadOnly}
-                onChange={(e) => changeUnreadOnly(e.target.checked)}
-              />
-              Unread only
-            </label>
-            <label className="reader-filter__toggle">
-              <input
-                type="checkbox"
-                checked={showSummary}
-                onChange={toggleSummary}
-              />
-              Show summaries
-            </label>
-            {filtersActive && (
-              <button className="alex-stream__filter-clear" onClick={clearFilters}>
-                Clear filters
-              </button>
-            )}
+    <Stream
+      className="reader-stream"
+      header={
+        <div className="reader-toolbar">
+          <h1>{view === "slow" ? "Slow" : "Firehose"}</h1>
+          <h4 className="reader-toolbar__count">{unreadCount} unread</h4>
+          {generatedAt && (
+            <span className="reader-updated" suppressHydrationWarning>
+              Updated {relativeTime(generatedAt)}
+            </span>
+          )}
+          <div className="reader-tabs" role="group" aria-label="View">
             <button
-              className="alex-stream__filter-clear"
-              onClick={() => markRead(arranged.map((e) => e.id))}
+              type="button"
+              aria-pressed={view === "firehose"}
+              className={view === "firehose" ? "is-active" : undefined}
+              onClick={() => changeView("firehose")}
             >
-              Mark all read
+              Firehose
             </button>
-          </>
-        }
-      >
-        <FeedList
-          entries={visible}
-          readIds={readIds}
-          showSummary={showSummary}
-          restoreKey={`${view}:${source}:${category}:${unreadOnly ? 1 : 0}`}
-          onOpen={(id) => setRead(id, true)}
-          onToggle={setRead}
-        />
-      </Stream>
-    </Layout>
+            <button
+              type="button"
+              aria-pressed={view === "slow"}
+              className={view === "slow" ? "is-active" : undefined}
+              onClick={() => changeView("slow")}
+            >
+              Slow
+            </button>
+          </div>
+        </div>
+      }
+      sidebar={
+        <>
+          <StreamFilters sections={sections} />
+          <label className="reader-filter__toggle">
+            <input
+              type="checkbox"
+              checked={unreadOnly}
+              onChange={(e) => changeUnreadOnly(e.target.checked)}
+            />
+            Unread only
+          </label>
+          <label className="reader-filter__toggle">
+            <input type="checkbox" checked={showSummary} onChange={toggleSummary} />
+            Show summaries
+          </label>
+          {filtersActive && (
+            <button className="alex-stream__filter-clear" onClick={clearFilters}>
+              Clear filters
+            </button>
+          )}
+          <button
+            className="alex-stream__filter-clear"
+            onClick={() => markRead(arranged.map((e) => e.id))}
+          >
+            Mark all read
+          </button>
+        </>
+      }
+    >
+      <FeedList
+        entries={visible}
+        readIds={readIds}
+        showSummary={showSummary}
+        restoreKey={`${view}:${source}:${category}:${unreadOnly ? 1 : 0}`}
+        onOpen={(id) => setRead(id, true)}
+        onToggle={setRead}
+      />
+    </Stream>
   )
 }
-
-export default ReaderPage
-
-export const Head = () => <title>Reader</title>
-
-export const query = graphql`
-  query {
-    feedRiver {
-      generatedAt
-      entries {
-        id
-        feedId
-        feedTitle
-        title
-        url
-        publishedAt
-        summary
-        readingMinutes
-        sentimentLabel
-      }
-    }
-    feedIndex {
-      feeds {
-        id
-        title
-        folders
-        postsPerWeek
-      }
-    }
-  }
-`

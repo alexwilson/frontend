@@ -27,8 +27,7 @@ export const FeedList = ({
   // Snapshot for this filter/view, read once so Virtuoso can restore scroll.
   const initialState = useMemo(() => loadSnapshot(restoreKey), [restoreKey])
 
-  // With no snapshot (forward nav / new filter) start at the top — Gatsby's
-  // scroll handling is disabled for these pages (see gatsby-browser). On unmount
+  // With no snapshot (forward nav / new filter) start at the top. On unmount
   // capture the position so returning restores it (getState is synchronous).
   useEffect(() => {
     if (!initialState && typeof window !== "undefined") window.scrollTo(0, 0)
@@ -46,16 +45,21 @@ export const FeedList = ({
       data={entries}
       restoreStateFrom={initialState}
       initialItemCount={Math.min(8, entries.length)}
-      computeItemKey={(_index, entry) => entry.id}
-      itemContent={(_index, entry) => (
-        <ReaderItem
-          entry={entry}
-          read={readIds.has(entry.id)}
-          showSummary={showSummary}
-          onOpen={onOpen}
-          onToggle={onToggle}
-        />
-      )}
+      // A restored scroll snapshot can reference indices past a now-shorter list
+      // (different/stale capture), so tolerate an out-of-range entry rather than
+      // crash; Virtuoso self-corrects on the next layout.
+      computeItemKey={(index, entry) => entry?.id ?? index}
+      itemContent={(_index, entry) =>
+        entry ? (
+          <ReaderItem
+            entry={entry}
+            read={readIds.has(entry.id)}
+            showSummary={showSummary}
+            onOpen={onOpen}
+            onToggle={onToggle}
+          />
+        ) : null
+      }
     />
   )
 }

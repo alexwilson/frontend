@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link } from "react-router-dom"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import { FeedEntry } from "../lib/entries"
 

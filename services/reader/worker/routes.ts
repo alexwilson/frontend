@@ -1,7 +1,5 @@
-// Maps an inbound request path to an allowlisted repo file. Anything not on the
-// allowlist returns null (404) — this is the control that stops the server-side
-// GitHub credential being used to read arbitrary repo paths.
-
+// Allowlist: paths not listed return null (404). Stops the server-side GitHub
+// credential being pointed at arbitrary repo files.
 const FEED_ID = /^[a-z0-9][a-z0-9-]*$/
 
 export function resolveRepoPath(pathname: string): string | null {
