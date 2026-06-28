@@ -1,2 +1,2 @@
 [runtime]
-depends_on = []
+depends_on = ["@alexwilson/auth"]
