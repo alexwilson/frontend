@@ -25,12 +25,6 @@
       "react/*": ["./node_modules/@types/react/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "gatsby-config.ts",
-    "gatsby-node.ts",
-    "gatsby-browser.ts",
-    "gatsby-ssr.ts"
-  ],
-  "exclude": ["node_modules", ".cache", "public"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

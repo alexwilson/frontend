@@ -1,8 +1,15 @@
-name = "reader-data"
+name = "reader"
 main = "./worker/index.ts"
 workers_dev = false
-routes = ["https://alexwilson.tech/reader/api/*"]
+# /reader/api/* is gated data; everything else is the inlined SPA shell.
+routes = ["https://alexwilson.tech/reader/*"]
 compatibility_date = "2025-09-23"
+
+# Inline dist/index.html (worker/index.ts) — needs `vite build` before deploy.
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
 
 [vars]
 AUTH_BASE_URL = "https://alexwilson.tech"

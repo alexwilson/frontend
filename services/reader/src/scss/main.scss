@@ -220,5 +220,28 @@ html, body {
 }
 
 .reader-status {
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+}
+
+.reader-signin {
+  display: flex;
+  justify-content: center;
+}
+
+.reader-signin__button {
+  font: inherit;
+  padding: 0.5em 1.25em;
+  color: $white;
+  background: $grey-5;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: $grey-6;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
 }
