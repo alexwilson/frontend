@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "npm-run-all --parallel dev:client dev:worker",
-    "dev:client": "vite",
+    "dev:client": "vite client",
     "dev:worker": "wrangler dev",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "vite build client",
+    "preview": "vite preview client",
     "deploy:client": "aws s3 sync --acl=public-read --delete ./dist/ s3://alex-static-assets/reader/",
     "deploy:worker": "wrangler deploy",
     "deploy": "npm run build && npm run deploy:client && npm run deploy:worker",
