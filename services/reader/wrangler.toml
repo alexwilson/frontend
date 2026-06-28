@@ -1,11 +1,9 @@
 name = "reader"
 main = "./worker/index.ts"
 workers_dev = false
-# /reader/api/* is gated data; everything else is the inlined SPA shell.
-routes = ["https://alexwilson.tech/reader/*"]
+routes = ["https://alexwilson.tech/reader/*", "https://alexwilson.tech/reader"]
 compatibility_date = "2025-09-23"
 
-# Inline dist/index.html (worker/index.ts) — needs `vite build` before deploy.
 [[rules]]
 type = "Text"
 globs = ["**/*.html"]
@@ -15,8 +13,3 @@ fallthrough = true
 AUTH_BASE_URL = "https://alexwilson.tech"
 FEEDS_OWNER = "alexwilson"
 FEEDS_REPO = "flat-feeds"
-# GitHub credential — App preferred (installation resolved at runtime), flat
-# token fallback (worker/github.ts).
-# App:   set GITHUB_APP_ID var, then `wrangler secret put GITHUB_APP_PRIVATE_KEY`
-# Token: `wrangler secret put GITHUB_TOKEN`  (fine-grained PAT, contents:read)
-# Local dev lives in .dev.vars — see .dev.vars.example.
