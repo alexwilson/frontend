@@ -5,7 +5,6 @@ import type { Env } from "./env"
 import { fetchFeed } from "./github"
 import { resolveRepoPath } from "./routes"
 
-// connect-src is the load-bearing line: it bounds where the in-browser JWT can go.
 const CSP = [
   "default-src 'self'",
   "script-src 'self' https://static.alexwilson.tech",
@@ -31,8 +30,6 @@ export default {
     const url = new URL(request.url)
     if (url.pathname.startsWith("/reader/api/")) return handleApi(request, env, url)
 
-    // A SW must be same-origin; proxy it from the static origin. no-cache so the
-    // browser keeps detecting new versions.
     if (url.pathname === "/reader/sw.js") {
       const upstream = await fetch("https://static.alexwilson.tech/reader/sw.js")
       return new Response(upstream.body, {
@@ -62,7 +59,6 @@ async function handleApi(request: Request, env: Env, url: URL): Promise<Response
   const body = await fetchFeed(repoPath, env)
   if (body === null) return new Response("Not Found", { status: 404 })
 
-  // private: the data is gated, so shared caches must not store it.
   return new Response(body, {
     headers: { "content-type": "application/json", "cache-control": "private, max-age=60" },
   })
@@ -76,7 +72,7 @@ async function authorized(request: Request, env: Env): Promise<boolean> {
 
   jwks ??= createRemoteJWKSet(new URL("/auth/jwks", env.AUTH_BASE_URL))
   try {
-    await jwtVerify(token, jwks)
+    await jwtVerify(token, jwks, { issuer: env.AUTH_BASE_URL, audience: env.AUTH_BASE_URL })
     return true
   } catch {
     return false

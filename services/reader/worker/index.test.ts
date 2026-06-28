@@ -90,6 +90,10 @@ describe("worker.fetch", () => {
     expect(res.status).toBe(200)
     expect(res.headers.get("cache-control")).toBe("private, max-age=60")
     expect(await res.json()).toEqual({ entries: [] })
+    expect(verify).toHaveBeenCalledWith("jwt", expect.anything(), {
+      issuer: "https://auth.test",
+      audience: "https://auth.test",
+    })
   })
 
   it("404s when the file is missing", async () => {

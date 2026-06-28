@@ -44,7 +44,8 @@ export default defineConfig(({ mode }) => ({
         inlineWorkboxRuntime: true,
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => url.pathname.startsWith("/reader/api/"),
+            urlPattern: ({ url, request }) =>
+              url.pathname.startsWith("/reader/api/") && request.headers.has("authorization"),
             handler: "StaleWhileRevalidate",
             options: {
               cacheName: "reader-api",
