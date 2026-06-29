@@ -1,4 +1,5 @@
 export interface Env {
+  AUTH?: Fetcher // service binding to the auth worker (JWKS fetch); absent in dev
   AUTH_BASE_URL: string
   FEEDS_OWNER: string
   FEEDS_REPO: string
