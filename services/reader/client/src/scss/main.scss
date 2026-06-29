@@ -149,6 +149,28 @@ html, body {
     top: calc(48px + 0.5rem);
     align-self: start;
   }
+
+  // Filter sections render collapsed so they start closed on mobile (where the
+  // sidebar stacks above the list and eats the screen). CSS can't set a
+  // <details>'s open attribute, so instead we reveal any still-collapsed
+  // section here — above tablet the filters are always shown.
+  .reader-stream .alex-stream__filter-section:not([open]) {
+    > summary {
+      pointer-events: none;
+
+      &::after {
+        transform: rotate(90deg);
+      }
+    }
+
+    > .alex-stream__topics-list {
+      display: block;
+    }
+
+    &::details-content {
+      content-visibility: visible;
+    }
+  }
 }
 
 .reader-filter__toggle {

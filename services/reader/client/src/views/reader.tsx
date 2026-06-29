@@ -229,7 +229,6 @@ function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
     () => [
       {
         title: "Sources",
-        defaultOpen: true,
         selected: [source],
         onSelect: changeSource,
         options: [
@@ -243,7 +242,6 @@ function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
       },
       {
         title: "Categories",
-        defaultOpen: true,
         selected: [category],
         onSelect: changeCategory,
         options: [
