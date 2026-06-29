@@ -5,6 +5,7 @@ vi.mock("./github", () => ({ fetchFeed: vi.fn() }))
 vi.mock("jose", () => ({
   createRemoteJWKSet: vi.fn(() => ({})),
   jwtVerify: vi.fn(),
+  customFetch: Symbol("customFetch"),
 }))
 
 import worker from "./index"

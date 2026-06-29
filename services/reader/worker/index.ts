@@ -1,4 +1,4 @@
-import { createRemoteJWKSet, jwtVerify } from "jose"
+import { createRemoteJWKSet, customFetch, jwtVerify } from "jose"
 
 import index from "../dist/index.html"
 import type { Env } from "./env"
@@ -70,7 +70,12 @@ async function authorized(request: Request, env: Env): Promise<boolean> {
   const token = bearer(request)
   if (!token) return false
 
-  jwks ??= createRemoteJWKSet(new URL("/auth/jwks", env.AUTH_BASE_URL))
+  jwks ??= createRemoteJWKSet(new URL("/auth/jwks", env.AUTH_BASE_URL), {
+    [customFetch]: (async (url, options) => {
+      const viaBinding = await env.AUTH?.fetch(url, options).catch(() => null)
+      return viaBinding?.ok ? viaBinding : fetch(url, options)
+    }) as typeof fetch,
+  })
   try {
     await jwtVerify(token, jwks, { issuer: env.AUTH_BASE_URL, audience: env.AUTH_BASE_URL })
     return true
