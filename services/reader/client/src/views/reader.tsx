@@ -1,12 +1,16 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useLoaderData, useRevalidator } from "react-router-dom"
 
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters, {
   FilterSection,
 } from "@alexwilson/ds-legacy-components/src/stream-filters"
+import TimelineScroll, {
+  TimelineLevel,
+  bucketKey,
+} from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 
-import { FeedList } from "../components/feed-list"
+import { FeedList, FeedListHandle } from "../components/feed-list"
 import { FeedEntry, byPublishedDesc, relativeTime } from "../lib/entries"
 import { useReadState } from "../lib/read-state"
 import { getIndex, getRiver, type Feed, type Index, type River } from "../lib/api"
@@ -202,6 +206,36 @@ function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
     [arranged, readIds],
   )
 
+  // Timeline rail: track which entries are on screen and let the rail jump to a
+  // date. Virtuoso's rendered range is reverse-chronological, so startIndex is
+  // the newest visible entry and endIndex the oldest.
+  const listRef = useRef<FeedListHandle>(null)
+  const [range, setRange] = useState<{ startIndex: number; endIndex: number } | null>(null)
+  const [level, setLevel] = useState<TimelineLevel>("day")
+
+  const timelineDates = useMemo(
+    () => visible.map((e) => new Date(e.publishedAt)),
+    [visible],
+  )
+  const visibleRange = useMemo<[Date, Date] | null>(() => {
+    if (!range || visible.length === 0) return null
+    const newest = visible[Math.min(range.startIndex, visible.length - 1)]
+    const oldest = visible[Math.min(range.endIndex, visible.length - 1)]
+    if (!newest || !oldest) return null
+    return [new Date(oldest.publishedAt), new Date(newest.publishedAt)]
+  }, [range, visible])
+
+  const jumpToDate = useCallback(
+    (date: Date) => {
+      const target = bucketKey(date, level)
+      const idx = visible.findIndex(
+        (e) => bucketKey(new Date(e.publishedAt), level) === target,
+      )
+      if (idx >= 0) listRef.current?.scrollToIndex(idx)
+    },
+    [visible, level],
+  )
+
   const unreadTotal = useMemo(
     () => river.filter((e) => !readIds.has(e.id)).length,
     [river, readIds],
@@ -303,6 +337,16 @@ function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
       }
       sidebar={
         <>
+          <details className="reader-calendar">
+            <summary className="reader-calendar__summary">Calendar</summary>
+            <TimelineScroll
+              dates={timelineDates}
+              visibleRange={visibleRange}
+              onJump={jumpToDate}
+              level={level}
+              onLevelChange={setLevel}
+            />
+          </details>
           <StreamFilters sections={sections} />
           <label className="reader-filter__toggle">
             <input
@@ -331,12 +375,14 @@ function ReaderView({ entries, feeds, generatedAt }: ReaderViewProps) {
       }
     >
       <FeedList
+        ref={listRef}
         entries={visible}
         readIds={readIds}
         showSummary={showSummary}
         restoreKey={`${view}:${source}:${category}:${unreadOnly ? 1 : 0}`}
         onOpen={(id) => setRead(id, true)}
         onToggle={setRead}
+        onRangeChange={setRange}
       />
     </Stream>
   )

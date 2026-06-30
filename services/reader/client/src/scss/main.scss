@@ -173,6 +173,57 @@ html, body {
   }
 }
 
+// The calendar sits at the top of the sticky sidebar. Fix its height to roughly
+// one month so every feed reserves the same space — a dense firehose (~1 month)
+// fills it, a sparse feed spanning many months scrolls within it — and the
+// filters below stay reachable.
+.reader-calendar {
+  margin-bottom: 1.5rem;
+
+  // Collapsed by default on mobile (where the sidebar stacks above the feed);
+  // a tappable disclosure row.
+  > summary {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: $grey-5;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.25rem 0;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "▶";
+      font-size: 0.6em;
+      color: $grey-4;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &[open] > summary::after {
+    transform: rotate(90deg);
+  }
+
+  .alex-timeline-scroll__body {
+    height: 20rem;
+  }
+}
+
+@include media(">tablet") {
+  .reader-calendar > summary {
+    display: none;
+  }
+
+  .reader-calendar:not([open])::details-content {
+    content-visibility: visible;
+  }
+}
+
 .reader-filter__toggle {
   display: flex;
   align-items: center;
