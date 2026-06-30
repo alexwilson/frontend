@@ -120,7 +120,8 @@ export default function TimelineScroll({
       )
     }
     const active = isActive(key, range)
-    const intensity = maxCount > 0 ? 0.1 + 0.35 * (count / maxCount) : 0
+    // Gamma curve so quieter periods fade faster, widening the gradient.
+    const intensity = maxCount > 0 ? 0.08 + 0.22 * (count / maxCount) ** 1.5 : 0
     return (
       <button
         key={key}

@@ -121,14 +121,17 @@
       color: $grey-5;
       cursor: pointer;
 
+      // Draw the ring inside the cell; an outward outline is clipped by the
+      // paint containment on each (content-visibility) section.
       &:hover {
         outline: 1px solid $grey-4;
+        outline-offset: -1px;
       }
     }
 
     &--active {
       outline: 2px solid $grey-5;
-      outline-offset: -1px;
+      outline-offset: -2px;
       color: $grey-6;
       font-weight: 600;
     }
