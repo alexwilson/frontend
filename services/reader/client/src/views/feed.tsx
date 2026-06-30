@@ -1,9 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom"
 
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
+import TimelineScroll, {
+  TimelineLevel,
+  bucketKey,
+} from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 
-import { FeedList } from "../components/feed-list"
+import { FeedList, FeedListHandle } from "../components/feed-list"
 import { byPublishedDesc, type FeedEntry } from "../lib/entries"
 import { useReadState } from "../lib/read-state"
 import { getFeed, getIndex, type Index } from "../lib/api"
@@ -56,6 +60,35 @@ function FeedView({
     [entries, readIds],
   )
 
+  // Calendar rail: track the on-screen range and jump to a clicked date. The
+  // feed is reverse-chronological, so startIndex is newest and endIndex oldest.
+  const listRef = useRef<FeedListHandle>(null)
+  const [range, setRange] = useState<{ startIndex: number; endIndex: number } | null>(null)
+  const [level, setLevel] = useState<TimelineLevel>("day")
+
+  const timelineDates = useMemo(
+    () => visible.map((e) => new Date(e.publishedAt)),
+    [visible],
+  )
+  const visibleRange = useMemo<[Date, Date] | null>(() => {
+    if (!range || visible.length === 0) return null
+    const newest = visible[Math.min(range.startIndex, visible.length - 1)]
+    const oldest = visible[Math.min(range.endIndex, visible.length - 1)]
+    if (!newest || !oldest) return null
+    return [new Date(oldest.publishedAt), new Date(newest.publishedAt)]
+  }, [range, visible])
+
+  const jumpToDate = useCallback(
+    (date: Date) => {
+      const target = bucketKey(date, level)
+      const idx = visible.findIndex(
+        (e) => bucketKey(new Date(e.publishedAt), level) === target,
+      )
+      if (idx >= 0) listRef.current?.scrollToIndex(idx)
+    },
+    [visible, level],
+  )
+
   return (
     <Stream
       className="reader-stream"
@@ -66,6 +99,16 @@ function FeedView({
       }
       sidebar={
         <>
+          <details className="reader-calendar">
+            <summary className="reader-calendar__summary">Calendar</summary>
+            <TimelineScroll
+              dates={timelineDates}
+              visibleRange={visibleRange}
+              onJump={jumpToDate}
+              level={level}
+              onLevelChange={setLevel}
+            />
+          </details>
           <p className="reader-sidebar-count">{unread} unread</p>
           <label className="reader-filter__toggle">
             <input
@@ -85,11 +128,13 @@ function FeedView({
       }
     >
       <FeedList
+        ref={listRef}
         entries={visible}
         readIds={readIds}
         restoreKey={`feed:${feedId}:${unreadOnly ? 1 : 0}`}
         onOpen={(id) => setRead(id, true)}
         onToggle={setRead}
+        onRangeChange={setRange}
         empty="No posts."
       />
     </Stream>
