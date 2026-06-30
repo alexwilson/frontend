@@ -152,8 +152,12 @@ class Header extends Component<HeaderProps, HeaderState> {
 
   componentDidMount() {
     if (this.header.current && this.headerNav.current) {
-      this.header.current.style.top = `-${this.header.current.offsetHeight - this.headerNav.current.offsetHeight}px`
+      const navHeight = this.headerNav.current.offsetHeight
+      this.header.current.style.top = `-${this.header.current.offsetHeight - navHeight}px`
       this.header.current.style.position = "sticky"
+      // The nav stays pinned once the header shrinks; publish its height so
+      // sticky page content can offset itself to clear it.
+      document.documentElement.style.setProperty("--header-pinned-height", `${navHeight}px`)
     }
 
     if (!this.state.backgroundImage || this.state.backgroundImage === null) {

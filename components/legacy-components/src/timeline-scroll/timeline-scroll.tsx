@@ -87,13 +87,22 @@ export default function TimelineScroll({
   )
 
   const range = useMemo(() => activeRange(visibleRange, level), [visibleRange, level])
-  // The newest highlighted cell — anchors the auto-scroll as the feed moves.
-  const anchorKey = range?.hi ?? null
 
-  const anchorRef = useRef<HTMLButtonElement>(null)
+  // Keep the highlighted span centred as the feed moves. The newest cell (hi)
+  // sits at the top of the rail, the oldest (lo) below it; we recentre on the
+  // midpoint so a range spread across weeks or months stays framed.
+  const bodyRef = useRef<HTMLDivElement>(null)
+  const hiRef = useRef<HTMLButtonElement>(null)
+  const loRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
-    anchorRef.current?.scrollIntoView({ block: "nearest" })
-  }, [anchorKey])
+    const body = bodyRef.current
+    const hi = hiRef.current
+    if (!body || !hi) return
+    const lo = loRef.current ?? hi
+    const bodyRect = body.getBoundingClientRect()
+    const spanCenter = (hi.getBoundingClientRect().top + lo.getBoundingClientRect().bottom) / 2
+    body.scrollTop += spanCenter - (bodyRect.top + bodyRect.height / 2)
+  }, [range?.lo, range?.hi])
 
   // Render one cell for a date at the active level: an interactive, shaded cell
   // when it has content, otherwise a muted placeholder.
@@ -115,7 +124,7 @@ export default function TimelineScroll({
     return (
       <button
         key={key}
-        ref={key === anchorKey ? anchorRef : undefined}
+        ref={key === range?.hi ? hiRef : key === range?.lo ? loRef : undefined}
         type="button"
         className={`alex-timeline-scroll__cell alex-timeline-scroll__cell--filled${
           active ? " alex-timeline-scroll__cell--active" : ""
@@ -226,7 +235,7 @@ export default function TimelineScroll({
           ))}
         </div>
       )}
-      <div className="alex-timeline-scroll__body">{body}</div>
+      <div ref={bodyRef} className="alex-timeline-scroll__body">{body}</div>
     </nav>
   )
 }
