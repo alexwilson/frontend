@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
 import Header from "@alexwilson/ds-legacy-components/src/header"
+import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
 import SEO from "../components/seo"
 
 type TopicNode = { topicId: string; topic: string; slug: string }
@@ -32,7 +33,7 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
 
   const years = useMemo(() => {
     const ys = [
-      ...new Set(allPosts.map((n) => new Date(n.date).getFullYear())),
+      ...new Set(allPosts.map((n) => utcDate(n.date).getFullYear())),
     ].sort((a, b) => b - a)
     return ys
   }, [allPosts])
@@ -52,7 +53,7 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
     return allPosts.filter((node) => {
       if (
         selectedYears.length > 0 &&
-        !selectedYears.includes(new Date(node.date).getFullYear())
+        !selectedYears.includes(utcDate(node.date).getFullYear())
       )
         return false
       return true
