@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, HeadProps, Link, PageProps } from "gatsby"
 
-import { format } from "date-fns"
+import { formatUTC } from "@alexwilson/ds-legacy-components/src/util-date"
 
 import ArticleLayout from "@alexwilson/ds-legacy-components/src/article-layout"
 import Header from "@alexwilson/ds-legacy-components/src/header"
@@ -104,7 +104,7 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
                 dateTime={datePublished.toISOString()}
                 itemProp="datePublished"
               >
-                {format(new Date(post.date), "PPPP")}
+                {formatUTC(post.date, "PPPP")}
               </time>
               .
             </>

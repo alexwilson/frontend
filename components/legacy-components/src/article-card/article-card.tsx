@@ -1,7 +1,7 @@
-import { format as formatDate } from 'date-fns'
 import React from "react"
 import Link from '../link'
 import ResponsiveImage from '../responsive-image'
+import { formatUTC } from '../util-date'
 
 export type Article = {
   title: string
@@ -51,7 +51,7 @@ export default function ArticleCard({ article, withBody = true, withImage = true
         {(withDate !== false) ?
           <div className="alex-card__timetamp">
             <span className="dateline">
-              <time dateTime={date.toISOString()}>{ formatDate(date, "d MMM yyyy") }</time>
+              <time dateTime={date.toISOString()}>{ formatUTC(date, "d MMM yyyy") }</time>
             </span>
           </div>
         :null}

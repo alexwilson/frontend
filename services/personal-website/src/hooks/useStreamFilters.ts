@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react"
+import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
 
 type Topic = { topicId: string; topic: string; slug?: string }
 type StreamItem = { date: string; topics?: Topic[] }
@@ -8,7 +9,7 @@ export default function useStreamFilters<T extends StreamItem>(items: T[]) {
 
   const years = useMemo(
     () =>
-      [...new Set(items.map((n) => new Date(n.date).getFullYear()))].sort(
+      [...new Set(items.map((n) => utcDate(n.date).getFullYear()))].sort(
         (a, b) => b - a,
       ),
     [items],
@@ -34,7 +35,7 @@ export default function useStreamFilters<T extends StreamItem>(items: T[]) {
       items.filter(
         (n) =>
           selectedYears.length === 0 ||
-          selectedYears.includes(new Date(n.date).getFullYear()),
+          selectedYears.includes(utcDate(n.date).getFullYear()),
       ),
     [items, selectedYears],
   )

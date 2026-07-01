@@ -8,6 +8,7 @@ import TimelineScroll, {
   TimelineLevel,
   bucketKey,
 } from "@alexwilson/ds-legacy-components/src/timeline-scroll"
+import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
 import useStreamFilters from "../hooks/useStreamFilters"
@@ -40,14 +41,14 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
   const cardRefs = useRef(new Map<string, HTMLDivElement>())
   const [level, setLevel] = useState<TimelineLevel>("day")
   const timelineDates = useMemo(
-    () => filteredItems.map((node) => new Date(node.date)),
+    () => filteredItems.map((node) => utcDate(node.date)),
     [filteredItems],
   )
   const jumpToDate = useCallback(
     (date: Date) => {
       const target = bucketKey(date, level)
       const match = filteredItems.find(
-        (node) => bucketKey(new Date(node.date), level) === target,
+        (node) => bucketKey(utcDate(node.date), level) === target,
       )
       const el = match && cardRefs.current.get(match.contentId)
       if (!el) return
@@ -66,7 +67,7 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
   const [visibleRange, setVisibleRange] = useState<[Date, Date] | null>(null)
   const dateById = useMemo(() => {
     const map = new Map<string, number>()
-    filteredItems.forEach((node) => map.set(node.contentId, new Date(node.date).getTime()))
+    filteredItems.forEach((node) => map.set(node.contentId, utcDate(node.date).getTime()))
     return map
   }, [filteredItems])
   useEffect(() => {
