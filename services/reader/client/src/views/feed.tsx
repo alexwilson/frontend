@@ -6,6 +6,7 @@ import TimelineScroll, {
   TimelineLevel,
   bucketKey,
 } from "@alexwilson/ds-legacy-components/src/timeline-scroll"
+import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
 
 import { FeedList, FeedListHandle } from "../components/feed-list"
 import { byPublishedDesc, type FeedEntry } from "../lib/entries"
@@ -67,7 +68,7 @@ function FeedView({
   const [level, setLevel] = useState<TimelineLevel>("day")
 
   const timelineDates = useMemo(
-    () => visible.map((e) => new Date(e.publishedAt)),
+    () => visible.map((e) => utcDate(e.publishedAt)),
     [visible],
   )
   const visibleRange = useMemo<[Date, Date] | null>(() => {
@@ -75,14 +76,14 @@ function FeedView({
     const newest = visible[Math.min(range.startIndex, visible.length - 1)]
     const oldest = visible[Math.min(range.endIndex, visible.length - 1)]
     if (!newest || !oldest) return null
-    return [new Date(oldest.publishedAt), new Date(newest.publishedAt)]
+    return [utcDate(oldest.publishedAt), utcDate(newest.publishedAt)]
   }, [range, visible])
 
   const jumpToDate = useCallback(
     (date: Date) => {
       const target = bucketKey(date, level)
       const idx = visible.findIndex(
-        (e) => bucketKey(new Date(e.publishedAt), level) === target,
+        (e) => bucketKey(utcDate(e.publishedAt), level) === target,
       )
       if (idx >= 0) listRef.current?.scrollToIndex(idx)
     },
