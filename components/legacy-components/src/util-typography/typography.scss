@@ -1,16 +1,29 @@
 @forward "../util-palette/palette";
 @forward "./type/main";
+@use "sass:map";
+@use "sass:string";
 @use "../util-palette/palette" as *;
 @use "./type/main" as *;
 
-* {
-    font-family: "Avenir Next", Avenir, Arial, sans-serif;
+// Virtual font to render nicer emdashes.
+@font-face {
+    font-family: 'Latin Dash';
+    src: local('Helvetica Neue'), local('Helvetica'), local('Arial');
+    unicode-range: U+2013, U+2014;
+}
+
+body {
+    font-family: 'Latin Dash', 'M PLUS 2', Arial, sans-serif;
+    font-weight: 400;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
 }
 
 @mixin heading {
-    .wf-active & {
-        font-family: 'Overpass', sans-serif;
-    }
+    font-family: string.unquote(map.get($headingtype, font-family));
+    font-weight: map.get($headingtype, bold);
 }
 
 .alex-article {

@@ -240,6 +240,8 @@
   }
 
   &__surname {
+    font-family: inherit;
+
     @include media("<phone") {
       display: none;
     }
