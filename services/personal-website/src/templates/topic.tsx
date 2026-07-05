@@ -1,12 +1,13 @@
-import React, { useState, useMemo } from "react"
+import React, { useMemo } from "react"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
 import { graphql, HeadProps, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
+import TimelineScroll from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 import Header from "@alexwilson/ds-legacy-components/src/header"
-import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
 import SEO from "../components/seo"
+import useTimelineScroll from "../hooks/useTimelineScroll"
 
 type TopicNode = { topicId: string; topic: string; slug: string }
 type Post = {
@@ -27,16 +28,10 @@ type TopicData = {
 }
 
 const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
-  const [selectedYears, setSelectedYears] = useState<number[]>([])
-
-  const allPosts = data.content.edges.map(({ node }) => node)
-
-  const years = useMemo(() => {
-    const ys = [
-      ...new Set(allPosts.map((n) => utcDate(n.date).getFullYear())),
-    ].sort((a, b) => b - a)
-    return ys
-  }, [allPosts])
+  const allPosts = useMemo(
+    () => data.content.edges.map(({ node }) => node),
+    [data.content.edges],
+  )
 
   const allTopics = useMemo(() => {
     return [...data.allTopic.nodes].sort((a, b) =>
@@ -44,46 +39,50 @@ const TopicsTemplate = ({ data, location }: PageProps<TopicData>) => {
     )
   }, [data.allTopic.nodes])
 
-  const toggleYear = (year: number) =>
-    setSelectedYears((prev) =>
-      prev.includes(year) ? prev.filter((y) => y !== year) : [...prev, year],
-    )
-
-  const filteredPosts = useMemo(() => {
-    return allPosts.filter((node) => {
-      if (
-        selectedYears.length > 0 &&
-        !selectedYears.includes(utcDate(node.date).getFullYear())
-      )
-        return false
-      return true
-    })
-  }, [allPosts, selectedYears])
+  const {
+    level,
+    setLevel,
+    timelineDates,
+    visibleRange,
+    jumpToDate,
+    registerCard,
+  } = useTimelineScroll(allPosts)
 
   const sidebar = (
-    <StreamFilters
-      years={years}
-      selectedYears={selectedYears}
-      onYearToggle={toggleYear}
-      topics={allTopics}
-      selectedTopics={[data.topic.topicId]}
-      onClear={
-        selectedYears.length > 0 ? () => setSelectedYears([]) : undefined
-      }
-    />
+    <>
+      <StreamFilters
+        topics={allTopics}
+        selectedTopics={[data.topic.topicId]}
+      />
+      <TimelineScroll
+        className="stream-calendar"
+        dates={timelineDates}
+        visibleRange={visibleRange}
+        onJump={jumpToDate}
+        level={level}
+        onLevelChange={setLevel}
+      />
+    </>
   )
 
   return (
     <Layout location={location}>
       <Header location={location} section="blog" compact />
       <Stream
+        className="stream-page"
         sidebar={sidebar}
         header={
-          <h1>{`${filteredPosts.length} post${filteredPosts.length === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
+          <h1>{`${allPosts.length} post${allPosts.length === 1 ? "" : "s"} tagged with "${data.topic.topic}"`}</h1>
         }
       >
-        {filteredPosts.map((node) => (
-          <ArticleCard key={node.id} article={node} withImage={false} />
+        {allPosts.map((node) => (
+          <div
+            key={node.id}
+            data-content-id={node.contentId}
+            ref={registerCard(node.contentId)}
+          >
+            <ArticleCard article={node} withImage={false} />
+          </div>
         ))}
       </Stream>
     </Layout>

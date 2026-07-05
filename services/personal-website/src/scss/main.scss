@@ -14,7 +14,7 @@ code[class*="language-"] span, pre[class*="language-"] span {
     font-family: inherit;
 }
 
-.blog-calendar {
+.stream-calendar {
 	margin-top: 1.5rem;
 
 	.alex-timeline-scroll__body {
@@ -23,7 +23,7 @@ code[class*="language-"] span, pre[class*="language-"] span {
 }
 
 @include media(">tablet") {
-	.blog-stream .alex-stream__sidebar {
+	.stream-page .alex-stream__sidebar {
 		position: sticky;
 		top: calc(var(--header-pinned-height, 4rem) + 1rem);
 	}
