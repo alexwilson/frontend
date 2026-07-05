@@ -8,10 +8,10 @@ import { resolveRepoPath } from "./routes"
 const CSP = [
   "default-src 'self'",
   "script-src 'self' https://static.alexwilson.tech",
-  "style-src 'self' 'unsafe-inline' https://static.alexwilson.tech",
+  "style-src 'self' 'unsafe-inline' https://static.alexwilson.tech https://fonts.googleapis.com",
   "img-src 'self' data: https:",
-  "font-src 'self' data: https://static.alexwilson.tech",
-  "connect-src 'self'",
+  "font-src 'self' data: https://static.alexwilson.tech https://fonts.gstatic.com",
+  "connect-src 'self' https://alexwilson.tech https://images.unsplash.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
