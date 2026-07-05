@@ -27,6 +27,7 @@ export default function init() {
   CMS.registerWidget("uuid", Uuid);
   CMS.registerEditorComponent(makeColumnsEditorComponent(locales));
   CMS.registerPreviewTemplate("content", ArticlePreview);
+  CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=M+PLUS+2:wght@100..900&display=swap");
   CMS.registerPreviewStyle(ArticlePreviewStyles.toString(), { raw: true });
   CMS.registerPreviewStyle(columnsStyles.toString(), { raw: true });
 }
