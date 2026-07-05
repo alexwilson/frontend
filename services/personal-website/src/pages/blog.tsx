@@ -1,17 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useMemo } from "react"
 import { graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
-import TimelineScroll, {
-  TimelineLevel,
-  bucketKey,
-} from "@alexwilson/ds-legacy-components/src/timeline-scroll"
-import { utcDate } from "@alexwilson/ds-legacy-components/src/util-date"
+import TimelineScroll from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
-import useStreamFilters from "../hooks/useStreamFilters"
+import useStreamTopics from "../hooks/useStreamTopics"
+import useTimelineScroll from "../hooks/useTimelineScroll"
 
 type Post = {
   id?: string
@@ -34,75 +31,26 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
     () => data.content.edges.map(({ node }) => node),
     [data],
   )
-  const { topics, filteredItems } = useStreamFilters(allPosts)
-
-  // Calendar rail: jump the page to the newest post in a clicked bucket. The
-  // feed isn't virtualized, so we scroll the matching card into view directly.
-  const cardRefs = useRef(new Map<string, HTMLDivElement>())
-  const [level, setLevel] = useState<TimelineLevel>("day")
-  const timelineDates = useMemo(
-    () => filteredItems.map((node) => utcDate(node.date)),
-    [filteredItems],
-  )
-  const jumpToDate = useCallback(
-    (date: Date) => {
-      const target = bucketKey(date, level)
-      const match = filteredItems.find(
-        (node) => bucketKey(utcDate(node.date), level) === target,
-      )
-      const el = match && cardRefs.current.get(match.contentId)
-      if (!el) return
-      // The site header is sticky and overlays the feed, so offset the scroll
-      // by its live height (it shrinks as you scroll) plus a small gap.
-      const header = document.querySelector(".alex-header")
-      const headerBottom = header?.getBoundingClientRect().bottom ?? 0
-      const top = el.getBoundingClientRect().top + window.scrollY - headerBottom - 16
-      window.scrollTo({ top, behavior: "smooth" })
-    },
-    [filteredItems, level],
-  )
-
-  // Highlight the calendar buckets for the posts currently on screen. The page
-  // (not an inner list) scrolls, so we track card visibility directly.
-  const [visibleRange, setVisibleRange] = useState<[Date, Date] | null>(null)
-  const dateById = useMemo(() => {
-    const map = new Map<string, number>()
-    filteredItems.forEach((node) => map.set(node.contentId, utcDate(node.date).getTime()))
-    return map
-  }, [filteredItems])
-  useEffect(() => {
-    const onScreen = new Set<string>()
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        const id = (entry.target as HTMLElement).dataset.contentId
-        if (!id) continue
-        if (entry.isIntersecting) onScreen.add(id)
-        else onScreen.delete(id)
-      }
-      let lo = Infinity
-      let hi = -Infinity
-      onScreen.forEach((id) => {
-        const time = dateById.get(id)
-        if (time === undefined) return
-        if (time < lo) lo = time
-        if (time > hi) hi = time
-      })
-      setVisibleRange(lo <= hi ? [new Date(lo), new Date(hi)] : null)
-    })
-    cardRefs.current.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [dateById])
+  const topics = useStreamTopics(allPosts)
+  const {
+    level,
+    setLevel,
+    timelineDates,
+    visibleRange,
+    jumpToDate,
+    registerCard,
+  } = useTimelineScroll(allPosts)
 
   return (
     <Layout location={location}>
       <Header location={location} section="blog" compact />
       <Stream
-        className="blog-stream"
+        className="stream-page"
         sidebar={
           <>
             <StreamFilters topics={topics} />
             <TimelineScroll
-              className="blog-calendar"
+              className="stream-calendar"
               dates={timelineDates}
               visibleRange={visibleRange}
               onJump={jumpToDate}
@@ -114,18 +62,15 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
         header={
           <>
             <h1>My Blog</h1>
-            <h4>{filteredItems.length} Posts</h4>
+            <h4>{allPosts.length} Posts</h4>
           </>
         }
       >
-        {filteredItems.map((node) => (
+        {allPosts.map((node) => (
           <div
             key={node.id}
             data-content-id={node.contentId}
-            ref={(el) => {
-              if (el) cardRefs.current.set(node.contentId, el)
-              else cardRefs.current.delete(node.contentId)
-            }}
+            ref={registerCard(node.contentId)}
           >
             <ArticleCard article={node} withImage={false} />
           </div>
