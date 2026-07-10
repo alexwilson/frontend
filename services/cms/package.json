@@ -56,7 +56,7 @@
     "@alexwilson/content": "workspace:*",
     "@alexwilson/ds-columns": "workspace:*",
     "@alexwilson/ds-legacy-components": "workspace:*",
-    "better-auth": "1.6.11",
+    "better-auth": "1.6.13",
     "date-fns": "4.4.0",
     "decap-cms": "3.14.0",
     "decap-cms-app": "3.14.0",
