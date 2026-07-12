@@ -115,10 +115,10 @@ export class WebmentionStack extends cdk.Stack {
       this,
       "WebmentionIOHandler",
       {
-        runtime: lambda.Runtime.NODEJS_22_X,
+        runtime: lambda.Runtime.NODEJS_24_X,
         entry: resolve("src", "lambda", "webmention-io.ts"),
         handler: "index.handler",
-        // SDK v3 ships with the Node 22 runtime; exclude it from the bundle.
+        // SDK v3 ships with the Node 24 runtime; exclude it from the bundle.
         bundling: { externalModules: ["@aws-sdk/*"] },
         environment: {
           DYNAMODB_TABLE: this.database.tableName,
@@ -146,7 +146,7 @@ export class WebmentionStack extends cdk.Stack {
       this,
       "ProcessWebmentionsHandler",
       {
-        runtime: lambda.Runtime.NODEJS_22_X,
+        runtime: lambda.Runtime.NODEJS_24_X,
         entry: resolve("src", "lambda", "process-webmentions.ts"),
         handler: "index.handler",
         bundling: { externalModules: ["@aws-sdk/*"] },
