@@ -108,6 +108,9 @@ export default function TimelineScroll({
   // when it has content, otherwise a muted placeholder.
   const cell = (date: Date, label: string) => {
     const key = bucketKey(date, level)
+    if (!inScope(date)) {
+      return <span key={key} className="alex-timeline-scroll__cell--blank" />
+    }
     const count = counts.get(key) ?? 0
     if (count === 0) {
       return (
@@ -142,6 +145,15 @@ export default function TimelineScroll({
 
   const newest = buckets[0]?.date
   const oldest = buckets[buckets.length - 1]?.date
+
+  // The grids fill whole months/years, so they spill past the content at both
+  // ends (the rest of the newest month, months before the oldest post). Those
+  // cells read as stray future/past dates, so keep rendering to the span bounds.
+  const inScope = (date: Date) =>
+    !!newest &&
+    !!oldest &&
+    date.getTime() >= oldest.getTime() &&
+    date.getTime() <= newest.getTime()
 
   let body: React.ReactNode = null
   if (newest && oldest && level === "day") {
