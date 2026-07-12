@@ -46,6 +46,7 @@ html {
     // Nice underlines for text links.
     p a, li a {
       font-family: string.unquote(map.get($bodytype, font-family));
+      text-decoration: none; // We achieve this below.
       background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,color.adjust($linkColour, $lightness: 20%) 50%);
       background-position: 0 93%;
       background-repeat: repeat-x;
