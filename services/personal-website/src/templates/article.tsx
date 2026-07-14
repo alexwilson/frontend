@@ -19,6 +19,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../schema-org/article"
 import RelatedArticles from "../components/related-articles"
+import WeeknoteNavigation from "../components/weeknote-navigation"
 
 type ArticleData = {
   content: {
@@ -116,6 +117,8 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
           className="alex-article__body article-description"
           itemProp="articleBody"
         />
+
+        <WeeknoteNavigation article={post} />
 
         <footer>
           <Infobox>
