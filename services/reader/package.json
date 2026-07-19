@@ -28,7 +28,7 @@
     "sass": "1.99.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20260515.1",
+    "@cloudflare/workers-types": "5.20260705.1",
     "@types/node": "24.13.3",
     "@types/react": "18.3.28",
     "@types/react-dom": "18.3.7",
