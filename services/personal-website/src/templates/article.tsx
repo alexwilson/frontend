@@ -90,7 +90,7 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
                 itemScope
                 itemType="http://schema.org/Person"
               >
-                <a href="/about-me">
+                <a href="/about">
                   <span itemProp="name">Alex</span>
                 </a>
                 <meta itemProp="url" content={`https://alexwilson.tech/`} />

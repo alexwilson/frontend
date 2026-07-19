@@ -3,6 +3,9 @@ table redirects {
   "/cv": "https://docs.google.com/document/d/1SlrbctqUQlhBtODC8c12Qft66b8j69jV1CSVcrYqdq0/",
   "/book-a-time": "https://fantastical.app/alexwilson/30m",
 
+  // Moved to the indie-web /about convention
+  "/about-me": "/about",
+
   // All pictures come from media.alexwilson.tech.
   "/pictures/**": "https://media.alexwilson.tech/**",
 
