@@ -47,7 +47,7 @@
     "@types/node": "^24.13.3",
     "@vitest/coverage-v8": "4.1.7",
     "gatsby": "^5.16.1",
-    "joi": "^17.0.0",
+    "joi": "^18.2.3",
     "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   }
