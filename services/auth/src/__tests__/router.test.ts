@@ -113,3 +113,19 @@ describe('rate limiting', () => {
     expect(res.status).not.toBe(429)
   })
 })
+
+describe('sign-in error sanitisation', () => {
+  // AUTH_DB is undefined here, so the sign-in flow throws downstream. The
+  // response must not echo the raw error (which can carry DB internals) —
+  // it should redirect to the sanitised /auth/error page instead.
+  it('failing sign-in redirects to /auth/error without leaking the error', async () => {
+    const res = await app.fetch(
+      new Request('https://auth.test/auth/manage/sign-in'),
+      env,
+    )
+    expect(res.status).toBe(302)
+    expect(res.headers.get('location')).toBe('/auth/error?error=server_error')
+    const body = await res.text()
+    expect(body).not.toMatch(/insert into|params:|Failed query/i)
+  })
+})
