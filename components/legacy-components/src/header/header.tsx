@@ -225,7 +225,7 @@ class Header extends Component<HeaderProps, HeaderState> {
               ) : (
                 <>
                   <NavItem url="/" active={pathname === "/"}>Home</NavItem>
-                  <NavItem url="/about-me" active={pathname === "/about-me"}>About Me</NavItem>
+                  <NavItem url="/about" active={pathname === "/about"}>About Me</NavItem>
                   <NavItem url="/blog" active={section !== null && section === "blog"}>Writing</NavItem>
                   <NavItem url="/talks" active={section !== null && section === "talks"}>Speaking</NavItem>
                   <NavSpacer />

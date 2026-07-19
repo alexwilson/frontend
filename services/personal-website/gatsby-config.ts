@@ -9,7 +9,7 @@ const config: GatsbyConfig = {
     author: `@antoligy`,
     // The canonical page about the site's Person; the Page template marks it
     // as a schema.org ProfilePage. Site-level, not per-page frontmatter.
-    aboutPath: `/about-me`,
+    aboutPath: `/about`,
   },
   trailingSlash: "never",
   plugins: [

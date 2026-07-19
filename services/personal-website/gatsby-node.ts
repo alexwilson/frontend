@@ -150,7 +150,13 @@ export const createResolvers: GatsbyNode["createResolvers"] = ({ createResolvers
 }
 
 export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: `/about-me`,
+    toPath: `/about`,
+    isPermanent: true,
+  })
   const articleTemplate = path.resolve(`./src/templates/article.tsx`)
   const talkTemplate = path.resolve(`./src/templates/talk.tsx`)
   const placeholderTemplate = path.resolve(`./src/templates/content-placeholder.tsx`)
