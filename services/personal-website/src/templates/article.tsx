@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, HeadProps, Link, PageProps } from "gatsby"
 
-import { format } from "date-fns"
+import { formatUTC } from "@alexwilson/ds-legacy-components/src/util-date"
 
 import ArticleLayout from "@alexwilson/ds-legacy-components/src/article-layout"
 import Header from "@alexwilson/ds-legacy-components/src/header"
@@ -19,6 +19,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../schema-org/article"
 import RelatedArticles from "../components/related-articles"
+import WeeknoteNavigation from "../components/weeknote-navigation"
 
 type ArticleData = {
   content: {
@@ -104,7 +105,7 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
                 dateTime={datePublished.toISOString()}
                 itemProp="datePublished"
               >
-                {format(new Date(post.date), "PPPP")}
+                {formatUTC(post.date, "PPPP")}
               </time>
               .
             </>
@@ -116,6 +117,8 @@ const ArticleTemplate = ({ data, location }: PageProps<ArticleData>) => {
           className="alex-article__body article-description"
           itemProp="articleBody"
         />
+
+        <WeeknoteNavigation article={post} />
 
         <footer>
           <Infobox>
@@ -185,6 +188,7 @@ export const Head = ({ data, location }: HeadProps<ArticleData>) => {
     <SEO
       title={post.title}
       description={post.content.excerpt}
+      pathname={location.pathname}
       twitterCard="summary_large_image"
       twitterSite="@alexwilsonv1"
       twitterImage={`${url}/twitter-card.jpg`}

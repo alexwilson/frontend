@@ -1,0 +1,19 @@
+name = "reader"
+main = "./worker/index.ts"
+workers_dev = false
+routes = ["https://alexwilson.tech/reader/*", "https://alexwilson.tech/reader"]
+compatibility_date = "2025-09-23"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
+
+[[services]]
+binding = "AUTH"
+service = "auth"
+
+[vars]
+AUTH_BASE_URL = "https://alexwilson.tech"
+FEEDS_OWNER = "alexwilson"
+FEEDS_REPO = "flat-feeds"

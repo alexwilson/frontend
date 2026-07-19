@@ -19,10 +19,10 @@ import index from "../dist/index.html";
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.alexwilson.tech",
-  "style-src 'self' 'unsafe-inline' https://static.alexwilson.tech",
+  "style-src 'self' 'unsafe-inline' https://static.alexwilson.tech https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data: https://static.alexwilson.tech",
-  "connect-src 'self' https://alexwilson.tech https://static.alexwilson.tech https://api.github.com https://uploads.github.com https://raw.githubusercontent.com",
+  "font-src 'self' data: https://static.alexwilson.tech https://fonts.gstatic.com",
+  "connect-src 'self' blob: https://alexwilson.tech https://static.alexwilson.tech https://api.github.com https://uploads.github.com https://raw.githubusercontent.com",
   "frame-ancestors 'none'",
   "form-action 'self' https://github.com",
   "base-uri 'self'",

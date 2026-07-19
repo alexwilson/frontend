@@ -1,12 +1,14 @@
 import React, { useMemo } from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
+import TimelineScroll from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
-import useStreamFilters from "../hooks/useStreamFilters"
+import useStreamTopics from "../hooks/useStreamTopics"
+import useTimelineScroll from "../hooks/useTimelineScroll"
 
 type Post = {
   id?: string
@@ -29,37 +31,49 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
     () => data.content.edges.map(({ node }) => node),
     [data],
   )
+  const topics = useStreamTopics(allPosts)
   const {
-    selectedYears,
-    years,
-    topics,
-    toggleYear,
-    filteredItems,
-    clearYears,
-  } = useStreamFilters(allPosts)
+    level,
+    setLevel,
+    timelineDates,
+    visibleRange,
+    jumpToDate,
+    registerCard,
+  } = useTimelineScroll(allPosts)
 
   return (
     <Layout location={location}>
       <Header location={location} section="blog" compact />
       <Stream
+        className="stream-page"
         sidebar={
-          <StreamFilters
-            years={years}
-            selectedYears={selectedYears}
-            onYearToggle={toggleYear}
-            topics={topics}
-            onClear={clearYears}
-          />
+          <>
+            <StreamFilters topics={topics} />
+            <TimelineScroll
+              className="stream-calendar"
+              dates={timelineDates}
+              visibleRange={visibleRange}
+              onJump={jumpToDate}
+              level={level}
+              onLevelChange={setLevel}
+            />
+          </>
         }
         header={
           <>
             <h1>My Blog</h1>
-            <h4>{filteredItems.length} Posts</h4>
+            <h4>{allPosts.length} Posts</h4>
           </>
         }
       >
-        {filteredItems.map((node) => (
-          <ArticleCard key={node.id} article={node} withImage={false} />
+        {allPosts.map((node) => (
+          <div
+            key={node.id}
+            data-content-id={node.contentId}
+            ref={registerCard(node.contentId)}
+          >
+            <ArticleCard article={node} withImage={false} />
+          </div>
         ))}
       </Stream>
     </Layout>
@@ -68,7 +82,9 @@ const BlogPage = ({ data, location }: PageProps<BlogData>) => {
 
 export default BlogPage
 
-export const Head = () => <SEO title="Blog" />
+export const Head = ({ location }: HeadProps) => (
+  <SEO title="Blog" pathname={location.pathname} />
+)
 
 export const query = graphql`
   fragment BlogPageContent on MarkdownRemark {

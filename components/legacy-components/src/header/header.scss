@@ -232,7 +232,7 @@
 
   &__name {
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: initial;
     font-size: 40pt;
     white-space: nowrap;
@@ -240,6 +240,8 @@
   }
 
   &__surname {
+    font-family: inherit;
+
     @include media("<phone") {
       display: none;
     }

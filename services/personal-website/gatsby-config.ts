@@ -239,7 +239,15 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: ["Overpass:400,600,800"],
+          families: [
+            "BIZ UDPMincho:400,700",
+          ],
+        },
+        custom: {
+          families: ["Gelasio", "M PLUS 2"],
+          urls: [
+            "https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,700;1,400;1,700&family=M+PLUS+2:wght@100..900&display=swap",
+          ],
         },
       },
     },

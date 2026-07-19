@@ -14,6 +14,21 @@ code[class*="language-"] span, pre[class*="language-"] span {
     font-family: inherit;
 }
 
+.stream-calendar {
+	margin-top: 1.5rem;
+
+	.alex-timeline-scroll__body {
+		height: 20rem;
+	}
+}
+
+@include media(">tablet") {
+	.stream-page .alex-stream__sidebar {
+		position: sticky;
+		top: calc(var(--header-pinned-height, 4rem) + 1rem);
+	}
+}
+
 .panel {
 	background: $brand;
 }

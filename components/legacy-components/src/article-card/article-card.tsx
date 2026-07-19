@@ -1,7 +1,7 @@
-import { format as formatDate } from 'date-fns'
 import React from "react"
 import Link from '../link'
 import ResponsiveImage from '../responsive-image'
+import { formatUTC } from '../util-date'
 
 export type Article = {
   title: string
@@ -18,9 +18,10 @@ type Props = {
   withBody?: boolean
   withImage?: boolean
   withDate?: boolean
+  newTab?: boolean
 }
 
-export default function ArticleCard({ article, withBody = true, withImage = true, withDate = true }: Props) {
+export default function ArticleCard({ article, withBody = true, withImage = true, withDate = true, newTab = false }: Props) {
 
   const date = new Date(article.date)
   const destination = article.url || article.slug
@@ -35,7 +36,7 @@ export default function ArticleCard({ article, withBody = true, withImage = true
           <h3>
             {isInternalLink
               ? <Link to={ destination }>{ article.title }</Link>
-              : <a href={ destination }>{ article.title }</a>}
+              : <a href={ destination } target={ newTab ? '_blank' : undefined } rel={ newTab ? 'noopener noreferrer' : undefined }>{ article.title }</a>}
           </h3>
         </div>
 
@@ -50,7 +51,7 @@ export default function ArticleCard({ article, withBody = true, withImage = true
         {(withDate !== false) ?
           <div className="alex-card__timetamp">
             <span className="dateline">
-              <time dateTime={date.toISOString()}>{ formatDate(date, "d MMM yyyy") }</time>
+              <time dateTime={date.toISOString()}>{ formatUTC(date, "d MMM yyyy") }</time>
             </span>
           </div>
         :null}

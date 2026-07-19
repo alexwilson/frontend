@@ -1,0 +1,179 @@
+@use "../util-palette/palette" as *;
+
+.alex-timeline-scroll {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  font-size: 0.75rem;
+
+  &__levels {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__level {
+    flex: 1;
+    font: inherit;
+    font-size: 0.7rem;
+    padding: 0.15rem 0;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: $grey-4;
+    cursor: pointer;
+
+    &:hover {
+      color: $grey-5;
+    }
+
+    &--active {
+      color: $grey-5;
+      font-weight: 600;
+      border-bottom-color: $grey-5;
+    }
+  }
+
+  &__body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &__section {
+    margin-bottom: 0;
+  }
+
+  // Single weekday header, sticky over the continuous scroll. Same 7 columns as
+  // the day grids so everything lines up.
+  &__weekdays {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    padding-bottom: 2px;
+    background: $white;
+  }
+
+  // Off-screen months skip layout/paint; the browser remembers each section's
+  // real size after first render, so the scrollbar stays stable.
+  &--virtualized &__section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 12rem;
+  }
+
+  &__heading {
+    margin: 0.4rem 0 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $grey-5;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2px;
+
+    &--days {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    &--months {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--years {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__weekday {
+    text-align: center;
+    font-size: 0.6rem;
+    color: $grey-4;
+    padding-bottom: 2px;
+  }
+
+  &__cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-size: 0.65rem;
+    border: 0;
+    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+    background: $grey-1;
+    color: $grey-4;
+
+    &--blank {
+      background: none;
+    }
+
+    &--empty {
+      background: none;
+      color: $grey-3;
+    }
+
+    &--filled {
+      color: $grey-5;
+      cursor: pointer;
+
+      // Draw the ring inside the cell; an outward outline is clipped by the
+      // paint containment on each (content-visibility) section.
+      &:hover {
+        outline: 1px solid $grey-4;
+        outline-offset: -1px;
+      }
+    }
+
+    &--active {
+      outline: 2px solid $grey-5;
+      outline-offset: -2px;
+      color: $grey-6;
+      font-weight: 600;
+    }
+  }
+
+  // Compact day cells, but tall enough to be reasonable tap targets.
+  &__grid--days &__cell {
+    height: 1.4rem;
+    font-size: 0.7rem;
+  }
+
+  &__grid--months &__cell {
+    padding: 0.5rem 0;
+  }
+
+  &__grid--years &__cell {
+    justify-content: flex-start;
+    padding: 0.3rem 0.5rem;
+  }
+
+  &__fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: $grey-5;
+    pointer-events: none;
+  }
+
+  &__num {
+    position: relative;
+  }
+}
+
+// Scrollbar selectors must stay top-level (not nested) for macOS to switch
+// between overlay and legacy scrollbars correctly.
+.alex-timeline-scroll__body::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.alex-timeline-scroll__body::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}

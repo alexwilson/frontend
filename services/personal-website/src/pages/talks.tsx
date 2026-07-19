@@ -1,12 +1,14 @@
 import React, { useMemo } from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, HeadProps, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Stream from "@alexwilson/ds-legacy-components/src/stream"
 import StreamFilters from "@alexwilson/ds-legacy-components/src/stream-filters"
 import ArticleCard from "@alexwilson/ds-legacy-components/src/article-card"
+import TimelineScroll from "@alexwilson/ds-legacy-components/src/timeline-scroll"
 import Header from "@alexwilson/ds-legacy-components/src/header"
 import SEO from "../components/seo"
-import useStreamFilters from "../hooks/useStreamFilters"
+import useStreamTopics from "../hooks/useStreamTopics"
+import useTimelineScroll from "../hooks/useTimelineScroll"
 
 type Talk = {
   id: string
@@ -30,37 +32,49 @@ const TalksPage = ({ data, location }: PageProps<TalksData>) => {
     () => data.talks.edges.map(({ node }) => node),
     [data],
   )
+  const topics = useStreamTopics(allTalks)
   const {
-    selectedYears,
-    years,
-    topics,
-    toggleYear,
-    filteredItems,
-    clearYears,
-  } = useStreamFilters(allTalks)
+    level,
+    setLevel,
+    timelineDates,
+    visibleRange,
+    jumpToDate,
+    registerCard,
+  } = useTimelineScroll(allTalks)
 
   return (
     <Layout location={location}>
       <Header location={location} section="talks" compact />
       <Stream
+        className="stream-page"
         sidebar={
-          <StreamFilters
-            years={years}
-            selectedYears={selectedYears}
-            onYearToggle={toggleYear}
-            topics={topics}
-            onClear={clearYears}
-          />
+          <>
+            <StreamFilters topics={topics} />
+            <TimelineScroll
+              className="stream-calendar"
+              dates={timelineDates}
+              visibleRange={visibleRange}
+              onJump={jumpToDate}
+              level={level}
+              onLevelChange={setLevel}
+            />
+          </>
         }
         header={
           <>
             <h1>Talks</h1>
-            <h4>{filteredItems.length} Talks</h4>
+            <h4>{allTalks.length} Talks</h4>
           </>
         }
       >
-        {filteredItems.map((node) => (
-          <ArticleCard key={node.id} article={node} />
+        {allTalks.map((node) => (
+          <div
+            key={node.id}
+            data-content-id={node.contentId}
+            ref={registerCard(node.contentId)}
+          >
+            <ArticleCard article={node} />
+          </div>
         ))}
       </Stream>
     </Layout>
@@ -69,7 +83,9 @@ const TalksPage = ({ data, location }: PageProps<TalksData>) => {
 
 export default TalksPage
 
-export const Head = () => <SEO title="Talks" />
+export const Head = ({ location }: HeadProps) => (
+  <SEO title="Talks" pathname={location.pathname} />
+)
 
 export const query = graphql`
   fragment TalkPageContent on MarkdownRemark {
