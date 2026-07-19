@@ -23,13 +23,34 @@
   &[data-split="two-wide-right"] {
     grid-template-columns: 1fr 2fr;
   }
+  &[data-split="three-wide-center"] {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  // Equal content columns + a narrower aside (e.g. a bio pic), 3:3:2. The
+  // aside stays ~25% of the row; bounded by the page's max-width it tops out
+  // around a bio-pic size on desktop. minmax(0, …) lets tracks shrink instead
+  // of overflowing on long words.
+  &[data-split="two-equal-aside"] {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 3fr) 2fr;
+  }
 
   @include media("<tablet") {
     &[data-split="two-wide-left"],
-    &[data-split="two-wide-right"] {
+    &[data-split="two-wide-right"],
+    &[data-split="three-wide-center"],
+    &[data-split="two-equal-aside"] {
       grid-template-columns: 1fr;
     }
   }
+}
+
+// A heading sits close to the columns it introduces: the two read as one unit.
+// Without this the block keeps the full paragraph rhythm (the heading's own
+// margin is tiny; the gap comes from the first column child's baseline-shift
+// padding) and reads as detached from its heading.
+:where(h1, h2, h3, h4, h5, h6) + .alex-columns {
+  margin-block-start: -0.5rem;
 }
 
 .alex-column {

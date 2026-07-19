@@ -8,6 +8,10 @@ export const SPLITS = {
   'two-wide-left': { slots: 2, ratio: true },
   'two-wide-right': { slots: 2, ratio: true },
   three: { slots: 3, ratio: false },
+  'three-wide-center': { slots: 3, ratio: true },
+  // Equal content columns plus an intrinsic-width aside (last slot): the aside
+  // is sized to itself (~a bio pic), the content columns share the remainder.
+  'two-equal-aside': { slots: 3, ratio: true },
 } as const
 
 export type SplitName = keyof typeof SPLITS

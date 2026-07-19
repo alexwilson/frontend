@@ -1,4 +1,6 @@
 @use "~@alexwilson/ds-legacy-components/src/util-palette/palette" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-grid/grid" as *;
+@use "~@alexwilson/ds-legacy-components/src/util-typography/typography" as *;
 
 /**
  * Layout
@@ -12,5 +14,45 @@ html, body {
 
 img.responsive {
     max-width: 100%;
+}
+
+// Prose pages (the Page collection's default layout): no ArticleLayout aside.
+// Full container width (the grid's 10 columns, 1200px). Slices (columns
+// blocks) fill this width.
+.alex-page {
+    @include alex-container;
+
+    .alex-article__body {
+        // Images fit their column (e.g. the bio pic in an aside track);
+        // article-layout.scss's img cap isn't loaded on this page.
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        // `.typeset` is tuned for long-form articles: headings sit in a 3rem
+        // line box (`$lineheight: 3`) and paragraphs carry a `$below: 2`
+        // margin. A dense prose page reads tighter — so re-run the same
+        // sassline/baseline mixins a modular step down with a pulled-in
+        // line-height and less below-space. LI item spacing stays the
+        // article's (untouched).
+        p { @include sassline($fontsize: eta, $font: $bodytype, $lineheight: 2, $below: 1); }
+        li { @include fontsize(eta); }
+        ul, ol { @include baseline($fontsize: eta, $font: $bodytype, $lineheight: 2, $below: 1); }
+
+        // A heading groups with the section it introduces: tight below (hug the
+        // following content) via a small `$below`, and more space above to
+        // separate it from the previous block. sassline's `$below` only sets
+        // the space below — the space above is the previous block's margin —
+        // so the grouping gap above comes from a margin-top here.
+        h2, h3 { margin-top: 1rem; }
+        h2 { @include sassline($fontsize: epsilon, $font: $headingtype, $lineheight: 2, $below: 0.5); text-transform: none; }
+        h3 { @include sassline($fontsize: zeta, $font: $headingtype, $lineheight: 2, $below: 0.5); }
+
+        // Every `.typeset` block carries a baseline-shift `padding-top`; the
+        // block right after a heading uses it to step ~10px back down, undoing
+        // the heading's hug. Strip it so the content sits with its heading.
+        h2 + *, h3 + * { padding-top: 0; }
+    }
 }
 

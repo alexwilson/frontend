@@ -9,6 +9,8 @@ describe('split vocabulary', () => {
       'two-wide-left',
       'two-wide-right',
       'three',
+      'three-wide-center',
+      'two-equal-aside',
     ])
   })
 
@@ -22,6 +24,8 @@ describe('split vocabulary', () => {
     expect(SPLIT_NAMES.filter((name) => SPLITS[name].ratio)).toEqual([
       'two-wide-left',
       'two-wide-right',
+      'three-wide-center',
+      'two-equal-aside',
     ])
   })
 
