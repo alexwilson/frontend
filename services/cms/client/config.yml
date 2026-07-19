@@ -53,4 +53,7 @@ collections:
       - {label: ID, name: id, required: true, widget: "uuid"}
       - {label: Title, name: "title", required: true, widget: "string"}
       - {label: Path, name: "path", required: true, widget: "string", hint: "URL path, no leading slash, e.g. about-me — also the filename"}
+      - {label: Layout, name: "layout", widget: "select", default: "full", options: ["full", "article"], hint: "full = full-width; article = content column with a recent-writing rail"}
+      - {label: Description, name: "description", required: false, widget: "text", hint: "SEO/social description; falls back to an excerpt of the body"}
+      - {label: Keywords, name: "keywords", required: false, widget: "list", label_singular: "Keyword"}
       - {label: Body, name: "body", required: true, widget: "markdown"}

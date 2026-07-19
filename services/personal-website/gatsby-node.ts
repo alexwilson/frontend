@@ -6,6 +6,9 @@ import {
   topicsFromMarkdownRemark,
   createTopicNode,
   createContentNode,
+  isPagesCollectionNode,
+  pageFromMarkdownRemark,
+  createPageNode,
 } from "./src/schema/on-create-node"
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
@@ -16,10 +19,23 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   actions,
 }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    const { createNodeField } = actions
     const markdownNode = node as unknown as Parameters<
       typeof contentFromMarkdownRemark
     >[0]["node"]
+
+    // Pages are a separate collection: build a Page node (not Content/Topic) so
+    // they route from their own `path` and never leak into blog, feed or topics.
+    if (isPagesCollectionNode({ node, getNode })) {
+      createPageNode(pageFromMarkdownRemark({ node: markdownNode }), {
+        node: markdownNode,
+        createNodeId,
+        createContentDigest,
+        actions,
+      })
+      return
+    }
+
+    const { createNodeField } = actions
 
     const content = contentFromMarkdownRemark({ node: markdownNode })
     const topics = topicsFromMarkdownRemark({ node: markdownNode })
@@ -85,6 +101,15 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     type Person {
       name: String!
     }
+
+    type Page implements Node @dontInfer {
+      pageId: String!
+      title: String!
+      path: String!
+      layout: String!
+      keywords: [String!]!
+      description: String
+    }
   `
   createTypes(typeDefs)
 }
@@ -129,12 +154,15 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
   const articleTemplate = path.resolve(`./src/templates/article.tsx`)
   const talkTemplate = path.resolve(`./src/templates/talk.tsx`)
   const placeholderTemplate = path.resolve(`./src/templates/content-placeholder.tsx`)
+  const pageTemplate = path.resolve(`./src/templates/page.tsx`)
 
   type ContentNode = { contentId: string; slug: string; type: string }
   type TopicNode = { topicId: string; topic: string; slug: string }
+  type PageNode = { pageId: string; path: string }
   type CreatePagesQuery = {
     content: { nodes: ContentNode[] }
     topics: { nodes: TopicNode[] }
+    pages: { nodes: PageNode[] }
   }
 
   const { data } = await graphql<CreatePagesQuery>(`
@@ -151,6 +179,12 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
           topicId
           topic
           slug
+        }
+      }
+      pages: allPage {
+        nodes {
+          pageId
+          path
         }
       }
     }
@@ -184,6 +218,15 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
       component: path.resolve(`./src/templates/topic.tsx`),
       context: {
         topicId: node.topicId,
+      },
+    })
+  })
+  data.pages.nodes.forEach((node) => {
+    createPage({
+      path: node.path.startsWith("/") ? node.path : `/${node.path}`,
+      component: pageTemplate,
+      context: {
+        pageId: node.pageId,
       },
     })
   })

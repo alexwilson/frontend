@@ -14,6 +14,11 @@ type Frontmatter = {
   alt_text?: string
   author?: string
   tags?: string[]
+  // Page collection frontmatter.
+  path?: string
+  description?: string
+  keywords?: string[]
+  layout?: string
 }
 
 type MarkdownRemarkNode = Node & {
@@ -39,11 +44,32 @@ type ContentEntity = {
   author?: { name: string }
 }
 
+type PageEntity = {
+  pageId: string
+  title: string
+  path: string
+  keywords: string[]
+  layout: string
+  description?: string
+}
+
 type NodeBuildArgs = Pick<
   NodePluginArgs,
   "createNodeId" | "getNode" | "createContentDigest" | "actions"
 > & {
   node: MarkdownRemarkNode
+}
+
+export const isPagesCollectionNode = ({
+  node,
+  getNode,
+}: {
+  node: Pick<Node, "parent">
+  getNode: NodePluginArgs["getNode"]
+}): boolean => {
+  const parent = node.parent ? getNode(node.parent) : undefined
+  return (parent as { sourceInstanceName?: string } | undefined)
+    ?.sourceInstanceName === "pages"
 }
 
 export const contentFromMarkdownRemark = ({
@@ -175,4 +201,53 @@ export const createContentNode = (
   createNode(contentNode)
 
   createParentChildLink({ parent: node, child: contentNode })
+}
+
+export const pageFromMarkdownRemark = ({
+  node,
+}: {
+  node: MarkdownRemarkNode
+}): PageEntity => {
+  const page: PageEntity = {
+    pageId: node.frontmatter.id,
+    title: node.frontmatter.title || "",
+    path: node.frontmatter.path || "",
+    keywords: node.frontmatter.keywords ?? [],
+    layout: node.frontmatter.layout || "full",
+  }
+
+  if (node.frontmatter.description) {
+    page.description = node.frontmatter.description
+  }
+
+  return page
+}
+
+export const createPageNode = (
+  page: PageEntity,
+  {
+    node,
+    createNodeId,
+    createContentDigest,
+    actions,
+  }: Omit<NodeBuildArgs, "getNode">,
+) => {
+  const { createNode, createParentChildLink } = actions
+  const pageNode = {
+    id: createNodeId(page.pageId),
+    parent: node.id,
+    children: [],
+    internal: {
+      content: JSON.stringify(node),
+      type: "Page",
+      contentDigest: "",
+      owner: "",
+    },
+    ...page,
+  }
+
+  pageNode.internal.contentDigest = createContentDigest(pageNode)
+  createNode(pageNode)
+
+  createParentChildLink({ parent: node, child: pageNode })
 }

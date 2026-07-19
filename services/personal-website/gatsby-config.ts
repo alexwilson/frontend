@@ -7,6 +7,9 @@ const config: GatsbyConfig = {
     description: `Software Engineer, Technical Architect — Helping build a better, faster internet.`,
     siteUrl: `https://alexwilson.tech/`,
     author: `@antoligy`,
+    // The canonical page about the site's Person; the Page template marks it
+    // as a schema.org ProfilePage. Site-level, not per-page frontmatter.
+    aboutPath: `/about-me`,
   },
   trailingSlash: "never",
   plugins: [
@@ -18,6 +21,19 @@ const config: GatsbyConfig = {
         repo: `content`,
         ref: process.env.CONTENT_REF ?? `main`,
         patterns: [`posts/**`],
+        token: process.env.GITHUB_TOKEN,
+        pollInterval: process.env.NODE_ENV === `development` ? 30 : 0,
+      },
+    },
+
+    {
+      resolve: `gatsby-source-github-repository`,
+      options: {
+        name: `pages`,
+        owner: `alexwilson`,
+        repo: `content`,
+        ref: process.env.CONTENT_REF ?? `main`,
+        patterns: [`pages/**`],
         token: process.env.GITHUB_TOKEN,
         pollInterval: process.env.NODE_ENV === `development` ? 30 : 0,
       },

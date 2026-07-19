@@ -33,6 +33,7 @@ export const TwoEqual = () => <Demo split="two-equal" />
 export const TwoWideLeft = () => <Demo split="two-wide-left" />
 export const TwoWideRight = () => <Demo split="two-wide-right" />
 export const Three = () => <Demo split="three" />
+export const ThreeWideCenter = () => <Demo split="three-wide-center" />
 
 export const AllSplits = () => (
   <>
