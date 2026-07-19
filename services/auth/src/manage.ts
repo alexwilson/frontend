@@ -70,7 +70,11 @@ export async function handleManageSignIn(c: Ctx, auth: Auth): Promise<Response> 
     headers.delete('content-length')
     return new Response(null, { status: 302, headers })
   } catch (e) {
-    return c.text(`Sign-in failed: ${(e as Error).message}`, 500)
+    // Never echo the raw error: it can carry DB internals (failed SQL +
+    // params) when the backing store is down. Log server-side, redirect to
+    // the sanitised error page. This surface is reachable pre-auth.
+    console.error('[manage] sign-in failed:', e)
+    return c.redirect('/auth/error?error=server_error', 302)
   }
 }
 
@@ -149,7 +153,8 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
     try {
       await sessionsDomain.revoke(db, sessionId)
     } catch (e) {
-      return renderManage(c, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
+      console.error('[manage] session revoke failed:', e)
+      return renderManage(c, auth, { kind: 'err', text: 'Something went wrong. Please try again.' })
     }
     return c.redirect('/auth/manage', 303)
   }
@@ -216,7 +221,8 @@ async function handlePost(c: Ctx, auth: Auth): Promise<Response> {
         throw new Error('unknown action')
     }
   } catch (e) {
-    return renderManage(c, auth, { kind: 'err', text: `Failed: ${(e as Error).message}` })
+    console.error(`[manage] action "${action}" failed:`, e)
+    return renderManage(c, auth, { kind: 'err', text: 'Something went wrong. Please try again.' })
   }
 
   return c.redirect('/auth/manage', 303)
