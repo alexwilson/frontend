@@ -29,6 +29,9 @@ runs:
         path: |
           node_modules
           */*/node_modules
+    - name: Use HTTPS for GitHub git dependencies
+      shell: bash
+      run: git config --global url."https://github.com/".insteadOf "git@github.com:"
     - name: Install dependencies
       shell: bash
       env:
