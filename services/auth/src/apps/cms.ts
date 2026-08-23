@@ -60,12 +60,10 @@ export class CmsApp implements AppPlugin {
       clientSecret: secret,
       authorizationUrl: 'https://github.com/login/oauth/authorize',
       tokenUrl: 'https://github.com/login/oauth/access_token',
-      // RFC 9207 issuer. GitHub doesn't currently include `iss` in OAuth
-      // callbacks (the RFC is from 2022; GitHub's OAuth predates it). Setting
-      // this is a no-op today — better-auth's check only runs when ?iss is
-      // present. If GitHub ever starts emitting it, we'll validate against
-      // this value automatically without a code change. See threat model T14.
-      issuer: 'https://github.com',
+      // RFC 9207 issuer. GitHub started sending `iss` on OAuth callbacks in
+      // April 2026 (github.com/orgs/community/discussions/192143); better-auth
+      // compares it to this value exactly. See threat model T14.
+      issuer: 'https://github.com/login/oauth',
       getUserInfo: githubUserInfo,
       // GitHub Apps ignore OAuth scope=; what matters is the App's User
       // permissions configured on github.com. Kept here for documentation +
