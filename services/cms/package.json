@@ -58,7 +58,7 @@
     "@alexwilson/ds-legacy-components": "workspace:*",
     "better-auth": "1.6.13",
     "date-fns": "4.4.0",
-    "decap-cms": "3.14.0",
+    "decap-cms": "3.15.1",
     "decap-cms-app": "3.14.0",
     "decap-cms-backend-github": "3.7.0",
     "decap-cms-backend-proxy": "3.4.0",
