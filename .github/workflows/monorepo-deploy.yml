@@ -33,7 +33,7 @@ jobs:
           if [ -n "$BASE_SHA" ] && [ "$BASE_SHA" != "0000000000000000000000000000000000000000" ]; then
             git fetch --depth=1 origin "$BASE_SHA"
           fi
-      - uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4.2.5
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
           install_args: python pnpm
           cache_key_prefix: mise-monorepo-prepare
