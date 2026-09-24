@@ -44,6 +44,15 @@ updates:
       types:
         patterns: ["@types/*"]
         update-types: ["minor", "patch"]
+      # Consolidates the same dependency bumped in multiple workspace
+      # member directories (e.g. root + services/auth + services/cms) into
+      # a single PR instead of one per directory. Without this, each
+      # directory's PR only patches that directory's package.json and
+      # leaves the shared root pnpm-lock.yaml to the other PRs, which is
+      # what let pnpm-lock.yaml drift out of sync with package.json after
+      # a batch of same-dependency PRs were merged (see #3981).
+      cross-directory:
+        group-by: dependency-name
 
   - package-ecosystem: github-actions
     cooldown:
