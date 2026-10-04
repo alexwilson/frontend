@@ -37,10 +37,13 @@ async function parseTokenJwt(jwt: string, authUrl: string): Promise<CmsTokenResu
     const verified = await jwtVerify(jwt, jwksFor(authUrl), {
       issuer: authUrl,
       audience: 'cms',
+      // nbf is stamped with the worker's clock; browser clocks drift by seconds.
+      clockTolerance: 60,
     })
     p = verified.payload
-  } catch {
-    return null
+  } catch (e) {
+    const reason = e instanceof Error ? e.message : String(e)
+    throw new Error(`Token response carried malformed JWT: ${reason}`)
   }
   if ((p as { typ?: unknown }).typ !== 'access') return null
   const access_token = typeof p.access_token === 'string' ? p.access_token : ''

@@ -99,7 +99,7 @@ describe('probeCmsToken', () => {
       .rejects.toThrow('malformed JWT')
   })
 
-  it('passes issuer + audience options to jwtVerify', async () => {
+  it('passes issuer + audience + clock tolerance options to jwtVerify', async () => {
     const jwt = makeJwt({ sub: 'u', email: 'e', app: 'cms', typ: 'access', access_token: 'ghu_x' })
     mockFetch({ status: 200, body: { jwt } })
     const jose = await import('jose')
@@ -107,7 +107,7 @@ describe('probeCmsToken', () => {
     await probeCmsToken('https://auth.test')
 
     const [, , opts] = (jose.jwtVerify as ReturnType<typeof vi.fn>).mock.calls[0]
-    expect(opts).toMatchObject({ issuer: 'https://auth.test', audience: 'cms' })
+    expect(opts).toMatchObject({ issuer: 'https://auth.test', audience: 'cms', clockTolerance: 60 })
   })
 
   it('401 with needsLink → kind: link, carries providerId', async () => {
