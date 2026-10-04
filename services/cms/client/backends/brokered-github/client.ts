@@ -37,6 +37,8 @@ async function parseTokenJwt(jwt: string, authUrl: string): Promise<CmsTokenResu
     const verified = await jwtVerify(jwt, jwksFor(authUrl), {
       issuer: authUrl,
       audience: 'cms',
+      // nbf is stamped with the worker's clock; browser clocks drift by seconds.
+      clockTolerance: 60,
     })
     p = verified.payload
   } catch {
