@@ -37,7 +37,7 @@
   "dependencies": {
     "@octokit/request": "^10.0.13",
     "gatsby-source-filesystem": "^5.16.0",
-    "minimatch": "^10.0.0"
+    "minimatch": "^11.0.1"
   },
   "peerDependencies": {
     "gatsby": ">=5"
