@@ -102,12 +102,12 @@ jobs:
         with:
           name: site-artefact
           path: public
-      - uses: alexwilson/feed-validator-action@20c1fc2adb3820699d789855f346bc2e61fcffd8 # v1.1.0
+      - uses: alexwilson/feed-validator-action@9e4ae35549c03e549374feeb9bc1e926e197650b # v2.0.0
         with:
           feed: public/feed.xml
           origin-url: https://alexwilson.tech/feed.xml
           compatibility: AAA
-          fail-on: warning
+          fail-on: warnings
 
   # Deploy to Github Pages environment
   deploy-ghpages:
