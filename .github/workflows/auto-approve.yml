@@ -7,6 +7,8 @@ jobs:
   auto-update-dependencies:
     name: approve and merge for dependency PRs
     runs-on: ubuntu-latest
+    # Each label fires its own run. Run them one at a time so the second sees the first's approval.
+    concurrency: auto-approve-${{ github.event.pull_request.number }}
     if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
       - name: Fetch Dependabot metadata
@@ -26,15 +28,26 @@ jobs:
           && !contains(steps.metadata.outputs.dependency-names, 'hono')
         run: echo "auto-merge=true" >> "$GITHUB_OUTPUT"
 
+      - name: Read the current PR state
+        id: state
+        if: steps.policy.outputs.auto-merge == 'true'
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          PR_URL: "${{ github.event.pull_request.html_url }}"
+        run: >-
+          gh pr view "$PR_URL" --json state,reviewDecision,autoMergeRequest --jq
+          '"open=\(.state == "OPEN")", "approved=\(.reviewDecision == "APPROVED")", "auto-merge=\(.autoMergeRequest != null)"'
+          >> "$GITHUB_OUTPUT"
+
       # Enable auto-merge *before* issuing an approval.
       - name: Enable Github Automerge
-        if: steps.policy.outputs.auto-merge == 'true'
+        if: steps.state.outputs.open == 'true' && steps.state.outputs.auto-merge == 'false'
         uses: alexwilson/enable-github-automerge-action@2c32e18a76e0726ffe7a573bfff2d42a20885126 # 3.0.0
         with:
           github-token: "${{ secrets.PR_GH_TOKEN }}"
 
       # We "trust" low-risk dependabot updates (this still requires all other checks to pass!)
       - uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363
-        if: steps.policy.outputs.auto-merge == 'true'
+        if: steps.state.outputs.open == 'true' && steps.state.outputs.approved == 'false'
         with:
           github-token: "${{ secrets.PR_GH_TOKEN }}"
