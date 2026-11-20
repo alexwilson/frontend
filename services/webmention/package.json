@@ -15,12 +15,12 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.161",
     "@types/node": "24.13.3",
-    "@vitest/coverage-v8": "4.1.7",
+    "@vitest/coverage-v8": "4.1.11",
     "aws-cdk": "2.1122.0",
     "esbuild": "0.28.1",
     "ts-node": "10.9.2",
     "typescript": "6.0.3",
-    "vitest": "4.1.8"
+    "vitest": "4.1.11"
   },
   "dependencies": {
     "@aws-sdk/client-cloudfront": "3.1053.0",
