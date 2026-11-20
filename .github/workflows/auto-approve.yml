@@ -9,13 +9,32 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      # Majors, Terraform providers and auth packages wait for a human.
+      # A Terraform merge applies to prod with only a lint check before it.
+      - name: Check the bump is low risk
+        id: policy
+        if: >-
+          steps.metadata.outputs.update-type != 'version-update:semver-major'
+          && steps.metadata.outputs.package-ecosystem != 'terraform'
+          && !contains(steps.metadata.outputs.dependency-names, 'better-auth')
+          && !contains(steps.metadata.outputs.dependency-names, 'hono')
+        run: echo "auto-merge=true" >> "$GITHUB_OUTPUT"
+
       # Enable auto-merge *before* issuing an approval.
       - name: Enable Github Automerge
+        if: steps.policy.outputs.auto-merge == 'true'
         uses: alexwilson/enable-github-automerge-action@2c32e18a76e0726ffe7a573bfff2d42a20885126 # 3.0.0
         with:
           github-token: "${{ secrets.PR_GH_TOKEN }}"
 
-      # We "trust" dependabot updates (this still requires all other checks to pass!)
+      # We "trust" low-risk dependabot updates (this still requires all other checks to pass!)
       - uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363
+        if: steps.policy.outputs.auto-merge == 'true'
         with:
           github-token: "${{ secrets.PR_GH_TOKEN }}"
