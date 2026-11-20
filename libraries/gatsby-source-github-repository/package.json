@@ -45,10 +45,10 @@
   "devDependencies": {
     "@octokit/request-error": "^6.1.0",
     "@types/node": "^24.13.3",
-    "@vitest/coverage-v8": "4.1.7",
+    "@vitest/coverage-v8": "4.1.11",
     "gatsby": "^5.16.1",
     "joi": "^18.2.3",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.11"
   }
 }
