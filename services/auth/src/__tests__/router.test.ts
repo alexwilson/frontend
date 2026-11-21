@@ -39,6 +39,27 @@ describe('routing', () => {
   })
 })
 
+describe('OAuth callback issuer check (RFC 9207)', () => {
+  it('redirects to the error page when iss does not match the app provider', async () => {
+    const res = await app.fetch(
+      new Request('https://auth.test/auth/callback/github-cms?code=c&state=s&iss=https%3A%2F%2Fevil.test'),
+      env,
+    )
+    expect(res.status).toBe(302)
+    expect(res.headers.get('location')).toBe('/auth/error?error=issuer_mismatch')
+  })
+
+  it('does not reject a matching iss', async () => {
+    // Falls through to better-auth, which throws here because AUTH_DB is
+    // not set. Reaching it at all is what this test checks.
+    const res = await Promise.resolve(app.fetch(
+      new Request('https://auth.test/auth/callback/github-cms?code=c&state=s&iss=https%3A%2F%2Fgithub.com%2Flogin%2Foauth'),
+      env,
+    )).catch(() => null)
+    expect(res?.headers.get('location')).not.toBe('/auth/error?error=issuer_mismatch')
+  })
+})
+
 describe('CORS preflight', () => {
   it('trusted origin → 204 with Allow-Origin echoed back', async () => {
     const res = await app.fetch(

@@ -1,7 +1,7 @@
 import { Hono, type MiddlewareHandler } from 'hono'
 import { cors } from 'hono/cors'
 import { createAuth } from './auth'
-import { appById } from './apps/registry'
+import { appById, appByProviderId } from './apps/registry'
 import { handleAppToken, handleAppSignOut } from './app-token'
 import { handleManage, handleManageSignIn } from './manage'
 import { handleScheduled } from './cron'
@@ -100,6 +100,19 @@ app.get('/auth/error', (c) => {
   applyHtmlSecurityHeaders(c)
   c.header('cache-control', 'no-store')
   return c.html(renderErrorPageFromCode(c.req.query('error')))
+})
+
+// RFC 9207 issuer check for app providers (threat model T14). better-auth
+// 1.7 takes a generic provider's issuer only from OIDC discovery, which the
+// app providers do not use, so the check runs here before the callback.
+app.get('/auth/callback/:providerId', async (c, next) => {
+  const expected = appByProviderId(c.req.param('providerId'))?.oauthConfig(c.env).issuer
+  const received = c.req.query('iss')
+  if (expected && received && received !== expected) {
+    console.error('OAuth issuer mismatch', { expected, received })
+    return c.redirect('/auth/error?error=issuer_mismatch')
+  }
+  return next()
 })
 
 // Everything else under /auth/* is owned by better-auth.
