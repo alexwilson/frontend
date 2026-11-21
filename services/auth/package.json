@@ -24,7 +24,6 @@
     "hono": "4.13.16"
   },
   "devDependencies": {
-    "@better-auth/cli": "1.4.21",
     "@cloudflare/workers-types": "5.20260817.1",
     "@picocss/pico": "2.1.1",
     "@types/better-sqlite3": "7.6.13",
