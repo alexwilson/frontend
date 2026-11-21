@@ -29,6 +29,13 @@
       "when": 1779007798197,
       "tag": "0003_session_cf_context",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1795234138933,
+      "tag": "0004_jwks_alg_crv",
+      "breakpoints": true
     }
   ]
 }
