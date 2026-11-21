@@ -90,12 +90,12 @@ sequenceDiagram
     Worker->>Worker: Look up account row, providerId='github-cms'
     alt Account not linked
         Worker-->>CMS: 401 {needsLink, provider: 'github-cms'}
-        CMS->>Worker: POST /auth/oauth2/link (provider, callbackURL)
+        CMS->>Worker: POST /auth/link-social (provider, callbackURL)
         Worker-->>CMS: 302 → GitHub authorize (CMS App)
         CMS->>GH: Authorize CMS App
         User->>GH: Grants installation access
-        GH-->>CMS: 302 → /auth/oauth2/callback/github-cms
-        CMS->>Worker: GET /auth/oauth2/callback/github-cms (code, state)
+        GH-->>CMS: 302 → /auth/callback/github-cms
+        CMS->>Worker: GET /auth/callback/github-cms (code, state)
         Worker->>GH: Exchange code, store ghu_* + refresh
         Worker-->>CMS: 302 → original CMS URL
         CMS->>Worker: GET /auth/app/cms/token (retry)
@@ -259,7 +259,7 @@ Both Apps share the same callback shape:
 
 | Setting | Identity App | CMS App |
 |---|---|---|
-| Callback URL | `https://alexwilson.tech/auth/callback/github` (+ localhost for dev) | `https://alexwilson.tech/auth/oauth2/callback/github-cms` (+ localhost for dev) |
+| Callback URL | `https://alexwilson.tech/auth/callback/github` (+ localhost for dev) | `https://alexwilson.tech/auth/callback/github-cms` (+ localhost for dev) |
 | Expire user authorization tokens | On | On |
 | Webhook | Off | Off |
 | User permissions | Email addresses: Read | Email addresses: Read |

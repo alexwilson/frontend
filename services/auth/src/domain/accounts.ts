@@ -86,6 +86,17 @@ export async function listIdle(db: Db, thresholdMs: number): Promise<IdleAccount
   return rows.filter((r): r is IdleAccountRow => r.accessToken !== null)
 }
 
+// better-auth's getAccessToken addresses an account by its row id, not by
+// provider. Null means the user has not linked this provider yet.
+export async function findRowId(db: Db, userId: string, providerId: string): Promise<string | null> {
+  const row = await db
+    .select({ id: account.id })
+    .from(account)
+    .where(and(eq(account.userId, userId), eq(account.providerId, providerId)))
+    .get()
+  return row?.id ?? null
+}
+
 // Stamp last_issued_at on the (user, provider) row to mark "actively in use"
 // for the idle sweep. Called from handleAppToken on every successful JWT #2
 // mint. No-op if the row doesn't exist (better-auth's getAccessToken would

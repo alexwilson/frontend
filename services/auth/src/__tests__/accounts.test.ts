@@ -126,6 +126,31 @@ describe('accounts.listIdle', () => {
   })
 })
 
+describe('accounts.findRowId', () => {
+  it('returns the row id for the user and provider', async () => {
+    await seedUser('u1')
+    await seedAccount({ id: 'a', userId: 'u1', providerId: 'github' })
+    await seedAccount({ id: 'b', userId: 'u1', providerId: 'github-cms' })
+
+    await expect(accounts.findRowId(t.db, 'u1', 'github-cms')).resolves.toBe('b')
+  })
+
+  it('returns null when the user has not linked the provider', async () => {
+    await seedUser('u1')
+    await seedAccount({ id: 'a', userId: 'u1', providerId: 'github' })
+
+    await expect(accounts.findRowId(t.db, 'u1', 'github-cms')).resolves.toBeNull()
+  })
+
+  it("does not return another user's row", async () => {
+    await seedUser('u1')
+    await seedUser('u2')
+    await seedAccount({ id: 'b', userId: 'u2', providerId: 'github-cms' })
+
+    await expect(accounts.findRowId(t.db, 'u1', 'github-cms')).resolves.toBeNull()
+  })
+})
+
 describe('accounts.markIssued', () => {
   it('sets last_issued_at on the matching row', async () => {
     await seedUser('u1')
