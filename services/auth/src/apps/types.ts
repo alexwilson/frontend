@@ -33,8 +33,9 @@ export interface OAuthProviderConfig {
   tokenUrl: string
   userInfoUrl?: string
   scopes?: string[]
-  // Expected issuer identifier (RFC 9207). Better-auth checks ?iss on the
-  // OAuth callback against this. Belt-and-suspenders against mix-up attacks
+  // Expected issuer identifier (RFC 9207). The callback route in
+  // src/index.ts checks ?iss against this; better-auth 1.7 ignores the field.
+  // Belt-and-suspenders against mix-up attacks
   // — the primary defence is per-provider callback paths + hardcoded
   // authorizationUrl/tokenUrl. Setting `issuer` here costs nothing today
   // (most OAuth providers don't return iss yet, so the check is a no-op),

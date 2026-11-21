@@ -77,3 +77,4 @@ design, promote it to an ADR here.
 | [0010](./0010-idle-revocation-cron.md) | Idle revocation via Cloudflare Cron Triggers | Accepted |
 | [0011](./0011-email-allowlist-nfkc.md) | Email allowlist with NFKC + mixed-script rejection | Accepted |
 | [0012](./0012-domain-layer.md) | Domain layer for all DB access | Accepted |
+| [0013](./0013-issuer-check-in-the-worker.md) | RFC 9207 issuer check in the worker | Proposed |
