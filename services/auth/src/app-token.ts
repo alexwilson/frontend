@@ -266,10 +266,11 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   // Fetch the upstream access token. Better-auth handles refresh internally.
   // If the account isn't linked yet, this throws; surface a needsLink response
   // so the caller can drive the second-leg OAuth.
+  const needsLink = () => c.json({ needsLink: true, app: app.id, provider: app.providerId }, 401)
+  const accountId = await accounts.findRowId(dbFor(c.env), identity.sub, app.providerId)
+  if (!accountId) return needsLink()
   let accessToken: string
   try {
-    const accountId = await accounts.findRowId(dbFor(c.env), identity.sub, app.providerId)
-    if (!accountId) throw new Error('not linked')
     const res = await auth.api.getAccessToken({
       body: { accountId, userId: identity.sub },
       headers: c.req.raw.headers,
@@ -277,7 +278,7 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
     if (!res?.accessToken) throw new Error('no token')
     accessToken = res.accessToken
   } catch {
-    return c.json({ needsLink: true, app: app.id, provider: app.providerId }, 401)
+    return needsLink()
   }
 
   // App-specific claims merged into JWT #2's payload.

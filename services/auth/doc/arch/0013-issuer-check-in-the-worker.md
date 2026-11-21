@@ -11,8 +11,8 @@ Proposed
 Capability Apps register their own OAuth provider through better-auth's
 `genericOAuth` plugin (ADR 0004). Each provider sets a static `issuer`,
 and better-auth compared the `iss` query parameter on the OAuth callback
-against it. This is the RFC 9207 defence against mix-up attacks, threat
-model T14. GitHub has sent `iss` on callbacks since April 2026.
+against it. This is the RFC 9207 defence against mix-up attacks. GitHub
+has sent `iss` on callbacks since April 2026.
 
 better-auth 1.7 changed how generic providers work:
 
@@ -43,13 +43,25 @@ the expected issuer from its `oauthConfig`, and redirects to
 `/auth/error?error=issuer_mismatch` when `iss` is present and different.
 Otherwise the request continues to better-auth.
 
-The semantics match better-auth 1.6: a missing `iss` is allowed, a wrong
-one is rejected.
+The semantics match better-auth 1.6 without `requireIssuerValidation`: a
+missing or empty `iss` is allowed, a wrong one is rejected. An attacker
+who controls the callback URL can leave `iss` out, so this is defence in
+depth and not a full RFC 9207 implementation. The main defence is that
+each provider has its own callback path and hardcoded endpoints.
+
+Failing closed on a missing `iss` is the stronger setting. We do not do
+it yet because we have not confirmed that GitHub sends `iss` on every
+callback, including error callbacks, and a wrong guess locks everyone
+out of the CMS.
 
 ## Consequences
 
-- T14 stays mitigated across the upgrade, and the check is now covered
-  by our own router tests instead of library behaviour.
+- The issuer check is as strong after the upgrade as before it, and is
+  now covered by our own router tests instead of library behaviour.
+- better-auth answers 404 for a trailing slash, a different case and the
+  old `/oauth2/callback/:id` path. It turns a POST callback into a
+  redirect to the GET route with `iss` kept. So the GET route sees every
+  callback that better-auth would process.
 - The check is ours to maintain. If better-auth restores a static issuer
   option, this route becomes redundant and should be removed.
 - The route only covers providers in the app registry. The built-in

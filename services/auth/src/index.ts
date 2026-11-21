@@ -102,14 +102,14 @@ app.get('/auth/error', (c) => {
   return c.html(renderErrorPageFromCode(c.req.query('error')))
 })
 
-// RFC 9207 issuer check for app providers (threat model T14). better-auth
-// 1.7 takes a generic provider's issuer only from OIDC discovery, which the
-// app providers do not use, so the check runs here before the callback.
+// RFC 9207 issuer check for app providers. better-auth 1.7 takes a generic
+// provider's issuer only from OIDC discovery, which the app providers do
+// not use, so the check runs here before the callback. See ADR 0013.
 app.get('/auth/callback/:providerId', async (c, next) => {
   const expected = appByProviderId(c.req.param('providerId'))?.oauthConfig(c.env).issuer
   const received = c.req.query('iss')
   if (expected && received && received !== expected) {
-    console.error('OAuth issuer mismatch', { expected, received })
+    console.error('OAuth issuer mismatch', { expected, received: received.slice(0, 200) })
     return c.redirect('/auth/error?error=issuer_mismatch')
   }
   return next()
