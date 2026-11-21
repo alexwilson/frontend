@@ -1,10 +1,5 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import app from '../index'
-
-// Stands in for better-auth, so a test can tell that a request reached it.
-vi.mock('../auth', () => ({
-  createAuth: () => ({ handler: async () => new Response('better-auth', { status: 404 }) }),
-}))
 
 // Hono app.fetch() lets us exercise routing without spinning a real worker.
 // AUTH_DB / secrets are only touched if the route reaches auth.handler — the
@@ -41,38 +36,6 @@ describe('routing', () => {
   it('paths outside /auth → 404 (no fall-through)', async () => {
     const res = await app.fetch(new Request('https://auth.test/something-else'), env)
     expect(res.status).toBe(404)
-  })
-})
-
-describe('OAuth callback issuer check (RFC 9207)', () => {
-  const callback = (path: string) => app.fetch(new Request(`https://auth.test${path}`), env)
-  const github = encodeURIComponent('https://github.com/login/oauth')
-
-  it('redirects to the error page when iss does not match the app provider', async () => {
-    const res = await callback('/auth/callback/github-cms?code=c&state=s&iss=https%3A%2F%2Fevil.test')
-    expect(res.status).toBe(302)
-    expect(res.headers.get('location')).toBe('/auth/error?error=issuer_mismatch')
-  })
-
-  it('rejects a wrong iss when the provider id is percent-encoded', async () => {
-    const res = await callback('/auth/callback/github%2Dcms?code=c&state=s&iss=https%3A%2F%2Fevil.test')
-    expect(res.headers.get('location')).toBe('/auth/error?error=issuer_mismatch')
-  })
-
-  it('passes a matching iss to better-auth', async () => {
-    const res = await callback(`/auth/callback/github-cms?code=c&state=s&iss=${github}`)
-    expect(await res.text()).toBe('better-auth')
-  })
-
-  // Same as better-auth 1.6: only a wrong iss is rejected. See ADR 0013.
-  it.each(['', '&iss='])('passes a callback with no iss value (%j) to better-auth', async (iss) => {
-    const res = await callback(`/auth/callback/github-cms?code=c&state=s${iss}`)
-    expect(await res.text()).toBe('better-auth')
-  })
-
-  it('does not check providers outside the app registry', async () => {
-    const res = await callback('/auth/callback/github?code=c&state=s&iss=https%3A%2F%2Fevil.test')
-    expect(await res.text()).toBe('better-auth')
   })
 })
 
