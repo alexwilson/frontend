@@ -268,8 +268,10 @@ export async function handleAppToken(c: Ctx, auth: Auth, app: AppPlugin): Promis
   // so the caller can drive the second-leg OAuth.
   let accessToken: string
   try {
+    const accountId = await accounts.findRowId(dbFor(c.env), identity.sub, app.providerId)
+    if (!accountId) throw new Error('not linked')
     const res = await auth.api.getAccessToken({
-      body: { providerId: app.providerId, userId: identity.sub },
+      body: { accountId, userId: identity.sub },
       headers: c.req.raw.headers,
     })
     if (!res?.accessToken) throw new Error('no token')

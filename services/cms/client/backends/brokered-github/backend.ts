@@ -1,7 +1,6 @@
 import React from 'react'
 import { GitHubBackend } from 'decap-cms-backend-github'
 import { createAuthClient } from 'better-auth/client'
-import { genericOAuthClient } from 'better-auth/client/plugins'
 import { probeCmsToken } from './client'
 import { makeCmsLogin, type AuthClient, type AuthComponentProps } from './component'
 
@@ -33,7 +32,6 @@ export class BrokeredGitHubBackend extends GitHubBackend {
       baseURL: this.authUrl,
       basePath: '/auth',
       credentials: 'include',
-      plugins: [genericOAuthClient()],
     }) as AuthClient
   }
 

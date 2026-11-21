@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
 import type { createAuthClient } from 'better-auth/client'
-import type { genericOAuthClient } from 'better-auth/client/plugins'
 import { AuthenticationPage } from 'decap-cms-ui-default'
 import { reducer, initialState, type Action } from './state'
 import { probeCmsToken, RoleDeniedError, type CmsTokenResult } from './client'
@@ -8,7 +7,6 @@ import { pendingCallbackURL, startedFromPending } from './routes'
 
 export type AuthClient = ReturnType<typeof createAuthClient<{
   baseURL: string
-  plugins: [ReturnType<typeof genericOAuthClient>]
 }>>
 
 export type AuthComponentProps = {
@@ -43,8 +41,8 @@ export function safeNavigate(rawUrl: unknown): boolean {
 }
 
 async function followLink(providerId: string, ctx: EffectCtx): Promise<void> {
-  const { data, error: linkErr } = await ctx.authClient.oauth2.link({
-    providerId,
+  const { data, error: linkErr } = await ctx.authClient.linkSocial({
+    provider: providerId,
     callbackURL: pendingCallbackURL(),
   })
   if (ctx.cancelled()) return

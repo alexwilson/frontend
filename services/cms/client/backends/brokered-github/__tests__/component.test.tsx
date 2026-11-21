@@ -49,11 +49,11 @@ function accessJwt(overrides: Partial<Record<string, unknown>> = {}): string {
 
 function stubAuthClient(overrides: Partial<{
   signIn: { social: ReturnType<typeof vi.fn> }
-  oauth2: { link: ReturnType<typeof vi.fn> }
+  linkSocial: ReturnType<typeof vi.fn>
 }> = {}): AuthClient {
   return {
     signIn: { social: vi.fn().mockResolvedValue({ data: { url: 'https://github.com/login/oauth/authorize?test=1' }, error: null }) },
-    oauth2: { link: vi.fn().mockResolvedValue({ data: { url: 'https://github.com/login/oauth/authorize?link=1' }, error: null }) },
+    linkSocial: vi.fn().mockResolvedValue({ data: { url: 'https://github.com/login/oauth/authorize?link=1' }, error: null }),
     ...overrides,
   } as unknown as AuthClient
 }
@@ -117,7 +117,7 @@ describe('CmsLogin', () => {
     // to `idle` instead, exposing the Sign in button.
     mockFetchResponse({ status: 401, body: { needsLink: true, provider: 'github-cms' } })
     const link = vi.fn()
-    const Component = makeCmsLogin('https://auth.test', stubAuthClient({ oauth2: { link } }))
+    const Component = makeCmsLogin('https://auth.test', stubAuthClient({ linkSocial: link }))
     render(<Component onLogin={vi.fn()} />)
 
     expect(await screen.findByRole('button', { name: /^sign in$/i })).toBeDefined()
@@ -178,7 +178,7 @@ describe('CmsLogin', () => {
     expect(callArg.callbackURL).toMatch(/#\/cms-pending-signin$/)
   })
 
-  it('click triggers oauth2.link when session exists but CMS not yet linked', async () => {
+  it('click triggers linkSocial when session exists but CMS not yet linked', async () => {
     mockFetchResponse({ status: 401, body: { needsLink: true, provider: 'github-cms' } })
     const link = vi.fn().mockResolvedValue({
       data: { url: 'https://github.com/login/oauth/authorize?link=1' },
@@ -187,7 +187,7 @@ describe('CmsLogin', () => {
     const social = vi.fn()
     const Component = makeCmsLogin('https://auth.test', stubAuthClient({
       signIn: { social },
-      oauth2: { link },
+      linkSocial: link,
     }))
     render(<Component onLogin={vi.fn()} />)
 
@@ -195,7 +195,7 @@ describe('CmsLogin', () => {
     fireEvent.click(btn)
 
     await waitFor(() => expect(link).toHaveBeenCalledTimes(1))
-    expect(link.mock.calls[0][0]).toMatchObject({ providerId: 'github-cms' })
+    expect(link.mock.calls[0][0]).toMatchObject({ provider: 'github-cms' })
     expect(social).not.toHaveBeenCalled()
   })
 
@@ -228,7 +228,7 @@ describe('CmsLogin', () => {
     })
   })
 
-  it('probing → 401 needsLink triggers authClient.oauth2.link', async () => {
+  it('probing → 401 needsLink triggers authClient.linkSocial', async () => {
     setHash('#/cms-pending-signin')
     mockFetchResponse({ status: 401, body: { needsLink: true, provider: 'github-cms' } })
     const link = vi.fn().mockResolvedValue({
@@ -236,13 +236,13 @@ describe('CmsLogin', () => {
       error: null,
     })
     const Component = makeCmsLogin('https://auth.test', stubAuthClient({
-      oauth2: { link },
+      linkSocial: link,
     }))
     render(<Component onLogin={vi.fn()} />)
 
     await waitFor(() => expect(link).toHaveBeenCalledTimes(1))
     expect(link.mock.calls[0][0]).toMatchObject({
-      providerId: 'github-cms',
+      provider: 'github-cms',
     })
     expect(link.mock.calls[0][0].callbackURL).toMatch(/#\/cms-pending-signin$/)
   })
